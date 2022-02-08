@@ -4,3 +4,4 @@ This repo contains the source code for the 5 graded assignments and project for 
 
 ## Assignment 1
 
+[Link](https://cwkd.github.io/HASS-IDV/assignment1/index.html)
