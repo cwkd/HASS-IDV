@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HASS Interactve Data Visualisation</title>
+        <style>
+            text {
+                font-family: "Arial", sans-serif;
+            }
+            svg {
+                transform: rotate(90);
+            }
+        </style>
+    </head>
+    <body>
+    <svg width="1000" height="1000" xmlns="http://www.w3.org/2000/svg">
+
+        <g class="circles">
+            <circle cx="500" cy="500" r="300" stroke="red" fill="#559975" stroke-width="10"></circle>
+            <circle cx="400" cy="400" r="100" fill="#555075" stroke="#f00" stroke-width="5"></circle>
+        </g>
+        <line x1="330" y1="330" x2="470" y2="470" stroke="#0f0" stroke-width="3"></line>
+        <line x1="470" y1="330" x2="330" y2="470" stroke="#f0f"
+              style="stroke: #f0f;
+                     stroke-width: 5;
+                     stroke-dasharray: 10 10;
+                    "></line>
+        <!--        <rect x="700" y="700" width="100" height="100" fill="#aa7755"></rect>-->
+        <g class="rects">
+            <rect x="300" y="300" width="100" height="100" fill="#aa7755"
+              style="stroke: #009900;
+                     stroke-width: 3;
+                     stroke-dasharray: 10 5;
+                     fill: none;
+                    "></rect>
+            <rect class="rect" x="300" y="300" width="50" height="50" fill="#000" stroke="#f00" stroke-width="5"></rect>
+        </g>
+
+        <g class="paths" fill="#0f0" stroke="#f00">
+            <path d="M100 200, L300 600, L500 200Z"></path>
+            <path d="M10 500 C 300 800, 600 200, 990 500" stroke="#f00" stroke-width="3" fill="none"></path>
+        </g>
+        <path class="star"
+              d="M100 300,
+              L300 300,
+              L140 410,
+              L200 230,
+              L260 410Z"
+              style="stroke: #009900;
+                     stroke-width: 3;
+                     stroke-dasharray: 10 5;
+                     fill: #fff;
+                    "></path>
+        <text x="100" y="100" font-size="80" stroke="#f00" stroke-width="3" fill="#fff">Hello World</text>
+        <path id="helloworld" d="M10 500 C 900 100, 100 900, 990 500" stroke="#000" fill="none"></path>
+          <text font-size="60px">
+            <textPath xlink:href="#helloworld">
+                Hello World. Ipsum Lorem dolor sit amet.
+            </textPath>
+          </text>
+        <g transform="translate(10, 200)">
+            <circle cx="500" cy="500" r="100"></circle>
+            <rect x="700" y="100" width="100" height="100"></rect>
+        </g>
+    </svg>
+    <svg viewBox="0 0 1000 1000">
+        <g class="circles">
+            <circle cx="500" cy="500" r="300" stroke="red" fill="#559975" stroke-width="10"></circle>
+            <circle cx="400" cy="400" r="100" fill="#555075" stroke="#f00" stroke-width="5"></circle>
+        </g>
+        <line x1="330" y1="330" x2="470" y2="470" stroke="#0f0" stroke-width="3"></line>
+        <line x1="470" y1="330" x2="330" y2="470" stroke="#f0f"
+              style="stroke: #f0f;
+                     stroke-width: 5;
+                     stroke-dasharray: 10 10;
+                    "></line>
+        <!--        <rect x="700" y="700" width="100" height="100" fill="#aa7755"></rect>-->
+        <g class="rects">
+            <rect x="300" y="300" width="100" height="100" fill="#aa7755"
+              style="stroke: #009900;
+                     stroke-width: 3;
+                     stroke-dasharray: 10 5;
+                     fill: none;
+                    "></rect>
+            <rect class="rect" x="300" y="300" width="50" height="50" fill="#000" stroke="#f00" stroke-width="5"></rect>
+        </g>
+        <path class="star"
+              d="M100 300,
+              L300 300,
+              L140 410,
+              L200 230,
+              L260 410Z"
+              style="stroke: #009900;
+                     stroke-width: 3;
+                     stroke-dasharray: 10 5;
+                     fill: #fff;
+                    "></path>
+        <text x="100" y="100" font-size="80" stroke="#f00" stroke-width="3" fill="#fff">Hello World</text>
+        <path id="starwars" d="M100 500 C 900 100, 100 900, 900 500" stroke="black" fill="none"></path>
+          <text font-size="60px" stroke="black" fill="yellow">
+            <textPath xlink:href="#starwars">
+                Long long ago..in a galaxy far far away...
+            </textPath>
+          </text>
+    </svg>
+    <svg class="mySVG" transform="scale(-1, -1)" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+      <g>
+        <g>
+          <path d="m485.2,35c-11-2.6-22.1,4.2-24.7,15.2l-12.6,53.4c-46-58-116.2-92.6-191.9-92.6-106,0-245,77.2-245,245 0,11.3 9.2,20.5 20.5,20.5s20.5-9.2 20.5-20.5c0-112.5 91.5-204 204-204 62.6,0 120.7,28.4 159,76.1l-58.2-13.7c-11-2.6-22.1,4.2-24.7,15.2-2.6,11 4.2,22.1 15.2,24.7l103.9,24.5c1.6,0.4 7.1,2 15.5-2.5 4.8-2.6 7.9-7.4 9.2-12.7l24.5-103.9c2.7-11-4.2-22.1-15.2-24.7z"/>
+          <path d="m368.9,206.2c0-11.3-9.1-20.4-20.4-20.4h-133.9l-47.5-47.5c-8-8-20.9-8-28.9,0-8,8-8,20.9 0,28.9l47.5,47.5v133.9c0,11.3 9.1,20.4 20.4,20.4s20.4-9.1 20.4-20.4v-93.1l45.5,45.5v58.4c0,11.3 9.1,20.4 20.4,20.4 11.3,0 20.4-9.1 20.4-20.4v-17.5l8,8c12.2,12.2 24.9,4 28.9,0 8-8 8-20.9 0-28.9l-8-8h17.5c11.3,0 20.4-9.1 20.4-20.4s-9.1-20.4-20.4-20.4h-58.2l-45.5-45.5h93.1c11.2-0.1 20.3-9.3 20.3-20.5z"/>
+          <path d="m479,252.4c-10.6,0-19.5,8.1-20.4,18.6-9.4,103.8-96.9,185.4-203.2,185.4-47.7,0-93-16.6-128.9-45.9l42.5,10c10.8,2.6 22-3.7 25-14.4 3.1-11.3-3.8-22.7-15.1-25.4l-103.9-24.5c-7.5-1.8-15.6,0.8-20.7,7.1-2,2.4-3.3,5.4-4,8.4l-24.5,103.7c-2.6,11 4.2,22.1 15.2,24.7 1.6,0.4 18.9,4.2 24.7-15.2l14.4-61.1c45.7,46.8 108.6,73.8 175.2,73.8 65.4,0 127-25.5 173.2-71.8 41-41 65.6-93.9 70.8-150.9 1.2-12.1-8.3-22.5-20.3-22.5z"/>
+        </g>
+      </g>
+    </svg>
+    <svg transform="rotate(45)" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+      <g>
+        <g>
+          <path d="m485.2,35c-11-2.6-22.1,4.2-24.7,15.2l-12.6,53.4c-46-58-116.2-92.6-191.9-92.6-106,0-245,77.2-245,245 0,11.3 9.2,20.5 20.5,20.5s20.5-9.2 20.5-20.5c0-112.5 91.5-204 204-204 62.6,0 120.7,28.4 159,76.1l-58.2-13.7c-11-2.6-22.1,4.2-24.7,15.2-2.6,11 4.2,22.1 15.2,24.7l103.9,24.5c1.6,0.4 7.1,2 15.5-2.5 4.8-2.6 7.9-7.4 9.2-12.7l24.5-103.9c2.7-11-4.2-22.1-15.2-24.7z"/>
+          <path d="m368.9,206.2c0-11.3-9.1-20.4-20.4-20.4h-133.9l-47.5-47.5c-8-8-20.9-8-28.9,0-8,8-8,20.9 0,28.9l47.5,47.5v133.9c0,11.3 9.1,20.4 20.4,20.4s20.4-9.1 20.4-20.4v-93.1l45.5,45.5v58.4c0,11.3 9.1,20.4 20.4,20.4 11.3,0 20.4-9.1 20.4-20.4v-17.5l8,8c12.2,12.2 24.9,4 28.9,0 8-8 8-20.9 0-28.9l-8-8h17.5c11.3,0 20.4-9.1 20.4-20.4s-9.1-20.4-20.4-20.4h-58.2l-45.5-45.5h93.1c11.2-0.1 20.3-9.3 20.3-20.5z"/>
+          <path d="m479,252.4c-10.6,0-19.5,8.1-20.4,18.6-9.4,103.8-96.9,185.4-203.2,185.4-47.7,0-93-16.6-128.9-45.9l42.5,10c10.8,2.6 22-3.7 25-14.4 3.1-11.3-3.8-22.7-15.1-25.4l-103.9-24.5c-7.5-1.8-15.6,0.8-20.7,7.1-2,2.4-3.3,5.4-4,8.4l-24.5,103.7c-2.6,11 4.2,22.1 15.2,24.7 1.6,0.4 18.9,4.2 24.7-15.2l14.4-61.1c45.7,46.8 108.6,73.8 175.2,73.8 65.4,0 127-25.5 173.2-71.8 41-41 65.6-93.9 70.8-150.9 1.2-12.1-8.3-22.5-20.3-22.5z"/>
+        </g>
+      </g>
+    </svg>
+    </body>
+</html>

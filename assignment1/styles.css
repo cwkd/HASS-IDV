@@ -1,0 +1,32 @@
+.header {
+    font-family: "Helvetica", sans-serif;
+    color: white;
+}
+.topRow {
+    font-family: "Helvetica", sans-serif;
+    background: #3F0FB7;
+    border-radius: 3px;
+    color: white;
+}
+.tableContainer {
+    text-align: center;
+    color: white;
+    margin: auto;
+    background: white;
+}
+#myTimestamp {
+    font-family: "Arial", sans-serif;
+    color: white;
+}
+#mainContainer {
+    text-align: center;
+}
+.trOdd {
+    background: black;
+}
+.trEven {
+    background: gray;
+}
+body {
+    background-color: #C0C0C0;
+}

@@ -3,51 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>Assignment 1</title>
+        <link rel="stylesheet" href="styles.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-            function appendData(data) {
-                var header = document.getElementById("myHeader");
-                var headerDiv  = document.createElement("div");
-                tempStr = Date(data.update_timestamp);
-                headerDiv.innerHTML = tempStr;
-                header.appendChild(headerDiv);
-                var mainContainer = document.getElementById("myData");
-                for (var key in data.readings) {
-                    var row = document.createElement("tr");
-                    var col = document.createElement("td");
-                    col.innerHTML = key;
-                    row.appendChild(col);
-                    line = data.readings[key];
-                    const sub_keys = ["national", "central", "north", "south", "east", "west"];
-                    for (idx in sub_keys) {
-                        var col = document.createElement("td");
-                        col.innerHTML = line[sub_keys[idx]];
-                        row.appendChild(col);
-                    }
-                    mainContainer.appendChild(row);
-                }
-            }
-            let myJson = {};
-            fetch('https://api.data.gov.sg/v1/environment/psi')
-                .then(response => response.json())
-                .then(data => {
-                myJson = data.items[0];
-                appendData(myJson);});
-        </script>
+        <script src="scripts.js"></script>
     </head>
     <body>
-        <h1>Assignment 1</h1>
-        <div id="myHeader"></div>
-        <table id="myData">
-            <tr>
-                <th>Metric</th>
-                <th>National</th>
-                <th>Central</th>
-                <th>North</th>
-                <th>South</th>
-                <th>East</th>
-                <th>West</th>
-            </tr>
-        </table>
+        <div id="mainContainer">
+            <div class="header">
+                <h2>Assignment 1</h2>
+            </div>
+            <div id="myTimestamp"></div>
+            <table id="myData" class="tableContainer">
+                <thead>
+                    <tr class="topRow">
+                        <th>Metric</th>
+                        <th>National</th>
+                        <th>Central</th>
+                        <th>North</th>
+                        <th>South</th>
+                        <th>East</th>
+                        <th>West</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </body>
 </html>
