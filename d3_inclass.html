@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+    </head>
+    <body>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <svg></svg>
+        <script>
+            let data = [
+                {x: 400, y: 700, r:150, color: "green"},
+                {x: 100, y: 300, r:50, color: "blue"},
+                {x: 850, y: 400, r:100, color: "red"}
+            ]
+
+            let margin = {top: 20, right: 20, bottom: 60, left: 60},
+                width = 800 - margin.left - margin.right,
+                height = 800 - margin.top - margin.bottom;
+            let chart = d3.select("svg")
+                .attr("width", 800)
+                .attr("height", 800)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            let xScale = d3.scaleLinear()
+                .domain([0,1000])
+                .range([0,width]);
+            let yScale = d3.scaleLinear()
+                .domain([0,1000])
+                .range([height,0]);
+            let colorScale = d3.scaleLinear()
+                .domain([0, 300])
+                .range([0,1]);
+
+            chart.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", d => xScale(d.x))
+                .attr("cy", d => yScale(d.y))
+                .attr("r", d => d.r)
+                .attr("fill", d => d.color)
+                .attr("fill", d => d3.interpolateViridis(colorScale(d.r)))
+                .on("mouseover", (event, d) => {
+                    d3.select(event.currentTarget)
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 2);
+                })
+                .on("mouseout", (event, d) => {
+                    d3.select(event.currentTarget)
+                    .attr("stroke", "none");
+                })
+
+<!--            chart-->
+<!--                .append("g")-->
+<!--                .call(d3.axisBottom(xScale));-->
+            chart
+                .append("g")
+                .call(d3.axisLeft(yScale));
+
+            chart
+                .append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(xScale));
+
+            chart
+                .append("text")
+                .attr("transform", "translate(" + (width / 2) + "," + (height + 40) + ")")
+                .text("X-axis label")
+                .attr("text-align", "middle");
+
+            chart
+                .append("text")
+                .attr("transform", "translate(-40, " + (height / 2) + ") rotate(-90)")
+                .text("Y-axis label")
+                .attr("text-align", "middle");
+
+        </script>
+    </body>
+</html>

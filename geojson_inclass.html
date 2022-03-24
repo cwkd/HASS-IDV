@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .country {
+            fill: steelblue;
+            stroke: #fff;
+            stroke-width: 0.5;
+        }
+        .country-mouseover {
+            fill: steelblue;
+            stroke: red;
+            stroke-width: 1;
+        }
+        .tooltip {
+            position: absolute;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <svg viewBox="0 0 10000 10000">
+        <defs>
+            <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(0,0,27);stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:rgb(51,122,183);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+    <div class="tooltip"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+
+        let width = 10000, height = 10000;
+
+        let svg = d3.select("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Map and projection
+        let singapore = [103.851959, 1.290270]
+
+        let projection = d3.geoEquirectangular()
+<!--            .center(singapore) // London's longitude / latitude;-->
+<!--            .scale(1000);-->
+        let geopath = d3.geoPath().projection(projection);
+
+        // Load GeoJSON data
+        d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(data => {
+
+            svg.append("path")
+                .datum({type: "Sphere"})
+                .attr("id", "ocean")
+                .attr("d", geopath)
+                .attr("fill", "lightBlue")
+                .attr("fill", "url(#oceanGradient)");
+
+            // Draw the map
+            svg.append("g")
+                .attr("id", "countries")
+                .selectAll("path")
+                .data(data.features)
+                .enter()
+                .append("path")
+                .attr("d",  d => geopath(d))
+                .attr("class", "country")
+                .on("mouseover", (event, d) => {
+                    d3.select(event.currentTarget)
+                    .attr("class", "country-mouseover");
+                    d3.select(".tooltip")
+                    .text(d.properties.name)
+                    .attr("class", "tooltip")
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY) + "px");
+                })
+                .on("mouseout", (event, d) => {
+                    d3.select(event.currentTarget)
+                    .attr("class", "country");
+                    d3.select(".tooltip")
+                    .text("");
+                });
+
+            let graticule = d3.geoGraticule()
+                .step([10, 10]);
+
+            svg.append("g")
+                .attr("id", "graticules")
+                .selectAll("path")
+                .data([graticule()])
+                .enter()
+                .append("path")
+                .attr("d", d => geopath(d))
+                .attr("fill", "none")
+                .attr("stroke", "#aaa")
+                .attr("stroke-width", 0.2);
+
+<!--        svg.append("circle")-->
+<!--            .attr("cx", projection(singapore)[0])-->
+<!--            .attr("cy", projection(singapore)[1])-->
+<!--            .attr("r", 5)-->
+<!--            .attr("fill", "yellow")-->
+<!--            .delay(1);-->
+
+             var cities = [
+                {name: "Singapore", longitude: 103.851959, latitude: 1.290270},
+                {name: "London", longitude: -0.118092, latitude: 51.509865},
+                {name: "Tokyo", longitude: 139.839478, latitude: 35.652832}
+            ]
+
+<!--    var group = svg.append("g")-->
+<!--        .attr("id", "cities")-->
+<!--        .selectAll("circle")-->
+<!--        .data(cities)-->
+<!--        .append("circle")-->
+<!--        .attr("cx", d => projection([d.longitude, d.latitude])[0])-->
+<!--        .attr("cy", d => projection([d.longitude, d.latitude])[1])-->
+<!--        .attr("r", 5)-->
+<!--        .attr("fill", "yellow");-->
+
+            svg.append("g")
+                .attr("id", "cities")
+                .selectAll("circle")
+                .data(cities)
+                .enter()
+                .append("circle")
+                .attr("cx", d => projection([d.longitude, d.latitude])[0])
+                .attr("cy", d => projection([d.longitude, d.latitude])[1])
+                .attr("r", 5)
+                .attr("fill", "yellow");
+
+            let time = Date.now();
+
+            d3.timer(function() {
+                let angle = (Date.now() - time) * 0.02;
+                projection.rotate([angle, 0, 0]);
+                svg.select("g#countries")
+                    .selectAll("path")
+                    .attr("d", geopath.projection(projection));
+                svg.select("g#graticules")
+                    .selectAll("path")
+                    .attr("d", geopath.projection(projection));
+                svg.select("g#cities")
+                    .selectAll("circle")
+                    .attr("cx", d => projection([d.longitude, d.latitude])[0])
+                    .attr("cy", d => projection([d.longitude, d.latitude])[1])
+                }
+            );
+        })
+<!--        svg.select("g#cities")-->
+<!--            .selectAll("circle")-->
+<!--            .append("circle")-->
+<!--            .attr("cx", d => projection([d.longitude, d.latitude])[0])-->
+<!--            .attr("cy", d => projection([d.longitude, d.latitude])[1])-->
+<!--            .attr("r", 5)-->
+<!--            .attr("fill", "yellow")-->
+<!--            .attr("visibility", d => {-->
+<!--                var point = {type: 'Point', coordinates: [d.longitude, d.latitude]};-->
+<!--                if (geopath(point) == null) {-->
+<!--                    return "hidden";-->
+<!--                } else {-->
+<!--                    return "visible";-->
+<!--                }-->
+<!--            }-->
+<!--        );-->
+
+
+    </script>
+
+
+</body>
+</html>
