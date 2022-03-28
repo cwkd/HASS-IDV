@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Leaflet In-Class</title>
+        <style>
+            #map {
+                width: 1000px;
+                height: 600px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    </head>
+    <body>
+        <div id="map"></div>
+        <svg></svg>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.3.0/leaflet-providers.min.js"></script>
+
+        <script>
+            let map = new L.Map("map", {center: [1.347833, 103.809357], zoom: 12})
+                .addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
+
+            let tiles = new L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
+                detectRetina: true,
+                maxZoom: 18,
+                minZoom: 11,
+                //Do not remove this attribution
+                attribution: '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;">' +
+                           'New OneMap | Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+            });
+
+<!--            let tiles = new L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{-->
+<!--                maxZoom: 20,-->
+<!--                subdomains:['mt0','mt1','mt2','mt3']-->
+<!--            });-->
+
+<!--            let tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {-->
+<!--                attribution: 'Tiles © Esri'-->
+<!--            });-->
+
+            map.addLayer(tiles);
+
+<!--            let svg = d3.select(map.getPanes().overlayPane)-->
+<!--                .append("svg")-->
+<!--                .attr("width", 1000)-->
+<!--                .attr("height", 600)-->
+<!--                .append("g")-->
+<!--                .attr("id","svgLayer")-->
+<!--                .attr("class", "leaflet-zoom-hide");-->
+
+<!--            // Use Leaflets projection API for drawing svg path (creates a stream of projected points)-->
+<!--            const projectPoint = function(x, y) {-->
+<!--                const point = map.latLngToLayerPoint(new L.LatLng(y, x))-->
+<!--                this.stream.point(point.x, point.y)-->
+<!--            }-->
+
+<!--            // Use d3's custom geo transform method to implement the above-->
+<!--            const projection = d3.geoTransform({point: projectPoint})-->
+<!--            // creates geopath from projected points (SVG)-->
+<!--            const pathCreator = d3.geoPath().projection(projection)-->
+
+<!--            let map = new L.Map("map", {-->
+<!--                center: [1.347833, 103.809357],-->
+<!--                zoom: 11,-->
+<!--                maxBounds: L.latLngBounds(L.latLng(1.1, 103.5), L.latLng(1.5, 104.3))-->
+<!--            })-->
+<!--            .addLayer(tiles);-->
+<!--            let width = 1000, height = 600;-->
+
+<!--            let svg = d3.select("svg")-->
+<!--                .attr("viewBox", "0 0 " + width + " " + height)-->
+
+<!--            // Load external data and boot-->
+<!--            Promise.all([d3.json("sgmap.json"), d3.csv("population2021.csv")]).then(data => {-->
+
+<!--            console.log(data[0]);-->
+<!--            console.log(data[1]);-->
+
+<!--            // Map and projection-->
+<!--            var projection = d3.geoMercator()-->
+<!--                .center([103.851959, 1.290270])-->
+<!--                .fitExtent([[20, 20], [980, 580]], data[0]);-->
+
+<!--            let geopath = d3.geoPath().projection(projection);-->
+
+<!--            svg.append("g")-->
+<!--                .attr("id", "districts")-->
+<!--                .selectAll("path")-->
+<!--                .data(data[0].features)-->
+<!--                .enter()-->
+<!--                .append("path")-->
+<!--                .attr("d", geopath)-->
+<!--                .attr("fill", "black");-->
+<!--            })-->
+        </script>
+    </body>
+</html>
