@@ -1,0 +1,20 @@
+.sub-header {
+    font-family: "Helvetica", sans-serif;
+    color: black;
+    font-weight: bold;
+}
+.summary {
+    font-family: "Helvetica", sans-serif;
+    color: black;
+    font-weight: normal;
+    text-align: left;
+}
+.description {
+    font-family: "Helvetica", sans-serif;
+    color: black;
+    font-weight: normal;
+    text-align: justify;
+}
+.vis-container {
+    text-align: center;
+}
