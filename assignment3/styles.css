@@ -1,0 +1,31 @@
+.bar-chart-title {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 24px;
+    text-anchor: middle;
+}
+.bar {
+    fill: steelblue;
+    stroke: black;
+}
+.highlight {
+    fill: orange;
+    stroke: black;
+}
+.val {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    text-anchor: start;
+}
+.chart-background-debug {
+    width: 700px;
+    height: 600px;
+    background-color: pink;
+}
+.chart-background {
+    width: 700px;
+    height: 600px;
+    background-color: #ededed;
+}
+.bar2 {
+    fill: #69b3a2;
+    stroke: black;
+}
