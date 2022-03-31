@@ -29,3 +29,7 @@
     fill: #69b3a2;
     stroke: black;
 }
+.main-container {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    text-align: center;
+}
