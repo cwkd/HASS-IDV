@@ -3,9 +3,24 @@
     font-size: 24px;
     text-anchor: middle;
 }
-.bar {
+.button {
     fill: steelblue;
+    r: 25px;
+}
+.button-highlight {
+    fill: orange;
     stroke: black;
+    r: 31px;
+}
+.button-text {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 14px;
+    text-anchor: middle;
+}
+.button-text-highlight {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 20px;
+    text-anchor: middle;
 }
 .highlight {
     fill: orange;
@@ -21,15 +36,19 @@
     background-color: pink;
 }
 .chart-background {
-    width: 700px;
-    height: 600px;
     background-color: #ededed;
 }
-.bar2 {
+.bar {
     fill: #69b3a2;
-    stroke: black;
 }
 .main-container {
     font-family: 'Roboto Slab', 'Helvetica', sans-serif;
     text-align: center;
+    text-anchor: middle;
+    width: 850px;
+    margin: auto;
+}
+.text {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    text-align: justify;
 }
