@@ -2,8 +2,6 @@ function computeYears(data) {
     data.columns.push('years');
     for (var i in data) {
         try {
-            console.log(data[i].apartment_price)
-//            console.log(Math.round(data[i].apartment_price*.2/data[i].breakfast_price/3.65)/100);
             data[i].years = Math.round(data[i].apartment_price*.2/data[i].breakfast_price/3.65)/100;
         } catch {}
     }
@@ -14,7 +12,6 @@ function computeDeposit(data) {
     data.columns.push('deposit');
     for (var i in data) {
         try {
-//            console.log(Math.round(data[i]['apartment price']*20)/100);
             data[i].deposit = Math.round(data[i].apartment_price*20)/100;
         } catch {}
     }
@@ -101,57 +98,7 @@ function plotByYears(data) {
         .delay(function(d, i) {
             return(i*100);
         });
-    // Variable buttons
-    svg.append('rect')
-        .attr('id', 'deposit-button')
-        .attr('class', 'button')
-        .attr('transform', `translate(${0}, ${-margin.top*.9})`)
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    svg.append('text')
-        .attr('id', 'deposit-button-text')
-        .attr('class', 'button-text')
-        .attr('transform', `translate(${margin.left}, ${-margin.top*.7})`)
-        .text('Deposit')
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    // Variable buttons
-    svg.append('rect')
-        .attr('id', 'breakfast-button')
-        .attr('class', 'button')
-        .attr('transform', `translate(${margin.left*2}, ${-margin.top*.9})`)
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    svg.append('text')
-        .attr('id', 'breakfast-button-text')
-        .attr('class', 'button-text')
-        .attr('transform', `translate(${margin.left*3}, ${-margin.top*.7})`)
-        .text('Breakfast')
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
 
-    //button mouseover event handler
-    function buttonOnMouseOver(d, i) {
-        target = this.id.split('-')[0];
-        d3.select(`#${target}-button`).attr('class', 'button-highlight');
-    }
-    //button mouseout event handler
-    function buttonOnMouseOut(d, i) {
-        target = this.id.split('-')[0];
-        d3.select(`#${target}-button`).attr('class', 'button');
-    }
-    function buttonOnClick(d, i) {
-        target = this.id.split('-')[0];
-        if (target == 'deposit') {
-            plotByDeposit(globalData);
-        } else {
-            plotByBreakfast(globalData);
-        }
-    }
     //bar mouseover event handler function
     function barOnMouseOver(d, i) {
         d3.select(this).attr('class', 'bar-highlight');
@@ -190,7 +137,6 @@ function plotByDeposit(data) {
     chartType = 'deposit';
     d3.select('#chart').remove();
     data = computeDeposit(data);
-//    console.log(data)
 
     // sort data
     data.sort(function(b, a) {
@@ -259,57 +205,7 @@ function plotByDeposit(data) {
         .delay(function(d, i) {
             return(i*100);
         });
-    // Variable buttons
-    svg.append('rect')
-        .attr('id', 'years-button')
-        .attr('class', 'button')
-        .attr('transform', `translate(${0}, ${-margin.top*.9})`)
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    svg.append('text')
-        .attr('id', 'years-button-text')
-        .attr('class', 'button-text')
-        .attr('transform', `translate(${margin.left}, ${-margin.top*.7})`)
-        .text('Years')
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    // Variable buttons
-    svg.append('rect')
-        .attr('id', 'breakfast-button')
-        .attr('class', 'button')
-        .attr('transform', `translate(${margin.left*2}, ${-margin.top*.9})`)
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    svg.append('text')
-        .attr('id', 'breakfast-button-text')
-        .attr('class', 'button-text')
-        .attr('transform', `translate(${margin.left*3}, ${-margin.top*.7})`)
-        .text('Breakfast')
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
 
-    //button mouseover event handler
-    function buttonOnMouseOver(d, i) {
-        target = this.id.split('-')[0];
-        d3.select(`#${target}-button`).attr('class', 'button-highlight');
-    }
-    //button mouseout event handler
-    function buttonOnMouseOut(d, i) {
-        target = this.id.split('-')[0];
-        d3.select(`#${target}-button`).attr('class', 'button');
-    }
-    function buttonOnClick(d, i) {
-        target = this.id.split('-')[0];
-        if (target == 'years') {
-            plotByYears(globalData);
-        } else {
-            plotByBreakfast(globalData);
-        }
-    }
     //bar mouseover event handler function
     function barOnMouseOver(d, i) {
         d3.select(this).attr('class', 'bar-highlight');
@@ -416,57 +312,7 @@ function plotByBreakfast(data) {
         .delay(function(d, i) {
             return(i*100);
         });
-    // Variable buttons
-    svg.append('rect')
-        .attr('id', 'years-button')
-        .attr('class', 'button')
-        .attr('transform', `translate(${0}, ${-margin.top*.9})`)
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    svg.append('text')
-        .attr('id', 'years-button-text')
-        .attr('class', 'button-text')
-        .attr('transform', `translate(${margin.left}, ${-margin.top*.7})`)
-        .text('Years')
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    // Variable buttons
-    svg.append('rect')
-        .attr('id', 'deposit-button')
-        .attr('class', 'button')
-        .attr('transform', `translate(${margin.left*2}, ${-margin.top*.9})`)
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
-    svg.append('text')
-        .attr('id', 'deposit-button-text')
-        .attr('class', 'button-text')
-        .attr('transform', `translate(${margin.left*3}, ${-margin.top*.7})`)
-        .text('Deposit')
-        .on('mouseover', buttonOnMouseOver)
-        .on('mouseout', buttonOnMouseOut)
-        .on('click', buttonOnClick);
 
-    //button mouseover event handler
-    function buttonOnMouseOver(d, i) {
-        target = this.id.split('-')[0];
-        d3.select(`#${target}-button`).attr('class', 'button-highlight');
-    }
-    //button mouseout event handler
-    function buttonOnMouseOut(d, i) {
-        target = this.id.split('-')[0];
-        d3.select(`#${target}-button`).attr('class', 'button');
-    }
-    function buttonOnClick(d, i) {
-        target = this.id.split('-')[0];
-        if (target == 'years') {
-            plotByYears(globalData);
-        } else {
-            plotByDeposit(globalData);
-        }
-    }
     //bar mouseover event handler function
     function barOnMouseOver(d, i) {
         d3.select(this).attr('class', 'bar-highlight');
