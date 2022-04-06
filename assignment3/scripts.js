@@ -253,7 +253,7 @@ function drawLocationChart(town) {
 
     //bar mouseover event handler function
     function barOnMouseOver(d, i) {
-        d3.select(this).attr('class', 'button-highlight');
+        d3.select(this).attr('class', 'highlight');
         d3.select(this)
           .transition()     // adds animation
           .duration(200)

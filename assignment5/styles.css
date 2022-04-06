@@ -1,0 +1,36 @@
+p {
+    text-align: justify;
+}
+.text-container {
+    margin: auto;
+    text-align: center;
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 16px;
+}
+.chart-container {
+    margin: auto;
+    text-align: center;
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 16px;
+}
+.reference-container {
+    margin: auto;
+    text-align: center;
+}
+.chart-background {
+    width: 95%;
+    background: #ededed;
+    aspect-ratio: 4/3;
+}
+.reference-content {
+    margin: auto;
+    width: 95%;
+    aspect-ratio: 3/2;
+}
+.bar {
+    fill: #69b3a2;
+}
+#main-container {
+    margin: auto;
+    max-width: 800px;
+}
