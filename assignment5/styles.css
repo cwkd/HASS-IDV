@@ -8,19 +8,26 @@ p {
     font-size: 16px;
 }
 .chart-container {
+    width: 100%;
     margin: auto;
     text-align: center;
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 16px;
+}
+.chart-background {
+    width: 95%;
+    background: #ededed;
+    aspect-ratio: 4/3;
+}
+.chart-title {
+    margin: auto;
+    text-anchor: middle;
     font-family: 'Roboto Slab', 'Helvetica', sans-serif;
     font-size: 16px;
 }
 .reference-container {
     margin: auto;
     text-align: center;
-}
-.chart-background {
-    width: 95%;
-    background: #ededed;
-    aspect-ratio: 4/3;
 }
 .reference-content {
     margin: auto;
@@ -29,6 +36,29 @@ p {
 }
 .bar {
     fill: #69b3a2;
+}
+.bar-highlight {
+    fill: orange;
+    stroke: black;
+}
+.val {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    text-anchor: start;
+}
+.button {
+    height: 6%;
+    width: 15%;
+    fill: steelblue;
+}
+.button-highlight {
+    height: 6%;
+    width: 15%;
+    fill: orange;
+    stroke: black;
+}
+.button-text {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    text-anchor: middle;
 }
 #main-container {
     margin: auto;
