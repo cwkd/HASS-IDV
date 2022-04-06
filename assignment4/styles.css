@@ -1,0 +1,23 @@
+#map {
+    background-color: steelblue;
+}
+.district {
+    fill: #ededed;
+    stroke: black;
+}
+.district-highlight {
+    fill: orange;
+    stroke: black;
+    stroke-width: 2px;
+}
+.box {
+    width: 35%;
+    height: 20%;
+    fill: #ededed;
+    stroke: black;
+}
+.box-text {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    font-size: 14px;
+    text-anchor: middle;
+}
