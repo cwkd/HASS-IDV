@@ -1,4 +1,6 @@
 #map {
+    width: 1000px;
+    height: 600px;
     background-color: steelblue;
 }
 .district {
@@ -11,8 +13,6 @@
     stroke-width: 2px;
 }
 .box {
-    width: 35%;
-    height: 20%;
     fill: #ededed;
     stroke: black;
 }
