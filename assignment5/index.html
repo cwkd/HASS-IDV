@@ -8,7 +8,7 @@
     <script src="scripts.js"></script>
 </head>
 <body>
-    <div id="main-container">
+    <div class="main-container">
         <div class="text-container">
             <h3>Suggested Improvements to Avocado Toast Visualisation</h3>
             <p>
@@ -40,9 +40,11 @@
                     between cities too.
                 </p>
             </div>
-            <button onclick="updateChart('years')">Years</button>
-            <button onclick="updateChart('deposit')">Deposit</button>
-            <button onclick="updateChart('breakfast')">Breakfast</button>
+            <div class="button-container">
+                <button class="button" onclick="updateChart('years')">Years</button>
+                <button class="button" onclick="updateChart('deposit')">Deposit</button>
+                <button class="button" onclick="updateChart('breakfast')">Breakfast</button>
+            </div>
             <div class="chart-container"></div>
         </div>
     </div>

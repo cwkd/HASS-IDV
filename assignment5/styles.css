@@ -48,19 +48,12 @@ p {
 .button {
     height: 6%;
     width: 15%;
-    fill: steelblue;
-}
-.button-highlight {
-    height: 6%;
-    width: 15%;
-    fill: orange;
-    stroke: black;
-}
-.button-text {
     font-family: 'Roboto Slab', 'Helvetica', sans-serif;
-    text-anchor: middle;
 }
-#main-container {
+.button-container {
+    text-align: center;
+}
+.main-container {
     margin: auto;
     max-width: 800px;
 }
