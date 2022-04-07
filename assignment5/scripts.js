@@ -347,6 +347,8 @@ function plotByBreakfast(data) {
     }
 }
 
+
+
 var height = 1000, width = 600,
     margin = {top: 100, bottom: 100, left: 50, right: 100};
 
@@ -362,6 +364,22 @@ function redraw() {
     }
     if (chartType == 'breakfast') {
         plotByBreakfast(globalData);
+    }
+}
+
+function updateChart(target) {
+    if (target == chartType) {
+
+    } else {
+        if (target == 'years') {
+        plotByYears(globalData);
+        }
+        if (target == 'deposit') {
+            plotByDeposit(globalData);
+        }
+        if (target == 'breakfast') {
+            plotByBreakfast(globalData);
+        }
     }
 }
 
