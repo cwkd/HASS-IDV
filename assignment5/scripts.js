@@ -368,7 +368,7 @@ function plotBubbleChart(data) {
 //            .duration(200)
             .style("opacity", 1)
             .attr("x", event.layerX - margin.left)
-            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.06)
+            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.03)
             .style('fill', 'white')
             .text(`${capitaliseEachWord(d.city)}: ${d.years}`);
         tooltip
@@ -379,17 +379,17 @@ function plotBubbleChart(data) {
             .attr('width', tooltipText._groups[0][0].textLength.baseVal.value+10);
         tooltip
             .attr("x", event.layerX - margin.left - tooltip.attr('width')/2)
-            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.1);
+            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.07);
     }
     const moveTooltip = function(event, d) {
         tooltipText
             .attr("x", event.layerX - margin.left)
-            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.06);
+            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.03);
         tooltip
             .attr('width', tooltipText._groups[0][0].textLength.baseVal.value+10);
         tooltip
             .attr("x", event.layerX - margin.left - tooltip.attr('width')/2)
-            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.1);
+            .attr("y", event.layerY - margin.top - bubbleAxesHeight*.07);
     }
     const hideTooltip = function(event, d) {
         tooltip
