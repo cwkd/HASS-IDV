@@ -15,9 +15,8 @@ p {
     font-size: 16px;
 }
 .chart-background {
-    width: 95%;
+    width: 98%;
     background: #ededed;
-    aspect-ratio: 4/3;
 }
 .chart-title {
     margin: auto;
@@ -31,7 +30,7 @@ p {
 }
 .reference-content {
     margin: auto;
-    width: 95%;
+    width: 98%;
     aspect-ratio: 3/2;
 }
 .bar {
@@ -40,6 +39,20 @@ p {
 .bar-highlight {
     fill: orange;
     stroke: black;
+}
+.bubbles {
+    fill: #69b3a2;
+    stroke-width: 2px;
+    stroke: white;
+}
+.bubbles:hover {
+    stroke: black;
+}
+.tooltip {
+    background-color: black;
+}
+#bubble-tooltip-text {
+    text-anchor: middle;
 }
 .val {
     font-family: 'Roboto Slab', 'Helvetica', sans-serif;
