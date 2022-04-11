@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": 552784600502915072, "label": 552784600502915072, "shape": "dot", "title": "Charlie Hebdo became well known\u003cbr\u003efor publishing the Muhammed cartoons\u003cbr\u003etwo years ago\u003cbr\u003eWed Jan 07 11:11:33 +0000 2015"}, {"id": 552785249420447745, "label": 552785249420447745, "shape": "dot", "title": "Now 10 dead in a\u003cbr\u003eshooting there today RT \"@BBCDanielS:\u003cbr\u003eCharlie Hebdo became well known\u003cbr\u003efor publishing the Muhammed cartoons\u003cbr\u003etwo years ago\u201d\u003cbr\u003eWed Jan 07 11:14:08 +0000 2015"}, {"id": 552786761534144512, "label": 552786761534144512, "shape": "dot", "title": "@BBCDanielS @BBCWorld I\u0027m guessing this\u003cbr\u003eis being considered terrorism right\u003cbr\u003enow or lone wolf?\u003cbr\u003eWed Jan 07 11:20:08 +0000 2015"}, {"id": 552786803884060672, "label": 552786803884060672, "shape": "dot", "title": "@BBCDanielS @BBCWorld why would you\u003cbr\u003emention that before knowing the\u003cbr\u003efacts #islamphobiaatitsbest\u003cbr\u003eWed Jan 07 11:20:18 +0000 2015"}, {"id": 552786954656710656, "label": 552786954656710656, "shape": "dot", "title": "@BBCDanielS @BBCWorld perps identified?\u003cbr\u003eWed Jan 07 11:20:54 +0000 2015"}, {"id": 552787979224092672, "label": 552787979224092672, "shape": "dot", "title": "@BBCDanielS @BBCWorld who is charlie\u003cbr\u003ehebdo?\u003cbr\u003eWed Jan 07 11:24:59 +0000 2015"}, {"id": 552788534269341696, "label": 552788534269341696, "shape": "dot", "title": "@im_a_5H_Voter A French satirical magazine\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:27:11 +0000 2015"}, {"id": 552790305263849472, "label": 552790305263849472, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Maybe because\u003cbr\u003ethey shouted \"the prophet have\u003cbr\u003ebeen avenged\" thus making it\u003cbr\u003erelevant to the story?\u003cbr\u003eWed Jan 07 11:34:13 +0000 2015"}, {"id": 552791233182318592, "label": 552791233182318592, "shape": "dot", "title": "@S_Jakobsen @BBCDanielS @BBCWorld what\u0027s your\u003cbr\u003esource? I\u0027ve not heard that\u003cbr\u003ereported as of yet...\u003cbr\u003eWed Jan 07 11:37:55 +0000 2015"}, {"id": 552791452187897856, "label": 552791452187897856, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Several men\u003cbr\u003ein black cagoules were heard\u003cbr\u003eto shout \u0027the Prophet has\u003cbr\u003ebeen avenged\u0027\", wrote Pierre de\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:38:47 +0000 2015"}, {"id": 552791557976641536, "label": 552791557976641536, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Cossette, a\u003cbr\u003ebroadcast journalist with Europe1 News.\u003cbr\u003eHope that helps mate. From:\u003cbr\u003ehttp://t.co/dOP4uBRBSr\u003cbr\u003eWed Jan 07 11:39:12 +0000 2015"}, {"id": 552792423693582336, "label": 552792423693582336, "shape": "dot", "title": "@S_Jakobsen @BBCDanielS @BBCWorld not quite\u003cbr\u003esure why you are calling\u003cbr\u003eme mate...\u003cbr\u003eWed Jan 07 11:42:38 +0000 2015"}, {"id": 552792580631457792, "label": 552792580631457792, "shape": "dot", "title": "@BBCDanielS @GCGATOR24 I hope they\u003cbr\u003eremain open for business. I\u003cbr\u003epray for the souls of\u003cbr\u003ethose murdered and the recovery\u003cbr\u003eof those injured.\u003cbr\u003eWed Jan 07 11:43:16 +0000 2015"}, {"id": 552792654262849537, "label": 552792654262849537, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Oh come\u003cbr\u003eon. It\u0027s a friendly gesture.\u003cbr\u003eYou quite clearly expected me\u003cbr\u003eto be islamaphobic as well.\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:43:33 +0000 2015"}, {"id": 552792748320100352, "label": 552792748320100352, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Anyways, I\u003cbr\u003ewas providing a source and\u003cbr\u003eyou got all defensive. I\u003cbr\u003ewon\u0027t get into an argument.\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:43:56 +0000 2015"}, {"id": 552792981020086272, "label": 552792981020086272, "shape": "dot", "title": "@BBCDanielS @BBCWorld he shd ve\u003cbr\u003ebeen arrested for blasphemy and\u003cbr\u003einciting violence against muslims @mubasherlucman\u003cbr\u003e@MoeedNj  @Asma_Jahangir\u003cbr\u003eWed Jan 07 11:44:51 +0000 2015"}, {"id": 552793286529024001, "label": 552793286529024001, "shape": "dot", "title": "@S_Jakobsen @BBCDanielS @BBCWorld no argument\u003cbr\u003efrom me... And no i\u003cbr\u003edid not get defensive... All\u003cbr\u003ethe best\u003cbr\u003eWed Jan 07 11:46:04 +0000 2015"}, {"id": 552793401037320192, "label": 552793401037320192, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Scared of\u003cbr\u003ethe truth MOSLEM?  Your\u003cbr\u003epeaceful islam has their bloody\u003cbr\u003ehands in yet another murderous\u003cbr\u003erampage\u003cbr\u003eWed Jan 07 11:46:31 +0000 2015"}, {"id": 552802466937327616, "label": 552802466937327616, "shape": "dot", "title": "@BBCDanielS @BBCWorld terrorism has become\u003cbr\u003ethe systematic weapon of a\u003cbr\u003ewar that knows no borders\u003cbr\u003eor seldom has a face.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:22:33 +0000 2015"}, {"id": 552819849684975617, "label": 552819849684975617, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld Darling\u003cbr\u003eif we were scared of\u003cbr\u003ethe truth then we wouldn\u0027t\u003cbr\u003ebe Muslim.\u003cbr\u003eWed Jan 07 13:31:37 +0000 2015"}, {"id": 552829161845190657, "label": 552829161845190657, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld Then\u003cbr\u003estop wearing masks when you\u003cbr\u003ecommit heinous crimes in the\u003cbr\u003ename of your allah. Be\u003cbr\u003eproud\u003cbr\u003eWed Jan 07 14:08:37 +0000 2015"}, {"id": 552829685877325826, "label": 552829685877325826, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld We\u0027re\u003cbr\u003enot allowed to commit heinous\u003cbr\u003ecrimes, especially in the name\u003cbr\u003eof God.\u003cbr\u003eWed Jan 07 14:10:42 +0000 2015"}, {"id": 552830778363482113, "label": 552830778363482113, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld Hmmmmm\u003cbr\u003ewell you should tell that\u003cbr\u003eto the 25% who believe\u003cbr\u003eotherwise.\u003cbr\u003eWed Jan 07 14:15:03 +0000 2015"}, {"id": 552831538304266240, "label": 552831538304266240, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld One\u003cbr\u003estep at a time. But\u003cbr\u003ejust because they believe it,\u003cbr\u003edoesn\u0027t make it true.\u003cbr\u003eWed Jan 07 14:18:04 +0000 2015"}, {"id": 552831965536079872, "label": 552831965536079872, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld Great!\u003cbr\u003eThen why am I NOT\u003cbr\u003eseeing 10\u0027s of thousands of\u003cbr\u003eyou protesting the hijacking of\u003cbr\u003eyour islam?\u003cbr\u003eWed Jan 07 14:19:46 +0000 2015"}, {"id": 552862279360733185, "label": 552862279360733185, "shape": "dot", "title": "@BBCDanielS i\u0027ve done a brief\u003cbr\u003eresearch about it \u0026amp; i\u003cbr\u003ehave no comments. It isnt\u003cbr\u003egood to say nasty remarks\u003cbr\u003eabout the dead as well\u003cbr\u003eas a religion\u003cbr\u003eWed Jan 07 16:20:13 +0000 2015"}, {"id": 552864675743158272, "label": 552864675743158272, "shape": "dot", "title": "@usmanka fuck off you cunt\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:29:45 +0000 2015"}, {"id": 552891302065737729, "label": 552891302065737729, "shape": "dot", "title": "@GabTarquini @BBCDanielS @BBCWorld Millions of\u003cbr\u003eMuslims world wide rioted and\u003cbr\u003escreamed for Denmark to be\u003cbr\u003enuked after a drawing of\u003cbr\u003emo. Cunt.\u003cbr\u003eWed Jan 07 18:15:33 +0000 2015"}, {"id": 552972661609869312, "label": 552972661609869312, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld There\u003cbr\u003ehave been.But do you know\u003cbr\u003ewhat the media does? Twists\u003cbr\u003ethe news \u0026amp; makes us\u003cbr\u003elook violent\u003cbr\u003eWed Jan 07 23:38:50 +0000 2015"}, {"id": 552977959003242496, "label": 552977959003242496, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld Lmao.\u003cbr\u003e\"MAKES\" you look violent??? Honey,\u003cbr\u003eyou people are doing that\u003cbr\u003eALL ON YOUR OWN\u003cbr\u003eWed Jan 07 23:59:53 +0000 2015"}, {"id": 552981717753925633, "label": 552981717753925633, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld Correction,\u003cbr\u003epeople hijacking our religion which\u003cbr\u003eyou have shown that you\u003cbr\u003eknow of.\u003cbr\u003eThu Jan 08 00:14:50 +0000 2015"}, {"id": 552982099733389312, "label": 552982099733389312, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld I\u0027m\u003cbr\u003emuslim, would you call me\u003cbr\u003eviolent? Even knowing that people\u003cbr\u003eare giving us a bad\u003cbr\u003ename?\u003cbr\u003eThu Jan 08 00:16:21 +0000 2015"}, {"id": 552982866255036416, "label": 552982866255036416, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld No\u003cbr\u003eone is hijacking your cult.\u003cbr\u003eYour cult is all about\u003cbr\u003edeath. Have you read the\u003cbr\u003eKoran at all?\u003cbr\u003eThu Jan 08 00:19:23 +0000 2015"}, {"id": 552983393181249538, "label": 552983393181249538, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld When\u003cbr\u003eI start seeing 10\u0027s of\u003cbr\u003e1000\u0027s protesting the\"Hijacking\"of Islam, call\u003cbr\u003eme. Until then, F off\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:21:29 +0000 2015"}, {"id": 552983638409633792, "label": 552983638409633792, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld Correction\u003cbr\u003eagain, it teaches us to\u003cbr\u003eworship God and doing good\u003cbr\u003euntil death. Yes I have.\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:22:27 +0000 2015"}, {"id": 552984563639517184, "label": 552984563639517184, "shape": "dot", "title": "@lj_kulwicki @GabTarquini @BBCDanielS @BBCWorld Yes\u003cbr\u003ewe will grow stronger. But\u003cbr\u003etill then I pray to\u003cbr\u003eGod to guide you back\u003cbr\u003eto the right path\u003cbr\u003eThu Jan 08 00:26:08 +0000 2015"}, {"id": 552984761132539904, "label": 552984761132539904, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld No.\u003cbr\u003eI don\u0027t believe you have.\u003cbr\u003eKoran is filled with death\u003cbr\u003eorders. You ppl live in\u003cbr\u003ethe 5th century\u003cbr\u003eThu Jan 08 00:26:55 +0000 2015"}, {"id": 552984904510631936, "label": 552984904510631936, "shape": "dot", "title": "@neesa_h @GabTarquini @BBCDanielS @BBCWorld I\u003cbr\u003edon\u0027t want or need your\u003cbr\u003eprayers. Goodbye\u003cbr\u003eThu Jan 08 00:27:29 +0000 2015"}, {"id": 553082506657169408, "label": 553082506657169408, "shape": "dot", "title": "@pepsiplusconker but if u r\u003cbr\u003edisrespectful to muslims then i\u003cbr\u003ewill slaughter u myself\u003cbr\u003eThu Jan 08 06:55:20 +0000 2015"}, {"id": 553100179260583936, "label": 553100179260583936, "shape": "dot", "title": "@usmanka haha ok. You\u0027ll be\u003cbr\u003egoing to 30 nerdy neck\u003cbr\u003ebeards on macs quick if\u003cbr\u003eyou tried\u003cbr\u003eThu Jan 08 08:05:33 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 552784600502915072, "to": 552785249420447745}, {"from": 552784600502915072, "to": 552786761534144512}, {"from": 552784600502915072, "to": 552786803884060672}, {"from": 552784600502915072, "to": 552786954656710656}, {"from": 552784600502915072, "to": 552787979224092672}, {"from": 552787979224092672, "to": 552788534269341696}, {"from": 552786803884060672, "to": 552790305263849472}, {"from": 552790305263849472, "to": 552791233182318592}, {"from": 552791233182318592, "to": 552791452187897856}, {"from": 552791452187897856, "to": 552791557976641536}, {"from": 552791557976641536, "to": 552792423693582336}, {"from": 552784600502915072, "to": 552792580631457792}, {"from": 552792423693582336, "to": 552792654262849537}, {"from": 552792654262849537, "to": 552792748320100352}, {"from": 552784600502915072, "to": 552792981020086272}, {"from": 552792748320100352, "to": 552793286529024001}, {"from": 552786803884060672, "to": 552793401037320192}, {"from": 552784600502915072, "to": 552802466937327616}, {"from": 552793401037320192, "to": 552819849684975617}, {"from": 552819849684975617, "to": 552829161845190657}, {"from": 552829161845190657, "to": 552829685877325826}, {"from": 552829685877325826, "to": 552830778363482113}, {"from": 552830778363482113, "to": 552831538304266240}, {"from": 552831538304266240, "to": 552831965536079872}, {"from": 552788534269341696, "to": 552862279360733185}, {"from": 552792981020086272, "to": 552864675743158272}, {"from": 552786803884060672, "to": 552891302065737729}, {"from": 552831965536079872, "to": 552972661609869312}, {"from": 552972661609869312, "to": 552977959003242496}, {"from": 552977959003242496, "to": 552981717753925633}, {"from": 552977959003242496, "to": 552982099733389312}, {"from": 552981717753925633, "to": 552982866255036416}, {"from": 552982099733389312, "to": 552983393181249538}, {"from": 552982866255036416, "to": 552983638409633792}, {"from": 552983393181249538, "to": 552984563639517184}, {"from": 552983638409633792, "to": 552984761132539904}, {"from": 552984563639517184, "to": 552984904510631936}, {"from": 552864675743158272, "to": 553082506657169408}, {"from": 553082506657169408, "to": 553100179260583936}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
