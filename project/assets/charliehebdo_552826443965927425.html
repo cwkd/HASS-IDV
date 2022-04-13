@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 353, "id": 0, "label": "552826443965927425", "shape": "dot", "size": 10, "title": "552826443965927425\u003cbr\u003eShort piece from me on\u003cbr\u003ewhy no one is to\u003cbr\u003eblame for #CharlieHebdo murder but\u003cbr\u003ethe murderers themselves http://t.co/XkrzPFPhRl\u003cbr\u003eWed Jan 07 13:57:49 +0000 2015"}, {"group": 353, "id": 1, "label": "552826654159306752", "shape": "dot", "size": 10, "title": "552826654159306752\u003cbr\u003e@mePadraigReidy Typo in headline.\u003cbr\u003eWed Jan 07 13:58:40 +0000 2015"}, {"group": 353, "id": 2, "label": "552826972817354752", "shape": "dot", "size": 10, "title": "552826972817354752\u003cbr\u003e@mePadraigReidy true, sad that there\u003cbr\u003eare people who need convincing\u003cbr\u003eof your point.\u003cbr\u003eWed Jan 07 13:59:56 +0000 2015"}, {"group": 353, "id": 3, "label": "552827489932673024", "shape": "dot", "size": 10, "title": "552827489932673024\u003cbr\u003e@mePadraigReidy @michaeldweiss And all who\u003cbr\u003esupport them materially \u0026amp; spiritually!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:01:59 +0000 2015"}, {"group": 353, "id": 4, "label": "552827904854593536", "shape": "dot", "size": 10, "title": "552827904854593536\u003cbr\u003e@mePadraigReidy Why did the telegraph\u003cbr\u003ecensor his comic? They literally\u003cbr\u003eshat all over what #CharlieHebdo\u003cbr\u003estood for.\n\nhttp://t.co/lMuYpCHHXJ\u003cbr\u003eWed Jan 07 14:03:38 +0000 2015"}, {"group": 353, "id": 5, "label": "552828077135261696", "shape": "dot", "size": 10, "title": "552828077135261696\u003cbr\u003eEXCELLENT \"@mePadraigReidy: Short piece on\u003cbr\u003ewhy no1 is to blame\u003cbr\u003efor #CharlieHebdo murder but the\u003cbr\u003emurderers themselves http://t.co/vc6ULJkVVf\u201d\u003cbr\u003eWed Jan 07 14:04:19 +0000 2015"}, {"group": 353, "id": 6, "label": "552828723041665024", "shape": "dot", "size": 10, "title": "552828723041665024\u003cbr\u003e@mePadraigReidy Smart piece. Thanks for\u003cbr\u003ethat.\u003cbr\u003eWed Jan 07 14:06:53 +0000 2015"}, {"group": 353, "id": 7, "label": "552828984925642752", "shape": "dot", "size": 10, "title": "552828984925642752\u003cbr\u003e@mePadraigReidy @michaeldweiss @mePadraigReidy And those\u003cbr\u003eresourcing them. Ultimately it\u0027s not\u003cbr\u003eabout faith, is it?\u003cbr\u003eWed Jan 07 14:07:55 +0000 2015"}, {"group": 353, "id": 8, "label": "552829317865283584", "shape": "dot", "size": 10, "title": "552829317865283584\u003cbr\u003e@mepadraigreidy At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:09:15 +0000 2015"}, {"group": 353, "id": 9, "label": "552831479794135040", "shape": "dot", "size": 10, "title": "552831479794135040\u003cbr\u003e@mePadraigReidy you might want to\u003cbr\u003ehave your people correct the\u003cbr\u003espelling error in the headline\u003cbr\u003e- \u201cblaiming\u201d\u003cbr\u003eWed Jan 07 14:17:50 +0000 2015"}, {"group": 353, "id": 10, "label": "552836388992086016", "shape": "dot", "size": 10, "title": "552836388992086016\u003cbr\u003e@mePadraigReidy @bobfrombrockley Am sure seen,\u003cbr\u003ebut this is incapable of\u003cbr\u003ebeing improved upon http://t.co/iYPRTvtylm\u003cbr\u003eWed Jan 07 14:37:20 +0000 2015"}, {"group": 353, "id": 11, "label": "552837288968065024", "shape": "dot", "size": 10, "title": "552837288968065024\u003cbr\u003e@mePadraigReidy we must cure religion\u003cbr\u003eand fuck it good in\u003cbr\u003ethe ass\u003cbr\u003eWed Jan 07 14:40:55 +0000 2015"}, {"group": 353, "id": 12, "label": "552837407641726977", "shape": "dot", "size": 10, "title": "552837407641726977\u003cbr\u003eFrom @mePadraigReidy \"Today\u2019s obscenity may\u003cbr\u003eshock us, but we must\u003cbr\u003enot be rendered speechless.\" \u003cbr\u003ehttp://t.co/vGp1NX8FNa\n#JeSuisCharlie\u003cbr\u003eWed Jan 07 14:41:23 +0000 2015"}, {"group": 353, "id": 14, "label": "552837914628227073", "shape": "dot", "size": 10, "title": "552837914628227073\u003cbr\u003e@mePadraigReidy @BHAhumanists those who demonstrated\u003cbr\u003ecalling for \u0027death to those\u003cbr\u003ewho insult Islam\u0027 are all\u003cbr\u003eblame. That\u0027s 1000\u0027s\u003cbr\u003eWed Jan 07 14:43:24 +0000 2015"}, {"group": 353, "id": 15, "label": "552843337292869632", "shape": "dot", "size": 10, "title": "552843337292869632\u003cbr\u003e@mePadraigReidy @Wichita110 Why won\u0027t @Telegraph\u003cbr\u003eprint the cartoon? Isn\u0027t that\u003cbr\u003egiving in to terrorism \u0026amp;\u003cbr\u003eagainst what journalism stands for?\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:04:57 +0000 2015"}, {"group": 353, "id": 17, "label": "552853305693843458", "shape": "dot", "size": 10, "title": "552853305693843458\u003cbr\u003e@mePadraigReidy @isobelletomkins Islam is to\u003cbr\u003eblame, you treacherous relativist.\u003cbr\u003eWed Jan 07 15:44:34 +0000 2015"}, {"group": 353, "id": 16, "label": "552845207310696450", "shape": "dot", "size": 10, "title": "552845207310696450\u003cbr\u003e@TamuraManami_ @mePadraigReidy Literally?\u003cbr\u003eWed Jan 07 15:12:23 +0000 2015"}, {"group": 353, "id": 13, "label": "552837461022617600", "shape": "dot", "size": 10, "title": "552837461022617600\u003cbr\u003e@SpinningHugo @mePadraigReidy Yes. At times\u003cbr\u003elike this, as @adelegeras said,\u003cbr\u003ethe first thought is #WhatWouldNormThink?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:41:36 +0000 2015"}, {"group": 353, "id": 22, "label": "552977333897166849", "shape": "dot", "size": 10, "title": "552977333897166849\u003cbr\u003e@HappyHumanistUK @mePadraigReidy You have been\u003cbr\u003erendered speechless. Along with rest\u003cbr\u003eof #uk media too scared\u003cbr\u003eto print cartoons\u003cbr\u003eWed Jan 07 23:57:24 +0000 2015"}, {"group": 353, "id": 18, "label": "552863169320722433", "shape": "dot", "size": 10, "title": "552863169320722433\u003cbr\u003e@Kervanderv @mePadraigReidy Have you read\u003cbr\u003ethe whole article? That\u0027s what\u003cbr\u003ehe is saying.\u003cbr\u003eWed Jan 07 16:23:45 +0000 2015"}, {"group": 353, "id": 19, "label": "552863795970727936", "shape": "dot", "size": 10, "title": "552863795970727936\u003cbr\u003e@Kervanderv @mePadraigReidy You are angry\u003cbr\u003eand not really seeing straight,\u003cbr\u003eBrian. Please simmer down and\u003cbr\u003eread the article.\u003cbr\u003eWed Jan 07 16:26:15 +0000 2015"}, {"group": 353, "id": 20, "label": "552865383276113921", "shape": "dot", "size": 10, "title": "552865383276113921\u003cbr\u003e@isobelletomkins @mePadraigReidy I\u0027ve only read\u003cbr\u003ehis tweets.\u003cbr\u003eWed Jan 07 16:32:33 +0000 2015"}, {"group": 353, "id": 21, "label": "552865670178689024", "shape": "dot", "size": 10, "title": "552865670178689024\u003cbr\u003e@Kervanderv @mePadraigReidy Please read my\u003cbr\u003eDMs.\u003cbr\u003eWed Jan 07 16:33:42 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 4, "to": 16, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 12, "to": 22, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

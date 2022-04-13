@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2039, "id": 0, "label": "553586897168392192", "shape": "dot", "size": 10, "title": "553586897168392192\u003cbr\u003e#BREAKING : Both Charlie Hebdo\u003cbr\u003esuspects killed as police storm\u003cbr\u003ebuilding (police sources) http://t.co/OYSXRQ9xuv http://t.co/8ICThapo7z\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:19:36 +0000 2015"}, {"group": 2039, "id": 1, "label": "553587250232311810", "shape": "dot", "size": 10, "title": "553587250232311810\u003cbr\u003e@France24_en good\u003cbr\u003eFri Jan 09 16:21:00 +0000 2015"}, {"group": 2039, "id": 2, "label": "553587367983194113", "shape": "dot", "size": 10, "title": "553587367983194113\u003cbr\u003e@France24_en @slone Great job!!\u003cbr\u003eFri Jan 09 16:21:28 +0000 2015"}, {"group": 2039, "id": 3, "label": "553587662658207745", "shape": "dot", "size": 10, "title": "553587662658207745\u003cbr\u003e@CzechTV \u201c@France24_en: #BREAKING : Both\u003cbr\u003eCharlie Hebdo suspects killed as\u003cbr\u003epolice storm building (police sources)\u003cbr\u003ehttp://t.co/Oyo6wmpcps http\u003cbr\u003eFri Jan 09 16:22:38 +0000 2015"}, {"group": 2039, "id": 4, "label": "553588165408473088", "shape": "dot", "size": 10, "title": "553588165408473088\u003cbr\u003e@France24_en @Sonia_Dridi For the record\u003cbr\u003ethis pic. is the other\u003cbr\u003ehostage site, the CharlieHebdo murderers\u003cbr\u003ewere taken outside Paris: Dammartin\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:24:38 +0000 2015"}, {"group": 2039, "id": 5, "label": "553589683402579968", "shape": "dot", "size": 10, "title": "553589683402579968\u003cbr\u003e@France24_en: Both Charlie Hebdo suspects\u003cbr\u003ekilled as police storm building\u003cbr\u003e(police sources) http://t.co/wuPIIjroD0 http://t.co/idX9V3plft #FB\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:30:40 +0000 2015"}, {"group": 2039, "id": 6, "label": "553589974369845248", "shape": "dot", "size": 10, "title": "553589974369845248\u003cbr\u003e@France24_en @SkidWillie Great News!!! Take\u003cbr\u003eno prisoners. These bastards need\u003cbr\u003eto be exterminated on sight\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:31:49 +0000 2015"}, {"group": 2039, "id": 7, "label": "553590837666656257", "shape": "dot", "size": 10, "title": "553590837666656257\u003cbr\u003e@France24_en @lsferguson sweet they are\u003cbr\u003efinally with Allah\u003cbr\u003eFri Jan 09 16:35:15 +0000 2015"}, {"group": 2039, "id": 8, "label": "553591055783051264", "shape": "dot", "size": 10, "title": "553591055783051264\u003cbr\u003e@France24_en @JulianeMeyerK bad. They should\u003cbr\u003ehave been captured alive for\u003cbr\u003ea proper trial.\u003cbr\u003eFri Jan 09 16:36:07 +0000 2015"}, {"group": 2039, "id": 10, "label": "553594257593106432", "shape": "dot", "size": 10, "title": "553594257593106432\u003cbr\u003e@France24_en http://t.co/MCLBmKWvXO\u003cbr\u003eFri Jan 09 16:48:50 +0000 2015"}, {"group": 2039, "id": 11, "label": "553680292381483008", "shape": "dot", "size": 10, "title": "553680292381483008\u003cbr\u003e@France24_en @darshnasoni 2 M\u00c4NNER UND\u003cbr\u003ePOLIZEI/POLIZEI/POLIZEI/POLIZEI/POLIZEI UND TAGE/TAGE/TAGE/TAGELANG @Witness99_ FREE:\u003cbr\u003eHAHAHA\u003cbr\u003eFri Jan 09 22:30:43 +0000 2015"}, {"group": 2039, "id": 12, "label": "553757432455770112", "shape": "dot", "size": 10, "title": "553757432455770112\u003cbr\u003e@Troy_Johnson @France24_en. Did they get\u003cbr\u003ethose\" BOYS \"who lashed oUt\u003cbr\u003eagainst  the C.H. artist?\u003cbr\u003e\u003cbr\u003eSat Jan 10 03:37:14 +0000 2015"}, {"group": 2039, "id": 9, "label": "553591222456291328", "shape": "dot", "size": 10, "title": "553591222456291328\u003cbr\u003e@ensowi @France24_en Yes, but think\u003cbr\u003eit was too dangerous.\u003cbr\u003eFri Jan 09 16:36:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 5, "to": 12, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

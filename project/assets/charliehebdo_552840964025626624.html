@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 556, "id": 0, "label": "552840964025626624", "shape": "dot", "size": 10, "title": "552840964025626624\u003cbr\u003eA dark day for freedom\u003cbr\u003eof expression, an appalling human\u003cbr\u003etragedy. #JeSuisCharlie #CharlieHebdo http://t.co/IaTCXg8iD4\u003cbr\u003eWed Jan 07 14:55:31 +0000 2015"}, {"group": 556, "id": 1, "label": "552841923111968769", "shape": "dot", "size": 10, "title": "552841923111968769\u003cbr\u003e@amnestypress @missylolahuetem\u003cbr\u003eWed Jan 07 14:59:20 +0000 2015"}, {"group": 556, "id": 2, "label": "552843865502146560", "shape": "dot", "size": 10, "title": "552843865502146560\u003cbr\u003e@amnestypress @Helene_FR Terribly\u2026\u003cbr\u003eWed Jan 07 15:07:03 +0000 2015"}, {"group": 556, "id": 3, "label": "552843867519987715", "shape": "dot", "size": 10, "title": "552843867519987715\u003cbr\u003e@amnestypress thanks so much for\u003cbr\u003esharing. Just added it to\u003cbr\u003emy @RebelMouse http://t.co/JH4ok1ueZB\u003cbr\u003eWed Jan 07 15:07:04 +0000 2015"}, {"group": 556, "id": 4, "label": "552844987185250304", "shape": "dot", "size": 10, "title": "552844987185250304\u003cbr\u003e@amnestypress Lamentable\u003cbr\u003eWed Jan 07 15:11:30 +0000 2015"}, {"group": 556, "id": 5, "label": "552845348163444736", "shape": "dot", "size": 10, "title": "552845348163444736\u003cbr\u003e\u201c@amnestypress: A dark day for\u003cbr\u003efreedom of expression, an appalling\u003cbr\u003ehuman tragedy. #JeSuisCharlie #CharlieHebdo http://t.co/HtTOjSS4E2\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:12:57 +0000 2015"}, {"group": 556, "id": 6, "label": "552845916148101120", "shape": "dot", "size": 10, "title": "552845916148101120\u003cbr\u003e\u201c@amnestypress: A dark day for\u003cbr\u003efreedom of expression, an appalling\u003cbr\u003ehuman tragedy. #JeSuisCharlie #CharlieHebdo http://t.co/xZjg1Lc7Qa\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:15:12 +0000 2015"}, {"group": 556, "id": 7, "label": "552846335351984129", "shape": "dot", "size": 10, "title": "552846335351984129\u003cbr\u003e@amnestypress @_anapastor_ \n\nThe freedom of\u003cbr\u003eexpression is not negotiable.\nI am\u003cbr\u003esure that God does not\u003cbr\u003ewant us to kill on\u003cbr\u003ehis behalf.\u003cbr\u003eWed Jan 07 15:16:52 +0000 2015"}, {"group": 556, "id": 8, "label": "552848504029478913", "shape": "dot", "size": 10, "title": "552848504029478913\u003cbr\u003eUn d\u00eda oscuro: ..for freedom\u003cbr\u003eof expression, an appalling human\u003cbr\u003etragedy. @amnestypress #JeSuisCharlie #CharlieHebdo http://t.co/klCbUhLiNs\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:25:29 +0000 2015"}, {"group": 556, "id": 9, "label": "552848610980003840", "shape": "dot", "size": 10, "title": "552848610980003840\u003cbr\u003e@amnestypress @_anapastor_ ahora solidaridad con\u003cbr\u003elaos v\u00edctimas pero en el\u003cbr\u003ed\u00eda a d\u00eda hac\u00e9is el\u003cbr\u003ejuego al Islam q es\u003cbr\u003eterror y muerte\u003cbr\u003eWed Jan 07 15:25:54 +0000 2015"}, {"group": 556, "id": 11, "label": "552849579029573632", "shape": "dot", "size": 10, "title": "552849579029573632\u003cbr\u003e\u201c@amnestypress: A dark day for\u003cbr\u003efreedom of expression, an appalling\u003cbr\u003ehuman tragedy. #JeSuisCharlie #CharlieHebdo http://t.co/ktH9qIFf3i\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:29:45 +0000 2015"}, {"group": 556, "id": 12, "label": "552851624079941632", "shape": "dot", "size": 10, "title": "552851624079941632\u003cbr\u003e\u201c@amnestypress: A dark day for\u003cbr\u003efreedom of expression, an appalling\u003cbr\u003ehuman tragedy. #JeSuisCharlie #CharlieHebdo http://t.co/ktH9qIFf3i\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:37:53 +0000 2015"}, {"group": 556, "id": 13, "label": "552851688223420416", "shape": "dot", "size": 10, "title": "552851688223420416\u003cbr\u003e\u201c@amnestypress: A dark day for\u003cbr\u003efreedom of expression, an appalling\u003cbr\u003ehuman tragedy. #JeSuisCharlie #CharlieHebdo http://t.co/ZmO3mKx3I6\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:38:08 +0000 2015"}, {"group": 556, "id": 14, "label": "552854601737969664", "shape": "dot", "size": 10, "title": "552854601737969664\u003cbr\u003e\u201c@amnestypress: A dark day for\u003cbr\u003efreedom of expression, an appalling\u003cbr\u003ehuman tragedy. #JeSuisCharlie #CharlieHebdo http://t.co/anNkQKXWbn\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:49:43 +0000 2015"}, {"group": 556, "id": 15, "label": "552855318485405698", "shape": "dot", "size": 10, "title": "552855318485405698\u003cbr\u003e@amnestypress @sasharuggli Thoughts and prayers\u003cbr\u003eare with you all. Mes\u003cbr\u003epens\u00e9es et pri\u00e8res sont avec\u003cbr\u003evous tous \ud83d\ude1e\u2764\ufe0f\u003cbr\u003eWed Jan 07 15:52:34 +0000 2015"}, {"group": 556, "id": 16, "label": "552855692319944704", "shape": "dot", "size": 10, "title": "552855692319944704\u003cbr\u003e@amnestypress @_anapastor_\u003cbr\u003eWed Jan 07 15:54:03 +0000 2015"}, {"group": 556, "id": 17, "label": "552857787097968640", "shape": "dot", "size": 10, "title": "552857787097968640\u003cbr\u003e@amnestypress Ik denk daar toch\u003cbr\u003eanders over! Ik denk eerst\u003cbr\u003eaan feiten!\rWat zijn de OORZAKEN!\u003cbr\u003eHolisme!!! http://t.co/vHmH6Ax596\u003cbr\u003eWed Jan 07 16:02:22 +0000 2015"}, {"group": 556, "id": 18, "label": "552860452674613248", "shape": "dot", "size": 10, "title": "552860452674613248\u003cbr\u003e@amnestypress @_anapastor_\u003cbr\u003eWed Jan 07 16:12:58 +0000 2015"}, {"group": 556, "id": 19, "label": "552865591259070466", "shape": "dot", "size": 10, "title": "552865591259070466\u003cbr\u003e@amnestypress @SadetKarabulut its too much\u003cbr\u003efor the familys and friends\u003cbr\u003ewho lost their dear onrs\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:33:23 +0000 2015"}, {"group": 556, "id": 20, "label": "552896173053579267", "shape": "dot", "size": 10, "title": "552896173053579267\u003cbr\u003e@Maxuxta @amnestypress @_anapastor_ if there\u0027s\u003cbr\u003eone, he could say a\u003cbr\u003ebit more\u003cbr\u003eWed Jan 07 18:34:54 +0000 2015"}, {"group": 556, "id": 10, "label": "552849045904195584", "shape": "dot", "size": 10, "title": "552849045904195584\u003cbr\u003e@andreamvo @amnestypress \nMOREIRA, HNO del\u003cbr\u003eMANICORTO,\nCRUEL, IBA x el S\u00ed,\u003cbr\u003eal ABORTO;\na su TRIBU, el\u003cbr\u003eEXHORTO;\nNO, FUE la VIDA, y\u003cbr\u003e\u00c9L, ABSORTO!\u003cbr\u003eWed Jan 07 15:27:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 7, "to": 20, "weight": 1}, {"from": 8, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

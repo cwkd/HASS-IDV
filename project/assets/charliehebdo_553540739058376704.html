@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1973, "id": 0, "label": "553540739058376704", "shape": "dot", "size": 10, "title": "553540739058376704\u003cbr\u003eKosher restaurants closing across Paris.\u003cbr\u003eSchools nr latest incident locked\u003cbr\u003edown. #ParisAttacks http://t.co/8MdsGYsaOZ http://t.co/rObM6QtWIZ\u003cbr\u003eFri Jan 09 13:16:11 +0000 2015"}, {"group": 1973, "id": 1, "label": "553541001378541568", "shape": "dot", "size": 10, "title": "553541001378541568\u003cbr\u003e@SkyNews paying a price for\u003cbr\u003eIsrael\u0027s murders. Sad\u003cbr\u003eFri Jan 09 13:17:13 +0000 2015"}, {"group": 1973, "id": 2, "label": "553541260947230720", "shape": "dot", "size": 10, "title": "553541260947230720\u003cbr\u003e@SkyNews http://t.co/LfqRz7hsld\u003cbr\u003eFri Jan 09 13:18:15 +0000 2015"}, {"group": 1973, "id": 3, "label": "553541454652772352", "shape": "dot", "size": 10, "title": "553541454652772352\u003cbr\u003e@SkyNews hoping those 5innocent ppl\u003cbr\u003emake it out unharmed. All\u003cbr\u003eof this is awfull\u003cbr\u003eFri Jan 09 13:19:01 +0000 2015"}, {"group": 1973, "id": 4, "label": "553541516271288321", "shape": "dot", "size": 10, "title": "553541516271288321\u003cbr\u003e@SkyNews is this another wanabee\u003cbr\u003eor the 2 stupid mulsim\u003cbr\u003ebrothers ?\u003cbr\u003eFri Jan 09 13:19:16 +0000 2015"}, {"group": 1973, "id": 5, "label": "553542093113950209", "shape": "dot", "size": 10, "title": "553542093113950209\u003cbr\u003e@SkyNews they blamed kenya instead\u003cbr\u003eof helping them and recalled\u003cbr\u003etheir tourists,now they are receiving\u003cbr\u003ethe same attacks #insecurityinfrance\u003cbr\u003eFri Jan 09 13:21:33 +0000 2015"}, {"group": 1973, "id": 7, "label": "553544113753030656", "shape": "dot", "size": 10, "title": "553544113753030656\u003cbr\u003e@SkyNews @RaviSinghKA Sir in India\u003cbr\u003ewe got saved by Indian\u003cbr\u003ecoast gaurd who blow that\u003cbr\u003eboat. They bown the terror\u003cbr\u003eboat before they hit us\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:29:35 +0000 2015"}, {"group": 1973, "id": 10, "label": "553546065119838211", "shape": "dot", "size": 10, "title": "553546065119838211\u003cbr\u003e@SkyNews @lrozen they would normally\u003cbr\u003ebe closing at this time\u003cbr\u003eon Friday before the Sabbath\u003cbr\u003ebegins\u003cbr\u003eFri Jan 09 13:37:20 +0000 2015"}, {"group": 1973, "id": 12, "label": "553565435715932160", "shape": "dot", "size": 10, "title": "553565435715932160\u003cbr\u003e@SkyNews Are we getting PUNKED\u003cbr\u003eHERE or what?! These are\u003cbr\u003ebored children auditioning for FEAR\u003cbr\u003eFACTOR. Don\u0027t encourage them!\u003cbr\u003eFri Jan 09 14:54:19 +0000 2015"}, {"group": 1973, "id": 13, "label": "553576493284986880", "shape": "dot", "size": 10, "title": "553576493284986880\u003cbr\u003e@SkyNews what the hell is\u003cbr\u003ethis avenge, what good is\u003cbr\u003ethis for? Never satisfying cycle\u003cbr\u003eof terror. I am so\u003cbr\u003econfused.\u003cbr\u003eFri Jan 09 15:38:15 +0000 2015"}, {"group": 1973, "id": 14, "label": "553578151222448128", "shape": "dot", "size": 10, "title": "553578151222448128\u003cbr\u003e@SkyNews Sad world it is\u003cbr\u003eturning out to be.\u003cbr\u003eFri Jan 09 15:44:50 +0000 2015"}, {"group": 1973, "id": 15, "label": "553578962778341376", "shape": "dot", "size": 10, "title": "553578962778341376\u003cbr\u003e@SkyNews Welcome to #eurabia ..this\u003cbr\u003ewill happen more and more.\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:48:04 +0000 2015"}, {"group": 1973, "id": 16, "label": "553580482563432448", "shape": "dot", "size": 10, "title": "553580482563432448\u003cbr\u003e@SkyNews time has come to\u003cbr\u003efinish such scraps... only disturbing\u003cbr\u003epeace of the world..\u003cbr\u003eFri Jan 09 15:54:06 +0000 2015"}, {"group": 1973, "id": 6, "label": "553543905808220160", "shape": "dot", "size": 10, "title": "553543905808220160\u003cbr\u003e@ZirikiZiriki @SkyNews Apparently he\u0027s \u003cbr\u003ethe two stupid muslim brothers\u003cbr\u003efriend.\u003cbr\u003eFri Jan 09 13:28:46 +0000 2015"}, {"group": 1973, "id": 8, "label": "553544767754498048", "shape": "dot", "size": 10, "title": "553544767754498048\u003cbr\u003e@sbjoshua @SkyNews geanytting 2 locations,\u003cbr\u003emaybe, a shooter at a\u003cbr\u003ekosher supermarket, brothers at a\u003cbr\u003eprinting company, hostages both locations\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:32:11 +0000 2015"}, {"group": 1973, "id": 9, "label": "553545371264487424", "shape": "dot", "size": 10, "title": "553545371264487424\u003cbr\u003e@ZirikiZiriki @SkyNews  Now they\u003cbr\u003esay it\u0027s a man \u0026amp;\u003cbr\u003ewoman who have taken these\u003cbr\u003ehostages.\u003cbr\u003eFri Jan 09 13:34:35 +0000 2015"}, {"group": 1973, "id": 11, "label": "553546374122586112", "shape": "dot", "size": 10, "title": "553546374122586112\u003cbr\u003e@sbjoshua @SkyNews confusing, not that\u003cbr\u003emy participation matters, have a\u003cbr\u003egood day ...\u003cbr\u003eFri Jan 09 13:38:34 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1246, "id": 0, "label": "553469263650906112", "shape": "dot", "size": 10, "title": "553469263650906112\u003cbr\u003eThis is a terrorist, this\u003cbr\u003eis a Muslim: French envoy\u2019s\u003cbr\u003e#CharlieHebdo @twitter photo goes viral\nhttp://t.co/Eq0zDMEHEA\u003cbr\u003ehttp://t.co/NWS09tFi8k\u003cbr\u003eFri Jan 09 08:32:10 +0000 2015"}, {"group": 1246, "id": 1, "label": "553470209021841409", "shape": "dot", "size": 10, "title": "553470209021841409\u003cbr\u003e@IndiaToday @twitter Those terrorists didn\u0027t\u003cbr\u003eknow the cop was a\u003cbr\u003eMuslim.Any way these COWARDS are\u003cbr\u003eBLOT on a religion.\u003cbr\u003eFri Jan 09 08:35:55 +0000 2015"}, {"group": 1246, "id": 2, "label": "553470746614194177", "shape": "dot", "size": 10, "title": "553470746614194177\u003cbr\u003e@IndiaToday what you want to\u003cbr\u003epromve from this News we\u003cbr\u003egot..! Pessawar kids were hindus\u003cbr\u003eor catholic? Terroist = Muslim\u003cbr\u003e@twitter\u003cbr\u003eFri Jan 09 08:38:03 +0000 2015"}, {"group": 1246, "id": 4, "label": "553473572891402240", "shape": "dot", "size": 10, "title": "553473572891402240\u003cbr\u003e@IndiaToday @twitter \n\u0906\u0924\u0902\u0915\u0935\u093e\u0926\u093f\u092f\u094b\u0902 \u0928\u0947 \u092a\u0939\u0930\u0947\u003cbr\u003e\u092a\u0930 \u0924\u0948\u0928\u093e\u0924 \u090f\u0915 \u092b\u094d\u0930\u093e\u0902\u0938\u0940\u0938\u0940 \u092a\u0941\u0932\u093f\u0938\u0915\u0930\u094d\u092e\u0940\u003cbr\u003e\u0915\u094b \u092e\u093e\u0930\u093e \u0925\u093e \u0915\u093f\u0938\u0940 \u092e\u0941\u0938\u094d\u0932\u093f\u092e\u003cbr\u003e\u0915\u094b \u0928\u0939\u0940\u0902\u0964\u003cbr\u003eFri Jan 09 08:49:17 +0000 2015"}, {"group": 1246, "id": 6, "label": "553474107329630208", "shape": "dot", "size": 10, "title": "553474107329630208\u003cbr\u003e@IndiaToday When a Terrorist calls\u003cbr\u003ehimself \u0027devout Muslim\u0027, it is\u003cbr\u003eOK.When writer says \u0027Muslim terrorist\u0027\u003cbr\u003eit is not Ok, it\u0027s\u003cbr\u003e\u0027Stereotyping\u0027!\u003cbr\u003eFri Jan 09 08:51:24 +0000 2015"}, {"group": 1246, "id": 7, "label": "553474156721741825", "shape": "dot", "size": 10, "title": "553474156721741825\u003cbr\u003e@IndiaToday @twitter  All who\u003cbr\u003eKill \u0026amp; Killed r Muslims\u003cbr\u003e- #Terrorist, the #cop, #peshawar\u003cbr\u003ekids. Root is #Islam. #FrenchEnvoy.\u003cbr\u003e#ParisShooting\u003cbr\u003eFri Jan 09 08:51:36 +0000 2015"}, {"group": 1246, "id": 9, "label": "553476722343964673", "shape": "dot", "size": 10, "title": "553476722343964673\u003cbr\u003e@IndiaToday @twitter apno k hi\u003cbr\u003e khoon k pyase hai\u003cbr\u003ekhuda k bande\ud83d\udc4e\ud83d\udc4e\ud83d\udc4e\ud83d\udc4e\ud83d\udc4e\ud83d\udc4e\u003cbr\u003eFri Jan 09 09:01:48 +0000 2015"}, {"group": 1246, "id": 10, "label": "553479204482727936", "shape": "dot", "size": 10, "title": "553479204482727936\u003cbr\u003e@IndiaToday @twitter \n\n\u0637\u0648\u0644\u0650 \u0634\u0628 \u0641\u0631\u0627\u0642\u003cbr\u003e\u06a9\u06cc \u0628\u0627\u0628\u062a \u0646\u06c1 \u067e\u0648\u0686\u06be\u0626\u06d2\n\u0627\u06a9 \u0631\u0627\u062a\u003cbr\u003e\u062a\u0647\u06cc \u062c\u0648 \u0622\u0626\u06cc \u0627\u0648\u0631 \u0622\u003cbr\u003e\u06a9\u0631 \u0679\u0647\u06c1\u0631 \u06af\u0626\u06cc\u003cbr\u003eFri Jan 09 09:11:40 +0000 2015"}, {"group": 1246, "id": 11, "label": "553481471659638785", "shape": "dot", "size": 10, "title": "553481471659638785\u003cbr\u003e@IndiaToday \u0027I\u0027m not Charlie, #IamAhmed\u003cbr\u003ethe dead cop.Charlie ridiculed my\u003cbr\u003efaith, I died defending charlie\u0027s\u003cbr\u003eright http://t.co/1MMRBgKRRA\u003cbr\u003eFri Jan 09 09:20:40 +0000 2015"}, {"group": 1246, "id": 13, "label": "553490167999115264", "shape": "dot", "size": 10, "title": "553490167999115264\u003cbr\u003e@IndiaToday @twitter whole western media\u003cbr\u003egoing berserk on killing of\u003cbr\u003etheir citizen , but when\u003cbr\u003ethey bomb muslim, one minute\u003cbr\u003eheadline!\u003cbr\u003eFri Jan 09 09:55:14 +0000 2015"}, {"group": 1246, "id": 15, "label": "553490658435289088", "shape": "dot", "size": 10, "title": "553490658435289088\u003cbr\u003e@IndiaToday @twitter Any analysis on\u003cbr\u003ewhy world\u0027s non-muslim disaffected poor\u003cbr\u003eyouth dont behave Tsarnaev or\u003cbr\u003eKouachi? seen Life of brian?\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:57:10 +0000 2015"}, {"group": 1246, "id": 16, "label": "553490756166365184", "shape": "dot", "size": 10, "title": "553490756166365184\u003cbr\u003e@IndiaToday @twitter @sarfarazkhan085: Ek muslim\u003cbr\u003ekuch bhi brdhst kr sakta\u003cbr\u003ehai magar Muhammad Sahab ki\u003cbr\u003ebeiazzti bilkul brdasht nahi kar\u003cbr\u003esakta\u003cbr\u003eFri Jan 09 09:57:34 +0000 2015"}, {"group": 1246, "id": 17, "label": "553491281830113280", "shape": "dot", "size": 10, "title": "553491281830113280\u003cbr\u003e@IndiaToday @twitter ye sabaq tha\u003cbr\u003eunlogo ko jo is tarha\u003cbr\u003eki harkat karte hain, ab\u003cbr\u003ekoi bhi iss tarha ki\u003cbr\u003eharkat karne se phle 100baar\u003cbr\u003esochega.\u003cbr\u003eFri Jan 09 09:59:39 +0000 2015"}, {"group": 1246, "id": 18, "label": "553492454129668097", "shape": "dot", "size": 10, "title": "553492454129668097\u003cbr\u003e@IndiaToday @twitter wat is ths\u003cbr\u003eths jokers killed innocent students\u003cbr\u003e150 thy were also muslim\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:04:19 +0000 2015"}, {"group": 1246, "id": 19, "label": "553500235230904320", "shape": "dot", "size": 10, "title": "553500235230904320\u003cbr\u003e@IndiaToday @twitter @remittancegirl They\u0027re both\u003cbr\u003eMuslims. The one on the\u003cbr\u003eleft is, arguably, adhering to\u003cbr\u003ehis faith more honestly.\u003cbr\u003eFri Jan 09 10:35:14 +0000 2015"}, {"group": 1246, "id": 3, "label": "553471890799742976", "shape": "dot", "size": 10, "title": "553471890799742976\u003cbr\u003e@h_ram1 @IndiaToday @twitter these killers\u003cbr\u003eare scum with a tribal\u003cbr\u003ementality, their god is irrelevant\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:42:36 +0000 2015"}, {"group": 1246, "id": 5, "label": "553473914093830144", "shape": "dot", "size": 10, "title": "553473914093830144\u003cbr\u003e@h_ram1 @IndiaToday @twitter shit on\u003cbr\u003eyour face\u003cbr\u003eFri Jan 09 08:50:38 +0000 2015"}, {"group": 1246, "id": 8, "label": "553474336447684608", "shape": "dot", "size": 10, "title": "553474336447684608\u003cbr\u003e@raonaeem that Muslim are doing\u003cbr\u003every well but i am\u003cbr\u003enit in Muslim country so\u003cbr\u003eget a life and go\u003cbr\u003esomewhere else\n@IndiaToday @twitter\u003cbr\u003eFri Jan 09 08:52:19 +0000 2015"}, {"group": 1246, "id": 14, "label": "553490620791418882", "shape": "dot", "size": 10, "title": "553490620791418882\u003cbr\u003e@vikingthakkar @IndiaToday @twitter \n9/11 was\u003cbr\u003eengineered. US economy boosted after\u003cbr\u003ethat. #ParisShooting will also boost\u003cbr\u003ecorporate mafia.\u003cbr\u003eFri Jan 09 09:57:02 +0000 2015"}, {"group": 1246, "id": 12, "label": "553483294571266048", "shape": "dot", "size": 10, "title": "553483294571266048\u003cbr\u003e@dipusingh867 @indiatoday @twitter Khuda k\u003cbr\u003ebande kabhi kisi ka khoon\u003cbr\u003enahi peete hai\u003cbr\u003eFri Jan 09 09:27:55 +0000 2015"}, {"group": 1246, "id": 20, "label": "553500684117479424", "shape": "dot", "size": 10, "title": "553500684117479424\u003cbr\u003e@GRIMACHU I will politely disagree.\u003cbr\u003eI know a lot of\u003cbr\u003eMuslims. 1.6 Bn of them\u003cbr\u003edon\u2019t think there\u2019s anything Islamic\u003cbr\u003eabout shooting cartoonists.\u003cbr\u003eFri Jan 09 10:37:01 +0000 2015"}, {"group": 1246, "id": 21, "label": "553501250503733249", "shape": "dot", "size": 10, "title": "553501250503733249\u003cbr\u003e@GRIMACHU But then I don\u2019t\u003cbr\u003ethink the KKK are Christians\u003cbr\u003eeither.\u003cbr\u003eFri Jan 09 10:39:16 +0000 2015"}, {"group": 1246, "id": 22, "label": "553501903959904256", "shape": "dot", "size": 10, "title": "553501903959904256\u003cbr\u003e@remittancegirl The Koran and Hadith\u003cbr\u003edo. Mohammed did - though\u003cbr\u003eit was poets rather than\u003cbr\u003ecartoonists. I\u0027m glad there are\u003cbr\u003eso many bad Muslims.\u003cbr\u003eFri Jan 09 10:41:52 +0000 2015"}, {"group": 1246, "id": 23, "label": "553502364150550528", "shape": "dot", "size": 10, "title": "553502364150550528\u003cbr\u003e@remittancegirl Religious justification can be\u003cbr\u003efound for them too. Dominion,\u003cbr\u003ecurse of Ham, god\u0027s chosen\u003cbr\u003epeople etc - but it\u0027s\u003cbr\u003emore fringe\u003cbr\u003eFri Jan 09 10:43:41 +0000 2015"}, {"group": 1246, "id": 24, "label": "553502644699140096", "shape": "dot", "size": 10, "title": "553502644699140096\u003cbr\u003e@remittancegirl Christianity, ironically, likes to\u003cbr\u003etake the credit for ending\u003cbr\u003eslavery when it was shoring\u003cbr\u003eit up for over a\u003cbr\u003ecentury. :-/\u003cbr\u003eFri Jan 09 10:44:48 +0000 2015"}, {"group": 1246, "id": 25, "label": "553506080542580737", "shape": "dot", "size": 10, "title": "553506080542580737\u003cbr\u003e@GRIMACHU People use any number\u003cbr\u003eof ideologies as an excuse\u003cbr\u003eto do dreadful things. It\u003cbr\u003edoesn\u2019t mean they get to.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:58:27 +0000 2015"}, {"group": 1246, "id": 26, "label": "553510405793128448", "shape": "dot", "size": 10, "title": "553510405793128448\u003cbr\u003e@remittancegirl Yes they do, and\u003cbr\u003emany of those ideologies excuse\u003cbr\u003eor endorse those dreadful things.\u003cbr\u003eAs such I think they\u003cbr\u003eget some blame.\u003cbr\u003eFri Jan 09 11:15:39 +0000 2015"}, {"group": 1246, "id": 27, "label": "553511084728922112", "shape": "dot", "size": 10, "title": "553511084728922112\u003cbr\u003e@GRIMACHU I\u2019ve been thinking hard\u003cbr\u003eon this one. I will\u003cbr\u003ewrite on it when I\u003cbr\u003eget some time. Because I\u003cbr\u003ethink this affording of people\u003cbr\u003ethe cover\u003cbr\u003eFri Jan 09 11:18:20 +0000 2015"}, {"group": 1246, "id": 28, "label": "553511403839963136", "shape": "dot", "size": 10, "title": "553511403839963136\u003cbr\u003e@GRIMACHU of religious ideology is\u003cbr\u003ea way of spreading the\u003cbr\u003eblame instead of putting it\u003cbr\u003ewhere it belongs. On murderous\u003cbr\u003eindividuals.\u003cbr\u003eFri Jan 09 11:19:37 +0000 2015"}, {"group": 1246, "id": 29, "label": "553511740756226049", "shape": "dot", "size": 10, "title": "553511740756226049\u003cbr\u003e@remittancegirl In my view the\u003cbr\u003ereligion provides the cover, the\u003cbr\u003eexcuse. Look how hard it\u003cbr\u003eseems to be for people\u003cbr\u003eto outright condemn this.\u003cbr\u003eFri Jan 09 11:20:57 +0000 2015"}, {"group": 1246, "id": 30, "label": "553511828631093248", "shape": "dot", "size": 10, "title": "553511828631093248\u003cbr\u003e@remittancegirl Or - and this\u003cbr\u003eis what really turned me\u003cbr\u003ecompletely against Islam - to\u003cbr\u003edenounce child rape.\u003cbr\u003eFri Jan 09 11:21:18 +0000 2015"}, {"group": 1246, "id": 31, "label": "553533079298772993", "shape": "dot", "size": 10, "title": "553533079298772993\u003cbr\u003e@GRIMACHU @remittancegirl include with \u0027religion\u0027\u003cbr\u003ewith any number of ideologies\u003cbr\u003eand any certain prominent hashtags\u003cbr\u003eand I\u0027d RT that.\u003cbr\u003eFri Jan 09 12:45:44 +0000 2015"}, {"group": 1246, "id": 32, "label": "553538321960665089", "shape": "dot", "size": 10, "title": "553538321960665089\u003cbr\u003e@_Monocle_ @remittancegirl I do include\u003cbr\u003eideologies.\u003cbr\u003eFri Jan 09 13:06:34 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 7, "to": 14, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 31, "to": 32, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

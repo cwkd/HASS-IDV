@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1742, "id": 0, "label": "552821287933202435", "shape": "dot", "size": 10, "title": "552821287933202435\u003cbr\u003eAs #CharlieHebdo attack unfolded, a\u003cbr\u003ejournalist tweeted while taking shelter\u003cbr\u003eon a roof http://t.co/VUnbUrUpws http://t.co/P8E6hJcmHw\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:37:20 +0000 2015"}, {"group": 1742, "id": 1, "label": "552821431487442944", "shape": "dot", "size": 10, "title": "552821431487442944\u003cbr\u003e@BBCWorld Poor guy...\u003cbr\u003eWed Jan 07 13:37:54 +0000 2015"}, {"group": 1742, "id": 2, "label": "552821460885323776", "shape": "dot", "size": 10, "title": "552821460885323776\u003cbr\u003e@BBCWorld very shocking\u003cbr\u003eWed Jan 07 13:38:01 +0000 2015"}, {"group": 1742, "id": 3, "label": "552821482855071745", "shape": "dot", "size": 10, "title": "552821482855071745\u003cbr\u003e@BBCWorld This wasn\u0027t a 5\u003cbr\u003eminute attack. In Central Paris,and\u003cbr\u003ethe police didn\u0027t even show\u003cbr\u003eup. Attackers didn\u0027t even use\u003cbr\u003ea get away driver.\u003cbr\u003eWed Jan 07 13:38:07 +0000 2015"}, {"group": 1742, "id": 4, "label": "552821565847777280", "shape": "dot", "size": 10, "title": "552821565847777280\u003cbr\u003e@BBCWorld You do realise our\u003cbr\u003elanguage is English and not\u003cbr\u003efrench? What use is that\u003cbr\u003etweet to us?\u003cbr\u003eWed Jan 07 13:38:26 +0000 2015"}, {"group": 1742, "id": 5, "label": "552821730960351234", "shape": "dot", "size": 10, "title": "552821730960351234\u003cbr\u003e#Netanyahu\u0027s @BBCWorld Jews push French\u003cbr\u003eterrorist story but not the\u003cbr\u003e#NAACPBombing terrorist story http://t.co/dul8asMcLo #JewsForScalise\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:39:06 +0000 2015"}, {"group": 1742, "id": 6, "label": "552821987006230528", "shape": "dot", "size": 10, "title": "552821987006230528\u003cbr\u003e@BBCWorld #noussommestousdesCharlieHebdo\u003cbr\u003eWed Jan 07 13:40:07 +0000 2015"}, {"group": 1742, "id": 11, "label": "552823304474877952", "shape": "dot", "size": 10, "title": "552823304474877952\u003cbr\u003e@BBCWorld As far as I\u003cbr\u003ecan see his last tweet\u003cbr\u003ewas posted on 23 Dec!\u003cbr\u003ehttp://t.co/vCpy3AMXY0\u003cbr\u003eWed Jan 07 13:45:21 +0000 2015"}, {"group": 1742, "id": 13, "label": "552823384287875074", "shape": "dot", "size": 10, "title": "552823384287875074\u003cbr\u003e@BBCWorld @ATMology Adam, bugging you\u003cbr\u003eagain. Apparently there\u0027s a journalist\u003cbr\u003etaking shelter #CharlieHebdo \u0026amp; live\u003cbr\u003etweeting. In French FYI \ud83d\ude2a\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:45:40 +0000 2015"}, {"group": 1742, "id": 14, "label": "552823409974206464", "shape": "dot", "size": 10, "title": "552823409974206464\u003cbr\u003e@BBCWorld @frasermatthew Not a journalist\u003cbr\u003efrom Charlie. A TV production\u003cbr\u003ehouse nearby, different building.\u003cbr\u003eWed Jan 07 13:45:46 +0000 2015"}, {"group": 1742, "id": 16, "label": "552823768175742976", "shape": "dot", "size": 10, "title": "552823768175742976\u003cbr\u003e@BBCWorld Peace loving countries should\u003cbr\u003eunite to fight against terror\u0026amp;\u003cbr\u003ebycott countries who support!!\u003cbr\u003eWed Jan 07 13:47:11 +0000 2015"}, {"group": 1742, "id": 7, "label": "552822502423273472", "shape": "dot", "size": 10, "title": "552822502423273472\u003cbr\u003e@P_Jones93 Attack by 2 men\u003cbr\u003ewith a hood in Charlie\u003cbr\u003eHebdo. We\u0027re taking refuge on\u003cbr\u003ethe roof\u003cbr\u003eWed Jan 07 13:42:10 +0000 2015"}, {"group": 1742, "id": 15, "label": "552823634994421760", "shape": "dot", "size": 10, "title": "552823634994421760\u003cbr\u003e@P_Jones93 @BBCWorld I hope you\u003cbr\u003eweren\u0027t serious.\u003cbr\u003eWed Jan 07 13:46:40 +0000 2015"}, {"group": 1742, "id": 21, "label": "552824808657125376", "shape": "dot", "size": 10, "title": "552824808657125376\u003cbr\u003e@P_Jones93 @BBCWorld it is a\u003cbr\u003eshame on You, English man\u003cbr\u003ecan\u0027t read in other languages.\u003cbr\u003eThat tweet already disapeared. It\u003cbr\u003ewas as evidence!\u003cbr\u003eWed Jan 07 13:51:20 +0000 2015"}, {"group": 1742, "id": 23, "label": "552825532598218752", "shape": "dot", "size": 10, "title": "552825532598218752\u003cbr\u003e@P_Jones93 @BBCWorld we all study\u003cbr\u003eFrench in school. Maybe you\u003cbr\u003edidn\u0027t?\u003cbr\u003eWed Jan 07 13:54:12 +0000 2015"}, {"group": 1742, "id": 8, "label": "552822521545105408", "shape": "dot", "size": 10, "title": "552822521545105408\u003cbr\u003e@LibtardLimbaugh @BBCWorld Fight one form\u003cbr\u003eof extremecy with another--anti semitismFavor\u003cbr\u003ethe gunmen do you?Nazism same\u003cbr\u003eas AlQ\n#jesuischarlie\u003cbr\u003eWed Jan 07 13:42:14 +0000 2015"}, {"group": 1742, "id": 10, "label": "552823124732162049", "shape": "dot", "size": 10, "title": "552823124732162049\u003cbr\u003e@Alveio Thanks. Just a shame\u003cbr\u003e@BBCWorld thinks our language is\u003cbr\u003eFrench.\u003cbr\u003eWed Jan 07 13:44:38 +0000 2015"}, {"group": 1742, "id": 9, "label": "552822974055591937", "shape": "dot", "size": 10, "title": "552822974055591937\u003cbr\u003e@MunsingLaw @BBCWorld http://t.co/EihfiilKSc\u003cbr\u003eWed Jan 07 13:44:02 +0000 2015"}, {"group": 1742, "id": 12, "label": "552823378621788160", "shape": "dot", "size": 10, "title": "552823378621788160\u003cbr\u003e@P_Jones93 You\u0027re welcome. We must\u003cbr\u003eshare this story, and I\u0027m\u003cbr\u003e\"glad\" to translate it for\u003cbr\u003eyou.\u003cbr\u003eWed Jan 07 13:45:39 +0000 2015"}, {"group": 1742, "id": 28, "label": "552827119957716992", "shape": "dot", "size": 10, "title": "552827119957716992\u003cbr\u003e@P_Jones93 @Alveio @BBCWorld it\u0027s a\u003cbr\u003efrench tweet. This person is\u003cbr\u003ea witness.\u003cbr\u003eWed Jan 07 14:00:31 +0000 2015"}, {"group": 1742, "id": 17, "label": "552824153292554240", "shape": "dot", "size": 10, "title": "552824153292554240\u003cbr\u003e\"Serangan sedang berlaku, dua lelaki\u003cbr\u003ebertutup muka dalam ofis CH.\u003cbr\u003eKami melarikan diri atas bumbung\"\u003cbr\u003e@shusshshussh http://t.co/jGlk8kLSYc\u003cbr\u003eWed Jan 07 13:48:43 +0000 2015"}, {"group": 1742, "id": 19, "label": "552824592440778752", "shape": "dot", "size": 10, "title": "552824592440778752\u003cbr\u003e@Leanderbela @BBCWorld Can you understand\u003cbr\u003ethis? It\u0027s about as useful\u003cbr\u003eas the other tweet \u0647\u0644\u003cbr\u003e\u064a\u0645\u0643\u0646 \u0623\u0646 \u0646\u0641\u0647\u0645 \u0647\u0630\u0627\u061f \u0627\u0644\u0646\u0642\u0637\u0629\u003cbr\u003e\u0627\u0644\u062a\u064a \u0623\u062b\u0628\u062a\u062a \u062c\u062f\u0648\u0627\u0647\u0627.\u003cbr\u003eWed Jan 07 13:50:28 +0000 2015"}, {"group": 1742, "id": 18, "label": "552824513545523202", "shape": "dot", "size": 10, "title": "552824513545523202\u003cbr\u003e@ATMology you rock! \ud83d\ude45\u003cbr\u003eWed Jan 07 13:50:09 +0000 2015"}, {"group": 1742, "id": 20, "label": "552824691061047298", "shape": "dot", "size": 10, "title": "552824691061047298\u003cbr\u003e\ud83d\udc78 @shusshshussh\u003cbr\u003eWed Jan 07 13:50:51 +0000 2015"}, {"group": 1742, "id": 24, "label": "552825631751544832", "shape": "dot", "size": 10, "title": "552825631751544832\u003cbr\u003e@P_Jones93 @BBCWorld It\u0027s way different!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:54:36 +0000 2015"}, {"group": 1742, "id": 25, "label": "552826040637468672", "shape": "dot", "size": 10, "title": "552826040637468672\u003cbr\u003e@P_Jones93 @BBCWorld It\u0027s okay that\u003cbr\u003eyou don\u0027t understand French. But\u003cbr\u003eit\u0027s not all about YOU,\u003cbr\u003eyou see! Some British people\u003cbr\u003espeak French...\u003cbr\u003eWed Jan 07 13:56:13 +0000 2015"}, {"group": 1742, "id": 22, "label": "552825475299823616", "shape": "dot", "size": 10, "title": "552825475299823616\u003cbr\u003e@lestatlasher @BBCWorld The Tweet should\u003cbr\u003ehave been translated into English\u003cbr\u003ebefore it was sent by\u003cbr\u003eBBC. Last time I checked\u003cbr\u003ewe spoke English.\u003cbr\u003eWed Jan 07 13:53:58 +0000 2015"}, {"group": 1742, "id": 26, "label": "552826151224487936", "shape": "dot", "size": 10, "title": "552826151224487936\u003cbr\u003e@Leanderbela @BBCWorld It\u0027s the same\u003cbr\u003eas the other tweet, a\u003cbr\u003edifferent language. My only problem\u003cbr\u003eis that it wasn\u0027t translated\u003cbr\u003ebefore BBC sent\u003cbr\u003eWed Jan 07 13:56:40 +0000 2015"}, {"group": 1742, "id": 27, "label": "552826618264440832", "shape": "dot", "size": 10, "title": "552826618264440832\u003cbr\u003e@Leanderbela @BBCWorld Oh I\u0027m sorry.\u003cbr\u003eI forgot that Britain is\u003cbr\u003e100% fluent in French.\u003cbr\u003eWed Jan 07 13:58:31 +0000 2015"}, {"group": 1742, "id": 31, "label": "552827673245126656", "shape": "dot", "size": 10, "title": "552827673245126656\u003cbr\u003e@Leanderbela @P_Jones93 @BBCWorld I clicked\u003cbr\u003eon the link and read\u003cbr\u003ethe story where there was\u003cbr\u003ea translation.\u003cbr\u003eWed Jan 07 14:02:43 +0000 2015"}, {"group": 1742, "id": 33, "label": "552828597208379392", "shape": "dot", "size": 10, "title": "552828597208379392\u003cbr\u003e@P_Jones93 @BBCWorld I like to\u003cbr\u003ethink that this prejudice of\u003cbr\u003eBritish ppl not being able\u003cbr\u003eto speak other languages, esp\u003cbr\u003eEuropean, isn\u0027t true.\u003cbr\u003eWed Jan 07 14:06:23 +0000 2015"}, {"group": 1742, "id": 29, "label": "552827444198408192", "shape": "dot", "size": 10, "title": "552827444198408192\u003cbr\u003e@TomGauthey @P_Jones93 @BBCWorld No, I\u0027m\u003cbr\u003enot a witness at all.\u003cbr\u003eI\u0027m quite far from Paris\u003cbr\u003eto be honest\u003cbr\u003eWed Jan 07 14:01:48 +0000 2015"}, {"group": 1742, "id": 30, "label": "552827482236547072", "shape": "dot", "size": 10, "title": "552827482236547072\u003cbr\u003e@TomGauthey @Alveio @BBCWorld I know\u003cbr\u003eit\u0027s a French tweet but\u003cbr\u003eBBC should have translated it\u003cbr\u003efor the UK.\u003cbr\u003eWed Jan 07 14:01:57 +0000 2015"}, {"group": 1742, "id": 34, "label": "552832413039362048", "shape": "dot", "size": 10, "title": "552832413039362048\u003cbr\u003e@Alveio @P_Jones93 @BBCWorld  I\u003cbr\u003ejust talked to Paul. ;)\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:21:33 +0000 2015"}, {"group": 1742, "id": 37, "label": "552834102442086402", "shape": "dot", "size": 10, "title": "552834102442086402\u003cbr\u003e@P_Jones93 @Alveio @BBCWorld\nJust look some\u003cbr\u003ecomments and yo\u00fall know wath\u003cbr\u003esays the tweet. ( sorry\u003cbr\u003efor the spelling, i am\u003cbr\u003efrench )\u003cbr\u003eWed Jan 07 14:28:15 +0000 2015"}, {"group": 1742, "id": 32, "label": "552827983145472002", "shape": "dot", "size": 10, "title": "552827983145472002\u003cbr\u003e@Andrew8468 @Leanderbela @BBCWorld Job done.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:03:56 +0000 2015"}, {"group": 1742, "id": 36, "label": "552834028429402112", "shape": "dot", "size": 10, "title": "552834028429402112\u003cbr\u003e@P_Jones93 @Andrew8468 @Leanderbela @BBCWorld \u003cbr\u003eDespite not been able to\u003cbr\u003espeak french one can hazard\u003cbr\u003ea guess from the tweet\u003cbr\u003ewhat it means!\u003cbr\u003eWed Jan 07 14:27:58 +0000 2015"}, {"group": 1742, "id": 35, "label": "552832570355097602", "shape": "dot", "size": 10, "title": "552832570355097602\u003cbr\u003e@TomGauthey @P_Jones93 @BBCWorld Oh God,\u003cbr\u003eI misunderstood, sorry about that.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:22:10 +0000 2015"}, {"group": 1742, "id": 38, "label": "552834476636930048", "shape": "dot", "size": 10, "title": "552834476636930048\u003cbr\u003e@Alveio @P_Jones93 @BBCWorld no problem\u003cbr\u003e;)\u003cbr\u003eWed Jan 07 14:29:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 4, "to": 21, "weight": 1}, {"from": 4, "to": 23, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 10, "to": 28, "weight": 1}, {"from": 13, "to": 17, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 24, "weight": 1}, {"from": 19, "to": 25, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 25, "to": 31, "weight": 1}, {"from": 27, "to": 33, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 29, "to": 34, "weight": 1}, {"from": 30, "to": 37, "weight": 1}, {"from": 31, "to": 32, "weight": 1}, {"from": 32, "to": 36, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 35, "to": 38, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

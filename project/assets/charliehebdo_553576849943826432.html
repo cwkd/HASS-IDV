@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2032, "id": 0, "label": "553576849943826432", "shape": "dot", "size": 10, "title": "553576849943826432\u003cbr\u003eGunman at Paris grocery store\u003cbr\u003ethreatens to kill hostages if\u003cbr\u003epolice storm the #CharlieHebdo brothers.\u003cbr\u003ehttp://t.co/EBbK7ny8Cx\u003cbr\u003eFri Jan 09 15:39:40 +0000 2015"}, {"group": 2032, "id": 1, "label": "553577068152123393", "shape": "dot", "size": 10, "title": "553577068152123393\u003cbr\u003e@FoxNews THE PARIS MOVIE HAS\u003cbr\u003eALREADY BEEN PLAYED.\u003cbr\u003eFri Jan 09 15:40:32 +0000 2015"}, {"group": 2032, "id": 2, "label": "553577164138758144", "shape": "dot", "size": 10, "title": "553577164138758144\u003cbr\u003e@FoxNews He\u0027s going to kill\u003cbr\u003ethem anyway. The police shouldn\u0027t\u003cbr\u003ebe waiting.\u003cbr\u003eFri Jan 09 15:40:55 +0000 2015"}, {"group": 2032, "id": 3, "label": "553577194258460673", "shape": "dot", "size": 10, "title": "553577194258460673\u003cbr\u003e@FoxNews Two are Dead !!\u003cbr\u003ePolice Confirm French TV MONDE\u003cbr\u003eonline\u003cbr\u003eFri Jan 09 15:41:02 +0000 2015"}, {"group": 2032, "id": 4, "label": "553577254060830721", "shape": "dot", "size": 10, "title": "553577254060830721\u003cbr\u003e@FoxNews That\u0027s what they do!\u003cbr\u003eThey\u0027re cold blooded killers and\u003cbr\u003eneither know nor care for\u003cbr\u003ehuman life. Not even their\u003cbr\u003eown.\u003cbr\u003eFri Jan 09 15:41:16 +0000 2015"}, {"group": 2032, "id": 5, "label": "553577336252010497", "shape": "dot", "size": 10, "title": "553577336252010497\u003cbr\u003e@FoxNews Any sniper gets a\u003cbr\u003evisual...TAKE A HEAD SHOT\u003cbr\u003eFri Jan 09 15:41:36 +0000 2015"}, {"group": 2032, "id": 6, "label": "553577443312037888", "shape": "dot", "size": 10, "title": "553577443312037888\u003cbr\u003e@FoxNews It\u0027s a damn shame\u003cbr\u003ethe gunmen didn\u0027t take you\u003cbr\u003ehostage with the same threat.\u003cbr\u003eBut then who would be\u003cbr\u003eIsrael\u0027s mouthpiece?\u003cbr\u003eFri Jan 09 15:42:02 +0000 2015"}, {"group": 2032, "id": 7, "label": "553577546726797314", "shape": "dot", "size": 10, "title": "553577546726797314\u003cbr\u003eTake \u0027em out, Paris gendarmes.\u003cbr\u003e TAKE THEM OUT!\n@FoxNews\u003cbr\u003eFri Jan 09 15:42:26 +0000 2015"}, {"group": 2032, "id": 8, "label": "553577570177126401", "shape": "dot", "size": 10, "title": "553577570177126401\u003cbr\u003e\u201c@FoxNews: Gunman at Paris grocery\u003cbr\u003estore threatens to kill hostages\u003cbr\u003eif police storm the #CharlieHebdo\u003cbr\u003ebrothers. http://t.co/PUWJ3rpJ9Y\u201d\u003cbr\u003eFri Jan 09 15:42:32 +0000 2015"}, {"group": 2032, "id": 9, "label": "553577618260652032", "shape": "dot", "size": 10, "title": "553577618260652032\u003cbr\u003e@FoxNews these barbarians need to\u003cbr\u003ebe taken out.\u003cbr\u003eFri Jan 09 15:42:43 +0000 2015"}, {"group": 2032, "id": 10, "label": "553577751685648384", "shape": "dot", "size": 10, "title": "553577751685648384\u003cbr\u003e@FoxNews french police should get\u003cbr\u003esnippers\u003cbr\u003eFri Jan 09 15:43:15 +0000 2015"}, {"group": 2032, "id": 11, "label": "553577752927154176", "shape": "dot", "size": 10, "title": "553577752927154176\u003cbr\u003e@FoxNews @alphainparis Who, Mossad? The\u003cbr\u003eGOP? \"Fox \u0026amp; Friends\"?\u003cbr\u003eFri Jan 09 15:43:15 +0000 2015"}, {"group": 2032, "id": 12, "label": "553577753388130305", "shape": "dot", "size": 10, "title": "553577753388130305\u003cbr\u003e@FoxNews umm kinda burying the\u003cbr\u003elead. It\u0027s a kosher market.\u003cbr\u003eThis is an attack on\u003cbr\u003eJews.\u003cbr\u003eFri Jan 09 15:43:16 +0000 2015"}, {"group": 2032, "id": 13, "label": "553578168318455808", "shape": "dot", "size": 10, "title": "553578168318455808\u003cbr\u003e@FoxNews I\u0027m sure they\u0027ll be\u003cbr\u003ekilled regardless so the officers\u003cbr\u003eshould watch for the right\u003cbr\u003etime and make a move\u003cbr\u003eto take the Islamonazis out!\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:44:54 +0000 2015"}, {"group": 2032, "id": 14, "label": "553578197363998720", "shape": "dot", "size": 10, "title": "553578197363998720\u003cbr\u003e@FoxNews @_fastlanemom holy shit\u003cbr\u003eFri Jan 09 15:45:01 +0000 2015"}, {"group": 2032, "id": 15, "label": "553578230264115203", "shape": "dot", "size": 10, "title": "553578230264115203\u003cbr\u003e@FoxNews @bowen45bean Then that rules\u003cbr\u003eout Muslims, they don\u0027t take\u003cbr\u003ehostages as it\u0027s forbidden in\u003cbr\u003ethe Qu\u0027ran. It\u0027s Mossad.\u003cbr\u003eFri Jan 09 15:45:09 +0000 2015"}, {"group": 2032, "id": 16, "label": "553578259099967488", "shape": "dot", "size": 10, "title": "553578259099967488\u003cbr\u003e@FoxNews Someone should find a\u003cbr\u003eway to make killers believe\u003cbr\u003ethey will not get to\"heaven\"\u003cbr\u003eby some means. They will\u003cbr\u003enot be martyrs.\u003cbr\u003eFri Jan 09 15:45:16 +0000 2015"}, {"group": 2032, "id": 17, "label": "553578369678184449", "shape": "dot", "size": 10, "title": "553578369678184449\u003cbr\u003e@FoxNews #remembergoldenbergs\u003cbr\u003eFri Jan 09 15:45:42 +0000 2015"}, {"group": 2032, "id": 18, "label": "553578585056092160", "shape": "dot", "size": 10, "title": "553578585056092160\u003cbr\u003e@FoxNews Lovely Christians, already judging\u003cbr\u003ewithout knowing a damn thing.\u003cbr\u003eYour Jesus has red skin\u003cbr\u003eand stinks of sulphur.\u003cbr\u003eFri Jan 09 15:46:34 +0000 2015"}, {"group": 2032, "id": 19, "label": "553578789826232321", "shape": "dot", "size": 10, "title": "553578789826232321\u003cbr\u003e@FoxNews Your mothers were hamsters\u003cbr\u003eand your fathers smelled of\u003cbr\u003eelderberries! I fart in your\u003cbr\u003egeneral directions!\u003cbr\u003eFri Jan 09 15:47:23 +0000 2015"}, {"group": 2032, "id": 20, "label": "553581906810249216", "shape": "dot", "size": 10, "title": "553581906810249216\u003cbr\u003e@TunaLick hope that\u0027s sarcasm\u003cbr\u003eFri Jan 09 15:59:46 +0000 2015"}, {"group": 2032, "id": 21, "label": "553586458557427712", "shape": "dot", "size": 10, "title": "553586458557427712\u003cbr\u003e@bowen45bean Nope. The Qu\u0027ran specifically\u003cbr\u003esays no hostages taken or\u003cbr\u003ekept.\u003cbr\u003eFri Jan 09 16:17:51 +0000 2015"}, {"group": 2032, "id": 22, "label": "553586818177064960", "shape": "dot", "size": 10, "title": "553586818177064960\u003cbr\u003e@bowen45bean Also, Israeli PM Netanyahu\u003cbr\u003ewarned France that siding with\u003cbr\u003ePalestinians joining ICC would be\u003cbr\u003ea grave mistake.\u003cbr\u003eFri Jan 09 16:19:17 +0000 2015"}, {"group": 2032, "id": 23, "label": "553586991980634113", "shape": "dot", "size": 10, "title": "553586991980634113\u003cbr\u003e@bowen45bean And as we all\u003cbr\u003eknow, Netanyahu\u0027s shit don\u0027t stink.\u003cbr\u003e Right?\u003cbr\u003eFri Jan 09 16:19:58 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 20, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

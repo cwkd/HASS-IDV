@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1737, "id": 0, "label": "552817345887207425", "shape": "dot", "size": 10, "title": "552817345887207425\u003cbr\u003eFrance\u0027s most talented cartoonists:Cabu, Wolinski,\u003cbr\u003eCharb, Tignous died in #CharlieHebdo\u003cbr\u003eattack http://t.co/HrNScpSyMj http://t.co/GSG45GlgIt\u003cbr\u003eWed Jan 07 13:21:40 +0000 2015"}, {"group": 1737, "id": 1, "label": "552817726906200064", "shape": "dot", "size": 10, "title": "552817726906200064\u003cbr\u003e@AgnesCPoirier Dark days Agnes\u003cbr\u003eWed Jan 07 13:23:11 +0000 2015"}, {"group": 1737, "id": 2, "label": "552818900514398208", "shape": "dot", "size": 10, "title": "552818900514398208\u003cbr\u003e@AgnesCPoirier  Islam Denounces Terrorism\nhttp://t.co/gCwKWElhFr\u003cbr\u003e\u2026\u003cbr\u003eWed Jan 07 13:27:51 +0000 2015"}, {"group": 1737, "id": 3, "label": "552818957175246848", "shape": "dot", "size": 10, "title": "552818957175246848\u003cbr\u003e@AgnesCPoirier  Islam Denounces Terrorism\nhttp://t.co/gCwKWElhFr\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:28:04 +0000 2015"}, {"group": 1737, "id": 4, "label": "552819008345767936", "shape": "dot", "size": 10, "title": "552819008345767936\u003cbr\u003e@AgnesCPoirier  Islam Denounces Terrorism\u003cbr\u003e  \nhttp://t.co/gCwKWElhFr \u2026\u003cbr\u003eWed Jan 07 13:28:17 +0000 2015"}, {"group": 1737, "id": 5, "label": "552819967302045696", "shape": "dot", "size": 10, "title": "552819967302045696\u003cbr\u003e@AgnesCPoirier @alberttucci  por que\u003cbr\u003elos peri\u00f3dicos espa\u00f1oles que tanta\u003cbr\u003eempatia demuestran por CharlieHebdo nunca\u003cbr\u003ehan  copiado sus vi\u00f1etas\u003cbr\u003e?\u003cbr\u003eWed Jan 07 13:32:05 +0000 2015"}, {"group": 1737, "id": 6, "label": "552822267491909632", "shape": "dot", "size": 10, "title": "552822267491909632\u003cbr\u003e@AgnesCPoirier @YaakovLappin They were murdered\u003cbr\u003ein cold blood\u003cbr\u003eWed Jan 07 13:41:14 +0000 2015"}, {"group": 1737, "id": 7, "label": "552822337146736640", "shape": "dot", "size": 10, "title": "552822337146736640\u003cbr\u003e@AgnesCPoirier AGREED ! they were\u003cbr\u003ethe BEST !! They will\u003cbr\u003ebe missed ! #CharlieHebdo\u003cbr\u003eWed Jan 07 13:41:30 +0000 2015"}, {"group": 1737, "id": 8, "label": "552822832262967297", "shape": "dot", "size": 10, "title": "552822832262967297\u003cbr\u003e@AgnesCPoirier  \"Terrorism has no\u003cbr\u003ereligion\" lets stop this nonsense\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:43:28 +0000 2015"}, {"group": 1737, "id": 9, "label": "552830114413948928", "shape": "dot", "size": 10, "title": "552830114413948928\u003cbr\u003e\u201c@AgnesCPoirier: France\u0027s most talented cartoonists:Cabu,\u003cbr\u003eWolinski, Charb, Tignous died in\u003cbr\u003e#CharlieHebdo attack\" They died defending\u003cbr\u003eliberty\u003cbr\u003eWed Jan 07 14:12:25 +0000 2015"}, {"group": 1737, "id": 10, "label": "552830182630109185", "shape": "dot", "size": 10, "title": "552830182630109185\u003cbr\u003e@AgnesCPoirier @fiede charb too? I\u003cbr\u003eremember his epic statement after\u003cbr\u003ethe 2011 episode. so sad\u003cbr\u003eto see him gone.\u003cbr\u003eWed Jan 07 14:12:41 +0000 2015"}, {"group": 1737, "id": 12, "label": "552832169182101506", "shape": "dot", "size": 10, "title": "552832169182101506\u003cbr\u003e@AgnesCPoirier @RamraoKP_ http://t.co/HrfW1vSKWm\u003cbr\u003eWed Jan 07 14:20:34 +0000 2015"}, {"group": 1737, "id": 13, "label": "552835539892596736", "shape": "dot", "size": 10, "title": "552835539892596736\u003cbr\u003e@AgnesCPoirier @DAaronovitch http://t.co/yvmM9ycmMx\u003cbr\u003eWed Jan 07 14:33:58 +0000 2015"}, {"group": 1737, "id": 14, "label": "552835882450190337", "shape": "dot", "size": 10, "title": "552835882450190337\u003cbr\u003e@AgnesCPoirier @etabori so sad RIP-\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:35:20 +0000 2015"}, {"group": 1737, "id": 16, "label": "552837267371208706", "shape": "dot", "size": 10, "title": "552837267371208706\u003cbr\u003e@AgnesCPoirier @DAaronovitch http://t.co/kIqUYa9MER\u003cbr\u003eWed Jan 07 14:40:50 +0000 2015"}, {"group": 1737, "id": 18, "label": "552837659156955139", "shape": "dot", "size": 10, "title": "552837659156955139\u003cbr\u003eLet us weep for a\u003cbr\u003eday (or 2 days?)\n@AgnesCPoirier @sarkar_swati\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:42:23 +0000 2015"}, {"group": 1737, "id": 15, "label": "552836745746608128", "shape": "dot", "size": 10, "title": "552836745746608128\u003cbr\u003e@YessToLove @AgnesCPoirier http://t.co/s5Svxcewrp\u003cbr\u003eWed Jan 07 14:38:46 +0000 2015"}, {"group": 1737, "id": 17, "label": "552837451341774851", "shape": "dot", "size": 10, "title": "552837451341774851\u003cbr\u003e@YessToLove @AgnesCPoirier http://t.co/VnXUF9CeeU\u003cbr\u003eWed Jan 07 14:41:34 +0000 2015"}, {"group": 1737, "id": 11, "label": "552831163040288769", "shape": "dot", "size": 10, "title": "552831163040288769\u003cbr\u003e@indiapremi @AgnesCPoirier  Please do\u003cbr\u003enot make me laugh, tu\u003cbr\u003eme fais trop rire.\u003cbr\u003eWed Jan 07 14:16:35 +0000 2015"}, {"group": 1737, "id": 20, "label": "552837934676987905", "shape": "dot", "size": 10, "title": "552837934676987905\u003cbr\u003e@etabori @AgnesCPoirier https://t.co/9kcfKCuHDV http://t.co/gCwKWElhFr Islam\u003cbr\u003eDenounces Terrorism\n\n !!!!!!!!..\u003cbr\u003eWed Jan 07 14:43:29 +0000 2015"}, {"group": 1737, "id": 19, "label": "552837872857153537", "shape": "dot", "size": 10, "title": "552837872857153537\u003cbr\u003e@etabori @AgnesCPoirier https://t.co/9kcfKCuHDV http://t.co/gCwKWElhFr Islam\u003cbr\u003eDenounces Terrorism\n\n !!!!!!!!\u003cbr\u003eWed Jan 07 14:43:14 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 4, "to": 17, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 17, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

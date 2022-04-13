@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1078, "id": 0, "label": "553193480319942656", "shape": "dot", "size": 10, "title": "553193480319942656\u003cbr\u003eThe victims of the #CharlieHebdo\u003cbr\u003eattack http://t.co/v8Cw7N58B0 http://t.co/yVgnrLa7vk\u003cbr\u003eThu Jan 08 14:16:18 +0000 2015"}, {"group": 1078, "id": 1, "label": "553194485736538112", "shape": "dot", "size": 10, "title": "553194485736538112\u003cbr\u003e@BBCWorld where is all the\u003cbr\u003eMuslim outcry against these terrorist\u003cbr\u003eactions?\u003cbr\u003eThu Jan 08 14:20:17 +0000 2015"}, {"group": 1078, "id": 3, "label": "553194984003080192", "shape": "dot", "size": 10, "title": "553194984003080192\u003cbr\u003e@BBCWorld the dead man Ha!\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:22:16 +0000 2015"}, {"group": 1078, "id": 4, "label": "553195502897201152", "shape": "dot", "size": 10, "title": "553195502897201152\u003cbr\u003e@BBCWorld As a muslim \u003cbr\u003eI utterly condemn what are\u003cbr\u003evicious and cowardly acts of\u003cbr\u003eterrorism against innocent civilians.\u003cbr\u003eThu Jan 08 14:24:20 +0000 2015"}, {"group": 1078, "id": 6, "label": "553195754064318468", "shape": "dot", "size": 10, "title": "553195754064318468\u003cbr\u003e@BBCWorld So sad http://t.co/dJbIlwP3Lh\u003cbr\u003eThu Jan 08 14:25:20 +0000 2015"}, {"group": 1078, "id": 8, "label": "553197152932204544", "shape": "dot", "size": 10, "title": "553197152932204544\u003cbr\u003e\u201c@BBCWorld: The victims of the\u003cbr\u003e#CharlieHebdo attack http://t.co/wMqRbDUqdo http://t.co/V3BsWiD5oa\u201d names\u003cbr\u003ethat will be in my\u003cbr\u003eprayers \ud83d\ude4f\ud83d\udc94\u003cbr\u003eThu Jan 08 14:30:53 +0000 2015"}, {"group": 1078, "id": 9, "label": "553197441735204864", "shape": "dot", "size": 10, "title": "553197441735204864\u003cbr\u003e@BBCWorld it\u0027s sad to read\u003cbr\u003ethe names of the dead\u003cbr\u003ebut was there not another\u003cbr\u003evictim, a hit and run\u003cbr\u003eafter the shootings?\u003cbr\u003eThu Jan 08 14:32:02 +0000 2015"}, {"group": 1078, "id": 10, "label": "553197454405812224", "shape": "dot", "size": 10, "title": "553197454405812224\u003cbr\u003e@BBCWorld loss of life is\u003cbr\u003esad. Yet we should not\u003cbr\u003eforget to respect people\u0027s freedom\u003cbr\u003eto practice their religion and\u003cbr\u003enot be disrespectful.\u003cbr\u003eThu Jan 08 14:32:05 +0000 2015"}, {"group": 1078, "id": 13, "label": "553199756709605376", "shape": "dot", "size": 10, "title": "553199756709605376\u003cbr\u003e@BBCWorld \ud83d\udd25 in Hell\u003cbr\u003eThu Jan 08 14:41:14 +0000 2015"}, {"group": 1078, "id": 14, "label": "553199829510529025", "shape": "dot", "size": 10, "title": "553199829510529025\u003cbr\u003e\u201c@BBCWorld: The victims of the\u003cbr\u003e#CharlieHebdo attack http://t.co/7QooZPSULt http://t.co/5V0ndMRvLb\u201d A\u003cbr\u003etrue travesty!\u003cbr\u003eThu Jan 08 14:41:31 +0000 2015"}, {"group": 1078, "id": 2, "label": "553194791404843008", "shape": "dot", "size": 10, "title": "553194791404843008\u003cbr\u003e@Killernewf74 @BBCWorld open your eyes\u003cbr\u003eyou will find them\u003cbr\u003eThu Jan 08 14:21:30 +0000 2015"}, {"group": 1078, "id": 11, "label": "553198840874926080", "shape": "dot", "size": 10, "title": "553198840874926080\u003cbr\u003e@Killernewf74 @BBCWorld Muslims are against\u003cbr\u003ethese attacks, at the same\u003cbr\u003etime their is no respect\u003cbr\u003efor Muslims and their religion\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:37:36 +0000 2015"}, {"group": 1078, "id": 5, "label": "553195581381038080", "shape": "dot", "size": 10, "title": "553195581381038080\u003cbr\u003e@wamin87 @BBCWorld eyes are wide\u003cbr\u003eopen\u003cbr\u003eThu Jan 08 14:24:39 +0000 2015"}, {"group": 1078, "id": 15, "label": "553200035454676992", "shape": "dot", "size": 10, "title": "553200035454676992\u003cbr\u003e@sydmnil @BBCWorld innocent? My foot.\u003cbr\u003e\ud83d\udd25 in Hell\u003cbr\u003eThu Jan 08 14:42:21 +0000 2015"}, {"group": 1078, "id": 7, "label": "553196193732644864", "shape": "dot", "size": 10, "title": "553196193732644864\u003cbr\u003e@Killernewf74 @BBCWorld http://t.co/gzOhVwYjvP\u003cbr\u003eThu Jan 08 14:27:05 +0000 2015"}, {"group": 1078, "id": 32, "label": "553304919886016513", "shape": "dot", "size": 10, "title": "553304919886016513\u003cbr\u003e@wamin87 @BBCWorld  Hang the\u003cbr\u003eTerrorists!!!  Then under that\u003cbr\u003ePeace Walk, hahahaha\u003cbr\u003eThu Jan 08 21:39:07 +0000 2015"}, {"group": 1078, "id": 31, "label": "553265080448860160", "shape": "dot", "size": 10, "title": "553265080448860160\u003cbr\u003e@ekaterina_r @BBCWorld being disrespectful is\u003cbr\u003ewhat has dragged civilization through\u003cbr\u003ethe enlightenment.\u003cbr\u003eThu Jan 08 19:00:49 +0000 2015"}, {"group": 1078, "id": 12, "label": "553199720450228224", "shape": "dot", "size": 10, "title": "553199720450228224\u003cbr\u003e@ekaterina_r @BBCWorld maybe if the\u003cbr\u003e99% of Muslims, who are\u003cbr\u003egood, publicly shamed, denounced the\u003cbr\u003eradicals on a large scale?\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:41:05 +0000 2015"}, {"group": 1078, "id": 16, "label": "553200553153413121", "shape": "dot", "size": 10, "title": "553200553153413121\u003cbr\u003e@Killernewf74 @BBCWorld Western media or\u003cbr\u003ewestern non-Muslim powers  who\u003cbr\u003econtrol information flow are the\u003cbr\u003eones not giving Muslims that\u003cbr\u003evoice\u003cbr\u003eThu Jan 08 14:44:24 +0000 2015"}, {"group": 1078, "id": 17, "label": "553201173235113984", "shape": "dot", "size": 10, "title": "553201173235113984\u003cbr\u003e@Killernewf74 @BBCWorld imagine BBC running\u003cbr\u003eweek long campaigns showing good\u003cbr\u003eMuslims, will never happen. So\u003cbr\u003ehow r Muslims supposed to\u003cbr\u003espeak?\u003cbr\u003eThu Jan 08 14:46:52 +0000 2015"}, {"group": 1078, "id": 18, "label": "553201317863518208", "shape": "dot", "size": 10, "title": "553201317863518208\u003cbr\u003e@ekaterina_r @BBCWorld Really?  I\u003cbr\u003ehaven\u0027t seen any mass marches\u003cbr\u003eof protest in Toronto, New\u003cbr\u003eYork ...., nothing stopping them\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:47:26 +0000 2015"}, {"group": 1078, "id": 19, "label": "553201955259305984", "shape": "dot", "size": 10, "title": "553201955259305984\u003cbr\u003e@ekaterina_r @BBCWorld people who want\u003cbr\u003eto make a point find\u003cbr\u003eways, just look at the\u003cbr\u003eradicals\u003cbr\u003eThu Jan 08 14:49:58 +0000 2015"}, {"group": 1078, "id": 20, "label": "553202172788084738", "shape": "dot", "size": 10, "title": "553202172788084738\u003cbr\u003e@Killernewf74 @BBCWorld they march for\u003cbr\u003ePalestine and nobody listens although\u003cbr\u003ethere are serious war crimes\u003cbr\u003ethere.\u003cbr\u003eThu Jan 08 14:50:50 +0000 2015"}, {"group": 1078, "id": 22, "label": "553203026215698433", "shape": "dot", "size": 10, "title": "553203026215698433\u003cbr\u003e@Killernewf74 @BBCWorld but u r\u003cbr\u003eright Muslims need to unite.\u003cbr\u003eThey are from lands in\u003cbr\u003econstant foreign promoted wars, disintegration,\u003cbr\u003eno unity\u003cbr\u003eThu Jan 08 14:54:14 +0000 2015"}, {"group": 1078, "id": 21, "label": "553202337448472576", "shape": "dot", "size": 10, "title": "553202337448472576\u003cbr\u003e@ekaterina_r @Killernewf74 @BBCWorld Palestine Commencez\u003cbr\u003e\u00e0 regarder pour cet \u00e9t\u00e9\u003cbr\u003e=\u0026gt; http://t.co/imRNLoaJ44\u003cbr\u003eThu Jan 08 14:51:29 +0000 2015"}, {"group": 1078, "id": 23, "label": "553203583471325184", "shape": "dot", "size": 10, "title": "553203583471325184\u003cbr\u003e@ekaterina_r @BBCWorld my point exactly,\u003cbr\u003eu March for your people,\u003cbr\u003enot those you Religion effects\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:56:26 +0000 2015"}, {"group": 1078, "id": 25, "label": "553204232699248641", "shape": "dot", "size": 10, "title": "553204232699248641\u003cbr\u003e@ekaterina_r @BBCWorld you should really\u003cbr\u003estop blaming every issue on\u003cbr\u003ethe West.\u003cbr\u003eThu Jan 08 14:59:01 +0000 2015"}, {"group": 1078, "id": 24, "label": "553204146585604096", "shape": "dot", "size": 10, "title": "553204146585604096\u003cbr\u003e@Killernewf74 @BBCWorld I don\u0027t understand\u003cbr\u003ewhat you mean?\u003cbr\u003eThu Jan 08 14:58:41 +0000 2015"}, {"group": 1078, "id": 26, "label": "553204345030713344", "shape": "dot", "size": 10, "title": "553204345030713344\u003cbr\u003e@Killernewf74 @BBCWorld here is what\u003cbr\u003eIslamic scholars are saying, why\u003cbr\u003eis mainstream tv not showing\u003cbr\u003eit?? https://t.co/qirznwg4bE\u003cbr\u003eThu Jan 08 14:59:28 +0000 2015"}, {"group": 1078, "id": 28, "label": "553204542850867200", "shape": "dot", "size": 10, "title": "553204542850867200\u003cbr\u003e@Killernewf74 @BBCWorld \"democratic\" media should\u003cbr\u003ebe giving all citizens a\u003cbr\u003efair voice but they are\u003cbr\u003enot and no one seems\u003cbr\u003eto be outraged\u003cbr\u003eThu Jan 08 15:00:15 +0000 2015"}, {"group": 1078, "id": 27, "label": "553204494507708417", "shape": "dot", "size": 10, "title": "553204494507708417\u003cbr\u003e@ekaterina_r @BBCWorld foreign promoted wars?\u003cbr\u003eNot sure anyone is promoting\u003cbr\u003eISIS\u003cbr\u003eThu Jan 08 15:00:04 +0000 2015"}, {"group": 1078, "id": 29, "label": "553204671137861633", "shape": "dot", "size": 10, "title": "553204671137861633\u003cbr\u003e@Killernewf74 @BBCWorld ISIS is the\u003cbr\u003eaftermath of Iraq etc\u003cbr\u003eThu Jan 08 15:00:46 +0000 2015"}, {"group": 1078, "id": 30, "label": "553205697501204480", "shape": "dot", "size": 10, "title": "553205697501204480\u003cbr\u003e@ekaterina_r @BBCWorld so these guys\u003cbr\u003ewould be doctors, police? Not\u003cbr\u003erapists beheading people?\u003cbr\u003eThu Jan 08 15:04:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 11, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 32, "weight": 1}, {"from": 10, "to": 31, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 16, "weight": 1}, {"from": 12, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 18, "to": 22, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 23, "to": 26, "weight": 1}, {"from": 23, "to": 28, "weight": 1}, {"from": 24, "to": 27, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 29, "to": 30, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

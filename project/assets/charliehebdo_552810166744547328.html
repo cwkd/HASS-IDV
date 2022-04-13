@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 146, "id": 0, "label": "552810166744547328", "shape": "dot", "size": 10, "title": "552810166744547328\u003cbr\u003eMy timeline is full of\u003cbr\u003eMuslims condemning #CharlieHebdo attacks -\u003cbr\u003ejust like the rest of\u003cbr\u003ethe world.\u003cbr\u003eWed Jan 07 12:53:09 +0000 2015"}, {"group": 146, "id": 1, "label": "552811162073829377", "shape": "dot", "size": 10, "title": "552811162073829377\u003cbr\u003e@astroehlein normal we are all\u003cbr\u003e concerned by terrorism whatever\u003cbr\u003eits source..\u003cbr\u003eWed Jan 07 12:57:06 +0000 2015"}, {"group": 146, "id": 2, "label": "552811822186004481", "shape": "dot", "size": 10, "title": "552811822186004481\u003cbr\u003e@astroehlein @NafeezAhmed Nothing new there.\u003cbr\u003eMuslims have always condemned the\u003cbr\u003ekilling of innocents right from\u003cbr\u003ethe start. Always will.\u003cbr\u003eWed Jan 07 12:59:43 +0000 2015"}, {"group": 146, "id": 3, "label": "552824498584817664", "shape": "dot", "size": 10, "title": "552824498584817664\u003cbr\u003e@astroehlein you\u0027re a fool if\u003cbr\u003eyou think your personally curated\u003cbr\u003etwitter timeline is in any\u003cbr\u003eshape or form representative of\u003cbr\u003ethe world.\u003cbr\u003eWed Jan 07 13:50:06 +0000 2015"}, {"group": 146, "id": 4, "label": "552824755846664193", "shape": "dot", "size": 10, "title": "552824755846664193\u003cbr\u003e@astroehlein @radleybalko this would be\u003cbr\u003ea good time for muslims\u003cbr\u003eto decline \u201cinvitations\u201d to condemn\u003cbr\u003ethe attacks. Not their responsibility.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:51:07 +0000 2015"}, {"group": 146, "id": 5, "label": "552825511156543491", "shape": "dot", "size": 10, "title": "552825511156543491\u003cbr\u003e@astroehlein @hrw whole word human\u003cbr\u003econdemns at that attack\u003cbr\u003eWed Jan 07 13:54:07 +0000 2015"}, {"group": 146, "id": 6, "label": "552825764887158784", "shape": "dot", "size": 10, "title": "552825764887158784\u003cbr\u003e@astroehlein @hrw Great. Finally! Now,\u003cbr\u003eif only the Muslim community\u003cbr\u003ein France would voice its\u003cbr\u003eanger at the attack...\u003cbr\u003eWed Jan 07 13:55:08 +0000 2015"}, {"group": 146, "id": 7, "label": "552825947146428416", "shape": "dot", "size": 10, "title": "552825947146428416\u003cbr\u003e@astroehlein @hrw \nThey take the\u003cbr\u003ebits they like and discard\u003cbr\u003ethose not compatible with modern\u003cbr\u003evalues. Farce and fake. Religion.\u003cbr\u003ePoison\u003cbr\u003eWed Jan 07 13:55:51 +0000 2015"}, {"group": 146, "id": 8, "label": "552825972589084672", "shape": "dot", "size": 10, "title": "552825972589084672\u003cbr\u003e@astroehlein @OwenJones84 is it bad\u003cbr\u003eto criticise a false ideology\u003cbr\u003eafter someone commits such a\u003cbr\u003evile act in the name\u003cbr\u003eof the false ideology?\u003cbr\u003eWed Jan 07 13:55:57 +0000 2015"}, {"group": 146, "id": 9, "label": "552826811391176705", "shape": "dot", "size": 10, "title": "552826811391176705\u003cbr\u003e@astroehlein @lokishe \"Only Satan wishes\u003cbr\u003eyou to fear his followers\"\u003cbr\u003e(Quran, Aal-e-Imran: 175)\u003cbr\u003eWed Jan 07 13:59:17 +0000 2015"}, {"group": 146, "id": 10, "label": "552828454895624192", "shape": "dot", "size": 10, "title": "552828454895624192\u003cbr\u003e@astroehlein @OwenJones84 @afneil but response\u003cbr\u003eby British politicians (see Daily\u003cbr\u003ePolitics) so far banal and\u003cbr\u003ecliched\u003cbr\u003eWed Jan 07 14:05:49 +0000 2015"}, {"group": 146, "id": 11, "label": "552834877234872320", "shape": "dot", "size": 10, "title": "552834877234872320\u003cbr\u003e@astroehlein despicable and cowardly act\u003cbr\u003eshould be condemned by all\u003cbr\u003esane person..\u003cbr\u003eWed Jan 07 14:31:20 +0000 2015"}, {"group": 146, "id": 12, "label": "553106191136468993", "shape": "dot", "size": 10, "title": "553106191136468993\u003cbr\u003e@astroehlein @radleybalko Muslims publicly condem\u003cbr\u003ethe attack but privately fund\u003cbr\u003emadrassas \u0026amp; support criminalization of\u003cbr\u003ehomosexuals/infidels\u003cbr\u003eThu Jan 08 08:29:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

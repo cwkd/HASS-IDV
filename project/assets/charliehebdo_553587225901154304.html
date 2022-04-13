@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2043, "id": 0, "label": "553587225901154304", "shape": "dot", "size": 10, "title": "553587225901154304\u003cbr\u003eThe two suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed, according to\u003cbr\u003ereports. #ParisAttacks http://t.co/sS4Js4JZwm http://t.co/04KSGEeu5i\u003cbr\u003eFri Jan 09 16:20:54 +0000 2015"}, {"group": 2043, "id": 1, "label": "553587279512731648", "shape": "dot", "size": 10, "title": "553587279512731648\u003cbr\u003e@SkyNews Horray\u003cbr\u003eFri Jan 09 16:21:07 +0000 2015"}, {"group": 2043, "id": 2, "label": "553587498358960128", "shape": "dot", "size": 10, "title": "553587498358960128\u003cbr\u003e@SkyNews \ud83d\ude25\ud83d\ude25\ud83d\ude25\u003cbr\u003eFri Jan 09 16:21:59 +0000 2015"}, {"group": 2043, "id": 3, "label": "553587697806499843", "shape": "dot", "size": 10, "title": "553587697806499843\u003cbr\u003e@SkyNews no sympathy here!\u003cbr\u003eFri Jan 09 16:22:46 +0000 2015"}, {"group": 2043, "id": 4, "label": "553587966023839744", "shape": "dot", "size": 10, "title": "553587966023839744\u003cbr\u003e@SkyNews finally some good news\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:23:50 +0000 2015"}, {"group": 2043, "id": 5, "label": "553588282391400448", "shape": "dot", "size": 10, "title": "553588282391400448\u003cbr\u003eTerrorists dead?  @SkyNews: \u003cbr\u003e#CharlieHebdo gunmen killed, according to\u003cbr\u003ereports. #ParisAttacks http://t.co/28AS0zH1Gr http://t.co/4zjQJgrt4x\u201d\u003cbr\u003eFri Jan 09 16:25:06 +0000 2015"}, {"group": 2043, "id": 6, "label": "553588432715649024", "shape": "dot", "size": 10, "title": "553588432715649024\u003cbr\u003e@SkyNews @Howard_Marsh CNN hasn\u0027t said\u003cbr\u003eso they\u0027re live\u003cbr\u003eFri Jan 09 16:25:42 +0000 2015"}, {"group": 2043, "id": 7, "label": "553588702208086017", "shape": "dot", "size": 10, "title": "553588702208086017\u003cbr\u003e@SkyNews Good riddance. We don\u0027t\u003cbr\u003ewant scum like that on\u003cbr\u003ethis planet.\u003cbr\u003eFri Jan 09 16:26:46 +0000 2015"}, {"group": 2043, "id": 8, "label": "553588867488825344", "shape": "dot", "size": 10, "title": "553588867488825344\u003cbr\u003e@SkyNews @no2persecution Thats good. A\u003cbr\u003estop for now. And a\u003cbr\u003eprayer revenge cycle do not\u003cbr\u003econtinue\u003cbr\u003eFri Jan 09 16:27:25 +0000 2015"}, {"group": 2043, "id": 9, "label": "553588884828086272", "shape": "dot", "size": 10, "title": "553588884828086272\u003cbr\u003e\u201c@SkyNews: The two suspected #CharlieHebdo\u003cbr\u003egunmen have been killed, according\u003cbr\u003eto reports. #ParisAttacks\" \nGood.\u003cbr\u003eFri Jan 09 16:27:29 +0000 2015"}, {"group": 2043, "id": 10, "label": "553588937726652416", "shape": "dot", "size": 10, "title": "553588937726652416\u003cbr\u003e@SkyNews ~If those two murderers\u003cbr\u003ewere dogs, Obama\ud83d\udd28would eat them.Tomorrow..after\u003cbr\u003eautopsy and 16-hour marinade in\u003cbr\u003eSpecial #LyinLiar Sauce\ud83d\udc36 \ud83d\udc45\ud83d\ude15\u003cbr\u003eFri Jan 09 16:27:42 +0000 2015"}, {"group": 2043, "id": 11, "label": "553588967506190338", "shape": "dot", "size": 10, "title": "553588967506190338\u003cbr\u003e\u201c@SkyNews: The two suspected #CharlieHebdo\u003cbr\u003egunmen have been killed, according\u003cbr\u003eto reports. #ParisAttacks http://t.co/goijamog6F\" \u0026lt;\u0026lt;Convenient\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:27:49 +0000 2015"}, {"group": 2043, "id": 13, "label": "553589048845950977", "shape": "dot", "size": 10, "title": "553589048845950977\u003cbr\u003e@SkyNews @Athena5000 Given what they\u003cbr\u003ewanted. Wish they\u0027d been taken\u003cbr\u003ealive so we could put\u003cbr\u003ethem in high security mental\u003cbr\u003ehospital forever.\u003cbr\u003eFri Jan 09 16:28:09 +0000 2015"}, {"group": 2043, "id": 16, "label": "553589698254233601", "shape": "dot", "size": 10, "title": "553589698254233601\u003cbr\u003eRT \u201c@SkyNews: The two suspected\u003cbr\u003e#CharlieHebdo gunmen have been killed.\u003cbr\u003e#ParisAttacks http://t.co/y3ajXcD9Qn http://t.co/XGoMEBEspe\u201d\u003cbr\u003eFri Jan 09 16:30:43 +0000 2015"}, {"group": 2043, "id": 19, "label": "553590792863117312", "shape": "dot", "size": 10, "title": "553590792863117312\u003cbr\u003e@SkyNews good! Evil scum.\u003cbr\u003eFri Jan 09 16:35:04 +0000 2015"}, {"group": 2043, "id": 14, "label": "553589298335715329", "shape": "dot", "size": 10, "title": "553589298335715329\u003cbr\u003e@DorothyLucey @SkyNews #VivaLaFrance #DontFWithTheFrench\u003cbr\u003eFri Jan 09 16:29:08 +0000 2015"}, {"group": 2043, "id": 20, "label": "553591249979342848", "shape": "dot", "size": 10, "title": "553591249979342848\u003cbr\u003e@DorothyLucey @LisaKearth @SkyNews Gun men(3)\u003cbr\u003eare def\u0027 dead, not heard\u003cbr\u003eabout the women involved yet.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:36:53 +0000 2015"}, {"group": 2043, "id": 22, "label": "553592098197630976", "shape": "dot", "size": 10, "title": "553592098197630976\u003cbr\u003e@DorothyLucey @SkyNews No newson the\u003cbr\u003ewomen hostage taker. All men\u003cbr\u003e(3) are shot dead and\u003cbr\u003e2 Police officer injured.No exact\u003cbr\u003enumber on hostages\u003cbr\u003eFri Jan 09 16:40:16 +0000 2015"}, {"group": 2043, "id": 12, "label": "553589010929844224", "shape": "dot", "size": 10, "title": "553589010929844224\u003cbr\u003e@riyaz_ @SkyNews Absolutely #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:28:00 +0000 2015"}, {"group": 2043, "id": 15, "label": "553589317587591168", "shape": "dot", "size": 10, "title": "553589317587591168\u003cbr\u003e@DougalMurphy @SkyNews I agree.\u003cbr\u003eFri Jan 09 16:29:13 +0000 2015"}, {"group": 2043, "id": 17, "label": "553590002051846146", "shape": "dot", "size": 10, "title": "553590002051846146\u003cbr\u003e@Athena5000 @SkyNews Religious extremism is\u003cbr\u003eviolent mental illness - hearing\u003cbr\u003evoices telling them to kill??\u003cbr\u003eTo Broadmoor with these mad\u003cbr\u003eideas\u003cbr\u003eFri Jan 09 16:31:56 +0000 2015"}, {"group": 2043, "id": 18, "label": "553590694758342656", "shape": "dot", "size": 10, "title": "553590694758342656\u003cbr\u003e@DougalMurphy @SkyNews indoctrination is more\u003cbr\u003elike it. Can\u0027t medicate that.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:34:41 +0000 2015"}, {"group": 2043, "id": 21, "label": "553591462038740993", "shape": "dot", "size": 10, "title": "553591462038740993\u003cbr\u003e@Twitwithwit @DorothyLucey @SkyNews They are\u003cbr\u003ereporting now all dead :)\u003cbr\u003eone injured hostage\u003cbr\u003eFri Jan 09 16:37:44 +0000 2015"}, {"group": 2043, "id": 23, "label": "553592655658360832", "shape": "dot", "size": 10, "title": "553592655658360832\u003cbr\u003e@LisaKearth @DorothyLucey @SkyNews I have\u003cbr\u003eseen 4 (out of 6)\u003cbr\u003ehostages from #PARIS safely out\u003cbr\u003eand the hostage in Dammartin\u003cbr\u003ehas been freed.\u003cbr\u003eFri Jan 09 16:42:29 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 14, "weight": 1}, {"from": 5, "to": 20, "weight": 1}, {"from": 5, "to": 22, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

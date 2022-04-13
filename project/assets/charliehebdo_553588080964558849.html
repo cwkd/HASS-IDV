@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2053, "id": 0, "label": "553588080964558849", "shape": "dot", "size": 10, "title": "553588080964558849\u003cbr\u003eBREAKING: Two brothers suspected of\u003cbr\u003e#CharlieHebdo terror attacks in Paris\u003cbr\u003ekilled, according to reports in\u003cbr\u003eFrance http://t.co/23JyHdGnp7\u003cbr\u003eFri Jan 09 16:24:18 +0000 2015"}, {"group": 2053, "id": 1, "label": "553588498499133442", "shape": "dot", "size": 10, "title": "553588498499133442\u003cbr\u003eGreat news! RT @bbc5live: Two\u003cbr\u003ebrothers suspected of #CharlieHebdo attacks\u003cbr\u003ein Paris killed, according to\u003cbr\u003ereports http://t.co/zZIOgR9XjY\u201d\u003cbr\u003eFri Jan 09 16:25:57 +0000 2015"}, {"group": 2053, "id": 2, "label": "553589452468412418", "shape": "dot", "size": 10, "title": "553589452468412418\u003cbr\u003e@bbc5live Well, whoever saw that\u003cbr\u003ecoming? Let\u0027s not bother with\u003cbr\u003etrials any more and sink\u003cbr\u003eto their level.\u003cbr\u003eFri Jan 09 16:29:45 +0000 2015"}, {"group": 2053, "id": 5, "label": "553628529267843073", "shape": "dot", "size": 10, "title": "553628529267843073\u003cbr\u003e@clemmusicalways @bbc5live Paris terror effect\u003cbr\u003e- New fears of attacks\u003cbr\u003eworldwide http://t.co/2Oz1yIS4VZ\u003cbr\u003eFri Jan 09 19:05:01 +0000 2015"}, {"group": 2053, "id": 3, "label": "553590699049111553", "shape": "dot", "size": 10, "title": "553590699049111553\u003cbr\u003e@petermetalli @bbc5live Its what they\u003cbr\u003ewould have wanted surely? The\u003cbr\u003egullible simpletons will now find\u003cbr\u003eout if they were sold\u003cbr\u003eright package!\u003cbr\u003eFri Jan 09 16:34:42 +0000 2015"}, {"group": 2053, "id": 4, "label": "553591869872304129", "shape": "dot", "size": 10, "title": "553591869872304129\u003cbr\u003e@coyley1 @bbc5live Think you\u0027re right.\u003cbr\u003eAll more reason to take\u003cbr\u003ehigher ground IMO. Still at\u003cbr\u003eleast Dly Mail can\u0027t use\u003cbr\u003ethem to scare us anymore\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:39:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

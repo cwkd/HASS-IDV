@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1305, "id": 0, "label": "553509146730176513", "shape": "dot", "size": 10, "title": "553509146730176513\u003cbr\u003eCharlie Hebdo: Don\u2019t blame this\u003cbr\u003ebloodshed on France\u2019s Muslims |\u003cbr\u003eNabila Ramdani http://t.co/XZlutySyZn\u003cbr\u003eFri Jan 09 11:10:38 +0000 2015"}, {"group": 1305, "id": 1, "label": "553509343245897728", "shape": "dot", "size": 10, "title": "553509343245897728\u003cbr\u003e@guardian stop the apology non\u003cbr\u003esense.\u003cbr\u003eFri Jan 09 11:11:25 +0000 2015"}, {"group": 1305, "id": 2, "label": "553509387038244864", "shape": "dot", "size": 10, "title": "553509387038244864\u003cbr\u003e@guardian Says the muslim\u003cbr\u003eFri Jan 09 11:11:36 +0000 2015"}, {"group": 1305, "id": 3, "label": "553509523454181376", "shape": "dot", "size": 10, "title": "553509523454181376\u003cbr\u003e@guardian blame Israel\u003cbr\u003eFri Jan 09 11:12:08 +0000 2015"}, {"group": 1305, "id": 4, "label": "553509771693678592", "shape": "dot", "size": 10, "title": "553509771693678592\u003cbr\u003e.@guardian Not just on France\u0027s\u003cbr\u003eMuslim but all the Muslims\u003cbr\u003earound the world. \nThis is\u003cbr\u003enot Islam! This is not\u003cbr\u003eUs!\n#RespectForMuslims #Peace\u003cbr\u003eFri Jan 09 11:13:07 +0000 2015"}, {"group": 1305, "id": 5, "label": "553509968771416065", "shape": "dot", "size": 10, "title": "553509968771416065\u003cbr\u003e@guardian very truth. Why should\u003cbr\u003ethey us, who carried it\u003cbr\u003eblame them. | Nabila Ramdani\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:13:54 +0000 2015"}, {"group": 1305, "id": 6, "label": "553510307830972416", "shape": "dot", "size": 10, "title": "553510307830972416\u003cbr\u003e@guardian they are responsible nd\u003cbr\u003eshld take d blame when\u003cbr\u003eJesus was abused no bloodshed\u003cbr\u003ewhy always them\u003cbr\u003eFri Jan 09 11:15:15 +0000 2015"}, {"group": 1305, "id": 7, "label": "553510666938892288", "shape": "dot", "size": 10, "title": "553510666938892288\u003cbr\u003e@guardian Already saw her on\u003cbr\u003eTV doing this where she\u003cbr\u003econveniently forgot that Obama was\u003cbr\u003ea Muslim too -teach Islamist\u003cbr\u003eto accept the west then\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:16:41 +0000 2015"}, {"group": 1305, "id": 8, "label": "553511148122034177", "shape": "dot", "size": 10, "title": "553511148122034177\u003cbr\u003e@guardian ..Then WHO ??????????????????????????????\u003cbr\u003eFri Jan 09 11:18:36 +0000 2015"}, {"group": 1305, "id": 10, "label": "553511830971498496", "shape": "dot", "size": 10, "title": "553511830971498496\u003cbr\u003e@guardian I will blame two\u003cbr\u003eof France\u0027s Muslims.\u003cbr\u003eFri Jan 09 11:21:18 +0000 2015"}, {"group": 1305, "id": 12, "label": "553512120982454273", "shape": "dot", "size": 10, "title": "553512120982454273\u003cbr\u003e@guardian what about the other\u003cbr\u003emuslim terrorist attacks then,not all\u003cbr\u003eMuslims are terrorist but 95%\u003cbr\u003eof terrorists are Muslim true\u003cbr\u003eor false\u003cbr\u003eFri Jan 09 11:22:28 +0000 2015"}, {"group": 1305, "id": 13, "label": "553512262434959360", "shape": "dot", "size": 10, "title": "553512262434959360\u003cbr\u003e@guardian who is blaming all\u003cbr\u003eMuslims? It\u0027s your violent beliefs\u003cbr\u003ethat are getting scrutinised. Nice\u003cbr\u003estrawman\u003cbr\u003eFri Jan 09 11:23:01 +0000 2015"}, {"group": 1305, "id": 14, "label": "553512723301285888", "shape": "dot", "size": 10, "title": "553512723301285888\u003cbr\u003e@guardian Well said, #CharlieHebdo\u003cbr\u003eFri Jan 09 11:24:51 +0000 2015"}, {"group": 1305, "id": 15, "label": "553513112704647169", "shape": "dot", "size": 10, "title": "553513112704647169\u003cbr\u003e@guardian Idiots blame the Muslims\u003cbr\u003ebecause they\u0027re idiots. The only\u003cbr\u003epeople to blame are the\u003cbr\u003etwo madmen who carried out\u003cbr\u003ethese atrocities!\u003cbr\u003eFri Jan 09 11:26:24 +0000 2015"}, {"group": 1305, "id": 16, "label": "553513928920420352", "shape": "dot", "size": 10, "title": "553513928920420352\u003cbr\u003e@guardian we\u0027ll blame it on\u003cbr\u003eFrance\u0027s Eskimos just to keep\u003cbr\u003ethe peace loving Muslims happy.\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:29:39 +0000 2015"}, {"group": 1305, "id": 17, "label": "553514810764054529", "shape": "dot", "size": 10, "title": "553514810764054529\u003cbr\u003e@guardian if it\u0027s not the\u003cbr\u003eMuslims fault, y are all\u003cbr\u003ethese terrorist acts being carried\u003cbr\u003eout by Muslims?? Do they\u003cbr\u003ereally condemn this??\u003cbr\u003eFri Jan 09 11:33:09 +0000 2015"}, {"group": 1305, "id": 18, "label": "553515901862289408", "shape": "dot", "size": 10, "title": "553515901862289408\u003cbr\u003e@guardian Muslims never integrate into\u003cbr\u003eliberal democratic societies. It\u0027s a\u003cbr\u003efact of life.look at UK,\u003cbr\u003eSweden, Germany, Spain, France, Holland\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:37:29 +0000 2015"}, {"group": 1305, "id": 9, "label": "553511289499439104", "shape": "dot", "size": 10, "title": "553511289499439104\u003cbr\u003e@abdyim @guardian ..It is ..no\u003cbr\u003equestion.\u003cbr\u003eFri Jan 09 11:19:09 +0000 2015"}, {"group": 1305, "id": 11, "label": "553511921132240896", "shape": "dot", "size": 10, "title": "553511921132240896\u003cbr\u003e@TheGowher @guardian ..Live with it..or..die\u003cbr\u003ewith it...your religion murderers anyone\u003cbr\u003ewho doesn\u0027t COMPLY.\u003cbr\u003eFri Jan 09 11:21:40 +0000 2015"}, {"group": 1305, "id": 19, "label": "553515956421394434", "shape": "dot", "size": 10, "title": "553515956421394434\u003cbr\u003e@everywhereinone @guardian  That is\u003cbr\u003eyour mere sluggish thinking. Whosoever\u003cbr\u003eharms anyone needs to be\u003cbr\u003ereprimanded. #Sentenced\u003cbr\u003eFri Jan 09 11:37:42 +0000 2015"}, {"group": 1305, "id": 20, "label": "553519293523316736", "shape": "dot", "size": 10, "title": "553519293523316736\u003cbr\u003e@TheGowher @guardian ..Reprimanded...wow.....now that sounds\u003cbr\u003eWESTERN..in your terms you mean\u003cbr\u003ehead hacked off with blunt\u003cbr\u003eknife..RIGHT?.\u003cbr\u003eFri Jan 09 11:50:58 +0000 2015"}, {"group": 1305, "id": 21, "label": "553520756051554305", "shape": "dot", "size": 10, "title": "553520756051554305\u003cbr\u003e@everywhereinone @guardian Kill the Killers\u003cbr\u003ebut never hurt faith #Cartoons\u003cbr\u003eFreedom of expression is alive\u003cbr\u003e\u0026amp; continues to be but\u003cbr\u003enot beyond.\u003cbr\u003eFri Jan 09 11:56:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 11, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

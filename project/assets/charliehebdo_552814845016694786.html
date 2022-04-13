@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 202, "id": 0, "label": "552814845016694786", "shape": "dot", "size": 10, "title": "552814845016694786\u003cbr\u003e#CharlieHebdo: Angela Merkel says shooting\u003cbr\u003ein France is not only\u003cbr\u003eattack on French citizens, but\u003cbr\u003eon freedoms of press and\u003cbr\u003espeech (@Reuters)\u003cbr\u003eWed Jan 07 13:11:44 +0000 2015"}, {"group": 202, "id": 1, "label": "552816578090500096", "shape": "dot", "size": 10, "title": "552816578090500096\u003cbr\u003e@euronews @Reuters solidarity with the\u003cbr\u003evictims in Paris this attack\u003cbr\u003eis cruel and evil for\u003cbr\u003esure I agree with Merkel\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:18:37 +0000 2015"}, {"group": 202, "id": 2, "label": "552817666814410752", "shape": "dot", "size": 10, "title": "552817666814410752\u003cbr\u003eAngela Merkel says shooting in\u003cbr\u003eFrance is not only attack\u003cbr\u003eon French citizens, but on\u003cbr\u003efreedoms of press and speech\u003cbr\u003e#CharlieHebdo @euronews\u003cbr\u003eWed Jan 07 13:22:57 +0000 2015"}, {"group": 202, "id": 3, "label": "552818374795722752", "shape": "dot", "size": 10, "title": "552818374795722752\u003cbr\u003e@euronews @Asher_Wolf @Reuters Thats one\u003cbr\u003emajor thing the terrorists have\u003cbr\u003ein common with the Anglo\u003cbr\u003eAmerican Axis -Free US political\u003cbr\u003eprisoners\u003cbr\u003eWed Jan 07 13:25:46 +0000 2015"}, {"group": 202, "id": 4, "label": "552818789041971200", "shape": "dot", "size": 10, "title": "552818789041971200\u003cbr\u003e@euronews @Asher_Wolf @Reuters hypocritical bullshit\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:27:24 +0000 2015"}, {"group": 202, "id": 5, "label": "552820226207657984", "shape": "dot", "size": 10, "title": "552820226207657984\u003cbr\u003e\u203b\u30e1\u30eb\u30b1\u30eb\u72ec\u9996\u76f8\uff1a\u30d5\u30e9\u30f3\u30b9\u306e\u9283\u6483\u4e8b\u4ef6\u306f\u30d5\u30e9\u30f3\u30b9\u56fd\u6c11\u3078\u3060\u3051\u3067\u306a\u304f\u3001\u5831\u9053\u3068\u8a00\u8ad6\u306e\u81ea\u7531\u3078\u306e\u653b\u6483\u3067\u3042\u308b \n#CharlieHebdo via @euronews @Reuters\u003cbr\u003e\n Angela Merkel says shooting\u003cbr\u003ein France is not only/\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:33:07 +0000 2015"}, {"group": 202, "id": 6, "label": "552820507129962498", "shape": "dot", "size": 10, "title": "552820507129962498\u003cbr\u003e@euronews @dji45 @Reuters Who funded/armed/trained\u003cbr\u003egunmen? https://t.co/iPBkLwhQk8 \u2026 Jeffrey Epstein\u003cbr\u003ealso in CFR+Trilateral Commission\u003cbr\u003eWed Jan 07 13:34:14 +0000 2015"}, {"group": 202, "id": 7, "label": "552826086141485056", "shape": "dot", "size": 10, "title": "552826086141485056\u003cbr\u003e@euronews @Asher_Wolf Something tells me\u003cbr\u003ethe backlash won\u0027t be an\u003cbr\u003eexpansion \u0026amp; militarization of press\u003cbr\u003efreedoms.\u003cbr\u003eWed Jan 07 13:56:24 +0000 2015"}, {"group": 202, "id": 8, "label": "552830843937239042", "shape": "dot", "size": 10, "title": "552830843937239042\u003cbr\u003e*Excuse my French* but that\u0027s\u003cbr\u003esome \"Punk bitch shyt!\" \n@euronews\u003cbr\u003e@Reuters\u003cbr\u003eWed Jan 07 14:15:18 +0000 2015"}, {"group": 202, "id": 9, "label": "552876477252132866", "shape": "dot", "size": 10, "title": "552876477252132866\u003cbr\u003e\u201c@euronews: #CharlieHebdo:Merkel says shooting in\u003cbr\u003eFrance is not only attack\u003cbr\u003eon French citizens, but on\u003cbr\u003efreedoms of press and speech\u003cbr\u003e#IICmiuc\u003cbr\u003eWed Jan 07 17:16:38 +0000 2015"}, {"group": 202, "id": 10, "label": "552904714950832128", "shape": "dot", "size": 10, "title": "552904714950832128\u003cbr\u003e@euronews @Reuters there is #NoModerateIslam\u003cbr\u003elet\u0027s stop pretending we don\u0027t\u003cbr\u003eknow it\u003cbr\u003eWed Jan 07 19:08:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

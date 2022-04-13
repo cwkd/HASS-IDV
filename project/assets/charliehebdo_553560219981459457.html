@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1452, "id": 0, "label": "553560219981459457", "shape": "dot", "size": 10, "title": "553560219981459457\u003cbr\u003eExcellent! The new cinema and\u003cbr\u003eart critics #JeSuisCharlie http://t.co/Y2KCVDRWPO\u003cbr\u003eFri Jan 09 14:33:35 +0000 2015"}, {"group": 1452, "id": 1, "label": "553564387403767810", "shape": "dot", "size": 10, "title": "553564387403767810\u003cbr\u003eRT @Patrick_Baz Excellent! The new\u003cbr\u003ecinema and art critics #JeSuisCharlie\u003cbr\u003ehttp://t.co/gvG69A7KbV\u003cbr\u003eFri Jan 09 14:50:09 +0000 2015"}, {"group": 1452, "id": 2, "label": "553572272053972992", "shape": "dot", "size": 10, "title": "553572272053972992\u003cbr\u003e@Patrick_Baz Muslims, Jews \u0026amp; Christians\u003cbr\u003eneed to be told Yahweh\u003cbr\u003ewas only a volcano http://t.co/N6LGt2pcry\u003cbr\u003e\u2026 #JeSuisCharlie\u003cbr\u003eFri Jan 09 15:21:29 +0000 2015"}, {"group": 1452, "id": 3, "label": "553605840540667904", "shape": "dot", "size": 10, "title": "553605840540667904\u003cbr\u003e\u201c@Patrick_Baz: Excellent! The new cinema\u003cbr\u003eand art critics #JeSuisCharlie http://t.co/cbSaM7IQt7\u201d\u003cbr\u003e I\u2764\ufe0fit  \ud83d\udc4d\ud83d\udc4d\u003cbr\u003eFri Jan 09 17:34:52 +0000 2015"}, {"group": 1452, "id": 4, "label": "555357643775434753", "shape": "dot", "size": 10, "title": "555357643775434753\u003cbr\u003e\u201c@Patrick_Baz: Excellent! The new cinema\u003cbr\u003eand art critics #JeSuisCharlie http://t.co/dYBY7NNeeZ\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 14 13:35:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

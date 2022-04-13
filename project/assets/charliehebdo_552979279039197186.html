@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1770, "id": 0, "label": "552979279039197186", "shape": "dot", "size": 10, "title": "552979279039197186\u003cbr\u003eTribute to #CharlieHebdo on Banksy\u0027s\u003cbr\u003einstagram account: http://t.co/VE37nfsL2R http://t.co/b0QYWmMUkL\u003cbr\u003eThu Jan 08 00:05:08 +0000 2015"}, {"group": 1770, "id": 1, "label": "552982473848524801", "shape": "dot", "size": 10, "title": "552982473848524801\u003cbr\u003e@jmsardo  how do you\u003cbr\u003eknow that\u0027s his actual account?\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:17:50 +0000 2015"}, {"group": 1770, "id": 2, "label": "552982560004112385", "shape": "dot", "size": 10, "title": "552982560004112385\u003cbr\u003e\u2764 RT @jmsardo: Tribute to\u003cbr\u003e#CharlieHebdo on Banksy\u0027s instagram account:\u003cbr\u003ehttp://t.co/lypiSXYdHP\u003cbr\u003eThu Jan 08 00:18:10 +0000 2015"}, {"group": 1770, "id": 4, "label": "552983736460251136", "shape": "dot", "size": 10, "title": "552983736460251136\u003cbr\u003e@jmsardo @GTCost truly excellent cartoon\u003cbr\u003ethat speaks more loudly than\u003cbr\u003eanything I have seen on\u003cbr\u003ethe tragedy in Paris\u003cbr\u003eThu Jan 08 00:22:51 +0000 2015"}, {"group": 1770, "id": 5, "label": "552983773223337984", "shape": "dot", "size": 10, "title": "552983773223337984\u003cbr\u003e#lead4lead \u201c@jmsardo: Tribute to #CharlieHebdo\u003cbr\u003eon Banksy\u0027s instagram account: http://t.co/9yhTmUVehE\u003cbr\u003ehttp://t.co/CCmXJ367pr\u201d\u003cbr\u003eThu Jan 08 00:23:00 +0000 2015"}, {"group": 1770, "id": 6, "label": "552985463653695491", "shape": "dot", "size": 10, "title": "552985463653695491\u003cbr\u003e@jmsardo that isnt a real\u003cbr\u003eflag mate.\u003cbr\u003eThu Jan 08 00:29:43 +0000 2015"}, {"group": 1770, "id": 7, "label": "552990242752303104", "shape": "dot", "size": 10, "title": "552990242752303104\u003cbr\u003e@jmsardo Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/0svOhWZi6U\u003cbr\u003eThu Jan 08 00:48:42 +0000 2015"}, {"group": 1770, "id": 9, "label": "553017868904706049", "shape": "dot", "size": 10, "title": "553017868904706049\u003cbr\u003e@jmsardo Congrats on your 500\u2605\u003cbr\u003etweet! http://t.co/UiCpljxskC\u003cbr\u003eThu Jan 08 02:38:29 +0000 2015"}, {"group": 1770, "id": 10, "label": "553026381974867968", "shape": "dot", "size": 10, "title": "553026381974867968\u003cbr\u003eBrutal! RT \u201c@jmsardo: Tribute to\u003cbr\u003e#CharlieHebdo on Banksy\u0027s instagram account:\u003cbr\u003ehttp://t.co/vvZDibKjRE http://t.co/dHPIeDjaLl\u201d\u003cbr\u003eThu Jan 08 03:12:18 +0000 2015"}, {"group": 1770, "id": 11, "label": "553036047425093632", "shape": "dot", "size": 10, "title": "553036047425093632\u003cbr\u003e\u201c@jmsardo: Tribute to #CharlieHebdo: http://t.co/YuH509z7xe\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 03:50:43 +0000 2015"}, {"group": 1770, "id": 12, "label": "553176582257643520", "shape": "dot", "size": 10, "title": "553176582257643520\u003cbr\u003eAwesome! Via @andreakirwan \u201c@jmsardo: Tribute\u003cbr\u003eto #CharlieHebdo on Banksy\u0027s instagram\u003cbr\u003eaccount: http://t.co/m1lWJ94XIg http://t.co/Fq8uR6xOKW\u003cbr\u003eThu Jan 08 13:09:09 +0000 2015"}, {"group": 1770, "id": 16, "label": "553218746094202880", "shape": "dot", "size": 10, "title": "553218746094202880\u003cbr\u003eThat was actually by Lucille\u003cbr\u003eClerc, a French illustrator... http://t.co/xnN9icwSlU\u003cbr\u003e@jmsardo @eddieizzard\u003cbr\u003eThu Jan 08 15:56:42 +0000 2015"}, {"group": 1770, "id": 17, "label": "553219588662767616", "shape": "dot", "size": 10, "title": "553219588662767616\u003cbr\u003e@jmsardo @eddieizzard Not really Banksy\u0027s\u003cbr\u003eaccount and incorrectly attributed. Actually\u003cbr\u003edrawn by @LucilleClerc\u003cbr\u003eThu Jan 08 16:00:02 +0000 2015"}, {"group": 1770, "id": 18, "label": "553219612134105088", "shape": "dot", "size": 10, "title": "553219612134105088\u003cbr\u003e@jmsardo @eddieizzard so many times\u003cbr\u003e@LucilleClerc goes uncredited today.\u003cbr\u003eThu Jan 08 16:00:08 +0000 2015"}, {"group": 1770, "id": 19, "label": "553219976916905984", "shape": "dot", "size": 10, "title": "553219976916905984\u003cbr\u003e@jmsardo @eddieizzard Heads up, not\u003cbr\u003eBanksy\u0027s account, and it\u0027s not\u003cbr\u003eby Banksy, it\u0027s by Lucille\u003cbr\u003eClerc http://t.co/yDs92AB0Y5\u003cbr\u003eThu Jan 08 16:01:35 +0000 2015"}, {"group": 1770, "id": 3, "label": "552982822617874433", "shape": "dot", "size": 10, "title": "552982822617874433\u003cbr\u003eapplause all hail Banksy RT\u003cbr\u003e@ZNovetsky \u2764 RT @jmsardo Tribute\u003cbr\u003eto #CharlieHebdo on Banksy\u0027s instagram\u003cbr\u003eaccount: http://t.co/rQ1RtftXgP\u003cbr\u003eThu Jan 08 00:19:13 +0000 2015"}, {"group": 1770, "id": 8, "label": "552995124196933632", "shape": "dot", "size": 10, "title": "552995124196933632\u003cbr\u003e@noeltoolan @jmsardo brilliant!!\u003cbr\u003eThu Jan 08 01:08:06 +0000 2015"}, {"group": 1770, "id": 13, "label": "553179142150451200", "shape": "dot", "size": 10, "title": "553179142150451200\u003cbr\u003e@lacanlune @jmsardo it\u0027s actually the\u003cbr\u003ework of @LucilleClerc\u003cbr\u003eThu Jan 08 13:19:19 +0000 2015"}, {"group": 1770, "id": 14, "label": "553180672781979650", "shape": "dot", "size": 10, "title": "553180672781979650\u003cbr\u003e@andreakirwan @jmsardo @LucilleClerc Thank you\u003cbr\u003efor clarifying!\u003cbr\u003eThu Jan 08 13:25:24 +0000 2015"}, {"group": 1770, "id": 15, "label": "553180820723478528", "shape": "dot", "size": 10, "title": "553180820723478528\u003cbr\u003e@lacanlune @jmsardo @LucilleClerc no problem.\u003cbr\u003eBrilliant work\u003cbr\u003eThu Jan 08 13:25:59 +0000 2015"}, {"group": 1770, "id": 20, "label": "553235200877264897", "shape": "dot", "size": 10, "title": "553235200877264897\u003cbr\u003e.@CCriadoPerez The attribution to Bansky\u003cbr\u003eis no more than ignorance\u003cbr\u003e\u0026amp; not sexism because many\u003cbr\u003ethink he\u0027s the only street/grafitti\u003cbr\u003eartist.\u003cbr\u003eThu Jan 08 17:02:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 16, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

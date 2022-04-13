@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 549, "id": 0, "label": "552840067199533057", "shape": "dot", "size": 10, "title": "552840067199533057\u003cbr\u003eWe stand w/the int\u0027l community\u003cbr\u003ein defense of freedom of\u003cbr\u003epress. Our thoughts R w/the\u003cbr\u003evictims \u0026amp; families #CharlieHebdo http://t.co/dymLeiXPy1\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:51:57 +0000 2015"}, {"group": 549, "id": 1, "label": "552841329114230784", "shape": "dot", "size": 10, "title": "552841329114230784\u003cbr\u003e@OECD yea u r saying\u003cbr\u003eright.\u003cbr\u003eWed Jan 07 14:56:58 +0000 2015"}, {"group": 549, "id": 2, "label": "552841344562266112", "shape": "dot", "size": 10, "title": "552841344562266112\u003cbr\u003e@OECD Don\u0027t you get it?\u003cbr\u003eLIberty and relgion in general\u003cbr\u003eand Islam specifically will never\u003cbr\u003eget together. Down with the\u003cbr\u003eCANCER of islam!\u003cbr\u003eWed Jan 07 14:57:02 +0000 2015"}, {"group": 549, "id": 3, "label": "552841676499451906", "shape": "dot", "size": 10, "title": "552841676499451906\u003cbr\u003eMT\u201c@OECD: We stand w/the int\u0027l\u003cbr\u003ecommunity in defense of freedom\u003cbr\u003eof press. Thoughts w victims\u003cbr\u003e\u0026amp; families #CharlieHebdo http://t.co/Xqh5rJMOyI\u201d\u003cbr\u003eWed Jan 07 14:58:21 +0000 2015"}, {"group": 549, "id": 5, "label": "552863026450530304", "shape": "dot", "size": 10, "title": "552863026450530304\u003cbr\u003e@OECD @SchlosserSteven stop the censoring\u003cbr\u003eof FREE SPEECH BY MUZLIMS\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:23:11 +0000 2015"}, {"group": 549, "id": 6, "label": "552904426735034368", "shape": "dot", "size": 10, "title": "552904426735034368\u003cbr\u003eViolence won\u0027t silence voices RT\u003cbr\u003e@OECD We stand w/the int\u0027l\u003cbr\u003ecommunity in defense of freedom\u003cbr\u003eof press.  #CharlieHebdo http://t.co/Thxjl3hqNI\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:07:42 +0000 2015"}, {"group": 549, "id": 7, "label": "555409439616802816", "shape": "dot", "size": 10, "title": "555409439616802816\u003cbr\u003e@OECD \n\nPlease Let\u0027s share \ud83d\udc47\u003cbr\u003e\n#WeRespectAllProphets\u003cbr\u003eWed Jan 14 17:01:44 +0000 2015"}, {"group": 549, "id": 4, "label": "552842249801723905", "shape": "dot", "size": 10, "title": "552842249801723905\u003cbr\u003e@OECD so tell me its\u003cbr\u003ereal mean.whether we should close\u003cbr\u003eour eyes\u003cbr\u003eWed Jan 07 15:00:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 1, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

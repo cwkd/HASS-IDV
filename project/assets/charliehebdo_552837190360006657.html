@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 504, "id": 0, "label": "552837190360006657", "shape": "dot", "size": 10, "title": "552837190360006657\u003cbr\u003e#CharlieHebdo\u2019s Charb who was massacred\u003cbr\u003etoday: \"The Kurds defend us\u003cbr\u003eall\". Rest in peace brother.\u003cbr\u003e#TwitterKurds http://t.co/edIZbJEvja\u003cbr\u003eWed Jan 07 14:40:32 +0000 2015"}, {"group": 504, "id": 1, "label": "552838246519296001", "shape": "dot", "size": 10, "title": "552838246519296001\u003cbr\u003e\"@gilgameshh: #CharlieHebdo\u2019s Charb who was\u003cbr\u003emassacred today: \"The Kurds defend\u003cbr\u003eus all\". Rest in peace\u003cbr\u003ebrother.  http://t.co/IbMBrgIjq2\"\u003cbr\u003eWed Jan 07 14:44:43 +0000 2015"}, {"group": 504, "id": 2, "label": "552839751234252802", "shape": "dot", "size": 10, "title": "552839751234252802\u003cbr\u003e@gilgameshh\u003cbr\u003eWed Jan 07 14:50:42 +0000 2015"}, {"group": 504, "id": 3, "label": "552857963791400964", "shape": "dot", "size": 10, "title": "552857963791400964\u003cbr\u003e@gilgameshh \u270c\ufe0f\u2764\ufe0f\ud83d\udc9b\ud83d\udc9a\u270c\ufe0f biji Kurdistan\u003cbr\u003eWed Jan 07 16:03:04 +0000 2015"}, {"group": 504, "id": 4, "label": "552858701296832512", "shape": "dot", "size": 10, "title": "552858701296832512\u003cbr\u003e@gilgameshh\u003cbr\u003eWed Jan 07 16:06:00 +0000 2015"}, {"group": 504, "id": 5, "label": "552876008991256579", "shape": "dot", "size": 10, "title": "552876008991256579\u003cbr\u003e@gilgameshh Biji kurdistan, biji Charli\u003cbr\u003ehebdo \u270c\u003cbr\u003eWed Jan 07 17:14:47 +0000 2015"}, {"group": 504, "id": 6, "label": "552918876389117953", "shape": "dot", "size": 10, "title": "552918876389117953\u003cbr\u003e@gilgameshh God Bless the Kurds\u003cbr\u003etruly the only brave ones\u003cbr\u003eleft\u003cbr\u003eWed Jan 07 20:05:07 +0000 2015"}, {"group": 504, "id": 9, "label": "552933169217798145", "shape": "dot", "size": 10, "title": "552933169217798145\u003cbr\u003e@gilgameshh #NEUTRALIZEISIS\u003cbr\u003eWed Jan 07 21:01:55 +0000 2015"}, {"group": 504, "id": 10, "label": "552947893632397312", "shape": "dot", "size": 10, "title": "552947893632397312\u003cbr\u003e@gilgameshh Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/xo6PNfyZOa\u003cbr\u003eWed Jan 07 22:00:25 +0000 2015"}, {"group": 504, "id": 11, "label": "554336076278808578", "shape": "dot", "size": 10, "title": "554336076278808578\u003cbr\u003e\u201c@gilgameshh: #CharlieHebdo\u2019s Charb was massacred:\u003cbr\u003e\"The Kurds defend us all\".\u003cbr\u003eRest in peace brother. #TwitterKurds\u003cbr\u003ehttp://t.co/x7RaARsxVj\u201d\u003cbr\u003eSun Jan 11 17:56:34 +0000 2015"}, {"group": 504, "id": 12, "label": "554345206082846721", "shape": "dot", "size": 10, "title": "554345206082846721\u003cbr\u003e@gilgameshh @birgittaj now living a\u003cbr\u003ecomfortable life in bora bora..\u003cbr\u003e\u003cbr\u003eSun Jan 11 18:32:51 +0000 2015"}, {"group": 504, "id": 7, "label": "552921726116708352", "shape": "dot", "size": 10, "title": "552921726116708352\u003cbr\u003e@Eckjulian Thanks a lot friend,\u003cbr\u003ebless you too!\u003cbr\u003eWed Jan 07 20:16:26 +0000 2015"}, {"group": 504, "id": 8, "label": "552923320002551808", "shape": "dot", "size": 10, "title": "552923320002551808\u003cbr\u003e@gilgameshh Ur most welcome my\u003cbr\u003efriend\u003cbr\u003eWed Jan 07 20:22:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

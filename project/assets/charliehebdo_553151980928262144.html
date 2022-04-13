@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 926, "id": 0, "label": "553151980928262144", "shape": "dot", "size": 10, "title": "553151980928262144\u003cbr\u003e.@afp Staff observe minute of\u003cbr\u003esilence at #AFP headquarters for\u003cbr\u003ethe victims of #CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/noUJJiScxd\u003cbr\u003eThu Jan 08 11:31:23 +0000 2015"}, {"group": 926, "id": 1, "label": "553152136067166210", "shape": "dot", "size": 10, "title": "553152136067166210\u003cbr\u003e@AFPphoto @AFP I strongly condemn\u003cbr\u003ethis barbaric attack as a\u003cbr\u003eTurkish Muslim #UniteAgainstTerror #NotInMyName http://t.co/TNdQ9yGsot\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:32:00 +0000 2015"}, {"group": 926, "id": 2, "label": "553152446739275777", "shape": "dot", "size": 10, "title": "553152446739275777\u003cbr\u003e\u201c@AFPphoto: @afp Staff observe minute\u003cbr\u003eof silence at headquarters for\u003cbr\u003ethe victims of #CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/uPlegghTGr\u201d\u003cbr\u003eThu Jan 08 11:33:15 +0000 2015"}, {"group": 926, "id": 4, "label": "553159162038083584", "shape": "dot", "size": 10, "title": "553159162038083584\u003cbr\u003e@AFPphoto @AFP\u003cbr\u003eThu Jan 08 11:59:56 +0000 2015"}, {"group": 926, "id": 5, "label": "553159278329356288", "shape": "dot", "size": 10, "title": "553159278329356288\u003cbr\u003eAFP Staff observe minute of\u003cbr\u003esilence at #AFP headquarters for\u003cbr\u003ethe victims of #CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/6OUKU3Eba0 v @AFPphoto\u003cbr\u003eThu Jan 08 12:00:23 +0000 2015"}, {"group": 926, "id": 6, "label": "553161019993096192", "shape": "dot", "size": 10, "title": "553161019993096192\u003cbr\u003eStunning. The @AFP staff at\u003cbr\u003etheir HQ in Paris. #CharlieHebdo\u003cbr\u003e#JeSuisCharlie http://t.co/uSULu4165Z via @AFPphoto\u003cbr\u003eThu Jan 08 12:07:19 +0000 2015"}, {"group": 926, "id": 10, "label": "553169225494192130", "shape": "dot", "size": 10, "title": "553169225494192130\u003cbr\u003e@AFPphoto @AFP ...very sad..........\u003cbr\u003eThu Jan 08 12:39:55 +0000 2015"}, {"group": 926, "id": 11, "label": "553169321955196928", "shape": "dot", "size": 10, "title": "553169321955196928\u003cbr\u003e@AFPphoto @gavinsblog @AFP http://t.co/hEZQt35QkM\u003cbr\u003eThu Jan 08 12:40:18 +0000 2015"}, {"group": 926, "id": 14, "label": "553248839290068992", "shape": "dot", "size": 10, "title": "553248839290068992\u003cbr\u003eEl equipo de la AFP\u003cbr\u003een Par\u00eds guarda un minuto\u003cbr\u003ede silencio - v\u00eda @AFPphoto\u003cbr\u003e- #CharlieHebdo #JeSuisCharlie http://t.co/lOdyE6FUl6 @AFPespanol\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:56:16 +0000 2015"}, {"group": 926, "id": 17, "label": "553282701177139201", "shape": "dot", "size": 10, "title": "553282701177139201\u003cbr\u003e@AFPphoto @AFP\u003cbr\u003eThu Jan 08 20:10:50 +0000 2015"}, {"group": 926, "id": 18, "label": "553302846817705984", "shape": "dot", "size": 10, "title": "553302846817705984\u003cbr\u003e. @AFPphoto: .@afp Staff observe\u003cbr\u003eminute of silence at #AFP\u003cbr\u003eHQ for the victims of\u003cbr\u003e#CharlieHebdo #JeSuisCharlie http://t.co/MpoUCY6N5A\u003cbr\u003eThu Jan 08 21:30:53 +0000 2015"}, {"group": 926, "id": 19, "label": "553575709969358848", "shape": "dot", "size": 10, "title": "553575709969358848\u003cbr\u003e@AFPphoto @DailyLuca @AFP\u003cbr\u003eFri Jan 09 15:35:08 +0000 2015"}, {"group": 926, "id": 3, "label": "553158399182266368", "shape": "dot", "size": 10, "title": "553158399182266368\u003cbr\u003e@adilshahzeb @AFPphoto @AFP Wonderful photo!\u003cbr\u003eI see we\u0027re even united\u003cbr\u003ewith our brothers and sisters\u003cbr\u003ein Paris with our weather.\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:56:54 +0000 2015"}, {"group": 926, "id": 7, "label": "553163240155643904", "shape": "dot", "size": 10, "title": "553163240155643904\u003cbr\u003e@MickiMaynard niice\u003cbr\u003eThu Jan 08 12:16:08 +0000 2015"}, {"group": 926, "id": 8, "label": "553163606976888832", "shape": "dot", "size": 10, "title": "553163606976888832\u003cbr\u003e@MickiMaynard @NYTimesCohen @AFP @AFPphoto throw\u003cbr\u003eall Mozlems out of france\u003cbr\u003eif they are not law\u003cbr\u003eabiders\u003cbr\u003eThu Jan 08 12:17:35 +0000 2015"}, {"group": 926, "id": 9, "label": "553163939106664448", "shape": "dot", "size": 10, "title": "553163939106664448\u003cbr\u003eWow @MickiMaynard: Stunning. The @AFP\u003cbr\u003estaff at their HQ in\u003cbr\u003eParis. #CharlieHebdo #JeSuisCharlie http://t.co/RerLtVVswm via\u003cbr\u003e@AFPphoto\u201d\u003cbr\u003eThu Jan 08 12:18:55 +0000 2015"}, {"group": 926, "id": 12, "label": "553196734797873152", "shape": "dot", "size": 10, "title": "553196734797873152\u003cbr\u003e\u201c@MickiMaynard: Stunning. The @AFP staff\u003cbr\u003eat their HQ in Paris.\u003cbr\u003e#CharlieHebdo #JeSuisCharlie http://t.co/TNWT3tPiXh via @AFPphoto\u201d\u003cbr\u003eWow\u003cbr\u003eThu Jan 08 14:29:14 +0000 2015"}, {"group": 926, "id": 13, "label": "553200551874535426", "shape": "dot", "size": 10, "title": "553200551874535426\u003cbr\u003e@MickiMaynard @ramonlobo JE SUIS CHARLIE\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:44:24 +0000 2015"}, {"group": 926, "id": 15, "label": "553254273019293697", "shape": "dot", "size": 10, "title": "553254273019293697\u003cbr\u003e@MickiMaynard @NYTimesCohen @AFP @AFPphoto throw\u003cbr\u003eout unruly Mozlems from france\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:17:52 +0000 2015"}, {"group": 926, "id": 16, "label": "553264786277167109", "shape": "dot", "size": 10, "title": "553264786277167109\u003cbr\u003e\u201c@MickiMaynard: Stunning. The @AFP staff\u003cbr\u003eat their HQ in Paris.\u003cbr\u003e#CharlieHebdo #JeSuisCharlie http://t.co/00z32G55B5 via @AFPphoto\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:59:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 12, "weight": 1}, {"from": 6, "to": 13, "weight": 1}, {"from": 6, "to": 15, "weight": 1}, {"from": 6, "to": 16, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

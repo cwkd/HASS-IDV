@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 565, "id": 0, "label": "552841562963464195", "shape": "dot", "size": 10, "title": "552841562963464195\u003cbr\u003eThe #CharlieHebdo magazine covers the\u003cbr\u003eIslamic terrorists didn\u0027t want you\u003cbr\u003eto see http://t.co/AUkRckrdOJ http://t.co/bpmGf56tAa\u003cbr\u003eWed Jan 07 14:57:54 +0000 2015"}, {"group": 565, "id": 1, "label": "552843707704434688", "shape": "dot", "size": 10, "title": "552843707704434688\u003cbr\u003e@JGreenDC I condemn the cowardly\u003cbr\u003eattacks. Terrorism is not religion.\u003cbr\u003eThis inhumane. God bless everyone\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:06:25 +0000 2015"}, {"group": 565, "id": 2, "label": "552854449803509762", "shape": "dot", "size": 10, "title": "552854449803509762\u003cbr\u003e@JGreenDC @thedailybeast when you call\u003cbr\u003ethem \"Islamic\" terrorists you allow\u003cbr\u003ethem to own an entire\u003cbr\u003efaith STOP!!!\u003cbr\u003eWed Jan 07 15:49:07 +0000 2015"}, {"group": 565, "id": 3, "label": "552854793463414785", "shape": "dot", "size": 10, "title": "552854793463414785\u003cbr\u003e@JGreenDC @thedailybeast I hate Islaminization\u003cbr\u003e- hate french racism 2\u003cbr\u003eArabs \u0026amp; Africans \u0026amp; blks\u003cbr\u003emore,...\u003cbr\u003eWed Jan 07 15:50:28 +0000 2015"}, {"group": 565, "id": 4, "label": "552855441634766848", "shape": "dot", "size": 10, "title": "552855441634766848\u003cbr\u003e@JGreenDC thanks so much for\u003cbr\u003esharing. Just added it here:\u003cbr\u003ehttps://t.co/4msHFkCG93 http://t.co/frBUuPFv8F\u003cbr\u003eWed Jan 07 15:53:03 +0000 2015"}, {"group": 565, "id": 7, "label": "552857586903838720", "shape": "dot", "size": 10, "title": "552857586903838720\u003cbr\u003e@JGreenDC @thedailybeast\u003cbr\u003eWed Jan 07 16:01:34 +0000 2015"}, {"group": 565, "id": 8, "label": "552857818932740096", "shape": "dot", "size": 10, "title": "552857818932740096\u003cbr\u003e@JGreenDC\u003cbr\u003eWed Jan 07 16:02:30 +0000 2015"}, {"group": 565, "id": 13, "label": "552861769841278976", "shape": "dot", "size": 10, "title": "552861769841278976\u003cbr\u003e@JGreenDC that is disgusting\u003cbr\u003eWed Jan 07 16:18:12 +0000 2015"}, {"group": 565, "id": 5, "label": "552855480264310784", "shape": "dot", "size": 10, "title": "552855480264310784\u003cbr\u003e@rafiazakaria @JGreenDC @thedailybeast BUT THATS\u003cbr\u003eWHAT THEY ARE!\u003cbr\u003eWed Jan 07 15:53:12 +0000 2015"}, {"group": 565, "id": 10, "label": "552860633847590913", "shape": "dot", "size": 10, "title": "552860633847590913\u003cbr\u003e@rafiazakaria @JGreenDC @thedailybeast Good. Faith\u003cbr\u003eis worthless. Step into modernity\u003cbr\u003eand use your reason.\u003cbr\u003eWed Jan 07 16:13:41 +0000 2015"}, {"group": 565, "id": 14, "label": "552862168933490689", "shape": "dot", "size": 10, "title": "552862168933490689\u003cbr\u003e@rafiazakaria @JGreenDC @thedailybeast What would\u003cbr\u003eyou call them then?\u003cbr\u003eWed Jan 07 16:19:47 +0000 2015"}, {"group": 565, "id": 6, "label": "552856037590839296", "shape": "dot", "size": 10, "title": "552856037590839296\u003cbr\u003e@clivewilcock @JGreenDC @thedailybeast they don\u0027t\u003cbr\u003erepresent and own Islam stop\u003cbr\u003ehelping them!!!!\u003cbr\u003eWed Jan 07 15:55:25 +0000 2015"}, {"group": 565, "id": 9, "label": "552860060582690817", "shape": "dot", "size": 10, "title": "552860060582690817\u003cbr\u003e@rafiazakaria @clivewilcock @JGreenDC @thedailybeast Godless\u003cbr\u003eheathens they thought they could\u003cbr\u003ekill the magazine, just gave\u003cbr\u003eit mega airtime\u003cbr\u003eWed Jan 07 16:11:24 +0000 2015"}, {"group": 565, "id": 11, "label": "552860693339590656", "shape": "dot", "size": 10, "title": "552860693339590656\u003cbr\u003e@rafiazakaria they don\u0027t kill in\u003cbr\u003ethe name of Islam, they\u003cbr\u003ekill for their own bloodlust\u003cbr\u003etrue Muslims hate violence\u003cbr\u003eWed Jan 07 16:13:55 +0000 2015"}, {"group": 565, "id": 12, "label": "552860919618093056", "shape": "dot", "size": 10, "title": "552860919618093056\u003cbr\u003e@rafiazakaria @clivewilcock @JGreenDC @thedailybeast God\u003cbr\u003ebless all the families who\u003cbr\u003etonight are in pain over\u003cbr\u003etheir loss\u003cbr\u003eWed Jan 07 16:14:49 +0000 2015"}, {"group": 565, "id": 15, "label": "552862894120267776", "shape": "dot", "size": 10, "title": "552862894120267776\u003cbr\u003e@NRoynon @SoMoisthemoto @rafiazakaria Yes. Islam\u003cbr\u003eis completely against violence to\u003cbr\u003ehumans, animals, environment and all\u003cbr\u003ecreatures.\u003cbr\u003eWed Jan 07 16:22:40 +0000 2015"}, {"group": 565, "id": 16, "label": "552863074525659137", "shape": "dot", "size": 10, "title": "552863074525659137\u003cbr\u003e@NRoynon @rafiazakaria No, the quite\u003cbr\u003especifically kill in the name\u003cbr\u003eof Islam. Don\u0027t think you\u003cbr\u003eor they get to decide\u003cbr\u003ewhat a true Muslim is.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:23:23 +0000 2015"}, {"group": 565, "id": 17, "label": "552864163639623681", "shape": "dot", "size": 10, "title": "552864163639623681\u003cbr\u003e@MrQuindazzi @NRoynon @rafiazakaria  Islam\u003cbr\u003eis not how they or\u003cbr\u003eI understand it, its how\u003cbr\u003eprophet Muhammad understood it. Its\u003cbr\u003eagainst violence.\u003cbr\u003eWed Jan 07 16:27:42 +0000 2015"}, {"group": 565, "id": 18, "label": "552865152857808897", "shape": "dot", "size": 10, "title": "552865152857808897\u003cbr\u003e@MrQuindazzi @rafiazakaria oh do me\u003cbr\u003ea favour ??\u003cbr\u003eWed Jan 07 16:31:38 +0000 2015"}, {"group": 565, "id": 22, "label": "552867619775459328", "shape": "dot", "size": 10, "title": "552867619775459328\u003cbr\u003e@MrQuindazzi @rafiazakaria this has nothing\u003cbr\u003eto do with Christians it\u0027s\u003cbr\u003eabout a bunch of Godless\u003cbr\u003eheathens\u003cbr\u003eWed Jan 07 16:41:26 +0000 2015"}, {"group": 565, "id": 19, "label": "552865535105712129", "shape": "dot", "size": 10, "title": "552865535105712129\u003cbr\u003e@Nhr_Alsbr @MrQuindazzi @rafiazakaria how do\u003cbr\u003eyou shout God is good\u003cbr\u003ethen fire your gun on\u003cbr\u003ea defenseless person fucking cowards\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:33:09 +0000 2015"}, {"group": 565, "id": 33, "label": "552873347365994497", "shape": "dot", "size": 10, "title": "552873347365994497\u003cbr\u003e@Nhr_Alsbr @NRoynon @rafiazakaria  Muhammad\u003cbr\u003eled an army and killed\u003cbr\u003ethose who opposed Islam. Not\u003cbr\u003ea value judgement, just history\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:04:12 +0000 2015"}, {"group": 565, "id": 20, "label": "552866281217859585", "shape": "dot", "size": 10, "title": "552866281217859585\u003cbr\u003e@NRoynon @Nhr_Alsbr @rafiazakaria No idea.\u003cbr\u003eBut they did, and specifically\u003cbr\u003edid it for Islam. Just\u003cbr\u003eas Christians have done as\u003cbr\u003ewell\u003cbr\u003eWed Jan 07 16:36:07 +0000 2015"}, {"group": 565, "id": 21, "label": "552867301234835458", "shape": "dot", "size": 10, "title": "552867301234835458\u003cbr\u003e@NRoynon @MrQuindazzi @rafiazakaria If it\u003cbr\u003ewas suppose to be jihad,\u003cbr\u003ethen the best jihad is\u003cbr\u003eto kill the evil inside\u003cbr\u003eones self.\u003cbr\u003eWed Jan 07 16:40:11 +0000 2015"}, {"group": 565, "id": 25, "label": "552868452676161536", "shape": "dot", "size": 10, "title": "552868452676161536\u003cbr\u003e@NRoynon @MrQuindazzi @rafiazakaria How did\u003cbr\u003ethey do it for Islam?\u003cbr\u003eIslam forbids killing innocent people\u003cbr\u003eno matter what their religion\u003cbr\u003eis.\u003cbr\u003eWed Jan 07 16:44:45 +0000 2015"}, {"group": 565, "id": 24, "label": "552868101080244224", "shape": "dot", "size": 10, "title": "552868101080244224\u003cbr\u003e@Nhr_Alsbr @MrQuindazzi @rafiazakaria Sabra I\u003cbr\u003eagree with that 100%\u003cbr\u003eWed Jan 07 16:43:21 +0000 2015"}, {"group": 565, "id": 23, "label": "552868058944253953", "shape": "dot", "size": 10, "title": "552868058944253953\u003cbr\u003e@NRoynon @rafiazakaria What? That is\u003cbr\u003ea completely untrue statement. They\u003cbr\u003ewere a lot of things,\u003cbr\u003ebut godless is not one.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:43:11 +0000 2015"}, {"group": 565, "id": 27, "label": "552870702047834112", "shape": "dot", "size": 10, "title": "552870702047834112\u003cbr\u003e@MrQuindazzi @rafiazakaria my opinion to\u003cbr\u003ewhich I am entitled. Godless!\u003cbr\u003eYou can\u0027t claim God at\u003cbr\u003ethe same time murder the\u003cbr\u003edefenseless\u003cbr\u003eWed Jan 07 16:53:41 +0000 2015"}, {"group": 565, "id": 26, "label": "552869856723611648", "shape": "dot", "size": 10, "title": "552869856723611648\u003cbr\u003e@Nhr_Alsbr @NRoynon @rafiazakaria So? Religions\u003cbr\u003esay a lot of things.\u003cbr\u003eObviously, they thought those people\u003cbr\u003eweren\u0027t innocent\u003cbr\u003eWed Jan 07 16:50:20 +0000 2015"}, {"group": 565, "id": 28, "label": "552871218991595520", "shape": "dot", "size": 10, "title": "552871218991595520\u003cbr\u003e@MrQuindazzi who the fuck are\u003cbr\u003ethese philistines they they decide\u003cbr\u003ewho lives and dies ?\u003cbr\u003eStop defending these cowards.\u003cbr\u003eWed Jan 07 16:55:45 +0000 2015"}, {"group": 565, "id": 29, "label": "552871651621470208", "shape": "dot", "size": 10, "title": "552871651621470208\u003cbr\u003e@MrQuindazzi @NRoynon @rafiazakaria  Why\u003cbr\u003edont they think before they\u003cbr\u003edo? How would you like\u003cbr\u003eyour family killed by \"mistake\"?\u003cbr\u003eThis is sad.\u003cbr\u003eWed Jan 07 16:57:28 +0000 2015"}, {"group": 565, "id": 41, "label": "552878056952848385", "shape": "dot", "size": 10, "title": "552878056952848385\u003cbr\u003e@MrQuindazzi @NRoynon @rafiazakaria Islam forbids\u003cbr\u003eevil and Allah knows their\u003cbr\u003eintentions. All Muslims shouldn\u0027t be\u003cbr\u003eblamed for what those did\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:22:55 +0000 2015"}, {"group": 565, "id": 30, "label": "552872065615679489", "shape": "dot", "size": 10, "title": "552872065615679489\u003cbr\u003e@NRoynon @rafiazakaria Well, nothing in\u003cbr\u003ehistory would bear out your\u003cbr\u003econclusion\u003cbr\u003eWed Jan 07 16:59:06 +0000 2015"}, {"group": 565, "id": 31, "label": "552872535361339392", "shape": "dot", "size": 10, "title": "552872535361339392\u003cbr\u003e@Nhr_Alsbr @MrQuindazzi @rafiazakaria if they\u003cbr\u003ethought they killed the magazine\u003cbr\u003ethey just gave it a\u003cbr\u003eworld audience # idiots\u003cbr\u003eWed Jan 07 17:00:58 +0000 2015"}, {"group": 565, "id": 32, "label": "552872851838345217", "shape": "dot", "size": 10, "title": "552872851838345217\u003cbr\u003e@Nhr_Alsbr @NRoynon @rafiazakaria I am\u003cbr\u003enot defending them in any\u003cbr\u003eway, at all. Merely pointing\u003cbr\u003eout the illogic of saying\u003cbr\u003ethey weren\u0027t Muslims\u003cbr\u003eWed Jan 07 17:02:14 +0000 2015"}, {"group": 565, "id": 36, "label": "552874235295977472", "shape": "dot", "size": 10, "title": "552874235295977472\u003cbr\u003e@MrQuindazzi @NRoynon @rafiazakaria I\u0027m not\u003cbr\u003esaying they weren\u0027t Muslims, I\u0027m\u003cbr\u003esaying what they did was\u003cbr\u003enot in the name of\u003cbr\u003eIslam. Shouldn\u0027t be\u003cbr\u003eWed Jan 07 17:07:44 +0000 2015"}, {"group": 565, "id": 34, "label": "552873545572024320", "shape": "dot", "size": 10, "title": "552873545572024320\u003cbr\u003e@MrQuindazzi @rafiazakaria not interested in\u003cbr\u003edebating history just talking about\u003cbr\u003ethe rats in Paris today.\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:04:59 +0000 2015"}, {"group": 565, "id": 35, "label": "552874015678025729", "shape": "dot", "size": 10, "title": "552874015678025729\u003cbr\u003e@MrQuindazzi @Nhr_Alsbr @rafiazakaria you can\u003cbr\u003ebe born Christian by birthright\u003cbr\u003edoesn\u0027t make you a Christian.\u003cbr\u003eSame thing.. Philistines dogs\u003cbr\u003eWed Jan 07 17:06:51 +0000 2015"}, {"group": 565, "id": 38, "label": "552874571574304768", "shape": "dot", "size": 10, "title": "552874571574304768\u003cbr\u003e@MrQuindazzi @Nhr_Alsbr @rafiazakaria I know\u003cbr\u003ethe story. He is dead\u003cbr\u003eand I am dealing with\u003cbr\u003eParis 2015 these fuckers are\u003cbr\u003eFrench Muslims. Locals\u003cbr\u003eWed Jan 07 17:09:04 +0000 2015"}, {"group": 565, "id": 37, "label": "552874344326897664", "shape": "dot", "size": 10, "title": "552874344326897664\u003cbr\u003e@NRoynon @rafiazakaria Okay.They were incredibly\u003cbr\u003ecruel, misguided and unjustified.ALSO they\u003cbr\u003ewere Muslims killing for their\u003cbr\u003eversion of Islam\u003cbr\u003eWed Jan 07 17:08:10 +0000 2015"}, {"group": 565, "id": 39, "label": "552876878156292096", "shape": "dot", "size": 10, "title": "552876878156292096\u003cbr\u003e@Nhr_Alsbr @NRoynon @rafiazakaria If they\u003cbr\u003esay it was, it was-\u003cbr\u003etheir interpretation of Islam. Jihad\u003cbr\u003eagainst those who desecrate Islam\u003cbr\u003eis okay\u003cbr\u003eWed Jan 07 17:18:14 +0000 2015"}, {"group": 565, "id": 40, "label": "552877560636657665", "shape": "dot", "size": 10, "title": "552877560636657665\u003cbr\u003e@MrQuindazzi @Nhr_Alsbr @rafiazakaria yea whatever\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:20:57 +0000 2015"}, {"group": 565, "id": 42, "label": "552881130270371842", "shape": "dot", "size": 10, "title": "552881130270371842\u003cbr\u003e@Nhr_Alsbr @NRoynon @rafiazakaria Of course\u003cbr\u003eall Muslims should not be\u003cbr\u003eblamed.\u003cbr\u003eWed Jan 07 17:35:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 2, "to": 14, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 11, "weight": 1}, {"from": 6, "to": 12, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 11, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 22, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 17, "to": 33, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 19, "to": 25, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 27, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 26, "to": 29, "weight": 1}, {"from": 26, "to": 41, "weight": 1}, {"from": 27, "to": 30, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 29, "to": 32, "weight": 1}, {"from": 29, "to": 36, "weight": 1}, {"from": 30, "to": 34, "weight": 1}, {"from": 32, "to": 35, "weight": 1}, {"from": 33, "to": 38, "weight": 1}, {"from": 34, "to": 37, "weight": 1}, {"from": 36, "to": 39, "weight": 1}, {"from": 39, "to": 40, "weight": 1}, {"from": 41, "to": 42, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

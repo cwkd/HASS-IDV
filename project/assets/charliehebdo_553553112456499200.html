@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1431, "id": 0, "label": "553553112456499200", "shape": "dot", "size": 10, "title": "553553112456499200\u003cbr\u003eHostages taken at Paris kosher\u003cbr\u003esupermarket. LIVE coverage: http://t.co/pPdZtg397o http://t.co/sfTrtKY2wr\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:05:21 +0000 2015"}, {"group": 1431, "id": 1, "label": "553553493605486595", "shape": "dot", "size": 10, "title": "553553493605486595\u003cbr\u003e@ReutersLive @Reuters #JeSuisJuifFrancais\u003cbr\u003eFri Jan 09 14:06:52 +0000 2015"}, {"group": 1431, "id": 2, "label": "553553697188642816", "shape": "dot", "size": 10, "title": "553553697188642816\u003cbr\u003e@ReutersLive @Reuters And Republicans want\u003cbr\u003eto cut spending for Homeland\u003cbr\u003esecurity. @HouseGOP\u003cbr\u003eFri Jan 09 14:07:40 +0000 2015"}, {"group": 1431, "id": 3, "label": "553553829334372352", "shape": "dot", "size": 10, "title": "553553829334372352\u003cbr\u003e\u201c@ReutersLive: Hostages taken at Paris\u003cbr\u003ekosher supermarket. LIVE coverage: http://t.co/ypQFVuxXFb\u003cbr\u003ehttp://t.co/uTPOzpyRju\u201d\u003cbr\u003eFri Jan 09 14:08:12 +0000 2015"}, {"group": 1431, "id": 4, "label": "553554693402943488", "shape": "dot", "size": 10, "title": "553554693402943488\u003cbr\u003e@ReutersLive @Reuters France reaps what\u003cbr\u003etheir libs have\n sown.\u003cbr\u003eFri Jan 09 14:11:38 +0000 2015"}, {"group": 1431, "id": 5, "label": "553555666980200448", "shape": "dot", "size": 10, "title": "553555666980200448\u003cbr\u003e@reuterslive @reuters yep looks like\u003cbr\u003eit says steak and chips\u003cbr\u003eto me too ! Orgasmic\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:15:30 +0000 2015"}, {"group": 1431, "id": 6, "label": "553555697166598144", "shape": "dot", "size": 10, "title": "553555697166598144\u003cbr\u003e@ReutersLive: Hostages taken at #Paris\u003cbr\u003ekosher supermarket. LIVE coverage!\nhttp://t.co/VFMBcMt1Rk http://t.co/WBpIkxcftK\n#ParisShooting\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:15:37 +0000 2015"}, {"group": 1431, "id": 7, "label": "553557137625214976", "shape": "dot", "size": 10, "title": "553557137625214976\u003cbr\u003e\u201c@ReutersLive: Hostages taken at Paris\u003cbr\u003ekosher supermarket. LIVE coverage: http://t.co/XBTo2Z4lxU\u003cbr\u003ehttp://t.co/Vo4TDv9opq\u201d\u003cbr\u003eFri Jan 09 14:21:20 +0000 2015"}, {"group": 1431, "id": 8, "label": "553557544363634689", "shape": "dot", "size": 10, "title": "553557544363634689\u003cbr\u003e@ReutersLive @Reuters Hope ONLY FEMALE\u003cbr\u003epolice surround the building. \u003cbr\u003eWould they want to martyr\u003cbr\u003ethen????\u003cbr\u003eFri Jan 09 14:22:57 +0000 2015"}, {"group": 1431, "id": 9, "label": "553560520620392449", "shape": "dot", "size": 10, "title": "553560520620392449\u003cbr\u003e\u201c@ReutersLive: Hostages taken at Paris\u003cbr\u003ekosher supermarket. LIVE coverage: http://t.co/VGAR2AJPK9\u003cbr\u003ehttp://t.co/6TID5CqQRd\u201d HECK!\u003cbr\u003eFri Jan 09 14:34:47 +0000 2015"}, {"group": 1431, "id": 10, "label": "553578067646775296", "shape": "dot", "size": 10, "title": "553578067646775296\u003cbr\u003e\u201cHostages taken at Paris kosher\u003cbr\u003esupermarket. LIVE coverage: http://t.co/GpwtW2KTW9 http://t.co/pzBUxUegfb\u201d\u003cbr\u003ert@ReutersLive\u003cbr\u003eFri Jan 09 15:44:30 +0000 2015"}, {"group": 1431, "id": 12, "label": "553619536231276544", "shape": "dot", "size": 10, "title": "553619536231276544\u003cbr\u003e\u201c@ReutersLive: Hostages taken atParis kosher\u003cbr\u003esupermarket. LIVE coverage: http://t.co/TWSVrlvcIO http://t.co/iEmyQSDyk2\u201d\u003cbr\u003ethey coming for Jews\u003cbr\u003eFri Jan 09 18:29:17 +0000 2015"}, {"group": 1431, "id": 11, "label": "553595199344369664", "shape": "dot", "size": 10, "title": "553595199344369664\u003cbr\u003e@thetopstoryWYFF @ReutersLive\u003cbr\u003eFri Jan 09 16:52:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 3, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

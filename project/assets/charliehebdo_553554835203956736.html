@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2005, "id": 0, "label": "553554835203956736", "shape": "dot", "size": 10, "title": "553554835203956736\u003cbr\u003eAnd now reports of a\u003cbr\u003epossible fourth shooting incident at\u003cbr\u003eTrocadero near Eiffel Tower. Trying\u003cbr\u003eto get confirmation.\u003cbr\u003eFri Jan 09 14:12:11 +0000 2015"}, {"group": 2005, "id": 1, "label": "553554942980804609", "shape": "dot", "size": 10, "title": "553554942980804609\u003cbr\u003e@afneil Picture tweeted on my\u003cbr\u003etimeline.\u003cbr\u003eFri Jan 09 14:12:37 +0000 2015"}, {"group": 2005, "id": 2, "label": "553555106172772352", "shape": "dot", "size": 10, "title": "553555106172772352\u003cbr\u003e@afneil @richardcalhoun Sad days.\u003cbr\u003eFri Jan 09 14:13:16 +0000 2015"}, {"group": 2005, "id": 3, "label": "553555107040604164", "shape": "dot", "size": 10, "title": "553555107040604164\u003cbr\u003e@afneil OMG!!\u003cbr\u003eFri Jan 09 14:13:16 +0000 2015"}, {"group": 2005, "id": 4, "label": "553555127731503104", "shape": "dot", "size": 10, "title": "553555127731503104\u003cbr\u003e@afneil @Holbornlolz http://t.co/HUeYzZSQH1 live confirmation.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:13:21 +0000 2015"}, {"group": 2005, "id": 5, "label": "553555162862997504", "shape": "dot", "size": 10, "title": "553555162862997504\u003cbr\u003e\u201c@afneil: And now reports of\u003cbr\u003ea possible fourth shooting incident\u003cbr\u003eat Trocadero near Eiffel Tower.\u003cbr\u003eTrying to get confirmation.\u201d WTH\u003cbr\u003e??\u003cbr\u003eFri Jan 09 14:13:30 +0000 2015"}, {"group": 2005, "id": 6, "label": "553555184790827008", "shape": "dot", "size": 10, "title": "553555184790827008\u003cbr\u003e@afneil and let\u0027s have uncontrolled\u003cbr\u003eborders while islamofascists run riot\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:13:35 +0000 2015"}, {"group": 2005, "id": 7, "label": "553555325492940800", "shape": "dot", "size": 10, "title": "553555325492940800\u003cbr\u003e@afneil confirm this. The murderers\u003cbr\u003eof Lee Rigby are not\u003cbr\u003eHome Grown as U stated\u003cbr\u003elast night. The bastards are\u003cbr\u003eNigerians.\u003cbr\u003eFri Jan 09 14:14:08 +0000 2015"}, {"group": 2005, "id": 8, "label": "553555432653217792", "shape": "dot", "size": 10, "title": "553555432653217792\u003cbr\u003e@afneil France it at war\u003cbr\u003ebut only one side is\u003cbr\u003efighting. What\u0027s worrying is the\u003cbr\u003elinks to Britain and finsbury\u003cbr\u003epark mosque\u003cbr\u003eFri Jan 09 14:14:34 +0000 2015"}, {"group": 2005, "id": 9, "label": "553555609199841280", "shape": "dot", "size": 10, "title": "553555609199841280\u003cbr\u003e@afneil http://t.co/LEOzu4sFj3\u003cbr\u003eFri Jan 09 14:15:16 +0000 2015"}, {"group": 2005, "id": 11, "label": "553555814993371136", "shape": "dot", "size": 10, "title": "553555814993371136\u003cbr\u003e\u201c@afneil: And now reports of\u003cbr\u003ea possible fourth shooting incident\u003cbr\u003eat Trocadero near Eiffel Tower.\u003cbr\u003eTrying to get confirmation.\u201d @Puccaloki\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:16:05 +0000 2015"}, {"group": 2005, "id": 12, "label": "553555827148472320", "shape": "dot", "size": 10, "title": "553555827148472320\u003cbr\u003e@afneil Andrew @ChrisSpivey3 asks why\u003cbr\u003edoes ISIS never never never\u003cbr\u003enever never never never never\u003cbr\u003enever never never never never\u003cbr\u003eattack Israel?\u003cbr\u003eFri Jan 09 14:16:08 +0000 2015"}, {"group": 2005, "id": 14, "label": "553556582634885121", "shape": "dot", "size": 10, "title": "553556582634885121\u003cbr\u003e\u201c@afneil: And now reports of\u003cbr\u003ea possible fourth shooting incident\u003cbr\u003eat Trocadero near Eiffel Tower.\u003cbr\u003eTrying to get confirmation.\u201d Jeez!\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:19:08 +0000 2015"}, {"group": 2005, "id": 15, "label": "553556720199696385", "shape": "dot", "size": 10, "title": "553556720199696385\u003cbr\u003e@afneil Don\u0027t forget Abu Hamza,\u003cbr\u003eAnjem Chowdary and followers have\u003cbr\u003epreached for the uprising for\u003cbr\u003eyears. Time to send Chowder\u003cbr\u003epacking.\u003cbr\u003eFri Jan 09 14:19:41 +0000 2015"}, {"group": 2005, "id": 16, "label": "553557346870652928", "shape": "dot", "size": 10, "title": "553557346870652928\u003cbr\u003e@afneil so nothing to do\u003cbr\u003ewith cartoons , just out\u003cbr\u003eand out terrorists?\u003cbr\u003eFri Jan 09 14:22:10 +0000 2015"}, {"group": 2005, "id": 18, "label": "553559142238273537", "shape": "dot", "size": 10, "title": "553559142238273537\u003cbr\u003e@afneil @sylvielasserre false alert, according\u003cbr\u003eto interior ministry.\u003cbr\u003eFri Jan 09 14:29:18 +0000 2015"}, {"group": 2005, "id": 19, "label": "553561946214367233", "shape": "dot", "size": 10, "title": "553561946214367233\u003cbr\u003e@afneil @APB1979 unfounded by sky\u003cbr\u003enews and French intelligence\u003cbr\u003eFri Jan 09 14:40:27 +0000 2015"}, {"group": 2005, "id": 10, "label": "553555732067778561", "shape": "dot", "size": 10, "title": "553555732067778561\u003cbr\u003e\u201c@terry95_8: @afneil http://t.co/yw0C1SeZet\u201d Trocadero\u003cbr\u003eFri Jan 09 14:15:45 +0000 2015"}, {"group": 2005, "id": 13, "label": "553555948066062336", "shape": "dot", "size": 10, "title": "553555948066062336\u003cbr\u003e@afneil @terry95_8 every time a\u003cbr\u003ecar backfires in Paris this\u003cbr\u003ewill be the response\u003cbr\u003eFri Jan 09 14:16:37 +0000 2015"}, {"group": 2005, "id": 17, "label": "553558292543598594", "shape": "dot", "size": 10, "title": "553558292543598594\u003cbr\u003e@Damage_13 trouble can\u0027t be long\u003cbr\u003ebefore the French surrender... #thisisajokeandthereforemeanttobetaken\u003cbr\u003eas suchsopleasedon\u0027tmurderme\u003cbr\u003eFri Jan 09 14:25:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 13, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

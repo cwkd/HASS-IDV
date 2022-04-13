@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 470, "id": 0, "label": "552835221859483649", "shape": "dot", "size": 10, "title": "552835221859483649\u003cbr\u003e\"Our thoughts are w/our allies\u003cbr\u003eover in France,\" @WhiteHouse spokesman\u003cbr\u003esays. http://t.co/oIBZTyu4kL #CharlieHebdo\nhttps://t.co/sS7gDSD1tq\u003cbr\u003eWed Jan 07 14:32:42 +0000 2015"}, {"group": 470, "id": 1, "label": "552836545288601600", "shape": "dot", "size": 10, "title": "552836545288601600\u003cbr\u003e@CNN @WhiteHouse Jeezz @Waffleverse ...\u003cbr\u003eI bet u can make\u003cbr\u003ea messed up joke about\u003cbr\u003ethis\u003cbr\u003eWed Jan 07 14:37:58 +0000 2015"}, {"group": 470, "id": 2, "label": "552836553387814912", "shape": "dot", "size": 10, "title": "552836553387814912\u003cbr\u003eTragic thing to wake up\u003cbr\u003eto. \u201c@CNN Our thoughts are\u003cbr\u003ew/our allies over in France\u003cbr\u003ehttp://t.co/T90gnL3HHQ #CharlieHebdo\nhttps://t.co/F3Rxdb3zNe\u201d\u003cbr\u003eWed Jan 07 14:38:00 +0000 2015"}, {"group": 470, "id": 3, "label": "552837087527829504", "shape": "dot", "size": 10, "title": "552837087527829504\u003cbr\u003e\u201c@CNN:\"Our thoughts are w/our allies\u003cbr\u003eover in France,\" @WhiteHouse spokesman.\u003cbr\u003ehttp://t.co/nphQ2Pj28y #CharlieHebdo\nhttps://t.co/HH85I8LTAE\u201d\u003cbr\u003eWed Jan 07 14:40:07 +0000 2015"}, {"group": 470, "id": 4, "label": "552838362978340864", "shape": "dot", "size": 10, "title": "552838362978340864\u003cbr\u003e@CNN:Our thoughts are w/our allies\u003cbr\u003eover in France, @WhiteHouse spokesman\u003cbr\u003esays. http://t.co/1YywIu9aVG #CharlieHebdo\nhttps://t.co/BtxEx9444v\u201d\u003cbr\u003eWed Jan 07 14:45:11 +0000 2015"}, {"group": 470, "id": 5, "label": "552838642981285888", "shape": "dot", "size": 10, "title": "552838642981285888\u003cbr\u003e@CNN @WhiteHouse ...there is no\u003cbr\u003ecorner of the globe that\u003cbr\u003eis safe from these terrorists...it\u0027s\u003cbr\u003ea world war on Terrorism.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:46:18 +0000 2015"}, {"group": 470, "id": 7, "label": "552842104117153792", "shape": "dot", "size": 10, "title": "552842104117153792\u003cbr\u003eWow RT@CNN: Our thoughts are\u003cbr\u003ew/our allies France,\" @WhiteHouse spokesman\u003cbr\u003esays. http://t.co/EHP8xHwws9 #CharlieHebdo\nhttps://t.co/cp0qmwyIQO\u201d\u003cbr\u003eWed Jan 07 15:00:03 +0000 2015"}, {"group": 470, "id": 8, "label": "552842403598450690", "shape": "dot", "size": 10, "title": "552842403598450690\u003cbr\u003e@CNN @WhiteHouse  dont condemn\u003cbr\u003eterrorist with very soft world\u003cbr\u003eand in diplomatic words ..\u003cbr\u003ethis giving them fuel for\u003cbr\u003espared the terror in wld\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:01:14 +0000 2015"}, {"group": 470, "id": 9, "label": "552843609045626881", "shape": "dot", "size": 10, "title": "552843609045626881\u003cbr\u003e\ud83d\ude1e\u201c@CNN: \"Our thoughts are w/our\u003cbr\u003eallies over in France,\" @WhiteHouse\u003cbr\u003espokesman says. http://t.co/2fZBF65mPj \nhttps://t.co/icF34vkqPA\u201d\u003cbr\u003eWed Jan 07 15:06:02 +0000 2015"}, {"group": 470, "id": 11, "label": "552844657055764480", "shape": "dot", "size": 10, "title": "552844657055764480\u003cbr\u003e@CNN @WhiteHouse why have you\u003cbr\u003eall not reported the bombing\u003cbr\u003eon American soil yet!???? #QTNA\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:10:12 +0000 2015"}, {"group": 470, "id": 12, "label": "552845500920389634", "shape": "dot", "size": 10, "title": "552845500920389634\u003cbr\u003e@CNN @WhiteHouse the future doesn\u0027t\u003cbr\u003ebelong to those that slander\u003cbr\u003ethe prophet...President Obama. Care to\u003cbr\u003ereport that too?\u003cbr\u003eWed Jan 07 15:13:33 +0000 2015"}, {"group": 470, "id": 17, "label": "552847893523361792", "shape": "dot", "size": 10, "title": "552847893523361792\u003cbr\u003e@CNN Your tweet really makes\u003cbr\u003ethis page stronger: http://t.co/UxJ2N7lY2z\u003cbr\u003eWed Jan 07 15:23:03 +0000 2015"}, {"group": 470, "id": 19, "label": "552853425344368641", "shape": "dot", "size": 10, "title": "552853425344368641\u003cbr\u003eSo sad \ud83d\ude14 @CNN: \"Our\u003cbr\u003ethoughts are w/our allies over\u003cbr\u003ein France,\" @WhiteHouse http://t.co/EeyXXscswG #CharlieHebdo\nhttps://t.co/aVyV4ij0x1\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:45:02 +0000 2015"}, {"group": 470, "id": 6, "label": "552840223735164929", "shape": "dot", "size": 10, "title": "552840223735164929\u003cbr\u003e@TeamTwiistz wow thinking I can\u003cbr\u003ecome up with Funny Moments\u003cbr\u003eout of something like this\u003cbr\u003ewow world of Warcraft wow\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:52:35 +0000 2015"}, {"group": 470, "id": 10, "label": "552844299298439168", "shape": "dot", "size": 10, "title": "552844299298439168\u003cbr\u003e@Waffleverse wow u always say\u003cbr\u003esomething messed up because your\u003cbr\u003eheartless ...\u003cbr\u003eWed Jan 07 15:08:46 +0000 2015"}, {"group": 470, "id": 13, "label": "552847254634381313", "shape": "dot", "size": 10, "title": "552847254634381313\u003cbr\u003e@TeamTwiistz wow that\u0027s so heartless\u003cbr\u003eof you to say #drama\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:20:31 +0000 2015"}, {"group": 470, "id": 14, "label": "552847374323052545", "shape": "dot", "size": 10, "title": "552847374323052545\u003cbr\u003e@Waffleverse wow tables have turned??\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:21:00 +0000 2015"}, {"group": 470, "id": 15, "label": "552847486961078272", "shape": "dot", "size": 10, "title": "552847486961078272\u003cbr\u003e@TeamTwiistz more like turntables, they\u0027re\u003cbr\u003ealways turning yo\u003cbr\u003eWed Jan 07 15:21:26 +0000 2015"}, {"group": 470, "id": 16, "label": "552847660647202816", "shape": "dot", "size": 10, "title": "552847660647202816\u003cbr\u003e@Waffleverse Twiist Tables\u003cbr\u003eWed Jan 07 15:22:08 +0000 2015"}, {"group": 470, "id": 18, "label": "552848083978313728", "shape": "dot", "size": 10, "title": "552848083978313728\u003cbr\u003e@TeamTwiistz wow turning this into\u003cbr\u003ean opportunity to advertise yourself,\u003cbr\u003ewow you really are heartless\u003cbr\u003e@kanyewest write a song about\u003cbr\u003ehim\u003cbr\u003eWed Jan 07 15:23:49 +0000 2015"}, {"group": 470, "id": 20, "label": "552885929321701376", "shape": "dot", "size": 10, "title": "552885929321701376\u003cbr\u003e@Waffleverse yes $_$\u003cbr\u003eWed Jan 07 17:54:12 +0000 2015"}, {"group": 470, "id": 21, "label": "552886667171069952", "shape": "dot", "size": 10, "title": "552886667171069952\u003cbr\u003e@TeamTwiistz o you\u0027re doing it\u003cbr\u003efor the money? That\u0027s okay.\u003cbr\u003eSorry, carry on #ayylmaoo\u003cbr\u003eWed Jan 07 17:57:08 +0000 2015"}, {"group": 470, "id": 22, "label": "552886793725833218", "shape": "dot", "size": 10, "title": "552886793725833218\u003cbr\u003e@Waffleverse Le-Mayo\u003cbr\u003eWed Jan 07 17:57:38 +0000 2015"}, {"group": 470, "id": 23, "label": "552887325412581377", "shape": "dot", "size": 10, "title": "552887325412581377\u003cbr\u003e@TeamTwiistz Hey! The mayonnaise!\u003cbr\u003eWed Jan 07 17:59:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 6, "to": 10, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

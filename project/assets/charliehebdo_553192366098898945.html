@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1074, "id": 0, "label": "553192366098898945", "shape": "dot", "size": 10, "title": "553192366098898945\u003cbr\u003e\u0027One million copies\u0027 of #CharlieHebdo\u003cbr\u003eto be published as French\u003cbr\u003emedia vow to keep it\u003cbr\u003erunning  http://t.co/dr8bWwaxlp http://t.co/oIeK0NDhpl\u003cbr\u003eThu Jan 08 14:11:52 +0000 2015"}, {"group": 1074, "id": 1, "label": "553193578760241152", "shape": "dot", "size": 10, "title": "553193578760241152\u003cbr\u003e@Independent if they have the\u003cbr\u003eright , then why shouldn\u0027t\u003cbr\u003ejihadist ?\u003cbr\u003eThu Jan 08 14:16:41 +0000 2015"}, {"group": 1074, "id": 2, "label": "553193967064715264", "shape": "dot", "size": 10, "title": "553193967064715264\u003cbr\u003eRT \u201c@Independent: #CharlieHebdo to be\u003cbr\u003epublished as French media vow\u003cbr\u003eto keep it running \u003cbr\u003ehttp://t.co/RRiwjTQ3Wq http://t.co/K38nvYOHVg\u201d\u003cbr\u003eThu Jan 08 14:18:14 +0000 2015"}, {"group": 1074, "id": 3, "label": "553200337549815809", "shape": "dot", "size": 10, "title": "553200337549815809\u003cbr\u003e@Independent  Courage,mes amis.\u003cbr\u003eThu Jan 08 14:43:33 +0000 2015"}, {"group": 1074, "id": 4, "label": "553206543236485120", "shape": "dot", "size": 10, "title": "553206543236485120\u003cbr\u003e@Independent A #PRAYER TO #PROTECT\u003cbr\u003eTHE #WORLD FROM #VIOLENT #HARM\n\n\u5350\u003cbr\u003e\ud83d\udd00 https://t.co/yWWkU2WBZK\n\n#MolonLabe\n#TERRORISM http://t.co/SoiA0J9PqF\u003cbr\u003eThu Jan 08 15:08:12 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 331, "id": 0, "label": "552824462958395392", "shape": "dot", "size": 10, "title": "552824462958395392\u003cbr\u003e\u0027Love is Stronger than Hate\u003cbr\u003e#CharlieHebdo cover. We will not\u003cbr\u003esurrender #freedomofexpression 2 #terror \u0026amp;\u003cbr\u003e#intolerance. http://t.co/DAlIQF3OMp\u003cbr\u003eWed Jan 07 13:49:57 +0000 2015"}, {"group": 331, "id": 1, "label": "552825429674192897", "shape": "dot", "size": 10, "title": "552825429674192897\u003cbr\u003e@bouckap @astroehlein Who funded/armed/trained gunmen?\u003cbr\u003ehttps://t.co/iPBkLwhQk8 \u2026 Jeffrey Epstein also\u003cbr\u003ein CFR+Trilateral Commission\u003cbr\u003eWed Jan 07 13:53:48 +0000 2015"}, {"group": 331, "id": 2, "label": "552831744454324224", "shape": "dot", "size": 10, "title": "552831744454324224\u003cbr\u003e@bouckap @hrw what the\u003cbr\u003eWed Jan 07 14:18:53 +0000 2015"}, {"group": 331, "id": 3, "label": "552831794026803200", "shape": "dot", "size": 10, "title": "552831794026803200\u003cbr\u003e@bouckap @hrw #conservativeasiankid\u003cbr\u003eWed Jan 07 14:19:05 +0000 2015"}, {"group": 331, "id": 4, "label": "552832030422355970", "shape": "dot", "size": 10, "title": "552832030422355970\u003cbr\u003e@bouckap @DPJHodges try this one\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:20:01 +0000 2015"}, {"group": 331, "id": 5, "label": "552832924681502720", "shape": "dot", "size": 10, "title": "552832924681502720\u003cbr\u003e@bouckap pour la libert\u00e9 d\u0027expression!\u003cbr\u003eVive Charlie hebdo! A voire\u003cbr\u003epour les gens qui ne\u003cbr\u003econnaissent pas Charlie http://t.co/Uuq8niXO4T\u003cbr\u003eWed Jan 07 14:23:35 +0000 2015"}, {"group": 331, "id": 6, "label": "552833713235447808", "shape": "dot", "size": 10, "title": "552833713235447808\u003cbr\u003e@bouckap @hrw mercy not sacrifice\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:26:43 +0000 2015"}, {"group": 331, "id": 7, "label": "552833886099886080", "shape": "dot", "size": 10, "title": "552833886099886080\u003cbr\u003e@bouckap @hrw cartoonist http://t.co/dj3koWLk2u\u003cbr\u003eWed Jan 07 14:27:24 +0000 2015"}, {"group": 331, "id": 8, "label": "552834450225389568", "shape": "dot", "size": 10, "title": "552834450225389568\u003cbr\u003e@bouckap @TofikDibi *than\u003cbr\u003eWed Jan 07 14:29:38 +0000 2015"}, {"group": 331, "id": 9, "label": "552835646230777856", "shape": "dot", "size": 10, "title": "552835646230777856\u003cbr\u003e@bouckap @hrw  # sorry\u003cbr\u003eto say i hate that\u003cbr\u003ephoto :-(\u003cbr\u003eWed Jan 07 14:34:23 +0000 2015"}, {"group": 331, "id": 10, "label": "552836145873055748", "shape": "dot", "size": 10, "title": "552836145873055748\u003cbr\u003e@bouckap @hrw \nThus photo is\u003cbr\u003etoo rude  ! You\u003cbr\u003eare cunningly inducing more hate!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:36:23 +0000 2015"}, {"group": 331, "id": 11, "label": "552838824238518272", "shape": "dot", "size": 10, "title": "552838824238518272\u003cbr\u003e@bouckap @GettyReportage\u003cbr\u003eWed Jan 07 14:47:01 +0000 2015"}, {"group": 331, "id": 12, "label": "552838834702938113", "shape": "dot", "size": 10, "title": "552838834702938113\u003cbr\u003e@bouckap Christians also respect #Muslims\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:47:04 +0000 2015"}, {"group": 331, "id": 13, "label": "552840191468400640", "shape": "dot", "size": 10, "title": "552840191468400640\u003cbr\u003e@bouckap http://t.co/EfVpzm1kLM\u003cbr\u003eWed Jan 07 14:52:27 +0000 2015"}, {"group": 331, "id": 14, "label": "552841758523273216", "shape": "dot", "size": 10, "title": "552841758523273216\u003cbr\u003e@bouckap https://t.co/n7fwGaxglu\nWith freedom should come\u003cbr\u003eresponsible behavior, or laws to\u003cbr\u003eensure it\u003cbr\u003eWed Jan 07 14:58:41 +0000 2015"}, {"group": 331, "id": 15, "label": "552842106021363713", "shape": "dot", "size": 10, "title": "552842106021363713\u003cbr\u003e@bouckap freedom of expression at\u003cbr\u003ethe cost of inciting hatred.\u003cbr\u003eWow, humanity really is approaching\u003cbr\u003erapid extinction of their own\u003cbr\u003emaking.\u003cbr\u003eWed Jan 07 15:00:04 +0000 2015"}, {"group": 331, "id": 16, "label": "552845351825457152", "shape": "dot", "size": 10, "title": "552845351825457152\u003cbr\u003e@bouckap @nadhimzahawi you\u0027ve just put\u003cbr\u003eme off my fish soup.\u003cbr\u003eSentiment ok but a little\u003cbr\u003etoo graphic for my taste.\u003cbr\u003eShould I be offended? No!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:12:57 +0000 2015"}, {"group": 331, "id": 17, "label": "552855684384317440", "shape": "dot", "size": 10, "title": "552855684384317440\u003cbr\u003e@bouckap @hrw wth.....\ud83d\ude15\ud83d\ude15\ud83d\ude15\ud83d\ude15\ud83d\ude15\u003cbr\u003eWed Jan 07 15:54:01 +0000 2015"}, {"group": 331, "id": 18, "label": "552856799691300864", "shape": "dot", "size": 10, "title": "552856799691300864\u003cbr\u003e@bouckap made me laugh lol!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:58:27 +0000 2015"}, {"group": 331, "id": 19, "label": "552980146949353473", "shape": "dot", "size": 10, "title": "552980146949353473\u003cbr\u003e@bouckap Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/KFUnN0KJ5u\u003cbr\u003eThu Jan 08 00:08:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

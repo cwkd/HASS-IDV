@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 577, "id": 0, "label": "552842761565904896", "shape": "dot", "size": 10, "title": "552842761565904896\u003cbr\u003eStop saying #CharlieHebdo was \"known\u003cbr\u003efor mocking Muslims.\" They mocked\u003cbr\u003eEVERYONE.\u003cbr\u003eWed Jan 07 15:02:40 +0000 2015"}, {"group": 577, "id": 1, "label": "552843295689539584", "shape": "dot", "size": 10, "title": "552843295689539584\u003cbr\u003e@Gavin_McInnes c\u0027est vrai...interestingly enough though\u003cbr\u003e\"everyone else\" didn\u0027t seem to\u003cbr\u003etake up arms \u0026amp; execute\u003cbr\u003ethe CHebdoe cartoonists...hmmm\u003cbr\u003eWed Jan 07 15:04:47 +0000 2015"}, {"group": 577, "id": 2, "label": "552843401956425729", "shape": "dot", "size": 10, "title": "552843401956425729\u003cbr\u003e@Gavin_McInnes A quick search will\u003cbr\u003eshow you that.  Take\u003cbr\u003ea look at the images\u003cbr\u003eof popes, priests, and rabbis\u003cbr\u003ethey published.\u003cbr\u003eWed Jan 07 15:05:13 +0000 2015"}, {"group": 577, "id": 3, "label": "552843585595654145", "shape": "dot", "size": 10, "title": "552843585595654145\u003cbr\u003e@Gavin_McInnes Goes to show that\u003cbr\u003ethe common PC method of\u003cbr\u003emocking Islam in the same\u003cbr\u003esentence as Christianity and Judaism\u003cbr\u003eis ineffective\u003cbr\u003eWed Jan 07 15:05:56 +0000 2015"}, {"group": 577, "id": 4, "label": "552843601223639040", "shape": "dot", "size": 10, "title": "552843601223639040\u003cbr\u003e@Gavin_McInnes Perhaps the point is\u003cbr\u003ethat ONLY #CharlieHebdo has the\u003cbr\u003ecourage to mock Islam as\u003cbr\u003eopposed to the cowards who\u003cbr\u003esubjugate themselves\u003cbr\u003eWed Jan 07 15:06:00 +0000 2015"}, {"group": 577, "id": 5, "label": "552843625609314305", "shape": "dot", "size": 10, "title": "552843625609314305\u003cbr\u003e@Gavin_McInnes what the media should\u003cbr\u003estop saying, when critiquing the\u003cbr\u003evideos, is things like the\u003cbr\u003e\"alleged\" shooters, the \"masked gentlemen\"\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:06:06 +0000 2015"}, {"group": 577, "id": 6, "label": "552843905381965826", "shape": "dot", "size": 10, "title": "552843905381965826\u003cbr\u003e@Gavin_McInnes but Gavin, it\u0027s never\u003cbr\u003ethe Muslims fault. They are\u003cbr\u003eALWAYS provoked by us evil\u003cbr\u003ewesterners.\u003cbr\u003eWed Jan 07 15:07:13 +0000 2015"}, {"group": 577, "id": 7, "label": "552843985874874368", "shape": "dot", "size": 10, "title": "552843985874874368\u003cbr\u003e@Gavin_McInnes no dude, those shooters\u003cbr\u003earen\u0027t alleged, they\u0027re murderers \u0026amp;\u003cbr\u003eu can see \u0027em on\u003cbr\u003ethe vid, the driver aint\u003cbr\u003ea gentle man...\u003cbr\u003eWed Jan 07 15:07:32 +0000 2015"}, {"group": 577, "id": 9, "label": "552844774466916355", "shape": "dot", "size": 10, "title": "552844774466916355\u003cbr\u003e@Gavin_McInnes\n@BarackObama extended his hand in\u003cbr\u003efriendship 6 yrs ago. Why\u003cbr\u003ehaven\u0027t Muslim terrorists unclenched their\u003cbr\u003efists?\n#MustBeOurFault\u003cbr\u003eWed Jan 07 15:10:40 +0000 2015"}, {"group": 577, "id": 10, "label": "552852940558696449", "shape": "dot", "size": 10, "title": "552852940558696449\u003cbr\u003e@Gavin_McInnes\nOnly 2 yrs ago our\u003cbr\u003eDear Leader criticized #CharlieHebdo for\u003cbr\u003emocking Muslims.\nhttp://t.co/KDuYheePxy\u003cbr\u003eWed Jan 07 15:43:07 +0000 2015"}, {"group": 577, "id": 11, "label": "552872750097108993", "shape": "dot", "size": 10, "title": "552872750097108993\u003cbr\u003e@Gavin_McInnes @hvilshj To \"mock\" is\u003cbr\u003eessential to free speech in\u003cbr\u003eliberal democracies.Defend that right, and\u003cbr\u003ehonour the dead and wounded.\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:01:50 +0000 2015"}, {"group": 577, "id": 12, "label": "552878166176301056", "shape": "dot", "size": 10, "title": "552878166176301056\u003cbr\u003e@Gavin_McInnes AND WHO GIVES A\u003cbr\u003eFUCK IF THEY DID. THE\u003cbr\u003eDIRTY VIOLENT PEDOPHILE MIUZZIES DESERVE\u003cbr\u003eEVERY FUCKING LAST DROP OF\u003cbr\u003eCRITICISM THEY GET.\u003cbr\u003eWed Jan 07 17:23:21 +0000 2015"}, {"group": 577, "id": 13, "label": "552986333464231937", "shape": "dot", "size": 10, "title": "552986333464231937\u003cbr\u003e@Gavin_McInnes Indeed -- the way\u003cbr\u003eit should be! @venimus_vidimus\u003cbr\u003eThu Jan 08 00:33:10 +0000 2015"}, {"group": 577, "id": 14, "label": "552988403764314113", "shape": "dot", "size": 10, "title": "552988403764314113\u003cbr\u003e@Gavin_McInnes @ramzaruglia People who say\u003cbr\u003ethat are the useful idiots\u003cbr\u003eand appeasers\u003cbr\u003eThu Jan 08 00:41:24 +0000 2015"}, {"group": 577, "id": 15, "label": "552997150607822849", "shape": "dot", "size": 10, "title": "552997150607822849\u003cbr\u003e@Gavin_McInnes @truthbtruth did he mock\u003cbr\u003ethe #kikes? I don\u0027t think\u003cbr\u003eso... no free speech there\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:16:09 +0000 2015"}, {"group": 577, "id": 18, "label": "553016682986614785", "shape": "dot", "size": 10, "title": "553016682986614785\u003cbr\u003e@Gavin_McInnes scumbag chuck Johnson says\u003cbr\u003etheir editor fired someone for\u003cbr\u003etheir anti semi beliefs and\u003cbr\u003ecartoons???\u003cbr\u003eThu Jan 08 02:33:46 +0000 2015"}, {"group": 577, "id": 8, "label": "552844443783790592", "shape": "dot", "size": 10, "title": "552844443783790592\u003cbr\u003e@Gavin_McInnes not that you\u0027ve done\u003cbr\u003eany of this, just venting\u003cbr\u003e\u0026amp; ur absolutely correct, Hebdo\u003cbr\u003emade fun of everyone, god\u003cbr\u003ebless those frenchies\u003cbr\u003eWed Jan 07 15:09:21 +0000 2015"}, {"group": 577, "id": 16, "label": "552998281853538304", "shape": "dot", "size": 10, "title": "552998281853538304\u003cbr\u003e@JacobRothschil2 @Gavin_McInnes ok ROTHSCHILD prob\u003cbr\u003ebecause you\u0027d bankrupt him so\u003cbr\u003esuck it and fuck off\u003cbr\u003ehttp://t.co/6GTHWhSyYR\u003cbr\u003eThu Jan 08 01:20:39 +0000 2015"}, {"group": 577, "id": 17, "label": "552999405088161793", "shape": "dot", "size": 10, "title": "552999405088161793\u003cbr\u003e@truthbtruth @Gavin_McInnes As a #kike\u003cbr\u003eI take pride in such\u003cbr\u003ethings\u003cbr\u003eThu Jan 08 01:25:07 +0000 2015"}, {"group": 577, "id": 19, "label": "553016785537351680", "shape": "dot", "size": 10, "title": "553016785537351680\u003cbr\u003e@Gavin_McInnes https://t.co/cN9oxm37r4\u003cbr\u003eThu Jan 08 02:34:10 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 18, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

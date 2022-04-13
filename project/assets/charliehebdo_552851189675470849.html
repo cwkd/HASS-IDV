@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 669, "id": 0, "label": "552851189675470849", "shape": "dot", "size": 10, "title": "552851189675470849\u003cbr\u003eI\u0027d rather swallow a bullet\u003cbr\u003ethan bow to a \"God\"\u003cbr\u003etoo insecure to handle cartoons.\u003cbr\u003e\n#JeSuisCharlie http://t.co/805bDy3G6y\u003cbr\u003eWed Jan 07 15:36:09 +0000 2015"}, {"group": 669, "id": 1, "label": "552851673602084865", "shape": "dot", "size": 10, "title": "552851673602084865\u003cbr\u003e\u201c@zoeythegreat: I\u0027d rather swallow a\u003cbr\u003ebullet than bow to a\u003cbr\u003e\"God\" too insecure to handle\u003cbr\u003ecartoons. \n#JeSuisCharlie http://t.co/LHfvUaV2rK\u201d\u003cbr\u003eWed Jan 07 15:38:05 +0000 2015"}, {"group": 669, "id": 2, "label": "552853399541010432", "shape": "dot", "size": 10, "title": "552853399541010432\u003cbr\u003e@zoeythegreat it\u0027s not the god\u003cbr\u003ethat can\u0027t handle cartoons. If\u003cbr\u003eanything, this event proves yet\u003cbr\u003eagain that there *is* no\u003cbr\u003eomnipotent, good god.\u003cbr\u003eWed Jan 07 15:44:56 +0000 2015"}, {"group": 669, "id": 3, "label": "552853695764127744", "shape": "dot", "size": 10, "title": "552853695764127744\u003cbr\u003e@zoeythegreat my God can handle\u003cbr\u003ecartoons. it\u0027s the retarded religious\u003cbr\u003efanatics that can\u0027t handle it.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:46:07 +0000 2015"}, {"group": 669, "id": 5, "label": "552854420351119361", "shape": "dot", "size": 10, "title": "552854420351119361\u003cbr\u003eThough I\u0027d prefer to return\u003cbr\u003efire against any idiot who\u003cbr\u003efears his deity can\u0027t handle\u003cbr\u003ecartoons. @zoeythegreat @TXSVIKING\u003cbr\u003eWed Jan 07 15:49:00 +0000 2015"}, {"group": 669, "id": 6, "label": "552855390615252993", "shape": "dot", "size": 10, "title": "552855390615252993\u003cbr\u003e\u201c@zoeythegreat: I\u0027d rather swallow a\u003cbr\u003ebullet than bow to a\u003cbr\u003e\"God\" too insecure to handle\u003cbr\u003ecartoons. \n#JeSuisCharlie http://t.co/HoXyJ1w509\u201d\u003cbr\u003eWed Jan 07 15:52:51 +0000 2015"}, {"group": 669, "id": 7, "label": "552855542147088385", "shape": "dot", "size": 10, "title": "552855542147088385\u003cbr\u003e@zoeythegreat preach sister!\u003cbr\u003eWed Jan 07 15:53:27 +0000 2015"}, {"group": 669, "id": 9, "label": "552857177883680768", "shape": "dot", "size": 10, "title": "552857177883680768\u003cbr\u003e@zoeythegreat I don\u0027t know about\u003cbr\u003eswallowing a bullet. You may\u003cbr\u003ehave to fire one in\u003cbr\u003eyour life.@TXSVIKING\u003cbr\u003eWed Jan 07 15:59:57 +0000 2015"}, {"group": 669, "id": 10, "label": "552857563247558656", "shape": "dot", "size": 10, "title": "552857563247558656\u003cbr\u003e.@zoeythegreat IIRC, it was Gallagher\u003cbr\u003ewho said that the giraffe\u003cbr\u003eis proof that God has\u003cbr\u003ea sense of humor. @TXSVIKING\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:01:29 +0000 2015"}, {"group": 669, "id": 14, "label": "552860924143353857", "shape": "dot", "size": 10, "title": "552860924143353857\u003cbr\u003e@zoeythegreat Was my verb tense\u003cbr\u003ecatawampus in that last comment?\u003cbr\u003e@TXSVIKING\u003cbr\u003eWed Jan 07 16:14:50 +0000 2015"}, {"group": 669, "id": 16, "label": "552862007113039873", "shape": "dot", "size": 10, "title": "552862007113039873\u003cbr\u003e@zoeythegreat @dylanh7389 Atheism is the\u003cbr\u003eway forward, Zoe.\u003cbr\u003eWed Jan 07 16:19:08 +0000 2015"}, {"group": 669, "id": 18, "label": "552862223727869952", "shape": "dot", "size": 10, "title": "552862223727869952\u003cbr\u003e@zoeythegreat Be accurate - the\u003cbr\u003eproblem is with Allah of\u003cbr\u003eIslam and his hate-filled book.\u003cbr\u003eJesus essentially instructs Christians to\u003cbr\u003eLOVE.\u003cbr\u003eWed Jan 07 16:20:00 +0000 2015"}, {"group": 669, "id": 4, "label": "552854065437081602", "shape": "dot", "size": 10, "title": "552854065437081602\u003cbr\u003e@pynchonlama Note my quotation marks.\u003cbr\u003eI\u0027m atheist, so naturally I\u003cbr\u003eunderstand all of these actions\u003cbr\u003eare attributed to humans and\u003cbr\u003egroupthink.\u003cbr\u003eWed Jan 07 15:47:35 +0000 2015"}, {"group": 669, "id": 26, "label": "552923172228460545", "shape": "dot", "size": 10, "title": "552923172228460545\u003cbr\u003e@cydonianman @zoeythegreat Amen brother Chuck.\u003cbr\u003eYou said it well.\u003cbr\u003eWed Jan 07 20:22:11 +0000 2015"}, {"group": 669, "id": 8, "label": "552856466269282306", "shape": "dot", "size": 10, "title": "552856466269282306\u003cbr\u003e@zoeythegreat I stand corrected :)\u003cbr\u003eAtheism, of course, is as\u003cbr\u003emuch a matter of faith\u003cbr\u003eor belief as Theism.\u003cbr\u003eWed Jan 07 15:57:07 +0000 2015"}, {"group": 669, "id": 17, "label": "552862036116242434", "shape": "dot", "size": 10, "title": "552862036116242434\u003cbr\u003e@pynchonlama Not for everyone. Note\u003cbr\u003emy lowercase \u0027a\u0027 for atheism.\u003cbr\u003eI have no set of\u003cbr\u003ebelief; I simply don\u0027t believe.\u003cbr\u003eIf presented with...\u003cbr\u003eWed Jan 07 16:19:15 +0000 2015"}, {"group": 669, "id": 19, "label": "552862446373728257", "shape": "dot", "size": 10, "title": "552862446373728257\u003cbr\u003e@pynchonlama convincing information of a\u003cbr\u003egod, I will readily accept\u003cbr\u003eit.\u003cbr\u003eWed Jan 07 16:20:53 +0000 2015"}, {"group": 669, "id": 20, "label": "552862701752311808", "shape": "dot", "size": 10, "title": "552862701752311808\u003cbr\u003e@pynchonlama information = (proof or\u003cbr\u003ean irrefutable theory)\u003cbr\u003eWed Jan 07 16:21:54 +0000 2015"}, {"group": 669, "id": 11, "label": "552857871437029376", "shape": "dot", "size": 10, "title": "552857871437029376\u003cbr\u003e@CraigR3521 @zoeythegreat @TXSVIKING  Oh\u003cbr\u003eand don\u0027t forget penguins #God\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:02:42 +0000 2015"}, {"group": 669, "id": 12, "label": "552860097517338624", "shape": "dot", "size": 10, "title": "552860097517338624\u003cbr\u003e@snowlady09 @CraigR3521 @zoeythegreat Love to\u003cbr\u003ewatch the penguins!\u003cbr\u003eWed Jan 07 16:11:33 +0000 2015"}, {"group": 669, "id": 13, "label": "552860827263324160", "shape": "dot", "size": 10, "title": "552860827263324160\u003cbr\u003e@snowlady09 Yes: http://t.co/BWHUd7pVQ3 @zoeythegreat @TXSVIKING\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:14:27 +0000 2015"}, {"group": 669, "id": 15, "label": "552861083854065665", "shape": "dot", "size": 10, "title": "552861083854065665\u003cbr\u003e@CraigR3521 @snowlady09 @zoeythegreat haha to\u003cbr\u003efunny!\u003cbr\u003eWed Jan 07 16:15:28 +0000 2015"}, {"group": 669, "id": 21, "label": "552862971362164737", "shape": "dot", "size": 10, "title": "552862971362164737\u003cbr\u003e@TXSVIKING Thanks, I LOL\u0027d. @snowlady09\u003cbr\u003e@zoeythegreat\u003cbr\u003eWed Jan 07 16:22:58 +0000 2015"}, {"group": 669, "id": 22, "label": "552863703012364288", "shape": "dot", "size": 10, "title": "552863703012364288\u003cbr\u003e@Cbulletproofs I was accurate enough.\u003cbr\u003eThanks.\u003cbr\u003eWed Jan 07 16:25:53 +0000 2015"}, {"group": 669, "id": 23, "label": "552863855357861888", "shape": "dot", "size": 10, "title": "552863855357861888\u003cbr\u003e@zoeythegreat Well everyone is god,\u003cbr\u003epotentially, as per Shaiva-Shakta Hinduism.\u003cbr\u003eJust takes praxis to be\u003cbr\u003eone. Lots of folks have\u003cbr\u003edone it ;)\u003cbr\u003eWed Jan 07 16:26:29 +0000 2015"}, {"group": 669, "id": 24, "label": "552864437380464640", "shape": "dot", "size": 10, "title": "552864437380464640\u003cbr\u003e@zoeythegreat I\u0027ve told you the\u003cbr\u003ekeywords. Google away. Then, when\u003cbr\u003eyou\u0027ve read enough, maybe try\u003cbr\u003esome of the to-do stuff.\u003cbr\u003eSee for yourself.\u003cbr\u003eWed Jan 07 16:28:48 +0000 2015"}, {"group": 669, "id": 25, "label": "552865317039263744", "shape": "dot", "size": 10, "title": "552865317039263744\u003cbr\u003e@zoeythegreat btw your twitter motto\u003cbr\u003ereminds of a line by\u003cbr\u003eTranstromer: \u0027Everybody\u0027s knocking at everyone\u0027s\u003cbr\u003edoor.\u0027 Cheers. Here\u0027s to thinking\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:32:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 3, "to": 26, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 8, "to": 17, "weight": 1}, {"from": 8, "to": 19, "weight": 1}, {"from": 8, "to": 20, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 15, "to": 21, "weight": 1}, {"from": 18, "to": 22, "weight": 1}, {"from": 19, "to": 23, "weight": 1}, {"from": 20, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

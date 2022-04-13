@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1136, "id": 0, "label": "553209341520535552", "shape": "dot", "size": 10, "title": "553209341520535552\u003cbr\u003eFor some people, comic is\u003cbr\u003e weapons.#JeSuisCharlie http://t.co/3m0Y4WBT3p\u003cbr\u003eThu Jan 08 15:19:19 +0000 2015"}, {"group": 1136, "id": 1, "label": "553210656334151682", "shape": "dot", "size": 10, "title": "553210656334151682\u003cbr\u003e@remonwangxt Locate more image here!\u003cbr\u003ehttp://t.co/GGPhpMpvbM\u003cbr\u003eThu Jan 08 15:24:33 +0000 2015"}, {"group": 1136, "id": 2, "label": "553238617095962624", "shape": "dot", "size": 10, "title": "553238617095962624\u003cbr\u003e\u201c@remonwangxt: For some people, comic\u003cbr\u003eis  weapons.#JeSuisCharlie http://t.co/6DHjHIRzt4\u201d\u003cbr\u003eThu Jan 08 17:15:39 +0000 2015"}, {"group": 1136, "id": 4, "label": "553244507261526016", "shape": "dot", "size": 10, "title": "553244507261526016\u003cbr\u003e@remonwangxt http://t.co/LMp71Ir0Rl\u003cbr\u003eThu Jan 08 17:39:03 +0000 2015"}, {"group": 1136, "id": 5, "label": "553244621879275520", "shape": "dot", "size": 10, "title": "553244621879275520\u003cbr\u003e@remonwangxt \u5514\u8a72\u62bd\u57cb\u4e2d\u5171\u6c34..\u003cbr\u003eThu Jan 08 17:39:31 +0000 2015"}, {"group": 1136, "id": 6, "label": "553251592145616896", "shape": "dot", "size": 10, "title": "553251592145616896\u003cbr\u003e@remonwangxt http://t.co/gqGPaPp0nC\u003cbr\u003eThu Jan 08 18:07:13 +0000 2015"}, {"group": 1136, "id": 7, "label": "553342720018620416", "shape": "dot", "size": 10, "title": "553342720018620416\u003cbr\u003e@remonwangxt The pencil should be\u003cbr\u003emightier than the machine gun\u003cbr\u003e\u003cbr\u003eFri Jan 09 00:09:19 +0000 2015"}, {"group": 1136, "id": 8, "label": "553361129682915329", "shape": "dot", "size": 10, "title": "553361129682915329\u003cbr\u003e@remonwangxt \u559c\u6b22\u8fd9\u79cd\u98ce\u683c\u003cbr\u003eFri Jan 09 01:22:28 +0000 2015"}, {"group": 1136, "id": 9, "label": "553435068111138816", "shape": "dot", "size": 10, "title": "553435068111138816\u003cbr\u003e@remonwangxt \u30a2\u30e1\u30ea\u30ab\u306f\u5b58\u5728\u3059\u308b\u3068\u4e3b\u5f35\u3057\u305f\u5927\u91cf\u6bba\u622e\u5175\u5668\u3092\u30a4\u30e9\u30af\u3067\u767a\u898b\u3067\u304d\u306a\u304b\u3063\u305f\u3002\u5f7c\u7b49\u306f\u30a4\u30e9\u30af\u3067\u591a\u6570\u306e\u5e02\u6c11\u3092\u6bba\u622e\u3057\u305f\u3002\u305d\u306e\u610f\u5473\u3067\u30a2\u30e1\u30ea\u30ab\u306f\u30d1\u30ea\u306e\u8972\u6483\u72af\u3068\u540c\u7f6a\u3067\u3042\u308a\u3001\u5f15\u304d\u8d77\u3053\u3057\u305f\u7d50\u679c\u304b\u3089\u8003\u3048\u308c\u3070\u767e\u500d\u306f\u60aa\u3044\u3002\u30a2\u30e1\u30ea\u30ab\u3053\u305d\u5927\u91cf\u6bba\u622e\u5175\u5668\u305d\u306e\u3082\u306e\u3067\u3002#JeSuisCharlie\u003cbr\u003eFri Jan 09 06:16:17 +0000 2015"}, {"group": 1136, "id": 10, "label": "553457399181213696", "shape": "dot", "size": 10, "title": "553457399181213696\u003cbr\u003e@remonwangxt http://t.co/nAncXIl0vG\u003cbr\u003eFri Jan 09 07:45:01 +0000 2015"}, {"group": 1136, "id": 11, "label": "553464875616579584", "shape": "dot", "size": 10, "title": "553464875616579584\u003cbr\u003e@remonwangxt \u6bd4\u6bd4\u4f0a\u65af\u5170\u539f\u6559\u65e8SB\uff0c\u6211\u591a\u5e74\u6765\u7b2c\u4e00\u6b21\u6709\u4e86\u6c11\u65cf\u81ea\u8c6a\u611f\u3002\u8fa3\u6912\uff0c\u8fd8\u4e0d\u8dea\u8c22\u515a\u4e2d\u592e\u4e60\u4e3b\u5e2d\uff1f\u003cbr\u003eFri Jan 09 08:14:43 +0000 2015"}, {"group": 1136, "id": 12, "label": "553474019886776320", "shape": "dot", "size": 10, "title": "553474019886776320\u003cbr\u003e@remonwangxt \nWe TV news program\u003cbr\u003e\u201cNews 23\u201d TBS, Japan is\u003cbr\u003egoing to introduce your Caricature\u003cbr\u003ein our Program today with\u003cbr\u003ereverence. Thank you.\u003cbr\u003eFri Jan 09 08:51:04 +0000 2015"}, {"group": 1136, "id": 13, "label": "553527254463303680", "shape": "dot", "size": 10, "title": "553527254463303680\u003cbr\u003e\u201c@remonwangxt: For some people, comic\u003cbr\u003eis  weapons.#JeSuisCharlie http://t.co/kUWKkpM07U\u201d\u003cbr\u003eFri Jan 09 12:22:36 +0000 2015"}, {"group": 1136, "id": 14, "label": "553580183936987138", "shape": "dot", "size": 10, "title": "553580183936987138\u003cbr\u003e@remonwangxt \u60f3\u8d77\u53bb\u5e74\u6211\u56fd\u653f\u5e9c\u5bf9\u4f60\u7684 \u5c01\u9501\uff0c\u5f88\u591a\u7f51\u53cb \u7ffb\u7740\u5899\u6765\u63a8\u7279\u9a82\u4f60\uff0c\u54ce\uff0c\u6211\u4eec\u662f \u8bf4\u4e00\u70b9\u7956\u56fd\u7684\u574f\u8bdd\u5c31\u662f\u5356\u56fd\u8d3c\uff0c\u5c31\u662f\u6c49\u5978\u3002\u6211\u4eec\u6839\u672c\u003cbr\u003e\u4e0d\u80fd\u7406\u89e3  \u90a3\u79cd\u634d\u536b\u4e0d\u540c\u89c2\u70b9\u7684 \u610f\u4e49\u6240\u5728\uff0c\u53ea\u77e5\u9053 \u66b4\u623e\u538b\u5236\u4ed6\u4eba\u003cbr\u003e\u7684\u89c2\u70b9\uff0c\u4e49\u6124\u586b\u81ba\u5730\u6253\u538b\uff0c\u7528\u6b63\u4e49\u7684\u53e3\u543b\u3002\u003cbr\u003eFri Jan 09 15:52:55 +0000 2015"}, {"group": 1136, "id": 15, "label": "553618570383355905", "shape": "dot", "size": 10, "title": "553618570383355905\u003cbr\u003e@remonwangxt @hu_jia\u003cbr\u003eFri Jan 09 18:25:27 +0000 2015"}, {"group": 1136, "id": 16, "label": "554024693359849472", "shape": "dot", "size": 10, "title": "554024693359849472\u003cbr\u003e@remonwangxt http://t.co/bs2iZbYvCG\n\nLIKE\u003cbr\u003eSat Jan 10 21:19:14 +0000 2015"}, {"group": 1136, "id": 17, "label": "554615492506554368", "shape": "dot", "size": 10, "title": "554615492506554368\u003cbr\u003e\u201c@remonwangxt: For some people, comic\u003cbr\u003eis  weapons.#JeSuisCharlie http://t.co/kUWKkpM07U\u201d\u003cbr\u003eMon Jan 12 12:26:52 +0000 2015"}, {"group": 1136, "id": 3, "label": "553239811549831168", "shape": "dot", "size": 10, "title": "553239811549831168\u003cbr\u003e@LauredeMontalem @remonwangxt Eh oui, il\u003cbr\u003en\u0027y a pas plus aveugle\u003cbr\u003eque celui qui ne veut\u003cbr\u003epas voir...\u003cbr\u003eThu Jan 08 17:20:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 2, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

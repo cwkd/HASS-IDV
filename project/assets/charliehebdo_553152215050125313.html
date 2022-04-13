@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1816, "id": 0, "label": "553152215050125313", "shape": "dot", "size": 10, "title": "553152215050125313\u003cbr\u003eUPDATE: Cop fatally shot as\u003cbr\u003eFrance hunts #CharlieHebdo massacre suspects\u003cbr\u003ehttp://t.co/DIw8C6Ng1s http://t.co/Rhfb6vC84P\u003cbr\u003eThu Jan 08 11:32:19 +0000 2015"}, {"group": 1816, "id": 1, "label": "553155828338130944", "shape": "dot", "size": 10, "title": "553155828338130944\u003cbr\u003e@NBCNews\n#ParisShooting\nwake up call 2all pro\u003cbr\u003e#civilsociety\nwhy #CharlieHebdo\nsupported #Kobane #resistance vs\u003cbr\u003e#ISIS \nhttp://t.co/qbj6dk5DC2\u003cbr\u003eThu Jan 08 11:46:41 +0000 2015"}, {"group": 1816, "id": 2, "label": "553156649741869056", "shape": "dot", "size": 10, "title": "553156649741869056\u003cbr\u003e@NBCNews @WTHRcom  This is\u003cbr\u003eashamed they don\u0027t even carry\u003cbr\u003eguns there I hope they\u003cbr\u003efind the shooter\u003cbr\u003eThu Jan 08 11:49:57 +0000 2015"}, {"group": 1816, "id": 3, "label": "553169456625881088", "shape": "dot", "size": 10, "title": "553169456625881088\u003cbr\u003e@NBCNews where do you get\u003cbr\u003eyour \"breaking news\"?! Every update\u003cbr\u003eyou tweet is wrong! Check\u003cbr\u003eFrench news please #CharlieHebdo\u003cbr\u003eThu Jan 08 12:40:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

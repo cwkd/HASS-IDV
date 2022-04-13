@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1964, "id": 0, "label": "553536236493615104", "shape": "dot", "size": 10, "title": "553536236493615104\u003cbr\u003eBreaking: Armed man linked to\u003cbr\u003eCharlie Hebdo suspects takes hostages\u003cbr\u003eat kosher grocery store in\u003cbr\u003eeast Paris  http://t.co/t1SKHe7p2y\u003cbr\u003eFri Jan 09 12:58:17 +0000 2015"}, {"group": 1964, "id": 1, "label": "553536306442424320", "shape": "dot", "size": 10, "title": "553536306442424320\u003cbr\u003e@WSJ \u0443 \u044d\u0442\u043e\u0433\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430 \u043d\u0435\u003cbr\u003e\u043b\u0435\u0433\u043a\u0438\u043c \u0431\u044b\u043b \u0443\u0448\u0435\u0434\u0448\u0438\u0439 \u0433\u043e\u0434..\u043f\u043e\u0441\u043c\u043e\u0442\u0440\u0438\u043c, \u0447\u0442\u043e\u003cbr\u003e\u0431\u0443\u0434\u0435\u0442 \u0432 2015 https://t.co/f5qAqqAAdd\n#JeSuisCharlie #fuckcharlie\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:58:34 +0000 2015"}, {"group": 1964, "id": 2, "label": "553536453725392897", "shape": "dot", "size": 10, "title": "553536453725392897\u003cbr\u003e\u201c@WSJ: Breaking: Armed man linked\u003cbr\u003eto Charlie Hebdo suspects takes\u003cbr\u003ehostages at kosher grocery store\u003cbr\u003ein east Paris  http://t.co/tfNzNc4ryZ\u201d\ud83d\ude33\ud83d\ude33\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:59:09 +0000 2015"}, {"group": 1964, "id": 3, "label": "553536609229234176", "shape": "dot", "size": 10, "title": "553536609229234176\u003cbr\u003eRT\u201c@WSJ: Breaking: Armed man linked\u003cbr\u003eto Charlie Hebdo suspects takes\u003cbr\u003ehostages at kosher grocery store\u003cbr\u003ein east Paris  http://t.co/YbzY8Bzikr\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:59:46 +0000 2015"}, {"group": 1964, "id": 4, "label": "553536621011034112", "shape": "dot", "size": 10, "title": "553536621011034112\u003cbr\u003e@WSJ He\u0027s either a rabid\u003cbr\u003eanti-Semite, or he loves a\u003cbr\u003egood challah! #ReligionOfPieces\u003cbr\u003eFri Jan 09 12:59:49 +0000 2015"}, {"group": 1964, "id": 5, "label": "553536711293403137", "shape": "dot", "size": 10, "title": "553536711293403137\u003cbr\u003e\u201c@WSJ: Breaking: Armed man linked\u003cbr\u003eto Charlie Hebdo suspects takes\u003cbr\u003ehostages at kosher grocery store\u003cbr\u003ein east Paris  http://t.co/RIz6rT0Upe\u201dRT\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:00:10 +0000 2015"}, {"group": 1964, "id": 6, "label": "553536756868714499", "shape": "dot", "size": 10, "title": "553536756868714499\u003cbr\u003eRT\u201c@WSJ: Breaking: Armed man linked\u003cbr\u003eto Charlie Hebdo suspects takes\u003cbr\u003ehostages at kosher grocery store\u003cbr\u003ein east Paris  http://t.co/bBHOsNNLiR\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:00:21 +0000 2015"}, {"group": 1964, "id": 7, "label": "553537150533132288", "shape": "dot", "size": 10, "title": "553537150533132288\u003cbr\u003e\u201c@WSJ: Breaking: Armed man linked\u003cbr\u003eto Charlie Hebdo suspects takes\u003cbr\u003ehostages at kosher grocery store\u003cbr\u003ein east Paris  http://t.co/VN9y15MR6f\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:01:55 +0000 2015"}, {"group": 1964, "id": 8, "label": "553537439172939776", "shape": "dot", "size": 10, "title": "553537439172939776\u003cbr\u003e@WSJ If these are home\u003cbr\u003egrown muslim terrorists inspired by\u003cbr\u003ejihad, the same could happen\u003cbr\u003ehere in America!\u003cbr\u003eFri Jan 09 13:03:04 +0000 2015"}, {"group": 1964, "id": 10, "label": "553537812205563904", "shape": "dot", "size": 10, "title": "553537812205563904\u003cbr\u003e@WSJ Shld have been a\u003cbr\u003e#halal grocery store. Tht would\u003cbr\u003ebe fitting. #CharlieHebdo #ParisMassacre #ParisAttack\u003cbr\u003e#JeSuisCharlie #tcot #bcot #ccot\u003cbr\u003eFri Jan 09 13:04:33 +0000 2015"}, {"group": 1964, "id": 12, "label": "553539135924097024", "shape": "dot", "size": 10, "title": "553539135924097024\u003cbr\u003e@WSJ:basta!\"Breaking:Armed man linked 2 Charlie\u003cbr\u003eHebdo suspects takes hostages at\u003cbr\u003ekosher grocery store in east\u003cbr\u003eParis  http://t.co/2EPvbb6hqx\u201d\u003cbr\u003eFri Jan 09 13:09:48 +0000 2015"}, {"group": 1964, "id": 16, "label": "553542036087795712", "shape": "dot", "size": 10, "title": "553542036087795712\u003cbr\u003e@WSJ Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet thank you http://t.co/Cf3z3jOxyx\u003cbr\u003eFri Jan 09 13:21:20 +0000 2015"}, {"group": 1964, "id": 11, "label": "553538098509119488", "shape": "dot", "size": 10, "title": "553538098509119488\u003cbr\u003e@GhostofAlSmith @WSJ and without doubt,\u003cbr\u003eyou are a fool.\u003cbr\u003eFri Jan 09 13:05:41 +0000 2015"}, {"group": 1964, "id": 9, "label": "553537694786420736", "shape": "dot", "size": 10, "title": "553537694786420736\u003cbr\u003e@Carlsgood47 Why #isis blindly obey\u003cbr\u003etheir #radical #imams? Read here:\u003cbr\u003ehttp://t.co/toUvG15Vae\u003cbr\u003eFri Jan 09 13:04:05 +0000 2015"}, {"group": 1964, "id": 13, "label": "553539781716901888", "shape": "dot", "size": 10, "title": "553539781716901888\u003cbr\u003e@QueenSomerholic @WSJ I should watch\u003cbr\u003emore crap tv, \u0027innit Jane?\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:12:22 +0000 2015"}, {"group": 1964, "id": 14, "label": "553541059402559488", "shape": "dot", "size": 10, "title": "553541059402559488\u003cbr\u003e@GhostofAlSmith @WSJ dude,do whatever you\u003cbr\u003eneed to get your reason\u003cbr\u003eback.Perhaps watching crap tv will\u003cbr\u003eprevent you from holding such\u003cbr\u003ea speech\u003cbr\u003eFri Jan 09 13:17:27 +0000 2015"}, {"group": 1964, "id": 15, "label": "553541903694987264", "shape": "dot", "size": 10, "title": "553541903694987264\u003cbr\u003e@QueenSomerholic @WSJ Persiflage off Google\u003cbr\u003etranslate. That\u0027s new. Meanwhile, the\u003cbr\u003eJihadis do what they always\u003cbr\u003edo.. #DeathCult #JeSuisCharlie\u003cbr\u003eFri Jan 09 13:20:48 +0000 2015"}, {"group": 1964, "id": 17, "label": "553545347755417601", "shape": "dot", "size": 10, "title": "553545347755417601\u003cbr\u003e@GhostofAlSmith @WSJ Stop acting like\u003cbr\u003ea buffoon. You have no\u003cbr\u003eidea what you\u0027re talking about,\u003cbr\u003eyour hate is clouding your\u003cbr\u003ejudgement.\u003cbr\u003eFri Jan 09 13:34:29 +0000 2015"}, {"group": 1964, "id": 18, "label": "553702123050139649", "shape": "dot", "size": 10, "title": "553702123050139649\u003cbr\u003e@QueenSomerholic @WSJ My hatred of\u003cbr\u003ewhat? Childish television like GOT?\u003cbr\u003eHave another cupcake, and enjoy\u003cbr\u003eyr magical worlds! Good luck\u003cbr\u003eto ya!\u003cbr\u003eFri Jan 09 23:57:28 +0000 2015"}, {"group": 1964, "id": 19, "label": "553713178753126400", "shape": "dot", "size": 10, "title": "553713178753126400\u003cbr\u003e@GhostofAlSmith  I saw your\u003cbr\u003etweets, if only your hatred\u003cbr\u003ecould\u0027ve been about tv shows,\u003cbr\u003eI wouldn\u0027t have stepped in\u003cbr\u003ein the first place\u003cbr\u003eSat Jan 10 00:41:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 4, "to": 11, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

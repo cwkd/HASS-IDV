@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 585, "id": 0, "label": "552843349246619648", "shape": "dot", "size": 10, "title": "552843349246619648\u003cbr\u003eIf your argument involves silencing\u003cbr\u003ecritics by murdering them, then\u003cbr\u003eyou have irretrievably lost the\u003cbr\u003eargument. #CharlieHebdo\u003cbr\u003eWed Jan 07 15:05:00 +0000 2015"}, {"group": 585, "id": 1, "label": "552844471751032835", "shape": "dot", "size": 10, "title": "552844471751032835\u003cbr\u003e@RogerQuimbly degrading is not the\u003cbr\u003eargument!\u003cbr\u003eWed Jan 07 15:09:28 +0000 2015"}, {"group": 585, "id": 2, "label": "552845079824441344", "shape": "dot", "size": 10, "title": "552845079824441344\u003cbr\u003e@RogerQuimbly what kind of critics?\nhow\u003cbr\u003edo you define critic and\u003cbr\u003einsult?\u003cbr\u003eWed Jan 07 15:11:53 +0000 2015"}, {"group": 585, "id": 3, "label": "552867380993347585", "shape": "dot", "size": 10, "title": "552867380993347585\u003cbr\u003e@RogerQuimbly and the US drone\u003cbr\u003eattackers etc etc? (who also\u003cbr\u003emurder their critics) Not that\u003cbr\u003esimple http://t.co/bNHmWsnE1E\u003cbr\u003eWed Jan 07 16:40:30 +0000 2015"}, {"group": 585, "id": 4, "label": "552902530309840899", "shape": "dot", "size": 10, "title": "552902530309840899\u003cbr\u003e@rogerquimbly @jeanodwyer  very well\u003cbr\u003esaid ..... !  x\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:00:10 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

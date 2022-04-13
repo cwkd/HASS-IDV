@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1828, "id": 0, "label": "553184958958022657", "shape": "dot", "size": 10, "title": "553184958958022657\u003cbr\u003eBREAKING: French police descend on\u003cbr\u003etown where gunmen resembling suspected\u003cbr\u003e#CharlieHebdo attackers hit gas station\u003cbr\u003ehttp://t.co/pEFLi4EjX0\u003cbr\u003eThu Jan 08 13:42:26 +0000 2015"}, {"group": 1828, "id": 1, "label": "553185178831429632", "shape": "dot", "size": 10, "title": "553185178831429632\u003cbr\u003eRT @NBCNews: French police descend\u003cbr\u003eon town where gunmen resembling\u003cbr\u003esuspected #CharlieHebdo attackers hit gas\u003cbr\u003estation http://t.co/1dfWAURrZ2\u003cbr\u003eThu Jan 08 13:43:18 +0000 2015"}, {"group": 1828, "id": 2, "label": "553185276370354176", "shape": "dot", "size": 10, "title": "553185276370354176\u003cbr\u003e@NBCNews http://t.co/ne7kzmEYZK teewhaay can rap\u003cbr\u003ereal good\u003cbr\u003eThu Jan 08 13:43:42 +0000 2015"}, {"group": 1828, "id": 3, "label": "553187325413691392", "shape": "dot", "size": 10, "title": "553187325413691392\u003cbr\u003e@NBCNews @CapehartJ Maybe we should\u003cbr\u003efocus on our own terrorist\u003cbr\u003ewho\u0027s running the streets in\u003cbr\u003eColorado Springs....\u003cbr\u003eThu Jan 08 13:51:50 +0000 2015"}, {"group": 1828, "id": 4, "label": "553187794534027264", "shape": "dot", "size": 10, "title": "553187794534027264\u003cbr\u003e@NBCNews They undoubtedly feel the\u003cbr\u003e\u0027HEAT\u0027.....#CharlieHebdo\u003cbr\u003eThu Jan 08 13:53:42 +0000 2015"}, {"group": 1828, "id": 5, "label": "553187924964294657", "shape": "dot", "size": 10, "title": "553187924964294657\u003cbr\u003e@NBCNews @TODAYshow are you sure??\u003cbr\u003eBecause last night @NBCNightlyNews said\u003cbr\u003e1 dead 2 in custody...\u003cbr\u003eYou sure http://t.co/IaF9wbpeQD\u003cbr\u003eThu Jan 08 13:54:13 +0000 2015"}, {"group": 1828, "id": 6, "label": "553188967655669760", "shape": "dot", "size": 10, "title": "553188967655669760\u003cbr\u003e@NBCNews Terrorists... Can you say\u003cbr\u003eterrorist? I knew you could\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:58:22 +0000 2015"}, {"group": 1828, "id": 7, "label": "553190222716887040", "shape": "dot", "size": 10, "title": "553190222716887040\u003cbr\u003e@NBCNews \"So 3 guys go\u003cbr\u003eout one morning and decide\u003cbr\u003eto kill some French people.\u003cbr\u003eWhat difference does that make\u003cbr\u003enow?\" - President Hillary\u003cbr\u003eThu Jan 08 14:03:21 +0000 2015"}, {"group": 1828, "id": 8, "label": "553195776877146112", "shape": "dot", "size": 10, "title": "553195776877146112\u003cbr\u003e@nbcnews  gas station? living\u003cbr\u003ethe dream ..hope they shoot\u003cbr\u003ea propane tank by accident\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:25:25 +0000 2015"}, {"group": 1828, "id": 9, "label": "553229583194279936", "shape": "dot", "size": 10, "title": "553229583194279936\u003cbr\u003e@NBCNews What 2,000,000,000 Muslims NOT\u003cbr\u003econdemning a terror attack looks\u003cbr\u003elike. #TheSilenceIsDeafening\n#CharlieHebdo http://t.co/I9MSHcT3tV\u003cbr\u003eThu Jan 08 16:39:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

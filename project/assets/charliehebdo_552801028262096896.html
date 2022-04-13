@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 69, "id": 0, "label": "552801028262096896", "shape": "dot", "size": 10, "title": "552801028262096896\u003cbr\u003eLATEST: At least 11 dead\u003cbr\u003ein shooting at French magazine\u003cbr\u003e#CharlieHebdo; France raises terror alert\u003cbr\u003eto highest level http://t.co/JVRjF5b1lw\u003cbr\u003eWed Jan 07 12:16:50 +0000 2015"}, {"group": 69, "id": 1, "label": "552801293929316352", "shape": "dot", "size": 10, "title": "552801293929316352\u003cbr\u003e@FoxNews Coming to America SOON\u003cbr\u003eThanks to Obama.\u003cbr\u003eWed Jan 07 12:17:53 +0000 2015"}, {"group": 69, "id": 2, "label": "552801319317413888", "shape": "dot", "size": 10, "title": "552801319317413888\u003cbr\u003e@FoxNews Islam since invention 200\u003cbr\u003eyears after putative date of\u003cbr\u003eMuhammad has always been a\u003cbr\u003eviolent cult of hate. French\u003cbr\u003ePolice complicit.\u003cbr\u003eWed Jan 07 12:17:59 +0000 2015"}, {"group": 69, "id": 3, "label": "552801469963833344", "shape": "dot", "size": 10, "title": "552801469963833344\u003cbr\u003e@FoxNews French cops don\u0027t carry\u003cbr\u003eguns WTF\u003cbr\u003eWed Jan 07 12:18:35 +0000 2015"}, {"group": 69, "id": 4, "label": "552802004272029696", "shape": "dot", "size": 10, "title": "552802004272029696\u003cbr\u003e@FoxNews Today, significant terrorist attack\u003cbr\u003ehas touched the society of\u003cbr\u003eFrance. Does France have the\u003cbr\u003efortitude to counter-attack/long game?\u003cbr\u003eWed Jan 07 12:20:43 +0000 2015"}, {"group": 69, "id": 6, "label": "552803880804028416", "shape": "dot", "size": 10, "title": "552803880804028416\u003cbr\u003e@FoxNews @FairOaksTrader   Why\u003cbr\u003edon\u0027t French police carry guns?\u003cbr\u003eMakes no sense.\u003cbr\u003eWed Jan 07 12:28:10 +0000 2015"}, {"group": 69, "id": 8, "label": "552804511530905600", "shape": "dot", "size": 10, "title": "552804511530905600\u003cbr\u003e@FoxNews Muslims strike once again\u003cbr\u003ein a western country....coming to\u003cbr\u003eLondon, New York or wherever\u003cbr\u003ethe savages gather\u003cbr\u003eWed Jan 07 12:30:40 +0000 2015"}, {"group": 69, "id": 14, "label": "552806291899703296", "shape": "dot", "size": 10, "title": "552806291899703296\u003cbr\u003e@FoxNews @seanhannity the need forHouse\u003cbr\u003eof Worship Security and Emergency\u003cbr\u003ePreparedness has never been greater!\u003cbr\u003e@ChristEmNetwork\u003cbr\u003eWed Jan 07 12:37:45 +0000 2015"}, {"group": 69, "id": 15, "label": "552807610186227713", "shape": "dot", "size": 10, "title": "552807610186227713\u003cbr\u003e@FoxNews So sad. Praying for\u003cbr\u003ethe victims and their families.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:42:59 +0000 2015"}, {"group": 69, "id": 16, "label": "552810246956392448", "shape": "dot", "size": 10, "title": "552810246956392448\u003cbr\u003e@FoxNews hey @obama_barrak are u\u003cbr\u003ejust gonna keep putting off\u003cbr\u003eblowing blowing these people to\u003cbr\u003ehell?Or does it have /\u003cbr\u003ehappen to Americans 1st?\u003cbr\u003eWed Jan 07 12:53:28 +0000 2015"}, {"group": 69, "id": 5, "label": "552803576532451329", "shape": "dot", "size": 10, "title": "552803576532451329\u003cbr\u003e\u201c@Backhoe44: @FoxNews Coming to America\u003cbr\u003eSOON Thanks to Obama.\u201d God\u003cbr\u003eForbid. This scares me.\u003cbr\u003eWed Jan 07 12:26:57 +0000 2015"}, {"group": 69, "id": 7, "label": "552804345331580928", "shape": "dot", "size": 10, "title": "552804345331580928\u003cbr\u003e@bobboaz3333 @FoxNews they do\u003cbr\u003eWed Jan 07 12:30:01 +0000 2015"}, {"group": 69, "id": 11, "label": "552805095789056000", "shape": "dot", "size": 10, "title": "552805095789056000\u003cbr\u003e@bobboaz3333 @FoxNews they do\u003cbr\u003eWed Jan 07 12:33:00 +0000 2015"}, {"group": 69, "id": 26, "label": "552817887136989185", "shape": "dot", "size": 10, "title": "552817887136989185\u003cbr\u003e@JNSEAL @FoxNews When they catch\u003cbr\u003ethem will they force tickle\u003cbr\u003ethem for information? Europe has\u003cbr\u003ebeen complicit... like Obama.\u003cbr\u003eWed Jan 07 13:23:49 +0000 2015"}, {"group": 69, "id": 17, "label": "552810359556689920", "shape": "dot", "size": 10, "title": "552810359556689920\u003cbr\u003e@NFW22b @Backhoe44 @FoxNews get a\u003cbr\u003egun.  Shouldn\u0027t scare anyone.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:53:55 +0000 2015"}, {"group": 69, "id": 9, "label": "552804555826921472", "shape": "dot", "size": 10, "title": "552804555826921472\u003cbr\u003e@NFW22b @FoxNews @FairOaksTrader they do\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:30:51 +0000 2015"}, {"group": 69, "id": 12, "label": "552805414543564800", "shape": "dot", "size": 10, "title": "552805414543564800\u003cbr\u003e@NFW22b @FoxNews @FairOaksTrader they carry\u003cbr\u003eguns. They do.\u003cbr\u003eWed Jan 07 12:34:16 +0000 2015"}, {"group": 69, "id": 25, "label": "552816837864751104", "shape": "dot", "size": 10, "title": "552816837864751104\u003cbr\u003e@NFW22b @FoxNews @FairOaksTrader because they\u003cbr\u003ehave worthless liberal cowards running\u003cbr\u003etheir country too\u003cbr\u003eWed Jan 07 13:19:39 +0000 2015"}, {"group": 69, "id": 31, "label": "553012213485932544", "shape": "dot", "size": 10, "title": "553012213485932544\u003cbr\u003e@NFW22b @FoxNews my guess is\u003cbr\u003ethat will change very soon.\u003cbr\u003e\u003cbr\u003eThu Jan 08 02:16:00 +0000 2015"}, {"group": 69, "id": 10, "label": "552804902280654848", "shape": "dot", "size": 10, "title": "552804902280654848\u003cbr\u003e\u201c@tryitfirst000: @NFW22b @FoxNews @FairOaksTrader they\u003cbr\u003edo\u201d thank you. For some\u003cbr\u003ereason, it was unclear. Have\u003cbr\u003ea good day.\u003cbr\u003eWed Jan 07 12:32:13 +0000 2015"}, {"group": 69, "id": 27, "label": "552828372464959489", "shape": "dot", "size": 10, "title": "552828372464959489\u003cbr\u003e@tryitfirst000 the municipal police don\u0027t\u003cbr\u003ethe 3 others branches do.\u003cbr\u003e@NFW22b @FoxNews @FairOaksTrader\u003cbr\u003eWed Jan 07 14:05:29 +0000 2015"}, {"group": 69, "id": 32, "label": "553012784695631872", "shape": "dot", "size": 10, "title": "553012784695631872\u003cbr\u003e@tryitfirst000 @NFW22b @FoxNews not exactly\u003cbr\u003etrue, the national police carry\u003cbr\u003eguns, but the local municipalities\u003cbr\u003egenerally do not.\u003cbr\u003eThu Jan 08 02:18:17 +0000 2015"}, {"group": 69, "id": 29, "label": "552970077595635713", "shape": "dot", "size": 10, "title": "552970077595635713\u003cbr\u003e@7813075017 @FoxNews the two guys\u003cbr\u003ethat were cops that were\u003cbr\u003ekilled did not carry guns\u003cbr\u003e\u003cbr\u003eWed Jan 07 23:28:34 +0000 2015"}, {"group": 69, "id": 13, "label": "552805672874934273", "shape": "dot", "size": 10, "title": "552805672874934273\u003cbr\u003e\u201c@7813075017: @NFW22b @FoxNews @FairOaksTrader they\u003cbr\u003ecarry guns. They do.\u201d Thank\u003cbr\u003eyou:)))\u003cbr\u003eWed Jan 07 12:35:17 +0000 2015"}, {"group": 69, "id": 33, "label": "553013249776820224", "shape": "dot", "size": 10, "title": "553013249776820224\u003cbr\u003e@NFW22b @7813075017 @FoxNews refer to\u003cbr\u003emy last post\u2026 not all\u003cbr\u003eFrench police carry guns.\u003cbr\u003eThu Jan 08 02:20:07 +0000 2015"}, {"group": 69, "id": 18, "label": "552811742863319043", "shape": "dot", "size": 10, "title": "552811742863319043\u003cbr\u003e\u201c@krono0025: @NFW22b @Backhoe44 @FoxNews get\u003cbr\u003ea gun.  Shouldn\u0027t scare\u003cbr\u003eanyone.\u201d What is a gun\u003cbr\u003egoing to do when dealing\u003cbr\u003ew/ terrorist?\u003cbr\u003eWed Jan 07 12:59:24 +0000 2015"}, {"group": 69, "id": 19, "label": "552811942084366337", "shape": "dot", "size": 10, "title": "552811942084366337\u003cbr\u003e@NFW22b @Backhoe44 @FoxNews you shoot\u003cbr\u003ethem in the face.. Very\u003cbr\u003esimple\u003cbr\u003eWed Jan 07 13:00:12 +0000 2015"}, {"group": 69, "id": 20, "label": "552812971991134208", "shape": "dot", "size": 10, "title": "552812971991134208\u003cbr\u003e@NFW22b @krono0025 @NFW22b @FoxNews Let\u003cbr\u003eme see now. Kill them?\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:04:17 +0000 2015"}, {"group": 69, "id": 21, "label": "552813221292556288", "shape": "dot", "size": 10, "title": "552813221292556288\u003cbr\u003e@krono0025 @Backhoe44 @FoxNews  \u003cbr\u003eLol, oh Matt. Have a\u003cbr\u003egreat day and don\u0027t forget\u003cbr\u003eto pack\ud83d\ude09\u003cbr\u003eWed Jan 07 13:05:17 +0000 2015"}, {"group": 69, "id": 23, "label": "552813871116087296", "shape": "dot", "size": 10, "title": "552813871116087296\u003cbr\u003e\u201c@Backhoe44: @NFW22b @krono0025 @NFW22b @FoxNews\u003cbr\u003eLet me see now. Kill\u003cbr\u003ethem?\u201d U guys r making\u003cbr\u003eme laugh. Have a great\u003cbr\u003eday\u0026amp; don\u0027t forget 2pack\ud83d\ude09\u003cbr\u003eWed Jan 07 13:07:52 +0000 2015"}, {"group": 69, "id": 22, "label": "552813496673767424", "shape": "dot", "size": 10, "title": "552813496673767424\u003cbr\u003e@NFW22b @Backhoe44 @FoxNews I always\u003cbr\u003edo! I highly recommend it\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:06:23 +0000 2015"}, {"group": 69, "id": 24, "label": "552813995552694272", "shape": "dot", "size": 10, "title": "552813995552694272\u003cbr\u003e\u201c@krono0025: @NFW22b @Backhoe44 @FoxNews I\u003cbr\u003ealways do! I highly recommend\u003cbr\u003eit\u201d lol, I\u0027ll remember that.....\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:08:21 +0000 2015"}, {"group": 69, "id": 28, "label": "552894689809289218", "shape": "dot", "size": 10, "title": "552894689809289218\u003cbr\u003e\u201c@Rustynails1: @tryitfirst000 the municipal police\u003cbr\u003edon\u0027t the 3 others branches\u003cbr\u003edo. @NFW22b @FoxNews @FairOaksTrader\u201d see\u003cbr\u003eguys, I knew it! Ty\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:29:00 +0000 2015"}, {"group": 69, "id": 30, "label": "552971048741003266", "shape": "dot", "size": 10, "title": "552971048741003266\u003cbr\u003e@bobboaz3333 @FoxNews yes, you are\u003cbr\u003eright, they were\"gardien de la\u003cbr\u003epaix\", they don\u0027t all carry\u003cbr\u003eguns. Only police officiers carry\u003cbr\u003eguns.\u003cbr\u003eWed Jan 07 23:32:26 +0000 2015"}, {"group": 69, "id": 35, "label": "553142566540308480", "shape": "dot", "size": 10, "title": "553142566540308480\u003cbr\u003e\u201c@FairOaksTrader: @NFW22b @FoxNews my guess\u003cbr\u003eis that will change very\u003cbr\u003esoon.\u201d \ud83d\udc4d\u003cbr\u003eThu Jan 08 10:53:59 +0000 2015"}, {"group": 69, "id": 34, "label": "553029259770748928", "shape": "dot", "size": 10, "title": "553029259770748928\u003cbr\u003e@FairOaksTrader @NFW22b @FoxNews most of\u003cbr\u003eem do\u003cbr\u003eThu Jan 08 03:23:44 +0000 2015"}, {"group": 69, "id": 36, "label": "553142898687242240", "shape": "dot", "size": 10, "title": "553142898687242240\u003cbr\u003e@FairOaksTrader @tryitfirst000 @FoxNews  \u003cbr\u003eThank you Sir. I was\u003cbr\u003etrying to make this PT\u003cbr\u003ebut was told otherwise. Have\u003cbr\u003ea good day:)\u003cbr\u003eThu Jan 08 10:55:18 +0000 2015"}, {"group": 69, "id": 37, "label": "553143185070096384", "shape": "dot", "size": 10, "title": "553143185070096384\u003cbr\u003e\u201c@FairOaksTrader: @NFW22b @7813075017 @FoxNews refer\u003cbr\u003eto my last post\u2026 not\u003cbr\u003eall French police carry guns.\u201d\u003cbr\u003eI got it, municipal police\u003cbr\u003edo not\u003cbr\u003eThu Jan 08 10:56:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 3, "to": 7, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 4, "to": 26, "weight": 1}, {"from": 5, "to": 17, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 12, "weight": 1}, {"from": 6, "to": 25, "weight": 1}, {"from": 6, "to": 31, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 27, "weight": 1}, {"from": 9, "to": 32, "weight": 1}, {"from": 11, "to": 29, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 33, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 31, "to": 35, "weight": 1}, {"from": 32, "to": 34, "weight": 1}, {"from": 32, "to": 36, "weight": 1}, {"from": 33, "to": 37, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

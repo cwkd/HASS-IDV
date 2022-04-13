@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 876, "id": 0, "label": "553143415899451393", "shape": "dot", "size": 10, "title": "553143415899451393\u003cbr\u003e#Charliehebdu #jeSuischarlie #regram anothermagazine http://t.co/VtG6qXhxcV\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:57:21 +0000 2015"}, {"group": 876, "id": 1, "label": "553143577673760768", "shape": "dot", "size": 10, "title": "553143577673760768\u003cbr\u003e@RitaOra Can\u0027t wait for Doing\u003cbr\u003eIt\u003cbr\u003eThu Jan 08 10:58:00 +0000 2015"}, {"group": 876, "id": 2, "label": "553148765721600000", "shape": "dot", "size": 10, "title": "553148765721600000\u003cbr\u003e@RitaOra tysm Rita!\u003cbr\u003eThu Jan 08 11:18:37 +0000 2015"}, {"group": 876, "id": 3, "label": "553149520532766720", "shape": "dot", "size": 10, "title": "553149520532766720\u003cbr\u003e@RitaOra I love you rita\u003cbr\u003e\u0026lt;3 you\u0027re my idol \u0026lt;3\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:21:37 +0000 2015"}, {"group": 876, "id": 4, "label": "553198553846538240", "shape": "dot", "size": 10, "title": "553198553846538240\u003cbr\u003e@RitaOra Thank you for France\u003cbr\u003eRita\u003cbr\u003eThu Jan 08 14:36:27 +0000 2015"}, {"group": 876, "id": 5, "label": "553198622452748288", "shape": "dot", "size": 10, "title": "553198622452748288\u003cbr\u003e@RitaOra so true\u003cbr\u003eThu Jan 08 14:36:44 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

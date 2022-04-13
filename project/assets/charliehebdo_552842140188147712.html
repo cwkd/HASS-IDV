@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 570, "id": 0, "label": "552842140188147712", "shape": "dot", "size": 10, "title": "552842140188147712\u003cbr\u003eThis Michael Shaw cartoon from\u003cbr\u003ethe @NewYorker archives says a\u003cbr\u003elittle and says a lot.\u003cbr\u003e#charliehebdo http://t.co/FqL1EhMLwj\u003cbr\u003eWed Jan 07 15:00:12 +0000 2015"}, {"group": 570, "id": 1, "label": "552919451109449728", "shape": "dot", "size": 10, "title": "552919451109449728\u003cbr\u003e@AMLwhere @NewYorker @Shawtooner\u003cbr\u003eWed Jan 07 20:07:24 +0000 2015"}, {"group": 570, "id": 2, "label": "552940205213511682", "shape": "dot", "size": 10, "title": "552940205213511682\u003cbr\u003eRT @AMLwhere  This Michael\u003cbr\u003eShaw cartoon from the @NewYorker\u003cbr\u003earchives says a little and\u003cbr\u003esays a lot. #charliehebdo http://t.co/QsQqjP7e07\u003cbr\u003e\u003cbr\u003eWed Jan 07 21:29:52 +0000 2015"}, {"group": 570, "id": 3, "label": "553051225525342208", "shape": "dot", "size": 10, "title": "553051225525342208\u003cbr\u003e\u201c@AMLwhere: This Michael Shaw cartoon\u003cbr\u003efrom the @NewYorker archives says\u003cbr\u003ea little and says alot.\u003cbr\u003e#charliehebdo\nhttp://t.co/oTVdg8ooF8\u201dBestYET\u003cbr\u003eThu Jan 08 04:51:02 +0000 2015"}, {"group": 570, "id": 4, "label": "553895285857198084", "shape": "dot", "size": 10, "title": "553895285857198084\u003cbr\u003e@mishaanouk @AMLwhere @NewYorker Der Punkt,\u003cbr\u003ean dem man sich eigene\u003cbr\u003eMeinung verbieten l\u00e4sst, beginnt damit\u003cbr\u003ees allen Recht machen zu\u003cbr\u003ewollen.\u003cbr\u003eSat Jan 10 12:45:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

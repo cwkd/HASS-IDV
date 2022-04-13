@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1814, "id": 0, "label": "553141732452626432", "shape": "dot", "size": 10, "title": "553141732452626432\u003cbr\u003eBREAKING: French police say they\u003cbr\u003ehave located whereabouts of two\u003cbr\u003esuspects said to be behind\u003cbr\u003eattacks in Paris More at:\u003cbr\u003ehttp://t.co/WezWaJNjkZ\u003cbr\u003eThu Jan 08 10:50:40 +0000 2015"}, {"group": 1814, "id": 1, "label": "553141835515064320", "shape": "dot", "size": 10, "title": "553141835515064320\u003cbr\u003e@AJEnglish PEACE AND LUV TO\u003cbr\u003eYOU ALL !!!!\nhttp://t.co/IFblPsqaE1 http://t.co/auyvBEQbex\u003cbr\u003eThu Jan 08 10:51:05 +0000 2015"}, {"group": 1814, "id": 2, "label": "553142710237138945", "shape": "dot", "size": 10, "title": "553142710237138945\u003cbr\u003eFrench police say they have\u003cbr\u003elocated whereabouts of two suspects\u003cbr\u003esaid to be behind attacks\u003cbr\u003ein Paris http://t.co/uj8AODx1iJ via @AJEnglish\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:54:33 +0000 2015"}, {"group": 1814, "id": 3, "label": "553143040714756096", "shape": "dot", "size": 10, "title": "553143040714756096\u003cbr\u003e@AJEnglish go get them!\u003cbr\u003eThu Jan 08 10:55:52 +0000 2015"}, {"group": 1814, "id": 4, "label": "553143277852327936", "shape": "dot", "size": 10, "title": "553143277852327936\u003cbr\u003e@AJEnglish Now why oh why\u003cbr\u003ewould they advertise that before\u003cbr\u003earresting them?\u003cbr\u003eThu Jan 08 10:56:49 +0000 2015"}, {"group": 1814, "id": 5, "label": "553143558690328578", "shape": "dot", "size": 10, "title": "553143558690328578\u003cbr\u003eWhy would they advertise that??\u003cbr\u003e@AJEnglish\u003cbr\u003eThu Jan 08 10:57:55 +0000 2015"}, {"group": 1814, "id": 6, "label": "553143781940555776", "shape": "dot", "size": 10, "title": "553143781940555776\u003cbr\u003eLa polic\u00eda francesa dice tener\u003cbr\u003elocalizados a los dos sospechosos\u003cbr\u003edel atentado de #CharlieHebdo v\u00eda\u003cbr\u003e@AJEnglish\nhttp://t.co/Ca8fBhdi5j\u003cbr\u003eThu Jan 08 10:58:49 +0000 2015"}, {"group": 1814, "id": 7, "label": "553144265572765696", "shape": "dot", "size": 10, "title": "553144265572765696\u003cbr\u003e@AJEnglish @Truth2Come just shoot the\u003cbr\u003ecunts\u003cbr\u003eThu Jan 08 11:00:44 +0000 2015"}, {"group": 1814, "id": 9, "label": "553145176202694656", "shape": "dot", "size": 10, "title": "553145176202694656\u003cbr\u003e@AJEnglish just go get them\u003cbr\u003eand stop advertising...\u003cbr\u003eThu Jan 08 11:04:21 +0000 2015"}, {"group": 1814, "id": 11, "label": "553189047997190145", "shape": "dot", "size": 10, "title": "553189047997190145\u003cbr\u003e@AJEnglish\u003cbr\u003eThu Jan 08 13:58:41 +0000 2015"}, {"group": 1814, "id": 10, "label": "553148010574925825", "shape": "dot", "size": 10, "title": "553148010574925825\u003cbr\u003eSi la info de localizaci\u00f3n\u003cbr\u003ede @AJEnglish se basa en\u003cbr\u003ela foto que ha publicado\u003cbr\u003edespu\u00e9s, no parece buena. La\u003cbr\u003efoto que publica es de\u003cbr\u003eayer noche.\u003cbr\u003eThu Jan 08 11:15:37 +0000 2015"}, {"group": 1814, "id": 8, "label": "553145025211928576", "shape": "dot", "size": 10, "title": "553145025211928576\u003cbr\u003e@SpeedmanHK @AJEnglish Bit too kindfor\u003cbr\u003ethem/yet they deserve that. And\u003cbr\u003eice cold cell/isolation for life.\u003cbr\u003e#bastards, Speedman. #BASTARDS\u003cbr\u003eThu Jan 08 11:03:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 6, "to": 10, "weight": 1}, {"from": 7, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 252, "id": 0, "label": "552818685526933505", "shape": "dot", "size": 10, "title": "552818685526933505\u003cbr\u003eYes this is about victims.\u003cbr\u003eIt\u0027s also about how our\u003cbr\u003ecommunities reform \u0026amp; abolish blasphemy\u003cbr\u003ecodes. We mustn\u0027t run from\u003cbr\u003escrutiny #CharlieHebdo\u003cbr\u003eWed Jan 07 13:27:00 +0000 2015"}, {"group": 252, "id": 1, "label": "552820691314438144", "shape": "dot", "size": 10, "title": "552820691314438144\u003cbr\u003e@MaajidNawaz @DreadnCircuses http://t.co/ULQqf8Ns6K\u003cbr\u003eWed Jan 07 13:34:58 +0000 2015"}, {"group": 252, "id": 3, "label": "552917079347957760", "shape": "dot", "size": 10, "title": "552917079347957760\u003cbr\u003e@MaajidNawaz @Leila_Creative and engaging!! Engaging\u003cbr\u003ewith those around us, instead\u003cbr\u003eof retreating and putting our\u003cbr\u003eheads down...to smile and..\u003cbr\u003eWed Jan 07 19:57:59 +0000 2015"}, {"group": 252, "id": 4, "label": "552917188626378753", "shape": "dot", "size": 10, "title": "552917188626378753\u003cbr\u003e@MaajidNawaz @Leila_Creative TALK to people.\u003cbr\u003eSometimes thats all it requires\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:58:25 +0000 2015"}, {"group": 252, "id": 11, "label": "552919781029183488", "shape": "dot", "size": 10, "title": "552919781029183488\u003cbr\u003e@MaajidNawaz Sadly many run \u0026amp;\u003cbr\u003ehide when simply it only\u003cbr\u003etakes one small action to\u003cbr\u003eignite a positive relationship. Time\u003cbr\u003ewe stood up \u0026amp; acted...\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:08:43 +0000 2015"}, {"group": 252, "id": 2, "label": "552852190088667137", "shape": "dot", "size": 10, "title": "552852190088667137\u003cbr\u003e@MaajidNawaz @shayankhaksar @daviwie you are\u003cbr\u003every clearly to logical people\u003cbr\u003every much at the forefront\u003cbr\u003eof the solution\u003cbr\u003eWed Jan 07 15:40:08 +0000 2015"}, {"group": 252, "id": 5, "label": "552918147192610816", "shape": "dot", "size": 10, "title": "552918147192610816\u003cbr\u003e@sabbiyah @Leila_Creative yes, engaging is\u003cbr\u003ekey!\u003cbr\u003eWed Jan 07 20:02:13 +0000 2015"}, {"group": 252, "id": 6, "label": "552918396330057731", "shape": "dot", "size": 10, "title": "552918396330057731\u003cbr\u003e@MaajidNawaz @Leila_Creative im doing it\u003cbr\u003eon train now. All it\u003cbr\u003etakes is being an active\u003cbr\u003ecitizen. http://t.co/WIHb8n3uf7\u003cbr\u003eWed Jan 07 20:03:13 +0000 2015"}, {"group": 252, "id": 7, "label": "552918687658029056", "shape": "dot", "size": 10, "title": "552918687658029056\u003cbr\u003e@sabbiyah @Leila_Creative thank you for\u003cbr\u003ewriting that sis\u003cbr\u003eWed Jan 07 20:04:22 +0000 2015"}, {"group": 252, "id": 8, "label": "552918947948142592", "shape": "dot", "size": 10, "title": "552918947948142592\u003cbr\u003e@MaajidNawaz @Leila_Creative dnt thank me,\u003cbr\u003eit came from the heart.\u003cbr\u003eMy writing is therapy and\u003cbr\u003etoday has been a horrific\u003cbr\u003eday.\u003cbr\u003eWed Jan 07 20:05:24 +0000 2015"}, {"group": 252, "id": 9, "label": "552919171147644928", "shape": "dot", "size": 10, "title": "552919171147644928\u003cbr\u003e@sabbiyah great and timely move,\u003cbr\u003ethe only solution we have\u003cbr\u003ein our pockets @MaajidNawaz @Leila_Creative\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:06:17 +0000 2015"}, {"group": 252, "id": 14, "label": "552922450657546240", "shape": "dot", "size": 10, "title": "552922450657546240\u003cbr\u003e@sabbiyah @MaajidNawaz @Leila_Creative enjoyed your\u003cbr\u003epiece enormously I\u0027ve done the\u003cbr\u003esame today - challenge ignorance\u003cbr\u003ealways every chance\u003cbr\u003eWed Jan 07 20:19:19 +0000 2015"}, {"group": 252, "id": 19, "label": "552927064433885185", "shape": "dot", "size": 10, "title": "552927064433885185\u003cbr\u003e@sabbiyah @MaajidNawaz @Leila_Creative  Maybe\u003cbr\u003eyou could talk it out\u003cbr\u003ewith ISIS.\u003cbr\u003eWed Jan 07 20:37:39 +0000 2015"}, {"group": 252, "id": 10, "label": "552919601827569664", "shape": "dot", "size": 10, "title": "552919601827569664\u003cbr\u003e@MShahid_Abbasi @MaajidNawaz @Leila_Creative couldnt agree\u003cbr\u003emore with you\u003cbr\u003eWed Jan 07 20:08:00 +0000 2015"}, {"group": 252, "id": 12, "label": "552920251835224064", "shape": "dot", "size": 10, "title": "552920251835224064\u003cbr\u003e@sabbiyah ? discussion isn\u0027t the\u003cbr\u003esolution? @MaajidNawaz @Leila_Creative\u003cbr\u003eWed Jan 07 20:10:35 +0000 2015"}, {"group": 252, "id": 15, "label": "552922633592127489", "shape": "dot", "size": 10, "title": "552922633592127489\u003cbr\u003e@TameenaHussain yes!\u003cbr\u003eWed Jan 07 20:20:03 +0000 2015"}, {"group": 252, "id": 18, "label": "552924191444713472", "shape": "dot", "size": 10, "title": "552924191444713472\u003cbr\u003e@TameenaHussain @MaajidNawaz I\u0027m on my\u003cbr\u003efeet and staying there\u003cbr\u003eWed Jan 07 20:26:14 +0000 2015"}, {"group": 252, "id": 22, "label": "552932679407378433", "shape": "dot", "size": 10, "title": "552932679407378433\u003cbr\u003e@TameenaHussain @MaajidNawaz I\u0027ll stand with\u003cbr\u003eyou tameena and so will\u003cbr\u003emany many others\u003cbr\u003eWed Jan 07 20:59:58 +0000 2015"}, {"group": 252, "id": 13, "label": "552920435999137792", "shape": "dot", "size": 10, "title": "552920435999137792\u003cbr\u003e@MShahid_Abbasi @MaajidNawaz @Leila_Creative lol no\u003cbr\u003eno, discussion is def the\u003cbr\u003esolution.\u003cbr\u003eWed Jan 07 20:11:19 +0000 2015"}, {"group": 252, "id": 16, "label": "552923170379161601", "shape": "dot", "size": 10, "title": "552923170379161601\u003cbr\u003e@susannayeshua @MaajidNawaz @Leila_Creative good on\u003cbr\u003eyou. A little makes a\u003cbr\u003ehell of a lot of\u003cbr\u003echange! But its difficult to\u003cbr\u003edo. Well done.\u003cbr\u003eWed Jan 07 20:22:11 +0000 2015"}, {"group": 252, "id": 23, "label": "552948083588612096", "shape": "dot", "size": 10, "title": "552948083588612096\u003cbr\u003e@MaajidNawaz Sadly it stems from\u003cbr\u003eculture and backward attitudes. To\u003cbr\u003esimply engage with others, you\u003cbr\u003emust be brave to \u0027rebel\u0027\u003cbr\u003eagainst the norm\u003cbr\u003eWed Jan 07 22:01:11 +0000 2015"}, {"group": 252, "id": 24, "label": "552948451831738369", "shape": "dot", "size": 10, "title": "552948451831738369\u003cbr\u003e@MaajidNawaz The elder gen. don\u0027t\u003cbr\u003eunderstand the need, this gen.\u003cbr\u003eis bitter against the constant\u003cbr\u003eMuslim backlash so what hope\u003cbr\u003efor future gen?\u003cbr\u003eWed Jan 07 22:02:38 +0000 2015"}, {"group": 252, "id": 26, "label": "552949145997418496", "shape": "dot", "size": 10, "title": "552949145997418496\u003cbr\u003e@MaajidNawaz It was the Prophet\u003cbr\u003epbuh behaviours that endeared people\u003cbr\u003eto #Islam. It\u0027s these behaviours\u003cbr\u003ewe must replicate to be\u003cbr\u003etruly peaceful\u003cbr\u003eWed Jan 07 22:05:24 +0000 2015"}, {"group": 252, "id": 30, "label": "552972336442269697", "shape": "dot", "size": 10, "title": "552972336442269697\u003cbr\u003e@MaajidNawaz i like watching your\u003cbr\u003eyoutube videos. Provocative and enlightening.\u003cbr\u003eReformed Muslims you are. Keep\u003cbr\u003eup the good work.\u003cbr\u003eWed Jan 07 23:37:33 +0000 2015"}, {"group": 252, "id": 17, "label": "552923746085109761", "shape": "dot", "size": 10, "title": "552923746085109761\u003cbr\u003e@sabbiyah @MaajidNawaz @Leila_Creative yes but\u003cbr\u003eit has to be done\u003cbr\u003eso bring it on! Bon\u003cbr\u003eChance!!\u003cbr\u003eWed Jan 07 20:24:28 +0000 2015"}, {"group": 252, "id": 20, "label": "552927212039852032", "shape": "dot", "size": 10, "title": "552927212039852032\u003cbr\u003e@AndrewYesudian @MaajidNawaz @Leila_Creative you know\u003cbr\u003ei didnt mean that. I\u003cbr\u003emeant grass roots level.\u003cbr\u003eWed Jan 07 20:38:14 +0000 2015"}, {"group": 252, "id": 21, "label": "552928157524037633", "shape": "dot", "size": 10, "title": "552928157524037633\u003cbr\u003e@sabbiyah @MaajidNawaz @Leila_Creative  I\u003cbr\u003eunderstand but it still does\u003cbr\u003enot tackle those who detest\u003cbr\u003eus for just being us.\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:42:00 +0000 2015"}, {"group": 252, "id": 27, "label": "552953450464813056", "shape": "dot", "size": 10, "title": "552953450464813056\u003cbr\u003e@AndrewYesudian @sabbiyah @MaajidNawaz @Leila_Creative Not\u003cbr\u003edirectly, but it indirectly reduces\u003cbr\u003etheir recruiting ability\u003cbr\u003eWed Jan 07 22:22:30 +0000 2015"}, {"group": 252, "id": 28, "label": "552954941904793600", "shape": "dot", "size": 10, "title": "552954941904793600\u003cbr\u003e@AndrewYesudian @sabbiyah @MaajidNawaz @Leila_Creative Tiny\u003cbr\u003emoments sometimes change everything, as\u003cbr\u003eMaajid\u0027s \"Radical\" relates\u003cbr\u003eWed Jan 07 22:28:26 +0000 2015"}, {"group": 252, "id": 25, "label": "552948698150633474", "shape": "dot", "size": 10, "title": "552948698150633474\u003cbr\u003e@nickjode73 @MaajidNawaz Thank you x\u003cbr\u003e\u003cbr\u003eWed Jan 07 22:03:37 +0000 2015"}, {"group": 252, "id": 32, "label": "553213650048413697", "shape": "dot", "size": 10, "title": "553213650048413697\u003cbr\u003e@TameenaHussain @MaajidNawaz Terrorism is destroying\u003cbr\u003eIslam. ISIS, Boka Haram\u0026amp;all have\u003cbr\u003eharmed the Faith more than\u003cbr\u003eany cartoon did.\u003cbr\u003eThu Jan 08 15:36:27 +0000 2015"}, {"group": 252, "id": 29, "label": "552957370784305153", "shape": "dot", "size": 10, "title": "552957370784305153\u003cbr\u003e@AnthonyRHowe but the fact is\u003cbr\u003ethat cohesion increases recruitment.\u003cbr\u003eWed Jan 07 22:38:05 +0000 2015"}, {"group": 252, "id": 31, "label": "552982329510350848", "shape": "dot", "size": 10, "title": "552982329510350848\u003cbr\u003e@sufimaki thank you\u003cbr\u003eThu Jan 08 00:17:15 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 2, "to": 2, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 14, "weight": 1}, {"from": 6, "to": 19, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 11, "to": 18, "weight": 1}, {"from": 11, "to": 22, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 15, "to": 23, "weight": 1}, {"from": 15, "to": 24, "weight": 1}, {"from": 15, "to": 26, "weight": 1}, {"from": 15, "to": 30, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 27, "weight": 1}, {"from": 21, "to": 28, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 26, "to": 32, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 30, "to": 31, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

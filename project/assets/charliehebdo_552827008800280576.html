@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 360, "id": 0, "label": "552827008800280576", "shape": "dot", "size": 10, "title": "552827008800280576\u003cbr\u003eFrance: \u2018Dark day for freedom\u003cbr\u003eof expression\u2019 as gunmen attack\u003cbr\u003esatirical newspaper\nhttp://t.co/AD5u7mQLAb #CharlieHebdo\u003cbr\u003eWed Jan 07 14:00:04 +0000 2015"}, {"group": 360, "id": 1, "label": "552827302745493504", "shape": "dot", "size": 10, "title": "552827302745493504\u003cbr\u003e@AmnestyOnline\u003cbr\u003eWed Jan 07 14:01:14 +0000 2015"}, {"group": 360, "id": 2, "label": "552828162959503362", "shape": "dot", "size": 10, "title": "552828162959503362\u003cbr\u003e@AmnestyOnline Please help fund this\u003cbr\u003edocumentary against homophobia in #Uganda.\u003cbr\u003ehttp://t.co/W4pVjtobKN #LGBT http://t.co/x4L2PXmKTR\u003cbr\u003eWed Jan 07 14:04:39 +0000 2015"}, {"group": 360, "id": 3, "label": "552828717375176706", "shape": "dot", "size": 10, "title": "552828717375176706\u003cbr\u003e@amnestyonline At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:06:51 +0000 2015"}, {"group": 360, "id": 4, "label": "552828800795705344", "shape": "dot", "size": 10, "title": "552828800795705344\u003cbr\u003eRT\u201c@AmnestyOnline: France: \u2018Dark day for\u003cbr\u003efreedom of expression\u2019 as gunmen\u003cbr\u003eattack satirical newspaper\nhttp://t.co/NKWziJuspS #CharlieHebdo\u201d\u003cbr\u003eWed Jan 07 14:07:11 +0000 2015"}, {"group": 360, "id": 5, "label": "552829488992903168", "shape": "dot", "size": 10, "title": "552829488992903168\u003cbr\u003e@AmnestyOnline prayers for France! USA\u003cbr\u003eSUPPORTS FREEDOM OF THE PRESS!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:09:55 +0000 2015"}, {"group": 360, "id": 6, "label": "552831503890014208", "shape": "dot", "size": 10, "title": "552831503890014208\u003cbr\u003e@AmnestyOnline DarkDays ForFreedomOf Speech Begin\u003cbr\u003eThe Day Holocaust  Chalenge\u003cbr\u003ebecame a Crime In Europe\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:17:56 +0000 2015"}, {"group": 360, "id": 7, "label": "552843348659437569", "shape": "dot", "size": 10, "title": "552843348659437569\u003cbr\u003e.@AmnestyOnline @4c41 Freedom of Expression?\u003cbr\u003e Second Thoughts?\u003cbr\u003eWed Jan 07 15:05:00 +0000 2015"}, {"group": 360, "id": 8, "label": "552845467214553090", "shape": "dot", "size": 10, "title": "552845467214553090\u003cbr\u003e\"This is a dark day\u003cbr\u003efor freedom of expression\" @AmnestyOnline\u003cbr\u003ehttp://t.co/XSPNFI90PT #CharlieHebdo #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:13:25 +0000 2015"}, {"group": 360, "id": 9, "label": "552869604184178688", "shape": "dot", "size": 10, "title": "552869604184178688\u003cbr\u003e@AmnestyOnline @reportedly day? It\u0027s been\u003cbr\u003ea dark era for it!\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:49:20 +0000 2015"}, {"group": 360, "id": 10, "label": "553315214272118786", "shape": "dot", "size": 10, "title": "553315214272118786\u003cbr\u003e\u201c@AmnestyOnline: France: \u2018Dark day for\u003cbr\u003efreedom of expression\u2019 as gunmen\u003cbr\u003eattack satirical newspaper\nhttp://t.co/kIWTDxMcb6 #CharlieHebdo\u003cbr\u003eThu Jan 08 22:20:01 +0000 2015"}, {"group": 360, "id": 11, "label": "553457904557125634", "shape": "dot", "size": 10, "title": "553457904557125634\u003cbr\u003eI condemn attack on #CharlieHebdo,\u003cbr\u003eWill @AmnestyOnline / #AmnestyInternational condemn\u003cbr\u003eterrorist/resist attack on mosques in\u003cbr\u003eFrance\u003cbr\u003eFri Jan 09 07:47:01 +0000 2015"}, {"group": 360, "id": 12, "label": "553549308234973184", "shape": "dot", "size": 10, "title": "553549308234973184\u003cbr\u003e@AmnestyOnline violation of human rights\u003cbr\u003eis serious crime.\u003cbr\u003eFri Jan 09 13:50:14 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

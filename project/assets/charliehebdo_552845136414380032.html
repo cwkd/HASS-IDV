@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1763, "id": 0, "label": "552845136414380032", "shape": "dot", "size": 10, "title": "552845136414380032\u003cbr\u003eEyewitness: terrorists said, \u201cTell the\u003cbr\u003emedia that this is al\u003cbr\u003eQaeda in the Yemen\u201d before\u003cbr\u003eattacking #CharlieHebdo http://t.co/dTaPFkFr5F\u003cbr\u003eWed Jan 07 15:12:06 +0000 2015"}, {"group": 1763, "id": 1, "label": "552845906073370625", "shape": "dot", "size": 10, "title": "552845906073370625\u003cbr\u003e. @thedailybeast @NoahShachtman Remember when\u003cbr\u003eYemen was cited as the\u003cbr\u003eexample we hoped Syria op\u003cbr\u003ewould turn out like...\u003cbr\u003eWed Jan 07 15:15:10 +0000 2015"}, {"group": 1763, "id": 2, "label": "552846390171553794", "shape": "dot", "size": 10, "title": "552846390171553794\u003cbr\u003e@peterwsinger @thedailybeast @NoahShachtman \n@billmaher ..was\u003cbr\u003eright after all.\u003cbr\u003eWed Jan 07 15:17:05 +0000 2015"}, {"group": 1763, "id": 3, "label": "552861152787832832", "shape": "dot", "size": 10, "title": "552861152787832832\u003cbr\u003e@2111015 @sterion75 and we confirmed.\u003cbr\u003eThats Russian language. And without\u003cbr\u003eaccent\u003cbr\u003eWed Jan 07 16:15:45 +0000 2015"}, {"group": 1763, "id": 4, "label": "552861589893025795", "shape": "dot", "size": 10, "title": "552861589893025795\u003cbr\u003e@Liveuamap Yes, it is- no\u003cbr\u003eaccent whatsoever. They were Russian.\u003cbr\u003e#CharlieHebdo @sterion75 #Ukraine\u003cbr\u003eWed Jan 07 16:17:29 +0000 2015"}, {"group": 1763, "id": 5, "label": "552864010958544897", "shape": "dot", "size": 10, "title": "552864010958544897\u003cbr\u003e@Liveuamap So, not Chechen? @sterion75\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:27:06 +0000 2015"}, {"group": 1763, "id": 19, "label": "552871107632836608", "shape": "dot", "size": 10, "title": "552871107632836608\u003cbr\u003e@2111015 @sterion75 i hear it\u003cbr\u003e(russian), and i have native\u003cbr\u003efluency in it. But, it\u0027s\u003cbr\u003ea job for experts, not\u003cbr\u003eregular internet users...\u003cbr\u003eWed Jan 07 16:55:18 +0000 2015"}, {"group": 1763, "id": 22, "label": "552872530907004928", "shape": "dot", "size": 10, "title": "552872530907004928\u003cbr\u003e@2111015 @sterion75 I hope this\u003cbr\u003egets investigated, now after Crimea,\u003cbr\u003eafter MH17, u can\u0027t surprise\u003cbr\u003eme w what horrid crap\u003cbr\u003ePutin does\u003cbr\u003eWed Jan 07 17:00:57 +0000 2015"}, {"group": 1763, "id": 23, "label": "552873717391302656", "shape": "dot", "size": 10, "title": "552873717391302656\u003cbr\u003e@Liveuamap @20committee @2111015 @sterion75 Do\u003cbr\u003eyou guys speak french to\u003cbr\u003emake a proper assessment ?\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:05:40 +0000 2015"}, {"group": 1763, "id": 24, "label": "552873793635377152", "shape": "dot", "size": 10, "title": "552873793635377152\u003cbr\u003e@Liveuamap @20committee @2111015 @sterion75 Because\u003cbr\u003eit sounds very much like\u003cbr\u003efrench. \"Tu veux nous tuer\u003cbr\u003e?\" \"Nan c\u0027est bon chef\"\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:05:58 +0000 2015"}, {"group": 1763, "id": 39, "label": "552877412854562816", "shape": "dot", "size": 10, "title": "552877412854562816\u003cbr\u003ePT \"Appears to speak\" -\u003cbr\u003elanguage expert obviously needed to\u003cbr\u003econfirm\u003cbr\u003eWed Jan 07 17:20:21 +0000 2015"}, {"group": 1763, "id": 8, "label": "552865154455842817", "shape": "dot", "size": 10, "title": "552865154455842817\u003cbr\u003e@2111015 Agreed @sterion75 @ITARTASSnews_en @AricToler\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:31:39 +0000 2015"}, {"group": 1763, "id": 40, "label": "552879670702518272", "shape": "dot", "size": 10, "title": "552879670702518272\u003cbr\u003e@2111015 @Liveuamap @sterion75 https://t.co/5vcuiaAiSm \"Don\u0027t\u003cbr\u003etouch him,he\u0027s done\" in RUSSIAN\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:29:20 +0000 2015"}, {"group": 1763, "id": 6, "label": "552864424827310081", "shape": "dot", "size": 10, "title": "552864424827310081\u003cbr\u003e@2111015 @sterion75 Dagestani or Chechen\u003cbr\u003equite possible, they could speak\u003cbr\u003eRussian clearly too\u003cbr\u003eWed Jan 07 16:28:45 +0000 2015"}, {"group": 1763, "id": 7, "label": "552864773961154561", "shape": "dot", "size": 10, "title": "552864773961154561\u003cbr\u003e@Liveuamap @2111015 thanks for the\u003cbr\u003eclarification\u003cbr\u003eWed Jan 07 16:30:08 +0000 2015"}, {"group": 1763, "id": 10, "label": "552866453251436544", "shape": "dot", "size": 10, "title": "552866453251436544\u003cbr\u003e@Liveuamap I want to listen\u003cbr\u003eto it again, but can\u0027t\u003cbr\u003ewatch it again :( @sterion75\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:36:48 +0000 2015"}, {"group": 1763, "id": 9, "label": "552865860227194880", "shape": "dot", "size": 10, "title": "552865860227194880\u003cbr\u003e@sterion75 @Liveuamap @2111015 There are\u003cbr\u003ealso known Russian nationals who\u003cbr\u003ejoined ISIS from Tatarstan and\u003cbr\u003eother Muslim regions\u003cbr\u003eWed Jan 07 16:34:27 +0000 2015"}, {"group": 1763, "id": 11, "label": "552866478907600896", "shape": "dot", "size": 10, "title": "552866478907600896\u003cbr\u003ethis video captured some clear\u003cbr\u003evocals - it sure sounds\u003cbr\u003elike it.\nhttp://t.co/PdcYIG05cX\n\n@ZhidoBandera @sterion75 @Liveuamap @2111015\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:36:54 +0000 2015"}, {"group": 1763, "id": 14, "label": "552866788791160833", "shape": "dot", "size": 10, "title": "552866788791160833\u003cbr\u003e@ZhidoBandera @2111015 @sterion75 @Liveuamap heard\u003cbr\u003eall their (ISIS) top brass\u003cbr\u003eis Chechen?\u003cbr\u003eWed Jan 07 16:38:08 +0000 2015"}, {"group": 1763, "id": 12, "label": "552866634218876928", "shape": "dot", "size": 10, "title": "552866634218876928\u003cbr\u003e@2111015 @Liveuamap probably best not\u003cbr\u003eto its horrific they need\u003cbr\u003ehanging by their balls for\u003cbr\u003ea week\u003cbr\u003eWed Jan 07 16:37:32 +0000 2015"}, {"group": 1763, "id": 13, "label": "552866680456876034", "shape": "dot", "size": 10, "title": "552866680456876034\u003cbr\u003e@sequoia2001 I can\u0027t watch it\u003cbr\u003eor listen again. But, to\u003cbr\u003eme, it was very clear.\u003cbr\u003e@ZhidoBandera @sterion75 @Liveuamap\u003cbr\u003eWed Jan 07 16:37:43 +0000 2015"}, {"group": 1763, "id": 15, "label": "552867006815682560", "shape": "dot", "size": 10, "title": "552867006815682560\u003cbr\u003e@sterion75 The policeman right there.\u003cbr\u003eHorrid @Liveuamap\u003cbr\u003eWed Jan 07 16:39:00 +0000 2015"}, {"group": 1763, "id": 16, "label": "552867410467127296", "shape": "dot", "size": 10, "title": "552867410467127296\u003cbr\u003e@KungPaoKimchi @2111015 @sterion75 @Liveuamap there\u003cbr\u003eis like a Chechen regiment\u003cbr\u003esize of a company there\u003cbr\u003eI think. Top brass -\u003cbr\u003eno way\u003cbr\u003eWed Jan 07 16:40:37 +0000 2015"}, {"group": 1763, "id": 17, "label": "552867443648249857", "shape": "dot", "size": 10, "title": "552867443648249857\u003cbr\u003e@KungPaoKimchi @ZhidoBandera @2111015 @sterion75 Not\u003cbr\u003eall, but there are Chechens\u003cbr\u003eand Dagestani, - and reports\u003cbr\u003ethat most cruel\u003cbr\u003eWed Jan 07 16:40:45 +0000 2015"}, {"group": 1763, "id": 18, "label": "552869743271493633", "shape": "dot", "size": 10, "title": "552869743271493633\u003cbr\u003e@ZhidoBandera @2111015 @sterion75 @Liveuamap ah\u003cbr\u003ekk\u003cbr\u003eWed Jan 07 16:49:53 +0000 2015"}, {"group": 1763, "id": 20, "label": "552871396104478721", "shape": "dot", "size": 10, "title": "552871396104478721\u003cbr\u003e@tangymist @2111015 you are right\u003cbr\u003eAnia just trying to raise\u003cbr\u003eawareness important point\u003cbr\u003eWed Jan 07 16:56:27 +0000 2015"}, {"group": 1763, "id": 21, "label": "552872124546048001", "shape": "dot", "size": 10, "title": "552872124546048001\u003cbr\u003e@tangymist Agree. @sterion75\u003cbr\u003eWed Jan 07 16:59:21 +0000 2015"}, {"group": 1763, "id": 27, "label": "552874188932153344", "shape": "dot", "size": 10, "title": "552874188932153344\u003cbr\u003e@sterion75 @2111015 I think we\u0027re\u003cbr\u003eon the same page... Important\u003cbr\u003eto post it...\u003cbr\u003eWed Jan 07 17:07:33 +0000 2015"}, {"group": 1763, "id": 47, "label": "552885188884459521", "shape": "dot", "size": 10, "title": "552885188884459521\u003cbr\u003e@myroslawabrulak @2111015 @sterion75 Maybe \u003cbr\u003eHollande will give Putin the\u003cbr\u003e#Mistrals and there may be\u003cbr\u003eno more attacks on France.\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:51:15 +0000 2015"}, {"group": 1763, "id": 25, "label": "552873864934748160", "shape": "dot", "size": 10, "title": "552873864934748160\u003cbr\u003e@fabrice_deprez Do you speak Russian\u003cbr\u003eto make a proper assessment?@Liveuamap\u003cbr\u003e@20committee @2111015\u003cbr\u003eWed Jan 07 17:06:15 +0000 2015"}, {"group": 1763, "id": 34, "label": "552875252230152192", "shape": "dot", "size": 10, "title": "552875252230152192\u003cbr\u003e@fabrice_deprez It\u0027s possible they switched\u003cbr\u003eto French- but I heard\u003cbr\u003eRussian @Liveuamap @20committee @sterion75\u003cbr\u003eWed Jan 07 17:11:46 +0000 2015"}, {"group": 1763, "id": 36, "label": "552875418215522304", "shape": "dot", "size": 10, "title": "552875418215522304\u003cbr\u003e@fabrice_deprez I\u0027m certainly no language\u003cbr\u003eexpert, but it was quite\u003cbr\u003eaudible to me @Liveuamap @20committee\u003cbr\u003e@sterion75\u003cbr\u003eWed Jan 07 17:12:26 +0000 2015"}, {"group": 1763, "id": 28, "label": "552874203184365569", "shape": "dot", "size": 10, "title": "552874203184365569\u003cbr\u003e@fabrice_deprez @Liveuamap @20committee @2111015 need\u003cbr\u003esomeone who speaks both languages\u003cbr\u003efluently to give their opinion\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:07:36 +0000 2015"}, {"group": 1763, "id": 26, "label": "552874103175008256", "shape": "dot", "size": 10, "title": "552874103175008256\u003cbr\u003e@sterion75 @Liveuamap A bit. But\u003cbr\u003eI\u0027m also native french, and\u003cbr\u003eit sounds like french. \"Tu\u003cbr\u003evous nous/le tuer ?\" \"Nan\u003cbr\u003ec\u0027est bon chef\"\u003cbr\u003eWed Jan 07 17:07:12 +0000 2015"}, {"group": 1763, "id": 29, "label": "552874398529892352", "shape": "dot", "size": 10, "title": "552874398529892352\u003cbr\u003e@fabrice_deprez @Liveuamap Think we need\u003cbr\u003esomeone who speaks both languages\u003cbr\u003efluently\u003cbr\u003eWed Jan 07 17:08:23 +0000 2015"}, {"group": 1763, "id": 30, "label": "552874493031354368", "shape": "dot", "size": 10, "title": "552874493031354368\u003cbr\u003e@sterion75 True. But let\u0027s keep\u003cbr\u003ea fair amount of skepticism\u003cbr\u003emeanwhile\u003cbr\u003eWed Jan 07 17:08:45 +0000 2015"}, {"group": 1763, "id": 31, "label": "552874899782397952", "shape": "dot", "size": 10, "title": "552874899782397952\u003cbr\u003e@sterion75 @Liveuamap Correction : I\u003cbr\u003emeant \"Tu veux nous/le tuer\"\u003cbr\u003e(\"You want to kill us/him\u003cbr\u003e?\") \"Non c\u0027est bon chef\"\u003cbr\u003e(\"No it\u0027s good sir\")\u003cbr\u003eWed Jan 07 17:10:22 +0000 2015"}, {"group": 1763, "id": 32, "label": "552874958507233281", "shape": "dot", "size": 10, "title": "552874958507233281\u003cbr\u003e@fabrice_deprez yes but good to\u003cbr\u003epublicize both points of view\u003cbr\u003ethen at least one can\u003cbr\u003ebe discounted\u003cbr\u003eWed Jan 07 17:10:36 +0000 2015"}, {"group": 1763, "id": 33, "label": "552875238388555776", "shape": "dot", "size": 10, "title": "552875238388555776\u003cbr\u003e@sterion75 Agreed.\u003cbr\u003eWed Jan 07 17:11:43 +0000 2015"}, {"group": 1763, "id": 35, "label": "552875403426029568", "shape": "dot", "size": 10, "title": "552875403426029568\u003cbr\u003e@2111015 @Liveuamap @20committee @sterion75 At\u003cbr\u003ewhat point ?\u003cbr\u003eWed Jan 07 17:12:22 +0000 2015"}, {"group": 1763, "id": 37, "label": "552875621114998784", "shape": "dot", "size": 10, "title": "552875621114998784\u003cbr\u003e@fabrice_deprez Very beginning after first\u003cbr\u003eshot, I think - can\u0027t\u003cbr\u003ebring myself to watch again\u003cbr\u003e@Liveuamap @20committee @sterion75\u003cbr\u003eWed Jan 07 17:13:14 +0000 2015"}, {"group": 1763, "id": 38, "label": "552876139765850112", "shape": "dot", "size": 10, "title": "552876139765850112\u003cbr\u003e@fabrice_deprez Surely French authorities are\u003cbr\u003eanalyzing audio @Liveuamap @20committee @sterion75\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:15:18 +0000 2015"}, {"group": 1763, "id": 41, "label": "552879917596430337", "shape": "dot", "size": 10, "title": "552879917596430337\u003cbr\u003e@tsnowbird5000 Did you listen to\u003cbr\u003eit? @Liveuamap @sterion75\u003cbr\u003eWed Jan 07 17:30:19 +0000 2015"}, {"group": 1763, "id": 42, "label": "552880003575070720", "shape": "dot", "size": 10, "title": "552880003575070720\u003cbr\u003e@2111015 @Liveuamap @sterion75 yes\u003cbr\u003eWed Jan 07 17:30:39 +0000 2015"}, {"group": 1763, "id": 43, "label": "552880072617906176", "shape": "dot", "size": 10, "title": "552880072617906176\u003cbr\u003e@tsnowbird5000 Disturbing @Liveuamap @sterion75\u003cbr\u003eWed Jan 07 17:30:55 +0000 2015"}, {"group": 1763, "id": 44, "label": "552880318969937920", "shape": "dot", "size": 10, "title": "552880318969937920\u003cbr\u003e@2111015 @Liveuamap @sterion75 the link\u003cbr\u003ei tweeted from FB originally\u003cbr\u003etweeted by @20committee  is\u003cbr\u003ean excerpt so not too\u003cbr\u003egraphic\u003cbr\u003eWed Jan 07 17:31:54 +0000 2015"}, {"group": 1763, "id": 45, "label": "552880518027833345", "shape": "dot", "size": 10, "title": "552880518027833345\u003cbr\u003e@tsnowbird5000 I had to stop\u003cbr\u003ethe feed after seeing the\u003cbr\u003epoliceman @Liveuamap @sterion75 @20committee\u003cbr\u003eWed Jan 07 17:32:42 +0000 2015"}, {"group": 1763, "id": 46, "label": "552880647618850817", "shape": "dot", "size": 10, "title": "552880647618850817\u003cbr\u003e@2111015 @Liveuamap @sterion75 @20committee yes\u003cbr\u003ei couldnt bear to see\u003cbr\u003ethat.... just horrible.\u003cbr\u003eWed Jan 07 17:33:13 +0000 2015"}, {"group": 1763, "id": 48, "label": "552886787392425985", "shape": "dot", "size": 10, "title": "552886787392425985\u003cbr\u003e@mc_hugh20 @2111015 @sterion75 yeah giving\u003cbr\u003eweapons to terrorists usually stops\u003cbr\u003ethem in the future...LOL\u003cbr\u003eWed Jan 07 17:57:36 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 3, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 19, "weight": 1}, {"from": 3, "to": 22, "weight": 1}, {"from": 3, "to": 23, "weight": 1}, {"from": 3, "to": 24, "weight": 1}, {"from": 3, "to": 39, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 4, "to": 40, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 10, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 14, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 27, "weight": 1}, {"from": 22, "to": 47, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 23, "to": 34, "weight": 1}, {"from": 23, "to": 36, "weight": 1}, {"from": 24, "to": 28, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 32, "to": 33, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 35, "to": 37, "weight": 1}, {"from": 35, "to": 38, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 42, "to": 43, "weight": 1}, {"from": 43, "to": 44, "weight": 1}, {"from": 44, "to": 45, "weight": 1}, {"from": 45, "to": 46, "weight": 1}, {"from": 47, "to": 48, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

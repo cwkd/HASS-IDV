@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1795, "id": 0, "label": "553110339236409346", "shape": "dot", "size": 10, "title": "553110339236409346\u003cbr\u003eShooting south of Paris with\u003cbr\u003eone police officer injured. Police\u003cbr\u003esay no known link to\u003cbr\u003e#CharlieHebdo attack http://t.co/UZlFI7Bb5s\u003cbr\u003eThu Jan 08 08:45:55 +0000 2015"}, {"group": 1795, "id": 1, "label": "553110503858651137", "shape": "dot", "size": 10, "title": "553110503858651137\u003cbr\u003e@BBCBreaking @SkyNewsBreak says differently\u003cbr\u003eThu Jan 08 08:46:35 +0000 2015"}, {"group": 1795, "id": 2, "label": "553110687590121472", "shape": "dot", "size": 10, "title": "553110687590121472\u003cbr\u003e@BBCBreaking http://t.co/ANwkdi1cP1\u003cbr\u003eThu Jan 08 08:47:18 +0000 2015"}, {"group": 1795, "id": 3, "label": "553110816506253313", "shape": "dot", "size": 10, "title": "553110816506253313\u003cbr\u003e@bbcbreaking I HATE TERRORIST ATTACK\u003cbr\u003eTHEY KILL INOCENNT SOULS\u003cbr\u003eThu Jan 08 08:47:49 +0000 2015"}, {"group": 1795, "id": 5, "label": "553112094091264001", "shape": "dot", "size": 10, "title": "553112094091264001\u003cbr\u003e@BBCBreaking \ud83d\udc1d\ud83d\udc1d\ud83d\udc1d\u003cbr\u003eThu Jan 08 08:52:54 +0000 2015"}, {"group": 1795, "id": 7, "label": "553112183002128385", "shape": "dot", "size": 10, "title": "553112183002128385\u003cbr\u003e@BBCBreaking @BBCWorld http://t.co/bBT1hhX5Ni\u003cbr\u003eThu Jan 08 08:53:15 +0000 2015"}, {"group": 1795, "id": 8, "label": "553112780199313409", "shape": "dot", "size": 10, "title": "553112780199313409\u003cbr\u003e@BBCBreaking This is condemable but\u003cbr\u003eWhere is Human Rights in\u003cbr\u003ePalestine Journalist kill by Israel???\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:55:37 +0000 2015"}, {"group": 1795, "id": 9, "label": "553113131397177344", "shape": "dot", "size": 10, "title": "553113131397177344\u003cbr\u003e@bbcbreaking i dint know france\u003cbr\u003eis that insecure and the\u003cbr\u003eway they condemn Africa #Insecurityinfrance\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:57:01 +0000 2015"}, {"group": 1795, "id": 10, "label": "553113968714465280", "shape": "dot", "size": 10, "title": "553113968714465280\u003cbr\u003e@BBCBreaking I am suffering from\u003cbr\u003ewind this morning but I\u003cbr\u003ecan assure you, it has\u003cbr\u003eno link to anything what\u003cbr\u003eso ever.\u003cbr\u003eThu Jan 08 09:00:21 +0000 2015"}, {"group": 1795, "id": 13, "label": "553114449683283968", "shape": "dot", "size": 10, "title": "553114449683283968\u003cbr\u003e@BBCBreaking Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet thank you\n  http://t.co/Cf3z3jOxyx\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:02:15 +0000 2015"}, {"group": 1795, "id": 15, "label": "553115265245143040", "shape": "dot", "size": 10, "title": "553115265245143040\u003cbr\u003e@BBCBreaking You\u0027re joking, another shooting?!\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:05:30 +0000 2015"}, {"group": 1795, "id": 18, "label": "553118780566425600", "shape": "dot", "size": 10, "title": "553118780566425600\u003cbr\u003e@BBCBreaking I\u0027m muslim and I\u0027m\u003cbr\u003eagainst these attacks , I\u003cbr\u003ehope they can find the\u003cbr\u003eattackers and bring them to\u003cbr\u003ejustice.\u003cbr\u003eThu Jan 08 09:19:28 +0000 2015"}, {"group": 1795, "id": 4, "label": "553111555932295168", "shape": "dot", "size": 10, "title": "553111555932295168\u003cbr\u003e@mooglegoose @BBCBreaking @SkyNewsBreak no they\u003cbr\u003edid not\u003cbr\u003eThu Jan 08 08:50:45 +0000 2015"}, {"group": 1795, "id": 6, "label": "553112108872003585", "shape": "dot", "size": 10, "title": "553112108872003585\u003cbr\u003e@BillRiskie @BBCBreaking @SkyNewsBreak I\u0027ve just\u003cbr\u003ewatched them talk about it,\u003cbr\u003eclaiming North African assailant saying\u003cbr\u003eit looks connected!\u003cbr\u003eThu Jan 08 08:52:57 +0000 2015"}, {"group": 1795, "id": 11, "label": "553114096221302784", "shape": "dot", "size": 10, "title": "553114096221302784\u003cbr\u003e@mooglegoose @BBCBreaking @SkyNewsBreak oh wow.\u003cbr\u003eSorry I do not get\u003cbr\u003ethem over here in US.\u003cbr\u003eI was going off their\u003cbr\u003eTwitter. I hope they\u0027re not\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:00:51 +0000 2015"}, {"group": 1795, "id": 19, "label": "553118792843149312", "shape": "dot", "size": 10, "title": "553118792843149312\u003cbr\u003e@smtayyab2003 @BBCBreaking It\u0027s an Israeli\u003cbr\u003eterrorist assault on freedom of\u003cbr\u003eexpression world wide as much\u003cbr\u003eas the Paris criminal slaughter\u003cbr\u003ewas\u003cbr\u003eThu Jan 08 09:19:31 +0000 2015"}, {"group": 1795, "id": 20, "label": "553120374179651585", "shape": "dot", "size": 10, "title": "553120374179651585\u003cbr\u003e@smtayyab2003 @BBCBreaking Grim horror: laws\u003cbr\u003eof physicsRtrashed. Zionist Israel\u0027s been\u003cbr\u003ean EARTHQUAKE ravaging Gaza \u0026amp;Palestinian\u003cbr\u003eTerritories\u003cbr\u003eThu Jan 08 09:25:48 +0000 2015"}, {"group": 1795, "id": 12, "label": "553114332947832832", "shape": "dot", "size": 10, "title": "553114332947832832\u003cbr\u003e@BillRiskie @BBCBreaking @SkyNewsBreak they seem\u003cbr\u003eto be slow to update\u003cbr\u003eits all a bit fast\u003cbr\u003epaced over there\u003cbr\u003eThu Jan 08 09:01:47 +0000 2015"}, {"group": 1795, "id": 14, "label": "553114683218345984", "shape": "dot", "size": 10, "title": "553114683218345984\u003cbr\u003e@mooglegoose @BBCBreaking @SkyNewsBreak oh I\u003cbr\u003eunderstand.\u003cbr\u003eThu Jan 08 09:03:11 +0000 2015"}, {"group": 1795, "id": 16, "label": "553115526407675905", "shape": "dot", "size": 10, "title": "553115526407675905\u003cbr\u003e@StePelletier @BBCBreaking unfortunately, they are\u003cbr\u003enot. A Mosqe has also\u003cbr\u003ebeen firebombed last night in\u003cbr\u003esouthern France\u003cbr\u003eThu Jan 08 09:06:32 +0000 2015"}, {"group": 1795, "id": 17, "label": "553116875836911616", "shape": "dot", "size": 10, "title": "553116875836911616\u003cbr\u003e@UvyMordicante @StePelletier @BBCBreaking That\u0027s sad\u003cbr\u003ebut also expected after an\u003cbr\u003eevent like this. There will\u003cbr\u003ealways be violent people\u003cbr\u003eThu Jan 08 09:11:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 11, "weight": 1}, {"from": 8, "to": 19, "weight": 1}, {"from": 8, "to": 20, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

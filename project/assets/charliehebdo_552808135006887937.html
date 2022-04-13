@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 131, "id": 0, "label": "552808135006887937", "shape": "dot", "size": 10, "title": "552808135006887937\u003cbr\u003eThe events at #CharlieHebdo won\u2019t\u003cbr\u003emake me discriminate against Islam.\u003cbr\u003eI will remain steadfast in\u003cbr\u003efinding all religions equally stupid.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:45:04 +0000 2015"}, {"group": 131, "id": 1, "label": "552810528116994049", "shape": "dot", "size": 10, "title": "552810528116994049\u003cbr\u003e@OwensDamien Issue is not whether\u003cbr\u003eor not they are stupid\u003cbr\u003ebut takes it in the\u003cbr\u003estride when stupidity is exposed.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:54:35 +0000 2015"}, {"group": 131, "id": 2, "label": "552810689690349568", "shape": "dot", "size": 10, "title": "552810689690349568\u003cbr\u003e@OwensDamien @bazlyons but not equally\u003cbr\u003eviolent\u003cbr\u003eWed Jan 07 12:55:13 +0000 2015"}, {"group": 131, "id": 3, "label": "552810877473136640", "shape": "dot", "size": 10, "title": "552810877473136640\u003cbr\u003e@OwensDamien @KamahlAJE I think you\u003cbr\u003eplay into the hands of\u003cbr\u003ethe psychopaths when you suggest\u003cbr\u003ethat people of any faith\u003cbr\u003ewould support this.\u003cbr\u003eWed Jan 07 12:55:58 +0000 2015"}, {"group": 131, "id": 4, "label": "552813031496097793", "shape": "dot", "size": 10, "title": "552813031496097793\u003cbr\u003e@OwensDamien I will remain steadfast\u003cbr\u003ein finding all HUMANS equally\u003cbr\u003estupid. There, fixed it for\u003cbr\u003eyou.\u003cbr\u003eWed Jan 07 13:04:32 +0000 2015"}, {"group": 131, "id": 5, "label": "552817663656095745", "shape": "dot", "size": 10, "title": "552817663656095745\u003cbr\u003e@OwensDamien You can also equalize\u003cbr\u003ethe flu and the cancer\u003cbr\u003eusing the same arguments.\u003cbr\u003eWed Jan 07 13:22:56 +0000 2015"}, {"group": 131, "id": 6, "label": "552826606524190720", "shape": "dot", "size": 10, "title": "552826606524190720\u003cbr\u003e@OwensDamien equally stupid but not\u003cbr\u003eequally dangerous\u003cbr\u003eWed Jan 07 13:58:28 +0000 2015"}, {"group": 131, "id": 7, "label": "552828077227921409", "shape": "dot", "size": 10, "title": "552828077227921409\u003cbr\u003e@OwensDamien well said.\u003cbr\u003eWed Jan 07 14:04:19 +0000 2015"}, {"group": 131, "id": 8, "label": "552837839067811841", "shape": "dot", "size": 10, "title": "552837839067811841\u003cbr\u003e@OwensDamien People have killed over\u003cbr\u003ecountries, politics, even sport. \u003cbr\u003eProblem is those involved not\u003cbr\u003ethe organisation they claim to\u003cbr\u003esupport\u003cbr\u003eWed Jan 07 14:43:06 +0000 2015"}, {"group": 131, "id": 11, "label": "552887133711515648", "shape": "dot", "size": 10, "title": "552887133711515648\u003cbr\u003e@OwensDamien @Jbuchan1969 and thats the\u003cbr\u003ereason #Islam will remain the\u003cbr\u003escourge it is. Stupid people\u003cbr\u003ethat refuse to #knowthefacts\u003cbr\u003eWed Jan 07 17:58:59 +0000 2015"}, {"group": 131, "id": 12, "label": "553148453992165376", "shape": "dot", "size": 10, "title": "553148453992165376\u003cbr\u003e@OwensDamien @H_NAILI \nI have to\u003cbr\u003eadmit that was good ...\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:17:23 +0000 2015"}, {"group": 131, "id": 9, "label": "552845806915846144", "shape": "dot", "size": 10, "title": "552845806915846144\u003cbr\u003e@gogglepossum @sandunpaaris please omit me\u003cbr\u003efrom this thread.\u003cbr\u003eWed Jan 07 15:14:46 +0000 2015"}, {"group": 131, "id": 10, "label": "552846227759722496", "shape": "dot", "size": 10, "title": "552846227759722496\u003cbr\u003e@bazlyons not actually sure how\u003cbr\u003eyou ended up in it...sorry\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:16:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 9, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

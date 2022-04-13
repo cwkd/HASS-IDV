@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 310, "id": 0, "label": "552822887988883457", "shape": "dot", "size": 10, "title": "552822887988883457\u003cbr\u003eDon\u0027t let Islamists intimidate u.\u003cbr\u003eRepublish the cartoons in solidarity\u003cbr\u003ewith #CharlieHebdo victims \u0026amp; 4\u003cbr\u003efree expression http://t.co/3YCJRdaUID\u003cbr\u003eWed Jan 07 13:43:42 +0000 2015"}, {"group": 310, "id": 1, "label": "552825347289677824", "shape": "dot", "size": 10, "title": "552825347289677824\u003cbr\u003e@RezaMoradi You are being disrespectful\u003cbr\u003ebecausesomeone did something disrespectful to\u003cbr\u003eyou.So,how can we stop being\u003cbr\u003edisrespectful toeachother\u003cbr\u003eWed Jan 07 13:53:28 +0000 2015"}, {"group": 310, "id": 2, "label": "552826157088133120", "shape": "dot", "size": 10, "title": "552826157088133120\u003cbr\u003e@RezaMoradi What you have shared\u003cbr\u003eis not acceptable just like\u003cbr\u003ethe event happened to the\u003cbr\u003eman...\u003cbr\u003eWed Jan 07 13:56:41 +0000 2015"}, {"group": 310, "id": 3, "label": "552826823294201856", "shape": "dot", "size": 10, "title": "552826823294201856\u003cbr\u003e@RezaMoradi way to go, fight\u003cbr\u003eterrorists by insulting 1 billion\u003cbr\u003eother innocent people who also\u003cbr\u003econdemn today\u0027s barbaric terror attack.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:59:20 +0000 2015"}, {"group": 310, "id": 4, "label": "552826853900042241", "shape": "dot", "size": 10, "title": "552826853900042241\u003cbr\u003e@RezaMoradi http://t.co/M47FAs5yqF\u003cbr\u003eWed Jan 07 13:59:27 +0000 2015"}, {"group": 310, "id": 5, "label": "552827013464338432", "shape": "dot", "size": 10, "title": "552827013464338432\u003cbr\u003e@RezaMoradi Islam always tells you\u003cbr\u003eto be a good man,to\u003cbr\u003ebe a person who set\u003cbr\u003eup peace.You should read Kuran\u003cbr\u003ein your language before you\u003cbr\u003eblame.\u003cbr\u003eWed Jan 07 14:00:05 +0000 2015"}, {"group": 310, "id": 6, "label": "552827355937660928", "shape": "dot", "size": 10, "title": "552827355937660928\u003cbr\u003e@RezaMoradi I have no respect\u003cbr\u003efor ideas, I care about\u003cbr\u003elife \u0026amp;people. Islamists must learn\u003cbr\u003eto accept that there r\u003cbr\u003eothers in the world as\u003cbr\u003ewell\u003cbr\u003eWed Jan 07 14:01:27 +0000 2015"}, {"group": 310, "id": 7, "label": "552831500358782976", "shape": "dot", "size": 10, "title": "552831500358782976\u003cbr\u003e@rezamoradi At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:17:55 +0000 2015"}, {"group": 310, "id": 9, "label": "552843117351931904", "shape": "dot", "size": 10, "title": "552843117351931904\u003cbr\u003e@RezaMoradi @frank8427zz9za - All of\u003cbr\u003ethe world democracy\u0027s newspapers should\u003cbr\u003epublish them tomorrow.\u003cbr\u003eWed Jan 07 15:04:05 +0000 2015"}, {"group": 310, "id": 10, "label": "552844698381860865", "shape": "dot", "size": 10, "title": "552844698381860865\u003cbr\u003e@RezaMoradi WITH PLEASURE WILL DO\u003cbr\u003eON OUR NEW NEWSPAPER plz\u003cbr\u003ehelp us get it out\u003cbr\u003ewe are about EXPOSING THE\u003cbr\u003eTRUTH :) http://t.co/qgVj6LTEAo\u003cbr\u003eWed Jan 07 15:10:22 +0000 2015"}, {"group": 310, "id": 12, "label": "552845718524682240", "shape": "dot", "size": 10, "title": "552845718524682240\u003cbr\u003e@RezaMoradi Could you plz pm\u003cbr\u003eme the images buddy? im\u003cbr\u003ein OZ \u0026amp; would love\u003cbr\u003eto share via our newspaper..Thank\u003cbr\u003eyou for respecting those that\u003cbr\u003edied\u003cbr\u003eWed Jan 07 15:14:25 +0000 2015"}, {"group": 310, "id": 16, "label": "552922184013086721", "shape": "dot", "size": 10, "title": "552922184013086721\u003cbr\u003e@RezaMoradi @FathImraNazeer Unfortunately the media\u003cbr\u003ewon\u0027t publish them, not to\u003cbr\u003enot offend but because they\u003cbr\u003efear the reprisals.\u003cbr\u003eWed Jan 07 20:18:16 +0000 2015"}, {"group": 310, "id": 8, "label": "552833612954226689", "shape": "dot", "size": 10, "title": "552833612954226689\u003cbr\u003e@Fahmiasf @RezaMoradi if you\u0027re insulted\u003cbr\u003eby a fucking cartoon then\u003cbr\u003eyou have way bigger issues.\u003cbr\u003egrow the fuck up, all\u003cbr\u003eof you\u003cbr\u003eWed Jan 07 14:26:19 +0000 2015"}, {"group": 310, "id": 15, "label": "552899296446910465", "shape": "dot", "size": 10, "title": "552899296446910465\u003cbr\u003e@BirVatandasim @RezaMoradi many of us\u003cbr\u003eknow a lot of the\u003cbr\u003eKoran we have to, it\u003cbr\u003ealso teaches to kill non\u003cbr\u003ebelievers, Read http://t.co/Kv0R9BdyHH\u003cbr\u003eWed Jan 07 18:47:19 +0000 2015"}, {"group": 310, "id": 24, "label": "553032074408763393", "shape": "dot", "size": 10, "title": "553032074408763393\u003cbr\u003e@bennyb_14 @RezaMoradi what happened yesterday\u003cbr\u003eis a pure act of\u003cbr\u003eterrorism that every human condemns.\u003cbr\u003e\u003cbr\u003eThu Jan 08 03:34:56 +0000 2015"}, {"group": 310, "id": 25, "label": "553032251144151042", "shape": "dot", "size": 10, "title": "553032251144151042\u003cbr\u003e@bennyb_14 @RezaMoradi those terrorists were\u003cbr\u003eby no means Muslim, or\u003cbr\u003efollowers of any religion, as\u003cbr\u003eall religions call for peace\u003cbr\u003eand love.\u003cbr\u003eThu Jan 08 03:35:38 +0000 2015"}, {"group": 310, "id": 26, "label": "553032490064297984", "shape": "dot", "size": 10, "title": "553032490064297984\u003cbr\u003e@bennyb_14 @RezaMoradi but to spread\u003cbr\u003ehate between ourselves with silly\u003cbr\u003edrawings with aims of fighting\u003cbr\u003eterrorists is just pure stupid.\u003cbr\u003e\u003cbr\u003eThu Jan 08 03:36:35 +0000 2015"}, {"group": 310, "id": 11, "label": "552845237324746752", "shape": "dot", "size": 10, "title": "552845237324746752\u003cbr\u003e@manjrn @RezaMoradi @frank8427zz9za @RezaMoradi COULD\u003cbr\u003eyou plz pm me with\u003cbr\u003ethe images id LOVE to\u003cbr\u003ehave these in our new\u003cbr\u003enewspaper here in oz :)\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:12:30 +0000 2015"}, {"group": 310, "id": 13, "label": "552846213360656385", "shape": "dot", "size": 10, "title": "552846213360656385\u003cbr\u003e@stellasgSG @RezaMoradi @frank8427zz9za - I\u0027ll\u003cbr\u003esee if I can.\u003cbr\u003eWed Jan 07 15:16:23 +0000 2015"}, {"group": 310, "id": 14, "label": "552846897774211072", "shape": "dot", "size": 10, "title": "552846897774211072\u003cbr\u003e@manjrn @RezaMoradi @frank8427zz9za I managed\u003cbr\u003eto grab them i think\u003cbr\u003eLOL thanks guys im new\u003cbr\u003eso learning L plates on\u003cbr\u003elol Thanks for ur support\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:19:06 +0000 2015"}, {"group": 310, "id": 17, "label": "552923391720947713", "shape": "dot", "size": 10, "title": "552923391720947713\u003cbr\u003e@MarkWalder2 @RezaMoradi No, if it\u003cbr\u003ewas like that, then Kuran\u003cbr\u003ewouldn\u0027t say \"If you save\u003cbr\u003esomeone, it is like you\u003cbr\u003esave all people\"  and\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:23:04 +0000 2015"}, {"group": 310, "id": 18, "label": "552923538924261376", "shape": "dot", "size": 10, "title": "552923538924261376\u003cbr\u003e@MarkWalder2 @RezaMoradi and \"If you\u003cbr\u003ekill someone, it is like\u003cbr\u003eyou kill everyone\"\u003cbr\u003eWed Jan 07 20:23:39 +0000 2015"}, {"group": 310, "id": 19, "label": "552924456692490240", "shape": "dot", "size": 10, "title": "552924456692490240\u003cbr\u003e@MarkWalder2 @RezaMoradi What you claim\u003cbr\u003eis what terrorists think.But killing\u003cbr\u003eis not acceptable. All Muslim\u003cbr\u003epeople have to be polite\u003cbr\u003eand kind\u003cbr\u003eWed Jan 07 20:27:17 +0000 2015"}, {"group": 310, "id": 20, "label": "552925119694512128", "shape": "dot", "size": 10, "title": "552925119694512128\u003cbr\u003e@MarkWalder2 @RezaMoradi If someone kills\u003cbr\u003epeople rather than teaching them\u003cbr\u003eIslam,thenthey are notMuslim and they\u003cbr\u003ehave never understood Kuran\u003cbr\u003eWed Jan 07 20:29:56 +0000 2015"}, {"group": 310, "id": 28, "label": "553136227441201152", "shape": "dot", "size": 10, "title": "553136227441201152\u003cbr\u003e@MarkWalder2 @RezaMoradi I am not\u003cbr\u003ewriting these things to argue\u003cbr\u003ewith you, just I want\u003cbr\u003eto explain that Islam never\u003cbr\u003etells us to cause problem\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:28:48 +0000 2015"}, {"group": 310, "id": 29, "label": "553136581851500544", "shape": "dot", "size": 10, "title": "553136581851500544\u003cbr\u003e@MarkWalder2 @RezaMoradi But people who\u003cbr\u003edon\u0027t understand Kuran and Muhammed\u003cbr\u003etry to do all bad\u003cbr\u003ethings they want to do\u003cbr\u003eand...\u003cbr\u003eThu Jan 08 10:30:12 +0000 2015"}, {"group": 310, "id": 30, "label": "553137170052313088", "shape": "dot", "size": 10, "title": "553137170052313088\u003cbr\u003e@MarkWalder2 @RezaMoradi and they say\u003cbr\u003eKuran and Muhammed say these\u003cbr\u003ethings. That is totally wrong!Muhammed\u003cbr\u003etried to make people live\u003cbr\u003ein peace\u003cbr\u003eThu Jan 08 10:32:32 +0000 2015"}, {"group": 310, "id": 21, "label": "552925145204277248", "shape": "dot", "size": 10, "title": "552925145204277248\u003cbr\u003e@BirVatandasim @RezaMoradi that\u0027s total nonsense,\u003cbr\u003eit is very clear about\u003cbr\u003ewhat it says to do\u003cbr\u003eto non believers!! you can\u0027t\u003cbr\u003echerry pick!\u003cbr\u003eWed Jan 07 20:30:02 +0000 2015"}, {"group": 310, "id": 22, "label": "552925353552146432", "shape": "dot", "size": 10, "title": "552925353552146432\u003cbr\u003e@BirVatandasim @RezaMoradi i refer to\u003cbr\u003emy previous answer, you can\u0027t\u003cbr\u003echerry pick!\u003cbr\u003eWed Jan 07 20:30:51 +0000 2015"}, {"group": 310, "id": 23, "label": "552926419853279232", "shape": "dot", "size": 10, "title": "552926419853279232\u003cbr\u003e@MarkWalder2 @BirVatandasim no use arguing\u003cbr\u003ewith them. They don\u0027t get\u003cbr\u003eit!\u003cbr\u003eWed Jan 07 20:35:06 +0000 2015"}, {"group": 310, "id": 27, "label": "553037340462305280", "shape": "dot", "size": 10, "title": "553037340462305280\u003cbr\u003e@Fahmiasf @RezaMoradi sure, I guess\u003cbr\u003eI can agree with that,\u003cbr\u003espreading offensive pictures out of\u003cbr\u003espite solves nothing.\u003cbr\u003eThu Jan 08 03:55:51 +0000 2015"}, {"group": 310, "id": 31, "label": "553173462358163456", "shape": "dot", "size": 10, "title": "553173462358163456\u003cbr\u003e@BirVatandasim @RezaMoradi Ok simple question,\u003cbr\u003eHave you read and understood\u003cbr\u003ethe Kuran? I have read\u003cbr\u003esome of it and understood,\u003cbr\u003eit is clear!\u003cbr\u003eThu Jan 08 12:56:45 +0000 2015"}, {"group": 310, "id": 35, "label": "553268339854675968", "shape": "dot", "size": 10, "title": "553268339854675968\u003cbr\u003e@BirVatandasim @MarkWalder2 @RezaMoradi I mean\u003cbr\u003elike with #BanuQuraizah or as\u003cbr\u003ein #Khyber\u003cbr\u003eThu Jan 08 19:13:46 +0000 2015"}, {"group": 310, "id": 32, "label": "553174237830463488", "shape": "dot", "size": 10, "title": "553174237830463488\u003cbr\u003e@MarkWalder2 @BirVatandasim yes, I had\u003cbr\u003eto read the nonsense at\u003cbr\u003eschool. I do understand it,\u003cbr\u003eclearly justifies all we are\u003cbr\u003ewitnessing but\u003cbr\u003eThu Jan 08 12:59:50 +0000 2015"}, {"group": 310, "id": 33, "label": "553174480164753409", "shape": "dot", "size": 10, "title": "553174480164753409\u003cbr\u003e@MarkWalder2 @BirVatandasim but this isn\u0027t\u003cbr\u003eabout Religion or a text\u003cbr\u003ebook. We are facing a\u003cbr\u003every reactionary and brutal political\u003cbr\u003emovement ..\u003cbr\u003eThu Jan 08 13:00:48 +0000 2015"}, {"group": 310, "id": 34, "label": "553181990435180544", "shape": "dot", "size": 10, "title": "553181990435180544\u003cbr\u003e@RezaMoradi @BirVatandasim you understand it\u003cbr\u003eas i do @RezaMoradi \u003cbr\u003eI am trying to establish\u003cbr\u003ehow  @BirVatandasim understands the\u003cbr\u003etexts :)\u003cbr\u003eThu Jan 08 13:30:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 5, "to": 15, "weight": 1}, {"from": 8, "to": 24, "weight": 1}, {"from": 8, "to": 25, "weight": 1}, {"from": 8, "to": 26, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 15, "to": 28, "weight": 1}, {"from": 15, "to": 29, "weight": 1}, {"from": 15, "to": 30, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 19, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 30, "to": 35, "weight": 1}, {"from": 31, "to": 32, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 33, "to": 34, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

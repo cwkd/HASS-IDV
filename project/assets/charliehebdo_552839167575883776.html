@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 535, "id": 0, "label": "552839167575883776", "shape": "dot", "size": 10, "title": "552839167575883776\u003cbr\u003eI don\u0027t need Muslims to\u003cbr\u003e\"condemn\" acts of Islamic terror,\u003cbr\u003eI need Muslims to stop\u003cbr\u003ecommitting acts of Islamic terror.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 14:48:23 +0000 2015"}, {"group": 535, "id": 1, "label": "552842308811751424", "shape": "dot", "size": 10, "title": "552842308811751424\u003cbr\u003e@CounterMoonbat @JustEric Or put more\u003cbr\u003eeffort into stopping (helping stop)\u003cbr\u003ethose that do.\u003cbr\u003eWed Jan 07 15:00:52 +0000 2015"}, {"group": 535, "id": 2, "label": "552856672163880960", "shape": "dot", "size": 10, "title": "552856672163880960\u003cbr\u003e@CounterMoonbat @JGRuggiero They\u0027re just following\u003cbr\u003egod\u0027s instructions.\u003cbr\u003eWed Jan 07 15:57:56 +0000 2015"}, {"group": 535, "id": 3, "label": "552863181031632897", "shape": "dot", "size": 10, "title": "552863181031632897\u003cbr\u003e@CounterMoonbat @lbbowyer84 you can\u0027t fix\u003cbr\u003ea problem if you won\u0027t\u003cbr\u003erecognize it as a problem.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:23:48 +0000 2015"}, {"group": 535, "id": 4, "label": "552953745026195458", "shape": "dot", "size": 10, "title": "552953745026195458\u003cbr\u003e@CounterMoonbat @MsContrarianSci The condemnation of\u003cbr\u003ehabitual, professional, ideological liars cannot\u003cbr\u003ebe relevant\u003cbr\u003eWed Jan 07 22:23:40 +0000 2015"}, {"group": 535, "id": 5, "label": "553032188833185792", "shape": "dot", "size": 10, "title": "553032188833185792\u003cbr\u003e@CounterMoonbat @PolitiBunny FACT!\u003cbr\u003eThu Jan 08 03:35:23 +0000 2015"}, {"group": 535, "id": 6, "label": "553033430339162112", "shape": "dot", "size": 10, "title": "553033430339162112\u003cbr\u003e@CounterMoonbat @DinahLord Most Muslims aren\u0027t\u003cbr\u003eterrorists; but most terrorists are\u003cbr\u003eMuslims.\u003cbr\u003eThu Jan 08 03:40:19 +0000 2015"}, {"group": 535, "id": 8, "label": "553422673640816640", "shape": "dot", "size": 10, "title": "553422673640816640\u003cbr\u003e@CounterMoonbat @LilMissPrepper More if those\u003cbr\u003ewho \"condemn\" the attack against\u003cbr\u003efreedom of speech are Iran\u003cbr\u003eand Abbas, as they did.\u003cbr\u003eHypocrites\u003cbr\u003eFri Jan 09 05:27:02 +0000 2015"}, {"group": 535, "id": 9, "label": "553425872267796481", "shape": "dot", "size": 10, "title": "553425872267796481\u003cbr\u003e@CounterMoonbat:Muslims are 100%nonviolent souls the\u003cbr\u003ebelieve in ala and salam,mohamidans\u003cbr\u003eare murders thives ect.And they\u003cbr\u003ebelieve in mohamid\u003cbr\u003eFri Jan 09 05:39:44 +0000 2015"}, {"group": 535, "id": 7, "label": "553033731792207872", "shape": "dot", "size": 10, "title": "553033731792207872\u003cbr\u003e@marymeyers4:  Funny how that\u003cbr\u003eworks.\u003cbr\u003eThu Jan 08 03:41:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

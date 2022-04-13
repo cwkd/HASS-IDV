@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1546, "id": 0, "label": "553585530504749057", "shape": "dot", "size": 10, "title": "553585530504749057\u003cbr\u003eBREAKING: Four explosions heard at\u003cbr\u003esite of hostage-taking in eastern\u003cbr\u003eParis: Reuters reporter  http://t.co/91WTMcaRDz\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:14:10 +0000 2015"}, {"group": 1546, "id": 1, "label": "553585907669155840", "shape": "dot", "size": 10, "title": "553585907669155840\u003cbr\u003e\u201c@Reuters: BREAKING: Four explosions heard\u003cbr\u003eat site of hostage-taking in\u003cbr\u003eeastern Paris: Reuters reporter \u003cbr\u003ehttp://t.co/e8etioFq2Z\u201d\u003cbr\u003eFri Jan 09 16:15:40 +0000 2015"}, {"group": 1546, "id": 2, "label": "553586127136120832", "shape": "dot", "size": 10, "title": "553586127136120832\u003cbr\u003eD: RT @Reuters: BREAKING: Four\u003cbr\u003eexplosions heard at site of\u003cbr\u003ehostage-taking in eastern Paris: Reuters\u003cbr\u003ereporter http://t.co/uKBdf8cOhI\u003cbr\u003eFri Jan 09 16:16:32 +0000 2015"}, {"group": 1546, "id": 3, "label": "553586136225165312", "shape": "dot", "size": 10, "title": "553586136225165312\u003cbr\u003ePray \u201c@Reuters: BREAKING: Four explosions\u003cbr\u003eheard at site of hostage-taking\u003cbr\u003ein eastern Paris: Reuters reporter\u003cbr\u003e http://t.co/wBV4B7ivk7\u201d\u003cbr\u003eFri Jan 09 16:16:34 +0000 2015"}, {"group": 1546, "id": 4, "label": "553586238473515009", "shape": "dot", "size": 10, "title": "553586238473515009\u003cbr\u003e@Reuters @CiFWatch #remembergoldenbergsdeli #jewishlivesmatter\u003cbr\u003eFri Jan 09 16:16:59 +0000 2015"}, {"group": 1546, "id": 5, "label": "553586263249674240", "shape": "dot", "size": 10, "title": "553586263249674240\u003cbr\u003eRT\u201c@Reuters: BREAKING: Four explosions heard\u003cbr\u003eat site of hostage-taking in\u003cbr\u003eeastern Paris: Reuters reporter \u003cbr\u003ehttp://t.co/4oRcXVSK8Z\u201d\u003cbr\u003eFri Jan 09 16:17:04 +0000 2015"}, {"group": 1546, "id": 6, "label": "553586316953526272", "shape": "dot", "size": 10, "title": "553586316953526272\u003cbr\u003e\u201c@Reuters: BREAKING: Four explosions heard\u003cbr\u003eat site of hostage-taking in\u003cbr\u003eeastern Paris: Reuters reporter \u003cbr\u003ehttp://t.co/3luqlfUI7r\u201d\u003cbr\u003eFri Jan 09 16:17:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

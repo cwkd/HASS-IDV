@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 281, "id": 0, "label": "552821030117711872", "shape": "dot", "size": 10, "title": "552821030117711872\u003cbr\u003eNot in our name \u2013\u003cbr\u003eMuslims respond in revulsion to\u003cbr\u003e#CharlieHebdo shooting.  http://t.co/KFfhprXNFb\u003cbr\u003eWed Jan 07 13:36:19 +0000 2015"}, {"group": 281, "id": 1, "label": "552821200020602882", "shape": "dot", "size": 10, "title": "552821200020602882\u003cbr\u003e@FraserNelson Good. Now let\u0027s hear\u003cbr\u003emillions of Muslims say the\u003cbr\u003esame thing. Here, in Britain.\u003cbr\u003eAnd in France.  Oh,\u003cbr\u003ehang on a min...\u003cbr\u003eWed Jan 07 13:36:59 +0000 2015"}, {"group": 281, "id": 2, "label": "552821262763163648", "shape": "dot", "size": 10, "title": "552821262763163648\u003cbr\u003e@FraserNelson actions speak louder than\u003cbr\u003ewords.\u003cbr\u003eWed Jan 07 13:37:14 +0000 2015"}, {"group": 281, "id": 3, "label": "552821380107206656", "shape": "dot", "size": 10, "title": "552821380107206656\u003cbr\u003e@FraserNelson thank you\u003cbr\u003eWed Jan 07 13:37:42 +0000 2015"}, {"group": 281, "id": 4, "label": "552822289109372930", "shape": "dot", "size": 10, "title": "552822289109372930\u003cbr\u003e@FraserNelson glad you published that\u003cbr\u003ehun. Too often Muslims I\u003cbr\u003eknow get unfairly accused of\u003cbr\u003enot speaking out. They are,\u003cbr\u003ebut voices not heard\u003cbr\u003eWed Jan 07 13:41:19 +0000 2015"}, {"group": 281, "id": 5, "label": "552822397259485185", "shape": "dot", "size": 10, "title": "552822397259485185\u003cbr\u003e@FraserNelson Best thing Muslims can\u003cbr\u003edo is support for liberal\u003cbr\u003evalues by actively proclaiming the\u003cbr\u003eright of Charlie Hebdo to\u003cbr\u003epublish cartoons\u003cbr\u003eWed Jan 07 13:41:45 +0000 2015"}, {"group": 281, "id": 6, "label": "552823273910984704", "shape": "dot", "size": 10, "title": "552823273910984704\u003cbr\u003e@FraserNelson @Busty1956 Absolutely \u0026amp; Loudly\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:45:14 +0000 2015"}, {"group": 281, "id": 7, "label": "552825336308584448", "shape": "dot", "size": 10, "title": "552825336308584448\u003cbr\u003eRT @FraserNelson: Not in our\u003cbr\u003ename \u2013 Muslims respond in\u003cbr\u003erevulsion to #CharlieHebdo shooting. \u003cbr\u003ehttp://t.co/5HUQKvyJfE\u003cbr\u003eWed Jan 07 13:53:25 +0000 2015"}, {"group": 281, "id": 8, "label": "552826708592979969", "shape": "dot", "size": 10, "title": "552826708592979969\u003cbr\u003e@FraserNelson Any word from the\u003cbr\u003eImmans condemning the attack yet?\u003cbr\u003eNo thought not.\u003cbr\u003eWed Jan 07 13:58:53 +0000 2015"}, {"group": 281, "id": 18, "label": "552838840424349697", "shape": "dot", "size": 10, "title": "552838840424349697\u003cbr\u003e@FraserNelson @SayeedaWarsi Condemnation easy, insufficient.\u003cbr\u003eExplanation? Prevention?\u003cbr\u003eWed Jan 07 14:47:05 +0000 2015"}, {"group": 281, "id": 19, "label": "552838927460368384", "shape": "dot", "size": 10, "title": "552838927460368384\u003cbr\u003e@FraserNelson @heather_venter   But\u003cbr\u003ethe leaders of the muslim\u003cbr\u003ecommunity are obvious by their\u003cbr\u003eabsence....... as usual....\u003cbr\u003eWed Jan 07 14:47:26 +0000 2015"}, {"group": 281, "id": 9, "label": "552829451508412417", "shape": "dot", "size": 10, "title": "552829451508412417\u003cbr\u003e.@UrsulineKid This is a stupid\u003cbr\u003ecomment. Muslims do condemn these\u003cbr\u003eattacks. You don\u0027t have to\u003cbr\u003elook hard either. @FraserNelson\u003cbr\u003eWed Jan 07 14:09:46 +0000 2015"}, {"group": 281, "id": 26, "label": "553185163921084416", "shape": "dot", "size": 10, "title": "553185163921084416\u003cbr\u003e@OliGarner1 @FraserNelson No. How is\u003cbr\u003eit okay to mock someones\u003cbr\u003ereligion in the name of\u003cbr\u003efreedom of speech?!Its not acceptable\u003cbr\u003efor any religion\u003cbr\u003eThu Jan 08 13:43:15 +0000 2015"}, {"group": 281, "id": 10, "label": "552829779775598592", "shape": "dot", "size": 10, "title": "552829779775598592\u003cbr\u003e@tomhagen_ @FraserNelson Not seeing or\u003cbr\u003ehearing it, I\u0027m afraid. I\u003cbr\u003edearly wish to. I see\u003cbr\u003eno marchers shouting \u0027not in\u003cbr\u003eour name\u0027, for example.\u003cbr\u003eWed Jan 07 14:11:05 +0000 2015"}, {"group": 281, "id": 16, "label": "552832885825474561", "shape": "dot", "size": 10, "title": "552832885825474561\u003cbr\u003e@tomhagen_ @UrsulineKid @FraserNelson not here\u003cbr\u003ein USA! Our president says\u003cbr\u003eISIL is not Islamic! It\u003cbr\u003eis in their name for\u003cbr\u003ethe Love of God!\u003cbr\u003eWed Jan 07 14:23:25 +0000 2015"}, {"group": 281, "id": 21, "label": "552845083931062273", "shape": "dot", "size": 10, "title": "552845083931062273\u003cbr\u003e@tomhagen_ @UrsulineKid @FraserNelson sadly tom\u003cbr\u003ethe majority don\u0027t seem to\u003cbr\u003ebe rushing to condemn\u003cbr\u003eWed Jan 07 15:11:54 +0000 2015"}, {"group": 281, "id": 11, "label": "552830188229525504", "shape": "dot", "size": 10, "title": "552830188229525504\u003cbr\u003e.@UrsulineKid @FraserNelson Why do you\u003cbr\u003eexpect them to march? Iraq/Gaza\u003cbr\u003eetc is political activism for\u003cbr\u003ethe British govts attn. No\u003cbr\u003eneed here.\u003cbr\u003eWed Jan 07 14:12:42 +0000 2015"}, {"group": 281, "id": 13, "label": "552830678023565312", "shape": "dot", "size": 10, "title": "552830678023565312\u003cbr\u003e@UrsulineKid @FraserNelson eg Peshawar Attack.\u003cbr\u003eBritish Muslims condemned that. No\u003cbr\u003eprotest reqd; British govt had\u003cbr\u003eno influence or involvement\u003cbr\u003eWed Jan 07 14:14:39 +0000 2015"}, {"group": 281, "id": 12, "label": "552830528693747712", "shape": "dot", "size": 10, "title": "552830528693747712\u003cbr\u003e@tomhagen_ @FraserNelson just to replicate\u003cbr\u003ewhat the lefties in Britain\u003cbr\u003edid in defence of Islamic\u003cbr\u003ecommunities in Iraq, say? Would\u003cbr\u003ebe a start.\u003cbr\u003eWed Jan 07 14:14:03 +0000 2015"}, {"group": 281, "id": 15, "label": "552831156002254848", "shape": "dot", "size": 10, "title": "552831156002254848\u003cbr\u003e@UrsulineKid @FraserNelson What are you\u003cbr\u003ereferring to? I already addressed\u003cbr\u003ethe point of the Iraq/Gaza\u003cbr\u003eprotests which Muslims took part\u003cbr\u003ein.\u003cbr\u003eWed Jan 07 14:16:33 +0000 2015"}, {"group": 281, "id": 14, "label": "552831062121136129", "shape": "dot", "size": 10, "title": "552831062121136129\u003cbr\u003e@tomhagen_ @FraserNelson Indeed, and rightly\u003cbr\u003eso. But it was on\u003cbr\u003e\u0027their\u0027 soil. Let\u0027s see how\u003cbr\u003ethey react in France this\u003cbr\u003eevening.\u003cbr\u003eWed Jan 07 14:16:10 +0000 2015"}, {"group": 281, "id": 17, "label": "552833440727695362", "shape": "dot", "size": 10, "title": "552833440727695362\u003cbr\u003e@patfo49 @UrsulineKid @FraserNelson If i\u003cbr\u003eset up Christian State, it\u003cbr\u003ewon\u0027t, by default, make my\u003cbr\u003eactions consistent with Christian beliefs.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:25:38 +0000 2015"}, {"group": 281, "id": 20, "label": "552841771630481408", "shape": "dot", "size": 10, "title": "552841771630481408\u003cbr\u003eYES @BaronessDeech , BECAUSE ISLAMISTS\u003cbr\u003eONLY DO WHAT NORMAL MUSLIMS\u003cbr\u003eTELL THEM TO DO, RIGHT?...\u003cbr\u003e @FraserNelson @SayeedaWarsi\u003cbr\u003eWed Jan 07 14:58:44 +0000 2015"}, {"group": 281, "id": 22, "label": "552845469702172672", "shape": "dot", "size": 10, "title": "552845469702172672\u003cbr\u003e.@ThehatmThehat @UrsulineKid @FraserNelson Are you\u003cbr\u003eexpecting a joint press release\u003cbr\u003efrom 1.6bn people?\u003cbr\u003eWed Jan 07 15:13:26 +0000 2015"}, {"group": 281, "id": 23, "label": "552845679958425600", "shape": "dot", "size": 10, "title": "552845679958425600\u003cbr\u003e@ThehatmThehat twat! @tomhagen_ @UrsulineKid @FraserNelson\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:14:16 +0000 2015"}, {"group": 281, "id": 24, "label": "552845889438773249", "shape": "dot", "size": 10, "title": "552845889438773249\u003cbr\u003e@Rolo_Tamasi Right in there with\u003cbr\u003ea right hook. Lmao. @ThehatmThehat\u003cbr\u003e@UrsulineKid @FraserNelson\u003cbr\u003eWed Jan 07 15:15:06 +0000 2015"}, {"group": 281, "id": 25, "label": "552846376212914176", "shape": "dot", "size": 10, "title": "552846376212914176\u003cbr\u003e@tomhagen_ you toss em up\u003cbr\u003eand I\u0027ll just brainlessly splat\u003cbr\u003ethem!  @ThehatmThehat @UrsulineKid @FraserNelson\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:17:02 +0000 2015"}, {"group": 281, "id": 27, "label": "553190357278937089", "shape": "dot", "size": 10, "title": "553190357278937089\u003cbr\u003e.@LancashireNyla @FraserNelson No, it is\u003cbr\u003eacceptable to mock all religions.\u003cbr\u003eIn the West, no one\u003cbr\u003eis forced to practice any\u003cbr\u003ereligion.\u003cbr\u003eThu Jan 08 14:03:53 +0000 2015"}, {"group": 281, "id": 28, "label": "553191339752689664", "shape": "dot", "size": 10, "title": "553191339752689664\u003cbr\u003e@OliGarner1 @FraserNelson Your second point\u003cbr\u003edoesn\u0027t relate to you openly\u003cbr\u003esuggesting how it is \u0027acceptable\u0027\u003cbr\u003eto mock all religions\u003cbr\u003eThu Jan 08 14:07:47 +0000 2015"}, {"group": 281, "id": 29, "label": "553191723896422400", "shape": "dot", "size": 10, "title": "553191723896422400\u003cbr\u003e@OliGarner1 @FraserNelson Is you want\u003cbr\u003eto talk about the West,\u003cbr\u003ewe\u0027re unable to mock ppls\u003cbr\u003eskin colour openly as its\u003cbr\u003eclassed offensive\u003cbr\u003eThu Jan 08 14:09:19 +0000 2015"}, {"group": 281, "id": 30, "label": "553192043678535681", "shape": "dot", "size": 10, "title": "553192043678535681\u003cbr\u003e@OliGarner1 @FraserNelson So we can\u0027t\u003cbr\u003ecause offence to ones skin\u003cbr\u003ebut can on their personal\u003cbr\u003ebeliefs in the name of\u003cbr\u003efree speech.  Hell no\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:10:35 +0000 2015"}, {"group": 281, "id": 31, "label": "553194160896081921", "shape": "dot", "size": 10, "title": "553194160896081921\u003cbr\u003e@LancashireNyla @OliGarner1 @FraserNelson Unlike religion,\u003cbr\u003eyou are somewhat forced to\u003cbr\u003epractice your own skin colour\u003cbr\u003e. . .\u003cbr\u003eThu Jan 08 14:19:00 +0000 2015"}, {"group": 281, "id": 32, "label": "553194736430100480", "shape": "dot", "size": 10, "title": "553194736430100480\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson Analogy is\u003cbr\u003estill the same. You wouldn\u0027t\u003cbr\u003edare to go up to\u003cbr\u003ea dark skinned person and\u003cbr\u003ecall him..\u003cbr\u003eThu Jan 08 14:21:17 +0000 2015"}, {"group": 281, "id": 33, "label": "553194858371092480", "shape": "dot", "size": 10, "title": "553194858371092480\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson black n****r\u003cbr\u003eso and so and proclaim\u003cbr\u003eits your right of speech\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:21:46 +0000 2015"}, {"group": 281, "id": 34, "label": "553195037316902912", "shape": "dot", "size": 10, "title": "553195037316902912\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson But can\u003cbr\u003emock their personal belief via\u003cbr\u003edifferent means\u003cbr\u003eThu Jan 08 14:22:29 +0000 2015"}, {"group": 281, "id": 35, "label": "553195706748764161", "shape": "dot", "size": 10, "title": "553195706748764161\u003cbr\u003e@LancashireNyla @OliGarner1 @FraserNelson It\u0027s perfectly\u003cbr\u003eacceptable to mock voluntarily accepted\u003cbr\u003eextremist ideology. Essential, actually.\u003cbr\u003eThu Jan 08 14:25:09 +0000 2015"}, {"group": 281, "id": 36, "label": "553195916518502400", "shape": "dot", "size": 10, "title": "553195916518502400\u003cbr\u003e@LancashireNyla @OliGarner1 @FraserNelson Mocking the\u003cbr\u003ecolour of someone\u0027s skin is\u003cbr\u003ean affront to arbitrary genetic\u003cbr\u003edifferences.\u003cbr\u003eThu Jan 08 14:25:59 +0000 2015"}, {"group": 281, "id": 37, "label": "553196358610735104", "shape": "dot", "size": 10, "title": "553196358610735104\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson You\u0027v jus\u003cbr\u003ecreated tht ideology and directing\u003cbr\u003eit 2 Islam as whole\u003cbr\u003eforgetting th point in discusion\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:27:44 +0000 2015"}, {"group": 281, "id": 38, "label": "553196579172392960", "shape": "dot", "size": 10, "title": "553196579172392960\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson Mockery of\u003cbr\u003eany ones religion is NOT\u003cbr\u003eacceprable. Be it Islam, Christianity\u003cbr\u003eetc etc\u003cbr\u003eThu Jan 08 14:28:37 +0000 2015"}, {"group": 281, "id": 39, "label": "553197444268584961", "shape": "dot", "size": 10, "title": "553197444268584961\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson Its still\u003cbr\u003ea form of freedom of\u003cbr\u003espeech. Freedom of speech as\u003cbr\u003ea whole shouldn\u0027t be subjected\u003cbr\u003ethen\u003cbr\u003eThu Jan 08 14:32:03 +0000 2015"}, {"group": 281, "id": 40, "label": "553197739279142912", "shape": "dot", "size": 10, "title": "553197739279142912\u003cbr\u003e@JamesMcLachlan7 @OliGarner1 @FraserNelson Concessions shouldn\u0027t\u003cbr\u003ebe made if the world\u003cbr\u003ewants to adopt a wider\u003cbr\u003esense of open and free\u003cbr\u003espeech\u003cbr\u003eThu Jan 08 14:33:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 9, "weight": 1}, {"from": 5, "to": 26, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 16, "weight": 1}, {"from": 9, "to": 21, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 27, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 31, "to": 32, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 31, "to": 34, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 34, "to": 36, "weight": 1}, {"from": 35, "to": 37, "weight": 1}, {"from": 35, "to": 38, "weight": 1}, {"from": 36, "to": 39, "weight": 1}, {"from": 36, "to": 40, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

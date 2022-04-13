@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 913, "id": 0, "label": "553149253363576832", "shape": "dot", "size": 10, "title": "553149253363576832\u003cbr\u003eThe pen is mightier than\u003cbr\u003ethe sword. Cartoonists respond to\u003cbr\u003eterror in France #CharlieHebdo #JeSuisCharlie\u003cbr\u003e#auspol http://t.co/ZBwwQOGElr\u003cbr\u003eThu Jan 08 11:20:33 +0000 2015"}, {"group": 913, "id": 1, "label": "553150356906319872", "shape": "dot", "size": 10, "title": "553150356906319872\u003cbr\u003e@Feeney4Batman Write right?\u003cbr\u003eThu Jan 08 11:24:56 +0000 2015"}, {"group": 913, "id": 2, "label": "553152053472919552", "shape": "dot", "size": 10, "title": "553152053472919552\u003cbr\u003e@Feeney4Batman #LibertadDeExpresion\u003cbr\u003eThu Jan 08 11:31:41 +0000 2015"}, {"group": 913, "id": 3, "label": "553159388311990273", "shape": "dot", "size": 10, "title": "553159388311990273\u003cbr\u003e\u201c@Feeney4Batman: The pen is mightier\u003cbr\u003e- #CharlieHebdo #JeSuisCharlie http://t.co/GAtHVJEW2T\u201d\nOr #SNL...?\nhttp://t.co/WVyLq5zmeL\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:00:50 +0000 2015"}, {"group": 913, "id": 4, "label": "553165184060358657", "shape": "dot", "size": 10, "title": "553165184060358657\u003cbr\u003eS\u00e5 fine tegninger \u201c@Feeney4Batman: Cartoonists\u003cbr\u003erespond to terror in France\u003cbr\u003e#CharlieHebdo #JeSuisCharlie #auspol http://t.co/BgjrpgObWm\u201d\u003cbr\u003eThu Jan 08 12:23:51 +0000 2015"}, {"group": 913, "id": 5, "label": "553327576408551424", "shape": "dot", "size": 10, "title": "553327576408551424\u003cbr\u003e@Feeney4Batman very, very good. Particularly\u003cbr\u003ethe last one. Excellent group\u003cbr\u003e\u003cbr\u003eThu Jan 08 23:09:09 +0000 2015"}, {"group": 913, "id": 6, "label": "553471870025359361", "shape": "dot", "size": 10, "title": "553471870025359361\u003cbr\u003e@Feeney4Batman\u003cbr\u003eFri Jan 09 08:42:31 +0000 2015"}, {"group": 913, "id": 7, "label": "553472509954502656", "shape": "dot", "size": 10, "title": "553472509954502656\u003cbr\u003e@Feeney4Batman Thanks for sharing! You\u0027re\u003cbr\u003enow featured on http://t.co/EKDdHN6UbV\u003cbr\u003eFri Jan 09 08:45:04 +0000 2015"}, {"group": 913, "id": 8, "label": "553474468610187265", "shape": "dot", "size": 10, "title": "553474468610187265\u003cbr\u003e@Feeney4Batman @ColorMeRed Indeed but sadly\u003cbr\u003eparts of Australian left have\u003cbr\u003eslipped into equivalence, apologist nonsense\u003cbr\u003eand \u0027ignore it\u0027 mode\u003cbr\u003eFri Jan 09 08:52:51 +0000 2015"}, {"group": 913, "id": 9, "label": "553833094202281984", "shape": "dot", "size": 10, "title": "553833094202281984\u003cbr\u003e@Feeney4Batman @BosseStine\u003cbr\u003eSat Jan 10 08:37:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

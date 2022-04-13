@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1550, "id": 0, "label": "553585862987235328", "shape": "dot", "size": 10, "title": "553585862987235328\u003cbr\u003eParis terror attacks: gunfire and\u003cbr\u003eexplosions at Dammartin-en-Goele \u2013 live\u003cbr\u003eupdates http://t.co/MUE0zN8HCA http://t.co/tvK4fmbfyk\u003cbr\u003eFri Jan 09 16:15:29 +0000 2015"}, {"group": 1550, "id": 1, "label": "553586028728967169", "shape": "dot", "size": 10, "title": "553586028728967169\u003cbr\u003e@guardian\u003cbr\u003eFri Jan 09 16:16:09 +0000 2015"}, {"group": 1550, "id": 2, "label": "553586034244870144", "shape": "dot", "size": 10, "title": "553586034244870144\u003cbr\u003e@guardian Sum game!\u003cbr\u003eFri Jan 09 16:16:10 +0000 2015"}, {"group": 1550, "id": 3, "label": "553586175810613248", "shape": "dot", "size": 10, "title": "553586175810613248\u003cbr\u003e\u201c@guardian: Paris terror attacks: gunfire\u003cbr\u003eand explosions at Dammartin-en-Goele \u2013\u003cbr\u003elive updates http://t.co/FI1qQDEEZO http://t.co/h9opRejoe6\u201d\u003cbr\u003eFri Jan 09 16:16:44 +0000 2015"}, {"group": 1550, "id": 4, "label": "553586408196431873", "shape": "dot", "size": 10, "title": "553586408196431873\u003cbr\u003e@guardian http://t.co/7trnrahVHN\u003cbr\u003eFri Jan 09 16:17:39 +0000 2015"}, {"group": 1550, "id": 5, "label": "553586874691092481", "shape": "dot", "size": 10, "title": "553586874691092481\u003cbr\u003e@guardian migos hay que poner\u003cbr\u003emano dura con los terroristas\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:19:30 +0000 2015"}, {"group": 1550, "id": 6, "label": "553587306280407042", "shape": "dot", "size": 10, "title": "553587306280407042\u003cbr\u003e@guardian @ColorMeRed Watching this unfold\u003cbr\u003eon TV is surreal!!\u003cbr\u003eFri Jan 09 16:21:13 +0000 2015"}, {"group": 1550, "id": 7, "label": "553588389287436288", "shape": "dot", "size": 10, "title": "553588389287436288\u003cbr\u003e\u201c@guardian: Paris terror attacks: gunfire\u003cbr\u003eand explosions at Dammartin-en-Goele \u2013\u003cbr\u003elive updates http://t.co/9ig4rUM39u http://t.co/R1Z1ck0f4Z\u201d\u003cbr\u003eFri Jan 09 16:25:31 +0000 2015"}, {"group": 1550, "id": 8, "label": "553590426913869825", "shape": "dot", "size": 10, "title": "553590426913869825\u003cbr\u003e@guardian \nBoth terrorists were been\u003cbr\u003eshot dead... Is what I\u003cbr\u003ehad heard..\u003cbr\u003eFri Jan 09 16:33:37 +0000 2015"}, {"group": 1550, "id": 9, "label": "553862711562338304", "shape": "dot", "size": 10, "title": "553862711562338304\u003cbr\u003eRT @guardian Paris terror attacks:\u003cbr\u003egunfire and explosions at Dammartin-en-Goele\u003cbr\u003e\u2013 live updates http://t.co/NDDcMk7Jc0 http://t.co/MLCTjV7keN\u003cbr\u003e\u003cbr\u003eSat Jan 10 10:35:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

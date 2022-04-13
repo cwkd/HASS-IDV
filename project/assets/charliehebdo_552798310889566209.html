@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 58, "id": 0, "label": "552798310889566209", "shape": "dot", "size": 10, "title": "552798310889566209\u003cbr\u003eI don\u0027t support the cartoons\u003cbr\u003eor language published by publishers\u003cbr\u003eBUT #CharlieHebdo attack is indeed\u003cbr\u003e\"sickening\". 11 dead in #terrorattack\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:06:02 +0000 2015"}, {"group": 58, "id": 1, "label": "552799259603783680", "shape": "dot", "size": 10, "title": "552799259603783680\u003cbr\u003e@SukhSandhu so you are saying,\u003cbr\u003eI dont support people\u0027s free\u003cbr\u003espeech or opinion... but?\u003cbr\u003eWed Jan 07 12:09:48 +0000 2015"}, {"group": 58, "id": 10, "label": "552801576264667136", "shape": "dot", "size": 10, "title": "552801576264667136\u003cbr\u003e@SukhSandhu freaking \"BUT\"!\u003cbr\u003eWed Jan 07 12:19:00 +0000 2015"}, {"group": 58, "id": 2, "label": "552799976976158720", "shape": "dot", "size": 10, "title": "552799976976158720\u003cbr\u003e@R3VOLUTION_2012 @SukhSandhu He\u0027s saying religion\u003cbr\u003eis above criticism \u0026amp; satire\u003cbr\u003e\u0026amp; dissenting opinions should be\u003cbr\u003ecensored, just not by guns.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:12:39 +0000 2015"}, {"group": 58, "id": 4, "label": "552800598618152960", "shape": "dot", "size": 10, "title": "552800598618152960\u003cbr\u003e@R3VOLUTION_2012 I\u0027m against cartoons of\u003cbr\u003ethose kinds which can be\u003cbr\u003e\u0027misinterpreted\u0027 or cause communal tensions\u003cbr\u003ebut gun is never a\u003cbr\u003esolution!\u003cbr\u003eWed Jan 07 12:15:07 +0000 2015"}, {"group": 58, "id": 11, "label": "552801578676015105", "shape": "dot", "size": 10, "title": "552801578676015105\u003cbr\u003e@R3VOLUTION_2012 I wholeheartedly condemn this\u003cbr\u003eor similar attacks anywhere. Humanity\u003cbr\u003eis above any religion. Don\u0027t\u003cbr\u003emisinterpret my tweet.\u003cbr\u003eWed Jan 07 12:19:01 +0000 2015"}, {"group": 58, "id": 3, "label": "552800592687792129", "shape": "dot", "size": 10, "title": "552800592687792129\u003cbr\u003e@AloysiusAslan @SukhSandhu sounds about right.\u003cbr\u003eDont talk about the religion\u003cbr\u003eof peace or else\u003cbr\u003eWed Jan 07 12:15:06 +0000 2015"}, {"group": 58, "id": 5, "label": "552800838737866752", "shape": "dot", "size": 10, "title": "552800838737866752\u003cbr\u003e@R3VOLUTION_2012 @SukhSandhu or else it\u003cbr\u003ewill become the religion of\u003cbr\u003epieces \u0026amp; make you pay!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:16:05 +0000 2015"}, {"group": 58, "id": 6, "label": "552801063963987968", "shape": "dot", "size": 10, "title": "552801063963987968\u003cbr\u003e@SukhSandhu you cant say what\u003cbr\u003eis misinterpreted by others if\u003cbr\u003eyou dont jnow thier feelings\u003cbr\u003eor belief.Those who cower for\u003cbr\u003efreedom deserve none\u003cbr\u003eWed Jan 07 12:16:58 +0000 2015"}, {"group": 58, "id": 8, "label": "552801241852428288", "shape": "dot", "size": 10, "title": "552801241852428288\u003cbr\u003e@SukhSandhu @R3VOLUTION_2012 I don\u0027t see\u003cbr\u003ecartoons of Jesus or Buddha\u003cbr\u003egetting \"misinterpreted\" \u0026amp; lead to\u003cbr\u003eoutbreak of violence? NO EXCUSES\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:17:41 +0000 2015"}, {"group": 58, "id": 9, "label": "552801443640791040", "shape": "dot", "size": 10, "title": "552801443640791040\u003cbr\u003e@SukhSandhu also, if someone threatens\u003cbr\u003eme or my family, my\u003cbr\u003egun is my option. #2A\u003cbr\u003efor the win!\u003cbr\u003eWed Jan 07 12:18:29 +0000 2015"}, {"group": 58, "id": 7, "label": "552801162635010048", "shape": "dot", "size": 10, "title": "552801162635010048\u003cbr\u003e@AloysiusAslan @SukhSandhu haha. I will\u003cbr\u003ehave to use that one!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:17:22 +0000 2015"}, {"group": 58, "id": 12, "label": "552801843139842048", "shape": "dot", "size": 10, "title": "552801843139842048\u003cbr\u003e@AloysiusAslan @SukhSandhu its because radical\u003cbr\u003eIslamic extremists dont want ppl\u003cbr\u003eto find out the truth\u003cbr\u003eof how THEY interpret the\u003cbr\u003eKoran\u003cbr\u003eWed Jan 07 12:20:04 +0000 2015"}, {"group": 58, "id": 13, "label": "552802034207178752", "shape": "dot", "size": 10, "title": "552802034207178752\u003cbr\u003e@SukhSandhu I didnt, you said\u003cbr\u003edont print cartoons like this\u003cbr\u003eso people dont get offended.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:20:50 +0000 2015"}, {"group": 58, "id": 14, "label": "552802114393477122", "shape": "dot", "size": 10, "title": "552802114393477122\u003cbr\u003e@R3VOLUTION_2012 if you are so\u003cbr\u003econcerned about freedom of speech,\u003cbr\u003eI also have the right\u003cbr\u003eto express my views \u0026amp;\u003cbr\u003eI don\u0027t like such cartoons!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:21:09 +0000 2015"}, {"group": 58, "id": 15, "label": "552802401661366272", "shape": "dot", "size": 10, "title": "552802401661366272\u003cbr\u003e@R3VOLUTION_2012 @SukhSandhu Yeah. And maybe\u003cbr\u003ebecause Jesus was a pacifist\u003cbr\u003ewhile Muhammad was a warlord.\u003cbr\u003eOops I said it...So controversial\u003cbr\u003e\ud83d\ude4a\u003cbr\u003eWed Jan 07 12:22:17 +0000 2015"}, {"group": 58, "id": 16, "label": "552802529764212736", "shape": "dot", "size": 10, "title": "552802529764212736\u003cbr\u003e@AloysiusAslan @SukhSandhu oh no, now\u003cbr\u003eyour in trouble.  ;\u003cbr\u003e(\u003cbr\u003eWed Jan 07 12:22:48 +0000 2015"}, {"group": 58, "id": 17, "label": "552803021759848448", "shape": "dot", "size": 10, "title": "552803021759848448\u003cbr\u003e@R3VOLUTION_2012 @AloysiusAslan Will you two\u003cbr\u003eplease don\u0027t tag me in\u003cbr\u003ethis discussion. I respect all\u003cbr\u003ereligions \u0026amp; people!\u003cbr\u003eWed Jan 07 12:24:45 +0000 2015"}, {"group": 58, "id": 18, "label": "552804113604288513", "shape": "dot", "size": 10, "title": "552804113604288513\u003cbr\u003e@SukhSandhu @R3VOLUTION_2012 Me too. But\u003cbr\u003eI don\u0027t let political correctness\u003cbr\u003eget in the way. Bad\u003cbr\u003eideas should be criticised.\u003cbr\u003eWed Jan 07 12:29:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 1, "to": 11, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

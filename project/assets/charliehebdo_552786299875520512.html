@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 4, "id": 0, "label": "552786299875520512", "shape": "dot", "size": 10, "title": "552786299875520512\u003cbr\u003eIf your faith isn\u0027t strong\u003cbr\u003eenough to cope with satirical\u003cbr\u003epoke, it oughtn\u0027t be strong\u003cbr\u003eenough to induce you to\u003cbr\u003ekill. Barbaric #CharlieHebdo\u003cbr\u003eWed Jan 07 11:18:18 +0000 2015"}, {"group": 4, "id": 1, "label": "552787601653239808", "shape": "dot", "size": 10, "title": "552787601653239808\u003cbr\u003e@MaxWindCowie @CintaArsenal please do not\u003cbr\u003eblame Islamists just yet. It\u003cbr\u003ecould well be the act\u003cbr\u003eof extreme-right fanatics you know...\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:23:29 +0000 2015"}, {"group": 4, "id": 2, "label": "552787827608793088", "shape": "dot", "size": 10, "title": "552787827608793088\u003cbr\u003e@MaxWindCowie You seem to know\u003cbr\u003ewho did it\u003cbr\u003eWed Jan 07 11:24:23 +0000 2015"}, {"group": 4, "id": 3, "label": "552788009381560321", "shape": "dot", "size": 10, "title": "552788009381560321\u003cbr\u003e@MaxWindCowie Questions will surely be\u003cbr\u003easked as to why there\u003cbr\u003ewas no armed guards outside\u003cbr\u003ethe offices #CharlieHebdo\u003cbr\u003eWed Jan 07 11:25:06 +0000 2015"}, {"group": 4, "id": 4, "label": "552788936805056512", "shape": "dot", "size": 10, "title": "552788936805056512\u003cbr\u003e@MaxWindCowie @jessicaelgot and there you\u003cbr\u003ego with the link to\u003cbr\u003ea particular religion. Like clockwork!\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:28:47 +0000 2015"}, {"group": 4, "id": 5, "label": "552790456770527232", "shape": "dot", "size": 10, "title": "552790456770527232\u003cbr\u003eRT @MaxWindCowie: If your faith\u003cbr\u003eisn\u2019t strong enough to cope\u003cbr\u003ewith satirical poke, it oughtn\u2019t\u003cbr\u003ebe strong enough to induce\u003cbr\u003eyou to kill.Barbaric\u003cbr\u003eWed Jan 07 11:34:49 +0000 2015"}, {"group": 4, "id": 6, "label": "552797545005858816", "shape": "dot", "size": 10, "title": "552797545005858816\u003cbr\u003e@MaxWindCowie and definitely not strong\u003cbr\u003eenough to make you believe\u003cbr\u003ein it.\u003cbr\u003eWed Jan 07 12:02:59 +0000 2015"}, {"group": 4, "id": 8, "label": "552808611731488769", "shape": "dot", "size": 10, "title": "552808611731488769\u003cbr\u003e@MaxWindCowie @peterkwint Do you feel\u003cbr\u003ethe same way about the\u003cbr\u003ethings we have done over\u003cbr\u003ethere?\u003cbr\u003eWed Jan 07 12:46:58 +0000 2015"}, {"group": 4, "id": 9, "label": "552824154110439424", "shape": "dot", "size": 10, "title": "552824154110439424\u003cbr\u003e@MaxWindCowie @EricWRandolph What is it\u003cbr\u003ethat\u0027s strong enough to induce\u003cbr\u003eUS/UK/Israeli troops to slaughter thousands?\u003cbr\u003eScepticism?\u003cbr\u003eWed Jan 07 13:48:43 +0000 2015"}, {"group": 4, "id": 10, "label": "552824499507167232", "shape": "dot", "size": 10, "title": "552824499507167232\u003cbr\u003e@katiazev @MaxWindCowie Of course he\u003cbr\u003eknows. His faith is that\u003cbr\u003estrong!\u003cbr\u003eWed Jan 07 13:50:06 +0000 2015"}, {"group": 4, "id": 7, "label": "552803582018191360", "shape": "dot", "size": 10, "title": "552803582018191360\u003cbr\u003e@Esssie31 @MaxWindCowie That is, unless\u003cbr\u003ea tenet of that faith\u003cbr\u003eis to kill those who\u003cbr\u003epoke fun at it\u003cbr\u003eWed Jan 07 12:26:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 5, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 75, "id": 0, "label": "552802011733716992", "shape": "dot", "size": 10, "title": "552802011733716992\u003cbr\u003eThe 2011 issue of Charlie\u003cbr\u003eHebdo, whose cover featured Mohammed.\u003cbr\u003ehttp://t.co/eSflYdFBRH\u003cbr\u003eWed Jan 07 12:20:44 +0000 2015"}, {"group": 75, "id": 1, "label": "552802685154758656", "shape": "dot", "size": 10, "title": "552802685154758656\u003cbr\u003e@Rajyasree Depicted not featured @BDUTT\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:23:25 +0000 2015"}, {"group": 75, "id": 2, "label": "552803334722039808", "shape": "dot", "size": 10, "title": "552803334722039808\u003cbr\u003e@Rajyasree @BDUTT This is price\u003cbr\u003ethe press paid for freedom\u003cbr\u003eof speech. This is time\u003cbr\u003eworld must come together destroy\u003cbr\u003ethe terrorist and supp\u003cbr\u003eWed Jan 07 12:26:00 +0000 2015"}, {"group": 75, "id": 3, "label": "552803368494587904", "shape": "dot", "size": 10, "title": "552803368494587904\u003cbr\u003e@Rajyasree @BDUTT Madam are you\u003cbr\u003ejustifying the attack? ShamfUl\u003cbr\u003eWed Jan 07 12:26:08 +0000 2015"}, {"group": 75, "id": 4, "label": "552803702566711296", "shape": "dot", "size": 10, "title": "552803702566711296\u003cbr\u003e\"@Rajyasree: The 2011 issue of\u003cbr\u003eCharlie Hebdo, whose cover featured\u003cbr\u003eMohammed. http://t.co/bZT2rjcx4T\" @re_ve_ng_er @ensine @iYashwant\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:27:27 +0000 2015"}, {"group": 75, "id": 5, "label": "552805645498322944", "shape": "dot", "size": 10, "title": "552805645498322944\u003cbr\u003e@Rajyasree @BDUTT what does this\u003cbr\u003emean? Don\u0027t understand french.\u003cbr\u003eWed Jan 07 12:35:11 +0000 2015"}, {"group": 75, "id": 6, "label": "552805705804038144", "shape": "dot", "size": 10, "title": "552805705804038144\u003cbr\u003e.@Rajyasree You @BDUTT re tweeted\u003cbr\u003ethat? What is the message\u003cbr\u003eyou want to give?\u003cbr\u003eWed Jan 07 12:35:25 +0000 2015"}, {"group": 75, "id": 8, "label": "552806364826042368", "shape": "dot", "size": 10, "title": "552806364826042368\u003cbr\u003e@rajyasree @bdutt \u092f\u0939\u093e\u0901 \u0915\u0947 \u0938\u0947\u0915\u094d\u092f\u0941\u0932\u0930\u003cbr\u003e\u0938\u0942\u0905\u0930 \u0924\u094b \u0915\u0939\u0924\u0947 \u0939\u0948\u0902 \u0906\u0924\u0902\u0915\u0935\u093e\u0926\u093f\u092f\u094b\u0902\u003cbr\u003e\u0915\u093e \u0915\u094b\u0908 \u0927\u0930\u094d\u092e \u0928\u0939\u0940 \u0939\u094b\u0924\u093e\u0964\u003cbr\u003e\u092b\u093f\u0930 \u092e\u0941\u0939\u092e\u094d\u092e\u0926 \u0938\u093e\u0939\u092c \u0915\u0947 \u0915\u093e\u0930\u094d\u091f\u0942\u0928\u003cbr\u003e\u092a\u0930 \u0915\u094d\u092f\u094b\u0902 \u092d\u095c\u0915\u0947\u003cbr\u003eWed Jan 07 12:38:02 +0000 2015"}, {"group": 75, "id": 9, "label": "552807492959232002", "shape": "dot", "size": 10, "title": "552807492959232002\u003cbr\u003e@Rajyasree @BDUTT I fail to\u003cbr\u003ecomprehend if this pic is\u003cbr\u003ereally worth 11 precious lives?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:42:31 +0000 2015"}, {"group": 75, "id": 10, "label": "552808361935515648", "shape": "dot", "size": 10, "title": "552808361935515648\u003cbr\u003e\"100 lashes if you don\u0027t\u003cbr\u003edie laughing!\" [Got them firebombed.]\u003cbr\u003eMT @Rajyasree: 2011 #CharlieHebdo cover\u003cbr\u003ewith Mohammed. http://t.co/ky40igQVOK\u003cbr\u003eWed Jan 07 12:45:58 +0000 2015"}, {"group": 75, "id": 7, "label": "552806070763020288", "shape": "dot", "size": 10, "title": "552806070763020288\u003cbr\u003e@ssharma_fbd @Rajyasree @re_ve_ng_er @iYashwant Now\u003cbr\u003eask @aamir_khan \u0026amp; @RajkumarHirani to\u003cbr\u003emake movie based on what\u003cbr\u003eEXACTLY written in kooraan\u003cbr\u003eWed Jan 07 12:36:52 +0000 2015"}, {"group": 75, "id": 11, "label": "552808919991861248", "shape": "dot", "size": 10, "title": "552808919991861248\u003cbr\u003e@pankajkatti @bdutt @rajyasree only fools\u003cbr\u003edo comment on subjects they\u003cbr\u003edont understand!\u003cbr\u003eWed Jan 07 12:48:11 +0000 2015"}, {"group": 75, "id": 12, "label": "552809177202958336", "shape": "dot", "size": 10, "title": "552809177202958336\u003cbr\u003e@dhume Worrisome..any idea why no\u003cbr\u003eone is trending #iwillridewithyou\u003cbr\u003eWed Jan 07 12:49:13 +0000 2015"}, {"group": 75, "id": 13, "label": "552809522670997505", "shape": "dot", "size": 10, "title": "552809522670997505\u003cbr\u003e@dhume @CEMB_forum @Rajyasree RSS goons\u003cbr\u003etoo broke a few window\u003cbr\u003epanes.Look, they\u0027re all the same\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:50:35 +0000 2015"}, {"group": 75, "id": 16, "label": "552809726228963328", "shape": "dot", "size": 10, "title": "552809726228963328\u003cbr\u003e@dhume @Rajyasree That\u0027s the difference\u003cbr\u003ebetween Hindus and ^%\u0026amp;^* (\u003cbr\u003eSorry, can\u0027t mention the name\u003cbr\u003efor the fear of getting\u003cbr\u003ebeheaded #PKdebate\u003cbr\u003eWed Jan 07 12:51:24 +0000 2015"}, {"group": 75, "id": 18, "label": "552809985470525440", "shape": "dot", "size": 10, "title": "552809985470525440\u003cbr\u003e@dhume @CEMB_forum @Rajyasree I don\u0027t\u003cbr\u003eeven think its that funny\u003cbr\u003ebut I\u0027m going to get\u003cbr\u003ea T-Shirt printed with it.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:52:25 +0000 2015"}, {"group": 75, "id": 20, "label": "552810891297972225", "shape": "dot", "size": 10, "title": "552810891297972225\u003cbr\u003e@dhume @SirZaidHamid @Rajyasree u might\u003cbr\u003eget shot at or beheaded\u003cbr\u003efor hurting sentiments of pissfull\u003cbr\u003episslims\u003cbr\u003eWed Jan 07 12:56:01 +0000 2015"}, {"group": 75, "id": 21, "label": "552811649594183680", "shape": "dot", "size": 10, "title": "552811649594183680\u003cbr\u003e@dhume @Rajyasree their current DP\u003cbr\u003e(assuming it was latest cover\u003cbr\u003epage) is more \"offensive\" to\u003cbr\u003eChristians I guess https://t.co/73abavNs2Q\u003cbr\u003eWed Jan 07 12:59:02 +0000 2015"}, {"group": 75, "id": 27, "label": "552816192419667968", "shape": "dot", "size": 10, "title": "552816192419667968\u003cbr\u003e@dhume @Rajyasree be careful Dhume\u003cbr\u003enow. Followers of religion of\u003cbr\u003epeace will be after you\u003cbr\u003enow.\u003cbr\u003eWed Jan 07 13:17:05 +0000 2015"}, {"group": 75, "id": 29, "label": "552881552116285441", "shape": "dot", "size": 10, "title": "552881552116285441\u003cbr\u003e@dhume @Rajyasree This is for\u003cbr\u003ethe Western world to witness\u003cbr\u003ewhat we the #Biafrans are\u003cbr\u003egoing through in Nigeria. Islam\u003cbr\u003eis Evil.Free Biafra now\u003cbr\u003eWed Jan 07 17:36:48 +0000 2015"}, {"group": 75, "id": 15, "label": "552809626756870145", "shape": "dot", "size": 10, "title": "552809626756870145\u003cbr\u003e@UniTraSols @BDUTT @Rajyasree who said\u003cbr\u003ethat I\u0027ve not understood the\u003cbr\u003esubject. Tamne gujarati aavde che?\u003cbr\u003eTu mala marathi made uttar\u003cbr\u003ede kutrya.\u003cbr\u003eWed Jan 07 12:51:00 +0000 2015"}, {"group": 75, "id": 17, "label": "552809873629392896", "shape": "dot", "size": 10, "title": "552809873629392896\u003cbr\u003e@UniTraSols @BDUTT @Rajyasree Hope you\u003cbr\u003eunderstand the languages I\u0027ve written.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:51:59 +0000 2015"}, {"group": 75, "id": 19, "label": "552810368821510144", "shape": "dot", "size": 10, "title": "552810368821510144\u003cbr\u003e@UniTraSols @BDUTT @Rajyasree Challenge if\u003cbr\u003eyou can respond. Now everyone\u003cbr\u003ehas understood who is fool?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:53:57 +0000 2015"}, {"group": 75, "id": 14, "label": "552809601574256640", "shape": "dot", "size": 10, "title": "552809601574256640\u003cbr\u003e@dhume @CEMB_forum @Rajyasree Will Akhilesh\u003cbr\u003eYadav declare #CharlieHebdo tax free\u003cbr\u003ein UP? #ParisShooting\u003cbr\u003eWed Jan 07 12:50:54 +0000 2015"}, {"group": 75, "id": 25, "label": "552813845324898304", "shape": "dot", "size": 10, "title": "552813845324898304\u003cbr\u003e@pankajkatti @bdutt @rajyasree I cant\u003cbr\u003ecomment on that coz i\u003cbr\u003edont understand the language.\u003cbr\u003eWed Jan 07 13:07:46 +0000 2015"}, {"group": 75, "id": 22, "label": "552811774580228096", "shape": "dot", "size": 10, "title": "552811774580228096\u003cbr\u003e@rahulroushan What is common between\u003cbr\u003eJames Bond and Religion of\u003cbr\u003ePeace?\nLicense to kill. #PeaceAttacksinParis. \u003cbr\u003e@dhume @Rajyasree\u003cbr\u003eWed Jan 07 12:59:32 +0000 2015"}, {"group": 75, "id": 23, "label": "552811965840515073", "shape": "dot", "size": 10, "title": "552811965840515073\u003cbr\u003e@rahulroushan Sir, faking news should\u003cbr\u003epublish articles like this against\u003cbr\u003eall religionss\u003cbr\u003eWed Jan 07 13:00:18 +0000 2015"}, {"group": 75, "id": 24, "label": "552812614720319488", "shape": "dot", "size": 10, "title": "552812614720319488\u003cbr\u003e@rahulroushan @dhume It\u0027s cute. Petit\u003cbr\u003eJesus seems a happy sort.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:02:52 +0000 2015"}, {"group": 75, "id": 28, "label": "552822903662600194", "shape": "dot", "size": 10, "title": "552822903662600194\u003cbr\u003e@Rajyasree @rahulroushan @dhume Prophet\u0027s pic\u003cbr\u003eis also cute, especially eyes\u003cbr\u003e\u0026amp; nose. Any idea why\u003cbr\u003ecuteness not factored in by\u003cbr\u003ethe devouts?\u003cbr\u003eWed Jan 07 13:43:45 +0000 2015"}, {"group": 75, "id": 26, "label": "552814287186436096", "shape": "dot", "size": 10, "title": "552814287186436096\u003cbr\u003e@UniTraSols @BDUTT @Rajyasree That\u0027s what\u003cbr\u003eI said. I don\u0027t know\u003cbr\u003efrench. If you know, tell\u003cbr\u003eme what\u0027s there in that\u003cbr\u003enewspaper?\u003cbr\u003eWed Jan 07 13:09:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 10, "to": 16, "weight": 1}, {"from": 10, "to": 18, "weight": 1}, {"from": 10, "to": 20, "weight": 1}, {"from": 10, "to": 21, "weight": 1}, {"from": 10, "to": 27, "weight": 1}, {"from": 10, "to": 29, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 11, "to": 17, "weight": 1}, {"from": 11, "to": 19, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 19, "to": 25, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 24, "to": 28, "weight": 1}, {"from": 25, "to": 26, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

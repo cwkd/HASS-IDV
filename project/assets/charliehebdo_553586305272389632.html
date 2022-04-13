@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1553, "id": 0, "label": "553586305272389632", "shape": "dot", "size": 10, "title": "553586305272389632\u003cbr\u003eTHE TERRORIST ATTACK IN PARIS\u003cbr\u003eIS SO SCARY I\u0027M CRYING\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:17:14 +0000 2015"}, {"group": 1553, "id": 1, "label": "553586620705038336", "shape": "dot", "size": 10, "title": "553586620705038336\u003cbr\u003eMY THOUGHTS AND PRAYERS ARE\u003cbr\u003eWITH EVERYBODY IN PARIS\u003cbr\u003eFri Jan 09 16:18:30 +0000 2015"}, {"group": 1553, "id": 10, "label": "553587417287233537", "shape": "dot", "size": 10, "title": "553587417287233537\u003cbr\u003e\u201c@cloulessed: THE TERRORIST ATTACK IN\u003cbr\u003ePARIS IS SO SCARY I\u0027M\u003cbr\u003eCRYING\u201d THEY DIED FEW MINUTES\u003cbr\u003eAGO\u003cbr\u003eFri Jan 09 16:21:40 +0000 2015"}, {"group": 1553, "id": 12, "label": "553587558853398528", "shape": "dot", "size": 10, "title": "553587558853398528\u003cbr\u003e@cloulessed  I\u0027m so scared\u003cbr\u003eI live in France and\u003cbr\u003eit\u0027s horrible\u003cbr\u003eFri Jan 09 16:22:13 +0000 2015"}, {"group": 1553, "id": 14, "label": "553587618265706496", "shape": "dot", "size": 10, "title": "553587618265706496\u003cbr\u003e\u201c@cloulessed: THE TERRORIST ATTACK IN\u003cbr\u003ePARIS IS SO SCARY I\u0027M\u003cbr\u003eCRYING\u201d\u003cbr\u003eFri Jan 09 16:22:28 +0000 2015"}, {"group": 1553, "id": 18, "label": "553587768140759040", "shape": "dot", "size": 10, "title": "553587768140759040\u003cbr\u003e@cloulessed THEY DIED\u003cbr\u003eFri Jan 09 16:23:03 +0000 2015"}, {"group": 1553, "id": 2, "label": "553586755073765376", "shape": "dot", "size": 10, "title": "553586755073765376\u003cbr\u003e@cloulessed thank you...i\u0027m so scared...\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:19:02 +0000 2015"}, {"group": 1553, "id": 3, "label": "553586755988107264", "shape": "dot", "size": 10, "title": "553586755988107264\u003cbr\u003e@cloulessed I\u0027m not in Paris\u003cbr\u003ebut I\u0027m so fucking scared\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:19:02 +0000 2015"}, {"group": 1553, "id": 4, "label": "553586861286125568", "shape": "dot", "size": 10, "title": "553586861286125568\u003cbr\u003e@cloulessed tysm we are so\u003cbr\u003escared\u003cbr\u003eFri Jan 09 16:19:27 +0000 2015"}, {"group": 1553, "id": 8, "label": "553587294318649345", "shape": "dot", "size": 10, "title": "553587294318649345\u003cbr\u003eTWO OF THE TERRORISTS ARE\u003cbr\u003eSUPPOSEDLY DEAD THANK GOD\u003cbr\u003eFri Jan 09 16:21:10 +0000 2015"}, {"group": 1553, "id": 37, "label": "553590319967916032", "shape": "dot", "size": 10, "title": "553590319967916032\u003cbr\u003e@cloulessed @britbritsslave what\u0027s happened?\ud83d\ude01\ud83d\ude01\u003cbr\u003eFri Jan 09 16:33:12 +0000 2015"}, {"group": 1553, "id": 6, "label": "553586977371852800", "shape": "dot", "size": 10, "title": "553586977371852800\u003cbr\u003e@drugoflilo stay safe babe\u003cbr\u003eFri Jan 09 16:19:55 +0000 2015"}, {"group": 1553, "id": 5, "label": "553586941938372608", "shape": "dot", "size": 10, "title": "553586941938372608\u003cbr\u003e@twerkonloueh neither am i but\u003cbr\u003ei\u0027m terrified\u003cbr\u003eFri Jan 09 16:19:46 +0000 2015"}, {"group": 1553, "id": 7, "label": "553587070883876864", "shape": "dot", "size": 10, "title": "553587070883876864\u003cbr\u003e@hugofnixll stay safe babe i\u0027m\u003cbr\u003ethinking of you\u003cbr\u003eFri Jan 09 16:20:17 +0000 2015"}, {"group": 1553, "id": 9, "label": "553587342121111552", "shape": "dot", "size": 10, "title": "553587342121111552\u003cbr\u003e@cloulessed I feel like I\u0027m\u003cbr\u003egoing to cry, I\u0027m watching\u003cbr\u003ethe tv and it\u0027s so\u003cbr\u003escary\u003cbr\u003eFri Jan 09 16:21:22 +0000 2015"}, {"group": 1553, "id": 23, "label": "553588650987249664", "shape": "dot", "size": 10, "title": "553588650987249664\u003cbr\u003e@cloulessed yeah thank you !\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:26:34 +0000 2015"}, {"group": 1553, "id": 27, "label": "553589095709302785", "shape": "dot", "size": 10, "title": "553589095709302785\u003cbr\u003e@cloulessed the terrorists are dead\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:28:20 +0000 2015"}, {"group": 1553, "id": 17, "label": "553587766974754816", "shape": "dot", "size": 10, "title": "553587766974754816\u003cbr\u003eHOSTAGES ARE BEING FREED THANK\u003cbr\u003eYOU JESUS I AM SO\u003cbr\u003eGLAD\u003cbr\u003eFri Jan 09 16:23:03 +0000 2015"}, {"group": 1553, "id": 11, "label": "553587463533637633", "shape": "dot", "size": 10, "title": "553587463533637633\u003cbr\u003e@twerkonloueh yeah me too, the\u003cbr\u003eexplosions freaked me out so\u003cbr\u003emuch\u003cbr\u003eFri Jan 09 16:21:51 +0000 2015"}, {"group": 1553, "id": 13, "label": "553587581620092928", "shape": "dot", "size": 10, "title": "553587581620092928\u003cbr\u003e@urmalikz YEAH THANK GOD\u003cbr\u003eFri Jan 09 16:22:19 +0000 2015"}, {"group": 1553, "id": 15, "label": "553587654496120832", "shape": "dot", "size": 10, "title": "553587654496120832\u003cbr\u003e@andlarryisreal i\u0027m praying for you\u003cbr\u003ebabe\u003cbr\u003eFri Jan 09 16:22:36 +0000 2015"}, {"group": 1553, "id": 25, "label": "553588760164962304", "shape": "dot", "size": 10, "title": "553588760164962304\u003cbr\u003e@cloulessed U CANT IMAGINE HOW\u003cbr\u003eMUCH I WAS SCARED AND\u003cbr\u003eEVERYONE AT MY SCHOOL WERE\u003cbr\u003eTOO OMG\u003cbr\u003eFri Jan 09 16:27:00 +0000 2015"}, {"group": 1553, "id": 16, "label": "553587746800164866", "shape": "dot", "size": 10, "title": "553587746800164866\u003cbr\u003e@cloulessed thank you so much\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:22:58 +0000 2015"}, {"group": 1553, "id": 20, "label": "553587983077875714", "shape": "dot", "size": 10, "title": "553587983077875714\u003cbr\u003e@andlarryisreal no problem stay safe\u003cbr\u003elove\u003cbr\u003eFri Jan 09 16:23:54 +0000 2015"}, {"group": 1553, "id": 21, "label": "553588106365263874", "shape": "dot", "size": 10, "title": "553588106365263874\u003cbr\u003e@cloulessed x\u003cbr\u003eFri Jan 09 16:24:24 +0000 2015"}, {"group": 1553, "id": 19, "label": "553587919114743809", "shape": "dot", "size": 10, "title": "553587919114743809\u003cbr\u003e@hwrys I KNOW THANK GOD\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:23:39 +0000 2015"}, {"group": 1553, "id": 22, "label": "553588190108741632", "shape": "dot", "size": 10, "title": "553588190108741632\u003cbr\u003e@cloulessed IM SO SCARED\u003cbr\u003eFri Jan 09 16:24:44 +0000 2015"}, {"group": 1553, "id": 24, "label": "553588666468425729", "shape": "dot", "size": 10, "title": "553588666468425729\u003cbr\u003e@hwrys ME TOO OH MY\u003cbr\u003eGOD\u003cbr\u003eFri Jan 09 16:26:37 +0000 2015"}, {"group": 1553, "id": 32, "label": "553589627853213698", "shape": "dot", "size": 10, "title": "553589627853213698\u003cbr\u003e@cloulessed BC I LIVE IN\u003cbr\u003eFRANCE \ud83d\ude14\ud83d\ude14\u003cbr\u003eFri Jan 09 16:30:27 +0000 2015"}, {"group": 1553, "id": 26, "label": "553589032840876032", "shape": "dot", "size": 10, "title": "553589032840876032\u003cbr\u003e@urmalikz I\u0027M WATCHING THE NEWS\u003cbr\u003eAND IT IS SO SCARY\u003cbr\u003eI COULDN\u0027T EVEN COMPREHEND HOW\u003cbr\u003eSCARY IT IS IN PARIS\u003cbr\u003eRN\u003cbr\u003eFri Jan 09 16:28:05 +0000 2015"}, {"group": 1553, "id": 28, "label": "553589204811120640", "shape": "dot", "size": 10, "title": "553589204811120640\u003cbr\u003e@cloulessed WHERE ARE YOU FROM?\u003cbr\u003eOMG\u003cbr\u003eFri Jan 09 16:28:46 +0000 2015"}, {"group": 1553, "id": 29, "label": "553589323480981505", "shape": "dot", "size": 10, "title": "553589323480981505\u003cbr\u003e@hugofnixll yes i know thank\u003cbr\u003egod\u003cbr\u003eFri Jan 09 16:29:14 +0000 2015"}, {"group": 1553, "id": 30, "label": "553589375754571776", "shape": "dot", "size": 10, "title": "553589375754571776\u003cbr\u003e@urmalikz THE UK\u003cbr\u003eFri Jan 09 16:29:27 +0000 2015"}, {"group": 1553, "id": 35, "label": "553590027146776576", "shape": "dot", "size": 10, "title": "553590027146776576\u003cbr\u003e@cloulessed this is so scary..\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:32:02 +0000 2015"}, {"group": 1553, "id": 31, "label": "553589573176262656", "shape": "dot", "size": 10, "title": "553589573176262656\u003cbr\u003e@cloulessed IM FROM FRANCE I\u003cbr\u003eLIVE IN NORTH OMG\u003cbr\u003eFri Jan 09 16:30:14 +0000 2015"}, {"group": 1553, "id": 33, "label": "553589743007846401", "shape": "dot", "size": 10, "title": "553589743007846401\u003cbr\u003e@urmalikz IT MUST BE SO\u003cbr\u003eSCARY TO BE THERE RN\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:30:54 +0000 2015"}, {"group": 1553, "id": 34, "label": "553589960876777473", "shape": "dot", "size": 10, "title": "553589960876777473\u003cbr\u003e@hwrys THAT MUST BE SCARY\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:31:46 +0000 2015"}, {"group": 1553, "id": 36, "label": "553590297553534976", "shape": "dot", "size": 10, "title": "553590297553534976\u003cbr\u003e@cloulessed SO MUCH EVERYONE TALKED\u003cbr\u003eABOUT THAT AT SCHOOL WE\u003cbr\u003eWERE ALL SO SCARED\u003cbr\u003eFri Jan 09 16:33:06 +0000 2015"}, {"group": 1553, "id": 38, "label": "553590346656260096", "shape": "dot", "size": 10, "title": "553590346656260096\u003cbr\u003e@hugofnixll i know its horrible\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:33:18 +0000 2015"}, {"group": 1553, "id": 39, "label": "553590730468622337", "shape": "dot", "size": 10, "title": "553590730468622337\u003cbr\u003e@urmalikz AT LEAST YOU ARE\u003cbr\u003eALL SAFE\u003cbr\u003eFri Jan 09 16:34:50 +0000 2015"}, {"group": 1553, "id": 40, "label": "553591001936592897", "shape": "dot", "size": 10, "title": "553591001936592897\u003cbr\u003e@demi_ashbae there has been a\u003cbr\u003eterrorist attack in paris\u003cbr\u003eFri Jan 09 16:35:54 +0000 2015"}, {"group": 1553, "id": 42, "label": "553591240403726336", "shape": "dot", "size": 10, "title": "553591240403726336\u003cbr\u003e@cloulessed YES YOU CANT IMAGINE\u003cbr\u003eHOW MUCH WE ARE ALL\u003cbr\u003eTHANKFUL FOR THE SUPPORT FROM\u003cbr\u003ePEOPLE ALL AROUND THE WORLD\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:36:51 +0000 2015"}, {"group": 1553, "id": 41, "label": "553591176788713473", "shape": "dot", "size": 10, "title": "553591176788713473\u003cbr\u003e@cloulessed Oh...\ud83d\ude2a rip \ud83d\ude4f\ud83d\ude4f\u003cbr\u003eFri Jan 09 16:36:36 +0000 2015"}, {"group": 1553, "id": 43, "label": "553591543391870977", "shape": "dot", "size": 10, "title": "553591543391870977\u003cbr\u003e@urmalikz I\u0027M SO THANKFUL THAT\u003cbr\u003eIT IS OVER\u003cbr\u003eFri Jan 09 16:38:03 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 1, "to": 8, "weight": 1}, {"from": 1, "to": 37, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 6, "to": 23, "weight": 1}, {"from": 7, "to": 27, "weight": 1}, {"from": 8, "to": 17, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 13, "to": 25, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 17, "to": 21, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 22, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 24, "to": 32, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 29, "to": 35, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 32, "to": 34, "weight": 1}, {"from": 33, "to": 36, "weight": 1}, {"from": 35, "to": 38, "weight": 1}, {"from": 36, "to": 39, "weight": 1}, {"from": 37, "to": 40, "weight": 1}, {"from": 39, "to": 42, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 42, "to": 43, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

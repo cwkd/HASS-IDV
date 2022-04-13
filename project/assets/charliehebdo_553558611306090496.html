@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1448, "id": 0, "label": "553558611306090496", "shape": "dot", "size": 10, "title": "553558611306090496\u003cbr\u003eLiberal journos say don\u0027t label\u003cbr\u003ethese guys Muslim terrorists because\u003cbr\u003ethis is such a rare\u003cbr\u003eincident. #CharlieHebdo http://t.co/jAeC3PrD3Z\u003cbr\u003eFri Jan 09 14:27:12 +0000 2015"}, {"group": 1448, "id": 1, "label": "553560984967974913", "shape": "dot", "size": 10, "title": "553560984967974913\u003cbr\u003e@IMZ_Politics @billpostmus Yeah! And probably\u003cbr\u003eJV also! Give me a\u003cbr\u003ebreak!\u003cbr\u003eFri Jan 09 14:36:38 +0000 2015"}, {"group": 1448, "id": 2, "label": "553561666890117120", "shape": "dot", "size": 10, "title": "553561666890117120\u003cbr\u003e@IMZ_Politics and #JIHAD IS Muslims\u003cbr\u003e... right ?\u003cbr\u003eFri Jan 09 14:39:20 +0000 2015"}, {"group": 1448, "id": 3, "label": "553563783906746368", "shape": "dot", "size": 10, "title": "553563783906746368\u003cbr\u003e@IMZ_Politics Morts @MojcaJereb They were\u003cbr\u003ealso men and with dark\u003cbr\u003ehair. Should we jail them\u003cbr\u003eall?\u003cbr\u003eFri Jan 09 14:47:45 +0000 2015"}, {"group": 1448, "id": 4, "label": "553564781068943360", "shape": "dot", "size": 10, "title": "553564781068943360\u003cbr\u003e@IMZ_Politics and 100% of them\u003cbr\u003ehad 2 legs too; let\u0027s\u003cbr\u003eblame the people with 2\u003cbr\u003elegs because why not? Aren\u0027t\u003cbr\u003ewe totally dumb?\u003cbr\u003eFri Jan 09 14:51:43 +0000 2015"}, {"group": 1448, "id": 5, "label": "553565235664412672", "shape": "dot", "size": 10, "title": "553565235664412672\u003cbr\u003e@IMZ_Politics Liberals around the world\u003cbr\u003ewake up! Got your heads\u003cbr\u003eshoved right up your assholes.\u003cbr\u003e These MUSLIMS have a\u003cbr\u003every clear agenda!\u003cbr\u003eFri Jan 09 14:53:31 +0000 2015"}, {"group": 1448, "id": 6, "label": "553567828255977472", "shape": "dot", "size": 10, "title": "553567828255977472\u003cbr\u003e@IMZ_Politics @SoCalEdgyGal HEY !!! You\u003cbr\u003estole this pic from me,\u003cbr\u003eafter I stole it from\u003cbr\u003esomeone else !!! BWAHAHAHAHA !!!!!\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:03:49 +0000 2015"}, {"group": 1448, "id": 9, "label": "553572128961089538", "shape": "dot", "size": 10, "title": "553572128961089538\u003cbr\u003e@IMZ_Politics @EuclidRedux have you made\u003cbr\u003ea list with all Christian\u003cbr\u003eterrorist attacks too? and all\u003cbr\u003eJewish terrorist attacks? Budhist? Hindu?\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:20:55 +0000 2015"}, {"group": 1448, "id": 7, "label": "553568177888956416", "shape": "dot", "size": 10, "title": "553568177888956416\u003cbr\u003e@gpaccardo @IMZ_Politics @MojcaJereb Oh shut\u003cbr\u003ethe fuck up. Moron. Geez,\u003cbr\u003ewhat is it with you\u003cbr\u003eidiot libs? Do you have\u003cbr\u003eto show ur stupidity???\u003cbr\u003eFri Jan 09 15:05:13 +0000 2015"}, {"group": 1448, "id": 8, "label": "553568675668959232", "shape": "dot", "size": 10, "title": "553568675668959232\u003cbr\u003e@IMZ_Politics @SoCalEdgyGal Peshawar, 170+ dead\u003cbr\u003ekids, from mooslims. Thank you\u003cbr\u003emohammed. http://t.co/P5oZN8XXYF\u003cbr\u003eFri Jan 09 15:07:11 +0000 2015"}, {"group": 1448, "id": 10, "label": "553601396638236672", "shape": "dot", "size": 10, "title": "553601396638236672\u003cbr\u003e@Thunderstixx @IMZ_Politics @MojcaJereb What woud\u003cbr\u003eyour point be?\u003cbr\u003eFri Jan 09 17:17:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 3, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 7, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

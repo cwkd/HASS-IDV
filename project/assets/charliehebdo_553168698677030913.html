@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 986, "id": 0, "label": "553168698677030913", "shape": "dot", "size": 10, "title": "553168698677030913\u003cbr\u003eI feel France will throw\u003cbr\u003esatire into the murderers faces,\u003cbr\u003eand freedom of expression will\u003cbr\u003ebe ever greater #JeSuisCharlie #\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:37:49 +0000 2015"}, {"group": 986, "id": 1, "label": "553169975213846528", "shape": "dot", "size": 10, "title": "553169975213846528\u003cbr\u003e@Martina Merci\u003cbr\u003eThu Jan 08 12:42:54 +0000 2015"}, {"group": 986, "id": 2, "label": "553170005765136384", "shape": "dot", "size": 10, "title": "553170005765136384\u003cbr\u003e@Martina Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 12:43:01 +0000 2015"}, {"group": 986, "id": 3, "label": "553170235315200000", "shape": "dot", "size": 10, "title": "553170235315200000\u003cbr\u003e@Martina Even Uderzo put pencil\u003cbr\u003eto paper to pay tribute\u003cbr\u003eto #CharlieHebdo #JeSuisCharlie http://t.co/5SNPGnTqoG\u003cbr\u003eThu Jan 08 12:43:56 +0000 2015"}, {"group": 986, "id": 4, "label": "553171096305152001", "shape": "dot", "size": 10, "title": "553171096305152001\u003cbr\u003e@Martina Thanks from France. The\u003cbr\u003efreedom of expression  should\u003cbr\u003ebe universal #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:47:21 +0000 2015"}, {"group": 986, "id": 5, "label": "553171394771828736", "shape": "dot", "size": 10, "title": "553171394771828736\u003cbr\u003e@Martina @chAPteam Good and wise\u003cbr\u003ecall\u003cbr\u003eThu Jan 08 12:48:32 +0000 2015"}, {"group": 986, "id": 6, "label": "553172265140248576", "shape": "dot", "size": 10, "title": "553172265140248576\u003cbr\u003e@Martina thank \u00b4s a lot\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:52:00 +0000 2015"}, {"group": 986, "id": 7, "label": "553174601908633600", "shape": "dot", "size": 10, "title": "553174601908633600\u003cbr\u003e@Martina when you\u0027re only satirizing\u003cbr\u003eMuslims, Jews and Catholics, it\u0027s\u003cbr\u003enot really satire is it.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:01:17 +0000 2015"}, {"group": 986, "id": 8, "label": "553175181200723968", "shape": "dot", "size": 10, "title": "553175181200723968\u003cbr\u003e@Martina You bet we will!!!!\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:03:35 +0000 2015"}, {"group": 986, "id": 9, "label": "553175247495905280", "shape": "dot", "size": 10, "title": "553175247495905280\u003cbr\u003e\u201c@Martina: I feel France will\u003cbr\u003ethrow satire into the murderers\u003cbr\u003efaces, and freedom of expression\u003cbr\u003ewill be ever greater #JeSuisCharlie\u003cbr\u003e#\u201d\u003cbr\u003eThu Jan 08 13:03:51 +0000 2015"}, {"group": 986, "id": 10, "label": "553175924812677120", "shape": "dot", "size": 10, "title": "553175924812677120\u003cbr\u003e@Martina Oui, toujours. Restons debout.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:06:32 +0000 2015"}, {"group": 986, "id": 11, "label": "553177806109425664", "shape": "dot", "size": 10, "title": "553177806109425664\u003cbr\u003e@Martina Thank you very much\u003cbr\u003efor France ! #JeSuisCharlie\u003cbr\u003eThu Jan 08 13:14:01 +0000 2015"}, {"group": 986, "id": 12, "label": "553180241775321088", "shape": "dot", "size": 10, "title": "553180241775321088\u003cbr\u003e@Martina you\u0027re right #jesuischarlie\ud83c\uddeb\ud83c\uddf7\u003cbr\u003eThu Jan 08 13:23:41 +0000 2015"}, {"group": 986, "id": 13, "label": "553190565131862016", "shape": "dot", "size": 10, "title": "553190565131862016\u003cbr\u003e@Martina Thank you for your\u003cbr\u003esupport for my country Martina\u003cbr\u003e\ud83d\ude2d  @TennisMagazine1\u003cbr\u003eThu Jan 08 14:04:43 +0000 2015"}, {"group": 986, "id": 14, "label": "553193645596475392", "shape": "dot", "size": 10, "title": "553193645596475392\u003cbr\u003e@Martina very well put, I\u003cbr\u003etotally agree!\u003cbr\u003eThu Jan 08 14:16:57 +0000 2015"}, {"group": 986, "id": 15, "label": "553193779499249665", "shape": "dot", "size": 10, "title": "553193779499249665\u003cbr\u003e@Martina hope so martina. Sad\u003cbr\u003eday...x\u003cbr\u003eThu Jan 08 14:17:29 +0000 2015"}, {"group": 986, "id": 16, "label": "553199906601828352", "shape": "dot", "size": 10, "title": "553199906601828352\u003cbr\u003eMerci @Martina\u003cbr\u003eThu Jan 08 14:41:50 +0000 2015"}, {"group": 986, "id": 17, "label": "553200565124354048", "shape": "dot", "size": 10, "title": "553200565124354048\u003cbr\u003e@Martina Sadly a woman police\u003cbr\u003eofficer has died in Paris\u003cbr\u003ein what has been described\u003cbr\u003eas a terrorist incident.My sympathy\u003cbr\u003eto her family\u0026amp;friends\u003cbr\u003eThu Jan 08 14:44:27 +0000 2015"}, {"group": 986, "id": 18, "label": "553201513938812929", "shape": "dot", "size": 10, "title": "553201513938812929\u003cbr\u003e@Martina Why has Paris been\u003cbr\u003etargeted for terrorist attacks?Two in\u003cbr\u003etwo days.Let\u0027s hope it\u0027s the\u003cbr\u003elast today.Gx\u003cbr\u003eThu Jan 08 14:48:13 +0000 2015"}, {"group": 986, "id": 19, "label": "553204400450449408", "shape": "dot", "size": 10, "title": "553204400450449408\u003cbr\u003e@Martina Merci. You Know, \"C\u0027est\u003cbr\u003el\u0027Apr\u00e8s\" qui m\u0027inqui\u00e8te :((. Voil\u00e0.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:59:41 +0000 2015"}, {"group": 986, "id": 20, "label": "553229540223639552", "shape": "dot", "size": 10, "title": "553229540223639552\u003cbr\u003e@swytwer I can\u0027t keep up\u003cbr\u003ewith you:)\u003cbr\u003eThu Jan 08 16:39:35 +0000 2015"}, {"group": 986, "id": 21, "label": "553234557541965824", "shape": "dot", "size": 10, "title": "553234557541965824\u003cbr\u003e@Martina You\u0027re right, We must\u003cbr\u003ethink positif :)) La France\u003cbr\u003eest le pays de l\u0027Amour\u003cbr\u003eet des Libert\u00e9s. Merci.\u003cbr\u003eThu Jan 08 16:59:31 +0000 2015"}, {"group": 986, "id": 22, "label": "553264384936783873", "shape": "dot", "size": 10, "title": "553264384936783873\u003cbr\u003e@Martina @swytwer It is a\u003cbr\u003esad time for all French\u003cbr\u003epeople\u0026amp;the sympathies of all right\u003cbr\u003ethinking people are with you\u003cbr\u003eall.\u003cbr\u003eThu Jan 08 18:58:03 +0000 2015"}, {"group": 986, "id": 23, "label": "553265367150522368", "shape": "dot", "size": 10, "title": "553265367150522368\u003cbr\u003e@GlynisG @Martina Merci, cela est\u003cbr\u003egentil :))\u003cbr\u003eThu Jan 08 19:01:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

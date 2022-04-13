@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1361, "id": 0, "label": "553538456207777792", "shape": "dot", "size": 10, "title": "553538456207777792\u003cbr\u003eReports: Armed man takes multiple\u003cbr\u003ehostages in Paris kosher grocery\u003cbr\u003estore, SWAT teams on scene\u003cbr\u003ehttp://t.co/dU9efPMFeV\u003cbr\u003eFri Jan 09 13:07:06 +0000 2015"}, {"group": 1361, "id": 1, "label": "553538995825958912", "shape": "dot", "size": 10, "title": "553538995825958912\u003cbr\u003e@HuffingtonPost SWAT need To Try\u003cbr\u003eGiving Them A Ransom of\u003cbr\u003emoney  maybe that\u0027s what\u003cbr\u003ethey want but in a\u003cbr\u003eway they still can catch\u003cbr\u003ethe men\u003cbr\u003eFri Jan 09 13:09:15 +0000 2015"}, {"group": 1361, "id": 2, "label": "553539130853195778", "shape": "dot", "size": 10, "title": "553539130853195778\u003cbr\u003eYou\u0027ve GOT 2b kidding! \u201c@HuffingtonPost:\u003cbr\u003eArmed man takes hostages in\u003cbr\u003eParis kosher grocery store, SWAT\u003cbr\u003eteams on scene http://t.co/ROJF6g8POl\u201d\u003cbr\u003eFri Jan 09 13:09:47 +0000 2015"}, {"group": 1361, "id": 4, "label": "553540106964185089", "shape": "dot", "size": 10, "title": "553540106964185089\u003cbr\u003e@HuffingtonPost Yah \u0026amp; CNN news:\u003cbr\u003eShooting \u0026amp; hostage situation in\u003cbr\u003eParis bakery  . Huff\u003cbr\u003enews: mltpl hostages in Paris\u003cbr\u003e\"Kosher\" bakery. Odd.\u003cbr\u003eFri Jan 09 13:13:40 +0000 2015"}, {"group": 1361, "id": 5, "label": "553546463276707840", "shape": "dot", "size": 10, "title": "553546463276707840\u003cbr\u003e\u201c@HuffingtonPost: Reports: Armed man takes\u003cbr\u003emultiple hostages in Paris kosher\u003cbr\u003egrocery store, SWAT teams on\u003cbr\u003escene http://t.co/yEhKhC0nAO\u201d\u003cbr\u003eFri Jan 09 13:38:55 +0000 2015"}, {"group": 1361, "id": 3, "label": "553539373145542656", "shape": "dot", "size": 10, "title": "553539373145542656\u003cbr\u003e@MJMIkeyJoJo @HuffingtonPost this is not\u003cbr\u003eabout money it\u0027s a direct\u003cbr\u003eattack on the Jews.\u003cbr\u003eFri Jan 09 13:10:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 1, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

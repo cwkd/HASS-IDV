@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1869, "id": 0, "label": "553476471470432256", "shape": "dot", "size": 10, "title": "553476471470432256\u003cbr\u003eReports in French media of\u003cbr\u003ehostage situation as manhunt for\u003cbr\u003e#CharlieHebdo suspects centres on #DammartinEnGoele\u003cbr\u003ehttp://t.co/PNhWZP39md\u003cbr\u003eFri Jan 09 09:00:48 +0000 2015"}, {"group": 1869, "id": 1, "label": "553476826644094977", "shape": "dot", "size": 10, "title": "553476826644094977\u003cbr\u003e@BBCBreaking \n\nIN UKRAINE HAVE GIVEN\u003cbr\u003eTHE NAZI COUP, SUPPORTED BY\u003cbr\u003eNATO AND MEDIA COMMUNICATION,AS SEE\u003cbr\u003ePHOTO.\nhttp://t.co/tYCudKSLwr\u003cbr\u003eFri Jan 09 09:02:13 +0000 2015"}, {"group": 1869, "id": 2, "label": "553476841906790400", "shape": "dot", "size": 10, "title": "553476841906790400\u003cbr\u003e@BBCBreaking Gunfire has killed two\u003cbr\u003emore people and twenty are\u003cbr\u003einjured by bullets #CharlieHebdo #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:02:16 +0000 2015"}, {"group": 1869, "id": 3, "label": "553477183398612993", "shape": "dot", "size": 10, "title": "553477183398612993\u003cbr\u003ePlease, no more dead innocents.\u003cbr\u003eRT @BBCBreaking: \"Reports in French\u003cbr\u003emedia of hostage situation in\u003cbr\u003emanhunt for #CharlieHebdo suspects\"\u003cbr\u003eFri Jan 09 09:03:38 +0000 2015"}, {"group": 1869, "id": 4, "label": "553477582340251648", "shape": "dot", "size": 10, "title": "553477582340251648\u003cbr\u003e@BBCBreaking Afraid to say #CharlieHebdo\u003cbr\u003egunmen are making a mockery\u003cbr\u003eof French security apparatus.\u003cbr\u003eFri Jan 09 09:05:13 +0000 2015"}, {"group": 1869, "id": 5, "label": "553478137670291456", "shape": "dot", "size": 10, "title": "553478137670291456\u003cbr\u003e@BBCBreaking hostages are being held\u003cbr\u003ein a company called Creation\u003cbr\u003eTendance Decouverte\u003cbr\u003eFri Jan 09 09:07:25 +0000 2015"}, {"group": 1869, "id": 6, "label": "553478215273299968", "shape": "dot", "size": 10, "title": "553478215273299968\u003cbr\u003e@BBCBreaking the French security services\u003cbr\u003eare a complete shambles\u003cbr\u003eFri Jan 09 09:07:44 +0000 2015"}, {"group": 1869, "id": 7, "label": "553478329358368769", "shape": "dot", "size": 10, "title": "553478329358368769\u003cbr\u003e@BBCBreaking http://t.co/aIrVDS4ub7\u003cbr\u003eFri Jan 09 09:08:11 +0000 2015"}, {"group": 1869, "id": 8, "label": "553478359670591489", "shape": "dot", "size": 10, "title": "553478359670591489\u003cbr\u003e@BBCBreaking I thought this might\u003cbr\u003ehappen more will die they\u003cbr\u003ewant to be martyrs .\u003cbr\u003eTragic!\u003cbr\u003eFri Jan 09 09:08:18 +0000 2015"}, {"group": 1869, "id": 9, "label": "553478529388933120", "shape": "dot", "size": 10, "title": "553478529388933120\u003cbr\u003e@BBCBreaking\u003cbr\u003eFri Jan 09 09:08:59 +0000 2015"}, {"group": 1869, "id": 10, "label": "553478657998471169", "shape": "dot", "size": 10, "title": "553478657998471169\u003cbr\u003e@BBCBreaking Why France shock today?\u003cbr\u003e\nHow many jews, christians, hindu,\u003cbr\u003ebudha were killed by muslims?\u003cbr\u003eIt\u0027s greater than 12 people.why\u003cbr\u003e?\u003cbr\u003eFri Jan 09 09:09:29 +0000 2015"}, {"group": 1869, "id": 11, "label": "553479322632077312", "shape": "dot", "size": 10, "title": "553479322632077312\u003cbr\u003e@BBCBreaking sleeping Europe, you are\u003cbr\u003esleeping for 1000years and say\u003cbr\u003eJesus is dead. Now Jesus\u003cbr\u003eis silent for you, and\u003cbr\u003eMuslims are your leader\u003cbr\u003eFri Jan 09 09:12:08 +0000 2015"}, {"group": 1869, "id": 12, "label": "553479810903588867", "shape": "dot", "size": 10, "title": "553479810903588867\u003cbr\u003e@BBCBreaking @BBCWorld d e\u0027er d\u003cbr\u003echarlie should be tried for\u003cbr\u003eextreme hate speech in court\u003cbr\u003eof law..\u003cbr\u003eFri Jan 09 09:14:04 +0000 2015"}, {"group": 1869, "id": 14, "label": "553483288891777024", "shape": "dot", "size": 10, "title": "553483288891777024\u003cbr\u003e@BBCBreaking Again????\u003cbr\u003eFri Jan 09 09:27:53 +0000 2015"}, {"group": 1869, "id": 15, "label": "553486913886519296", "shape": "dot", "size": 10, "title": "553486913886519296\u003cbr\u003e@BBCBreaking @halrudnick because this isn\u0027t\u003cbr\u003esensationalising and glamourising at all.\u003cbr\u003eWhat happened to you @BBCNews?\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:42:18 +0000 2015"}, {"group": 1869, "id": 16, "label": "553539029841764352", "shape": "dot", "size": 10, "title": "553539029841764352\u003cbr\u003e@BBCBreaking @BBCWorld\u003cbr\u003eFri Jan 09 13:09:23 +0000 2015"}, {"group": 1869, "id": 13, "label": "553479896937136128", "shape": "dot", "size": 10, "title": "553479896937136128\u003cbr\u003e@BBCBreaking @BBCWorld *dead\u003cbr\u003eFri Jan 09 09:14:25 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 12, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

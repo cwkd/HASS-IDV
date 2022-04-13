@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1867, "id": 0, "label": "553475824369012736", "shape": "dot", "size": 10, "title": "553475824369012736\u003cbr\u003eTwo people reportedly seriously hurt\u003cbr\u003ein a shootout in the\u003cbr\u003ehunt for the #ParisAttack gunmen\u003cbr\u003ehttp://t.co/CVcFrESdld http://t.co/8EmDi6eZL3\u003cbr\u003eFri Jan 09 08:58:14 +0000 2015"}, {"group": 1867, "id": 1, "label": "553476516001374208", "shape": "dot", "size": 10, "title": "553476516001374208\u003cbr\u003e@SkyNews I\u0027m sure @KayBurley head\u003cbr\u003ewill explode any minute now\u003cbr\u003eif this continues. #ParisShooting #ParisAttack\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:00:59 +0000 2015"}, {"group": 1867, "id": 2, "label": "553477052314025984", "shape": "dot", "size": 10, "title": "553477052314025984\u003cbr\u003eare you \u0026gt; @SkyNews \u0026lt;\u003cbr\u003egoing to keep making excuses\u003cbr\u003efor islam @QueeniesSoapbox\u003cbr\u003eFri Jan 09 09:03:07 +0000 2015"}, {"group": 1867, "id": 5, "label": "553478419317788672", "shape": "dot", "size": 10, "title": "553478419317788672\u003cbr\u003e@SkyNews i hppe they suffer\u003cbr\u003ea horrific painful ending\u003cbr\u003eFri Jan 09 09:08:32 +0000 2015"}, {"group": 1867, "id": 14, "label": "553482538199830528", "shape": "dot", "size": 10, "title": "553482538199830528\u003cbr\u003e@SkyNews your reporters behaving like\u003cbr\u003evultures.  Step back a\u003cbr\u003ebit!\u003cbr\u003eFri Jan 09 09:24:54 +0000 2015"}, {"group": 1867, "id": 3, "label": "553477268937670656", "shape": "dot", "size": 10, "title": "553477268937670656\u003cbr\u003e@aljohnstonMUSE @SkyNews @KayBurley We can\u003cbr\u003ebut hope.\u003cbr\u003eFri Jan 09 09:03:58 +0000 2015"}, {"group": 1867, "id": 4, "label": "553478038131048448", "shape": "dot", "size": 10, "title": "553478038131048448\u003cbr\u003e@ozzsue @queeniessoapbox @skynews is it\u003cbr\u003eIslam or these are extremists,even\u003cbr\u003ein USA there have been\u003cbr\u003eChristian fundamendalists,#NOT RELIGION\u003cbr\u003eFri Jan 09 09:07:02 +0000 2015"}, {"group": 1867, "id": 6, "label": "553478608652861440", "shape": "dot", "size": 10, "title": "553478608652861440\u003cbr\u003e@ozzsue @queeniessoapbox @skynews Terrorists are\u003cbr\u003enot priests,they are deviants,STOP BLAMING\u003cbr\u003eRELIGION,terrorists can attack in the\u003cbr\u003ename of RG\u003cbr\u003eFri Jan 09 09:09:18 +0000 2015"}, {"group": 1867, "id": 7, "label": "553479120727060482", "shape": "dot", "size": 10, "title": "553479120727060482\u003cbr\u003e@Innocentkagodor @OZzSue @SkyNews stop telling\u003cbr\u003eme to stop blaming religion\u003cbr\u003ego tell them to stop\u003cbr\u003eusing religion to justify murder!\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:11:20 +0000 2015"}, {"group": 1867, "id": 8, "label": "553480066077061120", "shape": "dot", "size": 10, "title": "553480066077061120\u003cbr\u003e@queeniessoapbox @ozzsue @skynews  we\u003cbr\u003edo not condone terror but\u003cbr\u003ewhat do we gain by\u003cbr\u003eattacking mosques ?????\u003cbr\u003eFri Jan 09 09:15:05 +0000 2015"}, {"group": 1867, "id": 9, "label": "553480115431424000", "shape": "dot", "size": 10, "title": "553480115431424000\u003cbr\u003e@QueeniesSoapbox here here\u003cbr\u003eFri Jan 09 09:15:17 +0000 2015"}, {"group": 1867, "id": 10, "label": "553480532471054336", "shape": "dot", "size": 10, "title": "553480532471054336\u003cbr\u003e@ozzsue @queeniessoapbox @skynews these are\u003cbr\u003ea minority group and we\u003cbr\u003eknow where they are rooted\u003cbr\u003ewy not attack THE TRAINING\u003cbr\u003eCAMPS IN ARAB\u003cbr\u003eFri Jan 09 09:16:56 +0000 2015"}, {"group": 1867, "id": 12, "label": "553482089639587840", "shape": "dot", "size": 10, "title": "553482089639587840\u003cbr\u003eI\u0027ve never attacked a mosque,\u003cbr\u003ea moslem, islam condones everything\u003cbr\u003ehateful  @Innocentkagodor @QueeniesSoapbox @SkyNews\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:23:08 +0000 2015"}, {"group": 1867, "id": 11, "label": "553481399068811264", "shape": "dot", "size": 10, "title": "553481399068811264\u003cbr\u003e@ozzsue @queeniessoapbox @skynews i also\u003cbr\u003ewish that Said and his\u003cbr\u003ebrother be caught and executed,\u003cbr\u003ebut the MOSQUES????? hmmmm\u003cbr\u003eFri Jan 09 09:20:23 +0000 2015"}, {"group": 1867, "id": 13, "label": "553482198213332993", "shape": "dot", "size": 10, "title": "553482198213332993\u003cbr\u003eWhy don\u0027t you \u0026gt; @Innocentkagodor\u003cbr\u003e@QueeniesSoapbox @SkyNews\u003cbr\u003eFri Jan 09 09:23:33 +0000 2015"}, {"group": 1867, "id": 15, "label": "553483709811527680", "shape": "dot", "size": 10, "title": "553483709811527680\u003cbr\u003e@ozzsue @queeniessoapbox @skynews not you\u003cbr\u003ebut there have been revenge\u003cbr\u003eattacks on Mosques\u003cbr\u003eFri Jan 09 09:29:34 +0000 2015"}, {"group": 1867, "id": 20, "label": "553519603788558336", "shape": "dot", "size": 10, "title": "553519603788558336\u003cbr\u003e@ozzsue @queeniessoapbox @skynews i am\u003cbr\u003enot a Moslem,i am a\u003cbr\u003eChristian and beleive in JESUS\u003cbr\u003eCHRIST as my lord and\u003cbr\u003esaviour\u003cbr\u003eFri Jan 09 11:52:12 +0000 2015"}, {"group": 1867, "id": 16, "label": "553483870515904512", "shape": "dot", "size": 10, "title": "553483870515904512\u003cbr\u003eI don\u0027t care @Innocentkagodor @QueeniesSoapbox\u003cbr\u003e@SkyNews\u003cbr\u003eFri Jan 09 09:30:12 +0000 2015"}, {"group": 1867, "id": 17, "label": "553484850049867776", "shape": "dot", "size": 10, "title": "553484850049867776\u003cbr\u003e@ozzsue @queeniessoapbox @skynews in fighting\u003cbr\u003ea monster,take care lest you\u003cbr\u003ebecome a monster,world wont be\u003cbr\u003esafe with people like you\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:34:06 +0000 2015"}, {"group": 1867, "id": 18, "label": "553485379492265984", "shape": "dot", "size": 10, "title": "553485379492265984\u003cbr\u003eBullshit, the world is perfectly\u003cbr\u003esafe from me, I\u0027m not\u003cbr\u003ea moslem @Innocentkagodor @QueeniesSoapbox @SkyNews\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:36:12 +0000 2015"}, {"group": 1867, "id": 19, "label": "553490083798855680", "shape": "dot", "size": 10, "title": "553490083798855680\u003cbr\u003e@Innocentkagodor just so i can\u003cbr\u003eget this clear. Your comparing\u003cbr\u003e@OZzSue to these so called\u003cbr\u003eislamic terrorists\u003cbr\u003eFri Jan 09 09:54:53 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 13, "to": 20, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

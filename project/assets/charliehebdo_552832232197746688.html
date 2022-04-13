@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 432, "id": 0, "label": "552832232197746688", "shape": "dot", "size": 10, "title": "552832232197746688\u003cbr\u003eThe #CharlieHebdo shooting is an\u003cbr\u003eact of terror - violence\u003cbr\u003ewith a political motive -\u003cbr\u003ebut well within our existing\u003cbr\u003ethreat assessment.\u003cbr\u003eWed Jan 07 14:20:49 +0000 2015"}, {"group": 432, "id": 1, "label": "552833129309032448", "shape": "dot", "size": 10, "title": "552833129309032448\u003cbr\u003e@PJCrowley are you calling for\u003cbr\u003esanctions on the Saudis they\u003cbr\u003eare at the root of\u003cbr\u003emuch of this radical Islamic\u003cbr\u003eterrorism?\u003cbr\u003eWed Jan 07 14:24:23 +0000 2015"}, {"group": 432, "id": 2, "label": "552833152532877312", "shape": "dot", "size": 10, "title": "552833152532877312\u003cbr\u003e@PJCrowley US DoD and FBI\u003cbr\u003ecall peaceful protest low level\u003cbr\u003eterrorism.\u003cbr\u003eWed Jan 07 14:24:29 +0000 2015"}, {"group": 432, "id": 3, "label": "552833466342338560", "shape": "dot", "size": 10, "title": "552833466342338560\u003cbr\u003e@PJCrowley What does that mean?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:25:44 +0000 2015"}, {"group": 432, "id": 5, "label": "552835555356995585", "shape": "dot", "size": 10, "title": "552835555356995585\u003cbr\u003e@PJCrowley You better check with\u003cbr\u003ethe BBC on your choice\u003cbr\u003eof words ...\u003cbr\u003eWed Jan 07 14:34:02 +0000 2015"}, {"group": 432, "id": 7, "label": "552838588073664513", "shape": "dot", "size": 10, "title": "552838588073664513\u003cbr\u003e@fnsrle Wahhabism is a factor,\u003cbr\u003ebut the challenge is broader.\u003cbr\u003eIt is about how a\u003cbr\u003ereligion adapts to the modern\u003cbr\u003eworld and to non-believers.\u003cbr\u003eWed Jan 07 14:46:05 +0000 2015"}, {"group": 432, "id": 4, "label": "552835031043817472", "shape": "dot", "size": 10, "title": "552835031043817472\u003cbr\u003e@thebenedict We don\u0027t need to\u003cbr\u003echange our current approach to\u003cbr\u003ecombating violent political extremism.\u003cbr\u003eWed Jan 07 14:31:57 +0000 2015"}, {"group": 432, "id": 6, "label": "552836238135558146", "shape": "dot", "size": 10, "title": "552836238135558146\u003cbr\u003e@PJCrowley Good to know. ..but\u003cbr\u003eis there anything concievable outside\u003cbr\u003ethe post-9/12 threat assessment?\u003cbr\u003eWed Jan 07 14:36:45 +0000 2015"}, {"group": 432, "id": 9, "label": "555035267191803905", "shape": "dot", "size": 10, "title": "555035267191803905\u003cbr\u003e@pjcrowley @thebenedict WH to hold\u003cbr\u003esummit to fight violent extremism\u003cbr\u003ehttp://t.co/8ob2Hs7LGK\u003cbr\u003eTue Jan 13 16:14:54 +0000 2015"}, {"group": 432, "id": 8, "label": "553839451269763072", "shape": "dot", "size": 10, "title": "553839451269763072\u003cbr\u003e@PJCrowley very difficult to have\u003cbr\u003efaith in something that changes\u003cbr\u003eto suit the times and\u003cbr\u003ethe ignorant\u003cbr\u003eSat Jan 10 09:03:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 1, "to": 7, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 7, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

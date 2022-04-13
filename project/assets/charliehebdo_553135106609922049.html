@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 850, "id": 0, "label": "553135106609922049", "shape": "dot", "size": 10, "title": "553135106609922049\u003cbr\u003eI normally don\u0027t do politics\u003cbr\u003eon here but totally shocked\u003cbr\u003eby the events of yesterday\u003cbr\u003eand heartened by the world\u0027s\u003cbr\u003ereaction #JeSuisCharlie\u003cbr\u003eThu Jan 08 10:24:20 +0000 2015"}, {"group": 850, "id": 1, "label": "553135288210694144", "shape": "dot", "size": 10, "title": "553135288210694144\u003cbr\u003e@RattyBurvil Thank you. It means\u003cbr\u003ea lot to us to\u003cbr\u003esee the rest of the\u003cbr\u003eworld care =)\u003cbr\u003eThu Jan 08 10:25:04 +0000 2015"}, {"group": 850, "id": 2, "label": "553135352815554561", "shape": "dot", "size": 10, "title": "553135352815554561\u003cbr\u003e@RattyBurvil I don\u0027t think you\u003cbr\u003eare doing politics now, just\u003cbr\u003ehumanity Arthur.\u003cbr\u003eThu Jan 08 10:25:19 +0000 2015"}, {"group": 850, "id": 3, "label": "553135416610930688", "shape": "dot", "size": 10, "title": "553135416610930688\u003cbr\u003e@RattyBurvil You don\u0027t know how\u003cbr\u003emuch it means to us,\u003cbr\u003efrench people. Thank you so\u003cbr\u003emuch, Arthur.\u003cbr\u003eThu Jan 08 10:25:34 +0000 2015"}, {"group": 850, "id": 4, "label": "553135513918767104", "shape": "dot", "size": 10, "title": "553135513918767104\u003cbr\u003e@RattyBurvil bless you\u003cbr\u003eThu Jan 08 10:25:57 +0000 2015"}, {"group": 850, "id": 5, "label": "553135545824858112", "shape": "dot", "size": 10, "title": "553135545824858112\u003cbr\u003e@RattyBurvil Thanks for being with\u003cbr\u003eus today, the more light\u003cbr\u003ethe better Merci\u003cbr\u003eThu Jan 08 10:26:05 +0000 2015"}, {"group": 850, "id": 6, "label": "553136108029353984", "shape": "dot", "size": 10, "title": "553136108029353984\u003cbr\u003e@RattyBurvil I have a lot\u003cbr\u003eof Muslim friends and family\u003cbr\u003eand they are disgusted. #JeSuisCharlie\u003cbr\u003e#FreedomOfSpeech #FreedomOfThePress\u003cbr\u003eThu Jan 08 10:28:19 +0000 2015"}, {"group": 850, "id": 7, "label": "553136270126620672", "shape": "dot", "size": 10, "title": "553136270126620672\u003cbr\u003e@RattyBurvil No politics just humanity.\u003cbr\u003eThank you so much from\u003cbr\u003eFrance.\u003cbr\u003eThu Jan 08 10:28:58 +0000 2015"}, {"group": 850, "id": 8, "label": "553136293392424960", "shape": "dot", "size": 10, "title": "553136293392424960\u003cbr\u003e@RattyBurvil Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 10:29:03 +0000 2015"}, {"group": 850, "id": 9, "label": "553136381388935168", "shape": "dot", "size": 10, "title": "553136381388935168\u003cbr\u003e@RattyBurvil aw\u003cbr\u003eThu Jan 08 10:29:24 +0000 2015"}, {"group": 850, "id": 10, "label": "553136723534700545", "shape": "dot", "size": 10, "title": "553136723534700545\u003cbr\u003e@RattyBurvil I completely agree.\u003cbr\u003eThu Jan 08 10:30:46 +0000 2015"}, {"group": 850, "id": 11, "label": "553136998500675584", "shape": "dot", "size": 10, "title": "553136998500675584\u003cbr\u003e@RattyBurvil I don\u0027t think it\u003cbr\u003eneeds to be about politics.\u003cbr\u003eNo matter what you think\u003cbr\u003eof their cartoons, executing them\u003cbr\u003eis crazy terrorism.\u003cbr\u003eThu Jan 08 10:31:51 +0000 2015"}, {"group": 850, "id": 12, "label": "553137566925721602", "shape": "dot", "size": 10, "title": "553137566925721602\u003cbr\u003e@RattyBurvil Defending Freedom of Speech,\u003cbr\u003eStanding w Liberty is not\u003cbr\u003epolitics \nit\u0027s drawing the line\u003cbr\u003ethat you will not allow\u003cbr\u003eanyone to cross\u003cbr\u003eThu Jan 08 10:34:07 +0000 2015"}, {"group": 850, "id": 13, "label": "553138019310784512", "shape": "dot", "size": 10, "title": "553138019310784512\u003cbr\u003e@RattyBurvil thanks\u003cbr\u003eThu Jan 08 10:35:55 +0000 2015"}, {"group": 850, "id": 14, "label": "553139304076414977", "shape": "dot", "size": 10, "title": "553139304076414977\u003cbr\u003e@RattyBurvil and it\u0027s not only\u003cbr\u003eyesterday... Other events have happened\u003cbr\u003etoday...\u003cbr\u003eThu Jan 08 10:41:01 +0000 2015"}, {"group": 850, "id": 15, "label": "553139490878156800", "shape": "dot", "size": 10, "title": "553139490878156800\u003cbr\u003e@RattyBurvil It\u0027s not actually politics,\u003cbr\u003eit\u0027s a social disaster which\u003cbr\u003egives you the right to\u003cbr\u003eexpress how you feel about\u003cbr\u003eit\u003cbr\u003eThu Jan 08 10:41:46 +0000 2015"}, {"group": 850, "id": 16, "label": "553140000226033664", "shape": "dot", "size": 10, "title": "553140000226033664\u003cbr\u003e@RattyBurvil my husband and I\u003cbr\u003eare watching it on the\u003cbr\u003etv right now. We are\u003cbr\u003ehorrified,  and our thoughts\u003cbr\u003eand hearts are with #France\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:43:47 +0000 2015"}, {"group": 850, "id": 17, "label": "553140014637252608", "shape": "dot", "size": 10, "title": "553140014637252608\u003cbr\u003e@RattyBurvil no politics here; you\u0027ve\u003cbr\u003eexpressed care for others -\u003cbr\u003ethank you\u003cbr\u003eThu Jan 08 10:43:50 +0000 2015"}, {"group": 850, "id": 18, "label": "553140256518991872", "shape": "dot", "size": 10, "title": "553140256518991872\u003cbr\u003e@RattyBurvil that\u0027s really kind of\u003cbr\u003eyou. The whole country is\u003cbr\u003emoved by the world\u0027s reaction.\u003cbr\u003eIt\u0027s good to know we\u0027re\u003cbr\u003esupported :)\u003cbr\u003eThu Jan 08 10:44:48 +0000 2015"}, {"group": 850, "id": 19, "label": "553140296427778048", "shape": "dot", "size": 10, "title": "553140296427778048\u003cbr\u003e\u201c@RattyBurvil: \u201dthank you, it\u0027s not\u003cbr\u003epolitic, I think that it\u0027s\u003cbr\u003eabout freedom of speech, freedom\u003cbr\u003eof my country ... Thank\u003cbr\u003eyou for the support\u003cbr\u003eThu Jan 08 10:44:58 +0000 2015"}, {"group": 850, "id": 20, "label": "553140600481267712", "shape": "dot", "size": 10, "title": "553140600481267712\u003cbr\u003e\u201c@Silverfumar: @RattyBurvil\u201d thank you for\u003cbr\u003ethe support, it means a\u003cbr\u003elot for us !\u003cbr\u003eThu Jan 08 10:46:10 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 16, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

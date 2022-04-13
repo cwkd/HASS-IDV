@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1924, "id": 0, "label": "553515399438811136", "shape": "dot", "size": 10, "title": "553515399438811136\u003cbr\u003ePolice have surrounded the area\u003cbr\u003ewhere the #CharlieHebdo attack suspects\u003cbr\u003eare believed to be: http://t.co/3tGXEIX4F2\nhttps://t.co/aBSezf2QWS\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:35:29 +0000 2015"}, {"group": 1924, "id": 1, "label": "553516443833495552", "shape": "dot", "size": 10, "title": "553516443833495552\u003cbr\u003eRT @CNN Police have surrounded\u003cbr\u003ethe area where the #CharlieHebdo\u003cbr\u003eattack suspects are believed to\u003cbr\u003ebe: http://t.co/WR2I2YDK09\u003cbr\u003eFri Jan 09 11:39:38 +0000 2015"}, {"group": 1924, "id": 2, "label": "553516582836928512", "shape": "dot", "size": 10, "title": "553516582836928512\u003cbr\u003e@CNN Why have these guys\u003cbr\u003ecome out \"guns a blazing\"?\u003cbr\u003eCowardice displayed at the end?\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:40:11 +0000 2015"}, {"group": 1924, "id": 3, "label": "553516583168253952", "shape": "dot", "size": 10, "title": "553516583168253952\u003cbr\u003e@CNN this is all happening\u003cbr\u003e6 miles from me right\u003cbr\u003enow \ud83d\ude13\u003cbr\u003eFri Jan 09 11:40:11 +0000 2015"}, {"group": 1924, "id": 5, "label": "553523060662611968", "shape": "dot", "size": 10, "title": "553523060662611968\u003cbr\u003e--@CNN Keep @ChrisCuomo \u0026amp; his\u003cbr\u003e\"on the scene crew\" and\u003cbr\u003ewe\u0027ll stay tuned in. Otherwise\u003cbr\u003eCnn in Atlanta. You need\u003cbr\u003eto make host changes. \u003cbr\u003e#Paris\u003cbr\u003eFri Jan 09 12:05:56 +0000 2015"}, {"group": 1924, "id": 6, "label": "553529219972468736", "shape": "dot", "size": 10, "title": "553529219972468736\u003cbr\u003e@CNN if they have a\u003cbr\u003efemale hostage more than likely\u003cbr\u003eshe is no longer alive.\u003cbr\u003eLook how those who these\u003cbr\u003etwo are associated with treat\u003cbr\u003ewomen!\u003cbr\u003eFri Jan 09 12:30:24 +0000 2015"}, {"group": 1924, "id": 7, "label": "553943262827143168", "shape": "dot", "size": 10, "title": "553943262827143168\u003cbr\u003e@CNN Former White House official\u003cbr\u003esays Paris shooting was false\u003cbr\u003eflag http://t.co/YoYj1MrOxd #CharlieHebdoFalseFlag #ParisAttacks\u003cbr\u003eSat Jan 10 15:55:40 +0000 2015"}, {"group": 1924, "id": 8, "label": "553979514439888900", "shape": "dot", "size": 10, "title": "553979514439888900\u003cbr\u003e@CNN VIDEO | No Blood\u003cbr\u003e+ No Recoil + No\u003cbr\u003eBody Movement = Fake https://t.co/ZWOBXMLiJ5\u003cbr\u003e#CharlieHebdoFalseFlag\u003cbr\u003eSat Jan 10 18:19:43 +0000 2015"}, {"group": 1924, "id": 4, "label": "553520353172267008", "shape": "dot", "size": 10, "title": "553520353172267008\u003cbr\u003e@IsThatFrancesca @CNN are you in\u003cbr\u003ethe town?\u003cbr\u003eFri Jan 09 11:55:10 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 3, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

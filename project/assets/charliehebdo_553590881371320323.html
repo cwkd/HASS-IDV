@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1593, "id": 0, "label": "553590881371320323", "shape": "dot", "size": 10, "title": "553590881371320323\u003cbr\u003ePencil Eraser\u270f\ufe0fis mightier than the\u003cbr\u003esword\ud83d\udd2a@varvel @indystar http://t.co/En0AIb4COR #CharlieHebdo http://t.co/isvQqFCY6j\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:35:25 +0000 2015"}, {"group": 1593, "id": 1, "label": "553591274692182016", "shape": "dot", "size": 10, "title": "553591274692182016\u003cbr\u003e.@peddoc63 @varvel @indystar too bad\u003cbr\u003ewe can\u0027t do that to\u003cbr\u003ethe mess the USA is\u003cbr\u003ein - just erase all\u003cbr\u003ethe bad sh*t liberals have\u003cbr\u003edone\u003cbr\u003eFri Jan 09 16:36:59 +0000 2015"}, {"group": 1593, "id": 2, "label": "553591812544557056", "shape": "dot", "size": 10, "title": "553591812544557056\u003cbr\u003e@peddoc63 @varvel @indystar Unfortunately it\u0027s\u003cbr\u003etime to understand those idiots\u003cbr\u003eare real threats for democracy.\u003cbr\u003eWords not enough, kill them!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:39:08 +0000 2015"}, {"group": 1593, "id": 3, "label": "553591863736025088", "shape": "dot", "size": 10, "title": "553591863736025088\u003cbr\u003e@peddoc63 @varvel @indystar Use the\u003cbr\u003eeraser to eradicate those who\u003cbr\u003eincite, too. Like the president\u003cbr\u003e\u0026amp; media who approve violence\u003cbr\u003ethru silence.\u003cbr\u003eFri Jan 09 16:39:20 +0000 2015"}, {"group": 1593, "id": 4, "label": "553592189427519488", "shape": "dot", "size": 10, "title": "553592189427519488\u003cbr\u003e@peddoc63 @varvel @indystar If a\u003cbr\u003epencil eraser isn\u0027t available, then\u003cbr\u003ean A-10 Thunderbolt ll will\u003cbr\u003esuffice. http://t.co/bkGfkAgNYJ\u003cbr\u003eFri Jan 09 16:40:37 +0000 2015"}, {"group": 1593, "id": 5, "label": "553592740379115520", "shape": "dot", "size": 10, "title": "553592740379115520\u003cbr\u003e@peddoc63 @varvel @indystar unless of\u003cbr\u003ecourse you have a thermonuclear\u003cbr\u003eweapon. Then we can turn\u003cbr\u003ethem into glass particles and\u003cbr\u003eash.\u003cbr\u003eFri Jan 09 16:42:49 +0000 2015"}, {"group": 1593, "id": 6, "label": "553593824321482752", "shape": "dot", "size": 10, "title": "553593824321482752\u003cbr\u003e@peddoc63 @varvel @indystar By any\u003cbr\u003eand every means at hand,\u003cbr\u003eIslamic psychopathic killers worldwide need\u003cbr\u003ea bounty on their heads.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:47:07 +0000 2015"}, {"group": 1593, "id": 7, "label": "553594301134155776", "shape": "dot", "size": 10, "title": "553594301134155776\u003cbr\u003e\u201c@peddoc63: Pencil Eraser\u270f\ufe0fis mightier than\u003cbr\u003ethe sword\ud83d\udd2a@varvel @indystar http://t.co/C2UvTcbKGv #CharlieHebdo\u003cbr\u003ehttp://t.co/eFz2YYxEbN\u201d\u003cbr\u003eFri Jan 09 16:49:01 +0000 2015"}, {"group": 1593, "id": 10, "label": "553595627784134657", "shape": "dot", "size": 10, "title": "553595627784134657\u003cbr\u003eAh ah ah ah great\u003cbr\u003e.... @peddoc63 @varvel @indystar\u003cbr\u003eFri Jan 09 16:54:17 +0000 2015"}, {"group": 1593, "id": 11, "label": "553595933284630529", "shape": "dot", "size": 10, "title": "553595933284630529\u003cbr\u003e@peddoc63: \nPencil Eraser\u270f\ufe0fis mightier than\u003cbr\u003ethe sword\ud83d\udd2a@varvel @indystar http://t.co/2DeGnErHl1 #CharlieHebdo\u003cbr\u003ehttp://t.co/ORclmgAIVV\u003cbr\u003eFri Jan 09 16:55:30 +0000 2015"}, {"group": 1593, "id": 12, "label": "553596243109494784", "shape": "dot", "size": 10, "title": "553596243109494784\u003cbr\u003e@peddoc63 @PhilipN_CAP @varvel @indystar i\u003cbr\u003ethink they may have used\u003cbr\u003ebullets with a fight fire\u003cbr\u003ewith fire approach, eraser style\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:56:44 +0000 2015"}, {"group": 1593, "id": 13, "label": "553596269890117632", "shape": "dot", "size": 10, "title": "553596269890117632\u003cbr\u003e@peddoc63 @varvel @indystar *Consensus Seems\u003cbr\u003eto me.? Meet Fire With\u003cbr\u003eFire \u00a1? DAMN RIGHT #\u003cbr\u003e:-( LISTEN UP @BarackObama HELLSTORM\u003cbr\u003eAGAINST Islam!\u003cbr\u003eFri Jan 09 16:56:50 +0000 2015"}, {"group": 1593, "id": 15, "label": "553597124466589696", "shape": "dot", "size": 10, "title": "553597124466589696\u003cbr\u003e@peddoc63 @varvel @indystar now, can\u003cbr\u003ewe actually go and erase\u003cbr\u003ethese fuckers once and for\u003cbr\u003eall. We have to terrorize\u003cbr\u003eterrorists.\u003cbr\u003eFri Jan 09 17:00:14 +0000 2015"}, {"group": 1593, "id": 16, "label": "553598776615518209", "shape": "dot", "size": 10, "title": "553598776615518209\u003cbr\u003eRT\u201c@peddoc63: Pencil Eraser\u270f\ufe0fis mightier than\u003cbr\u003ethe sword\ud83d\udd2a@varvel @indystar http://t.co/TYcqxnjxbd #CharlieHebdo\u003cbr\u003ehttp://t.co/oY3BzCKbtg\u201d\u003cbr\u003eFri Jan 09 17:06:48 +0000 2015"}, {"group": 1593, "id": 17, "label": "553599187083087875", "shape": "dot", "size": 10, "title": "553599187083087875\u003cbr\u003e@peddoc63 @varvel @indystar If it\u003cbr\u003ewere only so...\u003cbr\u003eFri Jan 09 17:08:26 +0000 2015"}, {"group": 1593, "id": 18, "label": "553600159435591680", "shape": "dot", "size": 10, "title": "553600159435591680\u003cbr\u003e@peddoc63 @varvel @indystar Brilliant!\u003cbr\u003eFri Jan 09 17:12:18 +0000 2015"}, {"group": 1593, "id": 19, "label": "553600440555028480", "shape": "dot", "size": 10, "title": "553600440555028480\u003cbr\u003e@peddoc63 @varvel @indystar I have\u003cbr\u003ea better idea than erasing\u003cbr\u003eone terrorist at a time...\u003cbr\u003ehttp://t.co/LZwtB1md8z\u003cbr\u003eFri Jan 09 17:13:25 +0000 2015"}, {"group": 1593, "id": 8, "label": "553595132398673921", "shape": "dot", "size": 10, "title": "553595132398673921\u003cbr\u003e@JeffATobias @peddoc63 @varvel @indystar then\u003cbr\u003ethey\u0027d only be a pain\u003cbr\u003ein our ash\u003cbr\u003eFri Jan 09 16:52:19 +0000 2015"}, {"group": 1593, "id": 9, "label": "553595256210325504", "shape": "dot", "size": 10, "title": "553595256210325504\u003cbr\u003e@GregFlippen @peddoc63 @varvel @indystar they\u003cbr\u003ealready wear a roll of\u003cbr\u003ebounty on their heads\u003cbr\u003eFri Jan 09 16:52:49 +0000 2015"}, {"group": 1593, "id": 14, "label": "553596665991806976", "shape": "dot", "size": 10, "title": "553596665991806976\u003cbr\u003e@LabVIEW_OOP73 @peddoc63 @varvel @indystar Considering\u003cbr\u003ethe defense budget a substantial\u003cbr\u003ebounty on ALL their heads\u003cbr\u003e\u0026amp; still save 100\u0027s of\u003cbr\u003eB\u0027s.\u003cbr\u003eFri Jan 09 16:58:25 +0000 2015"}, {"group": 1593, "id": 20, "label": "553608772518543360", "shape": "dot", "size": 10, "title": "553608772518543360\u003cbr\u003e@tjm0072003 @peddoc63 @varvel @indystar Think\u003cbr\u003eyou are on to something.\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:46:31 +0000 2015"}, {"group": 1593, "id": 21, "label": "553609113666457600", "shape": "dot", "size": 10, "title": "553609113666457600\u003cbr\u003e@tjm0072003 @peddoc63 @varvel @indystar Israel\u003cbr\u003eshould have destroyed the \"Dome\u003cbr\u003eof the rock\" when they\u003cbr\u003ecaptured Jerusalem in 1967!\u003cbr\u003eFri Jan 09 17:47:52 +0000 2015"}, {"group": 1593, "id": 22, "label": "553629373610196992", "shape": "dot", "size": 10, "title": "553629373610196992\u003cbr\u003e@tjm0072003 @peddoc63 @varvel @indystar America\u003cbr\u003ehas got to get in\u003cbr\u003eit to WIN it, not\u003cbr\u003ejust be some police force.\u003cbr\u003e\u003cbr\u003eFri Jan 09 19:08:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 19, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

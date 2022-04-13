@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 650, "id": 0, "label": "552849515271958528", "shape": "dot", "size": 10, "title": "552849515271958528\u003cbr\u003eHeartbreakingly brilliant cartoon by @davpope\u003cbr\u003e@canberratimes in solidarity with his\u003cbr\u003eFrench colleagues. #CharlieHebdo http://t.co/IvIUVJ8vhD\u003cbr\u003eWed Jan 07 15:29:30 +0000 2015"}, {"group": 650, "id": 1, "label": "552850250256240640", "shape": "dot", "size": 10, "title": "552850250256240640\u003cbr\u003e@Lisa_Wilkinson @davpope @canberratimes Let\u0027s just\u003cbr\u003eall agree Walkley now and\u003cbr\u003enot bother about next awards.\u003cbr\u003eBreathtakingly brilliant.\u003cbr\u003eWed Jan 07 15:32:25 +0000 2015"}, {"group": 650, "id": 2, "label": "552852121348231169", "shape": "dot", "size": 10, "title": "552852121348231169\u003cbr\u003e@Lisa_Wilkinson @davpope @canberratimes Brilliant. And\u003cbr\u003eso sad.\u003cbr\u003eWed Jan 07 15:39:51 +0000 2015"}, {"group": 650, "id": 3, "label": "552855646446817280", "shape": "dot", "size": 10, "title": "552855646446817280\u003cbr\u003e@Lisa_Wilkinson @davpope @canberratimes #Realgoreala condemn\u003cbr\u003ethis attack http://t.co/Z4vCEiPGss it is\u003cbr\u003ea total shame\u003cbr\u003eWed Jan 07 15:53:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

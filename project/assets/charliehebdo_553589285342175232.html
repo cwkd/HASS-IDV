@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2066, "id": 0, "label": "553589285342175232", "shape": "dot", "size": 10, "title": "553589285342175232\u003cbr\u003eBREAKING NEWS: Killed Charlie Hebdo\u003cbr\u003esuspects came out firing on\u003cbr\u003esecurity forces. AFP\u003cbr\u003eFri Jan 09 16:29:05 +0000 2015"}, {"group": 2066, "id": 1, "label": "553589352530735104", "shape": "dot", "size": 10, "title": "553589352530735104\u003cbr\u003e@PzFeed lol idiots...\u003cbr\u003eFri Jan 09 16:29:21 +0000 2015"}, {"group": 2066, "id": 2, "label": "553589670085672960", "shape": "dot", "size": 10, "title": "553589670085672960\u003cbr\u003e@PzFeed @Holbornlolz The Butch Cassidy\u003cbr\u003eand the Sundance Kid defence?\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:30:37 +0000 2015"}, {"group": 2066, "id": 3, "label": "553589857751433217", "shape": "dot", "size": 10, "title": "553589857751433217\u003cbr\u003e@PzFeed these guys had balls.\u003cbr\u003e They\u0027ve accomplished their mission\u003cbr\u003eand have gained martyrhood, in\u003cbr\u003ethe islamist sense.\u003cbr\u003eFri Jan 09 16:31:21 +0000 2015"}, {"group": 2066, "id": 4, "label": "553590224790769665", "shape": "dot", "size": 10, "title": "553590224790769665\u003cbr\u003e@PzFeed Should have wounded but\u003cbr\u003enot killed. Forced them to\u003cbr\u003erot in prison.\u003cbr\u003eFri Jan 09 16:32:49 +0000 2015"}, {"group": 2066, "id": 5, "label": "553590565422776321", "shape": "dot", "size": 10, "title": "553590565422776321\u003cbr\u003eRT @PzFeed: BREAKING NEWS: Killed\u003cbr\u003eCharlie Hebdo suspects came out\u003cbr\u003efiring on security forces. AFP\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:34:10 +0000 2015"}, {"group": 2066, "id": 6, "label": "553590716698742784", "shape": "dot", "size": 10, "title": "553590716698742784\u003cbr\u003e@PzFeed This was really ct\u003cbr\u003esided\u003cbr\u003eFri Jan 09 16:34:46 +0000 2015"}, {"group": 2066, "id": 7, "label": "553590759824187392", "shape": "dot", "size": 10, "title": "553590759824187392\u003cbr\u003e\u201c@PzFeed: BREAKING NEWS: Killed Charlie\u003cbr\u003eHebdo suspects came out firing\u003cbr\u003eon security forces. AFP\u201dgeez smh\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:34:57 +0000 2015"}, {"group": 2066, "id": 8, "label": "553590917517819906", "shape": "dot", "size": 10, "title": "553590917517819906\u003cbr\u003e@PzFeed They wanted to die\u003cbr\u003efor their bs cause and\u003cbr\u003enow they have. We should\u003cbr\u003ehave never allowed that to\u003cbr\u003ehappen. Get info and let\u003cbr\u003ethen rott\u003cbr\u003eFri Jan 09 16:35:34 +0000 2015"}, {"group": 2066, "id": 9, "label": "553591363611426816", "shape": "dot", "size": 10, "title": "553591363611426816\u003cbr\u003e@PzFeed @AboveTopSecret they need to\u003cbr\u003ebe dead so they can\u0027t\u003cbr\u003etalk!\u003cbr\u003eFri Jan 09 16:37:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1354, "id": 0, "label": "553537380209401856", "shape": "dot", "size": 10, "title": "553537380209401856\u003cbr\u003e#BREAKING Schools near Paris hostage-taking\u003cbr\u003ego into lockdown: officials\u003cbr\u003eFri Jan 09 13:02:50 +0000 2015"}, {"group": 1354, "id": 1, "label": "553537532684558338", "shape": "dot", "size": 10, "title": "553537532684558338\u003cbr\u003eRT \u201c@AFP: #BREAKING Schools near\u003cbr\u003eParis hostage-taking go into lockdown:\u003cbr\u003eofficials\u201d\u003cbr\u003eFri Jan 09 13:03:26 +0000 2015"}, {"group": 1354, "id": 2, "label": "553538499996319744", "shape": "dot", "size": 10, "title": "553538499996319744\u003cbr\u003e\u201c@AFP: #BREAKING Schools near Paris\u003cbr\u003ehostage-taking go into lockdown: officials\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:07:17 +0000 2015"}, {"group": 1354, "id": 3, "label": "553539484307185665", "shape": "dot", "size": 10, "title": "553539484307185665\u003cbr\u003e\u201c@AFP: #BREAKING Schools near Paris\u003cbr\u003ehostage-taking go into lockdown: officials\u201d\u003cbr\u003e@pieterkleinrtl\u003cbr\u003eFri Jan 09 13:11:11 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

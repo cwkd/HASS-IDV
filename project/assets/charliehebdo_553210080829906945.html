@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1141, "id": 0, "label": "553210080829906945", "shape": "dot", "size": 10, "title": "553210080829906945\u003cbr\u003eThere is a sickness in\u003cbr\u003ethe world, but it\u0027s not\u003cbr\u003e#islam, it\u0027s religious extremism everywhere.\u003cbr\u003e#JeSuisCharlie http://t.co/zNRSUFbd0P\u003cbr\u003eThu Jan 08 15:22:16 +0000 2015"}, {"group": 1141, "id": 1, "label": "553211068227805185", "shape": "dot", "size": 10, "title": "553211068227805185\u003cbr\u003e@ChrisOB617 Charlie Hebdo shooting: Who\u003cbr\u003eare the suspects? #JeSuisCharlie http://t.co/rHqCJl5hp6\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:26:11 +0000 2015"}, {"group": 1141, "id": 2, "label": "553211861316161537", "shape": "dot", "size": 10, "title": "553211861316161537\u003cbr\u003e@ChrisOB617 religion is the beast.\u003cbr\u003eit always creates an we\u003cbr\u003ehere and they there.\u003cbr\u003eThu Jan 08 15:29:20 +0000 2015"}, {"group": 1141, "id": 3, "label": "553215116263845890", "shape": "dot", "size": 10, "title": "553215116263845890\u003cbr\u003e@ChrisOB617 person like you is\u003cbr\u003ea cancer.This losing mentality is\u003cbr\u003eour danger. We need crush\u003cbr\u003eislam mercilessly. stop immigration\u003cbr\u003eThu Jan 08 15:42:16 +0000 2015"}, {"group": 1141, "id": 4, "label": "553215432736268288", "shape": "dot", "size": 10, "title": "553215432736268288\u003cbr\u003e@ChrisOB617 except that when you\u003cbr\u003eread the tweet on the\u003cbr\u003eleft, you\u0027d know it was\u003cbr\u003ea joke. The one on\u003cbr\u003ethe right probably says something\u003cbr\u003escary.\u003cbr\u003eThu Jan 08 15:43:32 +0000 2015"}, {"group": 1141, "id": 5, "label": "553221541186781184", "shape": "dot", "size": 10, "title": "553221541186781184\u003cbr\u003e@ChrisOB617 Religion causes death and\u003cbr\u003edestruction when it\u0027s twisted into\u003cbr\u003ean excuse for mankind to\u003cbr\u003ekill with a sense of\u003cbr\u003erighteousness\u003cbr\u003eThu Jan 08 16:07:48 +0000 2015"}, {"group": 1141, "id": 6, "label": "553237655774064640", "shape": "dot", "size": 10, "title": "553237655774064640\u003cbr\u003e@ChrisOB617 CHRIS O BRIEN ,\u003cbr\u003eTHE BIBLE  SAY S\u003cbr\u003eTHAT THERE WILL BE A\u003cbr\u003eHOLY WAR , AND WE\u003cbr\u003eARE SEEING THIS HAPPING NOW\u003cbr\u003e, B4 THE 2ND COMEIN\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:11:50 +0000 2015"}, {"group": 1141, "id": 7, "label": "553260334933622786", "shape": "dot", "size": 10, "title": "553260334933622786\u003cbr\u003e@ChrisOB617  ...or just extremism\u003cbr\u003eeverywhere.\u003cbr\u003eThu Jan 08 18:41:57 +0000 2015"}, {"group": 1141, "id": 8, "label": "553273410210770947", "shape": "dot", "size": 10, "title": "553273410210770947\u003cbr\u003e@ChrisOB617 Amazing display of intellectual\u003cbr\u003edishonesty.  The one on\u003cbr\u003ethe left is obviously a\u003cbr\u003ejoke.  Did you even\u003cbr\u003eread the tweet, you nitwit.\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:33:54 +0000 2015"}, {"group": 1141, "id": 9, "label": "553286958697689088", "shape": "dot", "size": 10, "title": "553286958697689088\u003cbr\u003e@ChrisOB617 As they say, \u0027it\u003cbr\u003ecan happen here\u0027, only if\u003cbr\u003ethe conditions are ripe .\u003cbr\u003e. .and we might be\u003cbr\u003eheading in that direction.\u003cbr\u003eThu Jan 08 20:27:45 +0000 2015"}, {"group": 1141, "id": 10, "label": "554404162667298816", "shape": "dot", "size": 10, "title": "554404162667298816\u003cbr\u003e@ChrisOB617 She\u0027s mocking the President\u0027s\u003cbr\u003ecomment from when he was\u003cbr\u003ecampaigning.  It\u0027s satire. \u003cbr\u003eHow ironically stupid of you.\u003cbr\u003e\u003cbr\u003eSun Jan 11 22:27:07 +0000 2015"}, {"group": 1141, "id": 11, "label": "554445088408215552", "shape": "dot", "size": 10, "title": "554445088408215552\u003cbr\u003e@OPlz but she represents something\u003cbr\u003every real. It\u0027s not about\u003cbr\u003eone person/pic, it\u0027s a larger\u003cbr\u003epoint.\u003cbr\u003eMon Jan 12 01:09:44 +0000 2015"}, {"group": 1141, "id": 12, "label": "554447124876636160", "shape": "dot", "size": 10, "title": "554447124876636160\u003cbr\u003e@ChrisOB617 Something real like what?\u003cbr\u003e The President\u0027s absurd view\u003cbr\u003eof half the country\u0027s population?\u003cbr\u003e\u003cbr\u003eMon Jan 12 01:17:50 +0000 2015"}, {"group": 1141, "id": 13, "label": "554454577597407233", "shape": "dot", "size": 10, "title": "554454577597407233\u003cbr\u003e@OPlz Not at all absurd.\u003cbr\u003eHow ironically stupid if you.\u003cbr\u003e\u003cbr\u003eMon Jan 12 01:47:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

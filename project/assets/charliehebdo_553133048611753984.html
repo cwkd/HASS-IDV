@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 847, "id": 0, "label": "553133048611753984", "shape": "dot", "size": 10, "title": "553133048611753984\u003cbr\u003eMinute of silence for #CharlieHebdo.\u003cbr\u003eMy heart is with France.\u003cbr\u003eTogether we will protect our\u003cbr\u003evalues http://t.co/MEB1mSZIm6\u003cbr\u003eThu Jan 08 10:16:10 +0000 2015"}, {"group": 847, "id": 1, "label": "553133308901863424", "shape": "dot", "size": 10, "title": "553133308901863424\u003cbr\u003e@eucopresident [*]\u003cbr\u003eThu Jan 08 10:17:12 +0000 2015"}, {"group": 847, "id": 2, "label": "553133826785148928", "shape": "dot", "size": 10, "title": "553133826785148928\u003cbr\u003e@eucopresident Maybe you can change\u003cbr\u003eyour profile picture? :-)\u003cbr\u003eThu Jan 08 10:19:15 +0000 2015"}, {"group": 847, "id": 3, "label": "553134231560667137", "shape": "dot", "size": 10, "title": "553134231560667137\u003cbr\u003e. @eucopresident Dziekuje. Jeszcze Francja\u003cbr\u003enie zgin\u0119\u0142a ! @DianaKlimovskix @JulieKasinski\u003cbr\u003e@andersostlund @BrunoGebarski @TROJKAdaMalecki\u003cbr\u003eThu Jan 08 10:20:52 +0000 2015"}, {"group": 847, "id": 4, "label": "553134830628896769", "shape": "dot", "size": 10, "title": "553134830628896769\u003cbr\u003e@eucopresident European citizens living in\u003cbr\u003eFrance stand together with French\u003cbr\u003efriends. We are stronger than\u003cbr\u003eterrorism! #JeSuisCharlie\u003cbr\u003eThu Jan 08 10:23:15 +0000 2015"}, {"group": 847, "id": 5, "label": "553135129418559488", "shape": "dot", "size": 10, "title": "553135129418559488\u003cbr\u003e@eucopresident dzi\u0119kuj\u0119 bardzo\u003cbr\u003eThu Jan 08 10:24:26 +0000 2015"}, {"group": 847, "id": 6, "label": "553135893260025856", "shape": "dot", "size": 10, "title": "553135893260025856\u003cbr\u003e@eucopresident \nYes, Donald! We should\u003cbr\u003eprotect our universal human rights!\u003cbr\u003eBut we shouldn\u2019t threat our\u003cbr\u003eMuslim neighbours!\u003cbr\u003eThu Jan 08 10:27:28 +0000 2015"}, {"group": 847, "id": 7, "label": "553136689325948928", "shape": "dot", "size": 10, "title": "553136689325948928\u003cbr\u003e@eucopresident R u a left-liberal\u003cbr\u003eapologist for Islam?Only way to\u003cbr\u003eeradicate malaria is to exterminate\u003cbr\u003emosquitoes not sleeping inside nets\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:30:38 +0000 2015"}, {"group": 847, "id": 8, "label": "553138114836062208", "shape": "dot", "size": 10, "title": "553138114836062208\u003cbr\u003e@eucopresident tak tak..tusku zawsze z\u003cbr\u003elewactwem !\u003cbr\u003eThu Jan 08 10:36:18 +0000 2015"}, {"group": 847, "id": 9, "label": "553138166258208768", "shape": "dot", "size": 10, "title": "553138166258208768\u003cbr\u003e@eucopresident meno parole e pi\u00f9\u003cbr\u003esolidariet\u00e0 fra europei. I problemi\u003cbr\u003edell\u0027Europa mediterranea sono anche quelli\u003cbr\u003edell\u0027Europa del nord!\u003cbr\u003eThu Jan 08 10:36:30 +0000 2015"}, {"group": 847, "id": 10, "label": "553138328410030080", "shape": "dot", "size": 10, "title": "553138328410030080\u003cbr\u003e@eucopresident Together, we did nothing\u003cbr\u003eso far to protect our\u003cbr\u003evalues.\u003cbr\u003eThu Jan 08 10:37:08 +0000 2015"}, {"group": 847, "id": 11, "label": "553138652524855296", "shape": "dot", "size": 10, "title": "553138652524855296\u003cbr\u003e@eucopresident You certainly know who\u003cbr\u003ebenefits from the attacks.Russian nationalist\u003cbr\u003ewrote about thecollapse of Europe\u003cbr\u003ehttp://t.co/8be4gXUbJd\u003cbr\u003eThu Jan 08 10:38:26 +0000 2015"}, {"group": 847, "id": 12, "label": "553138814752161792", "shape": "dot", "size": 10, "title": "553138814752161792\u003cbr\u003e@eucopresident \u201cIslam is worse than\u003cbr\u003eNazism\u201d by ex-Muslim poet from\u003cbr\u003e#Turkey\nhttp://t.co/NWzw8x2eoF \n#CharlieHebdo #BanIslam\u003cbr\u003eThu Jan 08 10:39:04 +0000 2015"}, {"group": 847, "id": 13, "label": "553139768809500673", "shape": "dot", "size": 10, "title": "553139768809500673\u003cbr\u003e@eucopresident No, you won\u0027t. You\u003cbr\u003ewere in submissive mode when\u003cbr\u003ethe B-movie of Mohammed sent\u003cbr\u003efears into your heart..#hypocrites @Esther_Voet\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:42:52 +0000 2015"}, {"group": 847, "id": 14, "label": "553140795587694592", "shape": "dot", "size": 10, "title": "553140795587694592\u003cbr\u003e@eucopresident Muslims have their own\u003cbr\u003evalues, too. So has the\u003cbr\u003erest of the world\u003cbr\u003eThu Jan 08 10:46:57 +0000 2015"}, {"group": 847, "id": 15, "label": "553141606938066944", "shape": "dot", "size": 10, "title": "553141606938066944\u003cbr\u003e@eucopresident War profiteers x\u0027d #PrincessDiana\u003cbr\u003e#DodiFayed in #Paris. Pushing #France\u003cbr\u003eto join war on terror\u003cbr\u003eVIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003eThu Jan 08 10:50:10 +0000 2015"}, {"group": 847, "id": 17, "label": "553143472140853249", "shape": "dot", "size": 10, "title": "553143472140853249\u003cbr\u003e@eucopresident @OpenSociety\u003cbr\u003eThu Jan 08 10:57:35 +0000 2015"}, {"group": 847, "id": 18, "label": "553145703036235776", "shape": "dot", "size": 10, "title": "553145703036235776\u003cbr\u003e@eucopresident @PolandMFA Not my inaction.\u003cbr\u003eBut my practical action. Say\u003cbr\u003eno to Islam influence. Radical\u003cbr\u003eor Moderate. both are same.\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:06:27 +0000 2015"}, {"group": 847, "id": 19, "label": "553146420266819584", "shape": "dot", "size": 10, "title": "553146420266819584\u003cbr\u003e@eucopresident We need to communicate\u003cbr\u003eour values more. Less focus\u003cbr\u003eon economy. Human rights, tolerance,\u003cbr\u003efreedom of speech are EU\u003cbr\u003ecore values.\u003cbr\u003eThu Jan 08 11:09:18 +0000 2015"}, {"group": 847, "id": 20, "label": "553154912574775297", "shape": "dot", "size": 10, "title": "553154912574775297\u003cbr\u003e@jb_wlo @eucopresident @JulieKasinski @andersostlund @BrunoGebarski\u003cbr\u003e@TROJKAdaMalecki \nTo wypr\u00f3bowanie...\n\u015bwiat ma przysz\u0142o\u015b\u0107!\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:43:02 +0000 2015"}, {"group": 847, "id": 22, "label": "553221054366511104", "shape": "dot", "size": 10, "title": "553221054366511104\u003cbr\u003e@jb_wlo Francjy zginela Francja straci\u0142a\u003cbr\u003eswoj\u0105 suwerenno\u015b\u0107, poniewa\u017c z Europy\u003cbr\u003ei Brussel faszystowskiego centralizmu =\u003cbr\u003eZSRR! @DianaKlimovskix\u003cbr\u003eThu Jan 08 16:05:52 +0000 2015"}, {"group": 847, "id": 16, "label": "553141706007527426", "shape": "dot", "size": 10, "title": "553141706007527426\u003cbr\u003e@Pariseuro War profiteers x\u0027d #PrincessDiana\u003cbr\u003eand #DodiFayed in #Paris. Pushing\u003cbr\u003e#France to join war on\u003cbr\u003eterror VIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003eThu Jan 08 10:50:34 +0000 2015"}, {"group": 847, "id": 21, "label": "553219808167481345", "shape": "dot", "size": 10, "title": "553219808167481345\u003cbr\u003e@DianaKlimovskix Diane, co masz na\u003cbr\u003emy\u015bli przez s\u0142owo jest przysz\u0142o\u015b\u0107?\u003cbr\u003e@jb_wlo @JulieKasinski @andersostlund @TROJKAdaMalecki\u003cbr\u003eThu Jan 08 16:00:55 +0000 2015"}, {"group": 847, "id": 23, "label": "553221925279780866", "shape": "dot", "size": 10, "title": "553221925279780866\u003cbr\u003e@BrunoGebarski @jb_wlo @JulieKasinski @andersostlund @TROJKAdaMalecki\u003cbr\u003e\nPrzysz\u0142o\u015b\u0107, czyli potrafimy zachowa\u0107 ludzki\u003cbr\u003erodzaj, ras\u0119.\u003cbr\u003eThu Jan 08 16:09:20 +0000 2015"}, {"group": 847, "id": 24, "label": "553222491649228801", "shape": "dot", "size": 10, "title": "553222491649228801\u003cbr\u003e@BrunoGebarski @jb_wlo @JulieKasinski @andersostlund @TROJKAdaMalecki\u003cbr\u003e\nJ\u0027espere que mon polonais est\u003cbr\u003ecomprehensible))) sinon - desolee))\u003cbr\u003eThu Jan 08 16:11:35 +0000 2015"}, {"group": 847, "id": 25, "label": "553226708728709122", "shape": "dot", "size": 10, "title": "553226708728709122\u003cbr\u003e@DianaKlimovskix Diane je pr\u00e9f\u00e8re le\u003cbr\u003efran\u00e7ais: je suis fran\u00e7ais! passons\u003cbr\u003een DM s\u0027il vous plait\u003cbr\u003e:-) Ravi de poursuivre notre\u003cbr\u003econversation :-)\u003cbr\u003eThu Jan 08 16:28:20 +0000 2015"}, {"group": 847, "id": 26, "label": "553227325845024768", "shape": "dot", "size": 10, "title": "553227325845024768\u003cbr\u003e@BrunoGebarski \nGenial! Moi aussi)) et\u003cbr\u003eje suis francaise (a moitie))\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:30:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 20, "weight": 1}, {"from": 3, "to": 22, "weight": 1}, {"from": 4, "to": 16, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

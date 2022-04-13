@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1842, "id": 0, "label": "553467311261503488", "shape": "dot", "size": 10, "title": "553467311261503488\u003cbr\u003eReports of shooting at \u003cbr\u003eDammartin en Goele on route\u003cbr\u003eN2 north east of Paris\u003cbr\u003e- French media says car\u003cbr\u003echase under way\u003cbr\u003eFri Jan 09 08:24:24 +0000 2015"}, {"group": 1842, "id": 1, "label": "553468547184467969", "shape": "dot", "size": 10, "title": "553468547184467969\u003cbr\u003e@BBCChrisMorris Sounds like theirs multiple\u003cbr\u003eterrorists acting or the Two\u003cbr\u003ehebdo attackers manage to stay\u003cbr\u003estep ahead of 80,000 cops\u003cbr\u003eone of two\u003cbr\u003eFri Jan 09 08:29:19 +0000 2015"}, {"group": 1842, "id": 2, "label": "553481000379248640", "shape": "dot", "size": 10, "title": "553481000379248640\u003cbr\u003e@BBCChrisMorris take them alive so\u003cbr\u003ethey can suffer\u003cbr\u003eFri Jan 09 09:18:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

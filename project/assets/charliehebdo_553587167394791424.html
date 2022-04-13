@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2042, "id": 0, "label": "553587167394791424", "shape": "dot", "size": 10, "title": "553587167394791424\u003cbr\u003eURGENT: Both #CharlieHebdo suspects killed\u003cbr\u003e- reports http://t.co/QZbkbOTJNg http://t.co/PB05L1pWmZ\u003cbr\u003eFri Jan 09 16:20:40 +0000 2015"}, {"group": 2042, "id": 1, "label": "553587289482219520", "shape": "dot", "size": 10, "title": "553587289482219520\u003cbr\u003e\u201c@RT_com: URGENT: Both #CharlieHebdo suspects\u003cbr\u003ekilled - reports http://t.co/hHdx7H3qeI http://t.co/yfKLpcpoqC\u201d\nConvenient.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:21:09 +0000 2015"}, {"group": 2042, "id": 2, "label": "553587394587684865", "shape": "dot", "size": 10, "title": "553587394587684865\u003cbr\u003e@RT_com Great!\u003cbr\u003eFri Jan 09 16:21:34 +0000 2015"}, {"group": 2042, "id": 3, "label": "553587642525569025", "shape": "dot", "size": 10, "title": "553587642525569025\u003cbr\u003e@RT_com Great news. Roasting in\u003cbr\u003ehell with their pedophile prophet\u003cbr\u003eis what we hope.\u003cbr\u003eFri Jan 09 16:22:33 +0000 2015"}, {"group": 2042, "id": 4, "label": "553587664285216768", "shape": "dot", "size": 10, "title": "553587664285216768\u003cbr\u003e@RT_com Suspects???? Damn terrorists. Good\u003cbr\u003efortune they\u0027re not with us\u003cbr\u003eanymore. May they\u0027re supporters join\u003cbr\u003ethem in hell soon.\u003cbr\u003eFri Jan 09 16:22:38 +0000 2015"}, {"group": 2042, "id": 5, "label": "553587706287386624", "shape": "dot", "size": 10, "title": "553587706287386624\u003cbr\u003eRT @RT_com: URGENT: Both #CharlieHebdo\u003cbr\u003esuspects killed - reports http://t.co/VN08wSOW8q\u003cbr\u003ehttp://t.co/Po4NedXrkv\u201d\u003cbr\u003eFri Jan 09 16:22:48 +0000 2015"}, {"group": 2042, "id": 6, "label": "553587736645763072", "shape": "dot", "size": 10, "title": "553587736645763072\u003cbr\u003e@RT_com fantastic news #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:22:56 +0000 2015"}, {"group": 2042, "id": 7, "label": "553587747709931521", "shape": "dot", "size": 10, "title": "553587747709931521\u003cbr\u003e@rt_com Like the #Sydneyseige these\u003cbr\u003eguys wouldn\u0027t be taken alive,\u003cbr\u003ethey had no intention of\u003cbr\u003esurrender.\u003cbr\u003eFri Jan 09 16:22:58 +0000 2015"}, {"group": 2042, "id": 8, "label": "553588018452631552", "shape": "dot", "size": 10, "title": "553588018452631552\u003cbr\u003e@RT_com @jd_8901 good news\u003cbr\u003eFri Jan 09 16:24:03 +0000 2015"}, {"group": 2042, "id": 9, "label": "553588167241379841", "shape": "dot", "size": 10, "title": "553588167241379841\u003cbr\u003e@RT_com They said that they\u003cbr\u003ewanted to be martyrs, shame\u003cbr\u003ethere\u0027s NO life after death!!\u003cbr\u003e:)) #CharlieHebdo #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:24:38 +0000 2015"}, {"group": 2042, "id": 11, "label": "553588273378234369", "shape": "dot", "size": 10, "title": "553588273378234369\u003cbr\u003e\u201c@RT_com: URGENT: Both #CharlieHebdo suspects\u003cbr\u003ekilled - reports http://t.co/sRA4GtKdyj http://t.co/dO0sHcaZRN\u201d/best\u003cbr\u003eresult\u003cbr\u003eFri Jan 09 16:25:04 +0000 2015"}, {"group": 2042, "id": 12, "label": "553588487950446592", "shape": "dot", "size": 10, "title": "553588487950446592\u003cbr\u003e@RT_com How very convenient\u003cbr\u003eFri Jan 09 16:25:55 +0000 2015"}, {"group": 2042, "id": 13, "label": "553588767391367168", "shape": "dot", "size": 10, "title": "553588767391367168\u003cbr\u003e\u201c@RT_com: URGENT: Both #CharlieHebdo suspects\u003cbr\u003ekilled - reports http://t.co/ZJuZyAyFSr http://t.co/OEgkTnjcoN\u201d\u003cbr\u003e#Shocker! Gnight folks!\u003cbr\u003eFri Jan 09 16:27:01 +0000 2015"}, {"group": 2042, "id": 14, "label": "553588860786323458", "shape": "dot", "size": 10, "title": "553588860786323458\u003cbr\u003e@RT_com That\u0027s what they wanted.\u003cbr\u003eShudda got the cowards alive\u003cbr\u003eand made them stew in\u003cbr\u003etheir own shit for 30\u003cbr\u003eyears.\u003cbr\u003eFri Jan 09 16:27:24 +0000 2015"}, {"group": 2042, "id": 16, "label": "553589233290870785", "shape": "dot", "size": 10, "title": "553589233290870785\u003cbr\u003e@RT_com @StalinBurrinho Agora C\u00eas v\u00e3o\u003cbr\u003eencontrar as 11 mil virgens\u003cbr\u003eno infernos seus Merdas! 11\u003cbr\u003emil Kid Bengala seus FDP\u003cbr\u003earrombandos!\u003cbr\u003eFri Jan 09 16:28:53 +0000 2015"}, {"group": 2042, "id": 17, "label": "553589239448088577", "shape": "dot", "size": 10, "title": "553589239448088577\u003cbr\u003e@RT_com @fauxpaschick Being kept alive\u003cbr\u003ewould have been preferable. I\u003cbr\u003edo not trust this story\u003cbr\u003eso far, there are some\u003cbr\u003ebig ?ns and failures\u003cbr\u003eFri Jan 09 16:28:54 +0000 2015"}, {"group": 2042, "id": 18, "label": "553589380590616576", "shape": "dot", "size": 10, "title": "553589380590616576\u003cbr\u003e@RT_com dead men don\u0027t talk.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:29:28 +0000 2015"}, {"group": 2042, "id": 10, "label": "553588267845955584", "shape": "dot", "size": 10, "title": "553588267845955584\u003cbr\u003e@TGawn @RT_com and what a\u003cbr\u003ewaste of money a trial\u003cbr\u003ewould be on these scum.\u003cbr\u003eTop result! (As long as\u003cbr\u003ethere weren\u0027t any other casualties)\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:25:02 +0000 2015"}, {"group": 2042, "id": 15, "label": "553589098342928384", "shape": "dot", "size": 10, "title": "553589098342928384\u003cbr\u003e@Hugh_de_Funkit my sentiments exactly ..\u003cbr\u003ehow my distrust of official\u003cbr\u003enarratives has grown ...\u003cbr\u003eFri Jan 09 16:28:20 +0000 2015"}, {"group": 2042, "id": 20, "label": "553591556762906625", "shape": "dot", "size": 10, "title": "553591556762906625\u003cbr\u003e@gregorylent @Hugh_de_Funkit smells like boston.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:38:07 +0000 2015"}, {"group": 2042, "id": 19, "label": "553589531954667521", "shape": "dot", "size": 10, "title": "553589531954667521\u003cbr\u003e@MisterWisteria @RT_com I would have\u003cbr\u003epreferred them being taken alive.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:30:04 +0000 2015"}, {"group": 2042, "id": 21, "label": "553598695761928192", "shape": "dot", "size": 10, "title": "553598695761928192\u003cbr\u003e@nikonical @Hugh_de_Funkit to me too,\u003cbr\u003ebut to say to almost\u003cbr\u003eanyone boston was a rigged\u003cbr\u003eevent earns instant opprobrium\u003cbr\u003eFri Jan 09 17:06:29 +0000 2015"}, {"group": 2042, "id": 22, "label": "553600417771573249", "shape": "dot", "size": 10, "title": "553600417771573249\u003cbr\u003e@gregorylent @nikonical I now go\u003cbr\u003eso far as to say\u003cbr\u003ethat ALL \u0027terrorist\u0027 attacks are\u003cbr\u003estaged. Seen too much of\u003cbr\u003ethis to think otherwise.\u003cbr\u003eFri Jan 09 17:13:19 +0000 2015"}, {"group": 2042, "id": 23, "label": "553601917490700289", "shape": "dot", "size": 10, "title": "553601917490700289\u003cbr\u003e@Hugh_de_Funkit @nikonical you are not\u003cbr\u003ealone in that .. a\u003cbr\u003egrowing conversation around it\u003cbr\u003eFri Jan 09 17:19:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

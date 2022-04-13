@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 970, "id": 0, "label": "553163210715844608", "shape": "dot", "size": 10, "title": "553163210715844608\u003cbr\u003eHypocricy\nJNU LEFT was celebrating cartoons\u003cbr\u003ewhich depicted Durga as prostitute\u003cbr\u003ebut denouncing #CharlieHebdo cartoons http://t.co/YTnGmsVI9M\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:16:01 +0000 2015"}, {"group": 970, "id": 1, "label": "553165045434044417", "shape": "dot", "size": 10, "title": "553165045434044417\u003cbr\u003e@rishibagree @mediacrooks abominable\u003cbr\u003eThu Jan 08 12:23:18 +0000 2015"}, {"group": 970, "id": 2, "label": "553166272142143489", "shape": "dot", "size": 10, "title": "553166272142143489\u003cbr\u003e@rishibagree @mediacrooks JNU parasites fed\u003cbr\u003eon taxpayer money always had\u003cbr\u003edouble standards. Always supported anything\u003cbr\u003eanti-Hindu Nationalism.\u003cbr\u003eThu Jan 08 12:28:11 +0000 2015"}, {"group": 970, "id": 3, "label": "553166275183001602", "shape": "dot", "size": 10, "title": "553166275183001602\u003cbr\u003e@rishibagree @mediacrooks Remember #MFHussain Painted\u003cbr\u003eNude God \u0026amp; Goddesses No\u003cbr\u003eoutrage No Fatwah,became Brand Ambassador\u003cbr\u003eof #secular #media\u003cbr\u003eThu Jan 08 12:28:11 +0000 2015"}, {"group": 970, "id": 4, "label": "553167018807947265", "shape": "dot", "size": 10, "title": "553167018807947265\u003cbr\u003e@rishibagree @mediacrooks If this is\u003cbr\u003ewhat JNU is teaching it\u003cbr\u003eshould be dismantled immediately and\u003cbr\u003ereplaced by a new Academia.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:31:09 +0000 2015"}, {"group": 970, "id": 5, "label": "553168372045590528", "shape": "dot", "size": 10, "title": "553168372045590528\u003cbr\u003e@rishibagree Oh shit! \ud83d\ude2e Thats\u003cbr\u003eunbelievable..all such insults have happened\u003cbr\u003eind past bt culprits r\u003cbr\u003estill alive n roaming freely...wow\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:36:31 +0000 2015"}, {"group": 970, "id": 6, "label": "553170654397083649", "shape": "dot", "size": 10, "title": "553170654397083649\u003cbr\u003e@rishibagree Neither anybody in JNU\u003cbr\u003enor MF were killed.to avenge.That\u003cbr\u003eshows Hindus are secular \u0026amp;\u003cbr\u003eliberal.\u003cbr\u003eThu Jan 08 12:45:36 +0000 2015"}, {"group": 970, "id": 7, "label": "553171715031711745", "shape": "dot", "size": 10, "title": "553171715031711745\u003cbr\u003e@rishibagree @amz360 It is the\u003cbr\u003enatural attribute of bastards. It\u003cbr\u003ewill be a shame if\u003cbr\u003ethis gutter called JNU is\u003cbr\u003eallowed to exist byond 2018.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:49:48 +0000 2015"}, {"group": 970, "id": 8, "label": "553174100357574657", "shape": "dot", "size": 10, "title": "553174100357574657\u003cbr\u003e@rishibagree THE NEO-LEFTIST  HARAAMI\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:59:17 +0000 2015"}, {"group": 970, "id": 9, "label": "553184459902574594", "shape": "dot", "size": 10, "title": "553184459902574594\u003cbr\u003e@rishibagree everyone is criticizing y\u0027days\u003cbr\u003eattack. Dunno where you find\u003cbr\u003ethe enemies to attack?\u003cbr\u003eThu Jan 08 13:40:27 +0000 2015"}, {"group": 970, "id": 10, "label": "553186205798768640", "shape": "dot", "size": 10, "title": "553186205798768640\u003cbr\u003e@rishibagree Just one word ....\u003cbr\u003eBAS***DS\u003cbr\u003eThu Jan 08 13:47:23 +0000 2015"}, {"group": 970, "id": 11, "label": "553198803508269057", "shape": "dot", "size": 10, "title": "553198803508269057\u003cbr\u003e@rishibagree @missmumbai1 JNU left liberals\u003cbr\u003eare mother fuckers\u003cbr\u003eThu Jan 08 14:37:27 +0000 2015"}, {"group": 970, "id": 12, "label": "553202694202998785", "shape": "dot", "size": 10, "title": "553202694202998785\u003cbr\u003e@rishibagree This cant be tolerated..\u003cbr\u003eThe accused should be given\u003cbr\u003elife imprisonment.. Shameless Artist. Hw\u003cbr\u003edare he can portray maa\u003cbr\u003elike this\u003cbr\u003eThu Jan 08 14:52:54 +0000 2015"}, {"group": 970, "id": 13, "label": "553203522804527105", "shape": "dot", "size": 10, "title": "553203522804527105\u003cbr\u003e@rishibagree This cant be tolerated..\u003cbr\u003eThe accused should be given\u003cbr\u003elife imprisonment.. Shameless Artist.\u003cbr\u003eThu Jan 08 14:56:12 +0000 2015"}, {"group": 970, "id": 14, "label": "553219743641911296", "shape": "dot", "size": 10, "title": "553219743641911296\u003cbr\u003e@rishibagree @mediacrooks  @narendramodi @smritiirani\u003cbr\u003e@Swamy39 if this is still\u003cbr\u003etaught in jnu then its\u003cbr\u003ea shame for all of\u003cbr\u003eus\u003cbr\u003eThu Jan 08 16:00:39 +0000 2015"}, {"group": 970, "id": 20, "label": "553334226125209600", "shape": "dot", "size": 10, "title": "553334226125209600\u003cbr\u003e.@rishibagree @prabhu_2030 Both are heresies.\u003cbr\u003e Marx took Allah out\u003cbr\u003eof Islam and called it\u003cbr\u003eCommunism.\u003cbr\u003eThu Jan 08 23:35:34 +0000 2015"}, {"group": 970, "id": 15, "label": "553219981257617408", "shape": "dot", "size": 10, "title": "553219981257617408\u003cbr\u003e@sanjays00663282 @rishibagree  u mean\u003cbr\u003echarlie hebdo? He\u0027s a left\u003cbr\u003ewing artist. Mocking religion applies\u003cbr\u003eto all. Live with that\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:01:36 +0000 2015"}, {"group": 970, "id": 16, "label": "553223485330190336", "shape": "dot", "size": 10, "title": "553223485330190336\u003cbr\u003e@sreefpeech @rishibagree I MEAN THE\u003cbr\u003e#JNU HARAAMI TYPE WHO ARE\u003cbr\u003eLUCKY TO LIVE AFTER CALLING\u003cbr\u003eMOTHER DURGA  AS..........\u003cbr\u003eThu Jan 08 16:15:31 +0000 2015"}, {"group": 970, "id": 17, "label": "553224998039846912", "shape": "dot", "size": 10, "title": "553224998039846912\u003cbr\u003e@sanjays00663282 @rishibagree mocking applies to\u003cbr\u003eall gods. Be it christianity,\u003cbr\u003eislam, hiduism. Is ur maa\u003cbr\u003edurga any special to b\u003cbr\u003eexcluded?\u003cbr\u003eThu Jan 08 16:21:32 +0000 2015"}, {"group": 970, "id": 18, "label": "553226675216191488", "shape": "dot", "size": 10, "title": "553226675216191488\u003cbr\u003e@sanjays00663282 @rishibagree U guyz hail\u003cbr\u003edem wen dey mock abrahmic\u003cbr\u003ereligion. And when dey does\u003cbr\u003ed same to ur religion\u003cbr\u003eur sentiments r hurt\u003cbr\u003eThu Jan 08 16:28:12 +0000 2015"}, {"group": 970, "id": 19, "label": "553227111012769793", "shape": "dot", "size": 10, "title": "553227111012769793\u003cbr\u003e@sanjays00663282 @rishibagree y the double\u003cbr\u003estandard? U guyz r behaving\u003cbr\u003esame lyk those isis terrorists\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:29:56 +0000 2015"}, {"group": 970, "id": 23, "label": "553385446139363328", "shape": "dot", "size": 10, "title": "553385446139363328\u003cbr\u003e@sreefpeech @rishibagree  UNLIKE YOU\u003cbr\u003eTHE SERVILE #LEFTISTDOUBLE CROSSER I\u003cbr\u003eDON\u0027T CAMOUFLAGE MY ID. IF\u003cbr\u003eYOU ARE SO BRAVE COME\u003cbr\u003eOUT IN OPEN\u003cbr\u003eFri Jan 09 02:59:06 +0000 2015"}, {"group": 970, "id": 21, "label": "553334929199611905", "shape": "dot", "size": 10, "title": "553334929199611905\u003cbr\u003eOne step closer... RT @ramana_brf\u003cbr\u003e.@rishibagree @prabhu_2030 Both are heresies.\u003cbr\u003e Marx took Allah out\u003cbr\u003eof Islam and called it\u003cbr\u003eCommunism.\u003cbr\u003eThu Jan 08 23:38:22 +0000 2015"}, {"group": 970, "id": 22, "label": "553336348250083328", "shape": "dot", "size": 10, "title": "553336348250083328\u003cbr\u003e@ramana_brf @rishibagree @prabhu_2030 Our @INCIndia\u003cbr\u003etook Hinduism out of everything\u003cbr\u003eand called it @secular786 Secularism!\u003cbr\u003e\u003cbr\u003eThu Jan 08 23:44:00 +0000 2015"}, {"group": 970, "id": 24, "label": "553586220631355392", "shape": "dot", "size": 10, "title": "553586220631355392\u003cbr\u003e@sanjays00663282 @rishibagree everyone has the\u003cbr\u003eright  to mock religion\u003cbr\u003e\u0026amp; gods\u003cbr\u003eFri Jan 09 16:16:54 +0000 2015"}, {"group": 970, "id": 25, "label": "553586689655209984", "shape": "dot", "size": 10, "title": "553586689655209984\u003cbr\u003e@sanjays00663282 @rishibagree if u have\u003cbr\u003eproblem, go join taliban or\u003cbr\u003eisis\u003cbr\u003eFri Jan 09 16:18:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 20, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 19, "to": 23, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

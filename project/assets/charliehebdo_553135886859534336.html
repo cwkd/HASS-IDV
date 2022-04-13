@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 853, "id": 0, "label": "553135886859534336", "shape": "dot", "size": 10, "title": "553135886859534336\u003cbr\u003eSteve Bell\u0027s cartoon on the\u003cbr\u003eCharlie Hebdo attack: http://t.co/AdVfwBB5AP http://t.co/5jPLPdRI8a\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:27:26 +0000 2015"}, {"group": 853, "id": 1, "label": "553136464788090880", "shape": "dot", "size": 10, "title": "553136464788090880\u003cbr\u003e\u201c@mediaguardian: Steve Bell\u0027s cartoon on\u003cbr\u003ethe Charlie Hebdo attack: http://t.co/1WhTTVJX7I\u003cbr\u003ehttp://t.co/90I1nD2PLY\u201d @lailariaa\u003cbr\u003eThu Jan 08 10:29:44 +0000 2015"}, {"group": 853, "id": 2, "label": "553145655145684993", "shape": "dot", "size": 10, "title": "553145655145684993\u003cbr\u003emt @mediaguardian @PatrickHeren Steve Bell\u0027s\u003cbr\u003ecartoon #CharlieHebdo attack http://t.co/7bTTCUeg9E\u003cbr\u003eThu Jan 08 11:06:15 +0000 2015"}, {"group": 853, "id": 3, "label": "553172695199014912", "shape": "dot", "size": 10, "title": "553172695199014912\u003cbr\u003e\u201c@mediaguardian: Steve Bell\u0027s cartoon on\u003cbr\u003ethe Charlie Hebdo attack: http://t.co/PxmdI36Lbx\u003cbr\u003ehttp://t.co/N7705ArHtg\u201d\u003cbr\u003eThu Jan 08 12:53:42 +0000 2015"}, {"group": 853, "id": 4, "label": "553175150041235457", "shape": "dot", "size": 10, "title": "553175150041235457\u003cbr\u003e@mediaguardian Why can\u0027t they take\u003cbr\u003ea joke like every other\u003cbr\u003ereligion has\u003cbr\u003eThu Jan 08 13:03:27 +0000 2015"}, {"group": 853, "id": 7, "label": "553178227871858688", "shape": "dot", "size": 10, "title": "553178227871858688\u003cbr\u003e@mediaguardian\u003cbr\u003eThu Jan 08 13:15:41 +0000 2015"}, {"group": 853, "id": 8, "label": "553180017593974784", "shape": "dot", "size": 10, "title": "553180017593974784\u003cbr\u003e@mediaguardian nobody has a sense\u003cbr\u003eof humour anymore, everyone is\u003cbr\u003escared of free speech good\u003cbr\u003eof the French to stand\u003cbr\u003eand say \"we\u0027re not scared\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:22:48 +0000 2015"}, {"group": 853, "id": 9, "label": "553223422629933057", "shape": "dot", "size": 10, "title": "553223422629933057\u003cbr\u003e@mediaguardian these killings has nothing\u003cbr\u003eto do with Islam. It\u0027s\u003cbr\u003epurely Israeli influence. I smell\u003cbr\u003eMossad involvement.\u003cbr\u003eThu Jan 08 16:15:17 +0000 2015"}, {"group": 853, "id": 5, "label": "553176695423787009", "shape": "dot", "size": 10, "title": "553176695423787009\u003cbr\u003e@phil_king they as in all\u003cbr\u003eMuslims? \"They\" have been the\u003cbr\u003ebut of these jokes 4yrs.\u003cbr\u003e3 guys yelling \"God is\u003cbr\u003egreat\" is not the entire\u003cbr\u003ecommunity.\u003cbr\u003eThu Jan 08 13:09:36 +0000 2015"}, {"group": 853, "id": 6, "label": "553177064434462721", "shape": "dot", "size": 10, "title": "553177064434462721\u003cbr\u003e@phil_king @mediaguardian also many of\u003cbr\u003e\"their\"nations have condemned the act\u003cbr\u003eas per public request in\u003cbr\u003ethe past. People want to\u003cbr\u003eignore though\u003cbr\u003eThu Jan 08 13:11:04 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

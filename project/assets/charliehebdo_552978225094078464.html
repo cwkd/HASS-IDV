@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 682, "id": 0, "label": "552978225094078464", "shape": "dot", "size": 10, "title": "552978225094078464\u003cbr\u003e\"I am Charlie\": Huge vigils\u003cbr\u003eheld around France, condemning attacks\u003cbr\u003ein Paris http://t.co/jO1tFdthfG #CharlieHebdo http://t.co/M6Hr0Md7Fj\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:00:57 +0000 2015"}, {"group": 682, "id": 1, "label": "552978359769374720", "shape": "dot", "size": 10, "title": "552978359769374720\u003cbr\u003e@WSJ L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France.\u003cbr\u003eThu Jan 08 00:01:29 +0000 2015"}, {"group": 682, "id": 2, "label": "552978535875215361", "shape": "dot", "size": 10, "title": "552978535875215361\u003cbr\u003e@WSJ I suppose i better\u003cbr\u003estart looking around for a\u003cbr\u003egood set of bed sheets\u003cbr\u003eto wear\u003cbr\u003eThu Jan 08 00:02:11 +0000 2015"}, {"group": 682, "id": 3, "label": "552978750561091584", "shape": "dot", "size": 10, "title": "552978750561091584\u003cbr\u003e@WSJ JE SUIS CHARLIE. I\u003cbr\u003eam so so sad that\u003cbr\u003ethese poor people were executed\u003cbr\u003efor making people laugh. This\u003cbr\u003egoddamned Muslim filth. has \u003cbr\u003eto go.\u003cbr\u003eThu Jan 08 00:03:02 +0000 2015"}, {"group": 682, "id": 4, "label": "552978818861105152", "shape": "dot", "size": 10, "title": "552978818861105152\u003cbr\u003e@WSJ\u003cbr\u003eThu Jan 08 00:03:18 +0000 2015"}, {"group": 682, "id": 5, "label": "552978945315201024", "shape": "dot", "size": 10, "title": "552978945315201024\u003cbr\u003e@WSJ powerful\u003cbr\u003eThu Jan 08 00:03:49 +0000 2015"}, {"group": 682, "id": 6, "label": "552979046326599680", "shape": "dot", "size": 10, "title": "552979046326599680\u003cbr\u003e@WSJ \nNeed more than vigils,\u003cbr\u003eneed another Crusade to clean\u003cbr\u003eout the Middle East.\u003cbr\u003eThu Jan 08 00:04:13 +0000 2015"}, {"group": 682, "id": 7, "label": "552979512485376001", "shape": "dot", "size": 10, "title": "552979512485376001\u003cbr\u003e@WSJ - #jesuischarlie #charliehebdo -\u003cbr\u003eI am Charlie. Rest in\u003cbr\u003ePeace heroic cartoonists/journalists #FrenchJournalists\u003cbr\u003eThu Jan 08 00:06:04 +0000 2015"}, {"group": 682, "id": 8, "label": "552979920263987201", "shape": "dot", "size": 10, "title": "552979920263987201\u003cbr\u003e@WSJ @DermotMcGillicu you will be\u003cbr\u003echarlie and dead if you\u003cbr\u003edo not quell Islam in\u003cbr\u003eyour country.\u003cbr\u003eThu Jan 08 00:07:41 +0000 2015"}, {"group": 682, "id": 9, "label": "552979969165365249", "shape": "dot", "size": 10, "title": "552979969165365249\u003cbr\u003e@WSJ all the non-muslims ought\u003cbr\u003eto rise up and retaliate\u003cbr\u003eagainst the muslim community and\u003cbr\u003edrive out the muslims from\u003cbr\u003ethe western lands!\u003cbr\u003eThu Jan 08 00:07:53 +0000 2015"}, {"group": 682, "id": 11, "label": "552980393960681474", "shape": "dot", "size": 10, "title": "552980393960681474\u003cbr\u003e@WSJ stop the hate speech\u003cbr\u003eor I\u0027ll call you a\u003cbr\u003eracist. Islam is a religion\u003cbr\u003eof PEACE!  They invoked\u003cbr\u003ethe name of Allah so\u003cbr\u003ethey are peaceful\u003cbr\u003eThu Jan 08 00:09:34 +0000 2015"}, {"group": 682, "id": 12, "label": "552980616174895104", "shape": "dot", "size": 10, "title": "552980616174895104\u003cbr\u003e@WSJ take them alive\u003cbr\u003eThu Jan 08 00:10:27 +0000 2015"}, {"group": 682, "id": 13, "label": "552980664593969155", "shape": "dot", "size": 10, "title": "552980664593969155\u003cbr\u003e@WSJ regardless of all the\u003cbr\u003eincidents in the US, no\u003cbr\u003ecountrywide expressions of outrage .\u003cbr\u003eAll CARE is concerned with\u003cbr\u003eis labeling critics\u003cbr\u003eThu Jan 08 00:10:38 +0000 2015"}, {"group": 682, "id": 14, "label": "552981689433980929", "shape": "dot", "size": 10, "title": "552981689433980929\u003cbr\u003e@WSJ Meaningless, ineffectual gatherings that\u003cbr\u003edo not address the problem.\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:14:43 +0000 2015"}, {"group": 682, "id": 15, "label": "552982487673356290", "shape": "dot", "size": 10, "title": "552982487673356290\u003cbr\u003e@WSJ Pictures------of America\u0027s terrorism against\u003cbr\u003einnocent people\n\nPictures http://t.co/po4jlBdJqv\u003cbr\u003eThu Jan 08 00:17:53 +0000 2015"}, {"group": 682, "id": 16, "label": "552984618287112193", "shape": "dot", "size": 10, "title": "552984618287112193\u003cbr\u003e@WSJ Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet\nthank you\nhttp://t.co/Cf3z3jOxyx\u003cbr\u003eThu Jan 08 00:26:21 +0000 2015"}, {"group": 682, "id": 17, "label": "552987813009182721", "shape": "dot", "size": 10, "title": "552987813009182721\u003cbr\u003e@WSJ Cu\u00e1ntas ha habido condenando\u003cbr\u003ea los miles de ataques\u003cbr\u003een Irak, Syria, Pakist\u00e1n, Ir\u00e1n,\u003cbr\u003eetc etc? No queda ya\u003cbr\u003eafterbite en ninguna farmacia.\u003cbr\u003eThu Jan 08 00:39:03 +0000 2015"}, {"group": 682, "id": 18, "label": "552989637275168768", "shape": "dot", "size": 10, "title": "552989637275168768\u003cbr\u003e@WSJ  Is freedom of\u003cbr\u003eexpression so dear as worth\u003cbr\u003etaking the risk of being\u003cbr\u003ekilled by breaking religious taboos,\u003cbr\u003edefying threats \u0026amp; violence?\u003cbr\u003eThu Jan 08 00:46:18 +0000 2015"}, {"group": 682, "id": 19, "label": "552994434548518913", "shape": "dot", "size": 10, "title": "552994434548518913\u003cbr\u003eVigils held around France, condemning\u003cbr\u003eattacks in Paris http://t.co/tJAOSPVT2b #CharlieHebdo\u003cbr\u003e#JeSuisCharlie http://t.co/VGJjbyJYvQ via @WSJ\u003cbr\u003eThu Jan 08 01:05:21 +0000 2015"}, {"group": 682, "id": 10, "label": "552980150582009857", "shape": "dot", "size": 10, "title": "552980150582009857\u003cbr\u003e@hollyammon @WSJ finally someone has\u003cbr\u003ewoken up to this trash\u003cbr\u003ereligion and the idiots who\u003cbr\u003efollow it.\u003cbr\u003eThu Jan 08 00:08:36 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

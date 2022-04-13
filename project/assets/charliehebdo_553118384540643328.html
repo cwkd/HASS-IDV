@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 798, "id": 0, "label": "553118384540643328", "shape": "dot", "size": 10, "title": "553118384540643328\u003cbr\u003eIn support of freedom of\u003cbr\u003eexpression through words, not bullets\u003cbr\u003e#JeSuisCharlie http://t.co/zdIRzEjKDJ\u003cbr\u003eThu Jan 08 09:17:53 +0000 2015"}, {"group": 798, "id": 1, "label": "553120277010194433", "shape": "dot", "size": 10, "title": "553120277010194433\u003cbr\u003eFreedom to express myself w/o\u003cbr\u003efear of death! @ssu_sverige: In\u003cbr\u003esupport of freedom of expression\u003cbr\u003ethrough words, not bullets #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:25:25 +0000 2015"}, {"group": 798, "id": 2, "label": "553121549705043968", "shape": "dot", "size": 10, "title": "553121549705043968\u003cbr\u003e\u201c@ssu_sverige: In support of freedom\u003cbr\u003eof expression through words, not\u003cbr\u003ebullets #JeSuisCharlie http://t.co/AJN7BQsoA8\u201dJe Suis Charlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:30:28 +0000 2015"}, {"group": 798, "id": 3, "label": "553121929813843968", "shape": "dot", "size": 10, "title": "553121929813843968\u003cbr\u003e@ssu_sverige @TanyaBurr thanks tan it\u003cbr\u003emeans a lot for us\u003cbr\u003e\ud83d\udc4a\u003cbr\u003eThu Jan 08 09:31:59 +0000 2015"}, {"group": 798, "id": 4, "label": "553122008968732672", "shape": "dot", "size": 10, "title": "553122008968732672\u003cbr\u003e\u201c@ssu_sverige: In support of freedom\u003cbr\u003eof expression through words, not\u003cbr\u003ebullets #JeSuisCharlie http://t.co/UxtZYjVnu5\u201d\u003cbr\u003eThu Jan 08 09:32:18 +0000 2015"}, {"group": 798, "id": 5, "label": "553133279550119937", "shape": "dot", "size": 10, "title": "553133279550119937\u003cbr\u003e@ssu_sverige\u003cbr\u003eThu Jan 08 10:17:05 +0000 2015"}, {"group": 798, "id": 6, "label": "553139618187456512", "shape": "dot", "size": 10, "title": "553139618187456512\u003cbr\u003e@ssu_sverige Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/fALY1BP4Qo\u003cbr\u003eThu Jan 08 10:42:16 +0000 2015"}, {"group": 798, "id": 7, "label": "553162430067388416", "shape": "dot", "size": 10, "title": "553162430067388416\u003cbr\u003e@ssu_sverige @Lyndagee49 Je suis Charlie\u003cbr\u003e- http://t.co/lxLFU8CvpS http://t.co/LAY9nKSiqo\u003cbr\u003eThu Jan 08 12:12:55 +0000 2015"}, {"group": 798, "id": 8, "label": "553252964962668544", "shape": "dot", "size": 10, "title": "553252964962668544\u003cbr\u003e@ssu_sverige @PattyOLovesU Thank you\u003cbr\u003eThu Jan 08 18:12:40 +0000 2015"}, {"group": 798, "id": 9, "label": "553597001166618624", "shape": "dot", "size": 10, "title": "553597001166618624\u003cbr\u003e@ssu_sverige @TanyaBurr One needs to\u003cbr\u003eknow the difference between freedom\u003cbr\u003eof speech and hate speech.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:59:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1222, "id": 0, "label": "553229948153262081", "shape": "dot", "size": 10, "title": "553229948153262081\u003cbr\u003e\u0027We must be aware that\u003cbr\u003eour best weapon is our\u003cbr\u003eunity. Nothing must divide, oppose\u003cbr\u003eor separate us\u0027 \n\nFrancois Hollande\u003cbr\u003e\n#JeSuisCharlie\u003cbr\u003eThu Jan 08 16:41:12 +0000 2015"}, {"group": 1222, "id": 1, "label": "553230173911261184", "shape": "dot", "size": 10, "title": "553230173911261184\u003cbr\u003e@KseniaSolo \nMay love \u0026amp; peace\u003cbr\u003eprevail \n#JeSuisCharlie\u003cbr\u003eThu Jan 08 16:42:06 +0000 2015"}, {"group": 1222, "id": 2, "label": "553230563570888704", "shape": "dot", "size": 10, "title": "553230563570888704\u003cbr\u003e@KseniaSolo can you say hello\u003cbr\u003eto belarusians fans? please ^^\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:43:39 +0000 2015"}, {"group": 1222, "id": 3, "label": "553230654671171584", "shape": "dot", "size": 10, "title": "553230654671171584\u003cbr\u003e@KseniaSolo Yes, it\u0027s the spirit,\u003cbr\u003ehere in Paris, and in\u003cbr\u003eFrance . Thanks\u003cbr\u003eThu Jan 08 16:44:01 +0000 2015"}, {"group": 1222, "id": 4, "label": "553230928211103744", "shape": "dot", "size": 10, "title": "553230928211103744\u003cbr\u003e@KseniaSolo Thank you for your\u003cbr\u003esupport :) It makes the\u003cbr\u003edifference !\u003cbr\u003eThu Jan 08 16:45:06 +0000 2015"}, {"group": 1222, "id": 5, "label": "553231383536365569", "shape": "dot", "size": 10, "title": "553231383536365569\u003cbr\u003e@KseniaSolo Thank you Ksenia. #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:46:55 +0000 2015"}, {"group": 1222, "id": 6, "label": "553231813305704449", "shape": "dot", "size": 10, "title": "553231813305704449\u003cbr\u003e@KseniaSolo Merci pour ton soutien\u003cbr\u003eKsenia.. Nous en avons tous\u003cbr\u003ebesoin ici en France.. \u003cbr\u003e#NousSommesCharlie\u003cbr\u003eThu Jan 08 16:48:37 +0000 2015"}, {"group": 1222, "id": 7, "label": "553235404900806657", "shape": "dot", "size": 10, "title": "553235404900806657\u003cbr\u003e@KseniaSolo #JeSuisCharlie\u003cbr\u003eThu Jan 08 17:02:53 +0000 2015"}, {"group": 1222, "id": 8, "label": "553235545288347649", "shape": "dot", "size": 10, "title": "553235545288347649\u003cbr\u003e@KseniaSolo Thank you, it means\u003cbr\u003ea lot to us !\u003cbr\u003e#JeSuisCharlie\u003cbr\u003eThu Jan 08 17:03:27 +0000 2015"}, {"group": 1222, "id": 9, "label": "553236236476096512", "shape": "dot", "size": 10, "title": "553236236476096512\u003cbr\u003e@KseniaSolo #JeSuisCharlie Europe must stand\u003cbr\u003etogether against violence\u003cbr\u003eThu Jan 08 17:06:12 +0000 2015"}, {"group": 1222, "id": 11, "label": "553244156148346880", "shape": "dot", "size": 10, "title": "553244156148346880\u003cbr\u003e@KseniaSolo I\u0027m more moved by\u003cbr\u003einternational solidarity toward my country\u003cbr\u003ethan by my Pdt\u0027s words.You,\"ordinary\"\u003cbr\u003epeople were great \u2665 #Charlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:37:40 +0000 2015"}, {"group": 1222, "id": 12, "label": "553245282151186432", "shape": "dot", "size": 10, "title": "553245282151186432\u003cbr\u003e@KseniaSolo #JeSuisCharlie the whole world\u003cbr\u003eis united!!!\u003cbr\u003eThu Jan 08 17:42:08 +0000 2015"}, {"group": 1222, "id": 13, "label": "553245838827597826", "shape": "dot", "size": 10, "title": "553245838827597826\u003cbr\u003e@KseniaSolo Thank you for your\u003cbr\u003esupport for Ksenia \ud83d\ude2d Kisses\u003cbr\u003efrom France \ud83d\ude18\u003cbr\u003eThu Jan 08 17:44:21 +0000 2015"}, {"group": 1222, "id": 14, "label": "553245987243048961", "shape": "dot", "size": 10, "title": "553245987243048961\u003cbr\u003e@KseniaSolo merci Ksenia. On reste\u003cbr\u003euni en France, m\u00eame si\u003cbr\u003enos c\u0153urs pleurent\u003cbr\u003eThu Jan 08 17:44:56 +0000 2015"}, {"group": 1222, "id": 15, "label": "553247328338206720", "shape": "dot", "size": 10, "title": "553247328338206720\u003cbr\u003e@KseniaSolo \"Je pr\u00e9f\u00e8re mourir debout\u003cbr\u003eque vivre \u00e0 genoux.\" -Charb\u003cbr\u003e#JeSuisCharlie http://t.co/MdrosncgmG\u003cbr\u003eThu Jan 08 17:50:16 +0000 2015"}, {"group": 1222, "id": 18, "label": "553259486287515648", "shape": "dot", "size": 10, "title": "553259486287515648\u003cbr\u003e@KseniaSolo thank\u0027s for your support\u003cbr\u003e! #JeSuisCharlie\u003cbr\u003eThu Jan 08 18:38:35 +0000 2015"}, {"group": 1222, "id": 19, "label": "553276044686671872", "shape": "dot", "size": 10, "title": "553276044686671872\u003cbr\u003e@KseniaSolo \u0026lt;3\u003cbr\u003eThu Jan 08 19:44:23 +0000 2015"}, {"group": 1222, "id": 10, "label": "553242351561637889", "shape": "dot", "size": 10, "title": "553242351561637889\u003cbr\u003e@maverick_tom07 @KseniaSolo Merci Tanu! #JeSuisCharlie\u003cbr\u003e\u0026amp; every day I\u0027ll be\u003cbr\u003e#Charlie. Tous les jours :)\u003cbr\u003ehttp://t.co/frmZdI5s9J\u003cbr\u003eThu Jan 08 17:30:30 +0000 2015"}, {"group": 1222, "id": 16, "label": "553253071686750208", "shape": "dot", "size": 10, "title": "553253071686750208\u003cbr\u003e@TtlyPalmerised @KseniaSolo we have to\u003cbr\u003edo it, not easy bc\u003cbr\u003eI listen to my students\u003cbr\u003etoday \u0026amp; we have to\u003cbr\u003ework \u0026amp; stay United..\u003cbr\u003eThu Jan 08 18:13:05 +0000 2015"}, {"group": 1222, "id": 17, "label": "553254939041210368", "shape": "dot", "size": 10, "title": "553254939041210368\u003cbr\u003e@eowyn6869 @KseniaSolo agree the message\u003cbr\u003ethe French n whole world\u003cbr\u003egave is #Wearenotafraid and are\u003cbr\u003emore united!! #Solidarit\u00e9 et #Lunit\u00e9\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:20:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 10, "weight": 1}, {"from": 12, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

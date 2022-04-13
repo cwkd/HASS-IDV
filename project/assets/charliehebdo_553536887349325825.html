@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1968, "id": 0, "label": "553536887349325825", "shape": "dot", "size": 10, "title": "553536887349325825\u003cbr\u003eAt least five people have\u003cbr\u003ebeen taken hostage at the\u003cbr\u003ekosher grocery, reports say #ParisAttacks\u003cbr\u003ehttp://t.co/8MdsGYsaOZ http://t.co/2NtIkBmIYk\u003cbr\u003eFri Jan 09 13:00:52 +0000 2015"}, {"group": 1968, "id": 1, "label": "553537116055949313", "shape": "dot", "size": 10, "title": "553537116055949313\u003cbr\u003e@SkyNews @itvnews @AFP #CharlieHebdo #JeSuisCharlie\u003cbr\u003e#ParisAttack #ParisShooting #RussiainvadedUkraine http://t.co/J8s8QtIwcl\u003cbr\u003eFri Jan 09 13:01:47 +0000 2015"}, {"group": 1968, "id": 2, "label": "553537204199641088", "shape": "dot", "size": 10, "title": "553537204199641088\u003cbr\u003e@SkyNews @robertfersan Preparaci\u00f3 d\u0027acci\u00f3 d\u0027assalt\u003cbr\u003een directe. \u00c9s brutal\u003cbr\u003eFri Jan 09 13:02:08 +0000 2015"}, {"group": 1968, "id": 3, "label": "553537228253962240", "shape": "dot", "size": 10, "title": "553537228253962240\u003cbr\u003e@SkyNews This is what happens\u003cbr\u003ewhen a country is politically\u003cbr\u003ecorrect.\u003cbr\u003eFri Jan 09 13:02:14 +0000 2015"}, {"group": 1968, "id": 4, "label": "553537311137599488", "shape": "dot", "size": 10, "title": "553537311137599488\u003cbr\u003eEsto ya... \u201c@SkyNews: At least\u003cbr\u003efive people have been taken\u003cbr\u003ehostage at the kosher grocery,\u003cbr\u003ereports say #ParisAttacks http://t.co/HZ7VPYSFG6\u003cbr\u003eFri Jan 09 13:02:33 +0000 2015"}, {"group": 1968, "id": 5, "label": "553537379097919491", "shape": "dot", "size": 10, "title": "553537379097919491\u003cbr\u003e@SkyNews disgusting little cowards can\u003cbr\u003eonly behave this way when\u003cbr\u003ethey r hidden behind weapons\u003cbr\u003e#littleboys\u003cbr\u003eFri Jan 09 13:02:50 +0000 2015"}, {"group": 1968, "id": 6, "label": "553537749073268736", "shape": "dot", "size": 10, "title": "553537749073268736\u003cbr\u003e@SkyNews maybe it\u0027s time for\u003cbr\u003eFrance and other countries to\u003cbr\u003erethink \"open door\" immigration?\u003cbr\u003eFri Jan 09 13:04:18 +0000 2015"}, {"group": 1968, "id": 7, "label": "553537788164206592", "shape": "dot", "size": 10, "title": "553537788164206592\u003cbr\u003e@SkyNews Come on France Stop\u003cbr\u003ePussyfooting And Show The a\u003cbr\u003eWhat UR Capable Of !!\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:04:27 +0000 2015"}, {"group": 1968, "id": 10, "label": "553538594074529792", "shape": "dot", "size": 10, "title": "553538594074529792\u003cbr\u003eWhy would anyone attack a\u003cbr\u003eKosher shop. Oh yeah. That\u0027s\u003cbr\u003ewere the Jew are. Just\u003cbr\u003ea guess. #RespectJudaism @SkyNews @WeermanAshoka\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:07:39 +0000 2015"}, {"group": 1968, "id": 11, "label": "553539891251138560", "shape": "dot", "size": 10, "title": "553539891251138560\u003cbr\u003e@SkyNews This is unbelievable, thoughts\u003cbr\u003eare with the French people..how\u003cbr\u003emuch more terror? #ParisAttack\u003cbr\u003eFri Jan 09 13:12:49 +0000 2015"}, {"group": 1968, "id": 12, "label": "553541203464310785", "shape": "dot", "size": 10, "title": "553541203464310785\u003cbr\u003e@SkyNews @ProSyndicate \ud83d\ude29\ud83d\ude29\u003cbr\u003eFri Jan 09 13:18:01 +0000 2015"}, {"group": 1968, "id": 13, "label": "553541230861496320", "shape": "dot", "size": 10, "title": "553541230861496320\u003cbr\u003e@SkyNews @ProSyndicate they don\u0027t stop\u003cbr\u003ethe madness do they?\u003cbr\u003eFri Jan 09 13:18:08 +0000 2015"}, {"group": 1968, "id": 14, "label": "553541935021821953", "shape": "dot", "size": 10, "title": "553541935021821953\u003cbr\u003e@SkyNews @ProSyndicate Why does people\u003cbr\u003edo bad shit\u003cbr\u003eFri Jan 09 13:20:56 +0000 2015"}, {"group": 1968, "id": 15, "label": "553542773551689728", "shape": "dot", "size": 10, "title": "553542773551689728\u003cbr\u003e@SkyNews @ProSyndicate Damn they went\u003cbr\u003eto go buy apples and\u003cbr\u003eshit and ended up with\u003cbr\u003ea gun in their face.\u003cbr\u003eBad luck\u003cbr\u003eFri Jan 09 13:24:16 +0000 2015"}, {"group": 1968, "id": 16, "label": "553542788919611393", "shape": "dot", "size": 10, "title": "553542788919611393\u003cbr\u003e@SkyNews @ProSyndicate so I\u0027m guessing\u003cbr\u003eit\u0027s another racial attack by\u003cbr\u003eMuslims on Jews so basically\u003cbr\u003eit\u0027s Israel/Palestine in France...\u003cbr\u003eFri Jan 09 13:24:19 +0000 2015"}, {"group": 1968, "id": 17, "label": "553542827125530624", "shape": "dot", "size": 10, "title": "553542827125530624\u003cbr\u003e@SkyNews go and take end\u003cbr\u003eof this horror\u003cbr\u003eFri Jan 09 13:24:28 +0000 2015"}, {"group": 1968, "id": 18, "label": "553543971763650560", "shape": "dot", "size": 10, "title": "553543971763650560\u003cbr\u003e@SkyNews @ProSyndicate they need to\u003cbr\u003estop\u003cbr\u003eFri Jan 09 13:29:01 +0000 2015"}, {"group": 1968, "id": 19, "label": "553546076863860737", "shape": "dot", "size": 10, "title": "553546076863860737\u003cbr\u003e@SkyNews @ProSyndicate\u003cbr\u003eFri Jan 09 13:37:23 +0000 2015"}, {"group": 1968, "id": 8, "label": "553538414466043904", "shape": "dot", "size": 10, "title": "553538414466043904\u003cbr\u003e@Sammijane69I @SkyNews And bullet proof\u003cbr\u003evests etc even though they\u003cbr\u003esupposedly want to go out\u003cbr\u003eas martyrs!\u003cbr\u003eFri Jan 09 13:06:56 +0000 2015"}, {"group": 1968, "id": 9, "label": "553538590337421312", "shape": "dot", "size": 10, "title": "553538590337421312\u003cbr\u003e@vron52 @SkyNews yes\u003cbr\u003eFri Jan 09 13:07:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

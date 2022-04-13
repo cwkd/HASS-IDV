@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1306, "id": 0, "label": "553509181446443008", "shape": "dot", "size": 10, "title": "553509181446443008\u003cbr\u003eWhile horrified with #CharlieHebdo, let\u0027s\u003cbr\u003enot forget #RaifBadawi. 50 lashes\u003cbr\u003etoday in Jeddah, first batch\u003cbr\u003eof 1000!! :( http://t.co/l8ACRZuhVZ\u003cbr\u003eFri Jan 09 11:10:47 +0000 2015"}, {"group": 1306, "id": 1, "label": "553510377666117632", "shape": "dot", "size": 10, "title": "553510377666117632\u003cbr\u003e@mindthrust @AJdebiteert State terror is\u003cbr\u003eworse than terror of civilians.\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:15:32 +0000 2015"}, {"group": 1306, "id": 2, "label": "553511658472345600", "shape": "dot", "size": 10, "title": "553511658472345600\u003cbr\u003e@mindthrust @edcrossfineart Barbaric\u003cbr\u003eFri Jan 09 11:20:37 +0000 2015"}, {"group": 1306, "id": 3, "label": "553615656579768320", "shape": "dot", "size": 10, "title": "553615656579768320\u003cbr\u003e@mindthrust @wafflycat Barbaric bastards.\u003cbr\u003eFri Jan 09 18:13:52 +0000 2015"}, {"group": 1306, "id": 4, "label": "553618242317852673", "shape": "dot", "size": 10, "title": "553618242317852673\u003cbr\u003e@mindthrust @BenchSue This is disgraceful.\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:24:09 +0000 2015"}, {"group": 1306, "id": 5, "label": "553622415398670336", "shape": "dot", "size": 10, "title": "553622415398670336\u003cbr\u003e@mindthrust @racheljoyce Almost unbelievable brutality.\u003cbr\u003eBritain\u0027s liberals \u0026amp; media Left\u003cbr\u003eclaque falls silent \u0026amp; unresponsive.\u003cbr\u003eWhy? @BBCRadio4\u003cbr\u003eFri Jan 09 18:40:44 +0000 2015"}, {"group": 1306, "id": 6, "label": "553789484006129664", "shape": "dot", "size": 10, "title": "553789484006129664\u003cbr\u003e@mindthrust Many men, should never\u003cbr\u003ehave power over others.\u003cbr\u003eSat Jan 10 05:44:36 +0000 2015"}, {"group": 1306, "id": 7, "label": "554215206738337792", "shape": "dot", "size": 10, "title": "554215206738337792\u003cbr\u003e@mindthrust If you are for\u003cbr\u003efree speech then this #tshirt\u003cbr\u003eis for you support #JeSuisCharlie\u003cbr\u003e#CharlieHebdo buy it now http://t.co/ASpwEDklV1\u003cbr\u003e\u003cbr\u003eSun Jan 11 09:56:16 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

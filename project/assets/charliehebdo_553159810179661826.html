@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 955, "id": 0, "label": "553159810179661826", "shape": "dot", "size": 10, "title": "553159810179661826\u003cbr\u003eBeen watching UK news all\u003cbr\u003emorning, seen no mention of\u003cbr\u003emultiple attacks on mosques in\u003cbr\u003eFrance after yesterday http://t.co/NzRUHI1CDw\u003cbr\u003eThu Jan 08 12:02:30 +0000 2015"}, {"group": 955, "id": 1, "label": "553160134466482176", "shape": "dot", "size": 10, "title": "553160134466482176\u003cbr\u003e@sunny_hundal : shocking but not\u003cbr\u003eunexpected! Doesn\u0027t fit the narrative!\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:03:47 +0000 2015"}, {"group": 955, "id": 2, "label": "553160183934115840", "shape": "dot", "size": 10, "title": "553160183934115840\u003cbr\u003e@sunny_hundal Flicked over to RT\u003cbr\u003eand they\u0027re the only news\u003cbr\u003echannel discussing it. Disgusting really.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:03:59 +0000 2015"}, {"group": 955, "id": 3, "label": "553160304843304961", "shape": "dot", "size": 10, "title": "553160304843304961\u003cbr\u003e@sunny_hundal of course not -\u003cbr\u003ethat would change the narrative\u003cbr\u003efrom \"nasty Muslims\" to \"Nasty\u003cbr\u003eislamophobes\", and the media can\u0027t\u003cbr\u003ehave that.\u003cbr\u003eThu Jan 08 12:04:28 +0000 2015"}, {"group": 955, "id": 4, "label": "553161002960031744", "shape": "dot", "size": 10, "title": "553161002960031744\u003cbr\u003e@sunny_hundal Looking at the stream\u003cbr\u003eof @Channel4News, they\u0027re talking about\u003cbr\u003eit right now, if that\u003cbr\u003ehelps?\u003cbr\u003eThu Jan 08 12:07:14 +0000 2015"}, {"group": 955, "id": 5, "label": "553161013445808128", "shape": "dot", "size": 10, "title": "553161013445808128\u003cbr\u003e@sunny_hundal https://t.co/XBUUzL1NqK\u003cbr\u003eThu Jan 08 12:07:17 +0000 2015"}, {"group": 955, "id": 6, "label": "553161100280098820", "shape": "dot", "size": 10, "title": "553161100280098820\u003cbr\u003e.@sunny_hundal #headlines are dangerous sometimes,\u003cbr\u003edon\u0027t you think? Blank grenades\u003cbr\u003ethrown, explosion at nearby restaurant\u003cbr\u003enot explained!\u003cbr\u003eThu Jan 08 12:07:38 +0000 2015"}, {"group": 955, "id": 7, "label": "553161126599741440", "shape": "dot", "size": 10, "title": "553161126599741440\u003cbr\u003e@sunny_hundal maybe the zio media\u003cbr\u003econsiders that to be a\u003cbr\u003erational reaction to the events\u003cbr\u003eso not worth reporting\u003cbr\u003eThu Jan 08 12:07:44 +0000 2015"}, {"group": 955, "id": 9, "label": "553161543660355584", "shape": "dot", "size": 10, "title": "553161543660355584\u003cbr\u003e@sunny_hundal If a \u0027christian\u0027 kills\u003cbr\u003eppl, churches aren\u0027t attacked. Doesn\u0027t\u003cbr\u003emake sense\u003cbr\u003eThu Jan 08 12:09:23 +0000 2015"}, {"group": 955, "id": 10, "label": "553161627793899523", "shape": "dot", "size": 10, "title": "553161627793899523\u003cbr\u003e@sunny_hundal I sometimes wonder why\u003cbr\u003ethe West hate Muslims so\u003cbr\u003emuch. Then I remember Muslims\u003cbr\u003epay and advocate a wealth\u003cbr\u003etax of 2.5% a year.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:09:43 +0000 2015"}, {"group": 955, "id": 14, "label": "553162962148794368", "shape": "dot", "size": 10, "title": "553162962148794368\u003cbr\u003e@sunny_hundal @MrTickle3 12 people are\u003cbr\u003eand your concerned with \u0027Islamaphobia\u0027.\u003cbr\u003eBlame the terrorists not the\u003cbr\u003eFrench.\u003cbr\u003eThu Jan 08 12:15:02 +0000 2015"}, {"group": 955, "id": 15, "label": "553163118990606336", "shape": "dot", "size": 10, "title": "553163118990606336\u003cbr\u003e@sunny_hundal \nhttp://t.co/lVwPlhkzXV\u003cbr\u003eThu Jan 08 12:15:39 +0000 2015"}, {"group": 955, "id": 16, "label": "553163446125359105", "shape": "dot", "size": 10, "title": "553163446125359105\u003cbr\u003e@sunny_hundal A small explosion in\u003cbr\u003ekebab shop near a mosque,\u003cbr\u003eand some fireworks near another\u003cbr\u003emosque. 12 people slaughtered in\u003cbr\u003ename of allah.\u003cbr\u003eThu Jan 08 12:16:57 +0000 2015"}, {"group": 955, "id": 17, "label": "553163491654520832", "shape": "dot", "size": 10, "title": "553163491654520832\u003cbr\u003e@sunny_hundal it\u0027s starting :( \u003cbr\u003ehttp://t.co/o50Idrgsjw\u003cbr\u003eThu Jan 08 12:17:08 +0000 2015"}, {"group": 955, "id": 18, "label": "553165112073523200", "shape": "dot", "size": 10, "title": "553165112073523200\u003cbr\u003e@sunny_hundal Really hard to find\u003cbr\u003eit on @BBCBreaking news website\u003cbr\u003etoo http://t.co/RMLnuE9H6u\u003cbr\u003eThu Jan 08 12:23:34 +0000 2015"}, {"group": 955, "id": 19, "label": "553165728933621760", "shape": "dot", "size": 10, "title": "553165728933621760\u003cbr\u003e@sunny_hundal No news of that\u003cbr\u003ehere in Australia either.\u003cbr\u003eThu Jan 08 12:26:01 +0000 2015"}, {"group": 955, "id": 8, "label": "553161429038407682", "shape": "dot", "size": 10, "title": "553161429038407682\u003cbr\u003e@Vanwheel wasn\u0027t that sent just\u003cbr\u003enow?\u003cbr\u003eThu Jan 08 12:08:56 +0000 2015"}, {"group": 955, "id": 11, "label": "553161794249031680", "shape": "dot", "size": 10, "title": "553161794249031680\u003cbr\u003e@sunny_hundal Yes. Saw it just\u003cbr\u003eafter your tweet.\u003cbr\u003eThu Jan 08 12:10:23 +0000 2015"}, {"group": 955, "id": 12, "label": "553162110986092544", "shape": "dot", "size": 10, "title": "553162110986092544\u003cbr\u003e@Phillip_D_Jones I really don\u0027t think\u003cbr\u003eits anything to do with\u003cbr\u003ethat. Humans naturally suspicious of\u003cbr\u003eforeigners... everywhere\u003cbr\u003eThu Jan 08 12:11:39 +0000 2015"}, {"group": 955, "id": 13, "label": "553162774227202048", "shape": "dot", "size": 10, "title": "553162774227202048\u003cbr\u003e@sunny_hundal I think if you\u003cbr\u003elook at Wests foreign policy\u003cbr\u003eover last 50 years then\u003cbr\u003eMuslims have been targeted more\u003cbr\u003ethan other foreigner Why?\u003cbr\u003eThu Jan 08 12:14:17 +0000 2015"}, {"group": 955, "id": 20, "label": "553167610859499520", "shape": "dot", "size": 10, "title": "553167610859499520\u003cbr\u003e@SimonC1975 @sunny_hundal He said multiple\u003cbr\u003eattacks on Mosques. These are\u003cbr\u003e criminal acts beyond just\u003cbr\u003eIslamaphobia. Absurd to argue otherwise\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:33:30 +0000 2015"}, {"group": 955, "id": 21, "label": "553169634602778624", "shape": "dot", "size": 10, "title": "553169634602778624\u003cbr\u003e@MrTickle3 @sunny_hundal an attack which\u003cbr\u003ewouldn\u0027t have happened if 12\u003cbr\u003epeople weren\u0027t shot dead. Killing\u003cbr\u003ejournalists is also a crime.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:41:32 +0000 2015"}, {"group": 955, "id": 22, "label": "553176880833368064", "shape": "dot", "size": 10, "title": "553176880833368064\u003cbr\u003e@SimonC1975 @sunny_hundal Didn\u0027t say it\u003cbr\u003ewasn\u0027t. You seem to find\u003cbr\u003eit challenging entertaining more than\u003cbr\u003eone thought at a time.\u003cbr\u003eBest wishes\u003cbr\u003eThu Jan 08 13:10:20 +0000 2015"}, {"group": 955, "id": 23, "label": "553214952950226945", "shape": "dot", "size": 10, "title": "553214952950226945\u003cbr\u003e@SimonC1975 @MrTickle3 @sunny_hundal err no,\u003cbr\u003eattacks wouldn\u0027t happen if far-right\u003cbr\u003ethugs didn\u0027t decide to punish\u003cbr\u003eMuslims collectively.\u003cbr\u003eThu Jan 08 15:41:37 +0000 2015"}, {"group": 955, "id": 24, "label": "553222732062928899", "shape": "dot", "size": 10, "title": "553222732062928899\u003cbr\u003e@Busty1956 @MrTickle3 @sunny_hundal the far-right\u003cbr\u003eis a response to Islamism\u003cbr\u003elike yesterday\u0027s massacre. Cartoons don\u0027t\u003cbr\u003edeserve death.#dhimmi.\u003cbr\u003eThu Jan 08 16:12:32 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 14, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

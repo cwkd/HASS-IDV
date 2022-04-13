@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 523, "id": 0, "label": "552838203276021760", "shape": "dot", "size": 10, "title": "552838203276021760\u003cbr\u003eDanish paper that published Mohammed\u003cbr\u003ecartoons ups security after #CharlieHebdo\u003cbr\u003eattack\nhttp://t.co/PcUCgT7OMd #AFP\u003cbr\u003eWed Jan 07 14:44:33 +0000 2015"}, {"group": 523, "id": 1, "label": "552840556771287041", "shape": "dot", "size": 10, "title": "552840556771287041\u003cbr\u003e@AFPNordic @AFP Les b\u00eates enrag\u00e9es,\u003cbr\u003eon les ach\u00e8ve: les Danois\u003cbr\u003er\u00e9servent un comit\u00e9 d\u0027accueil \u00e0\u003cbr\u003ela hauteur des esp\u00e9rances des\u003cbr\u003edjihadistesl!\u003cbr\u003eWed Jan 07 14:53:54 +0000 2015"}, {"group": 523, "id": 2, "label": "552840612329029634", "shape": "dot", "size": 10, "title": "552840612329029634\u003cbr\u003e@AFPNordic @AFP Faut-il tuer au\u003cbr\u003enpm de Dieu? http://t.co/qkawdDnHcl\u003cbr\u003eWed Jan 07 14:54:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

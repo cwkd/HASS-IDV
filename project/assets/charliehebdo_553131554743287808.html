@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 837, "id": 0, "label": "553131554743287808", "shape": "dot", "size": 10, "title": "553131554743287808\u003cbr\u003eStrongly condemn the attack on\u003cbr\u003e#CharlieHebdo. There is no justification\u003cbr\u003efor this brutal act. My\u003cbr\u003ethoughts are with the families\u003cbr\u003eof victims.\u003cbr\u003eThu Jan 08 10:10:13 +0000 2015"}, {"group": 837, "id": 1, "label": "553132412235173888", "shape": "dot", "size": 10, "title": "553132412235173888\u003cbr\u003e@ashrafghani \u063a\u0645 \u062d\u0648\u062f \u0631\u0627 \u0628\u062e\u0648\u0631\u003cbr\u003e\u067e\u0634 \u062f\u064a\u0643\u0631 \u0646\u0643\u0631\u062f \u0627\u0632 \u0627\u0633\u0644\u0627\u0645\u003cbr\u003e\u062f\u064a\u0641\u0627\u063a \u0643\u0648\u0646\u062f \u0646\u0647 \u0627\u0632 \u064a\u0647\u0648\u062f\u003cbr\u003e  \u0643\u0648\u0645\u0643 \u0627\u0644\u0644\u0647 \u0645\u064a\u0643\u0648\u0646\u062f\u003cbr\u003e\u0646\u0647 \u067e\u0627\u0631\u064a\u0633\u003cbr\u003eThu Jan 08 10:13:38 +0000 2015"}, {"group": 837, "id": 2, "label": "553133838449139712", "shape": "dot", "size": 10, "title": "553133838449139712\u003cbr\u003e@ashrafghani hmmm..! Western blood is\u003cbr\u003eblood and Muslim blood is\u003cbr\u003ewater?Thousands killed by drones in\u003cbr\u003ePakistan \u0026amp; Afghan, they weren\u0027t\u003cbr\u003ehuman??\u003cbr\u003eThu Jan 08 10:19:18 +0000 2015"}, {"group": 837, "id": 3, "label": "553134475660374016", "shape": "dot", "size": 10, "title": "553134475660374016\u003cbr\u003e@ashrafghani There is no reason\u003cbr\u003efor such person to be\u003cbr\u003ealive, who insults Allah or\u003cbr\u003ewho insults Holy Prophet (peace\u003cbr\u003ebe upon him).\u003cbr\u003eThu Jan 08 10:21:50 +0000 2015"}, {"group": 837, "id": 4, "label": "553135609208786944", "shape": "dot", "size": 10, "title": "553135609208786944\u003cbr\u003e@ashrafghani @ShivaKap Only condemn such\u003cbr\u003ebarbaric #Paris incidents may not\u003cbr\u003efetch desired result, these elements\u003cbr\u003eneed to be socially isolated\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:26:20 +0000 2015"}, {"group": 837, "id": 5, "label": "553138450786816000", "shape": "dot", "size": 10, "title": "553138450786816000\u003cbr\u003e@ashrafghani Only blasphemy can be\u003cbr\u003ejustified?\u003cbr\u003eThu Jan 08 10:37:38 +0000 2015"}, {"group": 837, "id": 6, "label": "553140664301387778", "shape": "dot", "size": 10, "title": "553140664301387778\u003cbr\u003e@ashrafghani TERRORISM IS BEING CONDEMNED\u003cbr\u003eANY WHERE ON EARTH N\u003cbr\u003eIS THREAT TO HUMANITY AROUND\u003cbr\u003e GLOB.JOINT N SINCERE EFFORTS\u003cbr\u003eR NEEDED T GET RID\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:46:25 +0000 2015"}, {"group": 837, "id": 7, "label": "553144586608967680", "shape": "dot", "size": 10, "title": "553144586608967680\u003cbr\u003e@ashrafghani @marvisirmed I supportitstrongly.\u003cbr\u003eThu Jan 08 11:02:01 +0000 2015"}, {"group": 837, "id": 8, "label": "553145820389072896", "shape": "dot", "size": 10, "title": "553145820389072896\u003cbr\u003e@ashrafghani Mr. President you always\u003cbr\u003ejust condemned the all attacks\u003cbr\u003e. You do nothing about\u003cbr\u003ethem in AFGHANISTAN.\u003cbr\u003eThu Jan 08 11:06:55 +0000 2015"}, {"group": 837, "id": 9, "label": "553163158232522752", "shape": "dot", "size": 10, "title": "553163158232522752\u003cbr\u003e@ashrafghani http://t.co/bsqDGe1stU\u003cbr\u003eThu Jan 08 12:15:48 +0000 2015"}, {"group": 837, "id": 10, "label": "553194031430512640", "shape": "dot", "size": 10, "title": "553194031430512640\u003cbr\u003e@ashrafghani Hold on, what???? Thousands\u003cbr\u003eof Afghans killed by US\u003cbr\u003eforces and you say nothing.\u003cbr\u003eScum human being you are.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:18:29 +0000 2015"}, {"group": 837, "id": 11, "label": "553204377176256512", "shape": "dot", "size": 10, "title": "553204377176256512\u003cbr\u003e@ashrafghani @Miirwais your thoughts are\u003cbr\u003ewith the families of victims\u003cbr\u003ebecause u r also kafir\u003cbr\u003e\u0026amp; against islam may Allah\u003cbr\u003ecurse u \u0026amp; all kafirs\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:59:36 +0000 2015"}, {"group": 837, "id": 12, "label": "553204528422461440", "shape": "dot", "size": 10, "title": "553204528422461440\u003cbr\u003e@ashrafghani Very impressive! Afghans must\u003cbr\u003ecome forward \u0026amp; proudly exhibit\u003cbr\u003etheir soft power! This loud\u003cbr\u003econdemnation manifests the same.\u003cbr\u003eThu Jan 08 15:00:12 +0000 2015"}, {"group": 837, "id": 14, "label": "553231758389673984", "shape": "dot", "size": 10, "title": "553231758389673984\u003cbr\u003e@ashrafghani thank you For speakin\u003cbr\u003eout. Brutal murder in the\u003cbr\u003ename of Allah disrespects him\u003cbr\u003eand insults the religion they\u003cbr\u003ehave taken hostage\u003cbr\u003eThu Jan 08 16:48:24 +0000 2015"}, {"group": 837, "id": 18, "label": "553642002944765953", "shape": "dot", "size": 10, "title": "553642002944765953\u003cbr\u003e@ashrafghani hmmm\u003cbr\u003eFri Jan 09 19:58:34 +0000 2015"}, {"group": 837, "id": 19, "label": "553772420641722368", "shape": "dot", "size": 10, "title": "553772420641722368\u003cbr\u003e@ashrafghani See Islam Ahmadiyya Perspective\u003cbr\u003eon#CharlieHebdo exposing hypocrisy of blasphemy\u0026amp;free\u003cbr\u003espeech@FaheemYounus http://t.co/qFASon7xsx\u003cbr\u003eSat Jan 10 04:36:48 +0000 2015"}, {"group": 837, "id": 13, "label": "553219603686756352", "shape": "dot", "size": 10, "title": "553219603686756352\u003cbr\u003e@wellwishersgd You\u0027re a fucking loser.\u003cbr\u003eFuck you and you\u0027re pig\u003cbr\u003ewhore of a cunt Allah.\u003cbr\u003eHe takes it right in\u003cbr\u003ethe ass. You fucking bitch\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:00:06 +0000 2015"}, {"group": 837, "id": 20, "label": "557401297482432512", "shape": "dot", "size": 10, "title": "557401297482432512\u003cbr\u003e@wellwishersgd @ashrafghani you have no\u003cbr\u003eright to decide who should\u003cbr\u003ebe alive and who souldnt.\u003cbr\u003e\u003cbr\u003eTue Jan 20 04:56:39 +0000 2015"}, {"group": 837, "id": 15, "label": "553232007233155072", "shape": "dot", "size": 10, "title": "553232007233155072\u003cbr\u003e@dcurran1964 A good article analyzing\u003cbr\u003ethe basis of radicalism in\u003cbr\u003eany religion including #islam: http://t.co/WnFoxPmjTI\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:49:23 +0000 2015"}, {"group": 837, "id": 16, "label": "553234327619010561", "shape": "dot", "size": 10, "title": "553234327619010561\u003cbr\u003e@IslamRevisited3 thank u  good\u003cbr\u003estuff. This happens in Christianity\u003cbr\u003etoo.  Example Jim jones\u003cbr\u003ein Jonestown or hitler.\u003cbr\u003eThu Jan 08 16:58:36 +0000 2015"}, {"group": 837, "id": 17, "label": "553234646927155201", "shape": "dot", "size": 10, "title": "553234646927155201\u003cbr\u003e@IslamRevisited3 bad people use scripture\u003cbr\u003eout of context to justify\u003cbr\u003eevil deeds\u003cbr\u003eThu Jan 08 16:59:53 +0000 2015"}, {"group": 837, "id": 21, "label": "557407899031306240", "shape": "dot", "size": 10, "title": "557407899031306240\u003cbr\u003e@inspxrit_ina oo....! News 4 me..\u003cbr\u003eHuman rights :-) We kill\u003cbr\u003eeach n every person who\u003cbr\u003ewill mock Prophets inshaAllah. We\u003cbr\u003edont need ur human rits\u003cbr\u003e\u003cbr\u003eTue Jan 20 05:22:53 +0000 2015"}, {"group": 837, "id": 22, "label": "557415610842611712", "shape": "dot", "size": 10, "title": "557415610842611712\u003cbr\u003e@wellwishersgd miscreant used to insult\u003cbr\u003eour prophet face to face\u003cbr\u003ebut he ignored. If you\u003cbr\u003ecannot be human well i\u003cbr\u003ehope you support the heat.\u003cbr\u003e\u003cbr\u003eTue Jan 20 05:53:32 +0000 2015"}, {"group": 837, "id": 23, "label": "557415708762857472", "shape": "dot", "size": 10, "title": "557415708762857472\u003cbr\u003e@wellwishersgd he ignored them*\u003cbr\u003eTue Jan 20 05:53:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 13, "weight": 1}, {"from": 3, "to": 20, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 282, "id": 0, "label": "552821050145513472", "shape": "dot", "size": 10, "title": "552821050145513472\u003cbr\u003eI\u0027m speechless, what a cruel\u003cbr\u003eattack on pressfreedom! All newspapers\u003cbr\u003eshould publish #CharlieHebdo cartoons tomorrow\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:36:23 +0000 2015"}, {"group": 282, "id": 1, "label": "552821213005770752", "shape": "dot", "size": 10, "title": "552821213005770752\u003cbr\u003e@BSchmeitzner Probably not a GREAT\u003cbr\u003eidea, though I agree with\u003cbr\u003ethe sentiment.\u003cbr\u003eWed Jan 07 13:37:02 +0000 2015"}, {"group": 282, "id": 2, "label": "552821342886981632", "shape": "dot", "size": 10, "title": "552821342886981632\u003cbr\u003e@BSchmeitzner @myroslawabrulak and yet our\u003cbr\u003e\"press\" in the UK are\u003cbr\u003ealready censoring the front page\u003cbr\u003eof the magazine showing one\u003cbr\u003eof the cartoon\u003cbr\u003eWed Jan 07 13:37:33 +0000 2015"}, {"group": 282, "id": 4, "label": "552821881074892801", "shape": "dot", "size": 10, "title": "552821881074892801\u003cbr\u003e@BSchmeitzner @clochette31000 yes but then\u003cbr\u003emaybe the next target\u003cbr\u003eWed Jan 07 13:39:42 +0000 2015"}, {"group": 282, "id": 5, "label": "552822790337097728", "shape": "dot", "size": 10, "title": "552822790337097728\u003cbr\u003e@BSchmeitzner @HangBlaa And be ready\u003cbr\u003eto defend against these lowlifes,\u003cbr\u003eonce and for all, force\u003cbr\u003ethem into humanity and compassion!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:43:18 +0000 2015"}, {"group": 282, "id": 6, "label": "552827026550161408", "shape": "dot", "size": 10, "title": "552827026550161408\u003cbr\u003e@PMOIndia @arunjaitley inspire them with\u003cbr\u003eyour call ! MT @BSchmeitzner:\u003cbr\u003eAll newspapers should publish #CharlieHebdo\u003cbr\u003ecartoons tomorrows\u003cbr\u003eWed Jan 07 14:00:08 +0000 2015"}, {"group": 282, "id": 7, "label": "552827040794419201", "shape": "dot", "size": 10, "title": "552827040794419201\u003cbr\u003e@BSchmeitzner @edwardlucas go on Edward.\u003cbr\u003eWill yours?\u003cbr\u003eWed Jan 07 14:00:12 +0000 2015"}, {"group": 282, "id": 9, "label": "552827806317809665", "shape": "dot", "size": 10, "title": "552827806317809665\u003cbr\u003e@BSchmeitzner This will only offense\u003cbr\u003emore people. How smart. Is\u003cbr\u003erespect unknown to you? @edwardlucas\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:03:14 +0000 2015"}, {"group": 282, "id": 10, "label": "552829928149090304", "shape": "dot", "size": 10, "title": "552829928149090304\u003cbr\u003e@BSchmeitzner @mattwridley lots of them\u003cbr\u003enow cacking themselves. Free press\u003cbr\u003ehas to stand up for\u003cbr\u003ea Free press for it\u003cbr\u003eto work  @stephenpollard\u003cbr\u003eWed Jan 07 14:11:40 +0000 2015"}, {"group": 282, "id": 11, "label": "552836226274037760", "shape": "dot", "size": 10, "title": "552836226274037760\u003cbr\u003eReply to @BSchmeitzner Streisand effect?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:36:42 +0000 2015"}, {"group": 282, "id": 12, "label": "552837718183403522", "shape": "dot", "size": 10, "title": "552837718183403522\u003cbr\u003e@BSchmeitzner all ready one Indian\u003cbr\u003enewspaper dared to publish it\u003cbr\u003ehttp://t.co/n25tHuOUit\u003cbr\u003eWed Jan 07 14:42:37 +0000 2015"}, {"group": 282, "id": 13, "label": "552840444036804608", "shape": "dot", "size": 10, "title": "552840444036804608\u003cbr\u003e@BSchmeitzner Great Idea.\u003cbr\u003eWed Jan 07 14:53:27 +0000 2015"}, {"group": 282, "id": 14, "label": "552844896638210049", "shape": "dot", "size": 10, "title": "552844896638210049\u003cbr\u003e@BSchmeitzner @DrJwalaG  The Indian\u003cbr\u003eMedia lack the \"Globular Pairs\"\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:11:09 +0000 2015"}, {"group": 282, "id": 15, "label": "552873818583097344", "shape": "dot", "size": 10, "title": "552873818583097344\u003cbr\u003e@BSchmeitzner @DrJwalaG  That Should\u003cbr\u003emust be happen.\u003cbr\u003eWed Jan 07 17:06:04 +0000 2015"}, {"group": 282, "id": 17, "label": "553161821948239874", "shape": "dot", "size": 10, "title": "553161821948239874\u003cbr\u003e@bschmeitzner  We live in\u003cbr\u003ea world where people don\u2019t\u003cbr\u003eunderstand the difference between free\u003cbr\u003espeech and hate speech. #paris\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:10:30 +0000 2015"}, {"group": 282, "id": 3, "label": "552821759746248704", "shape": "dot", "size": 10, "title": "552821759746248704\u003cbr\u003e@ConqueredLady @myroslawabrulak really? Big mistake\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:39:13 +0000 2015"}, {"group": 282, "id": 16, "label": "552882634372943872", "shape": "dot", "size": 10, "title": "552882634372943872\u003cbr\u003e@BSchmeitzner You are extremely immoral.\u003cbr\u003eSupporting the defamation of religions.\u003cbr\u003eIs your life really that\u003cbr\u003eempty? You need God. @LilAudBear\u003cbr\u003e\ud83d\udc4d\u003cbr\u003eWed Jan 07 17:41:06 +0000 2015"}, {"group": 282, "id": 8, "label": "552827646011117569", "shape": "dot", "size": 10, "title": "552827646011117569\u003cbr\u003e@satyangajwani @aroonpurie inspire them !\u003cbr\u003eyour call ! MT @BSchmeitzner:\u003cbr\u003eAll newspapers should publish #CharlieHebdo\u003cbr\u003ecartoons tomorrows\u003cbr\u003eWed Jan 07 14:02:36 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 16, "weight": 1}, {"from": 6, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

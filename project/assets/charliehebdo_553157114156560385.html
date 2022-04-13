@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 942, "id": 0, "label": "553157114156560385", "shape": "dot", "size": 10, "title": "553157114156560385\u003cbr\u003eThe best \u0026amp; most moving\u003cbr\u003etributes to #CharlieHebdo: http://t.co/F5Z7RhsZ19 #JeSuisCharlie\u003cbr\u003ehttp://t.co/ORkqhJG23K\u003cbr\u003eThu Jan 08 11:51:47 +0000 2015"}, {"group": 942, "id": 1, "label": "553157226517782528", "shape": "dot", "size": 10, "title": "553157226517782528\u003cbr\u003e@MTVUK #RespectForMuslims\u003cbr\u003eThu Jan 08 11:52:14 +0000 2015"}, {"group": 942, "id": 2, "label": "553157967374467072", "shape": "dot", "size": 10, "title": "553157967374467072\u003cbr\u003e@MTVUK Visit my gallery \u003cbr\u003ehere: http://t.co/TZxEovfJib\u003cbr\u003eThu Jan 08 11:55:11 +0000 2015"}, {"group": 942, "id": 3, "label": "553158069564502016", "shape": "dot", "size": 10, "title": "553158069564502016\u003cbr\u003e@MTVUK Visit my gallery \u003cbr\u003ehere: http://t.co/sxkI3u3t2m\u003cbr\u003eThu Jan 08 11:55:35 +0000 2015"}, {"group": 942, "id": 4, "label": "553158233586946048", "shape": "dot", "size": 10, "title": "553158233586946048\u003cbr\u003e@MTVUK Requires authentication.\u003cbr\u003eThu Jan 08 11:56:14 +0000 2015"}, {"group": 942, "id": 5, "label": "553158505226846208", "shape": "dot", "size": 10, "title": "553158505226846208\u003cbr\u003e@MTVUK Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 11:57:19 +0000 2015"}, {"group": 942, "id": 6, "label": "553158840032960513", "shape": "dot", "size": 10, "title": "553158840032960513\u003cbr\u003e@MTVUK U.S. armed #ISIS \u0026amp;\u003cbr\u003eSaudi\u0027s funded. Pushing #France to\u003cbr\u003ejoin fake war on terror.\u003cbr\u003e#ParisShooting #parisattack #September11\u003cbr\u003eThu Jan 08 11:58:39 +0000 2015"}, {"group": 942, "id": 7, "label": "553159120316952576", "shape": "dot", "size": 10, "title": "553159120316952576\u003cbr\u003e@MTVUK WHAT ABOUT PALESTINE!??\u003cbr\u003eThu Jan 08 11:59:46 +0000 2015"}, {"group": 942, "id": 8, "label": "553159194522951680", "shape": "dot", "size": 10, "title": "553159194522951680\u003cbr\u003e\u201c@MTVUK: The best \u0026amp; most\u003cbr\u003emoving tributes to #CharlieHebdo: http://t.co/bInk6dnIjK\u003cbr\u003e#JeSuisCharlie http://t.co/eVz09GtzzI\u201d\u003cbr\u003eThu Jan 08 12:00:03 +0000 2015"}, {"group": 942, "id": 9, "label": "553159210369024001", "shape": "dot", "size": 10, "title": "553159210369024001\u003cbr\u003e@MTVUK need to change your\u003cbr\u003elink and remove \u0027staging\u0027 from\u003cbr\u003ethe URL\u003cbr\u003eThu Jan 08 12:00:07 +0000 2015"}, {"group": 942, "id": 10, "label": "553159550204129280", "shape": "dot", "size": 10, "title": "553159550204129280\u003cbr\u003e@MTVUK #RespectForMuslims You are all\u003cbr\u003eunhonored\u003cbr\u003eThu Jan 08 12:01:28 +0000 2015"}, {"group": 942, "id": 11, "label": "553161352463003648", "shape": "dot", "size": 10, "title": "553161352463003648\u003cbr\u003e@MTVUK I just took a\u003cbr\u003esubscription to @Charlie_Hebdo_ through http://t.co/Jj8YZ0zUiI\u003cbr\u003e\u2026 Walk the talk, all\u003cbr\u003eyou #IamCharlie folks!\u003cbr\u003eThu Jan 08 12:08:38 +0000 2015"}, {"group": 942, "id": 12, "label": "553162596409700354", "shape": "dot", "size": 10, "title": "553162596409700354\u003cbr\u003e@MTVUK   #RespectForMuslims x\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:13:34 +0000 2015"}, {"group": 942, "id": 13, "label": "553164705414795265", "shape": "dot", "size": 10, "title": "553164705414795265\u003cbr\u003e\u201c@MTVUK: The best \u0026amp; most\u003cbr\u003emoving tributes to #CharlieHebdo: http://t.co/iGEAFynTEY\u003cbr\u003e#JeSuisCharlie http://t.co/zHPXh1hIEJ\u201d\u003cbr\u003eThu Jan 08 12:21:57 +0000 2015"}, {"group": 942, "id": 14, "label": "553166389142224899", "shape": "dot", "size": 10, "title": "553166389142224899\u003cbr\u003e@MTVUK http://t.co/SXwtblh1vY\u003cbr\u003eThu Jan 08 12:28:39 +0000 2015"}, {"group": 942, "id": 15, "label": "553166425599520771", "shape": "dot", "size": 10, "title": "553166425599520771\u003cbr\u003e@MTVUK JE SUIS, CHARLIE.\u003cbr\u003eThu Jan 08 12:28:47 +0000 2015"}, {"group": 942, "id": 17, "label": "553169306817941504", "shape": "dot", "size": 10, "title": "553169306817941504\u003cbr\u003e\u201c@MTVUK: The best \u0026amp; most\u003cbr\u003emoving tributes to #CharlieHebdo: http://t.co/hXiYOia30x\u003cbr\u003e#JeSuisCharlie http://t.co/OHkhIwPO10\u201d\u003cbr\u003eThu Jan 08 12:40:14 +0000 2015"}, {"group": 942, "id": 18, "label": "553169707382358016", "shape": "dot", "size": 10, "title": "553169707382358016\u003cbr\u003e\u201c@MTVUK: The best \u0026amp; most\u003cbr\u003emoving tributes to #CharlieHebdo: http://t.co/WtdD7rwbZU\u003cbr\u003e#JeSuisCharlie http://t.co/VUSzopaUfa\u201d\u003cbr\u003eThu Jan 08 12:41:50 +0000 2015"}, {"group": 942, "id": 16, "label": "553167800848883713", "shape": "dot", "size": 10, "title": "553167800848883713\u003cbr\u003e@ZacEfron_Ar @MTVUK Fuck Palestine.\u003cbr\u003eThu Jan 08 12:34:15 +0000 2015"}, {"group": 942, "id": 19, "label": "553171527995117568", "shape": "dot", "size": 10, "title": "553171527995117568\u003cbr\u003e@moyzes  U SHOULD DELETE\u003cbr\u003eIT #respect #NoRacism\u003cbr\u003eThu Jan 08 12:49:04 +0000 2015"}, {"group": 942, "id": 20, "label": "553289951245504512", "shape": "dot", "size": 10, "title": "553289951245504512\u003cbr\u003e@moyzes @ZacEfron_Ar @MTVUK go to\u003cbr\u003ehell, or at least show\u003cbr\u003esome respect\u003cbr\u003eThu Jan 08 20:39:38 +0000 2015"}, {"group": 942, "id": 21, "label": "553575718786199552", "shape": "dot", "size": 10, "title": "553575718786199552\u003cbr\u003e@haswayougoulele you talk about respect\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:35:10 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 7, "to": 16, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

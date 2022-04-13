@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1542, "id": 0, "label": "553584683892871168", "shape": "dot", "size": 10, "title": "553584683892871168\u003cbr\u003e#Anonymous says it will avenge\u003cbr\u003eCharlie Hebdo attacks by shutting\u003cbr\u003edown jihadist websites http://t.co/7UqbG6esN1 http://t.co/QlI7idFGVR\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:10:48 +0000 2015"}, {"group": 1542, "id": 1, "label": "553595830717140995", "shape": "dot", "size": 10, "title": "553595830717140995\u003cbr\u003e@familianonymous @gottabstrong finally doing something\u003cbr\u003ehonorable?!\u003cbr\u003eFri Jan 09 16:55:06 +0000 2015"}, {"group": 1542, "id": 3, "label": "553597710025375746", "shape": "dot", "size": 10, "title": "553597710025375746\u003cbr\u003e@FamiliAnonymous @AnonsOpsNews Ser\u00eda oportuno.\u003cbr\u003eFri Jan 09 17:02:34 +0000 2015"}, {"group": 1542, "id": 4, "label": "553607206235799552", "shape": "dot", "size": 10, "title": "553607206235799552\u003cbr\u003e@FamiliAnonymous @AnonsOpsNews 100% agree\u003cbr\u003eFri Jan 09 17:40:18 +0000 2015"}, {"group": 1542, "id": 5, "label": "553607709140852736", "shape": "dot", "size": 10, "title": "553607709140852736\u003cbr\u003e@FamiliAnonymous @AliasHere Good. Some marginalized\u003cbr\u003eand angry folk will have\u003cbr\u003eone less radical organization to\u003cbr\u003eturn to.\u003cbr\u003eFri Jan 09 17:42:18 +0000 2015"}, {"group": 1542, "id": 6, "label": "553617714586320896", "shape": "dot", "size": 10, "title": "553617714586320896\u003cbr\u003e@FamiliAnonymous @mc1748 this is a\u003cbr\u003ebullshit story.\u003cbr\u003eFri Jan 09 18:22:03 +0000 2015"}, {"group": 1542, "id": 7, "label": "553678830494568449", "shape": "dot", "size": 10, "title": "553678830494568449\u003cbr\u003e@FamiliAnonymous @2tweetaboutit Ooh Ah Ooh,\u003cbr\u003ebig hairy deal. You don\u0027t\u003cbr\u003ehave the petro-Islam cash. Jihad\u003cbr\u003ecash flow is what needs\u003cbr\u003eshutting down\u003cbr\u003eFri Jan 09 22:24:54 +0000 2015"}, {"group": 1542, "id": 8, "label": "553736031690686465", "shape": "dot", "size": 10, "title": "553736031690686465\u003cbr\u003e@FamiliAnonymous @AnonsGlobalOps Shut them down.\u003cbr\u003eSHUT THEM ALL DOWN! SEND\u003cbr\u003eSOME VIRUSES WHILE YOUR AT\u003cbr\u003eIT!\u003cbr\u003eSat Jan 10 02:12:12 +0000 2015"}, {"group": 1542, "id": 9, "label": "554166376374341633", "shape": "dot", "size": 10, "title": "554166376374341633\u003cbr\u003e@FamiliAnonymous an interesting tactic to\u003cbr\u003euse to advance Freedom of\u003cbr\u003eSpeech?\u003cbr\u003eSun Jan 11 06:42:14 +0000 2015"}, {"group": 1542, "id": 2, "label": "553595949877317633", "shape": "dot", "size": 10, "title": "553595949877317633\u003cbr\u003e@dhb7 @FamiliAnonymous I agree.\u003cbr\u003eFri Jan 09 16:55:34 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 1, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

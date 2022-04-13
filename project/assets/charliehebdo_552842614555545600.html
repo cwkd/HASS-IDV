@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 574, "id": 0, "label": "552842614555545600", "shape": "dot", "size": 10, "title": "552842614555545600\u003cbr\u003e#JeSuisCharlie: Messages of solidarity after\u003cbr\u003eParis attack http://t.co/w1K5T3icfk http://t.co/xj3UZ6kY7c\u003cbr\u003eWed Jan 07 15:02:05 +0000 2015"}, {"group": 574, "id": 1, "label": "552842684759408640", "shape": "dot", "size": 10, "title": "552842684759408640\u003cbr\u003e@mashable \n\nhttp://t.co/CIsr3CyCMo\n\nI want to invite\u003cbr\u003eyou to the religion of\u003cbr\u003e#Islam and I hope you\u003cbr\u003eknow about Islam.\n\n#Favorite\n#RT\n\ud83c\udf39\u003cbr\u003eWed Jan 07 15:02:22 +0000 2015"}, {"group": 574, "id": 2, "label": "552842915593347072", "shape": "dot", "size": 10, "title": "552842915593347072\u003cbr\u003e@mashable #JeSuisCharlie http://t.co/XBhNrc5JXN\u003cbr\u003eWed Jan 07 15:03:17 +0000 2015"}, {"group": 574, "id": 3, "label": "552843239779495936", "shape": "dot", "size": 10, "title": "552843239779495936\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/boZgft2ynY http://t.co/fo9wSDSWfj\u201d\u003cbr\u003eI used to live there.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:04:34 +0000 2015"}, {"group": 574, "id": 4, "label": "552843345358094336", "shape": "dot", "size": 10, "title": "552843345358094336\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/HXLat1nyvx http://t.co/teXXt7DKUB\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:04:59 +0000 2015"}, {"group": 574, "id": 5, "label": "552844416998969344", "shape": "dot", "size": 10, "title": "552844416998969344\u003cbr\u003e@mashable Intolerant people can kill\u003cbr\u003eother people, but they\u0027ll never\u003cbr\u003ebe able to kill the\u003cbr\u003eideals of those they killed.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:09:15 +0000 2015"}, {"group": 574, "id": 6, "label": "552844796130492416", "shape": "dot", "size": 10, "title": "552844796130492416\u003cbr\u003e@mashable #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:10:45 +0000 2015"}, {"group": 574, "id": 7, "label": "552845545161900033", "shape": "dot", "size": 10, "title": "552845545161900033\u003cbr\u003e@mashable pour la libert\u00e9 \u003cbr\u003ed\u0027expression. #jesuischarlie\u003cbr\u003eWed Jan 07 15:13:43 +0000 2015"}, {"group": 574, "id": 8, "label": "552846018799489024", "shape": "dot", "size": 10, "title": "552846018799489024\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/1HcdJmfuyj http://t.co/Abjo2yweHC\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:15:36 +0000 2015"}, {"group": 574, "id": 9, "label": "552848279227342848", "shape": "dot", "size": 10, "title": "552848279227342848\u003cbr\u003e@mashable why aren\u0027t we all\u003cbr\u003efinding and RT the \u0027offensive\u0027\u003cbr\u003ecartoons ? That\u0027s the necessary\u003cbr\u003eresponse of solidarity.\u003cbr\u003eWed Jan 07 15:24:35 +0000 2015"}, {"group": 574, "id": 10, "label": "552851243861676033", "shape": "dot", "size": 10, "title": "552851243861676033\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/f8CQeLMq5T http://t.co/teE50k6QEo\u201d\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 15:36:22 +0000 2015"}, {"group": 574, "id": 11, "label": "552853236441681920", "shape": "dot", "size": 10, "title": "552853236441681920\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/bpO69A97AC http://t.co/54vEEqVhOo\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:44:17 +0000 2015"}, {"group": 574, "id": 13, "label": "552854052673822720", "shape": "dot", "size": 10, "title": "552854052673822720\u003cbr\u003e#JeSuisCharlie  \u201c@mashable: #JeSuisCharlie: Messages\u003cbr\u003eof solidarity after Paris attack\u003cbr\u003ehttp://t.co/rhuI5bqoEz http://t.co/x2GgS68ktQ\"\u003cbr\u003eWed Jan 07 15:47:32 +0000 2015"}, {"group": 574, "id": 14, "label": "552856090891653121", "shape": "dot", "size": 10, "title": "552856090891653121\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/yxWoZDM9xd http://t.co/pM8nzXkk0M\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:55:38 +0000 2015"}, {"group": 574, "id": 15, "label": "552856139600515072", "shape": "dot", "size": 10, "title": "552856139600515072\u003cbr\u003e\u201c@mashable: #JeSuisCharlie: Messages of solidarity\u003cbr\u003eafter Paris attack http://t.co/YLiinwQWqh http://t.co/7nm2On4xyw\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:55:49 +0000 2015"}, {"group": 574, "id": 12, "label": "552853381203492865", "shape": "dot", "size": 10, "title": "552853381203492865\u003cbr\u003e@ThinkKu @mashable Islam is I\u003cbr\u003eSlam.You are nothing but a\u003cbr\u003ebunch of cowardly, slimy worms.\u003cbr\u003ehttp://t.co/RSvdP7Xk5H\u003cbr\u003eWed Jan 07 15:44:52 +0000 2015"}, {"group": 574, "id": 16, "label": "552857098619748352", "shape": "dot", "size": 10, "title": "552857098619748352\u003cbr\u003e\u201c@MCHtweets: @mashable #JeSuisCharlie http://t.co/7DTuprCKbx\u201d#JeSuisCharlie\u003cbr\u003eWed Jan 07 15:59:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 1, "to": 12, "weight": 1}, {"from": 2, "to": 16, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

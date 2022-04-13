@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 608, "id": 0, "label": "552845868932800512", "shape": "dot", "size": 10, "title": "552845868932800512\u003cbr\u003eThe US Embassy in France\u003cbr\u003e(@USEmbassyFrance) has changed its Twitter\u003cbr\u003epic to the #JeSuisCharlie image\u003cbr\u003ehttp://t.co/afvSJT8jma\u003cbr\u003eWed Jan 07 15:15:01 +0000 2015"}, {"group": 608, "id": 1, "label": "552847612630818818", "shape": "dot", "size": 10, "title": "552847612630818818\u003cbr\u003e@elenacresci @RosieGray @USEmbassyFrance yes we\u003cbr\u003ehave one,\u003cbr\u003eWed Jan 07 15:21:56 +0000 2015"}, {"group": 608, "id": 2, "label": "552848080933244930", "shape": "dot", "size": 10, "title": "552848080933244930\u003cbr\u003e@elenacresci the US govt criticized\u003cbr\u003e#CharlieHebdo for originally publishing their\u003cbr\u003ecartoons. @Daroff @USEmbassyFrance\u003cbr\u003eWed Jan 07 15:23:48 +0000 2015"}, {"group": 608, "id": 3, "label": "552848876168683521", "shape": "dot", "size": 10, "title": "552848876168683521\u003cbr\u003e@elenacresci @USEmbassyFrance after Jay Carney\u003cbr\u003ecriticized the cartoons!\u003cbr\u003eWed Jan 07 15:26:58 +0000 2015"}, {"group": 608, "id": 4, "label": "552848948487286785", "shape": "dot", "size": 10, "title": "552848948487286785\u003cbr\u003e@elenacresci @USEmbassyFrance http://t.co/ppBsZdZYJu\u003cbr\u003eWed Jan 07 15:27:15 +0000 2015"}, {"group": 608, "id": 5, "label": "552849087586791424", "shape": "dot", "size": 10, "title": "552849087586791424\u003cbr\u003e@elenacresci http://t.co/fswn8LHGrD\u003cbr\u003eWed Jan 07 15:27:48 +0000 2015"}, {"group": 608, "id": 6, "label": "552850321836617728", "shape": "dot", "size": 10, "title": "552850321836617728\u003cbr\u003e@elenacresci @katie_martin_FX @USEmbassyFrance\nJesus Christ\u003cbr\u003eWed Jan 07 15:32:42 +0000 2015"}, {"group": 608, "id": 7, "label": "552851467649163265", "shape": "dot", "size": 10, "title": "552851467649163265\u003cbr\u003e@elenacresci @USEmbassyFrance\u003cbr\u003eWed Jan 07 15:37:16 +0000 2015"}, {"group": 608, "id": 8, "label": "552851643667320832", "shape": "dot", "size": 10, "title": "552851643667320832\u003cbr\u003e\u201c@elenacresci: The US Embassy in\u003cbr\u003eFrance (@USEmbassyFrance) has changed its\u003cbr\u003eTwitter pic to the #JeSuisCharlie\u003cbr\u003eimage http://t.co/LDiLmKyLEa\u201d\u003cbr\u003eWed Jan 07 15:37:57 +0000 2015"}, {"group": 608, "id": 9, "label": "552851657617592320", "shape": "dot", "size": 10, "title": "552851657617592320\u003cbr\u003eFew of you pointing out\u003cbr\u003eWhite House press secretary criticised\u003cbr\u003eCharlie Hebdo\u0027s cartoons back in\u003cbr\u003e2012 http://t.co/NadJRoeh1F\u003cbr\u003eWed Jan 07 15:38:01 +0000 2015"}, {"group": 608, "id": 10, "label": "552852042524684288", "shape": "dot", "size": 10, "title": "552852042524684288\u003cbr\u003e@elenacresci @Cleromancie @USEmbassyFrance Bravo!\u003cbr\u003eWed Jan 07 15:39:33 +0000 2015"}, {"group": 608, "id": 12, "label": "552852444661968897", "shape": "dot", "size": 10, "title": "552852444661968897\u003cbr\u003e\u201c@elenacresci: The US Embassy in\u003cbr\u003eFrance (@USEmbassyFrance) has changed its\u003cbr\u003eTwitter pic to the #JeSuisCharlie\u003cbr\u003eimage http://t.co/d8Di0fIWi2\u201d\u003cbr\u003eWed Jan 07 15:41:08 +0000 2015"}, {"group": 608, "id": 13, "label": "552854076674019329", "shape": "dot", "size": 10, "title": "552854076674019329\u003cbr\u003e@elenacresci @USEmbassyFrance tku for your\u003cbr\u003esupport \ud83d\ude22\u003cbr\u003eWed Jan 07 15:47:38 +0000 2015"}, {"group": 608, "id": 16, "label": "552857747432038401", "shape": "dot", "size": 10, "title": "552857747432038401\u003cbr\u003e@elenacresci Oooooops..... somewhat embarrassing and\u003cbr\u003ehypocritical - unfortunately. @cbtaylor_7 @USEmbassyFrance\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:02:13 +0000 2015"}, {"group": 608, "id": 11, "label": "552852424885829634", "shape": "dot", "size": 10, "title": "552852424885829634\u003cbr\u003e@shortwave8669 @elenacresci @Daroff @USEmbassyFrance Criticizing\u003cbr\u003eis a tad different from\u003cbr\u003eshooting.\u003cbr\u003eWed Jan 07 15:41:04 +0000 2015"}, {"group": 608, "id": 14, "label": "552855348168896512", "shape": "dot", "size": 10, "title": "552855348168896512\u003cbr\u003e@elenacresci @BaronessAmber White house can\u003cbr\u003ego and fuck themselfs, Islam\u003cbr\u003eis NOT the religion of\u003cbr\u003epeace, its the religion of\u003cbr\u003ementalcases!\u003cbr\u003eWed Jan 07 15:52:41 +0000 2015"}, {"group": 608, "id": 22, "label": "552876616834359298", "shape": "dot", "size": 10, "title": "552876616834359298\u003cbr\u003e@elenacresci Not super relevant, but\u003cbr\u003eJay Carney is not the\u003cbr\u003ecurrent press secretary.\u003cbr\u003eWed Jan 07 17:17:12 +0000 2015"}, {"group": 608, "id": 15, "label": "552857367529144320", "shape": "dot", "size": 10, "title": "552857367529144320\u003cbr\u003e@JensKnocke of course. But blaming\u003cbr\u003ethe press is a failure\u003cbr\u003eto promote freedom as a\u003cbr\u003eprinciple. @elenacresci @Daroff @USEmbassyFrance\u003cbr\u003eWed Jan 07 16:00:42 +0000 2015"}, {"group": 608, "id": 17, "label": "552858024902021120", "shape": "dot", "size": 10, "title": "552858024902021120\u003cbr\u003e@shortwave8669 @elenacresci @Daroff @USEmbassyFrance \"Blaming\"?\u003cbr\u003eGet a dictionary.\u003cbr\u003eWed Jan 07 16:03:19 +0000 2015"}, {"group": 608, "id": 18, "label": "552859576002166784", "shape": "dot", "size": 10, "title": "552859576002166784\u003cbr\u003e@JensKnocke see also: appeasement\nSame govt\u003cbr\u003eblamed a video for attack\u003cbr\u003ein Benghazi Libya\n@elenacresci @Daroff @USEmbassyFrance\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:09:29 +0000 2015"}, {"group": 608, "id": 19, "label": "552860249540272128", "shape": "dot", "size": 10, "title": "552860249540272128\u003cbr\u003e@shortwave8669 @elenacresci @Daroff @USEmbassyFrance If\u003cbr\u003eonly ... no video then\u003cbr\u003eno killing av US personnel?\u003cbr\u003eWell, la Clinton...\u003cbr\u003eWed Jan 07 16:12:09 +0000 2015"}, {"group": 608, "id": 20, "label": "552861013323055105", "shape": "dot", "size": 10, "title": "552861013323055105\u003cbr\u003e@JensKnocke \"The future must not\u003cbr\u003ebelong to those who slander\u003cbr\u003ethe prophet of Islam\" -\u003cbr\u003eBarack Obama @elenacresci @Daroff @USEmbassyFrance\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:15:11 +0000 2015"}, {"group": 608, "id": 21, "label": "552861789894213632", "shape": "dot", "size": 10, "title": "552861789894213632\u003cbr\u003e@shortwave8669 @elenacresci @Daroff @USEmbassyFrance I\u003cbr\u003estand corrected. And ashamed.\u003cbr\u003eWed Jan 07 16:18:17 +0000 2015"}, {"group": 608, "id": 23, "label": "552881730965602304", "shape": "dot", "size": 10, "title": "552881730965602304\u003cbr\u003e@JensKnocke @shortwave8669 Pardon my intrusion.\u003cbr\u003eHave you read the speech\u003cbr\u003ethat quote is from? http://t.co/a6QmOBoYPf\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:37:31 +0000 2015"}, {"group": 608, "id": 24, "label": "552888202839998464", "shape": "dot", "size": 10, "title": "552888202839998464\u003cbr\u003e@GingerMakes ah yes true sorry\u003cbr\u003ewasn\u0027t clear!\u003cbr\u003eWed Jan 07 18:03:14 +0000 2015"}, {"group": 608, "id": 25, "label": "552888588892143617", "shape": "dot", "size": 10, "title": "552888588892143617\u003cbr\u003e@Andy_Gable @shortwave8669 It\u0027s the term\u003cbr\u003e\"slander\" that upsets me. What\u003cbr\u003eis it he declares \"taboo\":\u003cbr\u003eTo criticize? Analyze? Find fault\u003cbr\u003ewith?\u003cbr\u003eWed Jan 07 18:04:46 +0000 2015"}, {"group": 608, "id": 34, "label": "552900872888676352", "shape": "dot", "size": 10, "title": "552900872888676352\u003cbr\u003e@elenacresci Not a major detail\u003cbr\u003eor anything- doesn\u0027t change the\u003cbr\u003efacts! :)\u003cbr\u003eWed Jan 07 18:53:35 +0000 2015"}, {"group": 608, "id": 26, "label": "552890256731934720", "shape": "dot", "size": 10, "title": "552890256731934720\u003cbr\u003e@JensKnocke in the US simply\u003cbr\u003equoting from the MOST reliable\u003cbr\u003eIslamic sources is often deemed\u003cbr\u003eslander. Voltaire was correct. @Andy_Gable\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:11:24 +0000 2015"}, {"group": 608, "id": 27, "label": "552896724830654465", "shape": "dot", "size": 10, "title": "552896724830654465\u003cbr\u003e@JensKnocke @shortwave8669 I couldn\u0027t say,\u003cbr\u003ebut I read it as\u003cbr\u003ean international version of what\u003cbr\u003eI tell my kids: yes\u003cbr\u003eyour sister shouldn\u0027t...\u003cbr\u003eWed Jan 07 18:37:06 +0000 2015"}, {"group": 608, "id": 28, "label": "552897068029575168", "shape": "dot", "size": 10, "title": "552897068029575168\u003cbr\u003e@JensKnocke @shortwave8669 ... say/do whatever\u003cbr\u003ehurt you (slander?) but you\u003cbr\u003ealso shouldn\u0027t hit her back.\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:38:28 +0000 2015"}, {"group": 608, "id": 29, "label": "552897582847250433", "shape": "dot", "size": 10, "title": "552897582847250433\u003cbr\u003e@Andy_Gable freedom must not be\u003cbr\u003elimited to the level of\u003cbr\u003echildren. Voltaire has the grownup\u003cbr\u003eview of it. @JensKnocke\u003cbr\u003eWed Jan 07 18:40:30 +0000 2015"}, {"group": 608, "id": 30, "label": "552899973654646784", "shape": "dot", "size": 10, "title": "552899973654646784\u003cbr\u003e@shortwave8669 @JensKnocke the word which\u003cbr\u003eusually stands out to me\u003cbr\u003efrom the frequent Voltaire quote\u003cbr\u003eis \"fight.\" I\u0027m interested in\u003cbr\u003epeace.\u003cbr\u003eWed Jan 07 18:50:00 +0000 2015"}, {"group": 608, "id": 31, "label": "552900342162006017", "shape": "dot", "size": 10, "title": "552900342162006017\u003cbr\u003e@shortwave8669 @JensKnocke that also seemed\u003cbr\u003eto be what the quoted\u003cbr\u003eUN speech was about, not\u003cbr\u003ethat I think he\u0027s a\u003cbr\u003emodel of peace (drones etc)\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:51:28 +0000 2015"}, {"group": 608, "id": 33, "label": "552900644483244032", "shape": "dot", "size": 10, "title": "552900644483244032\u003cbr\u003e@shortwave8669 @JensKnocke but the speech,\u003cbr\u003eif you want to reference\u003cbr\u003eit, was not as simple\u003cbr\u003eas don\u0027t slander Muhammed.\u003cbr\u003eWed Jan 07 18:52:40 +0000 2015"}, {"group": 608, "id": 32, "label": "552900377386172416", "shape": "dot", "size": 10, "title": "552900377386172416\u003cbr\u003e@Andy_Gable the enemies of freedom\u003cbr\u003eare ALREADY fighting.\nThe choice is\u003cbr\u003eto defend the freedom, or\u003cbr\u003enot. @JensKnocke\u003cbr\u003eWed Jan 07 18:51:37 +0000 2015"}, {"group": 608, "id": 35, "label": "552900908728979458", "shape": "dot", "size": 10, "title": "552900908728979458\u003cbr\u003e@Andy_Gable anyone that supports laws\u003cbr\u003eagainst blasphemy and/or apostasy is\u003cbr\u003ean enemy to free speech.\u003cbr\u003e@JensKnocke\u003cbr\u003eWed Jan 07 18:53:43 +0000 2015"}, {"group": 608, "id": 37, "label": "552901673677377536", "shape": "dot", "size": 10, "title": "552901673677377536\u003cbr\u003e@shortwave8669 I don\u0027t belive there\u0027s\u003cbr\u003ea way to fight back\u003cbr\u003eagainst these groups.We can all\u003cbr\u003ecartoon what we like... @JensKnocke\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:56:46 +0000 2015"}, {"group": 608, "id": 38, "label": "552902094085046272", "shape": "dot", "size": 10, "title": "552902094085046272\u003cbr\u003e@shortwave8669 ... and unfortunately there\u003cbr\u003emay be unjust consequences. \"Turn\u003cbr\u003ethe other cheek\" \u0026amp; \"do\u003cbr\u003eunto others\" in meantime @JensKnocke\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:58:26 +0000 2015"}, {"group": 608, "id": 36, "label": "552901110042988544", "shape": "dot", "size": 10, "title": "552901110042988544\u003cbr\u003e@Andy_Gable that sentence alone is\u003cbr\u003ea betrayal of free speech.\n@JensKnocke\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:54:31 +0000 2015"}, {"group": 608, "id": 43, "label": "552903865280905216", "shape": "dot", "size": 10, "title": "552903865280905216\u003cbr\u003e@shortwave8669 @JensKnocke not to sound\u003cbr\u003etoo flippant, but would you\u003cbr\u003efight for his right to\u003cbr\u003esay it?\u003cbr\u003eWed Jan 07 19:05:28 +0000 2015"}, {"group": 608, "id": 39, "label": "552902382901002240", "shape": "dot", "size": 10, "title": "552902382901002240\u003cbr\u003e@Andy_Gable so surrender, don\u0027t offend?\u003cbr\u003eThat is cowardice. Shall I\u003cbr\u003ecollect a list of all\u003cbr\u003ethings that offend me and\u003cbr\u003eforward 2 u?\n@JensKnocke\u003cbr\u003eWed Jan 07 18:59:35 +0000 2015"}, {"group": 608, "id": 40, "label": "552902848628154369", "shape": "dot", "size": 10, "title": "552902848628154369\u003cbr\u003e@Andy_Gable solution to offensive speech\u003cbr\u003eis more speech, not silence.\u003cbr\u003e If surrender was solution\u003cbr\u003eFrance wouldn\u0027t be under attack\u003cbr\u003enow\u003cbr\u003eWed Jan 07 19:01:26 +0000 2015"}, {"group": 608, "id": 42, "label": "552903620036157440", "shape": "dot", "size": 10, "title": "552903620036157440\u003cbr\u003e@Andy_Gable the victims at #CharlieHebdo\u003cbr\u003edid not get a chance\u003cbr\u003eto turn the other cheek.\n#EverybodyDrawMohammed\u003cbr\u003ehttp://t.co/N5QuOBhzxV\u003cbr\u003eWed Jan 07 19:04:30 +0000 2015"}, {"group": 608, "id": 41, "label": "552903427521380353", "shape": "dot", "size": 10, "title": "552903427521380353\u003cbr\u003e@shortwave8669 I agree. But who\u003cbr\u003esaid surrender?\u003cbr\u003eWed Jan 07 19:03:44 +0000 2015"}, {"group": 608, "id": 44, "label": "552904236535906304", "shape": "dot", "size": 10, "title": "552904236535906304\u003cbr\u003e@Andy_Gable voiding offense is surrender.\nSolution\u003cbr\u003eto offensive speech is more\u003cbr\u003espeech. Not be more careful\u003cbr\u003eof speech. http://t.co/nlD8S9yrc7\u003cbr\u003eWed Jan 07 19:06:57 +0000 2015"}, {"group": 608, "id": 45, "label": "552904680691752960", "shape": "dot", "size": 10, "title": "552904680691752960\u003cbr\u003e@Andy_Gable of course. That you\u003cbr\u003eask the question suggests your\u003cbr\u003eextreme partisanship.\u003cbr\u003eWed Jan 07 19:08:43 +0000 2015"}, {"group": 608, "id": 46, "label": "552905950609158144", "shape": "dot", "size": 10, "title": "552905950609158144\u003cbr\u003e@shortwave8669 I wouldn\u0027t say extreme.\u003cbr\u003eI think you want to\u003cbr\u003efind a reason to dismiss\u003cbr\u003ewhat I\u0027m saying by writing\u003cbr\u003eme off. I just now\u003cbr\u003enamed\u003cbr\u003eWed Jan 07 19:13:45 +0000 2015"}, {"group": 608, "id": 47, "label": "552906399689080833", "shape": "dot", "size": 10, "title": "552906399689080833\u003cbr\u003e@shortwave8669 one thing about Obama\u003cbr\u003eIm unhappy with. There are\u003cbr\u003eothers. Quotes out of context\u003cbr\u003esuggest your partisanship, no?\u003cbr\u003eWed Jan 07 19:15:32 +0000 2015"}, {"group": 608, "id": 48, "label": "552906818746187776", "shape": "dot", "size": 10, "title": "552906818746187776\u003cbr\u003e@shortwave8669 I originally interjected that\u003cbr\u003elink bc I thought you\u0027d\u003cbr\u003ehate to be misinterpreting what\u003cbr\u003ehe said.I think you\u0027d like\u003cbr\u003eto continue.\u003cbr\u003eWed Jan 07 19:17:12 +0000 2015"}, {"group": 608, "id": 49, "label": "552909721360146433", "shape": "dot", "size": 10, "title": "552909721360146433\u003cbr\u003e@Andy_Gable again, you betray your\u003cbr\u003eprejudices, or lack of goodfaith\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:28:44 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 2, "to": 11, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 9, "to": 22, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 24, "to": 34, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 25, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 29, "to": 33, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 31, "to": 35, "weight": 1}, {"from": 32, "to": 37, "weight": 1}, {"from": 32, "to": 38, "weight": 1}, {"from": 33, "to": 36, "weight": 1}, {"from": 36, "to": 43, "weight": 1}, {"from": 37, "to": 39, "weight": 1}, {"from": 38, "to": 40, "weight": 1}, {"from": 38, "to": 42, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 44, "weight": 1}, {"from": 43, "to": 45, "weight": 1}, {"from": 45, "to": 46, "weight": 1}, {"from": 45, "to": 47, "weight": 1}, {"from": 45, "to": 48, "weight": 1}, {"from": 48, "to": 49, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

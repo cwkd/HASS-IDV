@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1437, "id": 0, "label": "553555207410700289", "shape": "dot", "size": 10, "title": "553555207410700289\u003cbr\u003e25 journalists from Charlie Hebdo\u003cbr\u003etook their first step toward\u003cbr\u003epublishing their next issue http://t.co/v5p4m6CfDR\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:13:40 +0000 2015"}, {"group": 1437, "id": 1, "label": "553555405990027264", "shape": "dot", "size": 10, "title": "553555405990027264\u003cbr\u003e@nytimes WHITE #Terrorist detonates explosive\u003cbr\u003ein a terrorist attack on\u003cbr\u003eamerican soil. #MakeAMovieSmarter #CharlieHebdo #NAACP\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:14:28 +0000 2015"}, {"group": 1437, "id": 2, "label": "553555452395786240", "shape": "dot", "size": 10, "title": "553555452395786240\u003cbr\u003e@nytimes  Oui!  #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:14:39 +0000 2015"}, {"group": 1437, "id": 3, "label": "553555526588825600", "shape": "dot", "size": 10, "title": "553555526588825600\u003cbr\u003e@nytimes Bravo!\u003cbr\u003eFri Jan 09 14:14:56 +0000 2015"}, {"group": 1437, "id": 4, "label": "553555536252530688", "shape": "dot", "size": 10, "title": "553555536252530688\u003cbr\u003e@nytimes Bravo.\u003cbr\u003eFri Jan 09 14:14:59 +0000 2015"}, {"group": 1437, "id": 5, "label": "553555729743749121", "shape": "dot", "size": 10, "title": "553555729743749121\u003cbr\u003e@nytimes they should beware of\u003cbr\u003eattacking the prophet of islam!\u003cbr\u003ei guess, they would hv\u003cbr\u003elearnt their lesson now\u003cbr\u003eFri Jan 09 14:15:45 +0000 2015"}, {"group": 1437, "id": 6, "label": "553555737159671808", "shape": "dot", "size": 10, "title": "553555737159671808\u003cbr\u003e@nytimes January 7th, #InternationalDrawMuhammadDay\u003cbr\u003eFri Jan 09 14:15:46 +0000 2015"}, {"group": 1437, "id": 7, "label": "553556159354126337", "shape": "dot", "size": 10, "title": "553556159354126337\u003cbr\u003e@nytimes merci\u003cbr\u003eFri Jan 09 14:17:27 +0000 2015"}, {"group": 1437, "id": 8, "label": "553556272973627392", "shape": "dot", "size": 10, "title": "553556272973627392\u003cbr\u003e@nytimes bravo. Very impressive.\u003cbr\u003eFri Jan 09 14:17:54 +0000 2015"}, {"group": 1437, "id": 10, "label": "553556564767174657", "shape": "dot", "size": 10, "title": "553556564767174657\u003cbr\u003e@nytimes Uhave the right to\u003cbr\u003ehave and express your views,you\u003cbr\u003edo not have the right\u003cbr\u003eto murder me if I\u003cbr\u003edo not agree with them\u003cbr\u003e##CharlieHebdo\u003cbr\u003eFri Jan 09 14:19:04 +0000 2015"}, {"group": 1437, "id": 11, "label": "553557149142773760", "shape": "dot", "size": 10, "title": "553557149142773760\u003cbr\u003e\u201c@nytimes: 25 journalists from Charlie\u003cbr\u003eHebdo took their first step\u003cbr\u003etoward publishing their next issue.\u201d\u003cbr\u003estand up Charlie!\u003cbr\u003eFri Jan 09 14:21:23 +0000 2015"}, {"group": 1437, "id": 12, "label": "553557817148190720", "shape": "dot", "size": 10, "title": "553557817148190720\u003cbr\u003ePen is mightier than sword\u003cbr\u003e\"@nytimes: 25 journalists from Charlie\u003cbr\u003eHebdo took first step toward\u003cbr\u003epublishing next issue http://t.co/FhTnmUfFh7\u201d\u003cbr\u003eFri Jan 09 14:24:02 +0000 2015"}, {"group": 1437, "id": 14, "label": "553558050678657024", "shape": "dot", "size": 10, "title": "553558050678657024\u003cbr\u003e@nytimes #CharlieHebdo Good. Go for\u003cbr\u003eit!! I will support that.\u003cbr\u003eEveryone will support that. #ParisAttack\u003cbr\u003e#ParisShooting\u003cbr\u003eFri Jan 09 14:24:58 +0000 2015"}, {"group": 1437, "id": 15, "label": "553558450769502208", "shape": "dot", "size": 10, "title": "553558450769502208\u003cbr\u003e#JeSuisCharlie \u201c@nytimes: 25 journalists from\u003cbr\u003eCharlie Hebdo took their first\u003cbr\u003estep toward publishing their next\u003cbr\u003eissue http://t.co/X1HInrO8ne\u201d\u003cbr\u003eFri Jan 09 14:26:33 +0000 2015"}, {"group": 1437, "id": 16, "label": "553559788354015232", "shape": "dot", "size": 10, "title": "553559788354015232\u003cbr\u003e@nytimes http://t.co/xfqmrSpKV8\u003cbr\u003eFri Jan 09 14:31:52 +0000 2015"}, {"group": 1437, "id": 17, "label": "553560581450387456", "shape": "dot", "size": 10, "title": "553560581450387456\u003cbr\u003e@nytimes  #ChalieHebdo A must\u003cbr\u003elisten .. Classic observation on\u003cbr\u003eterrorism .. https://t.co/baLgabsq8L\u003cbr\u003eFri Jan 09 14:35:01 +0000 2015"}, {"group": 1437, "id": 18, "label": "553562756931022849", "shape": "dot", "size": 10, "title": "553562756931022849\u003cbr\u003e.@nytimes Will you dare publish\u003cbr\u003ethe cartoons or continue patronizing\u003cbr\u003eMuslims as if they can\u0027t\u003cbr\u003ehandle them? #IamAhmed http://t.co/K9q6KQXuJ8\u003cbr\u003eFri Jan 09 14:43:40 +0000 2015"}, {"group": 1437, "id": 9, "label": "553556320704811009", "shape": "dot", "size": 10, "title": "553556320704811009\u003cbr\u003e@Suhailk32788786 @nytimes Murderers don\u0027t teach\u003cbr\u003elessons.\u003cbr\u003eFri Jan 09 14:18:06 +0000 2015"}, {"group": 1437, "id": 13, "label": "553557959909728260", "shape": "dot", "size": 10, "title": "553557959909728260\u003cbr\u003e@Suhailk32788786 @nytimes You are a\u003cbr\u003ecockroachSuhail  I hope their\u003cbr\u003epaper is crammed full depictions\u003cbr\u003eof the Muhammad pig...Freedom of\u003cbr\u003ethe pen\u003cbr\u003eFri Jan 09 14:24:36 +0000 2015"}, {"group": 1437, "id": 19, "label": "553564944386375680", "shape": "dot", "size": 10, "title": "553564944386375680\u003cbr\u003e@Suhailk32788786 @nytimes Is there any\u003cbr\u003eword named \"Tolerance\" in Islam.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:52:22 +0000 2015"}, {"group": 1437, "id": 21, "label": "553578016019087363", "shape": "dot", "size": 10, "title": "553578016019087363\u003cbr\u003e@Suhailk32788786 @nytimes yr false prophet\u003cbr\u003eDeserve no Respect for anything,\u003cbr\u003ecoz Islam respect No one\u003cbr\u003ewnd their Values.\u003cbr\u003eFri Jan 09 15:44:18 +0000 2015"}, {"group": 1437, "id": 20, "label": "553575788193140736", "shape": "dot", "size": 10, "title": "553575788193140736\u003cbr\u003e@Dannystrong @nytimes Pen has no\u003cbr\u003emuscle power, it can only\u003cbr\u003einstigate organize ultimately muscle gets\u003cbr\u003eend result\u003cbr\u003eFri Jan 09 15:35:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 5, "to": 19, "weight": 1}, {"from": 5, "to": 21, "weight": 1}, {"from": 12, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

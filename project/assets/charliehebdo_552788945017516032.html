@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1641, "id": 0, "label": "552788945017516032", "shape": "dot", "size": 10, "title": "552788945017516032\u003cbr\u003eAppalled by the attack on\u003cbr\u003eCharlie Hebdo in Paris, 10\u003cbr\u003e- probably journalists - now\u003cbr\u003econfirmed dead. An attack on\u003cbr\u003efree speech everywhere.\u003cbr\u003eWed Jan 07 11:28:49 +0000 2015"}, {"group": 1641, "id": 1, "label": "552789083211460608", "shape": "dot", "size": 10, "title": "552789083211460608\u003cbr\u003e@tnewtondunn You guys should put\u003cbr\u003eone of their cartoons -\u003cbr\u003emaybe the last one they\u003cbr\u003etweeted - on your front\u003cbr\u003epage tomorrow.\u003cbr\u003eWed Jan 07 11:29:22 +0000 2015"}, {"group": 1641, "id": 2, "label": "552789147606581248", "shape": "dot", "size": 10, "title": "552789147606581248\u003cbr\u003e@tnewtondunn Important moment. Other papers\u003cbr\u003ecould provide safety in numbers.\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:29:37 +0000 2015"}, {"group": 1641, "id": 4, "label": "552790062778548224", "shape": "dot", "size": 10, "title": "552790062778548224\u003cbr\u003e@tnewtondunn solidarity is key -\u003cbr\u003ewe can\u0027t be mute in\u003cbr\u003ethe face of this repulsiveness.\u003cbr\u003e#StandUpForSatire #CharlieHebdo\u003cbr\u003eWed Jan 07 11:33:15 +0000 2015"}, {"group": 1641, "id": 5, "label": "552790386092294144", "shape": "dot", "size": 10, "title": "552790386092294144\u003cbr\u003e@tnewtondunn @theuneasyreaper rip x\u003cbr\u003eWed Jan 07 11:34:33 +0000 2015"}, {"group": 1641, "id": 6, "label": "552790446871945217", "shape": "dot", "size": 10, "title": "552790446871945217\u003cbr\u003e@tnewtondunn @theuneasyreaper poor people :((((\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:34:47 +0000 2015"}, {"group": 1641, "id": 7, "label": "552792005559189504", "shape": "dot", "size": 10, "title": "552792005559189504\u003cbr\u003e@tnewtondunn @mehdirhasan  attacking religion\u003cbr\u003eis not free speech. People\u003cbr\u003eget hurt and then act\u003cbr\u003elike this which is also\u003cbr\u003ewrong\u003cbr\u003eWed Jan 07 11:40:59 +0000 2015"}, {"group": 1641, "id": 8, "label": "552792919325671425", "shape": "dot", "size": 10, "title": "552792919325671425\u003cbr\u003e@tnewtondunn @toadmeister \nWhen will EU\u003cbr\u003ewake up?\u003cbr\u003eWed Jan 07 11:44:37 +0000 2015"}, {"group": 1641, "id": 9, "label": "552793167754715136", "shape": "dot", "size": 10, "title": "552793167754715136\u003cbr\u003e@tnewtondunn #i\u0027llridewithyou\u003cbr\u003eWed Jan 07 11:45:36 +0000 2015"}, {"group": 1641, "id": 10, "label": "552793839782862848", "shape": "dot", "size": 10, "title": "552793839782862848\u003cbr\u003e@tnewtondunn Freedom of speech is\u003cbr\u003esomething to be fought for.\u003cbr\u003eIn 1824 I set up\u003cbr\u003e\u0027Correspondent\u0027 newspaper to report news\u003cbr\u003ewithout censorship\u003cbr\u003eWed Jan 07 11:48:16 +0000 2015"}, {"group": 1641, "id": 3, "label": "552789720540119040", "shape": "dot", "size": 10, "title": "552789720540119040\u003cbr\u003e@mjhsinclair @tnewtondunn Sadly, since none\u003cbr\u003eof the UK press dared\u003cbr\u003ereprint the Jyllands-Posten cartoons, I\u003cbr\u003ethink that\u0027s very unlikely.\u003cbr\u003eWed Jan 07 11:31:54 +0000 2015"}, {"group": 1641, "id": 11, "label": "552794223263903744", "shape": "dot", "size": 10, "title": "552794223263903744\u003cbr\u003e@mjhsinclair @Olenkafrenkiel @tnewtondunn No..On every\u003cbr\u003enewspaper from Russia to the\u003cbr\u003eUSA.\u003cbr\u003eWed Jan 07 11:49:47 +0000 2015"}, {"group": 1641, "id": 12, "label": "552794307632332800", "shape": "dot", "size": 10, "title": "552794307632332800\u003cbr\u003e@m33ryg @tnewtondunn @mehdirhasan Of course\u003cbr\u003eit is free speech, that\u0027s\u003cbr\u003ethe definition of \"free speech\"\u003cbr\u003eto openly make comments or\u003cbr\u003edraw a pic!\u003cbr\u003eWed Jan 07 11:50:08 +0000 2015"}, {"group": 1641, "id": 14, "label": "552794881601859584", "shape": "dot", "size": 10, "title": "552794881601859584\u003cbr\u003e@m33ryg @tnewtondunn @mehdirhasan You think\u003cbr\u003epeople shouldn\u0027t be allowed to\u003cbr\u003espeak against any religion?\u003cbr\u003eWed Jan 07 11:52:24 +0000 2015"}, {"group": 1641, "id": 23, "label": "552798814344839168", "shape": "dot", "size": 10, "title": "552798814344839168\u003cbr\u003e@Cavelloman1 @mjhsinclair @tnewtondunn @VictoriaPeckham and\u003cbr\u003egive true meaning to the\u003cbr\u003ehashtag #illridewithyou #charliehebdo.\u003cbr\u003eWed Jan 07 12:08:02 +0000 2015"}, {"group": 1641, "id": 13, "label": "552794594115870720", "shape": "dot", "size": 10, "title": "552794594115870720\u003cbr\u003e@Mumbobee @tnewtondunn @mehdirhasan  if\u003cbr\u003efree speech hurts the feelings\u003cbr\u003eof 1.6 bil ppl then\u003cbr\u003eit\u0027s wrong and shouldn\u0027t happen\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:51:16 +0000 2015"}, {"group": 1641, "id": 16, "label": "552795656235274240", "shape": "dot", "size": 10, "title": "552795656235274240\u003cbr\u003e@m33ryg @Mumbobee @tnewtondunn @mehdirhasan You\u003cbr\u003eare an arsehole!  #freeSpeech\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:55:29 +0000 2015"}, {"group": 1641, "id": 15, "label": "552795498349101057", "shape": "dot", "size": 10, "title": "552795498349101057\u003cbr\u003e@UnbiasedF @tnewtondunn @mehdirhasan of course\u003cbr\u003ethey should be allowed to\u003cbr\u003espeak against a religion but\u003cbr\u003ewith facts not by ridiculing\u003cbr\u003eit\u003cbr\u003eWed Jan 07 11:54:51 +0000 2015"}, {"group": 1641, "id": 17, "label": "552795850783854592", "shape": "dot", "size": 10, "title": "552795850783854592\u003cbr\u003e@m33ryg @tnewtondunn @mehdirhasan \"Facts about\u003cbr\u003ea religion\" Do you see\u003cbr\u003ethe irony in that statement?\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:56:15 +0000 2015"}, {"group": 1641, "id": 19, "label": "552796424266854400", "shape": "dot", "size": 10, "title": "552796424266854400\u003cbr\u003e@m33ryg @tnewtondunn @mehdirhasan Can you\u003cbr\u003esupply the factual evidence of\u003cbr\u003ea winged horse? Or a\u003cbr\u003eman resurrected after 3 days?\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:58:32 +0000 2015"}, {"group": 1641, "id": 18, "label": "552795971999252481", "shape": "dot", "size": 10, "title": "552795971999252481\u003cbr\u003e@katherine1924 @Mumbobee @tnewtondunn @mehdirhasan \u003cbr\u003eit\u0027s wrong that the men\u003cbr\u003eretaliated in this way but\u003cbr\u003ewe need to look at\u003cbr\u003ewhy they did it\u003cbr\u003eWed Jan 07 11:56:44 +0000 2015"}, {"group": 1641, "id": 20, "label": "552796692995907584", "shape": "dot", "size": 10, "title": "552796692995907584\u003cbr\u003e@m33ryg @Mumbobee @tnewtondunn @mehdirhasan They\u003cbr\u003epresumably did it because they\u003cbr\u003ewere \u0027offended\u0027. You\u0027re an apologist\u003cbr\u003eof Islamist nut jobs!\u003cbr\u003eWed Jan 07 11:59:36 +0000 2015"}, {"group": 1641, "id": 22, "label": "552797821188206592", "shape": "dot", "size": 10, "title": "552797821188206592\u003cbr\u003e@UnbiasedF If you go into\u003cbr\u003esuch facts it will be\u003cbr\u003ea very long story to\u003cbr\u003ekeep it short that 1.6\u003cbr\u003ebil ppl can\u0027t have a\u003cbr\u003eprophet made a joke out.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:04:05 +0000 2015"}, {"group": 1641, "id": 21, "label": "552797099138748416", "shape": "dot", "size": 10, "title": "552797099138748416\u003cbr\u003e@katherine1924 @Mumbobee @tnewtondunn @mehdirhasan \u003cbr\u003eWhat else could have been\u003cbr\u003ethe motive ?  \u003cbr\u003eTo prevent it from happening\u003cbr\u003ekeep religion out\u003cbr\u003eWed Jan 07 12:01:13 +0000 2015"}, {"group": 1641, "id": 25, "label": "552802165488877568", "shape": "dot", "size": 10, "title": "552802165488877568\u003cbr\u003e@m33ryg @katherine1924 @tnewtondunn @mehdirhasan This\u003cbr\u003eis the point of free\u003cbr\u003espeech, why get so offended!!?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:21:21 +0000 2015"}, {"group": 1641, "id": 27, "label": "552845605786378241", "shape": "dot", "size": 10, "title": "552845605786378241\u003cbr\u003e@m33ryg @katherine1924 @Mumbobee @tnewtondunn @mehdirhasan\u003cbr\u003eKeep religion out of it\u003cbr\u003e? Bit late for that\u003cbr\u003e!\u003cbr\u003eWed Jan 07 15:13:58 +0000 2015"}, {"group": 1641, "id": 24, "label": "552801161128853504", "shape": "dot", "size": 10, "title": "552801161128853504\u003cbr\u003e@Olenkafrenkiel @Cavelloman1 @mjhsinclair @tnewtondunn @VictoriaPeckham\u003cbr\u003eI\u0027ll ride with you. #illridewithyou\u003cbr\u003ehttp://t.co/dFLDTDqTbS\u003cbr\u003eWed Jan 07 12:17:22 +0000 2015"}, {"group": 1641, "id": 26, "label": "552802854453641216", "shape": "dot", "size": 10, "title": "552802854453641216\u003cbr\u003e@Mumbobee this is what ppl\u003cbr\u003eare not understanding. Muslims get\u003cbr\u003ehurt when there prophet gets\u003cbr\u003emade a joke out. And\u003cbr\u003esome retaliate wrongly.\u003cbr\u003eWed Jan 07 12:24:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 11, "weight": 1}, {"from": 7, "to": 12, "weight": 1}, {"from": 7, "to": 14, "weight": 1}, {"from": 11, "to": 23, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 22, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 25, "weight": 1}, {"from": 21, "to": 27, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 25, "to": 26, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

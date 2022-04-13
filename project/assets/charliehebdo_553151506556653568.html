@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 920, "id": 0, "label": "553151506556653568", "shape": "dot", "size": 10, "title": "553151506556653568\u003cbr\u003eCartoon from #Egypt daily @AlMasryAlYoum\u003cbr\u003e#JeSuisCharlie #CharlieHebdo \"Long Live Satire!\"\u003cbr\u003eon the top http://t.co/IyCJdgKtgz\u003cbr\u003eThu Jan 08 11:29:30 +0000 2015"}, {"group": 920, "id": 1, "label": "553152288206778368", "shape": "dot", "size": 10, "title": "553152288206778368\u003cbr\u003e@mfatta7 @seldeeb @AlMasryAlYoum But Egypt\u003cbr\u003ecan\u0027t take satire - look\u003cbr\u003ewhat happened to Bassem Youssef!\u003cbr\u003e Sisi more sacred than\u003cbr\u003eProphet!\u003cbr\u003eThu Jan 08 11:32:37 +0000 2015"}, {"group": 920, "id": 2, "label": "553152970893058049", "shape": "dot", "size": 10, "title": "553152970893058049\u003cbr\u003e@mfatta7 @basildabh @AlMasryAlYoum \u0648\u0644\u0645\u0627 \u0627\u0646\u062a\u0648\u003cbr\u003e\u064a\u0627\u0628\u062a\u0648\u0639 \u0627\u0644\u0645\u0635\u0631\u0649 \u0627\u0644\u064a\u0648\u0645 \u0645\u0639 \u0627\u0644\u062d\u0631\u064a\u0647\u003cbr\u003e\u0648\u0627\u0644\u0633\u062e\u0631\u064a\u0647..\n\u0645\u0646\u0637\u0642\u062a\u0648\u0634 \u0644\u064a\u0647 \u0639\u0644\u0649 \u0645\u0646\u0639 \u0628\u0627\u0633\u0645\u003cbr\u003e\u064a\u0648\u0633\u0641 \u0648\u0628\u0644\u0627\u0644\u0641\u0636\u0644.... \u0627\u0644\u062e \u061f\u061f!\u003cbr\u003eThu Jan 08 11:35:20 +0000 2015"}, {"group": 920, "id": 3, "label": "553156894526046209", "shape": "dot", "size": 10, "title": "553156894526046209\u003cbr\u003e@mfatta7 @AlMasryAlYoum \u0639\u0627\u0634\u062a \u0627\u0644\u0633\u062e\u0631\u064a\u0629 \u0644\u0643\u0646\u003cbr\u003e\u0644\u064a\u0633 \u0639\u0644\u0649 \u062d\u0633\u0627\u0628 \u0627\u0644\u0627\u062f\u064a\u0627\u0646\u003cbr\u003eThu Jan 08 11:50:55 +0000 2015"}, {"group": 920, "id": 4, "label": "553157060549156864", "shape": "dot", "size": 10, "title": "553157060549156864\u003cbr\u003e\u201c@mfatta7: Cartoon from #Egypt daily\u003cbr\u003e@AlMasryAlYoum #JeSuisCharlie #CharlieHebdo \"Long Live\u003cbr\u003eSatire!\" on the top http://t.co/Gxltrd9TnR\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:51:35 +0000 2015"}, {"group": 920, "id": 5, "label": "553159146628210688", "shape": "dot", "size": 10, "title": "553159146628210688\u003cbr\u003e@mfatta7 @AlMasryAlYoum\u003cbr\u003eThu Jan 08 11:59:52 +0000 2015"}, {"group": 920, "id": 6, "label": "553163011490607104", "shape": "dot", "size": 10, "title": "553163011490607104\u003cbr\u003eRT @mfatta7: Cartoon from #Egypt\u003cbr\u003edaily @AlMasryAlYoum #JeSuisCharlie #CharlieHebdo \"Long\u003cbr\u003eLive Satire!\" on the top\u003cbr\u003ehttp://t.co/yXarDXwZVi\u003cbr\u003eThu Jan 08 12:15:13 +0000 2015"}, {"group": 920, "id": 7, "label": "553168163970760704", "shape": "dot", "size": 10, "title": "553168163970760704\u003cbr\u003e@mfatta7 @AlMasryAlYoum  le complot\u003cbr\u003ehttp://t.co/GcJFXGeYcv\u003cbr\u003eThu Jan 08 12:35:42 +0000 2015"}, {"group": 920, "id": 8, "label": "553169631624822784", "shape": "dot", "size": 10, "title": "553169631624822784\u003cbr\u003e\u201c@mfatta7: Cartoon from #Egypt daily\u003cbr\u003e@AlMasryAlYoum #JeSuisCharlie #CharlieHebdo \"Long Live\u003cbr\u003eSatire!\" on the top http://t.co/7joB2gfk10\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:41:32 +0000 2015"}, {"group": 920, "id": 9, "label": "553194176045932544", "shape": "dot", "size": 10, "title": "553194176045932544\u003cbr\u003e@mfatta7 @AlMasryAlYoum  #CharlieHebdo\u003cbr\u003eThu Jan 08 14:19:04 +0000 2015"}, {"group": 920, "id": 10, "label": "553194274498805760", "shape": "dot", "size": 10, "title": "553194274498805760\u003cbr\u003e@mfatta7 @AlMasryAlYoum #CharlieHebdo\u003cbr\u003eThu Jan 08 14:19:27 +0000 2015"}, {"group": 920, "id": 11, "label": "553240496215457792", "shape": "dot", "size": 10, "title": "553240496215457792\u003cbr\u003e@mfatta7 @AlMasryAlYoum - awkward given\u003cbr\u003ecensoring of Al Bernamig, but\u003cbr\u003eI guess that\u0027s maybe a\u003cbr\u003ehidden message\u003cbr\u003eThu Jan 08 17:23:07 +0000 2015"}, {"group": 920, "id": 12, "label": "553244026070388737", "shape": "dot", "size": 10, "title": "553244026070388737\u003cbr\u003e@mfatta7 @Pmacgiollabhain @AlMasryAlYoum Yes, like\u003cbr\u003eThe Egyptian government likes a\u003cbr\u003efree press!\u003cbr\u003eThu Jan 08 17:37:09 +0000 2015"}, {"group": 920, "id": 13, "label": "553335324777414656", "shape": "dot", "size": 10, "title": "553335324777414656\u003cbr\u003e@mfatta7 @AlMasryAlYoum #JeSuisCharlie #CharlieHebdo\u003cbr\u003eThu Jan 08 23:39:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

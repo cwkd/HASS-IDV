@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 562, "id": 0, "label": "552841287670308865", "shape": "dot", "size": 10, "title": "552841287670308865\u003cbr\u003eIn 2012 the Syrian Presidents\u003cbr\u003ewarned western governments not to\u003cbr\u003eback terrorism in #Syria http://t.co/ODuc7rvFNV\u003cbr\u003e#CharlieHebdo #ParisShooting\u003cbr\u003eWed Jan 07 14:56:48 +0000 2015"}, {"group": 562, "id": 1, "label": "552841632325042176", "shape": "dot", "size": 10, "title": "552841632325042176\u003cbr\u003e@Partisangirl @anonymous4835 Who funded/armed/trained gunmen?\u003cbr\u003ehttps://t.co/iPBkLwhQk8 Jeffrey Epstein also in\u003cbr\u003eCFR+Trilateral Commission\u003cbr\u003eWed Jan 07 14:58:11 +0000 2015"}, {"group": 562, "id": 2, "label": "552841738805862401", "shape": "dot", "size": 10, "title": "552841738805862401\u003cbr\u003e@Partisangirl @anonymous4835 How many weapons\u003cbr\u003efuelling conflict sold by Prince\u003cbr\u003eAndrew? Assad almost given knighthood\u003cbr\u003ehttp://t.co/y1pu0fSv6x\u003cbr\u003eWed Jan 07 14:58:36 +0000 2015"}, {"group": 562, "id": 3, "label": "552842266042441728", "shape": "dot", "size": 10, "title": "552842266042441728\u003cbr\u003e@Partisangirl @FffMachiavelli what governments say\u003cbr\u003eto each other will never\u003cbr\u003eexplain to me how such\u003cbr\u003eacts are meant to improve\u003cbr\u003eanything.\u003cbr\u003eWed Jan 07 15:00:42 +0000 2015"}, {"group": 562, "id": 4, "label": "552843464820670465", "shape": "dot", "size": 10, "title": "552843464820670465\u003cbr\u003e\u2026 and in 2015 Hat-Model-#Hollande\u003cbr\u003ecalls #Syria\u0027s president a \"Satan\"\nhttps://t.co/jN44rNupoh\n@Partisangirl\u003cbr\u003e\n#CharlieHebdo #ParisShooting\u003cbr\u003eWed Jan 07 15:05:28 +0000 2015"}, {"group": 562, "id": 5, "label": "552843982032879616", "shape": "dot", "size": 10, "title": "552843982032879616\u003cbr\u003e@Partisangirl I was against trying\u003cbr\u003eto Mossad the Assad.\u003cbr\u003eWed Jan 07 15:07:31 +0000 2015"}, {"group": 562, "id": 6, "label": "552846497113710594", "shape": "dot", "size": 10, "title": "552846497113710594\u003cbr\u003e@Partisangirl Syria should be nuked\u003cbr\u003eand be done with it!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:17:30 +0000 2015"}, {"group": 562, "id": 7, "label": "552847196732002304", "shape": "dot", "size": 10, "title": "552847196732002304\u003cbr\u003e@Partisangirl @Temidor West need to\u003cbr\u003estop funding wars against these\u003cbr\u003ecountries and  invading their\u003cbr\u003espace. Problem solved\u003cbr\u003eWed Jan 07 15:20:17 +0000 2015"}, {"group": 562, "id": 11, "label": "552852974113128449", "shape": "dot", "size": 10, "title": "552852974113128449\u003cbr\u003e@Partisangirl why can\u0027t Syria ask\u003cbr\u003efor Russian help to fight\u003cbr\u003eterrorist intruders?\u003cbr\u003eWed Jan 07 15:43:15 +0000 2015"}, {"group": 562, "id": 12, "label": "552854794843348993", "shape": "dot", "size": 10, "title": "552854794843348993\u003cbr\u003e@Partisangirl They did that with\u003cbr\u003eIran bringing a terrorist shah\u003cbr\u003einto power. Didn\u0027t sting them\u003cbr\u003ethen. In fact, they now\u003cbr\u003ehave the besty mullahs\u003cbr\u003eWed Jan 07 15:50:29 +0000 2015"}, {"group": 562, "id": 8, "label": "552848515358294016", "shape": "dot", "size": 10, "title": "552848515358294016\u003cbr\u003e@hollandday @Partisangirl Of course Samantha,\u003cbr\u003ebut in #reality #Westernazi #governments\u003cbr\u003eare not #solving #crisis, they\u003cbr\u003e#create them! @Temidor\u003cbr\u003eWed Jan 07 15:25:32 +0000 2015"}, {"group": 562, "id": 13, "label": "553587881986781184", "shape": "dot", "size": 10, "title": "553587881986781184\u003cbr\u003e@hollandday @Partisangirl @Temidor hear hear\u003cbr\u003e\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\u003cbr\u003eFri Jan 09 16:23:30 +0000 2015"}, {"group": 562, "id": 9, "label": "552849004749672449", "shape": "dot", "size": 10, "title": "552849004749672449\u003cbr\u003e@Temidor @Partisangirl precisely. It\u0027s a\u003cbr\u003eshame they never learnt from\u003cbr\u003eprevious wars\u003cbr\u003eWed Jan 07 15:27:28 +0000 2015"}, {"group": 562, "id": 10, "label": "552850510932623360", "shape": "dot", "size": 10, "title": "552850510932623360\u003cbr\u003e@hollandday @Partisangirl Unless we, the\u003cbr\u003e@PeopIe start to hold them\u003cbr\u003eaccountable they won\u0027t learn \u0026amp;\u003cbr\u003ewon\u0027t stop #killing us Samantha!\u003cbr\u003e@Temidor\u003cbr\u003eWed Jan 07 15:33:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 13, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

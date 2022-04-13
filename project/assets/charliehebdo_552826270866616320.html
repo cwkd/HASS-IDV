@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 352, "id": 0, "label": "552826270866616320", "shape": "dot", "size": 10, "title": "552826270866616320\u003cbr\u003eParisians will take to the\u003cbr\u003estreets tonight, for freedom of\u003cbr\u003ethe press, democracy and the\u003cbr\u003eRepublic #CharlieHebdo http://t.co/AndFUOD3a4\u003cbr\u003eWed Jan 07 13:57:08 +0000 2015"}, {"group": 352, "id": 1, "label": "552829426107695105", "shape": "dot", "size": 10, "title": "552829426107695105\u003cbr\u003e@siobhanheanue At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:09:40 +0000 2015"}, {"group": 352, "id": 2, "label": "552830516073095169", "shape": "dot", "size": 10, "title": "552830516073095169\u003cbr\u003e@siobhanheanue @terribleteacher Quienes son los\u003cbr\u003ecomplices ? acaso llegaron en\u003cbr\u003eparacaidas, quien peca de omision\u003cbr\u003e,comision?...\u003cbr\u003eWed Jan 07 14:14:00 +0000 2015"}, {"group": 352, "id": 3, "label": "552835257763102720", "shape": "dot", "size": 10, "title": "552835257763102720\u003cbr\u003e#CharlieHebdo MT @siobhanheanue #Parisians will\u003cbr\u003etake to the #Paris streets\u003cbr\u003etonight, for freedom of the\u003cbr\u003epress, #democracy and the Republic\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:51 +0000 2015"}, {"group": 352, "id": 4, "label": "552836332398321665", "shape": "dot", "size": 10, "title": "552836332398321665\u003cbr\u003e@siobhanheanue @chrislhayes waste if time,\u003cbr\u003eunless you get rid of\u003cbr\u003ethe cancer it will eat\u003cbr\u003eyou up from the inside\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:37:07 +0000 2015"}, {"group": 352, "id": 5, "label": "552837062958018560", "shape": "dot", "size": 10, "title": "552837062958018560\u003cbr\u003e@siobhanheanue freedom of press is\u003cbr\u003eNOT to be shallow and\u003cbr\u003eignorant and publish disrespectful stuff\u003cbr\u003eabout any belief.\u003cbr\u003eWed Jan 07 14:40:01 +0000 2015"}, {"group": 352, "id": 6, "label": "552837436523696130", "shape": "dot", "size": 10, "title": "552837436523696130\u003cbr\u003e@siobhanheanue fuck religiin in the\u003cbr\u003eass\u003cbr\u003eWed Jan 07 14:41:30 +0000 2015"}, {"group": 352, "id": 7, "label": "552837518874275841", "shape": "dot", "size": 10, "title": "552837518874275841\u003cbr\u003e@siobhanheanue Great response, Parisians\u0027. We\u0027re\u003cbr\u003ewith you! Vive le Liberte!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:41:50 +0000 2015"}, {"group": 352, "id": 8, "label": "552837539435134976", "shape": "dot", "size": 10, "title": "552837539435134976\u003cbr\u003e@siobhanheanue @chrislhayes They should take\u003cbr\u003eup arms instead of taking\u003cbr\u003eto street.  They are\u003cbr\u003ein a war \u0026amp; don\u0027t\u003cbr\u003eeven realize it. #CharlieHebdo\u003cbr\u003eWed Jan 07 14:41:55 +0000 2015"}, {"group": 352, "id": 9, "label": "552837739495043076", "shape": "dot", "size": 10, "title": "552837739495043076\u003cbr\u003e@siobhanheanue I\u0027m an Aussie journalist\u003cbr\u003ein Paris. I\u0027ll be there.\u003cbr\u003eThe Socialists are also calling\u003cbr\u003efor another rally tomorrow evening.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:42:42 +0000 2015"}, {"group": 352, "id": 10, "label": "552837797292560384", "shape": "dot", "size": 10, "title": "552837797292560384\u003cbr\u003e@siobhanheanue @neilpX @SteamersBaby Best of\u003cbr\u003eluck on the March and\u003cbr\u003eBlessings Be !!\u003cbr\u003eWed Jan 07 14:42:56 +0000 2015"}, {"group": 352, "id": 11, "label": "552838162440257537", "shape": "dot", "size": 10, "title": "552838162440257537\u003cbr\u003e@siobhanheanue @steve_locke Anne Hildago\u0027s Facebook\u003cbr\u003epage says tomorrow night --\u003cbr\u003eI imagine Place de la\u003cbr\u003eR\u00e9publique is locked down now.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:44:23 +0000 2015"}, {"group": 352, "id": 12, "label": "552838352425058304", "shape": "dot", "size": 10, "title": "552838352425058304\u003cbr\u003e@siobhanheanue not unless. europe confronts\u003cbr\u003ethe enemy that is Islam\u003cbr\u003ethey will be conqured from\u003cbr\u003einside and it will be\u003cbr\u003etoo little too late.\u003cbr\u003eWed Jan 07 14:45:09 +0000 2015"}, {"group": 352, "id": 17, "label": "552841927142682624", "shape": "dot", "size": 10, "title": "552841927142682624\u003cbr\u003e@siobhanheanue @chrislhayes They need to\u003cbr\u003etreat hateful systems as they\u003cbr\u003edo Nazism. Killing is the\u003cbr\u003eproof of Logical Fate of\u003cbr\u003everses of hate.\u003cbr\u003eWed Jan 07 14:59:21 +0000 2015"}, {"group": 352, "id": 13, "label": "552838931591356416", "shape": "dot", "size": 10, "title": "552838931591356416\u003cbr\u003e@YomnaELGerzawy1 I respect that view.\u003cbr\u003eA broad interpretation of free\u003cbr\u003epress entails a responsible press,\u003cbr\u003e\u0026amp; the right of people\u003cbr\u003enot to read it\u003cbr\u003eWed Jan 07 14:47:27 +0000 2015"}, {"group": 352, "id": 16, "label": "552841512376356865", "shape": "dot", "size": 10, "title": "552841512376356865\u003cbr\u003e@YomnaELGerzawy1 @siobhanheanue and who determines\u003cbr\u003ethat?   Freedom means\u003cbr\u003efreedom. Offending people is irrelevant\u003cbr\u003eto that principle.\u003cbr\u003eWed Jan 07 14:57:42 +0000 2015"}, {"group": 352, "id": 14, "label": "552839743688290306", "shape": "dot", "size": 10, "title": "552839743688290306\u003cbr\u003eI imagine it will be\u003cbr\u003ea powerful moment. A very\u003cbr\u003eFrench response RT @RichelleVHP \u003cbr\u003eI\u0027m an Aussie journalist in\u003cbr\u003eParis. I\u0027ll be there.\u003cbr\u003eWed Jan 07 14:50:40 +0000 2015"}, {"group": 352, "id": 15, "label": "552840871532449794", "shape": "dot", "size": 10, "title": "552840871532449794\u003cbr\u003eThere is this on Facebook.\u003cbr\u003eNearly 17,000 have signed up\u003cbr\u003ealready @rnoyes @steve_locke #CharlieHebdo http://t.co/v7O5N1TqJl\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:55:09 +0000 2015"}, {"group": 352, "id": 20, "label": "552846461193711617", "shape": "dot", "size": 10, "title": "552846461193711617\u003cbr\u003e@siobhanheanue @steve_locke It\u0027s both: journalists\u003cbr\u003ehave called for a march\u003cbr\u003etonight and the mayor of\u003cbr\u003eParis wants a silent march\u003cbr\u003etomorrow. Sob\u003cbr\u003eWed Jan 07 15:17:22 +0000 2015"}, {"group": 352, "id": 18, "label": "552842208093929472", "shape": "dot", "size": 10, "title": "552842208093929472\u003cbr\u003e@CarlFogliani @siobhanheanue and ignorance means\u003cbr\u003eignorance. To talk shit and\u003cbr\u003egeneralise is pathetic.\u003cbr\u003eWed Jan 07 15:00:28 +0000 2015"}, {"group": 352, "id": 21, "label": "552847043627335680", "shape": "dot", "size": 10, "title": "552847043627335680\u003cbr\u003e@YomnaELGerzawy1 @siobhanheanue The media is\u003cbr\u003enot there for respecting your\u003cbr\u003eviews.  Freedom means the\u003cbr\u003eright to say vile things.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:19:41 +0000 2015"}, {"group": 352, "id": 19, "label": "552842487778525185", "shape": "dot", "size": 10, "title": "552842487778525185\u003cbr\u003e@CarlFogliani @siobhanheanue talk to me\u003cbr\u003ewhen you know the difference\u003cbr\u003ebetween freedom and respect. \u003cbr\u003eHave a nice day \ud83d\ude0a\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:01:35 +0000 2015"}, {"group": 352, "id": 22, "label": "552847900175507456", "shape": "dot", "size": 10, "title": "552847900175507456\u003cbr\u003e@CarlFogliani @siobhanheanue that is a\u003cbr\u003emess that humanity will one\u003cbr\u003eday regret deeply. Goodbye\u003cbr\u003eWed Jan 07 15:23:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 5, "to": 16, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 11, "to": 20, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 21, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

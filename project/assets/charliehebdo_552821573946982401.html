@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 287, "id": 0, "label": "552821573946982401", "shape": "dot", "size": 10, "title": "552821573946982401\u003cbr\u003eSome press now blurring CharlieHebdo\u003cbr\u003ecartoons as cartoonists foresaw. This\u003cbr\u003eone says \"Charlie Hebdo Should\u003cbr\u003ebe Veiled\" http://t.co/x857AJFa3F\u003cbr\u003eWed Jan 07 13:38:28 +0000 2015"}, {"group": 287, "id": 1, "label": "552822262328340481", "shape": "dot", "size": 10, "title": "552822262328340481\u003cbr\u003e@PGourevitch @mcmoynihan Looks like that\u003cbr\u003eRabbi has a bong.\u003cbr\u003eWed Jan 07 13:41:12 +0000 2015"}, {"group": 287, "id": 2, "label": "552822282297835520", "shape": "dot", "size": 10, "title": "552822282297835520\u003cbr\u003e@PGourevitch @PeterBeinart Maledetti islamici e\u003cbr\u003eil loro perfido dio.\u003cbr\u003eWed Jan 07 13:41:17 +0000 2015"}, {"group": 287, "id": 3, "label": "552823600131346432", "shape": "dot", "size": 10, "title": "552823600131346432\u003cbr\u003e@PGourevitch we should expect next\u003cbr\u003eweek\u0027s @NewYorker cover to be\u003cbr\u003ea full satirical portrait of\u003cbr\u003ethe prophet. @FrancoiseMouly\u003cbr\u003eWed Jan 07 13:46:31 +0000 2015"}, {"group": 287, "id": 4, "label": "552824161480232960", "shape": "dot", "size": 10, "title": "552824161480232960\u003cbr\u003e@PGourevitch A victory for those\u003cbr\u003ebehind that barbaric act, alas.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:48:45 +0000 2015"}, {"group": 287, "id": 5, "label": "552825152409325568", "shape": "dot", "size": 10, "title": "552825152409325568\u003cbr\u003e@PGourevitch @AnshelPfeffer that false equivocation\u003cbr\u003edidn\u0027t save their live huh\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:52:41 +0000 2015"}, {"group": 287, "id": 8, "label": "552840578594242562", "shape": "dot", "size": 10, "title": "552840578594242562\u003cbr\u003e@PGourevitch @NickKristof I condemn the\u003cbr\u003ecowardly attacks. Terrorism is not\u003cbr\u003ereligion. This inhumane. God bless\u003cbr\u003eeveryone\u003cbr\u003eWed Jan 07 14:53:59 +0000 2015"}, {"group": 287, "id": 9, "label": "552840587037011968", "shape": "dot", "size": 10, "title": "552840587037011968\u003cbr\u003e#JESUISCHARLIE @PGourevitch\u003cbr\u003eWed Jan 07 14:54:01 +0000 2015"}, {"group": 287, "id": 10, "label": "552840767551860737", "shape": "dot", "size": 10, "title": "552840767551860737\u003cbr\u003e@PGourevitch @NickKristof it\u0027s a great\u003cbr\u003emetaphor, since you see, preventing\u003cbr\u003esomeone from wearing religious headwear,\u003cbr\u003eis, uh, free speech, and\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:54:44 +0000 2015"}, {"group": 287, "id": 12, "label": "552841170976780289", "shape": "dot", "size": 10, "title": "552841170976780289\u003cbr\u003e@PGourevitch @NickKristof prayers for France!\u003cbr\u003eUSA SUPPORTS FREEDOM OF THE\u003cbr\u003ePRESS!\u003cbr\u003eWed Jan 07 14:56:21 +0000 2015"}, {"group": 287, "id": 13, "label": "552842958454542336", "shape": "dot", "size": 10, "title": "552842958454542336\u003cbr\u003eThis cartoon also prophetic https://t.co/xJimh4tuwO\u003cbr\u003e@NickKristof\u003cbr\u003eWed Jan 07 15:03:27 +0000 2015"}, {"group": 287, "id": 14, "label": "552849191106785280", "shape": "dot", "size": 10, "title": "552849191106785280\u003cbr\u003e@PGourevitch #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:28:13 +0000 2015"}, {"group": 287, "id": 15, "label": "552851242788356099", "shape": "dot", "size": 10, "title": "552851242788356099\u003cbr\u003e@PGourevitch @superglaze I know the\u003cbr\u003eUK\u2019s Daily Telegraph did, and\u003cbr\u003ethen took the pic down.\u003cbr\u003eWhat others have, do we\u003cbr\u003eknow?\u003cbr\u003eWed Jan 07 15:36:22 +0000 2015"}, {"group": 287, "id": 17, "label": "552852047133810689", "shape": "dot", "size": 10, "title": "552852047133810689\u003cbr\u003e@PGourevitch @center4inquiry End blasphemy laws\u003cbr\u003enow.\u003cbr\u003eWed Jan 07 15:39:34 +0000 2015"}, {"group": 287, "id": 6, "label": "552827083748286464", "shape": "dot", "size": 10, "title": "552827083748286464\u003cbr\u003e@Clandis @PGourevitch @mcmoynihan that is\u003cbr\u003esafe enough insult, the jews\u003cbr\u003enot going to kill you\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:00:22 +0000 2015"}, {"group": 287, "id": 11, "label": "552840873755828224", "shape": "dot", "size": 10, "title": "552840873755828224\u003cbr\u003e@mattnycs @PGourevitch @NewYorker @FrancoiseMouly I\u003cbr\u003ehope so! I also hope\u003cbr\u003ethey show his holy ankles!\u003cbr\u003eBut, I\u0027m a perv like\u003cbr\u003ethat.\u003cbr\u003eWed Jan 07 14:55:10 +0000 2015"}, {"group": 287, "id": 16, "label": "552851922030706688", "shape": "dot", "size": 10, "title": "552851922030706688\u003cbr\u003e@righteousaxe @PGourevitch @AnshelPfeffer I think\u003cbr\u003eyou mean equiparation, rather than\u003cbr\u003eequivocation, right? ie saying Muslim/Jew/Catholic\u003cbr\u003esame\u003cbr\u003eWed Jan 07 15:39:04 +0000 2015"}, {"group": 287, "id": 7, "label": "552828875705556993", "shape": "dot", "size": 10, "title": "552828875705556993\u003cbr\u003e@leaham50 @PGourevitch @mcmoynihan No, they\u003cbr\u003eare not ones to saw\u003cbr\u003ea humans head off with\u003cbr\u003ea knife or rape their\u003cbr\u003esister.\u003cbr\u003eWed Jan 07 14:07:29 +0000 2015"}, {"group": 287, "id": 18, "label": "552852372393689088", "shape": "dot", "size": 10, "title": "552852372393689088\u003cbr\u003e@cjr1968 @PGourevitch @AnshelPfeffer equivocation means\u003cbr\u003eprevarication as in the false\u003cbr\u003eequating of muslim, christian \u0026amp;\u003cbr\u003ejewish extremists\u003cbr\u003eWed Jan 07 15:40:51 +0000 2015"}, {"group": 287, "id": 19, "label": "552852995080458241", "shape": "dot", "size": 10, "title": "552852995080458241\u003cbr\u003e@righteousaxe No, that\u0027s not what\u003cbr\u003eit means. To be equivocal\u003cbr\u003eis to be unsure, unclear.\u003cbr\u003eThe cartoon\u0027s anything but equivocal.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:43:20 +0000 2015"}, {"group": 287, "id": 20, "label": "552853387436249088", "shape": "dot", "size": 10, "title": "552853387436249088\u003cbr\u003e@cjr1968 \"use ambiguous language so\u003cbr\u003eas to conceal the truth\u003cbr\u003eor avoid committing oneself\" \u003cbr\u003ei believe it fitting to\u003cbr\u003euse in this instance.\u003cbr\u003eWed Jan 07 15:44:53 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 5, "to": 16, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

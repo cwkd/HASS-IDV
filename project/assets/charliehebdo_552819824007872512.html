@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 266, "id": 0, "label": "552819824007872512", "shape": "dot", "size": 10, "title": "552819824007872512\u003cbr\u003eWhat Charlie Hebdo does, and\u003cbr\u003ewhy terrorists use it as\u003cbr\u003e\"a pretext to justify their\u003cbr\u003eviolence.\" By @emserre, from 2012.\u003cbr\u003ehttp://t.co/BIXn9x5GAp\u003cbr\u003eWed Jan 07 13:31:31 +0000 2015"}, {"group": 266, "id": 1, "label": "552821147889577985", "shape": "dot", "size": 10, "title": "552821147889577985\u003cbr\u003e@laurenzcollins @emserre \u201cI don\u2019t feel\u003cbr\u003eas though I\u2019m killing someone\u003cbr\u003ewith a pen. I\u2019m not\u003cbr\u003eputting lives at risk....\" Gosh.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:36:47 +0000 2015"}, {"group": 266, "id": 2, "label": "552892940645715968", "shape": "dot", "size": 10, "title": "552892940645715968\u003cbr\u003e@laurenzcollins @zainabimam @emserre charlie sent\u003cbr\u003eto hell. he get reward\u003cbr\u003ewhat he was doing from\u003cbr\u003equite long time.\u003cbr\u003eWed Jan 07 18:22:03 +0000 2015"}, {"group": 266, "id": 3, "label": "553473208633286656", "shape": "dot", "size": 10, "title": "553473208633286656\u003cbr\u003e@laurenzcollins @mrjamesob @emserre hi..please check\u003cbr\u003enew how to drive demo\u003cbr\u003ehttp://t.co/dDMrUoeMPP \u0026amp; http://t.co/9YyirWvnnF\u003cbr\u003eFri Jan 09 08:47:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

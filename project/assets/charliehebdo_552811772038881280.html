@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 165, "id": 0, "label": "552811772038881280", "shape": "dot", "size": 10, "title": "552811772038881280\u003cbr\u003eHours before the attack, #CharlieHebdo\u003cbr\u003epublished a cartoon featuring the\u003cbr\u003eIslamic State: http://t.co/Jfqmha1GdV (epa) http://t.co/yeWyZxIdHH\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:59:31 +0000 2015"}, {"group": 165, "id": 1, "label": "552811953337679872", "shape": "dot", "size": 10, "title": "552811953337679872\u003cbr\u003e@USATODAY So? Still no excuse\u003cbr\u003eor justification whatsoever for this!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:00:15 +0000 2015"}, {"group": 165, "id": 2, "label": "552812273635315712", "shape": "dot", "size": 10, "title": "552812273635315712\u003cbr\u003e@USATODAY \nISLAMIC SCHOLARS SHOULD COME\u003cbr\u003eFORWARD TO END \u0027JIHAD\u0027 !\nIT\u003cbr\u003eIS INHUMAN \u0026amp; WOULD DESTROY\u003cbr\u003eTHE CREDIBILITY OF ISLAM !\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:01:31 +0000 2015"}, {"group": 165, "id": 3, "label": "552812507837263872", "shape": "dot", "size": 10, "title": "552812507837263872\u003cbr\u003e@USATODAY also had a LONG\u003cbr\u003ehistory of anti israel cartoons...\u003cbr\u003ehttp://t.co/utxR9fha9E\u003cbr\u003eWed Jan 07 13:02:27 +0000 2015"}, {"group": 165, "id": 4, "label": "552812721633517568", "shape": "dot", "size": 10, "title": "552812721633517568\u003cbr\u003e@USATODAY remember \"Piss Christ?\" and\u003cbr\u003eall those Christian attacks..... Anyone\u003cbr\u003edenying Islam is far from\u003cbr\u003epeaceful is stupid, lying or\u003cbr\u003eboth.\u003cbr\u003eWed Jan 07 13:03:18 +0000 2015"}, {"group": 165, "id": 5, "label": "552813203118632960", "shape": "dot", "size": 10, "title": "552813203118632960\u003cbr\u003e@USATODAY Still that shouldn\u0027t be\u003cbr\u003ean excuse.God never said kill\u003cbr\u003efor me #CharlieHebdo #ParisShootings\u003cbr\u003eWed Jan 07 13:05:13 +0000 2015"}, {"group": 165, "id": 6, "label": "552816569165045760", "shape": "dot", "size": 10, "title": "552816569165045760\u003cbr\u003e@USATODAY So basically if you\u003cbr\u003eprint a cartoon of islam\u003cbr\u003ethey get pissed off and\u003cbr\u003eshoot people for cartoons? and\u003cbr\u003ethey call themselves humans?\u003cbr\u003eWed Jan 07 13:18:35 +0000 2015"}, {"group": 165, "id": 7, "label": "552823526877433856", "shape": "dot", "size": 10, "title": "552823526877433856\u003cbr\u003e@USATODAY looks like US media\u003cbr\u003eis scared \u0026amp; distance themselves\u003cbr\u003efrom Charlie.\u003cbr\u003eWed Jan 07 13:46:14 +0000 2015"}, {"group": 165, "id": 8, "label": "552830215198879746", "shape": "dot", "size": 10, "title": "552830215198879746\u003cbr\u003e@USATODAY Inside job?This attack had\u003cbr\u003eto have been planned for\u003cbr\u003elonger than A few hours\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 14:12:49 +0000 2015"}, {"group": 165, "id": 9, "label": "552861924523012097", "shape": "dot", "size": 10, "title": "552861924523012097\u003cbr\u003e@USATODAY: Hours before the attack,\u003cbr\u003e#CharlieHebdo published a cartoon on\u003cbr\u003ethe Islamic State: http://t.co/7cMtNriIqV http://t.co/w5n5C08tL9\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:18:49 +0000 2015"}, {"group": 165, "id": 10, "label": "552863058519810049", "shape": "dot", "size": 10, "title": "552863058519810049\u003cbr\u003e@edwardluz @USATODAY not hours before\u003cbr\u003ethe attack. Has been some\u003cbr\u003etime.\u003cbr\u003eWed Jan 07 16:23:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

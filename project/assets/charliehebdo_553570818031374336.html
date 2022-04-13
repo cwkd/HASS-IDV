@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1486, "id": 0, "label": "553570818031374336", "shape": "dot", "size": 10, "title": "553570818031374336\u003cbr\u003ePHOTOS: Two standoffs in Paris\u003cbr\u003ehttp://t.co/tRQVOdVkTt #ParisShooting #CharlieHebdo http://t.co/QSLIIMk9ir\u003cbr\u003eFri Jan 09 15:15:42 +0000 2015"}, {"group": 1486, "id": 1, "label": "553571173565341697", "shape": "dot", "size": 10, "title": "553571173565341697\u003cbr\u003e\u201c@cnni: PHOTOS: Two standoffs in\u003cbr\u003eParis http://t.co/2YPBVFx3jW #ParisShooting #CharlieHebdo http://t.co/tykQd5f6uR\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:17:07 +0000 2015"}, {"group": 1486, "id": 2, "label": "553571526616686592", "shape": "dot", "size": 10, "title": "553571526616686592\u003cbr\u003e.@cnni disgusting.\u003cbr\u003eFri Jan 09 15:18:31 +0000 2015"}, {"group": 1486, "id": 3, "label": "553571700198359041", "shape": "dot", "size": 10, "title": "553571700198359041\u003cbr\u003e@cnni terrorist had meeting with\u003cbr\u003eformer president #Sarkozy http://t.co/wZPuxpvqqq\u003cbr\u003eFri Jan 09 15:19:12 +0000 2015"}, {"group": 1486, "id": 4, "label": "553572606251900930", "shape": "dot", "size": 10, "title": "553572606251900930\u003cbr\u003e#now .@cnni: PHOTOS: Two standoffs\u003cbr\u003ein Paris http://t.co/HS8JBUYto4 #ParisShooting #CharlieHebdo\u003cbr\u003ehttp://t.co/C0tZ5kfxxH\u201d\u003cbr\u003eFri Jan 09 15:22:48 +0000 2015"}, {"group": 1486, "id": 5, "label": "553573655574503425", "shape": "dot", "size": 10, "title": "553573655574503425\u003cbr\u003eRT@cnni PHOTOS: Two standoffs in\u003cbr\u003eParis http://t.co/GcX6DfEDBa  http://t.co/LkPKiSjqOe @UKenyatta\u003cbr\u003e@WilliamsRuto @Ma3Route\u003cbr\u003eFri Jan 09 15:26:59 +0000 2015"}, {"group": 1486, "id": 6, "label": "553573750911021056", "shape": "dot", "size": 10, "title": "553573750911021056\u003cbr\u003e@cnni  reminder Allah Aquaba\u003cbr\u003eis everywhere. These bastards breed\u003cbr\u003elike rats!!\u003cbr\u003eFri Jan 09 15:27:21 +0000 2015"}, {"group": 1486, "id": 7, "label": "553574087638155264", "shape": "dot", "size": 10, "title": "553574087638155264\u003cbr\u003e@cnni I don\u0027t see the\u003cbr\u003ebrothers surrendering,the reason they are\u003cbr\u003estill alive is just that\u003cbr\u003ethey didn\u0027t get a chance\u003cbr\u003eto leave the country\u003cbr\u003eFri Jan 09 15:28:42 +0000 2015"}, {"group": 1486, "id": 8, "label": "553579678355963904", "shape": "dot", "size": 10, "title": "553579678355963904\u003cbr\u003e@cnni this gets more bizarre\u003cbr\u003eby the minute\u003cbr\u003eFri Jan 09 15:50:54 +0000 2015"}, {"group": 1486, "id": 9, "label": "553582587311312896", "shape": "dot", "size": 10, "title": "553582587311312896\u003cbr\u003e@cnni This is turning to\u003cbr\u003ea very tricky situation. For\u003cbr\u003ea country that\u0027s been so\u003cbr\u003ewelcoming to immigrants, France deserve\u003cbr\u003ebetter #CharlieHebdo\u003cbr\u003eFri Jan 09 16:02:28 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 966, "id": 0, "label": "553162459885096962", "shape": "dot", "size": 10, "title": "553162459885096962\u003cbr\u003eBREAKING: French far-right leader Le\u003cbr\u003ePen calls for death penalty\u003cbr\u003e#CharlieHebdo http://t.co/8y5l97V2Rd http://t.co/xeVuFvkdXG\u003cbr\u003eThu Jan 08 12:13:02 +0000 2015"}, {"group": 966, "id": 1, "label": "553162774826598400", "shape": "dot", "size": 10, "title": "553162774826598400\u003cbr\u003e@RT_com Another RWNJ leader\u003cbr\u003eThu Jan 08 12:14:17 +0000 2015"}, {"group": 966, "id": 2, "label": "553162832519659521", "shape": "dot", "size": 10, "title": "553162832519659521\u003cbr\u003e@RT_com for herself ? why\u003cbr\u003enot...\u003cbr\u003eThu Jan 08 12:14:31 +0000 2015"}, {"group": 966, "id": 3, "label": "553162883455283202", "shape": "dot", "size": 10, "title": "553162883455283202\u003cbr\u003e@RT_com Why is that a\u003cbr\u003ebreaking news?\u003cbr\u003eThu Jan 08 12:14:43 +0000 2015"}, {"group": 966, "id": 4, "label": "553163261215256577", "shape": "dot", "size": 10, "title": "553163261215256577\u003cbr\u003eRysk propaganda om fransk imbecill.\u003cbr\u003e\u201c@RT_com: BREAKING: French far-right leader\u003cbr\u003eLe Pen calls for death\u003cbr\u003epenalty #CharlieHebdo\u003cbr\u003eThu Jan 08 12:16:13 +0000 2015"}, {"group": 966, "id": 5, "label": "553163421022449664", "shape": "dot", "size": 10, "title": "553163421022449664\u003cbr\u003e@RT_com That is the easy\u003cbr\u003eway out, let them suffer.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:16:51 +0000 2015"}, {"group": 966, "id": 6, "label": "553163422380986369", "shape": "dot", "size": 10, "title": "553163422380986369\u003cbr\u003e@rt_com these people want to\u003cbr\u003edie, so bringing back the\u003cbr\u003edeath penalty is no deterent\u003cbr\u003eto them !\u003cbr\u003eThu Jan 08 12:16:51 +0000 2015"}, {"group": 966, "id": 7, "label": "553164577215885312", "shape": "dot", "size": 10, "title": "553164577215885312\u003cbr\u003eMORE: Le Pen announced she\u003cbr\u003ewould reintroduce the death penalty\u003cbr\u003eif she wins France\u2019s 2017\u003cbr\u003epresidential election http://t.co/8y5l97V2Rd\u003cbr\u003eThu Jan 08 12:21:27 +0000 2015"}, {"group": 966, "id": 9, "label": "553164674158436352", "shape": "dot", "size": 10, "title": "553164674158436352\u003cbr\u003e\u201c@RT_com: BREAKING: French far-right leader\u003cbr\u003eLe Pen calls for death\u003cbr\u003epenalty #CharlieHebdo http://t.co/0kmRkICkrm http://t.co/Sc2zOEy18C\u201d\u003cbr\u003eThu Jan 08 12:21:50 +0000 2015"}, {"group": 966, "id": 12, "label": "553165651393904640", "shape": "dot", "size": 10, "title": "553165651393904640\u003cbr\u003e@RT_com @TurraLoon1 It won\u0027t bring\u003cbr\u003ethem back \u0026amp; France would\u003cbr\u003ebe sinking as low as\u003cbr\u003ethe perpetrators #deathpenaltyisbarbaric\u003cbr\u003eThu Jan 08 12:25:43 +0000 2015"}, {"group": 966, "id": 13, "label": "553166378770112512", "shape": "dot", "size": 10, "title": "553166378770112512\u003cbr\u003eCAN SHE BE FIRST? @RT_com\u003cbr\u003eBREAKING: French far-right leader Le\u003cbr\u003ePen calls for death penalty\u003cbr\u003e#CharlieHebdo http://t.co/J5TbvB4R3w\u003cbr\u003eThu Jan 08 12:28:36 +0000 2015"}, {"group": 966, "id": 15, "label": "553166986897666049", "shape": "dot", "size": 10, "title": "553166986897666049\u003cbr\u003e@RT_com @mackaysuzie typical right wing\u003cbr\u003eredneck response # more death\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:31:01 +0000 2015"}, {"group": 966, "id": 17, "label": "553167338460413953", "shape": "dot", "size": 10, "title": "553167338460413953\u003cbr\u003e@RT_com @offcentrenews For those that\u003cbr\u003ecollaborated with the Nazi occupation\u003cbr\u003ein WW2 too, eh? Them\u003cbr\u003eand ex-pied noir FN\u0027s main\u003cbr\u003esupporters..\u003cbr\u003eThu Jan 08 12:32:25 +0000 2015"}, {"group": 966, "id": 8, "label": "553164638645682177", "shape": "dot", "size": 10, "title": "553164638645682177\u003cbr\u003e@RT_com LMAO\u003cbr\u003eThu Jan 08 12:21:41 +0000 2015"}, {"group": 966, "id": 10, "label": "553164793368944642", "shape": "dot", "size": 10, "title": "553164793368944642\u003cbr\u003e@RT_com what a RWNJ she\u003cbr\u003eis\u003cbr\u003eThu Jan 08 12:22:18 +0000 2015"}, {"group": 966, "id": 11, "label": "553165366214799360", "shape": "dot", "size": 10, "title": "553165366214799360\u003cbr\u003e@RT_com No, she said she\u003cbr\u003ewould organize a referendum.\u003cbr\u003eThu Jan 08 12:24:35 +0000 2015"}, {"group": 966, "id": 14, "label": "553166532705259521", "shape": "dot", "size": 10, "title": "553166532705259521\u003cbr\u003e@RT_com Well done (NOT) for\u003cbr\u003epromoting that #racist far-right #NF\u003cbr\u003eparty, it will really help\u003cbr\u003ekeep us safe, as the\u003cbr\u003edeath penalty does NOT do!!\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:29:13 +0000 2015"}, {"group": 966, "id": 16, "label": "553167130171310080", "shape": "dot", "size": 10, "title": "553167130171310080\u003cbr\u003e\u201c@RT_com: Le Pen announced she\u003cbr\u003ewould reintroduce the death penalty\u003cbr\u003eif she wins France\u2019s 2017\u003cbr\u003epresidential election\u201d PARDON?!\u003cbr\u003eThu Jan 08 12:31:35 +0000 2015"}, {"group": 966, "id": 24, "label": "553177034294562816", "shape": "dot", "size": 10, "title": "553177034294562816\u003cbr\u003e@RT_com Hope she lose it.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:10:57 +0000 2015"}, {"group": 966, "id": 25, "label": "553187146488897536", "shape": "dot", "size": 10, "title": "553187146488897536\u003cbr\u003e@mackaysuzie what an assyrian LWNJ\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:51:08 +0000 2015"}, {"group": 966, "id": 22, "label": "553169945207791617", "shape": "dot", "size": 10, "title": "553169945207791617\u003cbr\u003e@xraypat @RT_com @TurraLoon1 some ppl\u003cbr\u003ehold the opinion an eye\u003cbr\u003efor an eye.\u003cbr\u003eThu Jan 08 12:42:46 +0000 2015"}, {"group": 966, "id": 23, "label": "553170081492914177", "shape": "dot", "size": 10, "title": "553170081492914177\u003cbr\u003e@xraypat @RT_com @TurraLoon1 sometimes you\u003cbr\u003eneed to kill to prevent\u003cbr\u003eyourself/ourselves from being killed\u003cbr\u003eThu Jan 08 12:43:19 +0000 2015"}, {"group": 966, "id": 18, "label": "553167580488564737", "shape": "dot", "size": 10, "title": "553167580488564737\u003cbr\u003e@junglebizzle c quoi cette merde\ud83d\ude33\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:33:23 +0000 2015"}, {"group": 966, "id": 20, "label": "553169324073295872", "shape": "dot", "size": 10, "title": "553169324073295872\u003cbr\u003e@junglebizzle hiii les prochaines \u00e9lections\u003cbr\u003e\u00e7a va \u00eatre le bordel\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:40:18 +0000 2015"}, {"group": 966, "id": 19, "label": "553167739683352576", "shape": "dot", "size": 10, "title": "553167739683352576\u003cbr\u003e@Holyxsquad j\u0027sais pas du tout\u003cbr\u003ej\u0027essaye de voir ou est\u003cbr\u003ece qu\u0027elle aurait pu dire\u003cbr\u003e\u00e7a\u003cbr\u003eThu Jan 08 12:34:01 +0000 2015"}, {"group": 966, "id": 21, "label": "553169583327420417", "shape": "dot", "size": 10, "title": "553169583327420417\u003cbr\u003e@junglebizzle en tout cas pcq\u003cbr\u003ec\u0027est n\u0027importe quoi\u003cbr\u003eThu Jan 08 12:41:20 +0000 2015"}, {"group": 966, "id": 26, "label": "553188239855857664", "shape": "dot", "size": 10, "title": "553188239855857664\u003cbr\u003e@CptDarling821 @RT_com @TurraLoon1 They do\u003cbr\u003ebut they are quite wrong\u003cbr\u003ein my humble opinion\u003cbr\u003eThu Jan 08 13:55:28 +0000 2015"}, {"group": 966, "id": 28, "label": "553188478616612865", "shape": "dot", "size": 10, "title": "553188478616612865\u003cbr\u003e@the_judin @RT_com @TurraLoon1 Different to\u003cbr\u003eCapital Punishment...that\u0027s defending against attack\u003cbr\u003eCP is revenge\u003cbr\u003eThu Jan 08 13:56:25 +0000 2015"}, {"group": 966, "id": 30, "label": "553287339003219968", "shape": "dot", "size": 10, "title": "553287339003219968\u003cbr\u003e@dopeODIE better than far right\u003cbr\u003ewing hater\u003cbr\u003eThu Jan 08 20:29:15 +0000 2015"}, {"group": 966, "id": 27, "label": "553188439919587328", "shape": "dot", "size": 10, "title": "553188439919587328\u003cbr\u003e@xraypat @RT_com @TurraLoon1 i accept\u003cbr\u003eu opinion on this. I\u003cbr\u003epersonally want the death penalty\u003cbr\u003ehere in the uk.\u003cbr\u003eThu Jan 08 13:56:16 +0000 2015"}, {"group": 966, "id": 29, "label": "553196635661283328", "shape": "dot", "size": 10, "title": "553196635661283328\u003cbr\u003e@CptDarling821 @RT_com @TurraLoon1 That\u0027s a\u003cbr\u003eshame....\u003cbr\u003eThu Jan 08 14:28:50 +0000 2015"}, {"group": 966, "id": 34, "label": "553375355205988352", "shape": "dot", "size": 10, "title": "553375355205988352\u003cbr\u003e@xraypat @RT_com @TurraLoon1 it\u0027s not\u003cbr\u003ea revenge. It\u0027s a punishment.\u003cbr\u003eDo you think it\u0027s fair\u003cbr\u003eto the victims? Seriously what\u003cbr\u003eis wrong with you\u003cbr\u003eFri Jan 09 02:19:00 +0000 2015"}, {"group": 966, "id": 31, "label": "553342464711737345", "shape": "dot", "size": 10, "title": "553342464711737345\u003cbr\u003e@mackaysuzie better a hater than\u003cbr\u003ea degenrate religious apologist\u003cbr\u003eFri Jan 09 00:08:18 +0000 2015"}, {"group": 966, "id": 32, "label": "553344082529878016", "shape": "dot", "size": 10, "title": "553344082529878016\u003cbr\u003e@dopeODIE I\u0027m neither\u003cbr\u003eFri Jan 09 00:14:44 +0000 2015"}, {"group": 966, "id": 33, "label": "553345454508113920", "shape": "dot", "size": 10, "title": "553345454508113920\u003cbr\u003e@mackaysuzie soft af\u003cbr\u003eFri Jan 09 00:20:11 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 7, "to": 11, "weight": 1}, {"from": 7, "to": 14, "weight": 1}, {"from": 7, "to": 16, "weight": 1}, {"from": 7, "to": 24, "weight": 1}, {"from": 10, "to": 25, "weight": 1}, {"from": 12, "to": 22, "weight": 1}, {"from": 12, "to": 23, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 22, "to": 26, "weight": 1}, {"from": 23, "to": 28, "weight": 1}, {"from": 25, "to": 30, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 28, "to": 34, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 31, "to": 32, "weight": 1}, {"from": 32, "to": 33, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

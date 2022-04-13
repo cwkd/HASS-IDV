@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1147, "id": 0, "label": "553212702714499074", "shape": "dot", "size": 10, "title": "553212702714499074\u003cbr\u003eCharlie Hebdo offended religious sensibilities?\u003cbr\u003eSo did the Nigerian schoolgirls\u003cbr\u003edaring to go to school.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:32:41 +0000 2015"}, {"group": 1147, "id": 1, "label": "553213787214729216", "shape": "dot", "size": 10, "title": "553213787214729216\u003cbr\u003e@Heresy_Corner skypixie 3 must be\u003cbr\u003elacking a lot in self-confidence\u003cbr\u003eif a bit of piss\u003cbr\u003etaking upsets him so much......\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:36:59 +0000 2015"}, {"group": 1147, "id": 2, "label": "553214970792800257", "shape": "dot", "size": 10, "title": "553214970792800257\u003cbr\u003e\u201c@Heresy_Corner: Charlie Hebdo offended religious\u003cbr\u003esensibilities? So did the Nigerian\u003cbr\u003eschoolgirls daring to go to\u003cbr\u003eschool.\u201d #JeSuisCharlie\u003cbr\u003eThu Jan 08 15:41:41 +0000 2015"}, {"group": 1147, "id": 3, "label": "553216940819623936", "shape": "dot", "size": 10, "title": "553216940819623936\u003cbr\u003e@Heresy_Corner @CEMB_forum NOBODY has the\u003cbr\u003eright not to be offended.A\u003cbr\u003emuslim may say things that\u003cbr\u003eoffend me but I defend\u003cbr\u003etheir right to say it\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:49:31 +0000 2015"}, {"group": 1147, "id": 4, "label": "553225215291826176", "shape": "dot", "size": 10, "title": "553225215291826176\u003cbr\u003e@Heresy_Corner @francescam63 So did the\u003cbr\u003eMuslims in Burma who were\u003cbr\u003eburnt alive by Buddhists, the\u003cbr\u003edociles\u003cbr\u003eThu Jan 08 16:22:24 +0000 2015"}, {"group": 1147, "id": 5, "label": "553230082618441728", "shape": "dot", "size": 10, "title": "553230082618441728\u003cbr\u003e@Heresy_Corner @IllyriaOne \nBut Charlie hebdo\u003cbr\u003ecalled those ladies welfare queens\u003cbr\u003eand depicted them so \"the\u003cbr\u003ewelfare queens of book-haram\" so\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:41:44 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

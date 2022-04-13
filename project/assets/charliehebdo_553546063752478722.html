@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1986, "id": 0, "label": "553546063752478722", "shape": "dot", "size": 10, "title": "553546063752478722\u003cbr\u003eAt least two killed in\u003cbr\u003ehostage drama east of Paris.\u003cbr\u003ePhoto @MartinBureau1 #AFP http://t.co/ZvcbbTgvNm\u003cbr\u003eFri Jan 09 13:37:20 +0000 2015"}, {"group": 1986, "id": 1, "label": "553546524832301056", "shape": "dot", "size": 10, "title": "553546524832301056\u003cbr\u003e@AFPphoto @AFP @MartinBureau1 c\u0027est pas\u003cbr\u003ebon pour le tourisme \u00e7a\u003cbr\u003e!!!\u003cbr\u003eFri Jan 09 13:39:10 +0000 2015"}, {"group": 1986, "id": 2, "label": "553546526262558720", "shape": "dot", "size": 10, "title": "553546526262558720\u003cbr\u003e@AFPphoto @AFP @MartinBureau1 padamalgam\u003cbr\u003eFri Jan 09 13:39:10 +0000 2015"}, {"group": 1986, "id": 3, "label": "553546526518415360", "shape": "dot", "size": 10, "title": "553546526518415360\u003cbr\u003e\u201c@AFPphoto: At least two killed\u003cbr\u003ein hostage drama east of\u003cbr\u003eParis. Photo @MartinBureau1 #AFP http://t.co/nPL2EytmCo\u201d#fox35\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:39:10 +0000 2015"}, {"group": 1986, "id": 4, "label": "553546581900029952", "shape": "dot", "size": 10, "title": "553546581900029952\u003cbr\u003e\u201c@AFPphoto: At least two killed\u003cbr\u003ein hostage drama east of\u003cbr\u003eParis. Photo @MartinBureau1 #AFP http://t.co/MUwkmUENwN\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:39:24 +0000 2015"}, {"group": 1986, "id": 5, "label": "553546917138137088", "shape": "dot", "size": 10, "title": "553546917138137088\u003cbr\u003eMurderous cunts! \u201c@AFPphoto: At least\u003cbr\u003etwo killed in hostage drama\u003cbr\u003eeast of Paris. Photo @MartinBureau1\u003cbr\u003e#AFP http://t.co/MNqXFlQIaI\u201d\u003cbr\u003eFri Jan 09 13:40:44 +0000 2015"}, {"group": 1986, "id": 6, "label": "553547063682555906", "shape": "dot", "size": 10, "title": "553547063682555906\u003cbr\u003eA\u00efe a\u00efe a\u00efe! Maybe it\u0027s\u003cbr\u003ebest to avoid visiting France\u003cbr\u003eat the moment? @twt_backpacker #JeNeSuisPasCharlie\u003cbr\u003e@AFPphoto @AFP @MartinBureau1\u003cbr\u003eFri Jan 09 13:41:19 +0000 2015"}, {"group": 1986, "id": 7, "label": "553547260479672320", "shape": "dot", "size": 10, "title": "553547260479672320\u003cbr\u003eRT @AFPphoto At least two\u003cbr\u003ekilled in hostage drama east\u003cbr\u003eof Paris. Photo @MartinBureau1 #AFP\u003cbr\u003ehttp://t.co/nqXFEsL50F\u003cbr\u003eFri Jan 09 13:42:05 +0000 2015"}, {"group": 1986, "id": 8, "label": "553547405485178881", "shape": "dot", "size": 10, "title": "553547405485178881\u003cbr\u003e@AFPphoto I was there, cops\u003cbr\u003eand helicopter everywhere :( http://t.co/v5BjN78A5x\u003cbr\u003e@MartinBureau1\u003cbr\u003eFri Jan 09 13:42:40 +0000 2015"}, {"group": 1986, "id": 9, "label": "553547605721227264", "shape": "dot", "size": 10, "title": "553547605721227264\u003cbr\u003e\u201c@AFPphoto: At least two killed\u003cbr\u003ein hostage drama east of\u003cbr\u003eParis. Photo @MartinBureau1 #AFP http://t.co/qbie6AxBiA\u201d\u003cbr\u003ehope the 2 aren\u0027t hostages\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:43:28 +0000 2015"}, {"group": 1986, "id": 10, "label": "553547908440940544", "shape": "dot", "size": 10, "title": "553547908440940544\u003cbr\u003e@AFPphoto @AFP @MartinBureau1 No cartoons\u003cbr\u003ethere! It\u0027s a racist attack!\u003cbr\u003eC\u0027etait terrible!\u003cbr\u003eFri Jan 09 13:44:40 +0000 2015"}, {"group": 1986, "id": 11, "label": "553548710706024448", "shape": "dot", "size": 10, "title": "553548710706024448\u003cbr\u003e@AFPphoto Le MinInt d\u00e9ment. @almiraat\u003cbr\u003e@MartinBureau1\u003cbr\u003eFri Jan 09 13:47:51 +0000 2015"}, {"group": 1986, "id": 12, "label": "553549430834466816", "shape": "dot", "size": 10, "title": "553549430834466816\u003cbr\u003e@AFPphoto @bendepear @MartinBureau1 they are\u003cbr\u003edoing a good job by\u003cbr\u003ekeeping u busy in your\u003cbr\u003ehomes, u r creating so\u003cbr\u003emuch choas in our muslim\u003cbr\u003ewrld\u003cbr\u003eFri Jan 09 13:50:43 +0000 2015"}, {"group": 1986, "id": 13, "label": "553549461520416768", "shape": "dot", "size": 10, "title": "553549461520416768\u003cbr\u003e@AFPphoto @davewiner @MartinBureau1 wrong said\u003cbr\u003epolice, 0 killed\u003cbr\u003eFri Jan 09 13:50:50 +0000 2015"}, {"group": 1986, "id": 14, "label": "553549640428445696", "shape": "dot", "size": 10, "title": "553549640428445696\u003cbr\u003e@AFPphoto @ElectreIsMore @MartinBureau1 this information\u003cbr\u003ehas been refuted by the\u003cbr\u003eMinistry of Interior\u003cbr\u003eFri Jan 09 13:51:33 +0000 2015"}, {"group": 1986, "id": 15, "label": "553549740009590784", "shape": "dot", "size": 10, "title": "553549740009590784\u003cbr\u003e2 muertos m\u00e1s en Par\u00eds\u003cbr\u003e\u201c@AFPphoto: At least two killed\u003cbr\u003ein hostage drama east of\u003cbr\u003eParis. Photo @MartinBureau1 #AFP http://t.co/gc8BDxeqcP\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:51:57 +0000 2015"}, {"group": 1986, "id": 16, "label": "553550420287946755", "shape": "dot", "size": 10, "title": "553550420287946755\u003cbr\u003e@AFPphoto @MartinBureau1 its religion of\u003cbr\u003elove and peace !\u003cbr\u003eFri Jan 09 13:54:39 +0000 2015"}, {"group": 1986, "id": 17, "label": "553553990714400768", "shape": "dot", "size": 10, "title": "553553990714400768\u003cbr\u003e@AFPphoto @MartinBureau1 : Pourquoi maintenir\u003cbr\u003ece tweet alors que l\u0027info\u003cbr\u003ea \u00e9t\u00e9 d\u00e9mentie par @Place_Beauvau\u003cbr\u003e??\u003cbr\u003eFri Jan 09 14:08:50 +0000 2015"}, {"group": 1986, "id": 18, "label": "553564018929983488", "shape": "dot", "size": 10, "title": "553564018929983488\u003cbr\u003e@AFPphoto @MartinBureau1 esko bhi maaro\u003cbr\u003esale ko http://t.co/LbGTwyEKp3\u003cbr\u003eFri Jan 09 14:48:41 +0000 2015"}, {"group": 1986, "id": 19, "label": "553570627152408577", "shape": "dot", "size": 10, "title": "553570627152408577\u003cbr\u003e@ATMology @twt_backpacker @AFPphoto @AFP @MartinBureau1\u003cbr\u003ewhy? What happened there?\u003cbr\u003eFri Jan 09 15:14:57 +0000 2015"}, {"group": 1986, "id": 23, "label": "553590020959772672", "shape": "dot", "size": 10, "title": "553590020959772672\u003cbr\u003e@ATMology ive bought tickets \ud83d\ude23\u003cbr\u003egoing there end of this\u003cbr\u003emonth.\u003cbr\u003eFri Jan 09 16:32:00 +0000 2015"}, {"group": 1986, "id": 20, "label": "553572625289465856", "shape": "dot", "size": 10, "title": "553572625289465856\u003cbr\u003eLOL you tak tahu ke\u003cbr\u003eapa tengah berlaku kat Paris\u003cbr\u003esekarang bro? @syaiful_redz93 @twt_backpacker #CharlieHebdo\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:22:53 +0000 2015"}, {"group": 1986, "id": 21, "label": "553573019944116224", "shape": "dot", "size": 10, "title": "553573019944116224\u003cbr\u003e@ATMology @twt_backpacker lol limited non-china-IP-addressed\u003cbr\u003eaccess lad. I blame china\u003cbr\u003efor that. X pe lah\u003cbr\u003ennti gua carik sendiri. Kehkehkeh\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:24:27 +0000 2015"}, {"group": 1986, "id": 22, "label": "553579328449945600", "shape": "dot", "size": 10, "title": "553579328449945600\u003cbr\u003eJust click on this hashtag\u003cbr\u003e#CharlieHebdo and enjoice reading the\u003cbr\u003enews. @syaiful_redz93 @twt_backpacker\u003cbr\u003eFri Jan 09 15:49:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 6, "to": 19, "weight": 1}, {"from": 6, "to": 23, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

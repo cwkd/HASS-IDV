@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 939, "id": 0, "label": "553155988917075968", "shape": "dot", "size": 10, "title": "553155988917075968\u003cbr\u003eIndian artist Sudarsan Pattnaik and\u003cbr\u003ehis tribute to those killed\u003cbr\u003ein the attack on Charlie\u003cbr\u003eHebdo http://t.co/36rBaLxCJ6\u003cbr\u003eThu Jan 08 11:47:19 +0000 2015"}, {"group": 939, "id": 1, "label": "553156716813377537", "shape": "dot", "size": 10, "title": "553156716813377537\u003cbr\u003e@AFP BULLETS CAN\u0027T STOP PEN\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:50:13 +0000 2015"}, {"group": 939, "id": 2, "label": "553158212225351683", "shape": "dot", "size": 10, "title": "553158212225351683\u003cbr\u003eRT @AFP: Indian artist Sudarsan\u003cbr\u003ePattnaik and his tribute to\u003cbr\u003ethose killed in the attack\u003cbr\u003eon Charlie Hebdo #France http://t.co/KZ2xSIxtcs\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:56:09 +0000 2015"}, {"group": 939, "id": 3, "label": "553162356034121728", "shape": "dot", "size": 10, "title": "553162356034121728\u003cbr\u003eLovely. MT @AFP: Indian artist\u003cbr\u003eSudarsan Pattnaik makes sand tribute\u003cbr\u003eto those killed in the\u003cbr\u003eattack on #CharlieHebdo http://t.co/G8S8NBwE7g\u003cbr\u003eThu Jan 08 12:12:37 +0000 2015"}, {"group": 939, "id": 4, "label": "553166651320201217", "shape": "dot", "size": 10, "title": "553166651320201217\u003cbr\u003e\u201c@AFP: Indian artist Sudarsan Pattnaik\u003cbr\u003eand his tribute to those\u003cbr\u003ekilled in the attack on\u003cbr\u003eCharlie Hebdo http://t.co/B9Ex4SqAnJ\u201d\u003cbr\u003eThu Jan 08 12:29:41 +0000 2015"}, {"group": 939, "id": 5, "label": "553172772986183680", "shape": "dot", "size": 10, "title": "553172772986183680\u003cbr\u003e\u201c@AFP: Indian artist S Pattnaik\u0027s\u003cbr\u003etribute to those killed in\u003cbr\u003ethe attack on Charlie Hebdo\u003cbr\u003ehttp://t.co/0HEoorXKPU\u201d\nBullets can\u0027t stop Pen!!\u003cbr\u003eThu Jan 08 12:54:01 +0000 2015"}, {"group": 939, "id": 6, "label": "553179579549233152", "shape": "dot", "size": 10, "title": "553179579549233152\u003cbr\u003e@AFP Your tweet is now\u003cbr\u003efeatured on my @RebelMouse http://t.co/12oaS9LUuG\u003cbr\u003e*bump it* http://t.co/MRRnWUM2Jr\u003cbr\u003eThu Jan 08 13:21:04 +0000 2015"}, {"group": 939, "id": 7, "label": "553228846431227904", "shape": "dot", "size": 10, "title": "553228846431227904\u003cbr\u003e@AFP @AxelBeaudelot Dans quelques ann\u00e9es,\u003cbr\u003etu pourras peut-\u00eatre faire une\u003cbr\u003eoeuvre comme \u00e7a :) #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:36:50 +0000 2015"}, {"group": 939, "id": 8, "label": "553264017117315072", "shape": "dot", "size": 10, "title": "553264017117315072\u003cbr\u003e@AFP @BenoitParayre Protestamos com Arte\u003cbr\u003etamb\u00e9m http://t.co/vz33IStpj6 #CharlieHebdo  #JeSuisCharlie\u003cbr\u003ehttp://t.co/eid1oMMmjb\u003cbr\u003eThu Jan 08 18:56:35 +0000 2015"}, {"group": 939, "id": 9, "label": "553328615740289024", "shape": "dot", "size": 10, "title": "553328615740289024\u003cbr\u003e@AFP Congrats on your 1000\u2605\u003cbr\u003etweet! http://t.co/HTXSO8F2ZW\u003cbr\u003eThu Jan 08 23:13:16 +0000 2015"}, {"group": 939, "id": 10, "label": "553408040859234304", "shape": "dot", "size": 10, "title": "553408040859234304\u003cbr\u003eNor will bombing the mosques\u003cbr\u003efinish terrorism, it will only\u003cbr\u003emake them more resentful, more\u003cbr\u003edetermined. @AFP @taslimanasreen #CharlieHebdo\u003cbr\u003eFri Jan 09 04:28:53 +0000 2015"}, {"group": 939, "id": 11, "label": "553739111006081027", "shape": "dot", "size": 10, "title": "553739111006081027\u003cbr\u003eAwesome! RT @AFP Indian artist\u003cbr\u003eSudarsan Pattnaik and his tribute\u003cbr\u003eto those killed in the\u003cbr\u003eattack on Charlie Hebdo http://t.co/GvYzD6z30P\u003cbr\u003e\u003cbr\u003eSat Jan 10 02:24:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

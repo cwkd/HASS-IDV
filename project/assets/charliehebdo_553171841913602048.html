@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 995, "id": 0, "label": "553171841913602048", "shape": "dot", "size": 10, "title": "553171841913602048\u003cbr\u003eCrowds gather for #charliehebdo vigils\u003cbr\u003earound Australia #JeSuisCharlie http://t.co/3hCuJxwGoo http://t.co/jsXB4RpjXb\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:50:19 +0000 2015"}, {"group": 995, "id": 1, "label": "553172619902861312", "shape": "dot", "size": 10, "title": "553172619902861312\u003cbr\u003e@abcnews Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 12:53:24 +0000 2015"}, {"group": 995, "id": 2, "label": "553172852921233408", "shape": "dot", "size": 10, "title": "553172852921233408\u003cbr\u003e\u201c@abcnews:  #JeSuisCharlie http://t.co/ZNCOpe2GO0 http://t.co/PvRkf2kBqu\u201d\n\nFrance,\u003cbr\u003eAustralia grieves with you #CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:54:20 +0000 2015"}, {"group": 995, "id": 3, "label": "553174049103155201", "shape": "dot", "size": 10, "title": "553174049103155201\u003cbr\u003e#JeSuisCharlie \u201c@abcnews: Crowds gather for\u003cbr\u003e#charliehebdo vigils around Australia http://t.co/p9x5UXDImj\u003cbr\u003ehttp://t.co/SHFOkbpao7\u201d\u003cbr\u003eThu Jan 08 12:59:05 +0000 2015"}, {"group": 995, "id": 4, "label": "553174134734086144", "shape": "dot", "size": 10, "title": "553174134734086144\u003cbr\u003e@abcnews *bless*\u003cbr\u003eThu Jan 08 12:59:25 +0000 2015"}, {"group": 995, "id": 6, "label": "553174745689382913", "shape": "dot", "size": 10, "title": "553174745689382913\u003cbr\u003e\u201c@abcnews: Crowds gather for #charliehebdo\u003cbr\u003evigils around Australia #JeSuisCharlie http://t.co/8fZItYrwQE\u003cbr\u003ehttp://t.co/wQn0ZoiZUP\u201d\u003cbr\u003eThu Jan 08 13:01:51 +0000 2015"}, {"group": 995, "id": 7, "label": "553176532785446912", "shape": "dot", "size": 10, "title": "553176532785446912\u003cbr\u003e@abcnews Why does that image\u003cbr\u003elook so manipulated? Looks like\u003cbr\u003ea montage/photoshop job rather than\u003cbr\u003ea snapshot. Is it real?\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:08:57 +0000 2015"}, {"group": 995, "id": 8, "label": "553177620968644609", "shape": "dot", "size": 10, "title": "553177620968644609\u003cbr\u003e@abcnews there is #NoModerateIslam #EnoughIsEnough\u003cbr\u003e#JeSuisCharlie\u003cbr\u003eThu Jan 08 13:13:17 +0000 2015"}, {"group": 995, "id": 9, "label": "553177837768040448", "shape": "dot", "size": 10, "title": "553177837768040448\u003cbr\u003e@ZenMarley @abcnews Where did everyone\u003cbr\u003eget all these signs so\u003cbr\u003equickly?\u003cbr\u003eThu Jan 08 13:14:08 +0000 2015"}, {"group": 995, "id": 11, "label": "553178429000921088", "shape": "dot", "size": 10, "title": "553178429000921088\u003cbr\u003e@abcnews Its time for us\u003cbr\u003eathiests to show our POV.Sick\u003cbr\u003eof religion.\u003cbr\u003eThu Jan 08 13:16:29 +0000 2015"}, {"group": 995, "id": 12, "label": "553181713342676993", "shape": "dot", "size": 10, "title": "553181713342676993\u003cbr\u003e@abcnews there is #NoModerateIslam\u003cbr\u003eThu Jan 08 13:29:32 +0000 2015"}, {"group": 995, "id": 13, "label": "553181822993956865", "shape": "dot", "size": 10, "title": "553181822993956865\u003cbr\u003e@abcnews I am missing out\u003cbr\u003eon something big, because I\u003cbr\u003ereally don\u0027t know what all\u003cbr\u003ethis #JeSuisCharlie thing is about.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:29:58 +0000 2015"}, {"group": 995, "id": 14, "label": "553183522727682048", "shape": "dot", "size": 10, "title": "553183522727682048\u003cbr\u003e@abcnews @News1800 All carrying pre-printed\u003cbr\u003eSIGNS, printed months ago by\u003cbr\u003ethe CIA on US taxpayer\u003cbr\u003emoney--cause CHALRIE \u0027massacre\u0027 is a\u003cbr\u003eHOAX\u003cbr\u003eThu Jan 08 13:36:44 +0000 2015"}, {"group": 995, "id": 15, "label": "553184405485678592", "shape": "dot", "size": 10, "title": "553184405485678592\u003cbr\u003e@abcnews right outside Martin place\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:40:14 +0000 2015"}, {"group": 995, "id": 5, "label": "553174319119888384", "shape": "dot", "size": 10, "title": "553174319119888384\u003cbr\u003e@ritaboemo @abcnews Charlie Hebdo Massacre,\u003cbr\u003eTargets European Ideals http://t.co/DU2rO9v32o\u003cbr\u003eThu Jan 08 13:00:09 +0000 2015"}, {"group": 995, "id": 10, "label": "553178291155132416", "shape": "dot", "size": 10, "title": "553178291155132416\u003cbr\u003e@SugarKovalczyk  never underestimate the\u003cbr\u003epower of whiteness to galvanise\u003cbr\u003eitself into action when it\u0027s\u003cbr\u003eplaying saviour or victim.\u003cbr\u003eThu Jan 08 13:15:56 +0000 2015"}, {"group": 995, "id": 16, "label": "553184609605660672", "shape": "dot", "size": 10, "title": "553184609605660672\u003cbr\u003e@ZenMarley @SugarKovalczyk do you not\u003cbr\u003ewant people to stand up\u003cbr\u003eagainst terrorism or tyranny because\u003cbr\u003ethey are white now?\u003cbr\u003eThu Jan 08 13:41:03 +0000 2015"}, {"group": 995, "id": 17, "label": "553185615106555905", "shape": "dot", "size": 10, "title": "553185615106555905\u003cbr\u003e.@PsychicWaugh some of those people\u003cbr\u003ecare about tyranny + free\u003cbr\u003espeech. Some are just racist\u003cbr\u003eand jingoistic. Acknowledge both @ZenMarley\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:45:02 +0000 2015"}, {"group": 995, "id": 18, "label": "553186224316231680", "shape": "dot", "size": 10, "title": "553186224316231680\u003cbr\u003e@SugarKovalczyk Also, all things being\u003cbr\u003econsidered, free speech is neither\u003cbr\u003eequal or available to all.\u003cbr\u003e The use of the\u003cbr\u003eterm, deeply political\u003cbr\u003eThu Jan 08 13:47:28 +0000 2015"}, {"group": 995, "id": 19, "label": "553186804221100033", "shape": "dot", "size": 10, "title": "553186804221100033\u003cbr\u003e@ZenMarley Yes. Still in favor\u003cbr\u003eof it. I know many\u003cbr\u003earen\u0027t. My tl is proof\u003cbr\u003eof that :-p\u003cbr\u003eThu Jan 08 13:49:46 +0000 2015"}, {"group": 995, "id": 20, "label": "553187322234023938", "shape": "dot", "size": 10, "title": "553187322234023938\u003cbr\u003e@SugarKovalczyk I\u0027m for it also.\u003cbr\u003eJust speaking to the loose\u003cbr\u003eway it\u0027s spoken of, typically\u003cbr\u003efrom people who have the\u003cbr\u003emost privilege.\u003cbr\u003eThu Jan 08 13:51:50 +0000 2015"}, {"group": 995, "id": 21, "label": "553187959747665921", "shape": "dot", "size": 10, "title": "553187959747665921\u003cbr\u003e@ZenMarley Many of them are\u003cbr\u003eracists and just use it\u003cbr\u003eto support their bigotry\u003cbr\u003eThu Jan 08 13:54:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

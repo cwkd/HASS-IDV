@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 437, "id": 0, "label": "552832784046108672", "shape": "dot", "size": 10, "title": "552832784046108672\u003cbr\u003eIf Hindus were not tolerant,\u003cbr\u003ethis would have been the\u003cbr\u003efate of Hirani \u0026amp; Aamir.\u003cbr\u003e#CharlieHebdo\n#ParisShooting http://t.co/tIF56s3Pho\u003cbr\u003eWed Jan 07 14:23:01 +0000 2015"}, {"group": 437, "id": 1, "label": "552834136570736642", "shape": "dot", "size": 10, "title": "552834136570736642\u003cbr\u003e@iSupportBJP @Narendramodi_G bilkul sahi kaha\u003cbr\u003e\nJis thali me khate ha\u003cbr\u003eusi me ched karte ha\u003cbr\u003e\nOr jo thoda virodh hua\u003cbr\u003eb usme media ne roti\u003cbr\u003eseki\u003cbr\u003eWed Jan 07 14:28:23 +0000 2015"}, {"group": 437, "id": 2, "label": "552834961225433088", "shape": "dot", "size": 10, "title": "552834961225433088\u003cbr\u003e@iSupportBJP @Narendramodi_G shame on you.....\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:31:40 +0000 2015"}, {"group": 437, "id": 3, "label": "552843863635660801", "shape": "dot", "size": 10, "title": "552843863635660801\u003cbr\u003e@iSupportBJP @TejasviHindu yes @taslimanasreen has\u003cbr\u003ealready tweeted abt dis \n\nPak\u003cbr\u003eme agar aisa hota to\u003cbr\u003eAamir khan ka b vajood\u003cbr\u003enahi rehta\u003cbr\u003eWed Jan 07 15:07:03 +0000 2015"}, {"group": 437, "id": 4, "label": "553069762637357056", "shape": "dot", "size": 10, "title": "553069762637357056\u003cbr\u003e@iSupportBJP @TigerNaMo and MF hussain\u003cbr\u003e\u003cbr\u003eThu Jan 08 06:04:41 +0000 2015"}, {"group": 437, "id": 5, "label": "553072888333340672", "shape": "dot", "size": 10, "title": "553072888333340672\u003cbr\u003e@iSupportBJP @TigerNaMo True, Hindus n\u003cbr\u003eChristians are more liberal n\u003cbr\u003etolerant, these low brain Muslims\u003cbr\u003edon\u0027t even understand a joke\u003cbr\u003e\u003cbr\u003eThu Jan 08 06:17:06 +0000 2015"}, {"group": 437, "id": 7, "label": "553073799994675202", "shape": "dot", "size": 10, "title": "553073799994675202\u003cbr\u003e@iSupportBJP @Indiaspeaks2014 Not tolerant. say\u003cbr\u003eIf Hindus were not \u003cbr\u003etimid.......\u003cbr\u003eThu Jan 08 06:20:44 +0000 2015"}, {"group": 437, "id": 8, "label": "553083798233948161", "shape": "dot", "size": 10, "title": "553083798233948161\u003cbr\u003e@iSupportBJP @TigerNaMo India with majority\u003cbr\u003eHindu population has largest number\u003cbr\u003eof mosques in world.... Extremists\u003cbr\u003eHindus we are alas!..\u003cbr\u003eThu Jan 08 07:00:27 +0000 2015"}, {"group": 437, "id": 9, "label": "553085609552515072", "shape": "dot", "size": 10, "title": "553085609552515072\u003cbr\u003e@iSupportBJP  Indians in general\u003cbr\u003eand Hindus in particular are\u003cbr\u003etoo tolerant. The time has\u003cbr\u003ecome to lower the tolerance\u003cbr\u003ethreshold.\u003cbr\u003eThu Jan 08 07:07:39 +0000 2015"}, {"group": 437, "id": 6, "label": "553073088892383232", "shape": "dot", "size": 10, "title": "553073088892383232\u003cbr\u003e@sritrader @iSupportBJP @TigerNaMo oh yes\u003cbr\u003eMF Husain that b*******\u003cbr\u003eThu Jan 08 06:17:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 4, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1377, "id": 0, "label": "553540719714271233", "shape": "dot", "size": 10, "title": "553540719714271233\u003cbr\u003eREAD MORE: Second hostage situation\u003cbr\u003eunfolding in eastern Paris http://t.co/Eh0dByqdYb\u003cbr\u003ehttp://t.co/eLrCndD0y2\u003cbr\u003eFri Jan 09 13:16:06 +0000 2015"}, {"group": 1377, "id": 1, "label": "553540819953545216", "shape": "dot", "size": 10, "title": "553540819953545216\u003cbr\u003eRT @CBSNews READ MORE: Second\u003cbr\u003ehostage situation unfolding in eastern\u003cbr\u003eParis http://t.co/NJWLtdD40h http://t.co/3ebLNPDbHS\u003cbr\u003eFri Jan 09 13:16:30 +0000 2015"}, {"group": 1377, "id": 2, "label": "553540846516465665", "shape": "dot", "size": 10, "title": "553540846516465665\u003cbr\u003e\u201c@CBSNews: READ MORE: Second hostage\u003cbr\u003esituation unfolding in eastern Paris\u003cbr\u003ehttp://t.co/oEyAXJRFx5 http://t.co/KJiVsHDSwN\u201d\u003cbr\u003eFri Jan 09 13:16:36 +0000 2015"}, {"group": 1377, "id": 3, "label": "553540872504369152", "shape": "dot", "size": 10, "title": "553540872504369152\u003cbr\u003e@CBSNews  sad situation \u003cbr\u003e  in the world\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:16:42 +0000 2015"}, {"group": 1377, "id": 4, "label": "553540899033350144", "shape": "dot", "size": 10, "title": "553540899033350144\u003cbr\u003e@CBSNews jews?\u003cbr\u003eFri Jan 09 13:16:49 +0000 2015"}, {"group": 1377, "id": 5, "label": "553540941978800128", "shape": "dot", "size": 10, "title": "553540941978800128\u003cbr\u003e\u201c@CBSNews: READ MORE: Second hostage\u003cbr\u003esituation unfolding in eastern Paris\u003cbr\u003ehttp://t.co/WyibtMrYOp http://t.co/92svTkdj57\u201d\u003cbr\u003eFri Jan 09 13:16:59 +0000 2015"}, {"group": 1377, "id": 6, "label": "553541029476188160", "shape": "dot", "size": 10, "title": "553541029476188160\u003cbr\u003e@CBSNews @MikeRodNews http://t.co/bRB2UzhXRY\u003cbr\u003eFri Jan 09 13:17:20 +0000 2015"}, {"group": 1377, "id": 7, "label": "553541206660366338", "shape": "dot", "size": 10, "title": "553541206660366338\u003cbr\u003e@MikkelFrey bedre vue af butikken\u003cbr\u003eher! @CBSNews\u003cbr\u003eFri Jan 09 13:18:02 +0000 2015"}, {"group": 1377, "id": 8, "label": "553541366975041537", "shape": "dot", "size": 10, "title": "553541366975041537\u003cbr\u003e@CBSNews\u003cbr\u003eFri Jan 09 13:18:40 +0000 2015"}, {"group": 1377, "id": 9, "label": "553541592112721920", "shape": "dot", "size": 10, "title": "553541592112721920\u003cbr\u003e\u201c@CBSNews: READ MORE: Second hostage\u003cbr\u003esituation unfolding in eastern Paris\u003cbr\u003ehttp://t.co/TdiKLdgNT1 http://t.co/Ow238Jy1Oy\u201d madness\u003cbr\u003eFri Jan 09 13:19:34 +0000 2015"}, {"group": 1377, "id": 12, "label": "553541790146777089", "shape": "dot", "size": 10, "title": "553541790146777089\u003cbr\u003e\u201c@CBSNews: READ MORE: Second hostage\u003cbr\u003esituation unfolding in eastern Paris\u003cbr\u003ehttp://t.co/9OqjBdEFUW http://t.co/Pp4Tjx7zu1\u201d\u003cbr\u003eFri Jan 09 13:20:21 +0000 2015"}, {"group": 1377, "id": 16, "label": "553554872331935744", "shape": "dot", "size": 10, "title": "553554872331935744\u003cbr\u003e@CBSNews https://t.co/WXhXcvhuam\u003cbr\u003eFri Jan 09 14:12:20 +0000 2015"}, {"group": 1377, "id": 17, "label": "553556874952704000", "shape": "dot", "size": 10, "title": "553556874952704000\u003cbr\u003e@CBSNews why aren\u0027t police armed\u003cbr\u003eto defend themselves \u0026amp; lawful\u003cbr\u003ecitizens. That\u0027s why our police\u003cbr\u003eare being attacked, to disarm\u003cbr\u003ethem. NO WAY\u003cbr\u003eFri Jan 09 14:20:18 +0000 2015"}, {"group": 1377, "id": 18, "label": "553565975430586368", "shape": "dot", "size": 10, "title": "553565975430586368\u003cbr\u003e@CBSNews You know what these\u003cbr\u003eboys lack? 50 SHADES OF\u003cbr\u003eGREY!! They either go be\u003cbr\u003ethe pope or a pimp.\u003cbr\u003eThere is a middle ground,\u003cbr\u003eyou know!\u003cbr\u003eFri Jan 09 14:56:27 +0000 2015"}, {"group": 1377, "id": 19, "label": "553566367748997121", "shape": "dot", "size": 10, "title": "553566367748997121\u003cbr\u003e@CBSNews And while I am\u003cbr\u003eat it; the media is\u003cbr\u003etheir BTCH. Cause when they\u003cbr\u003esay jump. You say \"can\u003cbr\u003eI get an exclusive\"?!\u003cbr\u003eFri Jan 09 14:58:01 +0000 2015"}, {"group": 1377, "id": 11, "label": "553541639743209472", "shape": "dot", "size": 10, "title": "553541639743209472\u003cbr\u003e@AhmedAElsisi @CBSNews no, it is\u003cbr\u003eanother muslim. They think that\u003cbr\u003ehe is related to the\u003cbr\u003eother 2 brothers.\u003cbr\u003eFri Jan 09 13:19:45 +0000 2015"}, {"group": 1377, "id": 10, "label": "553541613193297920", "shape": "dot", "size": 10, "title": "553541613193297920\u003cbr\u003e@CBSNews what has this world\u003cbr\u003eturned into? Such a shame!!!\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:19:39 +0000 2015"}, {"group": 1377, "id": 13, "label": "553541866713808896", "shape": "dot", "size": 10, "title": "553541866713808896\u003cbr\u003e@PhilGonc @AhmedAElsisi @CBSNews Confirmed\u003cbr\u003eFri Jan 09 13:20:39 +0000 2015"}, {"group": 1377, "id": 14, "label": "553542653615542273", "shape": "dot", "size": 10, "title": "553542653615542273\u003cbr\u003e@Protoo__ @PhilGonc @CBSNews i am\u003cbr\u003etalking about the hostages\u003cbr\u003eFri Jan 09 13:23:47 +0000 2015"}, {"group": 1377, "id": 15, "label": "553542992624373760", "shape": "dot", "size": 10, "title": "553542992624373760\u003cbr\u003e@AhmedAElsisi @PhilGonc @CBSNews Dunno if\u003cbr\u003ethey are jews, just the\u003cbr\u003eguys is related with the\u003cbr\u003e2 others\u003cbr\u003eFri Jan 09 13:25:08 +0000 2015"}, {"group": 1377, "id": 20, "label": "553566817520979970", "shape": "dot", "size": 10, "title": "553566817520979970\u003cbr\u003e@CBSNews Don\u0027t use these boys\u003cbr\u003eto sell yourself short. And\u003cbr\u003ethese are by far no\u003cbr\u003eTerrorist. Even IRAN wouldn\u0027t want\u003cbr\u003etrue sorry A**.\u003cbr\u003eFri Jan 09 14:59:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 4, "to": 11, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

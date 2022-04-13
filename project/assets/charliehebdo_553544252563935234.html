@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1981, "id": 0, "label": "553544252563935234", "shape": "dot", "size": 10, "title": "553544252563935234\u003cbr\u003eBREAKING: At least 2 killed\u003cbr\u003ein #Paris hostage situation via\u003cbr\u003e@AFP http://t.co/C2WrcWLUZh\u003cbr\u003eFri Jan 09 13:30:08 +0000 2015"}, {"group": 1981, "id": 1, "label": "553544568130768897", "shape": "dot", "size": 10, "title": "553544568130768897\u003cbr\u003e@FoxNews @AFP awesome!!!\u003cbr\u003eFri Jan 09 13:31:24 +0000 2015"}, {"group": 1981, "id": 2, "label": "553544735131201536", "shape": "dot", "size": 10, "title": "553544735131201536\u003cbr\u003e\"@FoxNews: BREAKING: At least 2\u003cbr\u003ekilled in #Paris hostage situation\u003cbr\u003evia @AFP http://t.co/ZF4OK2i5Cx\" @am640Oakley\u003cbr\u003eFri Jan 09 13:32:03 +0000 2015"}, {"group": 1981, "id": 3, "label": "553544746430652416", "shape": "dot", "size": 10, "title": "553544746430652416\u003cbr\u003e@FoxNews @AFP Oh my god..those\u003cbr\u003eterrorists are awful.\u003cbr\u003eFri Jan 09 13:32:06 +0000 2015"}, {"group": 1981, "id": 4, "label": "553545099905601536", "shape": "dot", "size": 10, "title": "553545099905601536\u003cbr\u003eRT @FoxNews: BREAKING: At least\u003cbr\u003e2 killed in #Paris hostage\u003cbr\u003esituation via @AFP http://t.co/x1a5soBjxY\u003cbr\u003eFri Jan 09 13:33:30 +0000 2015"}, {"group": 1981, "id": 5, "label": "553545546947104768", "shape": "dot", "size": 10, "title": "553545546947104768\u003cbr\u003e@FoxNews @AFP \"AlQuieda is on\u003cbr\u003ethe run\" \"ISIS is a\u003cbr\u003eJV team\". Oh wait......\u003cbr\u003eFri Jan 09 13:35:17 +0000 2015"}, {"group": 1981, "id": 6, "label": "553545985624784896", "shape": "dot", "size": 10, "title": "553545985624784896\u003cbr\u003eCc @MeatSauce1 @PowerTripKFAN @CoryCove \u201c@FoxNews:\u003cbr\u003eBREAKING: At least 2 killed\u003cbr\u003ein #Paris hostage situation via\u003cbr\u003e@AFP http://t.co/bdJ6VAyABe\u201d\u003cbr\u003eFri Jan 09 13:37:02 +0000 2015"}, {"group": 1981, "id": 7, "label": "553546195772407808", "shape": "dot", "size": 10, "title": "553546195772407808\u003cbr\u003e\u201c@FoxNews: BREAKING: At least 2\u003cbr\u003ekilled in #Paris hostage situation\u003cbr\u003evia @AFP http://t.co/KILM8vgXI6\u201d Peace strikes\u003cbr\u003eagain...\u003cbr\u003eFri Jan 09 13:37:52 +0000 2015"}, {"group": 1981, "id": 8, "label": "553549302187192320", "shape": "dot", "size": 10, "title": "553549302187192320\u003cbr\u003e@FoxNews @AFP http://t.co/RkiImlbPkg\u003cbr\u003eFri Jan 09 13:50:12 +0000 2015"}, {"group": 1981, "id": 9, "label": "553550518531141632", "shape": "dot", "size": 10, "title": "553550518531141632\u003cbr\u003e@FoxNews Cowards!!!\u003cbr\u003eFri Jan 09 13:55:02 +0000 2015"}, {"group": 1981, "id": 10, "label": "553550704888279041", "shape": "dot", "size": 10, "title": "553550704888279041\u003cbr\u003e@FoxNews @AFP Now if only\u003cbr\u003ethe citizens had a way\u003cbr\u003eto protect themselves. Like...oh I\u003cbr\u003edon\u0027t know...a weapon? Victor or\u003cbr\u003eVictim!\u003cbr\u003eFri Jan 09 13:55:47 +0000 2015"}, {"group": 1981, "id": 11, "label": "553555098157060097", "shape": "dot", "size": 10, "title": "553555098157060097\u003cbr\u003e@FoxNews @AFP  Radicalism must\u003cbr\u003eNOT be tolerated. Deport or\u003cbr\u003eShoot, before they shoot you.\u003cbr\u003eNO Trials Or Justice, \u003cbr\u003efor they do NOT know\u003cbr\u003eit.\u003cbr\u003eFri Jan 09 14:13:14 +0000 2015"}, {"group": 1981, "id": 12, "label": "553557332261490688", "shape": "dot", "size": 10, "title": "553557332261490688\u003cbr\u003e\u201c@FoxNews: BREAKING: At least 2\u003cbr\u003ekilled in #Paris hostage situation\u003cbr\u003evia @AFP http://t.co/T72vMccRyQ\u201d when will\u003cbr\u003ethe craziness end? \ud83d\ude14\u003cbr\u003eFri Jan 09 14:22:07 +0000 2015"}, {"group": 1981, "id": 13, "label": "553560398365212672", "shape": "dot", "size": 10, "title": "553560398365212672\u003cbr\u003eokiee time for me to\u003cbr\u003eleave paris now RT @FoxNews:\u003cbr\u003eBREAKING: At least 2 killed\u003cbr\u003ein #Paris hostage situation via\u003cbr\u003e@AFP http://t.co/gyJvnVW6pt\u003cbr\u003eFri Jan 09 14:34:18 +0000 2015"}, {"group": 1981, "id": 14, "label": "554305263046754305", "shape": "dot", "size": 10, "title": "554305263046754305\u003cbr\u003e@FoxNews @AFP Keep Rising up\u003cbr\u003eagainst them #paris. #godspeed protection\u003cbr\u003e\ud83d\ude4f\u003cbr\u003eSun Jan 11 15:54:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

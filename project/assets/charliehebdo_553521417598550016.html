@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1930, "id": 0, "label": "553521417598550016", "shape": "dot", "size": 10, "title": "553521417598550016\u003cbr\u003eUpdate - French television channel\u003cbr\u003e\u0027France 2\u0027 are reporting that\u003cbr\u003ethe hostage held by suspected\u003cbr\u003e#CharlieHebdo gunmen is male and\u003cbr\u003e26 years old\u003cbr\u003eFri Jan 09 11:59:24 +0000 2015"}, {"group": 1930, "id": 1, "label": "553521548683120641", "shape": "dot", "size": 10, "title": "553521548683120641\u003cbr\u003e@SkyNewsBreak the French are not\u003cbr\u003ehandling this well!\u003cbr\u003eFri Jan 09 11:59:55 +0000 2015"}, {"group": 1930, "id": 2, "label": "553521643742842880", "shape": "dot", "size": 10, "title": "553521643742842880\u003cbr\u003e@SkyNewsBreak Poor guy must be\u003cbr\u003eterrified.\u003cbr\u003eFri Jan 09 12:00:18 +0000 2015"}, {"group": 1930, "id": 3, "label": "553521645462511616", "shape": "dot", "size": 10, "title": "553521645462511616\u003cbr\u003e@SkyNewsBreak That\u0027s fucked that then.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:00:18 +0000 2015"}, {"group": 1930, "id": 4, "label": "553521732901142528", "shape": "dot", "size": 10, "title": "553521732901142528\u003cbr\u003e@SkyNewsBreak I strongly condemn this\u003cbr\u003ebarbaric attack against all humankind\u003cbr\u003eas a Turkish Muslim. #NotInMyName\u003cbr\u003ehttp://t.co/qt8yGdrv8L\u003cbr\u003eFri Jan 09 12:00:39 +0000 2015"}, {"group": 1930, "id": 5, "label": "553522072316837888", "shape": "dot", "size": 10, "title": "553522072316837888\u003cbr\u003e@SkyNewsBreak So not female then\u003cbr\u003eas you reported earlier... 50/50\u003cbr\u003echance and you got it\u003cbr\u003ewrong...\u003cbr\u003eFri Jan 09 12:02:00 +0000 2015"}, {"group": 1930, "id": 6, "label": "553522098636066816", "shape": "dot", "size": 10, "title": "553522098636066816\u003cbr\u003e@SkyNewsBreak The need to capture\u003cbr\u003ethem alive \u0026amp; get information\u003cbr\u003eout of them. I\u0027ve no\u003cbr\u003eworries what they do 2\u003cbr\u003ethem 2 get that information\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:02:06 +0000 2015"}, {"group": 1930, "id": 7, "label": "553522300826312704", "shape": "dot", "size": 10, "title": "553522300826312704\u003cbr\u003eUpdate @abcnews24 French TV channel\u003cbr\u003e\u0027France 2\u0027 reports: hostage held\u003cbr\u003eby suspected #charliehebdo gunmen is\u003cbr\u003emale \u0026amp; 26yrs old HT\u003cbr\u003e@SkyNewsBreak\u003cbr\u003eFri Jan 09 12:02:55 +0000 2015"}, {"group": 1930, "id": 8, "label": "553522701491798018", "shape": "dot", "size": 10, "title": "553522701491798018\u003cbr\u003e@SkyNewsBreak Could this printing works\u003cbr\u003ebe where Charlie Hebdo is\u003cbr\u003eprinted? Seems the only reason\u003cbr\u003eas to why they would\u003cbr\u003e\"not kill civilians\"\u003cbr\u003eFri Jan 09 12:04:30 +0000 2015"}, {"group": 1930, "id": 10, "label": "553523282579062786", "shape": "dot", "size": 10, "title": "553523282579062786\u003cbr\u003e@SkyNewsBreak is the printing firm\u003cbr\u003ethe print firm of charlie\u003cbr\u003ehebdo paper???\u003cbr\u003eFri Jan 09 12:06:49 +0000 2015"}, {"group": 1930, "id": 11, "label": "553524224468332544", "shape": "dot", "size": 10, "title": "553524224468332544\u003cbr\u003e@SkyNewsBreak Charlie Hebdo: Norway\u0027s Christians\u003cbr\u003edidn\u0027t have to apologise for\u003cbr\u003eAnders Breivik, and it\u0027s the\u003cbr\u003esame for Muslims now\u003cbr\u003eFri Jan 09 12:10:33 +0000 2015"}, {"group": 1930, "id": 12, "label": "553526862199390208", "shape": "dot", "size": 10, "title": "553526862199390208\u003cbr\u003e@SkyNewsBreak aiden hear hear I\u003cbr\u003ewould have thought social media\u003cbr\u003ewould have been bogged down\u003cbr\u003ewith Muslim well wishers. Sadly\u003cbr\u003enot. Why?\u003cbr\u003eFri Jan 09 12:21:02 +0000 2015"}, {"group": 1930, "id": 9, "label": "553522998888898560", "shape": "dot", "size": 10, "title": "553522998888898560\u003cbr\u003e@galaturco @SkyNewsBreak your the first\u003cbr\u003emuslim person ive seen condem\u003cbr\u003ethese attacks #JeSuisCharlie\u003cbr\u003eFri Jan 09 12:05:41 +0000 2015"}, {"group": 1930, "id": 13, "label": "553531405909901313", "shape": "dot", "size": 10, "title": "553531405909901313\u003cbr\u003e@robertacohen003 @SkyNewsBreak http://t.co/svSROx84OG\u003cbr\u003eFri Jan 09 12:39:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 12, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

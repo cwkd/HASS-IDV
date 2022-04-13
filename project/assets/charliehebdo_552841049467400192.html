@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 559, "id": 0, "label": "552841049467400192", "shape": "dot", "size": 10, "title": "552841049467400192\u003cbr\u003ePeople died today for telling\u003cbr\u003ejokes. #CharlieHebdo\u003cbr\u003eWed Jan 07 14:55:52 +0000 2015"}, {"group": 559, "id": 1, "label": "552841221186793472", "shape": "dot", "size": 10, "title": "552841221186793472\u003cbr\u003e@BRIANMBENDIS rt this http://t.co/us0jhaa6rb\u003cbr\u003eWed Jan 07 14:56:33 +0000 2015"}, {"group": 559, "id": 2, "label": "552841378712281088", "shape": "dot", "size": 10, "title": "552841378712281088\u003cbr\u003e\u201c@BRIANMBENDIS: People died today for\u003cbr\u003etelling jokes. #CharlieHebdo\u201d\u003cbr\u003eWed Jan 07 14:57:10 +0000 2015"}, {"group": 559, "id": 3, "label": "552841655905452033", "shape": "dot", "size": 10, "title": "552841655905452033\u003cbr\u003e@BRIANMBENDIS  Yo should write\u003cbr\u003eabout it my son.\u003cbr\u003eWed Jan 07 14:58:16 +0000 2015"}, {"group": 559, "id": 4, "label": "552841740890411008", "shape": "dot", "size": 10, "title": "552841740890411008\u003cbr\u003e@BRIANMBENDIS I don\u0027t know whether\u003cbr\u003eto be depressed or furious\u003cbr\u003eor a combination of both.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:58:36 +0000 2015"}, {"group": 559, "id": 5, "label": "552842129257820162", "shape": "dot", "size": 10, "title": "552842129257820162\u003cbr\u003e@BRIANMBENDIS It\u0027s good to see\u003cbr\u003ethe worldwide defense of those\u003cbr\u003eartists and journalists. Thanks for\u003cbr\u003ethem.\u003cbr\u003eWed Jan 07 15:00:09 +0000 2015"}, {"group": 559, "id": 6, "label": "552842184744263681", "shape": "dot", "size": 10, "title": "552842184744263681\u003cbr\u003e@BRIANMBENDIS since when is blasphemy\u003cbr\u003ea joke!\u003cbr\u003eWed Jan 07 15:00:22 +0000 2015"}, {"group": 559, "id": 8, "label": "552843187140984832", "shape": "dot", "size": 10, "title": "552843187140984832\u003cbr\u003e@BRIANMBENDIS People were murdered today\u003cbr\u003efor telling jokes. #CharlieHebdo\u003cbr\u003eWed Jan 07 15:04:21 +0000 2015"}, {"group": 559, "id": 9, "label": "552843520500060162", "shape": "dot", "size": 10, "title": "552843520500060162\u003cbr\u003e@BRIANMBENDIS And not particularly funny\u003cbr\u003eones at that.\u003cbr\u003eWed Jan 07 15:05:41 +0000 2015"}, {"group": 559, "id": 10, "label": "552843756802932736", "shape": "dot", "size": 10, "title": "552843756802932736\u003cbr\u003e@BRIANMBENDIS yeah I read that.\u003cbr\u003eA car bomb went off\u003cbr\u003ein front of a synagogue\u003cbr\u003etoo. Shits real in France\u003cbr\u003eright now.\u003cbr\u003eWed Jan 07 15:06:37 +0000 2015"}, {"group": 559, "id": 11, "label": "552845518465146880", "shape": "dot", "size": 10, "title": "552845518465146880\u003cbr\u003e\u201c@BRIANMBENDIS: People died today for\u003cbr\u003etelling jokes. #CharlieHebdo\u201d My thoughts\u003cbr\u003eand prayers go out to\u003cbr\u003ethe victims \u0026amp; their families\u003cbr\u003ein Paris.\u003cbr\u003eWed Jan 07 15:13:37 +0000 2015"}, {"group": 559, "id": 12, "label": "552847753697443842", "shape": "dot", "size": 10, "title": "552847753697443842\u003cbr\u003e@BRIANMBENDIS People died today for\u003cbr\u003etelling jokes. #CharlieHebdo\u003cbr\u003eWed Jan 07 15:22:30 +0000 2015"}, {"group": 559, "id": 13, "label": "552848164924194816", "shape": "dot", "size": 10, "title": "552848164924194816\u003cbr\u003e@BRIANMBENDIS fucking world we lives\u003cbr\u003ein...I\u0027m so angry for this\u003cbr\u003eshit!!!\u003cbr\u003eWed Jan 07 15:24:08 +0000 2015"}, {"group": 559, "id": 14, "label": "552849524893306881", "shape": "dot", "size": 10, "title": "552849524893306881\u003cbr\u003e@BRIANMBENDIS @BigHajjar and sadly, some\u003cbr\u003epeople are making jokes out\u003cbr\u003eof this tragedy.\u003cbr\u003eWed Jan 07 15:29:32 +0000 2015"}, {"group": 559, "id": 16, "label": "552850492200853504", "shape": "dot", "size": 10, "title": "552850492200853504\u003cbr\u003e@BRIANMBENDIS sickening and sad.\u003cbr\u003eWed Jan 07 15:33:23 +0000 2015"}, {"group": 559, "id": 18, "label": "552852184657047552", "shape": "dot", "size": 10, "title": "552852184657047552\u003cbr\u003e\u201c@BRIANMBENDIS: People died today for\u003cbr\u003etelling jokes. #CharlieHebdo\u201d\u003cbr\u003eWed Jan 07 15:40:06 +0000 2015"}, {"group": 559, "id": 19, "label": "552879420768518144", "shape": "dot", "size": 10, "title": "552879420768518144\u003cbr\u003e@BRIANMBENDIS In this case, telling\u003cbr\u003ejokes = shouting truths\u003cbr\u003eWed Jan 07 17:28:20 +0000 2015"}, {"group": 559, "id": 7, "label": "552842873625149440", "shape": "dot", "size": 10, "title": "552842873625149440\u003cbr\u003e@sohailsameja @BRIANMBENDIS whenever it\u0027s funny.\u003cbr\u003eLol\u003cbr\u003eWed Jan 07 15:03:07 +0000 2015"}, {"group": 559, "id": 15, "label": "552849598252077057", "shape": "dot", "size": 10, "title": "552849598252077057\u003cbr\u003e@justariot66 well, fuck you then\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:29:50 +0000 2015"}, {"group": 559, "id": 17, "label": "552851756355694592", "shape": "dot", "size": 10, "title": "552851756355694592\u003cbr\u003e@sohailsameja sorry you\u0027re an intolerant\u003cbr\u003eIslamic cocksucker.\u003cbr\u003eWed Jan 07 15:38:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 139, "id": 0, "label": "552808776492130304", "shape": "dot", "size": 10, "title": "552808776492130304\u003cbr\u003eA sad day for France,\u003cbr\u003efor journalism, for free speech,\u003cbr\u003eand those whose beliefs the\u003cbr\u003eattackers pretend to represent \u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 12:47:37 +0000 2015"}, {"group": 139, "id": 1, "label": "552809422205227010", "shape": "dot", "size": 10, "title": "552809422205227010\u003cbr\u003e@RupertMyers: A sad day for\u003cbr\u003eFrance, for journalism, for free\u003cbr\u003espeech, \u0026amp; those whose beliefs\u003cbr\u003ethe attackers pretend to represent\u003cbr\u003e #CharlieHebdo\u003cbr\u003eWed Jan 07 12:50:11 +0000 2015"}, {"group": 139, "id": 2, "label": "552811005966032896", "shape": "dot", "size": 10, "title": "552811005966032896\u003cbr\u003e@RupertMyers Its a sad day\u003cbr\u003efor Europe \u0026amp; the worst\u003cbr\u003eresponse is to shrink from\u003cbr\u003epublishing satirical or critical works\u003cbr\u003eon Islam \u0026amp; it\u0027s prophet.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:56:29 +0000 2015"}, {"group": 139, "id": 3, "label": "552813845128179712", "shape": "dot", "size": 10, "title": "552813845128179712\u003cbr\u003e@RupertMyers It\u0027s not free speech\u003cbr\u003eto insult somebody !\u003cbr\u003eWed Jan 07 13:07:46 +0000 2015"}, {"group": 139, "id": 4, "label": "552907020752670720", "shape": "dot", "size": 10, "title": "552907020752670720\u003cbr\u003e@RupertMyers @Tweetlawfeet a sad day\u003cbr\u003efor mankind. The act of\u003cbr\u003ea few pretending to represent\u003cbr\u003ethe divine. My god can\u003cbr\u003elaugh at himself\u003cbr\u003eWed Jan 07 19:18:00 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

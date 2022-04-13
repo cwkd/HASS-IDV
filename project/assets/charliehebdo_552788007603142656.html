@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 12, "id": 0, "label": "552788007603142656", "shape": "dot", "size": 10, "title": "552788007603142656\u003cbr\u003e#CharlieHebdo published a cartoon of\u003cbr\u003ethe notorious #ISIS leader last\u003cbr\u003eweek (They\u0027ve just tweeted the\u003cbr\u003epic again). http://t.co/YYyxzNaFFb\u003cbr\u003eWed Jan 07 11:25:05 +0000 2015"}, {"group": 12, "id": 1, "label": "552788244543590400", "shape": "dot", "size": 10, "title": "552788244543590400\u003cbr\u003e@RuwaydaMustafah How is that relevant?\u003cbr\u003ePlease don\u0027t do what everyone\u003cbr\u003ewill do: hotchpotches :(\u003cbr\u003eWed Jan 07 11:26:02 +0000 2015"}, {"group": 12, "id": 2, "label": "552788712678236160", "shape": "dot", "size": 10, "title": "552788712678236160\u003cbr\u003e@RuwaydaMustafah IF the shooting linked\u003cbr\u003eto Muslims, it wont be\u003cbr\u003edue to this image but\u003cbr\u003eearlier ones insulting the Prophet\u003cbr\u003e(saw). (IF)\u003cbr\u003eWed Jan 07 11:27:54 +0000 2015"}, {"group": 12, "id": 3, "label": "552789001602494465", "shape": "dot", "size": 10, "title": "552789001602494465\u003cbr\u003e@RuwaydaMustafah \u0627\u0644\u0644\u0647 \u064a\u062d\u0641\u0638\u0643 \u064a\u0627 \u0634\u064a\u062e\u003cbr\u003e\u0630\u062e\u0631 \u0644\u0644\u0625\u0633\u0644\u0627\u0645 \u062a\u0631\u0628\u064a \u0627\u0644\u0645\u0644\u0627\u062d\u062f\u0629 \u0648\u0627\u0644\u0645\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:29:02 +0000 2015"}, {"group": 12, "id": 5, "label": "552789185333956608", "shape": "dot", "size": 10, "title": "552789185333956608\u003cbr\u003e@RuwaydaMustafah @Peter_Fitz  @PhillipAdams_1 \u003cbr\u003eAfter gutless attack on French\u003cbr\u003ejournalists lets retweet this in\u003cbr\u003edefiance of terror! #auspol\u003cbr\u003eWed Jan 07 11:29:46 +0000 2015"}, {"group": 12, "id": 7, "label": "552789529187598336", "shape": "dot", "size": 10, "title": "552789529187598336\u003cbr\u003e@RuwaydaMustafah re-tweet and distribute it,\u003cbr\u003eno silence aboout islamist terror\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:31:08 +0000 2015"}, {"group": 12, "id": 9, "label": "552793817007411200", "shape": "dot", "size": 10, "title": "552793817007411200\u003cbr\u003e@RuwaydaMustafah @AgentSaffron What does it\u003cbr\u003emean?\u003cbr\u003eWed Jan 07 11:48:11 +0000 2015"}, {"group": 12, "id": 10, "label": "552799272635092993", "shape": "dot", "size": 10, "title": "552799272635092993\u003cbr\u003e@RuwaydaMustafah @Dr_Afaq BREAKING: Paris: 10\u003cbr\u003edead in attack on satirical\u003cbr\u003epaper that poked fun at\u003cbr\u003eMohammed http://t.co/9et92K8Pcd \u2026\u003cbr\u003eWed Jan 07 12:09:51 +0000 2015"}, {"group": 12, "id": 11, "label": "552801305585258496", "shape": "dot", "size": 10, "title": "552801305585258496\u003cbr\u003e@RuwaydaMustafah @FaithJupiter Imagine if one\u003cbr\u003eof your family lost their\u003cbr\u003elife for this crap, islam\u003cbr\u003eis destroying the world one\u003cbr\u003ebody at a time\u003cbr\u003eWed Jan 07 12:17:56 +0000 2015"}, {"group": 12, "id": 12, "label": "552829718190641152", "shape": "dot", "size": 10, "title": "552829718190641152\u003cbr\u003e@RuwaydaMustafah fuck allah and your\u003cbr\u003emotherfucking islamism...\u003cbr\u003eWed Jan 07 14:10:50 +0000 2015"}, {"group": 12, "id": 13, "label": "552976217411170304", "shape": "dot", "size": 10, "title": "552976217411170304\u003cbr\u003e@RuwaydaMustafah FACE IT ! THAT\u003cbr\u003eISIS GUY IS A GOOFBALL\u003cbr\u003eMORON !! #FREE SPEECH !!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 23:52:58 +0000 2015"}, {"group": 12, "id": 14, "label": "552977743063699456", "shape": "dot", "size": 10, "title": "552977743063699456\u003cbr\u003e@RuwaydaMustafah @mikeejoe \nFuck muhammad\u003cbr\u003eWed Jan 07 23:59:02 +0000 2015"}, {"group": 12, "id": 4, "label": "552789134319026176", "shape": "dot", "size": 10, "title": "552789134319026176\u003cbr\u003e@naheemsays How do you know?\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:29:34 +0000 2015"}, {"group": 12, "id": 6, "label": "552789494475538432", "shape": "dot", "size": 10, "title": "552789494475538432\u003cbr\u003e@RuwaydaMustafah Baghdadi isnt a big\u003cbr\u003edeal and many mock him.\u003cbr\u003eMaybe I will be wrong\u003cbr\u003ebut IF it has any\u003cbr\u003elinks to Baghdadi I will\u003cbr\u003ebe surprised.\u003cbr\u003eWed Jan 07 11:31:00 +0000 2015"}, {"group": 12, "id": 8, "label": "552789583700955136", "shape": "dot", "size": 10, "title": "552789583700955136\u003cbr\u003e@RuwaydaMustafah Then again, ISIS are\u003cbr\u003enot sane\u003cbr\u003eWed Jan 07 11:31:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

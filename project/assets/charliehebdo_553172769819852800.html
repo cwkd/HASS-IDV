@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1001, "id": 0, "label": "553172769819852800", "shape": "dot", "size": 10, "title": "553172769819852800\u003cbr\u003eBrilliant. #JeSuisCharlie via @lectrr http://t.co/CSe2EN1Fxg\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:54:00 +0000 2015"}, {"group": 1001, "id": 1, "label": "553173506695770112", "shape": "dot", "size": 10, "title": "553173506695770112\u003cbr\u003e@XopheRobin @lectrr Brilliant!\u003cbr\u003eThu Jan 08 12:56:56 +0000 2015"}, {"group": 1001, "id": 2, "label": "553177594808766464", "shape": "dot", "size": 10, "title": "553177594808766464\u003cbr\u003e\u201c@XopheRobin: Brilliant. #JeSuisCharlie via @lectrr\u003cbr\u003ehttp://t.co/6KpyuurnrE\u201d OUTstanding!!\u003cbr\u003eThu Jan 08 13:13:10 +0000 2015"}, {"group": 1001, "id": 3, "label": "553177794080153600", "shape": "dot", "size": 10, "title": "553177794080153600\u003cbr\u003e@XopheRobin @lectrr A complete GIF\u003cbr\u003eguide to Muslims Denouncing terrorism.\u003cbr\u003ehttp://t.co/s9rGMNFzda\u003cbr\u003eThu Jan 08 13:13:58 +0000 2015"}, {"group": 1001, "id": 4, "label": "553179500205580288", "shape": "dot", "size": 10, "title": "553179500205580288\u003cbr\u003e@XopheRobin @lectrr Et il vas\u003cbr\u003eencore plus, le devenir !\u003cbr\u003e\nCe crayon vas devenir la\u003cbr\u003epire arme contre le sunnisme\u003cbr\u003efascisme.\u003cbr\u003eThu Jan 08 13:20:45 +0000 2015"}, {"group": 1001, "id": 5, "label": "553547494089834497", "shape": "dot", "size": 10, "title": "553547494089834497\u003cbr\u003e@XopheRobin @ElectreIsMore @lectrr plus il\u003cbr\u003edevient petit aussi et jusqu\u2019\u00e0\u003cbr\u003edisparaitre, bof y a mieux...\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:43:01 +0000 2015"}, {"group": 1001, "id": 6, "label": "553547653171412992", "shape": "dot", "size": 10, "title": "553547653171412992\u003cbr\u003e\u201c@XopheRobin: Brilliant. #JeSuisCharlie via @lectrr\u003cbr\u003ehttp://t.co/UR9WN5tN8a\u201d\u003cbr\u003eFri Jan 09 13:43:39 +0000 2015"}, {"group": 1001, "id": 8, "label": "553554865574912001", "shape": "dot", "size": 10, "title": "553554865574912001\u003cbr\u003e\u201c@XopheRobin: Brilliant. #JeSuisCharlie via @lectrr\u003cbr\u003ehttp://t.co/16fwbENQSQ\u201d\u003cbr\u003eFri Jan 09 14:12:19 +0000 2015"}, {"group": 1001, "id": 9, "label": "553564879916109824", "shape": "dot", "size": 10, "title": "553564879916109824\u003cbr\u003e\u201c@XopheRobin: Brilliant. #JeSuisCharlie via @lectrr\u003cbr\u003ehttp://t.co/xmX1M0zUeQ\u201d\u003cbr\u003eFri Jan 09 14:52:06 +0000 2015"}, {"group": 1001, "id": 7, "label": "553552361474760704", "shape": "dot", "size": 10, "title": "553552361474760704\u003cbr\u003e@RainHeart69 @ElectreIsMore @lectrr Il ressemble\u003cbr\u003e\u00e0 Ast\u00e9rix le Gaulois, non?\u003cbr\u003ePetit, droit, aiguis\u00e9 \u0026amp; r\u00e9sistant.\u003cbr\u003eTr\u00e8s bien ce cartoon. :)\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:02:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 5, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

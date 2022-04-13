@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 388, "id": 0, "label": "552829129356496896", "shape": "dot", "size": 10, "title": "552829129356496896\u003cbr\u003e\"Fanaticism is a monster that\u003cbr\u003epretends to be the child\u003cbr\u003eof religion\" Voltaire #JeSuisCharlie\u003cbr\u003eWed Jan 07 14:08:30 +0000 2015"}, {"group": 388, "id": 1, "label": "552829448907927552", "shape": "dot", "size": 10, "title": "552829448907927552\u003cbr\u003e@billybragg what did you liblabcon\u003cbr\u003evoters think was going to\u003cbr\u003ehappen SAVEEUROPEVOTEUKIP\u003cbr\u003eWed Jan 07 14:09:46 +0000 2015"}, {"group": 388, "id": 2, "label": "552830101822636032", "shape": "dot", "size": 10, "title": "552830101822636032\u003cbr\u003e@billybragg @caitlinmoran although not JUST\u003cbr\u003ereligion, as the 20th century\u003cbr\u003esurely tells us.\u003cbr\u003eWed Jan 07 14:12:22 +0000 2015"}, {"group": 388, "id": 3, "label": "552831728264695808", "shape": "dot", "size": 10, "title": "552831728264695808\u003cbr\u003e@billybragg @artlust Neguemos a radicales\u003cbr\u003eislamistas y populistas el acceso\u003cbr\u003ea los medios de comunicaci\u00f3n\u003cbr\u003e#VetoDemocr\u00e1tico por #CharlieHebdo\u003cbr\u003eWed Jan 07 14:18:49 +0000 2015"}, {"group": 388, "id": 4, "label": "552832193882357761", "shape": "dot", "size": 10, "title": "552832193882357761\u003cbr\u003e@billybragg\u003cbr\u003eWed Jan 07 14:20:40 +0000 2015"}, {"group": 388, "id": 5, "label": "552832425017868289", "shape": "dot", "size": 10, "title": "552832425017868289\u003cbr\u003e\u201c@billybragg: \"Fanaticism is a monster\u003cbr\u003ethat pretends to be the\u003cbr\u003echild of religion\" Voltaire #JeSuisCharlie\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:21:35 +0000 2015"}, {"group": 388, "id": 6, "label": "552832618803515392", "shape": "dot", "size": 10, "title": "552832618803515392\u003cbr\u003eRT \u201c@billybragg: \"Fanaticism is a\u003cbr\u003emonster that pretends to be\u003cbr\u003ethe child of religion\" Voltaire\u003cbr\u003e#JeSuisCharlie\u201d\u003cbr\u003eWed Jan 07 14:22:22 +0000 2015"}, {"group": 388, "id": 7, "label": "552833031313317888", "shape": "dot", "size": 10, "title": "552833031313317888\u003cbr\u003e@billybragg did he mean \"claims\"\u003cbr\u003eor \"misrepresents\" by \"pretends\"? Religious\u003cbr\u003efaith should be in the\u003cbr\u003edock, so I hope the\u003cbr\u003eformer #atheism\u003cbr\u003eWed Jan 07 14:24:00 +0000 2015"}, {"group": 388, "id": 10, "label": "552835543692623873", "shape": "dot", "size": 10, "title": "552835543692623873\u003cbr\u003e@billybragg @GrahamPerrettMP So very true!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:33:59 +0000 2015"}, {"group": 388, "id": 12, "label": "552836488321597441", "shape": "dot", "size": 10, "title": "552836488321597441\u003cbr\u003e@billybragg @SimonCollins74 ..and nationalism, and\u003cbr\u003eeconomics, and ..\u003cbr\u003eWed Jan 07 14:37:44 +0000 2015"}, {"group": 388, "id": 14, "label": "552837075217973249", "shape": "dot", "size": 10, "title": "552837075217973249\u003cbr\u003e\u201c@billybragg: \"Fanaticism is a monster\u003cbr\u003ethat pretends to be the\u003cbr\u003echild of religion\" Voltaire #JeSuisCharlie\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:40:04 +0000 2015"}, {"group": 388, "id": 15, "label": "552837253647826944", "shape": "dot", "size": 10, "title": "552837253647826944\u003cbr\u003e@billybragg @caitlinmoran Yet turns out\u003cbr\u003eto be the pus inside\u003cbr\u003ea boil on the arse\u003cbr\u003eof humanity.\u003cbr\u003eWed Jan 07 14:40:47 +0000 2015"}, {"group": 388, "id": 16, "label": "552838627827261442", "shape": "dot", "size": 10, "title": "552838627827261442\u003cbr\u003e#JeSuisCharlie \u201c@billybragg: \"Fanaticism is a\u003cbr\u003emonster that pretends to be\u003cbr\u003ethe child of religion\" Voltaire\u003cbr\u003e#JeSuisCharlie\u201d\u003cbr\u003eWed Jan 07 14:46:14 +0000 2015"}, {"group": 388, "id": 17, "label": "552839289894359041", "shape": "dot", "size": 10, "title": "552839289894359041\u003cbr\u003e\u201c@billybragg: \"Fanaticism is a monster\u003cbr\u003ethat pretends to be the\u003cbr\u003echild of religion\" Voltaire #JeSuisCharlie\u201d\u003cbr\u003e@DoctorChristian  maybe this?\u003cbr\u003eWed Jan 07 14:48:52 +0000 2015"}, {"group": 388, "id": 18, "label": "552841278678110209", "shape": "dot", "size": 10, "title": "552841278678110209\u003cbr\u003e\u201c@billybragg: \"Fanaticism is a monster\u003cbr\u003ethat pretends to be the\u003cbr\u003echild of religion\" Voltaire #JeSuisCharlie\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:56:46 +0000 2015"}, {"group": 388, "id": 19, "label": "552841906602774528", "shape": "dot", "size": 10, "title": "552841906602774528\u003cbr\u003e\u201c@billybragg: \"Fanaticism is a monster\u003cbr\u003ethat pretends to be the\u003cbr\u003echild of religion\" Voltaire #JeSuisCharlie\u201d\u003cbr\u003e#fb\u003cbr\u003eWed Jan 07 14:59:16 +0000 2015"}, {"group": 388, "id": 11, "label": "552835551788040192", "shape": "dot", "size": 10, "title": "552835551788040192\u003cbr\u003e@edward8000 @billybragg Eat a punnet\u003cbr\u003eof dicks\u003cbr\u003eWed Jan 07 14:34:01 +0000 2015"}, {"group": 388, "id": 8, "label": "552833555282550785", "shape": "dot", "size": 10, "title": "552833555282550785\u003cbr\u003e@PJAnthonyH I take it to\u003cbr\u003emean that fanatics use religion\u003cbr\u003eto justify their extreme behavior\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:26:05 +0000 2015"}, {"group": 388, "id": 9, "label": "552834419502096385", "shape": "dot", "size": 10, "title": "552834419502096385\u003cbr\u003e@billybragg yes, but I don\u0027t\u003cbr\u003ethink they do it dishonestly.\u003cbr\u003eThey really do believe this\u003cbr\u003ecrap. That\u0027s what\u0027s so terrifying.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:31 +0000 2015"}, {"group": 388, "id": 20, "label": "552862242501574656", "shape": "dot", "size": 10, "title": "552862242501574656\u003cbr\u003e@billybragg @PJAnthonyH Satire is borderline\u003cbr\u003etiptoeing, using religion as reason\u003cbr\u003eto kill is a human\u003cbr\u003estruggle since centuries\u003cbr\u003eWed Jan 07 16:20:04 +0000 2015"}, {"group": 388, "id": 21, "label": "552903325465976832", "shape": "dot", "size": 10, "title": "552903325465976832\u003cbr\u003e@billybragg Je suis Charlie\u003cbr\u003eWed Jan 07 19:03:19 +0000 2015"}, {"group": 388, "id": 13, "label": "552836836331372546", "shape": "dot", "size": 10, "title": "552836836331372546\u003cbr\u003e@Applemask @billybragg see, liblabcon voters\u003cbr\u003eare horrible stupid people,who can\u0027t\u003cbr\u003edestroy Western Europe quick enough\u003cbr\u003e#guilty\u003cbr\u003eWed Jan 07 14:39:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 11, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 20, "weight": 1}, {"from": 8, "to": 21, "weight": 1}, {"from": 11, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

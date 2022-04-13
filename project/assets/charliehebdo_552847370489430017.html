@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 627, "id": 0, "label": "552847370489430017", "shape": "dot", "size": 10, "title": "552847370489430017\u003cbr\u003eFuck Islam and fuck their\u003cbr\u003epedophile prophet. That\u0027s all.\n\n#CharlieHebdo http://t.co/LlVvy35DUg\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:20:59 +0000 2015"}, {"group": 627, "id": 1, "label": "552848005075058689", "shape": "dot", "size": 10, "title": "552848005075058689\u003cbr\u003e@Bidenshairplugs You\u0027re reported. http://t.co/rDQBwhH6rB\u003cbr\u003eWed Jan 07 15:23:30 +0000 2015"}, {"group": 627, "id": 4, "label": "552850286461460481", "shape": "dot", "size": 10, "title": "552850286461460481\u003cbr\u003e@Bidenshairplugs @girlymctx U are STUPID..!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:32:34 +0000 2015"}, {"group": 627, "id": 11, "label": "552858361763336193", "shape": "dot", "size": 10, "title": "552858361763336193\u003cbr\u003e@Bidenshairplugs God too\u003cbr\u003eWed Jan 07 16:04:39 +0000 2015"}, {"group": 627, "id": 13, "label": "552865419631943680", "shape": "dot", "size": 10, "title": "552865419631943680\u003cbr\u003e@Bidenshairplugs @XsmallJay WAR WITH ISLAM!\u003cbr\u003eTHE FINAL CRUSADE!\u003cbr\u003eWed Jan 07 16:32:42 +0000 2015"}, {"group": 627, "id": 14, "label": "552865601140842496", "shape": "dot", "size": 10, "title": "552865601140842496\u003cbr\u003e@Bidenshairplugs @FemsHaveBallz stupid\u003cbr\u003eWed Jan 07 16:33:25 +0000 2015"}, {"group": 627, "id": 15, "label": "552865647538208768", "shape": "dot", "size": 10, "title": "552865647538208768\u003cbr\u003e@Bidenshairplugs @MickeyJohnson07 uh oh looks\u003cbr\u003elike you are next.\u003cbr\u003eWed Jan 07 16:33:36 +0000 2015"}, {"group": 627, "id": 18, "label": "552868830390026240", "shape": "dot", "size": 10, "title": "552868830390026240\u003cbr\u003e@Bidenshairplugs @hr_hal  couldn\u0027t of\u003cbr\u003esaid it better myself http://t.co/Ih53y6QYCX\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:46:15 +0000 2015"}, {"group": 627, "id": 2, "label": "552849255036383232", "shape": "dot", "size": 10, "title": "552849255036383232\u003cbr\u003e@vickskat @Bidenshairplugs awwwww boo hoo\u003cbr\u003eyou reported him wahhhhhh cry\u003cbr\u003emore you pussy\u003cbr\u003eWed Jan 07 15:28:28 +0000 2015"}, {"group": 627, "id": 16, "label": "552866366022111232", "shape": "dot", "size": 10, "title": "552866366022111232\u003cbr\u003e@vickskat @Bidenshairplugs GOD THANK YOU\u003cbr\u003eFOR PREPARING US CHRISTIANS FOR\u003cbr\u003eTHE FINAL CRUSADE WITH MUSLIM\u003cbr\u003ePIGS! God is Good!\u003cbr\u003eWed Jan 07 16:36:28 +0000 2015"}, {"group": 627, "id": 3, "label": "552849871280308224", "shape": "dot", "size": 10, "title": "552849871280308224\u003cbr\u003e@holmerrld @Bidenshairplugs Let me guess\u003cbr\u003eyou\u0027re going to blame Obama\u003cbr\u003efor the shooting?\u003cbr\u003eWed Jan 07 15:30:55 +0000 2015"}, {"group": 627, "id": 17, "label": "552866569303236609", "shape": "dot", "size": 10, "title": "552866569303236609\u003cbr\u003e@holmerrld @vickskat @Bidenshairplugs Your awesome!\u003cbr\u003eWAR WITH ISLAM!\u003cbr\u003eWed Jan 07 16:37:16 +0000 2015"}, {"group": 627, "id": 6, "label": "552851536645480449", "shape": "dot", "size": 10, "title": "552851536645480449\u003cbr\u003e@vickskat @Bidenshairplugs nope I\u0027m gonna\u003cbr\u003eblame that \"peaceful\" religion. In\u003cbr\u003eaddition I do not see\u003cbr\u003eany Muslims condemning this, as\u003cbr\u003eusual\u003cbr\u003eWed Jan 07 15:37:32 +0000 2015"}, {"group": 627, "id": 5, "label": "552851277517168640", "shape": "dot", "size": 10, "title": "552851277517168640\u003cbr\u003e@ChantalDesigner @Bidenshairplugs I think it\u0027s\u003cbr\u003eG-damned funny HONEY! GET OVER\u003cbr\u003eIT! LOL! SO FUNNY!\u003cbr\u003eWed Jan 07 15:36:30 +0000 2015"}, {"group": 627, "id": 7, "label": "552853969181999104", "shape": "dot", "size": 10, "title": "552853969181999104\u003cbr\u003e@girlymctx @Bidenshairplugs Funy? U are\u003cbr\u003eclue-less \u0026amp; MUCH dumber than\u003cbr\u003eU think..!!\u003cbr\u003eWed Jan 07 15:47:12 +0000 2015"}, {"group": 627, "id": 8, "label": "552854909792845826", "shape": "dot", "size": 10, "title": "552854909792845826\u003cbr\u003e@ChantalDesigner @Bidenshairplugs You figured all\u003cbr\u003ethat out with out even\u003cbr\u003eknowing me?Wow you are a\u003cbr\u003epiece of. .something?Oh its #SHIT!thats\u003cbr\u003eit\u003cbr\u003eWed Jan 07 15:50:56 +0000 2015"}, {"group": 627, "id": 9, "label": "552854955758206976", "shape": "dot", "size": 10, "title": "552854955758206976\u003cbr\u003e@ChantalDesigner @Bidenshairplugs Dumb bitch!\u003cbr\u003eWed Jan 07 15:51:07 +0000 2015"}, {"group": 627, "id": 10, "label": "552855398747611137", "shape": "dot", "size": 10, "title": "552855398747611137\u003cbr\u003e@girlymctx @Bidenshairplugs I responded to\u003cbr\u003eyour dumb comment.. don\u0027t really\u003cbr\u003ehave to know you to\u003cbr\u003eascertain how stupid you are..!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:52:53 +0000 2015"}, {"group": 627, "id": 12, "label": "552861381481877504", "shape": "dot", "size": 10, "title": "552861381481877504\u003cbr\u003e@girlymctx @Bidenshairplugs I feel sorry\u003cbr\u003efor U being brain-washed.. hope\u003cbr\u003eU wake up.. I used\u003cbr\u003eto believe false narrative too..\u003cbr\u003egood luck..!!\u003cbr\u003eWed Jan 07 16:16:39 +0000 2015"}, {"group": 627, "id": 19, "label": "552870276305018881", "shape": "dot", "size": 10, "title": "552870276305018881\u003cbr\u003e@dcj_daniel I don\u0027t condone murder.\u003cbr\u003eIn any instance. But just\u003cbr\u003elooking at it, they would\u003cbr\u003eslaughter you in an instant.\u003cbr\u003eXtians are cowards.\u003cbr\u003eWed Jan 07 16:52:00 +0000 2015"}, {"group": 627, "id": 20, "label": "552884788340588544", "shape": "dot", "size": 10, "title": "552884788340588544\u003cbr\u003e@vickskat I don\u0027t speak to\u003cbr\u003ecowards.  I will see\u003cbr\u003eyou or your kind in\u003cbr\u003ethe streets of America. I\u003cbr\u003ethank God for Holy War!\u003cbr\u003eI Am Christian.\u003cbr\u003eWed Jan 07 17:49:40 +0000 2015"}, {"group": 627, "id": 21, "label": "552890145678979074", "shape": "dot", "size": 10, "title": "552890145678979074\u003cbr\u003e@vickskat It\u0027s statements like this\u003cbr\u003espoke by bare foot pregnant\u003cbr\u003eGerman women in the 30\u0027s\u003cbr\u003ethat allowed Nazis to murder.\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:10:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 16, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 2, "to": 17, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1347, "id": 0, "label": "553535642848989184", "shape": "dot", "size": 10, "title": "553535642848989184\u003cbr\u003eHe\u0027s Muslim and he\u0027s NOT\u003cbr\u003ea TERRORIST  \n\n#MuslimsAreNotTerrorists\n#RIPCaroline \n#JeSuisCharlie\u003cbr\u003ehttp://t.co/mDgNlg3DwS\u003cbr\u003eFri Jan 09 12:55:56 +0000 2015"}, {"group": 1347, "id": 1, "label": "553535982201352192", "shape": "dot", "size": 10, "title": "553535982201352192\u003cbr\u003e@YoimSamy these are the most\u003cbr\u003ehurtful words anyone can receive.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:57:17 +0000 2015"}, {"group": 1347, "id": 2, "label": "553536306089717761", "shape": "dot", "size": 10, "title": "553536306089717761\u003cbr\u003e@YoimSamy yas. so am i\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:58:34 +0000 2015"}, {"group": 1347, "id": 3, "label": "553537440976076801", "shape": "dot", "size": 10, "title": "553537440976076801\u003cbr\u003e@YoimSamy Is this real?\ud83d\ude28\u003cbr\u003eFri Jan 09 13:03:04 +0000 2015"}, {"group": 1347, "id": 5, "label": "553538007546880000", "shape": "dot", "size": 10, "title": "553538007546880000\u003cbr\u003e@YoimSamy I\u0027m Muslim too, but\u003cbr\u003eI\u0027m not terrorist!\n#MuslimAreNotTerrorist\u003cbr\u003eFri Jan 09 13:05:19 +0000 2015"}, {"group": 1347, "id": 6, "label": "553538699258900481", "shape": "dot", "size": 10, "title": "553538699258900481\u003cbr\u003e@YoimSamy Right\u003cbr\u003eFri Jan 09 13:08:04 +0000 2015"}, {"group": 1347, "id": 8, "label": "553539301016100864", "shape": "dot", "size": 10, "title": "553539301016100864\u003cbr\u003e@YoimSamy Zayn is not a\u003cbr\u003eterrorist neither are Muslims leave\u003cbr\u003ethem alone\u003cbr\u003eFri Jan 09 13:10:28 +0000 2015"}, {"group": 1347, "id": 10, "label": "553543845988691969", "shape": "dot", "size": 10, "title": "553543845988691969\u003cbr\u003e@YoimSamy  I\u0027m about to\u003cbr\u003ecry this is so sad\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:28:31 +0000 2015"}, {"group": 1347, "id": 11, "label": "553543972438556673", "shape": "dot", "size": 10, "title": "553543972438556673\u003cbr\u003e@YoimSamy  I\u0027m not a\u003cbr\u003e1d fan but what the\u003cbr\u003efuck man that\u0027s sick and\u003cbr\u003efucking just god people these\u003cbr\u003edays\u003cbr\u003eFri Jan 09 13:29:02 +0000 2015"}, {"group": 1347, "id": 12, "label": "553547846604320768", "shape": "dot", "size": 10, "title": "553547846604320768\u003cbr\u003e@YoimSamy i feel bad for\u003cbr\u003ethe muslims who go through\u003cbr\u003ethis everyday, i think this\u003cbr\u003eis direspectful and rude\u003cbr\u003eFri Jan 09 13:44:25 +0000 2015"}, {"group": 1347, "id": 13, "label": "553550137985740800", "shape": "dot", "size": 10, "title": "553550137985740800\u003cbr\u003e@YoimSamy \ud83d\udc94\ud83d\udc94\ud83d\udc50 He\u0027s an Angel\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:53:32 +0000 2015"}, {"group": 1347, "id": 14, "label": "553555041601470466", "shape": "dot", "size": 10, "title": "553555041601470466\u003cbr\u003e@YoimSamy all true muslims are\u003cbr\u003eno terrorists! Terrorists are those\u003cbr\u003ewho interpret the Koran false!\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:13:01 +0000 2015"}, {"group": 1347, "id": 15, "label": "553555793182990336", "shape": "dot", "size": 10, "title": "553555793182990336\u003cbr\u003e@YoimSamy he\u0027s really Muslim ?\u003cbr\u003e\ud83d\ude31\u2665\ufe0f\u003cbr\u003eFri Jan 09 14:16:00 +0000 2015"}, {"group": 1347, "id": 16, "label": "553564010793009152", "shape": "dot", "size": 10, "title": "553564010793009152\u003cbr\u003e\u201c@YoimSamy: He\u0027s Muslim and he\u0027s\u003cbr\u003eNOT a TERRORIST  \n\n#MuslimsAreNotTerrorists\n#RIPCaroline\u003cbr\u003e\n\n http://t.co/wVqOZqZmkX\u201d this broke my\u003cbr\u003eheart\u003cbr\u003eFri Jan 09 14:48:39 +0000 2015"}, {"group": 1347, "id": 17, "label": "553609230523969536", "shape": "dot", "size": 10, "title": "553609230523969536\u003cbr\u003e@YoimSamy Why should involve zayn?\u003cbr\u003eHe was innocent. Pity Zayn\u003cbr\u003e\ud83d\ude22\u003cbr\u003eFri Jan 09 17:48:20 +0000 2015"}, {"group": 1347, "id": 4, "label": "553537550074523649", "shape": "dot", "size": 10, "title": "553537550074523649\u003cbr\u003e@Rahaaaaaaaaaf YES :(\u003cbr\u003eFri Jan 09 13:03:30 +0000 2015"}, {"group": 1347, "id": 7, "label": "553538788857634816", "shape": "dot", "size": 10, "title": "553538788857634816\u003cbr\u003e@YoimSamy @Rahaaaaaaaaaf When was it\u003cbr\u003e? \ud83d\ude28\u003cbr\u003eFri Jan 09 13:08:26 +0000 2015"}, {"group": 1347, "id": 9, "label": "553539378715193344", "shape": "dot", "size": 10, "title": "553539378715193344\u003cbr\u003e@YoimSamy This is so mean\u003cbr\u003e\ud83d\ude14\ud83d\ude13\u003cbr\u003eFri Jan 09 13:10:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

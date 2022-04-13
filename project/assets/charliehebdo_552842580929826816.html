@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 573, "id": 0, "label": "552842580929826816", "shape": "dot", "size": 10, "title": "552842580929826816\u003cbr\u003eWhen you feel justified in\u003cbr\u003ekilling people over cartoons, you\u003cbr\u003ehave clearly lost your mind.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 15:01:57 +0000 2015"}, {"group": 573, "id": 1, "label": "552843982238388225", "shape": "dot", "size": 10, "title": "552843982238388225\u003cbr\u003e@BinaShah none justifying, once Sddam\u003cbr\u003esaid war of Iraq will\u003cbr\u003ebecome mother of wars its\u003cbr\u003eseems true,its outcome and aftermath\u003cbr\u003eof that\u003cbr\u003eWed Jan 07 15:07:31 +0000 2015"}, {"group": 573, "id": 2, "label": "552844302548602880", "shape": "dot", "size": 10, "title": "552844302548602880\u003cbr\u003e@binashah Plz read my blog\u003cbr\u003ehttps://t.co/o9pAjGlm6f\u003cbr\u003eWed Jan 07 15:08:47 +0000 2015"}, {"group": 573, "id": 3, "label": "552845253825527808", "shape": "dot", "size": 10, "title": "552845253825527808\u003cbr\u003e@BinaShah there are Muslims on\u003cbr\u003ehis hashtag disagreeing with you.\u003cbr\u003eIt is amazing to me.\u003cbr\u003eBut is widespread support for\u003cbr\u003ekilling those who insult\u003cbr\u003eWed Jan 07 15:12:34 +0000 2015"}, {"group": 573, "id": 6, "label": "552852863454826499", "shape": "dot", "size": 10, "title": "552852863454826499\u003cbr\u003e@BinaShah MSM blind to reality\u003cbr\u003eof global #OperationChaos #falseflag attks\u003cbr\u003eto push endless war: journo\u003cbr\u003ehttp://t.co/l3w6uk6wcz\u003cbr\u003eWed Jan 07 15:42:48 +0000 2015"}, {"group": 573, "id": 7, "label": "552868851772170241", "shape": "dot", "size": 10, "title": "552868851772170241\u003cbr\u003e@BinaShah when you loss your\u003cbr\u003edignity insulting others believes with\u003cbr\u003eofficial silence, some one has\u003cbr\u003eto Straight the things up.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:46:20 +0000 2015"}, {"group": 573, "id": 9, "label": "552870218238685184", "shape": "dot", "size": 10, "title": "552870218238685184\u003cbr\u003e@BinaShah I totally agree.\u003cbr\u003eWed Jan 07 16:51:46 +0000 2015"}, {"group": 573, "id": 12, "label": "552872246398570496", "shape": "dot", "size": 10, "title": "552872246398570496\u003cbr\u003e@BinaShah  true\u003cbr\u003eWed Jan 07 16:59:50 +0000 2015"}, {"group": 573, "id": 13, "label": "552874929792618498", "shape": "dot", "size": 10, "title": "552874929792618498\u003cbr\u003e@BinaShah nabii ka hurmatt sa\u003cbr\u003eagY ha kuch muslman ka\u003cbr\u003elaYa...\u003cbr\u003eWed Jan 07 17:10:29 +0000 2015"}, {"group": 573, "id": 14, "label": "554118084416393216", "shape": "dot", "size": 10, "title": "554118084416393216\u003cbr\u003e@BinaShah Well said! 100 percent\u003cbr\u003eagree with you. @QMulla\u003cbr\u003eSun Jan 11 03:30:20 +0000 2015"}, {"group": 573, "id": 4, "label": "552845347916378113", "shape": "dot", "size": 10, "title": "552845347916378113\u003cbr\u003e@provisional25 They\u0027re wrong.\u003cbr\u003eWed Jan 07 15:12:56 +0000 2015"}, {"group": 573, "id": 5, "label": "552845453948362752", "shape": "dot", "size": 10, "title": "552845453948362752\u003cbr\u003e@BinaShah they\u0027re so numerous I\u003cbr\u003eabsolutely despair\u003cbr\u003eWed Jan 07 15:13:22 +0000 2015"}, {"group": 573, "id": 8, "label": "552869031234265089", "shape": "dot", "size": 10, "title": "552869031234265089\u003cbr\u003e@ISLAMICflames I understand what you\u003cbr\u003eare saying, but killing like\u003cbr\u003ethis is haram. May Allah\u003cbr\u003eguide us to the right\u003cbr\u003epath.\u003cbr\u003eWed Jan 07 16:47:03 +0000 2015"}, {"group": 573, "id": 10, "label": "552871043811921921", "shape": "dot", "size": 10, "title": "552871043811921921\u003cbr\u003e@BinaShah Ameen ,hitting with a\u003cbr\u003ebullet (Currently) or throwing arrows\u003cbr\u003e(centuries ago),what\u0027s the difference? reasons\u003cbr\u003ematter not means\u003cbr\u003eWed Jan 07 16:55:03 +0000 2015"}, {"group": 573, "id": 11, "label": "552871235936219136", "shape": "dot", "size": 10, "title": "552871235936219136\u003cbr\u003e@BinaShah I again agree. We\u003cbr\u003eshould not try to contractors\u003cbr\u003efor world peace. We should\u003cbr\u003efirst put our house in\u003cbr\u003eorder.Stop sectarian divisions\u003cbr\u003eWed Jan 07 16:55:49 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

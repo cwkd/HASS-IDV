@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1856, "id": 0, "label": "553473416905629696", "shape": "dot", "size": 10, "title": "553473416905629696\u003cbr\u003eConvoy of police cars rushing\u003cbr\u003etoward town northeast of Paris\u003cbr\u003eamid reports of hostages taken\u003cbr\u003e- @FRANCE24 broadcast http://t.co/ZFJYh80uxy\u003cbr\u003eFri Jan 09 08:48:40 +0000 2015"}, {"group": 1856, "id": 1, "label": "553473938915729409", "shape": "dot", "size": 10, "title": "553473938915729409\u003cbr\u003e@BreakingNews @FRANCE24 Go get \u0027em!!!!\u003cbr\u003e  String them up\u003cbr\u003eand let wild dogs at\u003cbr\u003ethem!!!!!\u003cbr\u003eFri Jan 09 08:50:44 +0000 2015"}, {"group": 1856, "id": 2, "label": "553474676643872768", "shape": "dot", "size": 10, "title": "553474676643872768\u003cbr\u003e@BreakingNews @tragedyman @FRANCE24 heard it\u003cbr\u003eon RTL \u0026amp;along France Inter\u003cbr\u003estate radio pb is in\u003cbr\u003e#hostages #expectingbadending\u003cbr\u003eFri Jan 09 08:53:40 +0000 2015"}, {"group": 1856, "id": 6, "label": "553477138561904640", "shape": "dot", "size": 10, "title": "553477138561904640\u003cbr\u003e@BreakingNews @FRANCE24\u003cbr\u003eFri Jan 09 09:03:27 +0000 2015"}, {"group": 1856, "id": 8, "label": "553479676191326210", "shape": "dot", "size": 10, "title": "553479676191326210\u003cbr\u003e@BreakingNews @FRANCE24 world of murders\u003cbr\u003eour politicians are responsible because\u003cbr\u003ethey believe in killing in\u003cbr\u003ethe name of democracy.\u003cbr\u003eFri Jan 09 09:13:32 +0000 2015"}, {"group": 1856, "id": 3, "label": "553474951081390081", "shape": "dot", "size": 10, "title": "553474951081390081\u003cbr\u003e@AngieB5 @BreakingNews @FRANCE24 #JeSuisCharlie \u0027les\u003cbr\u003epetits gars\u0027 of Charlie would\u003cbr\u003ehave wanted justice via tribunal\u003cbr\u003enot lynch\u003cbr\u003eFri Jan 09 08:54:46 +0000 2015"}, {"group": 1856, "id": 16, "label": "553502380902584320", "shape": "dot", "size": 10, "title": "553502380902584320\u003cbr\u003e@AngieB5 @BreakingNews @FRANCE24 wow i\u0027m\u003cbr\u003enot saying those terrorists dont\u003cbr\u003edeserve punishment, but hopfully ur\u003cbr\u003e\"enemies\" dont think like u...\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:43:45 +0000 2015"}, {"group": 1856, "id": 17, "label": "553503052314206208", "shape": "dot", "size": 10, "title": "553503052314206208\u003cbr\u003e@AngieB5 @BreakingNews @FRANCE24 there r\u003cbr\u003eother ways to eliminate a\u003cbr\u003eproblem, without living out perverted\u003cbr\u003epsychopatic phantasies girl \ud83d\ude0a\u003cbr\u003eFri Jan 09 10:46:25 +0000 2015"}, {"group": 1856, "id": 4, "label": "553475379449839616", "shape": "dot", "size": 10, "title": "553475379449839616\u003cbr\u003e@morangles @BreakingNews @FRANCE24 Of course.\u003cbr\u003eSigh. Why should this have\u003cbr\u003ea good ending? (Whatever a\u003cbr\u003egood ending for this incident\u003cbr\u003ewould be.)\u003cbr\u003eFri Jan 09 08:56:28 +0000 2015"}, {"group": 1856, "id": 5, "label": "553476445800898560", "shape": "dot", "size": 10, "title": "553476445800898560\u003cbr\u003e@morangles Fair point.  But\u003cbr\u003ethey in some ways, they\u003cbr\u003edon\u0027t deserve to share the\u003cbr\u003esame air as the families\u003cbr\u003eof all affected.\u003cbr\u003eFri Jan 09 09:00:42 +0000 2015"}, {"group": 1856, "id": 7, "label": "553478808461119488", "shape": "dot", "size": 10, "title": "553478808461119488\u003cbr\u003e@tragedyman @BreakingNews @FRANCE24 #badending would\u003cbr\u003ebe more killed #hostages Ennding\u003cbr\u003eas #CharlesHebdo spirit is justice/tribunal\u003cbr\u003enot lynch\u003cbr\u003eFri Jan 09 09:10:05 +0000 2015"}, {"group": 1856, "id": 9, "label": "553482940848807936", "shape": "dot", "size": 10, "title": "553482940848807936\u003cbr\u003e@AngieB5 they deserve same air\u003cbr\u003esince it is the air\u003cbr\u003eof freedom of speech/belief etc\u003cbr\u003eit is our freedom which\u003cbr\u003ewill free them from #intolerance\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:26:30 +0000 2015"}, {"group": 1856, "id": 10, "label": "553483192288948224", "shape": "dot", "size": 10, "title": "553483192288948224\u003cbr\u003e@AngieB5 Without freedom to chastise\u003cbr\u003ethere is no sincere admiration\u003cbr\u003e\u0026amp; opposite is true it\u003cbr\u003eis this these lost people\u003cbr\u003eare opposing #freedom\u003cbr\u003eFri Jan 09 09:27:30 +0000 2015"}, {"group": 1856, "id": 11, "label": "553483429527162881", "shape": "dot", "size": 10, "title": "553483429527162881\u003cbr\u003e@AngieB5 freedom cannot be curtlaied\u003cbr\u003eto fit this or that\u003cbr\u003eagenda Them finally getting \u0027it\u0027\u003cbr\u003eas what it means to\u003cbr\u003ebe free in one\u0027s head\u003cbr\u003ewill be\u003cbr\u003eFri Jan 09 09:28:27 +0000 2015"}, {"group": 1856, "id": 12, "label": "553483645546422272", "shape": "dot", "size": 10, "title": "553483645546422272\u003cbr\u003e@AngieB5 best homage to the\u003cbr\u003eslain God knows I was\u003cbr\u003enot seeing eye to eye\u003cbr\u003ew/ #CharlieHebdo but they have\u003cbr\u003ethe right to express their\u003cbr\u003edifference\u003cbr\u003eFri Jan 09 09:29:18 +0000 2015"}, {"group": 1856, "id": 13, "label": "553483994856427520", "shape": "dot", "size": 10, "title": "553483994856427520\u003cbr\u003e@AngieB5 whereas powerhungry clerics are\u003cbr\u003etrying to commit holdup on\u003cbr\u003edemocracy which is unacceptable these\u003cbr\u003e#lostsouls are victims of\u003cbr\u003eFri Jan 09 09:30:42 +0000 2015"}, {"group": 1856, "id": 14, "label": "553484231700410369", "shape": "dot", "size": 10, "title": "553484231700410369\u003cbr\u003e@AngieB5 Arabic peninsula/salafists/integrists/islamists which are\u003cbr\u003enot muslims these clerics are\u003cbr\u003elike nazis Germans are not\u003cbr\u003ebig nuance\u003cbr\u003eFri Jan 09 09:31:38 +0000 2015"}, {"group": 1856, "id": 15, "label": "553484277208195072", "shape": "dot", "size": 10, "title": "553484277208195072\u003cbr\u003e@morangles So should we buy\u003cbr\u003ethem nice new shiny cars\u003cbr\u003eand an all expense paid\u003cbr\u003etrip to the Bahamas?\u003cbr\u003eFri Jan 09 09:31:49 +0000 2015"}, {"group": 1856, "id": 20, "label": "553632877225582592", "shape": "dot", "size": 10, "title": "553632877225582592\u003cbr\u003e@AngieB5 NO but we must\u003cbr\u003enot lower ourselves using their\u003cbr\u003eweapons as not to debase\u003cbr\u003eourselves we are worthier than\u003cbr\u003ethem and so are our\u003cbr\u003evalues\u003cbr\u003eFri Jan 09 19:22:18 +0000 2015"}, {"group": 1856, "id": 18, "label": "553505420455583744", "shape": "dot", "size": 10, "title": "553505420455583744\u003cbr\u003e@SelemSelemak After what they\u0027re continuing\u003cbr\u003eto do?? Lord knows how\u003cbr\u003emany people they\u0027re holding hostage\u003cbr\u003enow \u0026amp; killing/killed. You\u0027re too\u003cbr\u003esoft\u003cbr\u003eFri Jan 09 10:55:50 +0000 2015"}, {"group": 1856, "id": 19, "label": "553505773339574272", "shape": "dot", "size": 10, "title": "553505773339574272\u003cbr\u003e@AngieB5 try creating your world,\u003cbr\u003ethe way you can survive\u003cbr\u003ein it.\u003cbr\u003eFri Jan 09 10:57:14 +0000 2015"}, {"group": 1856, "id": 21, "label": "553650812908363777", "shape": "dot", "size": 10, "title": "553650812908363777\u003cbr\u003e@morangles Definitely. I get that.\u003cbr\u003eBut we aren\u0027t talking about\u003cbr\u003ereg human beings.These two were\u003cbr\u003ethings ones worst nightmare couldn\u0027t\u003cbr\u003edream up\u003cbr\u003eFri Jan 09 20:33:34 +0000 2015"}, {"group": 1856, "id": 22, "label": "553702963924185088", "shape": "dot", "size": 10, "title": "553702963924185088\u003cbr\u003e@AngieB5 If we slunk down\u003cbr\u003eto their level, they win.TRrust\u003cbr\u003eme they are regular human\u003cbr\u003ecowards Full 7CapitalSinners Hell is\u003cbr\u003efull of them\u003cbr\u003eSat Jan 10 00:00:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 16, "weight": 1}, {"from": 1, "to": 17, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 5, "to": 10, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 5, "to": 12, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 5, "to": 14, "weight": 1}, {"from": 10, "to": 15, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

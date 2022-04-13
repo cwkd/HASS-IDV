@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 554, "id": 0, "label": "552840805678084096", "shape": "dot", "size": 10, "title": "552840805678084096\u003cbr\u003eSad truth, is that if\u003cbr\u003eu crticize #islam even after\u003cbr\u003e#CharlieHebdo massacre, u wl still\u003cbr\u003eb labeled \u0027right wing fanatic\u0027\u003cbr\u003eor islamophobic!\u003cbr\u003eWed Jan 07 14:54:54 +0000 2015"}, {"group": 554, "id": 1, "label": "552841131268927491", "shape": "dot", "size": 10, "title": "552841131268927491\u003cbr\u003e@fgautier26 Aucun cause ne saurait\u003cbr\u003e justifier ces crimes odieux.#CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:56:11 +0000 2015"}, {"group": 554, "id": 2, "label": "552841254477004800", "shape": "dot", "size": 10, "title": "552841254477004800\u003cbr\u003e@fgautier26 Totally agree.\u003cbr\u003eWed Jan 07 14:56:41 +0000 2015"}, {"group": 554, "id": 3, "label": "552841289163476992", "shape": "dot", "size": 10, "title": "552841289163476992\u003cbr\u003e@fgautier26 Islam is imperfect and\u003cbr\u003eignorant, just like Hinduism! Hinduism\u003cbr\u003eis dumb, oppressive and pathetic!\u003cbr\u003eIs that offensive to you?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:56:49 +0000 2015"}, {"group": 554, "id": 4, "label": "552841563831672835", "shape": "dot", "size": 10, "title": "552841563831672835\u003cbr\u003e@fgautier26 Islam is Evil n\u003cbr\u003eSatanic. But still people will\u003cbr\u003egloriously show their liberal side\u003cbr\u003en defend it.\u003cbr\u003eWed Jan 07 14:57:54 +0000 2015"}, {"group": 554, "id": 5, "label": "552842158789894146", "shape": "dot", "size": 10, "title": "552842158789894146\u003cbr\u003e@fgautier26 @Chellaney liberal society can\u003cbr\u003eno longer shy away from\u003cbr\u003ethe problem, #religionofpeace needs to\u003cbr\u003ebe rescued from loonies\u003cbr\u003eWed Jan 07 15:00:16 +0000 2015"}, {"group": 554, "id": 6, "label": "552842614483873793", "shape": "dot", "size": 10, "title": "552842614483873793\u003cbr\u003e@fgautier26 and ofcourse what dosent\u003cbr\u003esuit these islamist can always\u003cbr\u003ebe branded as a conspiracy\u003cbr\u003eof the west..\u003cbr\u003eWed Jan 07 15:02:05 +0000 2015"}, {"group": 554, "id": 7, "label": "552843261392351232", "shape": "dot", "size": 10, "title": "552843261392351232\u003cbr\u003e@fgautier26 Can any Doctor anywhere\u003cbr\u003ein the world find a\u003cbr\u003ecure for this Sickular mindset.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:04:39 +0000 2015"}, {"group": 554, "id": 9, "label": "552843624388775937", "shape": "dot", "size": 10, "title": "552843624388775937\u003cbr\u003e@fgautier26 quel dommage. Et on\u003cbr\u003ea pas le droit de\u003cbr\u003ecritique la religion.\u003cbr\u003eWed Jan 07 15:06:06 +0000 2015"}, {"group": 554, "id": 10, "label": "552843695708712960", "shape": "dot", "size": 10, "title": "552843695708712960\u003cbr\u003e@fgautier26 Because it\u0027s islamophobic.\u003cbr\u003eWed Jan 07 15:06:23 +0000 2015"}, {"group": 554, "id": 11, "label": "552843801086017536", "shape": "dot", "size": 10, "title": "552843801086017536\u003cbr\u003e@fgautier26 will print newspapers publish\u003cbr\u003eone of #CharlieHebdo cartoons on\u003cbr\u003etheir front page with black\u003cbr\u003eborder as a mark of\u003cbr\u003eprotest?\u003cbr\u003eWed Jan 07 15:06:48 +0000 2015"}, {"group": 554, "id": 12, "label": "552844233313234945", "shape": "dot", "size": 10, "title": "552844233313234945\u003cbr\u003e@fgautier26 @Swamy39 so true\u003cbr\u003eWed Jan 07 15:08:31 +0000 2015"}, {"group": 554, "id": 13, "label": "552846647890165760", "shape": "dot", "size": 10, "title": "552846647890165760\u003cbr\u003e@fgautier26 @TarekFatah @mustikhan true\u003cbr\u003eWed Jan 07 15:18:06 +0000 2015"}, {"group": 554, "id": 14, "label": "552846989197840384", "shape": "dot", "size": 10, "title": "552846989197840384\u003cbr\u003e@fgautier26 @___neeru IDGAF! This is\u003cbr\u003efundamentalism showing it\u0027s TRUE COLOUR!\u003cbr\u003eNO ONE in their right\u003cbr\u003emind condone this!\u003cbr\u003eWed Jan 07 15:19:28 +0000 2015"}, {"group": 554, "id": 15, "label": "552847711427239936", "shape": "dot", "size": 10, "title": "552847711427239936\u003cbr\u003e@fgautier26 \rWen d Cowards with\u003cbr\u003ed Gun\rMake d People on\u003cbr\u003ethe Run\rRewards Galore On deir\u003cbr\u003eHead\rPutting Innocents in the Dead\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:22:20 +0000 2015"}, {"group": 554, "id": 16, "label": "552858752857018369", "shape": "dot", "size": 10, "title": "552858752857018369\u003cbr\u003e@fgautier26 @a_truthsayer FG I agree\u003cbr\u003ebut carry on with your\u003cbr\u003erighteous work against this barbarism!\u003cbr\u003eHope French ppl will recover\u003cbr\u003equick!\u003cbr\u003eWed Jan 07 16:06:12 +0000 2015"}, {"group": 554, "id": 17, "label": "552859066263797761", "shape": "dot", "size": 10, "title": "552859066263797761\u003cbr\u003e@fgautier26 @BroadWit why do u\u003cbr\u003ethink we hindus dont react\u003cbr\u003e:D .. because we know\u003cbr\u003esome things are a nuisance,\u003cbr\u003eu just ignore and move\u003cbr\u003eon\u003cbr\u003eWed Jan 07 16:07:27 +0000 2015"}, {"group": 554, "id": 18, "label": "552860241315250177", "shape": "dot", "size": 10, "title": "552860241315250177\u003cbr\u003e@fgautier26 condemning all Muslims instead\u003cbr\u003eof the few extremists responsible\u003cbr\u003eis disgusting. They are not\u003cbr\u003eto blame.\u003cbr\u003eWed Jan 07 16:12:07 +0000 2015"}, {"group": 554, "id": 8, "label": "552843433794998272", "shape": "dot", "size": 10, "title": "552843433794998272\u003cbr\u003e@niff_tee @fgautier26 My family follows\u003cbr\u003eHinduism..however I do not pray\u003cbr\u003eand they don\u0027t have a\u003cbr\u003eproblem with that. At least\u003cbr\u003eI am not forced\u003cbr\u003eWed Jan 07 15:05:20 +0000 2015"}, {"group": 554, "id": 19, "label": "552874451071553536", "shape": "dot", "size": 10, "title": "552874451071553536\u003cbr\u003e@vatz_rooniekins @niff_tee @fgautier26 veda\u0027s say..uh\u003cbr\u003ednt hav to pray.uh just\u003cbr\u003ehav to do ur karma.u\u003cbr\u003estill follow hiinduiism bro :p\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:08:35 +0000 2015"}, {"group": 554, "id": 20, "label": "552875001280344064", "shape": "dot", "size": 10, "title": "552875001280344064\u003cbr\u003e@Binky2607 @fgautier26 prblm iis..even the\u003cbr\u003emoderate ones dnt hav courage\u003cbr\u003eto condemn d fundamentaliists.. both\u003cbr\u003er responsiible for thiis\u003cbr\u003eWed Jan 07 17:10:46 +0000 2015"}, {"group": 554, "id": 21, "label": "553067644316692481", "shape": "dot", "size": 10, "title": "553067644316692481\u003cbr\u003e@Shiiv3 @vatz_rooniekins @fgautier26 and my\u003cbr\u003ekarma is to expose the\u003cbr\u003efraud conjecture of the karma\u003cbr\u003etheory used to oppress dalits\u003cbr\u003e\u003cbr\u003eThu Jan 08 05:56:16 +0000 2015"}, {"group": 554, "id": 22, "label": "553084781412364289", "shape": "dot", "size": 10, "title": "553084781412364289\u003cbr\u003e@niff_tee @Shiiv3 @fgautier26 yaar shave\u003cbr\u003eto karle pehle\u003cbr\u003eThu Jan 08 07:04:22 +0000 2015"}, {"group": 554, "id": 23, "label": "553086794791538689", "shape": "dot", "size": 10, "title": "553086794791538689\u003cbr\u003e@vatz_rooniekins @Shiiv3 @fgautier26 wait how\u003cbr\u003ecan I offend you hmm\u003cbr\u003eKrishna was a womenizer... sita\u003cbr\u003efell for Ravan ... hmm\u003cbr\u003eDraupdi had 5some\u003cbr\u003eThu Jan 08 07:12:22 +0000 2015"}, {"group": 554, "id": 24, "label": "553115531692093440", "shape": "dot", "size": 10, "title": "553115531692093440\u003cbr\u003e@vatz_rooniekins @niff_tee @fgautier26 mana krte\u003cbr\u003ehai na..quran me..coz they thiink\u003cbr\u003edono me sex ho jayega.aiisii\u003cbr\u003ehii terii mentaliity h\u003cbr\u003eThu Jan 08 09:06:33 +0000 2015"}, {"group": 554, "id": 25, "label": "553115627771019265", "shape": "dot", "size": 10, "title": "553115627771019265\u003cbr\u003e@vatz_rooniekins @niff_tee @fgautier26 pehle thk\u003cbr\u003ese mahabharat padh..shrii kriishna kii\u003cbr\u003epatniia naii thii wo ye\u003cbr\u003ebii pata krle..kyu shadi krn\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:06:56 +0000 2015"}, {"group": 554, "id": 26, "label": "553115644137201664", "shape": "dot", "size": 10, "title": "553115644137201664\u003cbr\u003e@vatz_rooniekins @niff_tee @fgautier26 padii unhe\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:07:00 +0000 2015"}, {"group": 554, "id": 27, "label": "553115772512243712", "shape": "dot", "size": 10, "title": "553115772512243712\u003cbr\u003e@vatz_rooniekins @niff_tee @fgautier26 sale adhe\u003cbr\u003eadhurii knwledge walo ..tum jese\u003cbr\u003ehii log hote h jo\u003cbr\u003econvert hoke suwar bante h..\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:07:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 8, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 22, "to": 26, "weight": 1}, {"from": 22, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

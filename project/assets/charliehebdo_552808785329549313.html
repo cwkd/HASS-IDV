@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 140, "id": 0, "label": "552808785329549313", "shape": "dot", "size": 10, "title": "552808785329549313\u003cbr\u003eFrench media says cartoonist behind\u003cbr\u003eoriginal Prophet cartoon is dead\u003cbr\u003e#CharlieHebdo via @EricWRandolph\u003cbr\u003eWed Jan 07 12:47:39 +0000 2015"}, {"group": 140, "id": 1, "label": "552810367114833920", "shape": "dot", "size": 10, "title": "552810367114833920\u003cbr\u003e@aellick @EricWRandolph his death won\u0027t\u003cbr\u003ebe in vain.\u003cbr\u003eWed Jan 07 12:53:56 +0000 2015"}, {"group": 140, "id": 2, "label": "552813157543313408", "shape": "dot", "size": 10, "title": "552813157543313408\u003cbr\u003e@aellick @ericwrandolph Ce r\u00e9sultat Thecmha\u003cbr\u003esur l\u0027islam et le proph\u00e8te\u003cbr\u003eMahomet devrait \u00eatre mis sur\u003cbr\u003ele peuple de France pour\u003cbr\u003earr\u00eater ces\u003cbr\u003eWed Jan 07 13:05:02 +0000 2015"}, {"group": 140, "id": 3, "label": "552816723955445760", "shape": "dot", "size": 10, "title": "552816723955445760\u003cbr\u003e@aellick But wasn\u0027t the original\u003cbr\u003ecartoon made by a Danish\u003cbr\u003ecartoonist? @anubhabhonsle @EricWRandolph\u003cbr\u003eWed Jan 07 13:19:12 +0000 2015"}, {"group": 140, "id": 4, "label": "552817995097968640", "shape": "dot", "size": 10, "title": "552817995097968640\u003cbr\u003e@aellick @EricWRandolph @wajih_sani Did any\u003cbr\u003egroup claim the attack?\u003cbr\u003eWed Jan 07 13:24:15 +0000 2015"}, {"group": 140, "id": 5, "label": "552818575082524672", "shape": "dot", "size": 10, "title": "552818575082524672\u003cbr\u003e@annavetticad different publication and artist,\u003cbr\u003ei believe.\u003cbr\u003eWed Jan 07 13:26:33 +0000 2015"}, {"group": 140, "id": 6, "label": "552819605199011842", "shape": "dot", "size": 10, "title": "552819605199011842\u003cbr\u003e@aellick So is the Danish\u003cbr\u003ecartoonist safe?\u003cbr\u003eWed Jan 07 13:30:39 +0000 2015"}, {"group": 140, "id": 7, "label": "552820102408966144", "shape": "dot", "size": 10, "title": "552820102408966144\u003cbr\u003e@annavetticad http://t.co/7jiz8zu0Zd\u003cbr\u003eWed Jan 07 13:32:37 +0000 2015"}, {"group": 140, "id": 8, "label": "552820113586413568", "shape": "dot", "size": 10, "title": "552820113586413568\u003cbr\u003e@annavetticad YES @aellick\u003cbr\u003eWed Jan 07 13:32:40 +0000 2015"}, {"group": 140, "id": 9, "label": "552821619031158786", "shape": "dot", "size": 10, "title": "552821619031158786\u003cbr\u003e@aellick Tks. I guess the\u003cbr\u003eFrench press is referring to\u003cbr\u003ethe #CharlieHebdo cartoonist who was\u003cbr\u003ecritical. This is terrible news.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:38:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

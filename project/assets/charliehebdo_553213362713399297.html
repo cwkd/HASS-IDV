@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1150, "id": 0, "label": "553213362713399297", "shape": "dot", "size": 10, "title": "553213362713399297\u003cbr\u003eThese cartoons are poignant tributes\u003cbr\u003eto victims of the Charlie\u003cbr\u003eHebdo attack http://t.co/R59wUj58Pp http://t.co/5BhfsdNYfe\u003cbr\u003eThu Jan 08 15:35:18 +0000 2015"}, {"group": 1150, "id": 1, "label": "553213786790707200", "shape": "dot", "size": 10, "title": "553213786790707200\u003cbr\u003e\u201c@Independent: These cartoons are poignant\u003cbr\u003etributes to victims of the\u003cbr\u003eCharlie Hebdo attack http://t.co/xZ4LqPWWHw http://t.co/L5THc3Ez4L\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:36:59 +0000 2015"}, {"group": 1150, "id": 2, "label": "553216641526296577", "shape": "dot", "size": 10, "title": "553216641526296577\u003cbr\u003e@Independent \n#CharlieHebdo \nArtists should work\u003cbr\u003efor peace and love not\u003cbr\u003ehatred and blasphemy..\u003cbr\u003eThu Jan 08 15:48:20 +0000 2015"}, {"group": 1150, "id": 3, "label": "553218163740266499", "shape": "dot", "size": 10, "title": "553218163740266499\u003cbr\u003e@independent Everyone should just reprint\u003cbr\u003ethe cartoons rather than these\u003cbr\u003eineffectual insults #JeSuisCharlie #CharlieHebdo @mvuchiri\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:54:23 +0000 2015"}, {"group": 1150, "id": 5, "label": "553222323474825216", "shape": "dot", "size": 10, "title": "553222323474825216\u003cbr\u003e@Independent they are deeply moving\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:10:54 +0000 2015"}, {"group": 1150, "id": 6, "label": "553236657575841792", "shape": "dot", "size": 10, "title": "553236657575841792\u003cbr\u003eGenau so! @Independent http://t.co/JXEGf4HHnz http://t.co/UqS9LZfNSR\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:07:52 +0000 2015"}, {"group": 1150, "id": 4, "label": "553220249978277888", "shape": "dot", "size": 10, "title": "553220249978277888\u003cbr\u003e@ANA_JED1 @Independent \"blasphemy\"~  you\u0027ve\u003cbr\u003ejust betrayed yourself as a\u003cbr\u003enarrow minded zealot.\u003cbr\u003eThu Jan 08 16:02:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 2, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

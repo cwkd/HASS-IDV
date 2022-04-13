@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 460, "id": 0, "label": "552834559297867778", "shape": "dot", "size": 10, "title": "552834559297867778\u003cbr\u003eThe little weapon! #CharlieHebdo #cartoon\u003cbr\u003ehttp://t.co/VFFZD2f8Rz\u003cbr\u003eWed Jan 07 14:30:04 +0000 2015"}, {"group": 460, "id": 1, "label": "552835132202045440", "shape": "dot", "size": 10, "title": "552835132202045440\u003cbr\u003eVery appropriate..They r trying to\u003cbr\u003esilence pen with guns!\n\u201c@satishacharya: The\u003cbr\u003elittle weapon! #CharlieHebdo #cartoon http://t.co/31w0K7T9LG\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:21 +0000 2015"}, {"group": 460, "id": 2, "label": "552840270866554881", "shape": "dot", "size": 10, "title": "552840270866554881\u003cbr\u003e\u201c@satishacharya: The little weapon! #CharlieHebdo\u003cbr\u003e#cartoon http://t.co/xEnvjCAvJi\u201d insane people!!! \ud83d\ude21\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:52:46 +0000 2015"}, {"group": 460, "id": 3, "label": "552845127518277632", "shape": "dot", "size": 10, "title": "552845127518277632\u003cbr\u003e@satishacharya @nouragha lol what are\u003cbr\u003eyou doing Nour ??\u003cbr\u003eWed Jan 07 15:12:04 +0000 2015"}, {"group": 460, "id": 6, "label": "552856973600100352", "shape": "dot", "size": 10, "title": "552856973600100352\u003cbr\u003e\u201c@satishacharya: The little weapon! #CharlieHebdo\u003cbr\u003e#cartoon http://t.co/oELK0kl8At\u201d\u003cbr\u003eWed Jan 07 15:59:08 +0000 2015"}, {"group": 460, "id": 7, "label": "552857232098869248", "shape": "dot", "size": 10, "title": "552857232098869248\u003cbr\u003e@satishacharya Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/4rJ9bZszj2\u003cbr\u003eWed Jan 07 16:00:10 +0000 2015"}, {"group": 460, "id": 10, "label": "552875192356454401", "shape": "dot", "size": 10, "title": "552875192356454401\u003cbr\u003e\u201c@satishacharya: The little weapon! #CharlieHebdo\u003cbr\u003e#cartoon http://t.co/QkVNQpCbuh\u201d\u003cbr\u003eWed Jan 07 17:11:32 +0000 2015"}, {"group": 460, "id": 11, "label": "552900453357191168", "shape": "dot", "size": 10, "title": "552900453357191168\u003cbr\u003e@satishacharya Congrats on your 500\u2605\u003cbr\u003etweet! http://t.co/spWdK4zrLU\u003cbr\u003eWed Jan 07 18:51:55 +0000 2015"}, {"group": 460, "id": 12, "label": "552903923346853890", "shape": "dot", "size": 10, "title": "552903923346853890\u003cbr\u003e@satishacharya that was brilliant Satish.\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:05:42 +0000 2015"}, {"group": 460, "id": 13, "label": "552911941933744128", "shape": "dot", "size": 10, "title": "552911941933744128\u003cbr\u003e\u201c@satishacharya: The little weapon! #CharlieHebdo\u003cbr\u003e#cartoon http://t.co/mc2xk0ffac\u201d\u003cbr\u003eWed Jan 07 19:37:34 +0000 2015"}, {"group": 460, "id": 14, "label": "552917480088543232", "shape": "dot", "size": 10, "title": "552917480088543232\u003cbr\u003e@satishacharya @aycasoylemez Cartoonists... http://t.co/K8o5pgAvn0\u003cbr\u003eWed Jan 07 19:59:34 +0000 2015"}, {"group": 460, "id": 15, "label": "552917707914747904", "shape": "dot", "size": 10, "title": "552917707914747904\u003cbr\u003e@satishacharya \u201cIslam is worse than\u003cbr\u003eNazism\u201d by ex-Muslim poet from\u003cbr\u003e#Turkey\nhttp://t.co/NWzw8x2eoF \n#CharlieHebdo #JeSuisCharlie\u003cbr\u003eWed Jan 07 20:00:28 +0000 2015"}, {"group": 460, "id": 16, "label": "552927861993406466", "shape": "dot", "size": 10, "title": "552927861993406466\u003cbr\u003e@satishacharya so true, very sad\u003cbr\u003eday . Feel bad for\u003cbr\u003eother people of the same\u003cbr\u003efaith .\u003cbr\u003eWed Jan 07 20:40:49 +0000 2015"}, {"group": 460, "id": 17, "label": "552928766721556481", "shape": "dot", "size": 10, "title": "552928766721556481\u003cbr\u003e@satishacharya It is a tool\u003cbr\u003ethat shows the immense power.It\u0027s\u003cbr\u003ea sign of freedom of\u003cbr\u003eexpression.We will write...We will draw...We\u003cbr\u003ewill express\u003cbr\u003eWed Jan 07 20:44:25 +0000 2015"}, {"group": 460, "id": 18, "label": "552937038887276544", "shape": "dot", "size": 10, "title": "552937038887276544\u003cbr\u003e@satishacharya @Diana_Amores Intolerant people.\u003cbr\u003eWed Jan 07 21:17:17 +0000 2015"}, {"group": 460, "id": 19, "label": "552937160450400256", "shape": "dot", "size": 10, "title": "552937160450400256\u003cbr\u003e@satishacharya Could we have permission\u003cbr\u003eto publish this cartoon in\u003cbr\u003eprint and online edition of\u003cbr\u003eThe Wall Street Journal? ivar.dameron@wsj.com\u003cbr\u003e\u003cbr\u003eWed Jan 07 21:17:46 +0000 2015"}, {"group": 460, "id": 4, "label": "552846648888815616", "shape": "dot", "size": 10, "title": "552846648888815616\u003cbr\u003eThe little weapon! #CharlieHebdo #cartoon\u003cbr\u003ehttp://t.co/bELV0TT4a6 v/ @bob_TD @satishacharya\u003cbr\u003eWed Jan 07 15:18:07 +0000 2015"}, {"group": 460, "id": 5, "label": "552852180835639296", "shape": "dot", "size": 10, "title": "552852180835639296\u003cbr\u003e@Aces_9 @satishacharya ?\u003cbr\u003eWed Jan 07 15:40:06 +0000 2015"}, {"group": 460, "id": 8, "label": "552861392785899520", "shape": "dot", "size": 10, "title": "552861392785899520\u003cbr\u003e@nouragha why are RT bs\u003cbr\u003ethough? I thought you were\u003cbr\u003ebetter than this\u003cbr\u003eWed Jan 07 16:16:42 +0000 2015"}, {"group": 460, "id": 9, "label": "552861534049665024", "shape": "dot", "size": 10, "title": "552861534049665024\u003cbr\u003e@Aces_9 Better? LOL, do you\u003cbr\u003ethink murder is justified?\u003cbr\u003eWed Jan 07 16:17:16 +0000 2015"}, {"group": 460, "id": 21, "label": "552939115755601920", "shape": "dot", "size": 10, "title": "552939115755601920\u003cbr\u003eCorrect @letthemuslive \n\nIntolerant people. Everywhere.\u003cbr\u003eFrom every background. And every\u003cbr\u003ereligion/belief/political tendency. @satishacharya\u003cbr\u003eWed Jan 07 21:25:32 +0000 2015"}, {"group": 460, "id": 20, "label": "552937525967204352", "shape": "dot", "size": 10, "title": "552937525967204352\u003cbr\u003e@WSJphotos yes, please use it.\u003cbr\u003eWill mail you the high\u003cbr\u003eres cartoon.\u003cbr\u003eWed Jan 07 21:19:13 +0000 2015"}, {"group": 460, "id": 23, "label": "552983253280227329", "shape": "dot", "size": 10, "title": "552983253280227329\u003cbr\u003e@satishacharya @WSJphotos neev nam kundapuradar\u003cbr\u003eambuk hemme aat..nimge pranamagalu..\u003cbr\u003eThu Jan 08 00:20:56 +0000 2015"}, {"group": 460, "id": 27, "label": "553065891617730560", "shape": "dot", "size": 10, "title": "553065891617730560\u003cbr\u003e@satishacharya Congrates Satish.. well done\u003cbr\u003e:) very happy for you\u003cbr\u003e@WSJphotos\u003cbr\u003eThu Jan 08 05:49:18 +0000 2015"}, {"group": 460, "id": 22, "label": "552940242744147969", "shape": "dot", "size": 10, "title": "552940242744147969\u003cbr\u003e@Diana_Amores @satishacharya Right, pero para\u003cbr\u003eeso deben estar las leyes,\u003cbr\u003ep poner en su sitio\u003cbr\u003ea los intolerantes.\u003cbr\u003eWed Jan 07 21:30:01 +0000 2015"}, {"group": 460, "id": 25, "label": "553014118501068802", "shape": "dot", "size": 10, "title": "553014118501068802\u003cbr\u003e@Diana_Amores @letthemuslive @satishacharya Oh shut\u003cbr\u003eup.  When was the\u003cbr\u003elast time the \u0027other\u0027 intolerant\u003cbr\u003epeople killed\u003cbr\u003eThu Jan 08 02:23:35 +0000 2015"}, {"group": 460, "id": 24, "label": "552984987536855040", "shape": "dot", "size": 10, "title": "552984987536855040\u003cbr\u003e@praveenPU Thanks Praveen re.\u003cbr\u003eThu Jan 08 00:27:49 +0000 2015"}, {"group": 460, "id": 26, "label": "553019148507549696", "shape": "dot", "size": 10, "title": "553019148507549696\u003cbr\u003e\"Oh shut up\". - @PlumWdhse\u003cbr\u003e\n\nSuch a beacon of tolerance\u003cbr\u003eand freedom of speech.\n\nI\u0027ll be\u003cbr\u003eignoring u now. Bye. @letthemuslive\u003cbr\u003e@satishacharya\u003cbr\u003eThu Jan 08 02:43:34 +0000 2015"}, {"group": 460, "id": 28, "label": "553366215394344960", "shape": "dot", "size": 10, "title": "553366215394344960\u003cbr\u003e@Diana_Amores @PlumWdhse @satishacharya Intolerance https://t.co/QxpCfiKkYk\u003cbr\u003e\"Shut up\"\u003cbr\u003eFri Jan 09 01:42:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 20, "to": 27, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 25, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 28, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

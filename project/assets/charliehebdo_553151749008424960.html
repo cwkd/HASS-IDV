@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 924, "id": 0, "label": "553151749008424960", "shape": "dot", "size": 10, "title": "553151749008424960\u003cbr\u003eToday\u0027s #frontpage: Across the globe,\u003cbr\u003e#JeSuisCharlie becomes rallying cry. http://t.co/seJkDoEaJB\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:30:28 +0000 2015"}, {"group": 924, "id": 1, "label": "553151810978844672", "shape": "dot", "size": 10, "title": "553151810978844672\u003cbr\u003e\u201c@USATODAY: Today\u0027s #frontpage: Across the\u003cbr\u003eglobe, #JeSuisCharlie becomes rallying cry.\u003cbr\u003ehttp://t.co/OECh7q6DS7\u201d\u003cbr\u003eThu Jan 08 11:30:43 +0000 2015"}, {"group": 924, "id": 2, "label": "553151899432525824", "shape": "dot", "size": 10, "title": "553151899432525824\u003cbr\u003e@USATODAY\u003cbr\u003eThu Jan 08 11:31:04 +0000 2015"}, {"group": 924, "id": 3, "label": "553152590918455296", "shape": "dot", "size": 10, "title": "553152590918455296\u003cbr\u003e@USATODAY\u003cbr\u003eThu Jan 08 11:33:49 +0000 2015"}, {"group": 924, "id": 4, "label": "553152717909422080", "shape": "dot", "size": 10, "title": "553152717909422080\u003cbr\u003e@USATODAY Pathetic mass madness --PARIS\u003cbr\u003eDRAMA EVENT is a hoax,\u003cbr\u003eand proven so -- http://t.co/FqoqwHEWVP\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:34:19 +0000 2015"}, {"group": 924, "id": 5, "label": "553154540640686080", "shape": "dot", "size": 10, "title": "553154540640686080\u003cbr\u003e@USATODAY Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 11:41:34 +0000 2015"}, {"group": 924, "id": 7, "label": "553159365747015680", "shape": "dot", "size": 10, "title": "553159365747015680\u003cbr\u003e@USATODAY U.S. armed #ISIS. Saudi\u0027s\u003cbr\u003efunded. Pushing #France to join\u003cbr\u003efake war on terror. #ParisShooting\u003cbr\u003e#September11\u003cbr\u003eThu Jan 08 12:00:44 +0000 2015"}, {"group": 924, "id": 8, "label": "553163422565953536", "shape": "dot", "size": 10, "title": "553163422565953536\u003cbr\u003e@USATODAY L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:16:51 +0000 2015"}, {"group": 924, "id": 9, "label": "553164158116847616", "shape": "dot", "size": 10, "title": "553164158116847616\u003cbr\u003e@USATODAY\u003cbr\u003eThu Jan 08 12:19:47 +0000 2015"}, {"group": 924, "id": 10, "label": "553164404637069312", "shape": "dot", "size": 10, "title": "553164404637069312\u003cbr\u003e@USATODAY Freedom\u003cbr\u003eThu Jan 08 12:20:46 +0000 2015"}, {"group": 924, "id": 11, "label": "553169430986113026", "shape": "dot", "size": 10, "title": "553169430986113026\u003cbr\u003e@USATODAY Dictators who apparently THINK\u003cbr\u003ethey ARE GOD will kill\u003cbr\u003ebecause of opinions.What THEY afraid\u003cbr\u003eof? People leaving a religion?LET\u0027em.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:40:44 +0000 2015"}, {"group": 924, "id": 12, "label": "553169880384823296", "shape": "dot", "size": 10, "title": "553169880384823296\u003cbr\u003e@USATODAY People who hear anything\u003cbr\u003ethat MIGHT be a criminal\u003cbr\u003ethreat anywhere..even in part..call cops\u003cbr\u003eASAPso can find quicker to\u003cbr\u003equestionETC\u003cbr\u003eThu Jan 08 12:42:31 +0000 2015"}, {"group": 924, "id": 13, "label": "553196385487450114", "shape": "dot", "size": 10, "title": "553196385487450114\u003cbr\u003e@USATODAY We are #NotAfraid because\u003cbr\u003e#freedom of #thought \u0026amp; #speech\u003cbr\u003ecan\u0027t be killed \u0026amp; #live\u003cbr\u003eon forever! #JeSuisCharlie http://t.co/tLT57eWdRC\u003cbr\u003eThu Jan 08 14:27:50 +0000 2015"}, {"group": 924, "id": 14, "label": "553207922327838720", "shape": "dot", "size": 10, "title": "553207922327838720\u003cbr\u003e@USATODAY Thank You to our\u003cbr\u003eBrothers and Sisters from America\u003cbr\u003efor sharing our pain and\u003cbr\u003eour fight against Terrorism. Vive\u003cbr\u003ela Libert\u00e9!\u003cbr\u003eThu Jan 08 15:13:41 +0000 2015"}, {"group": 924, "id": 15, "label": "553244337774276608", "shape": "dot", "size": 10, "title": "553244337774276608\u003cbr\u003e@USATODAY Today, across #America, we\u003cbr\u003ecan hold our head up\u003cbr\u003ehigh and be #proud, not\u003cbr\u003e#afraid, to #speak and #showSupport\u003cbr\u003e@AmericanLegion\u003cbr\u003eThu Jan 08 17:38:23 +0000 2015"}, {"group": 924, "id": 6, "label": "553154874314334208", "shape": "dot", "size": 10, "title": "553154874314334208\u003cbr\u003e@DareToReadIt @USATODAY Goofy.\u003cbr\u003eThu Jan 08 11:42:53 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 4, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

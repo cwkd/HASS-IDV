@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 735, "id": 0, "label": "553098799380717568", "shape": "dot", "size": 10, "title": "553098799380717568\u003cbr\u003eGood morning from #Paris where\u003cbr\u003ewe will have the latest\u003cbr\u003eon the #CharlieHebdo attack. 9am\u003cbr\u003ein Paris, 3am in the\u003cbr\u003eeast http://t.co/oRX61fCUke\u003cbr\u003eThu Jan 08 08:00:04 +0000 2015"}, {"group": 735, "id": 1, "label": "553099010333233154", "shape": "dot", "size": 10, "title": "553099010333233154\u003cbr\u003e@ChrisCuomo glad your safe and\u003cbr\u003eon the scene #NewDay #CNN\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:00:54 +0000 2015"}, {"group": 735, "id": 2, "label": "553100731897884672", "shape": "dot", "size": 10, "title": "553100731897884672\u003cbr\u003e@ChrisCuomo will you all report\u003cbr\u003eanything on the NAACP building\u003cbr\u003ebombing in Colorado?\u003cbr\u003eThu Jan 08 08:07:45 +0000 2015"}, {"group": 735, "id": 3, "label": "553100831067996161", "shape": "dot", "size": 10, "title": "553100831067996161\u003cbr\u003e@ChrisCuomo @CNN new event in\u003cbr\u003e #Montrouge a policewoman shoot\u003cbr\u003eby man with kalachnikov http://t.co/6PA3pHCTB6\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:08:08 +0000 2015"}, {"group": 735, "id": 8, "label": "553102543652257793", "shape": "dot", "size": 10, "title": "553102543652257793\u003cbr\u003e@ChrisCuomo @CNN Paris is too\u003cbr\u003eliberal for its own good.\u003cbr\u003eIt was thus with Hitler\u003cbr\u003eand now with Islam.\nSoon they\u003cbr\u003ewill be begging USA again.\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:14:57 +0000 2015"}, {"group": 735, "id": 9, "label": "553103336837111808", "shape": "dot", "size": 10, "title": "553103336837111808\u003cbr\u003e@ChrisCuomo @CNN Gunfire reported in\u003cbr\u003ePorte de Chatillon, southern #Paris,\u003cbr\u003e1 policeman wounded. Suspected gunman\u003cbr\u003ehas fled to subway\u003cbr\u003eThu Jan 08 08:18:06 +0000 2015"}, {"group": 735, "id": 12, "label": "553104488048111616", "shape": "dot", "size": 10, "title": "553104488048111616\u003cbr\u003e@ChrisCuomo @CNN I say we\u003cbr\u003esend every last one of\u003cbr\u003ethese Mother less FUCKS Straight\u003cbr\u003eto HELL With Extreme Prejudice.\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:22:40 +0000 2015"}, {"group": 735, "id": 15, "label": "553105855202471936", "shape": "dot", "size": 10, "title": "553105855202471936\u003cbr\u003e@ChrisCuomo @CNN why developed countries\u003cbr\u003egive too much freedom to\u003cbr\u003ethe media and allow offending\u003cbr\u003eothers religion its their fault\u003cbr\u003eI think!\u003cbr\u003eThu Jan 08 08:28:06 +0000 2015"}, {"group": 735, "id": 4, "label": "553101723032883200", "shape": "dot", "size": 10, "title": "553101723032883200\u003cbr\u003e@RandomFatGuy http://t.co/DIB9SZ4UVy they already did.\u003cbr\u003e@ChrisCuomo\u003cbr\u003eThu Jan 08 08:11:41 +0000 2015"}, {"group": 735, "id": 5, "label": "553101939702235136", "shape": "dot", "size": 10, "title": "553101939702235136\u003cbr\u003e@Janiece1986 they ran an update\u003cbr\u003ethis morning already?\u003cbr\u003eThu Jan 08 08:12:33 +0000 2015"}, {"group": 735, "id": 6, "label": "553102196821491712", "shape": "dot", "size": 10, "title": "553102196821491712\u003cbr\u003e@RandomFatGuy you said nothing about\u003cbr\u003ean update. That\u0027s what they\u0027ve\u003cbr\u003eran.\u003cbr\u003eThu Jan 08 08:13:34 +0000 2015"}, {"group": 735, "id": 7, "label": "553102502309421058", "shape": "dot", "size": 10, "title": "553102502309421058\u003cbr\u003e@RandomFatGuy and this situation is\u003cbr\u003emore important for them to\u003cbr\u003ereport on. The more fatalities,\u003cbr\u003emore airtime.\u003cbr\u003eThu Jan 08 08:14:47 +0000 2015"}, {"group": 735, "id": 10, "label": "553103715931291649", "shape": "dot", "size": 10, "title": "553103715931291649\u003cbr\u003e@Janiece1986 I disagree. Terrorism is\u003cbr\u003eterrorism...what\u0027s happening on US soil\u003cbr\u003eis as important.\u003cbr\u003eThu Jan 08 08:19:36 +0000 2015"}, {"group": 735, "id": 11, "label": "553104011868778496", "shape": "dot", "size": 10, "title": "553104011868778496\u003cbr\u003e@Janiece1986 they should be updating\u003cbr\u003eus on more info from\u003cbr\u003eCO just like from France.\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:20:47 +0000 2015"}, {"group": 735, "id": 13, "label": "553104665806901249", "shape": "dot", "size": 10, "title": "553104665806901249\u003cbr\u003e@RandomFatGuy this is the deadliest\u003cbr\u003eattack France has seen in\u003cbr\u003eyears. 12 people lost their\u003cbr\u003elives. Tell me again how\u003cbr\u003ethey\u0027re compatible.\u003cbr\u003eThu Jan 08 08:23:23 +0000 2015"}, {"group": 735, "id": 14, "label": "553104969511882752", "shape": "dot", "size": 10, "title": "553104969511882752\u003cbr\u003e@RandomFatGuy they will only report\u003cbr\u003eon #je suis charlie because\u003cbr\u003eit will bring more audience.\u003cbr\u003eIt\u0027s all about money.\u003cbr\u003eThu Jan 08 08:24:35 +0000 2015"}, {"group": 735, "id": 16, "label": "553105930377003008", "shape": "dot", "size": 10, "title": "553105930377003008\u003cbr\u003e@Janiece1986 like I said, each\u003cbr\u003eattack is important. Both are\u003cbr\u003edisgraceful/horrific. I\u0027m not here to\u003cbr\u003edebate, just asked if they\u003cbr\u003ewould report.\u003cbr\u003eThu Jan 08 08:28:24 +0000 2015"}, {"group": 735, "id": 17, "label": "553106214775971840", "shape": "dot", "size": 10, "title": "553106214775971840\u003cbr\u003e@Janiece1986 your opinion is yours\u003cbr\u003eand I have my own.\u003cbr\u003eThanks for the conversation tho.\u003cbr\u003eTake care.\u003cbr\u003eThu Jan 08 08:29:32 +0000 2015"}, {"group": 735, "id": 18, "label": "553106337987829760", "shape": "dot", "size": 10, "title": "553106337987829760\u003cbr\u003e@RandomFatGuy and you\u0027re getting your\u003cbr\u003eanswer. #yourewelcome\u003cbr\u003eThu Jan 08 08:30:01 +0000 2015"}, {"group": 735, "id": 19, "label": "553106465570168832", "shape": "dot", "size": 10, "title": "553106465570168832\u003cbr\u003e@RandomFatGuy this isn\u0027t a debate.\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:30:32 +0000 2015"}, {"group": 735, "id": 20, "label": "553107300513488897", "shape": "dot", "size": 10, "title": "553107300513488897\u003cbr\u003e@Janiece1986 didn\u0027t ask you anything\u003cbr\u003ein the first place. U\u003cbr\u003ejust kinda came outta no\u003cbr\u003ewhere. But that\u0027s cool.... #ThePowerOfSocialMedia\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:33:51 +0000 2015"}, {"group": 735, "id": 21, "label": "553107939415031808", "shape": "dot", "size": 10, "title": "553107939415031808\u003cbr\u003e@RandomFatGuy exactly....public sites. You got\u003cbr\u003eyour answer. No one was\u003cbr\u003ehurt at the #NAACPBombing \u003cbr\u003e 12 lost their life\u003cbr\u003ein #JeSuisCharlie\u003cbr\u003eThu Jan 08 08:36:23 +0000 2015"}, {"group": 735, "id": 22, "label": "553108226066362370", "shape": "dot", "size": 10, "title": "553108226066362370\u003cbr\u003e@Janiece1986 you\u0027ve got to have\u003cbr\u003esumthin better to do... No?\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:37:32 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 7, "to": 11, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 14, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

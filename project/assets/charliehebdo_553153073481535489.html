@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 933, "id": 0, "label": "553153073481535489", "shape": "dot", "size": 10, "title": "553153073481535489\u003cbr\u003eMeet the Indian Islamist politician\u003cbr\u003ewho wants to award $5M\u003cbr\u003eto the #CharlieHebdo killers. http://t.co/F69LJdObER\u003cbr\u003ehttp://t.co/FqUoGXDceR\u003cbr\u003eThu Jan 08 11:35:44 +0000 2015"}, {"group": 933, "id": 1, "label": "553153800232394752", "shape": "dot", "size": 10, "title": "553153800232394752\u003cbr\u003e@TarekFatah stupid arrogant ppl are\u003cbr\u003efound everywhere..\u003cbr\u003eThu Jan 08 11:38:37 +0000 2015"}, {"group": 933, "id": 2, "label": "553154988201873408", "shape": "dot", "size": 10, "title": "553154988201873408\u003cbr\u003e@TarekFatah In India,4 Seculars like\u003cbr\u003e@BDUTT @sardesairajdeep @sagarikaghose @ARNABGOSWAMl \u0026amp;many\u003cbr\u003emore,these  r Social activist..\n\n@shylsmn\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:43:20 +0000 2015"}, {"group": 933, "id": 3, "label": "553155313335926784", "shape": "dot", "size": 10, "title": "553155313335926784\u003cbr\u003e@TarekFatah @Galey121 he looks like\u003cbr\u003ea fat muslim pig\u003cbr\u003eThu Jan 08 11:44:38 +0000 2015"}, {"group": 933, "id": 4, "label": "553168380325146625", "shape": "dot", "size": 10, "title": "553168380325146625\u003cbr\u003e@TarekFatah @nobamanoway Threatening bastard!! I\u003cbr\u003ebetter have more coffee!!\u003cbr\u003eThu Jan 08 12:36:33 +0000 2015"}, {"group": 933, "id": 5, "label": "553170406861852673", "shape": "dot", "size": 10, "title": "553170406861852673\u003cbr\u003e@TarekFatah Pay those who desire\u003cbr\u003eto kill us.... lovely pit\u003cbr\u003eof maggots eating away at\u003cbr\u003eour systems isn\u0027t it!\u003cbr\u003eThu Jan 08 12:44:37 +0000 2015"}, {"group": 933, "id": 6, "label": "553249542687440897", "shape": "dot", "size": 10, "title": "553249542687440897\u003cbr\u003e@TarekFatah In India Leftist media\u003cbr\u003etreats these jihadis as secular.\u003cbr\u003e@DharmaYuddha\u003cbr\u003eThu Jan 08 17:59:04 +0000 2015"}, {"group": 933, "id": 7, "label": "553308329754492929", "shape": "dot", "size": 10, "title": "553308329754492929\u003cbr\u003e@TarekFatah you are lucky you\u003cbr\u003emoved away to Pak and\u003cbr\u003ethen to Canada, in India\u003cbr\u003eyour Secular mindset would hv\u003cbr\u003emuddled up too @AgentSaffron\u003cbr\u003eThu Jan 08 21:52:40 +0000 2015"}, {"group": 933, "id": 8, "label": "553311158305054720", "shape": "dot", "size": 10, "title": "553311158305054720\u003cbr\u003e@TarekFatah @neha_aks \nBSP Leader is\u003cbr\u003egood at math. 51, like\u003cbr\u003e72, is divisible by 3\u003cbr\u003e\u003cbr\u003eThu Jan 08 22:03:54 +0000 2015"}, {"group": 933, "id": 12, "label": "557136861097754624", "shape": "dot", "size": 10, "title": "557136861097754624\u003cbr\u003e@TarekFatah @AishSpeakss He is stupid\u003cbr\u003eperson! We have many ppl\u003cbr\u003elike him having some what\u003cbr\u003ementality like Sakshi Maharaj.He shld\u003cbr\u003ejoin ISIS\u003cbr\u003eMon Jan 19 11:25:53 +0000 2015"}, {"group": 933, "id": 9, "label": "553312728358854656", "shape": "dot", "size": 10, "title": "553312728358854656\u003cbr\u003e@VogonPoem What is the significance\u003cbr\u003eof 3? @TarekFatah @neha_aks\u003cbr\u003eThu Jan 08 22:10:09 +0000 2015"}, {"group": 933, "id": 10, "label": "553321355769569281", "shape": "dot", "size": 10, "title": "553321355769569281\u003cbr\u003e@Travel4Life5 3 attackers @TarekFatah @neha_aks\u003cbr\u003e\u003cbr\u003eThu Jan 08 22:44:26 +0000 2015"}, {"group": 933, "id": 11, "label": "553330004210515968", "shape": "dot", "size": 10, "title": "553330004210515968\u003cbr\u003e@VogonPoem Ha ha, silly me\u003cbr\u003e:-) @TarekFatah @neha_aks\u003cbr\u003eThu Jan 08 23:18:48 +0000 2015"}, {"group": 933, "id": 13, "label": "557137405975601152", "shape": "dot", "size": 10, "title": "557137405975601152\u003cbr\u003e@TarekFatah @AishSpeakss Beside he is\u003cbr\u003efrom #BSP n really have\u003cbr\u003e51 Cr? #IncomeTax dept. shld\u003cbr\u003eraid him!! lol\u003cbr\u003eMon Jan 19 11:28:03 +0000 2015"}, {"group": 933, "id": 14, "label": "557190278826577920", "shape": "dot", "size": 10, "title": "557190278826577920\u003cbr\u003e@James_KSA @TarekFatah wow now Sakshi\u003cbr\u003eMaharaj is stupid acc to\u003cbr\u003eu..?? dushmani mat nikalo bhai\u003cbr\u003e!! m just opposing a\u003cbr\u003eterror mentality guy !!\u003cbr\u003eMon Jan 19 14:58:09 +0000 2015"}, {"group": 933, "id": 15, "label": "557198829049487362", "shape": "dot", "size": 10, "title": "557198829049487362\u003cbr\u003e@AishSpeakss @TarekFatah I was talking\u003cbr\u003ethe mentality!! Godase is great\u003cbr\u003epatriotic coz he killed Gandhi!!\u003cbr\u003eWhats the difference?\u003cbr\u003eMon Jan 19 15:32:07 +0000 2015"}, {"group": 933, "id": 16, "label": "557199970776776704", "shape": "dot", "size": 10, "title": "557199970776776704\u003cbr\u003e@James_KSA @TarekFatah The difference is\u003cbr\u003ein knowing the reality..!! \u0027Earth\u003cbr\u003erevolves around Jupiter\u0027 isn\u0027t d\u003cbr\u003ereality..!\u003cbr\u003eMon Jan 19 15:36:39 +0000 2015"}, {"group": 933, "id": 17, "label": "557200704347983873", "shape": "dot", "size": 10, "title": "557200704347983873\u003cbr\u003e@AishSpeakss @TarekFatah Reality is known\u003cbr\u003efor both! it depends how\u003cbr\u003eu react? Killing is not\u003cbr\u003ethe solution u cant kill\u003cbr\u003e\u0027Message\u0027!\u003cbr\u003eMon Jan 19 15:39:34 +0000 2015"}, {"group": 933, "id": 18, "label": "557201484052324352", "shape": "dot", "size": 10, "title": "557201484052324352\u003cbr\u003e@James_KSA @TarekFatah Yeah Yeah.. India\u003cbr\u003eshud remove army from Indo-Pak\u003cbr\u003eborder naa !!\u003cbr\u003eMon Jan 19 15:42:40 +0000 2015"}, {"group": 933, "id": 19, "label": "557201818380292096", "shape": "dot", "size": 10, "title": "557201818380292096\u003cbr\u003e@AishSpeakss @TarekFatah ha ha ha\u003cbr\u003eare yar isame Army kahanse\u003cbr\u003eaa gayi? They are also\u003cbr\u003edoing their job!!\u003cbr\u003eMon Jan 19 15:44:00 +0000 2015"}, {"group": 933, "id": 20, "label": "557256823401508864", "shape": "dot", "size": 10, "title": "557256823401508864\u003cbr\u003e@James_KSA hahaha u just said\u003cbr\u003ekilling isn\u0027t justified!\n\"Ahinsa parmo dharma,\u003cbr\u003edharam hinsa tathaiv cha\" !!\u003cbr\u003e @TarekFatah\u003cbr\u003eMon Jan 19 19:22:34 +0000 2015"}, {"group": 933, "id": 21, "label": "557278816645554177", "shape": "dot", "size": 10, "title": "557278816645554177\u003cbr\u003e@AishSpeakss ha ha ha wo\u003cbr\u003ekilling defencewali hai ye killing\u003cbr\u003esanaki log karate Godase ne\u003cbr\u003ebhi wahi kiya jaise Abdo\u003cbr\u003ecartoonist ka @TarekFatah\u003cbr\u003eMon Jan 19 20:49:58 +0000 2015"}, {"group": 933, "id": 22, "label": "557287542383312896", "shape": "dot", "size": 10, "title": "557287542383312896\u003cbr\u003e@James_KSA woh killing bhi defence\u003cbr\u003evali hi thi ! \nAll\u003cbr\u003eit takes is conscience to\u003cbr\u003eunderstand DAT! Gandhi ki mazhab\u003cbr\u003ek nam par hatya nhi\u003cbr\u003ehui thi\u003cbr\u003eMon Jan 19 21:24:38 +0000 2015"}, {"group": 933, "id": 23, "label": "557287982319673344", "shape": "dot", "size": 10, "title": "557287982319673344\u003cbr\u003e@AishSpeakss Killing is killing in\u003cbr\u003ewhatever sense!! I never suprt.\u003cbr\u003esuch killing dont know whats\u003cbr\u003eur point?\u003cbr\u003eMon Jan 19 21:26:23 +0000 2015"}, {"group": 933, "id": 24, "label": "557288956136419329", "shape": "dot", "size": 10, "title": "557288956136419329\u003cbr\u003e@James_KSA if killing is done\u003cbr\u003efor the urgent need of\u003cbr\u003ethe defence of nation.. It\u003cbr\u003eshud b respected!\nIf for fanatism,\u003cbr\u003eits a crime !!\u003cbr\u003eMon Jan 19 21:30:15 +0000 2015"}, {"group": 933, "id": 25, "label": "557289478599892992", "shape": "dot", "size": 10, "title": "557289478599892992\u003cbr\u003e@James_KSA gotta sleep!! Gud nyt\u003cbr\u003e!\u003cbr\u003eMon Jan 19 21:32:20 +0000 2015"}, {"group": 933, "id": 26, "label": "557289758565486594", "shape": "dot", "size": 10, "title": "557289758565486594\u003cbr\u003e@AishSpeakss U mean ur justifying\u003cbr\u003eGodase?\u003cbr\u003eMon Jan 19 21:33:27 +0000 2015"}, {"group": 933, "id": 27, "label": "557289929701478400", "shape": "dot", "size": 10, "title": "557289929701478400\u003cbr\u003e@AishSpeakss ok GN!! Good Luck\u003cbr\u003estudy hard!! Be honest!!! :))\u003cbr\u003ejoking\u003cbr\u003eMon Jan 19 21:34:07 +0000 2015"}, {"group": 933, "id": 28, "label": "557290148916785153", "shape": "dot", "size": 10, "title": "557290148916785153\u003cbr\u003e@James_KSA Of course!! But only\u003cbr\u003eafter knowing the truth behind\u003cbr\u003ethe assassination of Gandhi!\u003cbr\u003eMon Jan 19 21:35:00 +0000 2015"}, {"group": 933, "id": 29, "label": "557290237206859776", "shape": "dot", "size": 10, "title": "557290237206859776\u003cbr\u003e@James_KSA Thanks gud nyt :)\u003cbr\u003e\u003cbr\u003eMon Jan 19 21:35:21 +0000 2015"}, {"group": 933, "id": 30, "label": "557290908916260864", "shape": "dot", "size": 10, "title": "557290908916260864\u003cbr\u003e@AishSpeakss Very sad!! Anyways jisaki\u003cbr\u003eusaki soch hai!! So jao!!\u003cbr\u003eGood Night!\u003cbr\u003eMon Jan 19 21:38:01 +0000 2015"}, {"group": 933, "id": 31, "label": "557819337692958720", "shape": "dot", "size": 10, "title": "557819337692958720\u003cbr\u003e@James_KSA Nahi nahi I proudly\u003cbr\u003esay I am a Godse\u003cbr\u003ebhakt ! Sach aap jaanoge\u003cbr\u003etoh shayed aap bhi...\u003cbr\u003eWed Jan 21 08:37:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

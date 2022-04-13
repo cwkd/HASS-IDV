@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 964, "id": 0, "label": "553161912968417280", "shape": "dot", "size": 10, "title": "553161912968417280\u003cbr\u003eYou know what is sad\u003cbr\u003eabout Indian media? We don\u0027t\u003cbr\u003ehave a #CharlieHebdo, with guts\u003cbr\u003eto offend one and all\u003cbr\u003eeven in the face of\u003cbr\u003ebullets\u003cbr\u003eThu Jan 08 12:10:51 +0000 2015"}, {"group": 964, "id": 1, "label": "553162186168610816", "shape": "dot", "size": 10, "title": "553162186168610816\u003cbr\u003e@abhijitmajumder Fattu media don\u0027t even\u003cbr\u003ehave guts to question Owaisi.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:11:57 +0000 2015"}, {"group": 964, "id": 2, "label": "553162264438525952", "shape": "dot", "size": 10, "title": "553162264438525952\u003cbr\u003e@abhijitmajumder Absolutely right.\u003cbr\u003eThu Jan 08 12:12:15 +0000 2015"}, {"group": 964, "id": 3, "label": "553162627828809728", "shape": "dot", "size": 10, "title": "553162627828809728\u003cbr\u003e@abhijitmajumder @Category5Moron on that parameters\u003cbr\u003ei wld say there was\u003cbr\u003eone - \"Marmik\" weekly of\u003cbr\u003eSaamana under Late Balasaheb Thackeray!\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:13:42 +0000 2015"}, {"group": 964, "id": 4, "label": "553162742006554624", "shape": "dot", "size": 10, "title": "553162742006554624\u003cbr\u003e. @abhijitmajumder another sad thing\u003cbr\u003eabout India is that politicians\u003cbr\u003eorganize pogroms and sectarian violence\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:14:09 +0000 2015"}, {"group": 964, "id": 5, "label": "553162795898789888", "shape": "dot", "size": 10, "title": "553162795898789888\u003cbr\u003e@abhijitmajumder Nobody has guts to\u003cbr\u003edo anything against islam extremist.\u003cbr\u003eThe whole world is held\u003cbr\u003ehostage against these terrorist.\u003cbr\u003eThu Jan 08 12:14:22 +0000 2015"}, {"group": 964, "id": 6, "label": "553163346392780800", "shape": "dot", "size": 10, "title": "553163346392780800\u003cbr\u003e@abhijitmajumder @Category5Moron Well, we have\u003cbr\u003eour Rana Ayubs,Sagarikas ,Sudheendras, come\u003cbr\u003eon, we cant be all\u003cbr\u003ethat bad\u003cbr\u003eThu Jan 08 12:16:33 +0000 2015"}, {"group": 964, "id": 7, "label": "553163571102642176", "shape": "dot", "size": 10, "title": "553163571102642176\u003cbr\u003e@abhijitmajumder well said\u003cbr\u003eThu Jan 08 12:17:27 +0000 2015"}, {"group": 964, "id": 8, "label": "553164748981043200", "shape": "dot", "size": 10, "title": "553164748981043200\u003cbr\u003e@abhijitmajumder There are many in\u003cbr\u003ethe Indian media who have\u003cbr\u003efaced death threats \u0026amp; continued.\u003cbr\u003eWhat we don\u0027t have is\u003cbr\u003esolidarity.\u003cbr\u003eThu Jan 08 12:22:08 +0000 2015"}, {"group": 964, "id": 12, "label": "553166001601146880", "shape": "dot", "size": 10, "title": "553166001601146880\u003cbr\u003eIrony much! RT @abhijitmajumder sad\u003cbr\u003eabout Indian media? We don\u0027t\u003cbr\u003ehave a #CharlieHebdo, with guts\u003cbr\u003eto offend even in the\u003cbr\u003eface of bullets\u003cbr\u003eThu Jan 08 12:27:06 +0000 2015"}, {"group": 964, "id": 13, "label": "553166086858752001", "shape": "dot", "size": 10, "title": "553166086858752001\u003cbr\u003e@abhijitmajumder they just forgotten 26/11when\u003cbr\u003eIndian media gives us the\u003cbr\u003ereport from Taj Mumbai.\u003cbr\u003eThu Jan 08 12:27:27 +0000 2015"}, {"group": 964, "id": 14, "label": "553167500771205122", "shape": "dot", "size": 10, "title": "553167500771205122\u003cbr\u003e@abhijitmajumder If anyone in Indian\u003cbr\u003eMedia Have guts to be\u003cbr\u003e#CharlieHebdo.,the very own Sickular Media\u003cbr\u003ewill grill him like Terrorists\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:33:04 +0000 2015"}, {"group": 964, "id": 19, "label": "553170984585281537", "shape": "dot", "size": 10, "title": "553170984585281537\u003cbr\u003e@abhijitmajumder we should not keep\u003cbr\u003eexpectations. You, we can make\u003cbr\u003echange. \nInitiation should be done\u003cbr\u003eby us.\u003cbr\u003eThu Jan 08 12:46:54 +0000 2015"}, {"group": 964, "id": 9, "label": "553165200916873216", "shape": "dot", "size": 10, "title": "553165200916873216\u003cbr\u003e@chitraSD When it comes from\u003cbr\u003eyou, it\u0027s hard to disagree\u003cbr\u003e:-) And yes, spot on\u003cbr\u003eabout the solidarity bit\u003cbr\u003eThu Jan 08 12:23:55 +0000 2015"}, {"group": 964, "id": 15, "label": "553168248024219648", "shape": "dot", "size": 10, "title": "553168248024219648\u003cbr\u003e@chitraSD @malleshwara @abhijitmajumder Anyone killed?\u003cbr\u003eAnyone who mocked Hindus killed?\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:36:02 +0000 2015"}, {"group": 964, "id": 18, "label": "553169098620682240", "shape": "dot", "size": 10, "title": "553169098620682240\u003cbr\u003e@chitraSD @abhijitmajumder India Media has\u003cbr\u003elots of guts - enough\u003cbr\u003eto question nations security forces\u003cbr\u003eon #TerrorBoat \u0026amp; pratice #Sickularism!\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:39:25 +0000 2015"}, {"group": 964, "id": 10, "label": "553165626638745600", "shape": "dot", "size": 10, "title": "553165626638745600\u003cbr\u003e@abhijitmajumder @chitraSD \nsolidarity?  \u003cbr\u003eonly till death is around\u003cbr\u003ecorner.!\u003cbr\u003eThu Jan 08 12:25:37 +0000 2015"}, {"group": 964, "id": 11, "label": "553165900103159810", "shape": "dot", "size": 10, "title": "553165900103159810\u003cbr\u003e@abhijitmajumder does our law allow\u003cbr\u003eus 2 b Charlie Hebdo?\u003cbr\u003e@chitraSD when State doesn\u0027t guarantee\u003cbr\u003eprotection 4 FOE, no point\u003cbr\u003ein blaming any1.\u003cbr\u003eThu Jan 08 12:26:42 +0000 2015"}, {"group": 964, "id": 16, "label": "553168441948262400", "shape": "dot", "size": 10, "title": "553168441948262400\u003cbr\u003e@abhijitmajumder Not about me. Know\u003cbr\u003emany Indian journalists, especially in\u003cbr\u003evernacular media who take risks\u003cbr\u003eeveryday.\u003cbr\u003eThu Jan 08 12:36:48 +0000 2015"}, {"group": 964, "id": 17, "label": "553168909130403842", "shape": "dot", "size": 10, "title": "553168909130403842\u003cbr\u003e@chitraSD Yes, I know some\u003cbr\u003ejournalists in small cities/towns who\u003cbr\u003ework in the face of\u003cbr\u003eserious threats\u003cbr\u003eThu Jan 08 12:38:39 +0000 2015"}, {"group": 964, "id": 23, "label": "553177415275401216", "shape": "dot", "size": 10, "title": "553177415275401216\u003cbr\u003e@chitraSD @abhijitmajumder it\u0027s the vernacular\u003cbr\u003emedia guys who are really\u003cbr\u003egutsy, not the ones shouting\u003cbr\u003efrom studios in Delhi\u003cbr\u003eThu Jan 08 13:12:27 +0000 2015"}, {"group": 964, "id": 20, "label": "553171194451484672", "shape": "dot", "size": 10, "title": "553171194451484672\u003cbr\u003e@abhijitmajumder @chitraSD maam i also\u003cbr\u003ehear stories journalists in vernecular\u003cbr\u003emedia as extortionist,owners of vernacular\u003cbr\u003emedia very powerful\u003cbr\u003eThu Jan 08 12:47:44 +0000 2015"}, {"group": 964, "id": 21, "label": "553174291051593728", "shape": "dot", "size": 10, "title": "553174291051593728\u003cbr\u003e@abhijitmajumder @chitraSD @akhileshsharma1 @__Puneet\u003cbr\u003eThu Jan 08 13:00:03 +0000 2015"}, {"group": 964, "id": 22, "label": "553174376955146240", "shape": "dot", "size": 10, "title": "553174376955146240\u003cbr\u003e@abhijitmajumder @chitraSD -point is they\u003cbr\u003ego unnoticed,while the suckers/sycophants thrive!Media\u003cbr\u003eshd be the conscience of\u003cbr\u003ea NATION-ours fail\u003cbr\u003eThu Jan 08 13:00:23 +0000 2015"}, {"group": 964, "id": 24, "label": "553456361732730880", "shape": "dot", "size": 10, "title": "553456361732730880\u003cbr\u003e@abhijitmajumder @chitraSD\u003cbr\u003eFri Jan 09 07:40:54 +0000 2015"}, {"group": 964, "id": 25, "label": "554040350306603008", "shape": "dot", "size": 10, "title": "554040350306603008\u003cbr\u003e@abhijitmajumder @chitraSD J De\u003cbr\u003eSat Jan 10 22:21:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 8, "to": 18, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 9, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 23, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 17, "to": 21, "weight": 1}, {"from": 17, "to": 22, "weight": 1}, {"from": 17, "to": 24, "weight": 1}, {"from": 17, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

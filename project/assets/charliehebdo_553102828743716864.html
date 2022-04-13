@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 747, "id": 0, "label": "553102828743716864", "shape": "dot", "size": 10, "title": "553102828743716864\u003cbr\u003eOne of the most compelling\u003cbr\u003e\u0026amp; relevant things I\u0027ve seen\u003cbr\u003eon #CharlieHebdo so far. Pics\u003cbr\u003esay more than words sometimes.\u003cbr\u003ehttp://t.co/RJslBvn6gv\u003cbr\u003eThu Jan 08 08:16:05 +0000 2015"}, {"group": 747, "id": 1, "label": "553106593316077568", "shape": "dot", "size": 10, "title": "553106593316077568\u003cbr\u003e@RyanRampling @clarinsqueen better defence http://t.co/lp4ZtaUeYz\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:31:02 +0000 2015"}, {"group": 747, "id": 2, "label": "553107429727436800", "shape": "dot", "size": 10, "title": "553107429727436800\u003cbr\u003e@RyanRampling @clarinsqueen The latest atrocity\u003cbr\u003ehad nothing to do with\u003cbr\u003e\u0027freedom of speech\u0027 Stop believing\u003cbr\u003ethe corrupt media, it\u0027s pathetic!\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:34:22 +0000 2015"}, {"group": 747, "id": 3, "label": "553107490104422401", "shape": "dot", "size": 10, "title": "553107490104422401\u003cbr\u003e\u201c@RyanRampling: One of the most\u003cbr\u003ecompelling things I\u0027ve seen on\u003cbr\u003e#CharlieHebdo. Pics say more than\u003cbr\u003ewords sometimes. http://t.co/oS0pTwIvpN\u201d\u003cbr\u003eThu Jan 08 08:34:36 +0000 2015"}, {"group": 747, "id": 4, "label": "553114006882619392", "shape": "dot", "size": 10, "title": "553114006882619392\u003cbr\u003e@RyanRampling @DrGrumble they certainly do\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:00:30 +0000 2015"}, {"group": 747, "id": 5, "label": "553116769628721152", "shape": "dot", "size": 10, "title": "553116769628721152\u003cbr\u003e@RyanRampling We all must stand\u003cbr\u003ewith #charlieHebdo massacre at http://t.co/2bILdMPZ1u\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:11:28 +0000 2015"}, {"group": 747, "id": 6, "label": "553123071700529152", "shape": "dot", "size": 10, "title": "553123071700529152\u003cbr\u003e@RyanRampling @StNimbus This one https://t.co/MYm8nLOHLK\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:36:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

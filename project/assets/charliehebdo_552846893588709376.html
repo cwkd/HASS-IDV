@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 620, "id": 0, "label": "552846893588709376", "shape": "dot", "size": 10, "title": "552846893588709376\u003cbr\u003eUpdates on #CharlieHebdo shooting from\u003cbr\u003e@nytimes staff @mmcphate @HannahOlivennes @karaszpalko\u003cbr\u003e@cbtly \u0026amp; others: http://t.co/TekFzlVjQE\u003cbr\u003eWed Jan 07 15:19:05 +0000 2015"}, {"group": 620, "id": 1, "label": "552847843489505281", "shape": "dot", "size": 10, "title": "552847843489505281\u003cbr\u003ewoke up to this tragic\u003cbr\u003eupdate. prayers to Paris. RT\u003cbr\u003e@nytimesworld: Updates on #CharlieHebdo shooting\u003cbr\u003efrom @nytimes: http://t.co/LbH0DdfYki\u003cbr\u003eWed Jan 07 15:22:51 +0000 2015"}, {"group": 620, "id": 2, "label": "552849424049639424", "shape": "dot", "size": 10, "title": "552849424049639424\u003cbr\u003e@nytimesworld @nytimes @mmcphate @HannahOlivennes @karaszpalko\u003cbr\u003eIslam is a gutter superstition\u003cbr\u003ethat glorifies death \u0026amp; violence!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:29:08 +0000 2015"}, {"group": 620, "id": 3, "label": "552850314521755648", "shape": "dot", "size": 10, "title": "552850314521755648\u003cbr\u003e@nytimesworld @nytimes had those cartoons\u003cbr\u003ebeen published in any Muslim\u003cbr\u003ecountry, they would have been\u003cbr\u003emurdered by their ownGovernment already\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:32:41 +0000 2015"}, {"group": 620, "id": 4, "label": "552851643596038144", "shape": "dot", "size": 10, "title": "552851643596038144\u003cbr\u003e@nytimesworld @nytimes @mmcphate @HannahOlivennes @karaszpalko\u003cbr\u003e@cbtly US Congress New Bill...Secret\u003cbr\u003eService Protection for Media. CBS\u003cbr\u003e\u0026amp; TMZ\u003cbr\u003eWed Jan 07 15:37:57 +0000 2015"}, {"group": 620, "id": 5, "label": "552853408089391105", "shape": "dot", "size": 10, "title": "552853408089391105\u003cbr\u003eMT .@nytimesworld: #CharlieHebdo shooting: @mmcphate\u003cbr\u003e@HannahOlivennes @karaszpalko @cbtly: http://t.co/EUgAuSSAtB http://t.co/WZ9xpD2IbE\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:44:58 +0000 2015"}, {"group": 620, "id": 6, "label": "552854476374024192", "shape": "dot", "size": 10, "title": "552854476374024192\u003cbr\u003e@nytimesworld @nytimes @mmcphate @HannahOlivennes @karaszpalko\u003cbr\u003e@cbtly Very Bad In the\u003cbr\u003eName of IslamPeopleDoThiisButcantheyMakeCartoonsOfHolo\u003cbr\u003eWed Jan 07 15:49:13 +0000 2015"}, {"group": 620, "id": 7, "label": "552855750062919681", "shape": "dot", "size": 10, "title": "552855750062919681\u003cbr\u003e@nytimesworld is messed up in\u003cbr\u003ethe real world\u003cbr\u003eWed Jan 07 15:54:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1846, "id": 0, "label": "553470140042735616", "shape": "dot", "size": 10, "title": "553470140042735616\u003cbr\u003eBREAKING NEWS: Shots Fired, Hostages\u003cbr\u003eTaken in Town Northeast of\u003cbr\u003eParis http://t.co/cvtBTLqc6e\u003cbr\u003eFri Jan 09 08:35:39 +0000 2015"}, {"group": 1846, "id": 1, "label": "553470305365016576", "shape": "dot", "size": 10, "title": "553470305365016576\u003cbr\u003e@business alert https://t.co/N5eqtxTEcL\u003cbr\u003eFri Jan 09 08:36:18 +0000 2015"}, {"group": 1846, "id": 2, "label": "553470536538685440", "shape": "dot", "size": 10, "title": "553470536538685440\u003cbr\u003eRT @business: BREAKING NEWS: Shots\u003cbr\u003eFired, Hostages Taken in Town\u003cbr\u003eNortheast of Paris http://t.co/4VtoLowuKM @tarekfatah\u003cbr\u003e@mustikhan @swamy39\u003cbr\u003eFri Jan 09 08:37:13 +0000 2015"}, {"group": 1846, "id": 3, "label": "553470566519554048", "shape": "dot", "size": 10, "title": "553470566519554048\u003cbr\u003e@business this means war?\u003cbr\u003eFri Jan 09 08:37:20 +0000 2015"}, {"group": 1846, "id": 4, "label": "553470628427472897", "shape": "dot", "size": 10, "title": "553470628427472897\u003cbr\u003e\u201c@business: BREAKING NEWS: Shots Fired,\u003cbr\u003eHostages Taken in Town Northeast\u003cbr\u003eof Paris http://t.co/drUXcCRFMo\u201ddamn wassup with\u003cbr\u003eFrance lately\u003cbr\u003eFri Jan 09 08:37:35 +0000 2015"}, {"group": 1846, "id": 5, "label": "553471591364177920", "shape": "dot", "size": 10, "title": "553471591364177920\u003cbr\u003e\u201c@business: BREAKING NEWS: Shots Fired,\u003cbr\u003eHostages Taken in Town Northeast\u003cbr\u003eof Paris http://t.co/HkXWGooeBr\u201d uh oh\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:41:25 +0000 2015"}, {"group": 1846, "id": 6, "label": "553472249823383552", "shape": "dot", "size": 10, "title": "553472249823383552\u003cbr\u003e#BREAKING NEWS: Shots Fired, Hostages\u003cbr\u003eTaken in Town Northeast of\u003cbr\u003e#Paris http://t.co/4G6A0tKRUO via @business #CharlieHebdo\u003cbr\u003e#ParisShooting\u003cbr\u003eFri Jan 09 08:44:02 +0000 2015"}, {"group": 1846, "id": 7, "label": "553477261312421888", "shape": "dot", "size": 10, "title": "553477261312421888\u003cbr\u003eHmmm...have they been cornered? RT\u003cbr\u003e@business BREAKING NEWS: Shots Fired,\u003cbr\u003eHostages Taken in Town Northeast\u003cbr\u003eof Paris http://t.co/LZrjulIlb0\u003cbr\u003eFri Jan 09 09:03:56 +0000 2015"}, {"group": 1846, "id": 8, "label": "553581811121414144", "shape": "dot", "size": 10, "title": "553581811121414144\u003cbr\u003e\u201c@business: BREAKING NEWS: Shots Fired,\u003cbr\u003eHostages Taken in Town Northeast\u003cbr\u003eof Paris http://t.co/LS29ihxJRd\u201d#mwoltz\u003cbr\u003eFri Jan 09 15:59:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

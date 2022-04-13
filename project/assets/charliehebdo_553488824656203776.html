@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1897, "id": 0, "label": "553488824656203776", "shape": "dot", "size": 10, "title": "553488824656203776\u003cbr\u003eSchools closed, Dammartin-en-Goele residents told\u003cbr\u003eto stay indoors, town \u0027like\u003cbr\u003ewarzone\u0027 http://t.co/G6eunBDIrj http://t.co/FAtmW7d3xk\u003cbr\u003eFri Jan 09 09:49:53 +0000 2015"}, {"group": 1897, "id": 1, "label": "553489531446775808", "shape": "dot", "size": 10, "title": "553489531446775808\u003cbr\u003e@RT_com @RT Possible escape route\u003cbr\u003efrom hostage place to small\u003cbr\u003eairfield 8 km.\n@Ruptly http://t.co/rjo7jmWHlK\u003cbr\u003eFri Jan 09 09:52:42 +0000 2015"}, {"group": 1897, "id": 2, "label": "553515105414287360", "shape": "dot", "size": 10, "title": "553515105414287360\u003cbr\u003e@RT_com told to stay indoors\u003cbr\u003eto create their own narrative.\u003cbr\u003eThey are probably having a\u003cbr\u003esucky french coffee and croissant.\u003cbr\u003e@garethicke\u003cbr\u003eFri Jan 09 11:34:19 +0000 2015"}, {"group": 1897, "id": 3, "label": "553563431081488386", "shape": "dot", "size": 10, "title": "553563431081488386\u003cbr\u003e@RT_com: SCHOOLS CLOSED, DAMMARTIN-EN-GOELE RESIDENTS\u003cbr\u003eTOLD TO STAY INDOORS,\u0027TOWN LIKE\u003cbr\u003eWARZONE\u0027 http://t.co/PRhn6gf7Bf http://t.co/ZGatydBlJM\u003cbr\u003eFri Jan 09 14:46:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

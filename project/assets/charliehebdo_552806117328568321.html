@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1706, "id": 0, "label": "552806117328568321", "shape": "dot", "size": 10, "title": "552806117328568321\u003cbr\u003eParis is on the highest\u003cbr\u003eterrorist alert after 12 people\u003cbr\u003ewere shot dead at the\u003cbr\u003eoffices of a satirical weekly\u003cbr\u003emagazine. http://t.co/040PfC0If8\u003cbr\u003eWed Jan 07 12:37:03 +0000 2015"}, {"group": 1706, "id": 1, "label": "552806223041794048", "shape": "dot", "size": 10, "title": "552806223041794048\u003cbr\u003e@business I strongly condemn this\u003cbr\u003eterrorist attack as a TurkishMuslim.Terrorists\u003cbr\u003eCannot represent Islam #notinmyname #NoToTerrorism\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:37:28 +0000 2015"}, {"group": 1706, "id": 2, "label": "552806618891821056", "shape": "dot", "size": 10, "title": "552806618891821056\u003cbr\u003e@business for a magazine that\u003cbr\u003ehad been WIDELY criticized of\u003cbr\u003ebeing overly pro Islam and\u003cbr\u003eanti israel\u003cbr\u003eWed Jan 07 12:39:03 +0000 2015"}, {"group": 1706, "id": 3, "label": "552810453882003456", "shape": "dot", "size": 10, "title": "552810453882003456\u003cbr\u003e@uesugitakashi @Plutokun_Bot @takapon_jp \u201c@business: Paris\u003cbr\u003eis on the highest terrorist\u003cbr\u003ealert after 12 people ..\u3002http://t.co/JVrKOfgVPv\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:54:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

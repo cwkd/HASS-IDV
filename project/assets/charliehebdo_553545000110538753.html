@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1405, "id": 0, "label": "553545000110538753", "shape": "dot", "size": 10, "title": "553545000110538753\u003cbr\u003eOnly Jew-hatred explains why Europeans\u003cbr\u003epretend Israel\u0027s enemies are not\u003cbr\u003ethe West\u0027s, as Muslims murder\u003cbr\u003eJews and #CharlieHebdo in Paris.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:33:07 +0000 2015"}, {"group": 1405, "id": 1, "label": "553546544616853504", "shape": "dot", "size": 10, "title": "553546544616853504\u003cbr\u003e@benshapiro @slone Shows how idiotic,\u003cbr\u003ebrainwashed, ignorant, brainless imbeciles all\u003cbr\u003eEuropean lefties are. Disgusting.\u003cbr\u003eFri Jan 09 13:39:15 +0000 2015"}, {"group": 1405, "id": 2, "label": "553551395899453440", "shape": "dot", "size": 10, "title": "553551395899453440\u003cbr\u003e@benshapiro @DAVIDMDRAIMAN Israel has nothing\u003cbr\u003eto do with it... Plus\u003cbr\u003eregardless of religious affiliation Israel\u003cbr\u003eisn\u0027t a very good country...\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:58:31 +0000 2015"}, {"group": 1405, "id": 3, "label": "553602071698866177", "shape": "dot", "size": 10, "title": "553602071698866177\u003cbr\u003e@benshapiro @MikeAnissimov haven\u0027t you noticed\u003cbr\u003ethat Jews have been the\u003cbr\u003emain ppl pushing the tolerance\u003cbr\u003eagenda? Now everyone is brainwashed\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:19:53 +0000 2015"}, {"group": 1405, "id": 5, "label": "553603626699358208", "shape": "dot", "size": 10, "title": "553603626699358208\u003cbr\u003e@benshapiro @MikeAnissimov Jews have been\u003cbr\u003ethe ones promoting non White\u003cbr\u003eimmigration, now this is the\u003cbr\u003eresult. Thanks Jews.\u003cbr\u003eFri Jan 09 17:26:04 +0000 2015"}, {"group": 1405, "id": 17, "label": "554065304465059842", "shape": "dot", "size": 10, "title": "554065304465059842\u003cbr\u003e@benshapiro @Just_a_Texan Agreed, they can\u0027t\u003cbr\u003ebe ignorant enough to think\u003cbr\u003eotherwise.\u003cbr\u003eSun Jan 11 00:00:37 +0000 2015"}, {"group": 1405, "id": 19, "label": "555528813828767745", "shape": "dot", "size": 10, "title": "555528813828767745\u003cbr\u003e@benshapiro maybe it wouldn\u0027t be\u003cbr\u003eeuropeans problem if israel didn\u0027t\u003cbr\u003econtrol the foreign agenda of\u003cbr\u003ethe west.\u003cbr\u003eThu Jan 15 00:56:05 +0000 2015"}, {"group": 1405, "id": 4, "label": "553603263199596544", "shape": "dot", "size": 10, "title": "553603263199596544\u003cbr\u003e@AprilGade April you rock!\nThat is\u003cbr\u003eall.....\u003cbr\u003eFri Jan 09 17:24:38 +0000 2015"}, {"group": 1405, "id": 20, "label": "555529131320807426", "shape": "dot", "size": 10, "title": "555529131320807426\u003cbr\u003e@AprilGade @benshapiro @MikeAnissimov and they\u003cbr\u003eguaranteed a clash by treating\u003cbr\u003emuslims better than natural citizens.\u003cbr\u003e\u003cbr\u003eThu Jan 15 00:57:20 +0000 2015"}, {"group": 1405, "id": 6, "label": "553605471220027392", "shape": "dot", "size": 10, "title": "553605471220027392\u003cbr\u003e@RealNinjetta thanks, I\u0027ve just had\u003cbr\u003emy fill of Jews lecturing\u003cbr\u003eus from both sides when\u003cbr\u003ethey\u0027ve been manipulating the situation\u003cbr\u003efor years.\u003cbr\u003eFri Jan 09 17:33:24 +0000 2015"}, {"group": 1405, "id": 7, "label": "553607187633676288", "shape": "dot", "size": 10, "title": "553607187633676288\u003cbr\u003e@AprilGade Well I doubt we\u0027ll\u003cbr\u003eagree on everything but can\u003cbr\u003erespect that.\u003cbr\u003eFri Jan 09 17:40:13 +0000 2015"}, {"group": 1405, "id": 8, "label": "553609392952983552", "shape": "dot", "size": 10, "title": "553609392952983552\u003cbr\u003e@AprilGade @RealNinjetta Many Christians don\u0027t\u003cbr\u003erealize that Jews, whilst they\u003cbr\u003emay hate Muslims, hate Christians\u003cbr\u003emore. http://t.co/7TYCbytfeX\u003cbr\u003eFri Jan 09 17:48:59 +0000 2015"}, {"group": 1405, "id": 22, "label": "555541811314565122", "shape": "dot", "size": 10, "title": "555541811314565122\u003cbr\u003e@AprilGade I am beginning to\u003cbr\u003esee things a little differently\u003cbr\u003elately myself. Thinking we need\u003cbr\u003eto take care of America\u003cbr\u003efirst......needs fixen\u003cbr\u003eThu Jan 15 01:47:43 +0000 2015"}, {"group": 1405, "id": 9, "label": "553627798418776064", "shape": "dot", "size": 10, "title": "553627798418776064\u003cbr\u003e@RealNinjetta Ok. I would like\u003cbr\u003eto suggest Israel Lobby by\u003cbr\u003eMearsheimer. Also Who Rules America,\u003cbr\u003eby Strom though it\u0027s slightly\u003cbr\u003eoutdated\u003cbr\u003eFri Jan 09 19:02:07 +0000 2015"}, {"group": 1405, "id": 10, "label": "553628389949452288", "shape": "dot", "size": 10, "title": "553628389949452288\u003cbr\u003e@wjfrisby @AprilGade That may be\u003cbr\u003etrue, don\u0027t know enought YET\u003cbr\u003eto debat  \nBUT I\u003cbr\u003ehave yet to see Jews\u003cbr\u003ein NYC kill or behead\u003cbr\u003epeople either\u003cbr\u003eFri Jan 09 19:04:28 +0000 2015"}, {"group": 1405, "id": 21, "label": "555529312498352128", "shape": "dot", "size": 10, "title": "555529312498352128\u003cbr\u003e@wjfrisby @Rebel_Bill @AprilGade @RealNinjetta Lies.\u003cbr\u003e\u003cbr\u003eThu Jan 15 00:58:03 +0000 2015"}, {"group": 1405, "id": 11, "label": "553629176368861184", "shape": "dot", "size": 10, "title": "553629176368861184\u003cbr\u003e@AprilGade Thanks. I do plan\u003cbr\u003eon doing more research\u003cbr\u003eFri Jan 09 19:07:36 +0000 2015"}, {"group": 1405, "id": 12, "label": "553629215212703747", "shape": "dot", "size": 10, "title": "553629215212703747\u003cbr\u003e@RealNinjetta @wjfrisby no, they are\u003cbr\u003emuch less straightforward. Also check\u003cbr\u003eout the Frankfurt school, and\u003cbr\u003ewho pushed that agenda.\u003cbr\u003eFri Jan 09 19:07:45 +0000 2015"}, {"group": 1405, "id": 15, "label": "553630535655104512", "shape": "dot", "size": 10, "title": "553630535655104512\u003cbr\u003e@RealNinjetta @wjfrisby best sources, Dr\u003cbr\u003eKevin. McDonald and his books\u003cbr\u003e\u003cbr\u003eFri Jan 09 19:13:00 +0000 2015"}, {"group": 1405, "id": 16, "label": "553633682091958272", "shape": "dot", "size": 10, "title": "553633682091958272\u003cbr\u003e@RealNinjetta @wjfrisby basically because they\u003cbr\u003eare a minority they have\u003cbr\u003einterest in creating chaos and\u003cbr\u003edischarging nationalism in others\u003cbr\u003eFri Jan 09 19:25:30 +0000 2015"}, {"group": 1405, "id": 18, "label": "555528112251748352", "shape": "dot", "size": 10, "title": "555528112251748352\u003cbr\u003e@RealNinjetta @wjfrisby @AprilGade why would\u003cbr\u003ethey? they run the joint!\u003cbr\u003e\u003cbr\u003eThu Jan 15 00:53:17 +0000 2015"}, {"group": 1405, "id": 13, "label": "553629568364724224", "shape": "dot", "size": 10, "title": "553629568364724224\u003cbr\u003e@RealNinjetta Keep in mind, we\u003cbr\u003edon\u0027t blame all Jews or\u003cbr\u003ethink they are all part\u003cbr\u003eof this cabal. But when\u003cbr\u003eone ethnic group dominates so\u003cbr\u003emuch...\u003cbr\u003eFri Jan 09 19:09:09 +0000 2015"}, {"group": 1405, "id": 14, "label": "553630078534709249", "shape": "dot", "size": 10, "title": "553630078534709249\u003cbr\u003e@RealNinjetta food industry w Kosher\u003cbr\u003etax, banking, media (all forms\u003cbr\u003eincluding music) educational institutions, government,\u003cbr\u003e it becomes clear\u003cbr\u003eFri Jan 09 19:11:11 +0000 2015"}, {"group": 1405, "id": 23, "label": "555542300634664961", "shape": "dot", "size": 10, "title": "555542300634664961\u003cbr\u003e@flimsyman @wjfrisby @AprilGade I am\u003cbr\u003ebeginning to see that. At\u003cbr\u003eleast it\u0027s appearing to be\u003cbr\u003ethat way from here.\u003cbr\u003eThu Jan 15 01:49:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 20, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 6, "to": 22, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 21, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 10, "to": 15, "weight": 1}, {"from": 10, "to": 16, "weight": 1}, {"from": 10, "to": 18, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 18, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

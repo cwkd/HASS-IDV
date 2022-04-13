@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 225, "id": 0, "label": "552816539175763969", "shape": "dot", "size": 10, "title": "552816539175763969\u003cbr\u003eShooting at Paris office of\u003cbr\u003e#CharlieHebdo magazine ranks as one\u003cbr\u003eof the deadliest attacks on\u003cbr\u003eParis in 20 years. http://t.co/hyX5zWvaK2\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:18:28 +0000 2015"}, {"group": 225, "id": 1, "label": "552816785272344577", "shape": "dot", "size": 10, "title": "552816785272344577\u003cbr\u003e@WSJ And quite possibly one\u003cbr\u003eof deadliest attacks on journalists\u003cbr\u003ein much longer\u003cbr\u003eWed Jan 07 13:19:27 +0000 2015"}, {"group": 225, "id": 2, "label": "552816915832647681", "shape": "dot", "size": 10, "title": "552816915832647681\u003cbr\u003e@WSJ  Interesting to see\u003cbr\u003ehow they respond\u003cbr\u003eWed Jan 07 13:19:58 +0000 2015"}, {"group": 225, "id": 3, "label": "552817644622336002", "shape": "dot", "size": 10, "title": "552817644622336002\u003cbr\u003e@WSJ @lyorcohen: Congrats to ddrs\u003cbr\u003eresponsible. They have won free\u003cbr\u003eterminal cases of Evapola, the\u003cbr\u003emost deadly disease, ending them\u003cbr\u003estat.\u003cbr\u003eWed Jan 07 13:22:51 +0000 2015"}, {"group": 225, "id": 4, "label": "552818210416775168", "shape": "dot", "size": 10, "title": "552818210416775168\u003cbr\u003eSo sad: RT @WSJ: Shooting\u003cbr\u003eat #CharlieHebdo magazine ranks as\u003cbr\u003eone of the deadliest attacks\u003cbr\u003eon Paris in 20 years.\u003cbr\u003ehttp://t.co/n7EIX6hFgk\u003cbr\u003eWed Jan 07 13:25:06 +0000 2015"}, {"group": 225, "id": 5, "label": "552818469662498816", "shape": "dot", "size": 10, "title": "552818469662498816\u003cbr\u003eUnbelievable what happens QT \u201c@WSJ:\u003cbr\u003eShooting at Paris office of\u003cbr\u003e#CharlieHebdo magazine -  http://t.co/Onxy7FWDMI\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:26:08 +0000 2015"}, {"group": 225, "id": 6, "label": "552818740195098625", "shape": "dot", "size": 10, "title": "552818740195098625\u003cbr\u003e@WSJ \n\nJFC.  (Thankful I\u003cbr\u003ecan write that without fear\u003cbr\u003eof bodily harm by others.)\n\n#CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:27:13 +0000 2015"}, {"group": 225, "id": 7, "label": "552819984251232256", "shape": "dot", "size": 10, "title": "552819984251232256\u003cbr\u003e\u201c@WSJ: Shooting at Paris office\u003cbr\u003eof #CharlieHebdo magazine 1 of\u003cbr\u003ethe deadliest attacks on Paris\u003cbr\u003e. http://t.co/BbcP3MDzVx\u201d Religion of Peace\u003cbr\u003e?\u003cbr\u003eWed Jan 07 13:32:09 +0000 2015"}, {"group": 225, "id": 8, "label": "552821792453033984", "shape": "dot", "size": 10, "title": "552821792453033984\u003cbr\u003e@WSJ France u have Islamic\u003cbr\u003eterrorists in your backyard killing\u003cbr\u003eyour innocent citizens becoz of\u003cbr\u003eur pseodosecular politicians.\u003cbr\u003eWed Jan 07 13:39:20 +0000 2015"}, {"group": 225, "id": 9, "label": "552825212316971008", "shape": "dot", "size": 10, "title": "552825212316971008\u003cbr\u003e@WSJ @DLoesch Ever since the\u003cbr\u003eNazis and now Socialist\u0027s and\u003cbr\u003eCommunist\u0027s took away their guns\u003cbr\u003eaway from them, They are\u003cbr\u003eall sitting DUCKS!\u003cbr\u003eWed Jan 07 13:52:56 +0000 2015"}, {"group": 225, "id": 10, "label": "552825703159590912", "shape": "dot", "size": 10, "title": "552825703159590912\u003cbr\u003e@WSJ @DLoesch no mentioning of\u003cbr\u003ethe #NAACPBombing are the media\u003cbr\u003eselective of what neighborhood matters...\ud83d\ude12\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:54:53 +0000 2015"}, {"group": 225, "id": 12, "label": "552843491228012544", "shape": "dot", "size": 10, "title": "552843491228012544\u003cbr\u003e@WSJ   Real consequences\u003cbr\u003efor liberal tolerance stupidity!\u003cbr\u003eWed Jan 07 15:05:34 +0000 2015"}, {"group": 225, "id": 13, "label": "552845666938925056", "shape": "dot", "size": 10, "title": "552845666938925056\u003cbr\u003e@WSJ @DLoesch Religion of peace,\u003cbr\u003ehuh? Yeah right! Nobody was\u003cbr\u003earmed in the place? Fools\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:14:13 +0000 2015"}, {"group": 225, "id": 14, "label": "552905334181101569", "shape": "dot", "size": 10, "title": "552905334181101569\u003cbr\u003e@WSJ @lbbowyer84 @landauro Stay tuned\u003cbr\u003efor more of the same\u003cbr\u003eas long as you let\u003cbr\u003eMuslims run free in your\u003cbr\u003ecountry.\u003cbr\u003eWed Jan 07 19:11:18 +0000 2015"}, {"group": 225, "id": 11, "label": "552827219803131904", "shape": "dot", "size": 10, "title": "552827219803131904\u003cbr\u003e@fuckyeahnoms @WSJ @megynkelly @greta \u003cbr\u003eAny Muslim advocating Religious Violence\u003cbr\u003eshould be immediately deported under\u003cbr\u003eforce of Arms PERIOD!\u003cbr\u003eWed Jan 07 14:00:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 5, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

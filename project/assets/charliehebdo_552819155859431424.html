@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 259, "id": 0, "label": "552819155859431424", "shape": "dot", "size": 10, "title": "552819155859431424\u003cbr\u003eIt didn\u0027t take that long.\u003cbr\u003eThe first Pakistani to say,\u003cbr\u003e#CharlieHebdo massacre has nothing to\u003cbr\u003ewith Islam, has emerged. http://t.co/UBRm7FJPfl\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:28:52 +0000 2015"}, {"group": 259, "id": 1, "label": "552819535036686336", "shape": "dot", "size": 10, "title": "552819535036686336\u003cbr\u003e@TarekFatah at least it\u0027s not\u003cbr\u003eObama and Cameron... yet.\u003cbr\u003eWed Jan 07 13:30:22 +0000 2015"}, {"group": 259, "id": 2, "label": "552819549943246849", "shape": "dot", "size": 10, "title": "552819549943246849\u003cbr\u003eMT @TarekFatah Didn\u0027t take that\u003cbr\u003elong. 1st Pakistani to say,\u003cbr\u003e#CharlieHebdo massacre has nothing to\u003cbr\u003ewith Islam, emerged http://t.co/veuhJBff0p\u003cbr\u003eWed Jan 07 13:30:26 +0000 2015"}, {"group": 259, "id": 3, "label": "552819587516227585", "shape": "dot", "size": 10, "title": "552819587516227585\u003cbr\u003e@TarekFatah No doubt you will\u003cbr\u003ehear it on BBC and\u003cbr\u003eLBC soon.\u003cbr\u003eWed Jan 07 13:30:35 +0000 2015"}, {"group": 259, "id": 4, "label": "552830186094227458", "shape": "dot", "size": 10, "title": "552830186094227458\u003cbr\u003e@TarekFatah @BasimaFaysal I\u0027ve already seen\u003cbr\u003eseveral\u003cbr\u003eWed Jan 07 14:12:42 +0000 2015"}, {"group": 259, "id": 5, "label": "552833785872797696", "shape": "dot", "size": 10, "title": "552833785872797696\u003cbr\u003e@TarekFatah @BasimaFaysal - Unbelievable\u003cbr\u003eWed Jan 07 14:27:00 +0000 2015"}, {"group": 259, "id": 6, "label": "552834227369439233", "shape": "dot", "size": 10, "title": "552834227369439233\u003cbr\u003e@manjrn @TarekFatah @BasimaFaysal \nBut not\u003cbr\u003esurprising. Islamists seem adept at\u003cbr\u003ebeing at our throats and\u003cbr\u003eour knees simultaneously...\u003cbr\u003eWed Jan 07 14:28:45 +0000 2015"}, {"group": 259, "id": 7, "label": "552835203958603777", "shape": "dot", "size": 10, "title": "552835203958603777\u003cbr\u003e@HowardMargolian @TarekFatah @BasimaFaysal - When\u003cbr\u003eare our governments going to\u003cbr\u003efinally take Islamic threat seriously.\u003cbr\u003eThese aren\u0027t isolated\u003cbr\u003eWed Jan 07 14:32:38 +0000 2015"}, {"group": 259, "id": 8, "label": "552835472998006784", "shape": "dot", "size": 10, "title": "552835472998006784\u003cbr\u003e@HowardMargolian @TarekFatah @BasimaFaysal - Can\u003cbr\u003eyou imagine the danger we\u0027d\u003cbr\u003ebe in if Trudeau was\u003cbr\u003ein charge.\u003cbr\u003eWed Jan 07 14:33:42 +0000 2015"}, {"group": 259, "id": 9, "label": "552835862296535040", "shape": "dot", "size": 10, "title": "552835862296535040\u003cbr\u003e@manjrn @TarekFatah @BasimaFaysal \nThe first\u003cbr\u003ething govts have to do\u003cbr\u003eis to stiffen their backbones\u003cbr\u003eand label the threat correctly...\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:35:15 +0000 2015"}, {"group": 259, "id": 11, "label": "552837436100071425", "shape": "dot", "size": 10, "title": "552837436100071425\u003cbr\u003e@manjrn @BasimaFaysal @HowardMargolian @TarekFatah It\u0027s\u003cbr\u003efalse conflating of Islam w/race\u003cbr\u003e-Islam is ideological threat http://t.co/uBxwx9fFz1\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:41:30 +0000 2015"}, {"group": 259, "id": 10, "label": "552836159538479104", "shape": "dot", "size": 10, "title": "552836159538479104\u003cbr\u003e@manjrn @TarekFatah @BasimaFaysal \nThis day\u003cbr\u003ehas been tragic enough...\u003cbr\u003eWed Jan 07 14:36:26 +0000 2015"}, {"group": 259, "id": 12, "label": "552837472145911809", "shape": "dot", "size": 10, "title": "552837472145911809\u003cbr\u003e@manjrn @HowardMargolian @TarekFatah @BasimaFaysal Oh\u003cbr\u003edear God no!!!!\u003cbr\u003eWed Jan 07 14:41:39 +0000 2015"}, {"group": 259, "id": 13, "label": "552837841194352642", "shape": "dot", "size": 10, "title": "552837841194352642\u003cbr\u003e@MarthavanderPol @manjrn @BasimaFaysal @TarekFatah \nWho\u003cbr\u003eis conflating it with race?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:43:07 +0000 2015"}, {"group": 259, "id": 14, "label": "552838090092711937", "shape": "dot", "size": 10, "title": "552838090092711937\u003cbr\u003e@MarthavanderPol @BasimaFaysal @HowardMargolian @TarekFatah -\u003cbr\u003eIt\u0027s a threat that politicians\u003cbr\u003ehave to stop with PC\u003cbr\u003e\u0026amp; treat it 4 what\u003cbr\u003eit is\u003cbr\u003eWed Jan 07 14:44:06 +0000 2015"}, {"group": 259, "id": 15, "label": "552838139178655744", "shape": "dot", "size": 10, "title": "552838139178655744\u003cbr\u003e@MarthavanderPol @BasimaFaysal @HowardMargolian @TarekFatah -\u003cbr\u003eTerrorism\u003cbr\u003eWed Jan 07 14:44:18 +0000 2015"}, {"group": 259, "id": 16, "label": "552838606126321664", "shape": "dot", "size": 10, "title": "552838606126321664\u003cbr\u003e@KarenCrate1 @HowardMargolian @TarekFatah @BasimaFaysal -I\u003cbr\u003ehope this is a wake\u003cbr\u003eup call for the left,\u003cbr\u003ewe can\u0027t have ourselves at\u003cbr\u003eIslams mercy\u003cbr\u003eWed Jan 07 14:46:09 +0000 2015"}, {"group": 259, "id": 17, "label": "552838755556802562", "shape": "dot", "size": 10, "title": "552838755556802562\u003cbr\u003e@manjrn @HowardMargolian @TarekFatah @BasimaFaysal No\u003cbr\u003ewe can\u0027t - enough is\u003cbr\u003eenough\u003cbr\u003eWed Jan 07 14:46:45 +0000 2015"}, {"group": 259, "id": 18, "label": "552839064270155776", "shape": "dot", "size": 10, "title": "552839064270155776\u003cbr\u003e@manjrn @KarenCrate1 @TarekFatah @BasimaFaysal \nThere\u003cbr\u003eis a way to fight\u003cbr\u003ethis evil without condemning all\u003cbr\u003eMuslims. But not by equivocating...\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:47:58 +0000 2015"}, {"group": 259, "id": 22, "label": "552844923641159680", "shape": "dot", "size": 10, "title": "552844923641159680\u003cbr\u003eOn experience, very unlikey to\u003cbr\u003ewake up many. @manjrn @KarenCrate1\u003cbr\u003e@HowardMargolian @TarekFatah\u003cbr\u003eWed Jan 07 15:11:15 +0000 2015"}, {"group": 259, "id": 19, "label": "552840111659155456", "shape": "dot", "size": 10, "title": "552840111659155456\u003cbr\u003e@HowardMargolian @KarenCrate1 @TarekFatah @BasimaFaysal -Too\u003cbr\u003emany verses in Quran that\u003cbr\u003ecalls 4 death of non\u003cbr\u003ebelievers. Sorry I\u0027ve had enough\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:52:08 +0000 2015"}, {"group": 259, "id": 20, "label": "552840360893116417", "shape": "dot", "size": 10, "title": "552840360893116417\u003cbr\u003e@HowardMargolian @KarenCrate1 @TarekFatah @BasimaFaysal -\u003cbr\u003eNever any real out cry\u003cbr\u003efrom them  when this\u003cbr\u003estuff happens.  No I\u003cbr\u003edon\u0027t trust them\u003cbr\u003eWed Jan 07 14:53:07 +0000 2015"}, {"group": 259, "id": 21, "label": "552841041725100033", "shape": "dot", "size": 10, "title": "552841041725100033\u003cbr\u003e@manjrn @KarenCrate1 @TarekFatah @BasimaFaysal \nWhat\u003cbr\u003ewe need are more people\u003cbr\u003elike Tarek Fatah. He\u0027s never\u003cbr\u003ebeen equivocal at these times...\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:55:50 +0000 2015"}, {"group": 259, "id": 23, "label": "552846452616351744", "shape": "dot", "size": 10, "title": "552846452616351744\u003cbr\u003e@BasimaFaysal @KarenCrate1 @HowardMargolian @TarekFatah -\u003cbr\u003eHope not, ppl r putting\u003cbr\u003etheir heads in the sand.\u003cbr\u003eWhen will enough be enough\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:17:20 +0000 2015"}, {"group": 259, "id": 24, "label": "552847103496839168", "shape": "dot", "size": 10, "title": "552847103496839168\u003cbr\u003e@manjrn @BasimaFaysal @KarenCrate1 @HowardMargolian @TarekFatah\u003cbr\u003eSadly, the \u0027left\u0027 is full\u003cbr\u003eof muslims \u0026amp; their supporters.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:19:55 +0000 2015"}, {"group": 259, "id": 25, "label": "552847928369635329", "shape": "dot", "size": 10, "title": "552847928369635329\u003cbr\u003e@1RonnieD @manjrn @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e\nThis isn\u0027t a left vs\u003cbr\u003eright issue. It\u0027s a good\u003cbr\u003evs evil issue...\u003cbr\u003eWed Jan 07 15:23:12 +0000 2015"}, {"group": 259, "id": 26, "label": "552848607146442752", "shape": "dot", "size": 10, "title": "552848607146442752\u003cbr\u003e@HowardMargolian @manjrn @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eThe \u0027factions\u0027 have infiltrated ALL\u003cbr\u003eparties.\u003cbr\u003eWed Jan 07 15:25:54 +0000 2015"}, {"group": 259, "id": 27, "label": "552849480094334976", "shape": "dot", "size": 10, "title": "552849480094334976\u003cbr\u003e@HowardMargolian @1RonnieD @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- it\u0027s been both the\u003cbr\u003eliberals \u0026amp; Obama who refuse\u003cbr\u003eto acknowledge that this\u003cbr\u003eWed Jan 07 15:29:22 +0000 2015"}, {"group": 259, "id": 28, "label": "552849627389890561", "shape": "dot", "size": 10, "title": "552849627389890561\u003cbr\u003e@HowardMargolian @1RonnieD @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- Is a threat to\u003cbr\u003eour safety. When they do\u003cbr\u003eit\u0027s begrudgingly.\u003cbr\u003eWed Jan 07 15:29:57 +0000 2015"}, {"group": 259, "id": 29, "label": "552849715541590016", "shape": "dot", "size": 10, "title": "552849715541590016\u003cbr\u003e@manjrn @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eAssisting the jihad is their\u003cbr\u003egoal.\u003cbr\u003eWed Jan 07 15:30:18 +0000 2015"}, {"group": 259, "id": 30, "label": "552850104240320513", "shape": "dot", "size": 10, "title": "552850104240320513\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- Yes \u0026amp; too many\u003cbr\u003eblind ppl that don\u0027t take\u003cbr\u003ethis seriously.\u003cbr\u003eWed Jan 07 15:31:50 +0000 2015"}, {"group": 259, "id": 31, "label": "552850484265230337", "shape": "dot", "size": 10, "title": "552850484265230337\u003cbr\u003e@manjrn @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eI have friends that still\u003cbr\u003edeny it but MOST have\u003cbr\u003ecome around to see.\u003cbr\u003eWed Jan 07 15:33:21 +0000 2015"}, {"group": 259, "id": 32, "label": "552851180410667008", "shape": "dot", "size": 10, "title": "552851180410667008\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- playing with fire. Grandsons\u003cbr\u003egirlfriend is Muslim. Family from\u003cbr\u003eME,\u003cbr\u003eWed Jan 07 15:36:07 +0000 2015"}, {"group": 259, "id": 33, "label": "552851400838098944", "shape": "dot", "size": 10, "title": "552851400838098944\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- The father hates us,\u003cbr\u003elives here, takes all our\u003cbr\u003eof our good life but\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:37:00 +0000 2015"}, {"group": 259, "id": 35, "label": "552851563929407488", "shape": "dot", "size": 10, "title": "552851563929407488\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- Hates us. That\u0027s a\u003cbr\u003ecommon feeling, they don\u0027t want\u003cbr\u003eassimilation but\u003cbr\u003eWed Jan 07 15:37:38 +0000 2015"}, {"group": 259, "id": 36, "label": "552851611295682560", "shape": "dot", "size": 10, "title": "552851611295682560\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- Subtigation.\u003cbr\u003eWed Jan 07 15:37:50 +0000 2015"}, {"group": 259, "id": 34, "label": "552851543461228544", "shape": "dot", "size": 10, "title": "552851543461228544\u003cbr\u003e@manjrn @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003ehopefully, no honour killing in\u003cbr\u003eyour future Maryann.\u003cbr\u003eWed Jan 07 15:37:34 +0000 2015"}, {"group": 259, "id": 37, "label": "552851630576906242", "shape": "dot", "size": 10, "title": "552851630576906242\u003cbr\u003e@manjrn @1RonnieD @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e\nWe can\u0027t let these atrocities\u003cbr\u003echange who and what we\u003cbr\u003eare...\u003cbr\u003eWed Jan 07 15:37:54 +0000 2015"}, {"group": 259, "id": 38, "label": "552851716178460672", "shape": "dot", "size": 10, "title": "552851716178460672\u003cbr\u003e@manjrn @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eMost peaceful muslims don\u0027t know\u003cbr\u003ethey are being used to\u003cbr\u003einfiltrate.naive\u003cbr\u003eWed Jan 07 15:38:15 +0000 2015"}, {"group": 259, "id": 40, "label": "552852280127803393", "shape": "dot", "size": 10, "title": "552852280127803393\u003cbr\u003e@manjrn @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eI have muslim friends who\u003cbr\u003eare oblivious to Islam\u0027s empirical\u003cbr\u003eformula.\u003cbr\u003eWed Jan 07 15:40:29 +0000 2015"}, {"group": 259, "id": 43, "label": "552852533673488384", "shape": "dot", "size": 10, "title": "552852533673488384\u003cbr\u003e@manjrn @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eHe is a tool for\u003cbr\u003ejihad.\u003cbr\u003eWed Jan 07 15:41:30 +0000 2015"}, {"group": 259, "id": 39, "label": "552852228684644352", "shape": "dot", "size": 10, "title": "552852228684644352\u003cbr\u003e@KarenCrate1 @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003e- Don\u0027t think that hasn\u0027t\u003cbr\u003ecrossed my mind. She was\u003cbr\u003ein hospital \u0026amp; they\u003cbr\u003eWed Jan 07 15:40:17 +0000 2015"}, {"group": 259, "id": 41, "label": "552852401045401600", "shape": "dot", "size": 10, "title": "552852401045401600\u003cbr\u003e@KarenCrate1 @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003e- Ignored her. My daughter\u003cbr\u003e\u0026amp; grandson was only 1\u003cbr\u003eto take care of her.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:40:58 +0000 2015"}, {"group": 259, "id": 42, "label": "552852511087132672", "shape": "dot", "size": 10, "title": "552852511087132672\u003cbr\u003e@KarenCrate1 @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003e- No I\u0027ve seen enough\u003cbr\u003eup close.\u003cbr\u003eWed Jan 07 15:41:24 +0000 2015"}, {"group": 259, "id": 45, "label": "552852959466651648", "shape": "dot", "size": 10, "title": "552852959466651648\u003cbr\u003e@HowardMargolian @1RonnieD @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- I\u0027m also basing what\u003cbr\u003eI\u0027ve also had 1st hand\u003cbr\u003einteraction.\u003cbr\u003eWed Jan 07 15:43:11 +0000 2015"}, {"group": 259, "id": 51, "label": "552856794050330624", "shape": "dot", "size": 10, "title": "552856794050330624\u003cbr\u003e@HowardMargolian @manjrn @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003eYet they must not be\u003cbr\u003eignored either.\u003cbr\u003eWed Jan 07 15:58:25 +0000 2015"}, {"group": 259, "id": 46, "label": "552853250467446784", "shape": "dot", "size": 10, "title": "552853250467446784\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e-they don\u0027t agree with our\u003cbr\u003elifestyle. They live here but\u003cbr\u003ewant us to change\u003cbr\u003eWed Jan 07 15:44:21 +0000 2015"}, {"group": 259, "id": 44, "label": "552852600438419456", "shape": "dot", "size": 10, "title": "552852600438419456\u003cbr\u003e@manjrn @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003eGood luck and I sincerely\u003cbr\u003emean it.\u003cbr\u003eWed Jan 07 15:41:46 +0000 2015"}, {"group": 259, "id": 47, "label": "552853512749850624", "shape": "dot", "size": 10, "title": "552853512749850624\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- Makes you wonder. My\u003cbr\u003eson in law had Muslim\u003cbr\u003eat working that would rant\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:45:23 +0000 2015"}, {"group": 259, "id": 48, "label": "552853740332810240", "shape": "dot", "size": 10, "title": "552853740332810240\u003cbr\u003e@1RonnieD @HowardMargolian @BasimaFaysal @KarenCrate1 @TarekFatah\u003cbr\u003e- Hate 4 us. He\u003cbr\u003eused to tell us about\u003cbr\u003ehim.\u003cbr\u003eWed Jan 07 15:46:17 +0000 2015"}, {"group": 259, "id": 49, "label": "552854042159099904", "shape": "dot", "size": 10, "title": "552854042159099904\u003cbr\u003e@KarenCrate1 @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003e- Thanks, really nice little\u003cbr\u003egirl, we had her over\u003cbr\u003e 4 Christmas \u0026amp; I\u003cbr\u003eworry\u003cbr\u003eWed Jan 07 15:47:29 +0000 2015"}, {"group": 259, "id": 50, "label": "552854170152493058", "shape": "dot", "size": 10, "title": "552854170152493058\u003cbr\u003e@KarenCrate1 @1RonnieD @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003e- Wondered if the dad\u003cbr\u003ewould get angry with her.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:48:00 +0000 2015"}, {"group": 259, "id": 52, "label": "552857423195934722", "shape": "dot", "size": 10, "title": "552857423195934722\u003cbr\u003e@manjrn @KarenCrate1 @HowardMargolian @BasimaFaysal @TarekFatah\u003cbr\u003eIf he knows she present\u003cbr\u003efor the worship/celebration of Christ\u003cbr\u003eshe n danger\u003cbr\u003eWed Jan 07 16:00:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 7, "to": 11, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 12, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 22, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 25, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 31, "to": 32, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 31, "to": 35, "weight": 1}, {"from": 31, "to": 36, "weight": 1}, {"from": 32, "to": 34, "weight": 1}, {"from": 32, "to": 37, "weight": 1}, {"from": 32, "to": 38, "weight": 1}, {"from": 32, "to": 40, "weight": 1}, {"from": 33, "to": 43, "weight": 1}, {"from": 34, "to": 39, "weight": 1}, {"from": 34, "to": 41, "weight": 1}, {"from": 34, "to": 42, "weight": 1}, {"from": 37, "to": 45, "weight": 1}, {"from": 37, "to": 51, "weight": 1}, {"from": 40, "to": 46, "weight": 1}, {"from": 41, "to": 44, "weight": 1}, {"from": 43, "to": 47, "weight": 1}, {"from": 43, "to": 48, "weight": 1}, {"from": 44, "to": 49, "weight": 1}, {"from": 44, "to": 50, "weight": 1}, {"from": 50, "to": 52, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

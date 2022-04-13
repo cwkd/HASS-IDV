@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 90, "id": 0, "label": "552804454773567488", "shape": "dot", "size": 10, "title": "552804454773567488\u003cbr\u003eTime to #TakeAStand #IAmCharlieHebdo #CharlieHebdo\u003cbr\u003ehttp://t.co/V9ZUa4VRJy\u003cbr\u003eWed Jan 07 12:30:27 +0000 2015"}, {"group": 90, "id": 1, "label": "552804731933179905", "shape": "dot", "size": 10, "title": "552804731933179905\u003cbr\u003e@TRobinsonNewEra You\u0027re a junkie, mate.\u003cbr\u003ehttp://t.co/eN4XOujMoN\u003cbr\u003eWed Jan 07 12:31:33 +0000 2015"}, {"group": 90, "id": 3, "label": "552805024888532992", "shape": "dot", "size": 10, "title": "552805024888532992\u003cbr\u003e@TRobinsonNewEra geeze\u003cbr\u003eWed Jan 07 12:32:43 +0000 2015"}, {"group": 90, "id": 7, "label": "552805417995485184", "shape": "dot", "size": 10, "title": "552805417995485184\u003cbr\u003e@TRobinsonNewEra @davidbritain7 http://t.co/oSpUYSumqT\u003cbr\u003eWed Jan 07 12:34:16 +0000 2015"}, {"group": 90, "id": 9, "label": "552805748086820864", "shape": "dot", "size": 10, "title": "552805748086820864\u003cbr\u003e@TRobinsonNewEra @davidbritain7 cc @runinho13\u003cbr\u003eWed Jan 07 12:35:35 +0000 2015"}, {"group": 90, "id": 11, "label": "552805984268455936", "shape": "dot", "size": 10, "title": "552805984268455936\u003cbr\u003e@TRobinsonNewEra The World MUST listen\u003cbr\u003eto Tommy Robinson. Marine Le\u003cbr\u003ePen, Geert Wilders, Holly Meredith,\u003cbr\u003ePamela Geller,Heidi Mund. ISLAM EVIL\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:36:31 +0000 2015"}, {"group": 90, "id": 2, "label": "552804849537265664", "shape": "dot", "size": 10, "title": "552804849537265664\u003cbr\u003e@TRobinsonNewEra Tattoo this to your\u003cbr\u003eforehead. http://t.co/dw86bFv6YK\u003cbr\u003eWed Jan 07 12:32:01 +0000 2015"}, {"group": 90, "id": 4, "label": "552805081192869889", "shape": "dot", "size": 10, "title": "552805081192869889\u003cbr\u003e@TRobinsonNewEra it is soldiers like\u003cbr\u003ethese who restore my faith\u003cbr\u003ein humanity. \ud83d\ude4c\ud83d\udc4f\ud83c\uddec\ud83c\udde7 http://t.co/5Hx71iZbdB\u003cbr\u003eWed Jan 07 12:32:56 +0000 2015"}, {"group": 90, "id": 10, "label": "552805846631997441", "shape": "dot", "size": 10, "title": "552805846631997441\u003cbr\u003e@technicalswitch @TRobinsonNewEra And there\u0027snot a\u003cbr\u003esingle country that doesn\u0027t have\u003cbr\u003eproblems http://t.co/12DvC0XGnd\u003cbr\u003eWed Jan 07 12:35:59 +0000 2015"}, {"group": 90, "id": 5, "label": "552805267352846337", "shape": "dot", "size": 10, "title": "552805267352846337\u003cbr\u003e@technicalswitch they\u0027re not real soldiers.\u003cbr\u003e#twat\u003cbr\u003eWed Jan 07 12:33:41 +0000 2015"}, {"group": 90, "id": 6, "label": "552805415592161281", "shape": "dot", "size": 10, "title": "552805415592161281\u003cbr\u003e@technicalswitch also there are more\u003cbr\u003eBritish Muslims fighting for Isis\u003cbr\u003ethan there are in the\u003cbr\u003earmed forces. Explain that prick.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:34:16 +0000 2015"}, {"group": 90, "id": 8, "label": "552805555354738688", "shape": "dot", "size": 10, "title": "552805555354738688\u003cbr\u003e@BeannyMcD you were saying ..\u003cbr\u003e@SoldierUK !\u003cbr\u003eWed Jan 07 12:34:49 +0000 2015"}, {"group": 90, "id": 22, "label": "552810146897092609", "shape": "dot", "size": 10, "title": "552810146897092609\u003cbr\u003e@technicalswitch @BeannyMcD one soldier dosent\u003cbr\u003espeak for the whole armed\u003cbr\u003eforces, either does @SoldierUK\u003cbr\u003eWed Jan 07 12:53:04 +0000 2015"}, {"group": 90, "id": 12, "label": "552806109334212608", "shape": "dot", "size": 10, "title": "552806109334212608\u003cbr\u003e@Saint_Wayne . http://t.co/hfTtjbOj4k\u003cbr\u003eWed Jan 07 12:37:01 +0000 2015"}, {"group": 90, "id": 13, "label": "552806157207617536", "shape": "dot", "size": 10, "title": "552806157207617536\u003cbr\u003e@technicalswitch @TRobinsonNewEra Paris today.. Whose\u003cbr\u003eprovoking a clash of civilisations?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:37:13 +0000 2015"}, {"group": 90, "id": 21, "label": "552809407378362368", "shape": "dot", "size": 10, "title": "552809407378362368\u003cbr\u003e@hollyammon @TRobinsonNewEra Members of the\u003cbr\u003ereligion of peace kill people\u003cbr\u003ebut those who oppose them\u003cbr\u003eare \"extremists\", \"nazis\" and \"bigots\".\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:50:08 +0000 2015"}, {"group": 90, "id": 14, "label": "552806747899842560", "shape": "dot", "size": 10, "title": "552806747899842560\u003cbr\u003e@technicalswitch Yeah we kinda evolved\u003cbr\u003efrom that  probably down\u003cbr\u003eto hostility. So you are\u003cbr\u003esaying it\u0027s OK for them\u003cbr\u003eto do it because..\u003cbr\u003eWed Jan 07 12:39:34 +0000 2015"}, {"group": 90, "id": 15, "label": "552806932160196608", "shape": "dot", "size": 10, "title": "552806932160196608\u003cbr\u003e@technicalswitch why do you have\u003cbr\u003ea display pic of an\u003cbr\u003eislamophobe. Churchill thought islam was\u003cbr\u003elike rabies. You look like\u003cbr\u003ea fool.\u003cbr\u003eWed Jan 07 12:40:17 +0000 2015"}, {"group": 90, "id": 16, "label": "552807189656522752", "shape": "dot", "size": 10, "title": "552807189656522752\u003cbr\u003e@technicalswitch That makes you an\u003cbr\u003eapologist like the Vichy, the\u003cbr\u003eabsolute lowest of the low.\u003cbr\u003eBut then again you have\u003cbr\u003ethe tone of an Islamist\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:41:19 +0000 2015"}, {"group": 90, "id": 17, "label": "552807217398054913", "shape": "dot", "size": 10, "title": "552807217398054913\u003cbr\u003e@BeannyMcD keep up. http://t.co/jdjN1h0NoB\u003cbr\u003eWed Jan 07 12:41:25 +0000 2015"}, {"group": 90, "id": 20, "label": "552808204770754561", "shape": "dot", "size": 10, "title": "552808204770754561\u003cbr\u003e@Saint_Wayne @technicalswitch Just wondered the\u003cbr\u003elast time a Christian beheaded\u003cbr\u003eor killed someone because someone\u003cbr\u003eoffended their religion\u003cbr\u003eWed Jan 07 12:45:21 +0000 2015"}, {"group": 90, "id": 18, "label": "552807960393838594", "shape": "dot", "size": 10, "title": "552807960393838594\u003cbr\u003e@BadLADToby so what? I believe\u003cbr\u003emore what he said himself\u003cbr\u003eabout Islam than what his\u003cbr\u003efamily may have thought he\u003cbr\u003ethought about Islam\u003cbr\u003eWed Jan 07 12:44:23 +0000 2015"}, {"group": 90, "id": 19, "label": "552808060801261569", "shape": "dot", "size": 10, "title": "552808060801261569\u003cbr\u003e@BadLADToby the fact is he\u003cbr\u003esaid they were misguided and\u003cbr\u003ecompared it to rabies. You\u0027re\u003cbr\u003ean idiot.\u003cbr\u003eWed Jan 07 12:44:47 +0000 2015"}, {"group": 90, "id": 23, "label": "552883465855991808", "shape": "dot", "size": 10, "title": "552883465855991808\u003cbr\u003e@brijoyce @technicalswitch @BeannyMcD Think you\u0027re\u003cbr\u003ewrong there sunbeam, because I\u003cbr\u003edo.\u003cbr\u003eWed Jan 07 17:44:24 +0000 2015"}, {"group": 90, "id": 24, "label": "553853166123761664", "shape": "dot", "size": 10, "title": "553853166123761664\u003cbr\u003e@brijoyce @technicalswitch @BeannyMcD \n@SoldierUK is\u003cbr\u003ean MOD sponsored account, acts\u003cbr\u003eon their behalf and is\u003cbr\u003emanaged by a serving NCO\u003cbr\u003e- Fact!\u003cbr\u003eSat Jan 10 09:57:39 +0000 2015"}, {"group": 90, "id": 25, "label": "553853753959653376", "shape": "dot", "size": 10, "title": "553853753959653376\u003cbr\u003e@ric_cole I know he\u0027s gen\u003cbr\u003ebut that doesn\u0027t mean he\u003cbr\u003espeaks for all service personnel\u003cbr\u003ewas my point. Massive support\u003cbr\u003efor TR in Forces\u003cbr\u003eSat Jan 10 09:59:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 22, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 11, "to": 21, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

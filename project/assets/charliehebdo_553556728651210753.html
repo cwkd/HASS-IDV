@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1445, "id": 0, "label": "553556728651210753", "shape": "dot", "size": 10, "title": "553556728651210753\u003cbr\u003eDEVELOPING: Terrorists take hostages in\u003cbr\u003etwo different #Paris locations. http://t.co/EBbK7ny8Cx\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:19:43 +0000 2015"}, {"group": 1445, "id": 1, "label": "553556779599400960", "shape": "dot", "size": 10, "title": "553556779599400960\u003cbr\u003e\u201c@FoxNews: DEVELOPING: Terrorists take hostages\u003cbr\u003ein two different #Paris locations.\u003cbr\u003ehttp://t.co/PUWJ3rpJ9Y\u201d\u003cbr\u003eFri Jan 09 14:19:55 +0000 2015"}, {"group": 1445, "id": 2, "label": "553557026291601408", "shape": "dot", "size": 10, "title": "553557026291601408\u003cbr\u003e@FoxNews More workplace violence! #ThisHasToStop\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:20:54 +0000 2015"}, {"group": 1445, "id": 3, "label": "553557328788611072", "shape": "dot", "size": 10, "title": "553557328788611072\u003cbr\u003e@FoxNews Sending prayers to All\u003cbr\u003eyou guys be careful reporting\u003cbr\u003ethis and stay safe !!\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:22:06 +0000 2015"}, {"group": 1445, "id": 4, "label": "553557456798744579", "shape": "dot", "size": 10, "title": "553557456798744579\u003cbr\u003e\u201c@FoxNews: DEVELOPING: Terrorists take hostages\u003cbr\u003ein two different #Paris locations.\u003cbr\u003ehttp://t.co/7iyBuChvKw\u201d\u003cbr\u003eFri Jan 09 14:22:36 +0000 2015"}, {"group": 1445, "id": 5, "label": "553557876267290624", "shape": "dot", "size": 10, "title": "553557876267290624\u003cbr\u003e@FoxNews -*OBAMA/HOLDER REJOYCE\u003cbr\u003eFri Jan 09 14:24:16 +0000 2015"}, {"group": 1445, "id": 6, "label": "553557890301452288", "shape": "dot", "size": 10, "title": "553557890301452288\u003cbr\u003e@FoxNews Terrorists must be getting\u003cbr\u003ehungry. Send in the Bacon\u003cbr\u003esandwiches\u003cbr\u003eFri Jan 09 14:24:20 +0000 2015"}, {"group": 1445, "id": 7, "label": "553558022531080192", "shape": "dot", "size": 10, "title": "553558022531080192\u003cbr\u003e@FoxNews The Terrorist in the\u003cbr\u003eUSA are the GOP, they\u003cbr\u003eare the ISIL of this\u003cbr\u003enation.  they will destroy\u003cbr\u003eus by bills not by\u003cbr\u003ecutting our heads off\u003cbr\u003eFri Jan 09 14:24:51 +0000 2015"}, {"group": 1445, "id": 8, "label": "553558111295123456", "shape": "dot", "size": 10, "title": "553558111295123456\u003cbr\u003e@FoxNews your warring it out\u003cbr\u003esame news for 9 hours\u003cbr\u003eover and over give us\u003cbr\u003esomething we don\u0027t kniw\u003cbr\u003eFri Jan 09 14:25:13 +0000 2015"}, {"group": 1445, "id": 9, "label": "553558450207461377", "shape": "dot", "size": 10, "title": "553558450207461377\u003cbr\u003e@FoxNews We are next thanks\u003cbr\u003eto open borders, welcoming all\u003cbr\u003ekinds of scum here with\u003cbr\u003eopen arms, releasing known terrorists..etc.\u003cbr\u003eThanks Obama.\u003cbr\u003eFri Jan 09 14:26:33 +0000 2015"}, {"group": 1445, "id": 11, "label": "553559255258005504", "shape": "dot", "size": 10, "title": "553559255258005504\u003cbr\u003e\u201c@FoxNews: DEVELOPING: Terrorists take hostages\u003cbr\u003ein two different #Paris locations.\u003cbr\u003ehttp://t.co/aWnNErX85S\u201d more reason to continue\u003cbr\u003eprepping!\u003cbr\u003eFri Jan 09 14:29:45 +0000 2015"}, {"group": 1445, "id": 12, "label": "553559778182443010", "shape": "dot", "size": 10, "title": "553559778182443010\u003cbr\u003e@FoxNews religion of peace, they\u003cbr\u003ewill never assimilate, liberals destroyed\u003cbr\u003eFrance\u003cbr\u003eFri Jan 09 14:31:50 +0000 2015"}, {"group": 1445, "id": 13, "label": "553559997490024449", "shape": "dot", "size": 10, "title": "553559997490024449\u003cbr\u003e@FoxNews you kol yourself developed\u003cbr\u003ecountries!!what a shame!!3 DAYS!!!\u003cbr\u003eFri Jan 09 14:32:42 +0000 2015"}, {"group": 1445, "id": 14, "label": "553560596080128000", "shape": "dot", "size": 10, "title": "553560596080128000\u003cbr\u003e@FoxNews Us it two or\u003cbr\u003ethree different hostage takings?\u003cbr\u003eFri Jan 09 14:35:05 +0000 2015"}, {"group": 1445, "id": 15, "label": "553560667110641665", "shape": "dot", "size": 10, "title": "553560667110641665\u003cbr\u003e@FoxNews They don\u0027t have demands.\u003cbr\u003eThey want to die. Don\u0027t\u003cbr\u003ethink they care about the\u003cbr\u003elife of others, they don\u0027t\u003cbr\u003ecare for they\u0027re own.\u003cbr\u003eFri Jan 09 14:35:22 +0000 2015"}, {"group": 1445, "id": 16, "label": "553560718235029504", "shape": "dot", "size": 10, "title": "553560718235029504\u003cbr\u003e@FoxNews France voted for Palestine.\u003cbr\u003eAppeasement, Denial or \"Empathy for\u003cbr\u003eThe Enemy\" will never work!\u003cbr\u003eThese Horrors in France prove\u003cbr\u003eit!\u003cbr\u003eFri Jan 09 14:35:34 +0000 2015"}, {"group": 1445, "id": 17, "label": "553561018220433408", "shape": "dot", "size": 10, "title": "553561018220433408\u003cbr\u003e@FoxNews Islam peaceful? 100s of\u003cbr\u003eImams should respond 2 hostage\u003cbr\u003escenes, order islamists 2 lay\u003cbr\u003edown arms. Otherwise, proof its\u003cbr\u003enot peaceful\u003cbr\u003eFri Jan 09 14:36:46 +0000 2015"}, {"group": 1445, "id": 10, "label": "553558851518488576", "shape": "dot", "size": 10, "title": "553558851518488576\u003cbr\u003e@JordanSekulow @FoxNews Instead of abortion,\u003cbr\u003elet the UN begin an\u003cbr\u003eanti-terrorism campaign!\u003cbr\u003eFri Jan 09 14:28:09 +0000 2015"}, {"group": 1445, "id": 19, "label": "553563253058834433", "shape": "dot", "size": 10, "title": "553563253058834433\u003cbr\u003e@SamSammy750 @FoxNews Stop being melodramatic.\u003cbr\u003eThis is a different topic,\u003cbr\u003eplease stay on the Paris\u003cbr\u003eissue, not US politics.\u003cbr\u003eFri Jan 09 14:45:38 +0000 2015"}, {"group": 1445, "id": 20, "label": "553563421200101376", "shape": "dot", "size": 10, "title": "553563421200101376\u003cbr\u003e@drnoel55 @FoxNews Britain has said\u003cbr\u003echatter indicates they may be\u003cbr\u003enext. Probably one of their\u003cbr\u003elandmarks.\u003cbr\u003eFri Jan 09 14:46:18 +0000 2015"}, {"group": 1445, "id": 18, "label": "553563109202227200", "shape": "dot", "size": 10, "title": "553563109202227200\u003cbr\u003e@ladybeau49 @FoxNews two different locations,\u003cbr\u003emultiple hostages\u003cbr\u003eFri Jan 09 14:45:04 +0000 2015"}, {"group": 1445, "id": 21, "label": "553563637148024833", "shape": "dot", "size": 10, "title": "553563637148024833\u003cbr\u003e@MaggieMHChurch @FoxNews They forgot what\u003cbr\u003ethey endured in WWII.\u003cbr\u003eFri Jan 09 14:47:10 +0000 2015"}, {"group": 1445, "id": 22, "label": "553564885586812929", "shape": "dot", "size": 10, "title": "553564885586812929\u003cbr\u003e@FaithBased92 @FoxNews The West can\u003cbr\u003eno longer blame Charlie Hebdo\u003cbr\u003efor Provoking Islamic Terrorists when\u003cbr\u003ethey take a Kosher Market\u003cbr\u003eHostage!\u003cbr\u003eFri Jan 09 14:52:08 +0000 2015"}, {"group": 1445, "id": 23, "label": "553565530607878144", "shape": "dot", "size": 10, "title": "553565530607878144\u003cbr\u003e@MaggieMHChurch @FoxNews The West needs\u003cbr\u003eto wake up. This is\u003cbr\u003ebeginning to mirror WWII and\u003cbr\u003ethe rise of the Third\u003cbr\u003eReich.\u003cbr\u003eFri Jan 09 14:54:41 +0000 2015"}, {"group": 1445, "id": 24, "label": "553567443592155136", "shape": "dot", "size": 10, "title": "553567443592155136\u003cbr\u003e@FaithBased92 @FoxNews Truly Terrifying Times!\u003cbr\u003eIdealists will need to face\u003cbr\u003ethe Truth about Islamic Jihad\u003cbr\u003ebefore it\u0027s too late.\u003cbr\u003eFri Jan 09 15:02:17 +0000 2015"}, {"group": 1445, "id": 25, "label": "553567819028508672", "shape": "dot", "size": 10, "title": "553567819028508672\u003cbr\u003e@MaggieMHChurch @FoxNews God will make\u003cbr\u003ea way.\u003cbr\u003eFri Jan 09 15:03:47 +0000 2015"}, {"group": 1445, "id": 26, "label": "553568487491510272", "shape": "dot", "size": 10, "title": "553568487491510272\u003cbr\u003e@FaithBased92 @FoxNews GOD ALWAYS DOES!\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:06:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 10, "weight": 1}, {"from": 7, "to": 19, "weight": 1}, {"from": 9, "to": 20, "weight": 1}, {"from": 14, "to": 18, "weight": 1}, {"from": 16, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

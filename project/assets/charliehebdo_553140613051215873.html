@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 871, "id": 0, "label": "553140613051215873", "shape": "dot", "size": 10, "title": "553140613051215873\u003cbr\u003ePolice officers at @metpoliceuk hold\u003cbr\u003ea moment of silence to\u003cbr\u003eremember those killed in the\u003cbr\u003e#CharlieHebdo attack http://t.co/fz2zBG1LvM\u003cbr\u003eThu Jan 08 10:46:13 +0000 2015"}, {"group": 871, "id": 1, "label": "553141343934251008", "shape": "dot", "size": 10, "title": "553141343934251008\u003cbr\u003e@SkyNews @metpoliceuk may those killed\u003cbr\u003eby evil terrorists R.I.P\u003cbr\u003eThu Jan 08 10:49:07 +0000 2015"}, {"group": 871, "id": 2, "label": "553141389635354624", "shape": "dot", "size": 10, "title": "553141389635354624\u003cbr\u003e@SkyNews the language used by\u003cbr\u003eyour guest speaker accusing cartoonists\u003cbr\u003eof racism was disgusting? How\u003cbr\u003eis a cartoon anything like\u003cbr\u003eracism?\u003cbr\u003eThu Jan 08 10:49:18 +0000 2015"}, {"group": 871, "id": 3, "label": "553141455494316033", "shape": "dot", "size": 10, "title": "553141455494316033\u003cbr\u003e@SkyNews \n#stophatingislam \nHow media spreads\u003cbr\u003ehate for ISLAM \u0026amp; MUSLIMS\u00a0\nhttp://t.co/FXvsVFoCMB\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:49:34 +0000 2015"}, {"group": 871, "id": 4, "label": "553142025571147777", "shape": "dot", "size": 10, "title": "553142025571147777\u003cbr\u003e@SkyNews @metpoliceuk my relegion dont\u003cbr\u003eteach to kill Innocent \n#am_glad_Not_being_muslim\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:51:50 +0000 2015"}, {"group": 871, "id": 5, "label": "553142806794215424", "shape": "dot", "size": 10, "title": "553142806794215424\u003cbr\u003e@SkyNews @metpoliceuk Will they issue\u003cbr\u003efirearms to these sitting ducks?\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:54:56 +0000 2015"}, {"group": 871, "id": 6, "label": "553143531137953793", "shape": "dot", "size": 10, "title": "553143531137953793\u003cbr\u003e@SkyNews get him off !!\u003cbr\u003eThis is not the day\u003cbr\u003eto debate this have some\u003cbr\u003erespect ! #SkyDebate\u003cbr\u003eThu Jan 08 10:57:49 +0000 2015"}, {"group": 871, "id": 7, "label": "553144298229993474", "shape": "dot", "size": 10, "title": "553144298229993474\u003cbr\u003e@SkyNews https://t.co/cBhfENDxfe\u003cbr\u003eThu Jan 08 11:00:52 +0000 2015"}, {"group": 871, "id": 8, "label": "553150058305052673", "shape": "dot", "size": 10, "title": "553150058305052673\u003cbr\u003e@SkyNews @metpoliceuk And then get\u003cbr\u003eback to suppressing free speech...\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:23:45 +0000 2015"}, {"group": 871, "id": 9, "label": "553156997731086336", "shape": "dot", "size": 10, "title": "553156997731086336\u003cbr\u003e@SkyNews @metpoliceuk not racist but\u003cbr\u003e\"Muslimophobic\" stigmatising and alienating.\u003cbr\u003eThu Jan 08 11:51:20 +0000 2015"}, {"group": 871, "id": 10, "label": "553157554399109120", "shape": "dot", "size": 10, "title": "553157554399109120\u003cbr\u003e@SkyNews @metpoliceuk #\"muslimophobia\" \"muslimophobic\" let\u003cbr\u003ethe bad ones go but\u003cbr\u003edon\u0027t let them back #\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:53:32 +0000 2015"}, {"group": 871, "id": 11, "label": "553287427159498753", "shape": "dot", "size": 10, "title": "553287427159498753\u003cbr\u003e@SkyNews\u003cbr\u003eThu Jan 08 20:29:36 +0000 2015"}, {"group": 871, "id": 12, "label": "554249711532916736", "shape": "dot", "size": 10, "title": "554249711532916736\u003cbr\u003e@SkyNews @riwired but @metpoliceuk support\u003cbr\u003ethe suppression of free speech...wtf...they\u003cbr\u003eare just as bad as\u003cbr\u003ethe nutty islamists ffs\u003cbr\u003eSun Jan 11 12:13:23 +0000 2015"}, {"group": 871, "id": 13, "label": "555006122407759872", "shape": "dot", "size": 10, "title": "555006122407759872\u003cbr\u003e@SkyNews @CdrLetchfordMPS  did u\u003cbr\u003eknow it\u0027s a crime to\u003cbr\u003euse remote neural monitoring implants\u003cbr\u003ewithout someone\u0027s consent\u003cbr\u003eTue Jan 13 14:19:05 +0000 2015"}, {"group": 871, "id": 14, "label": "555753732831715329", "shape": "dot", "size": 10, "title": "555753732831715329\u003cbr\u003e@SkyNews @CdrLetchfordMPS @metpoliceuk are the\u003cbr\u003epolice allowed to use remote\u003cbr\u003eneural monitoring technology on the\u003cbr\u003epublic for years\u003cbr\u003eThu Jan 15 15:49:49 +0000 2015"}, {"group": 871, "id": 15, "label": "555753941347364864", "shape": "dot", "size": 10, "title": "555753941347364864\u003cbr\u003e@SkyNews @CdrLetchfordMPS @metpoliceuk I am\u003cbr\u003ea victim of this cyber\u003cbr\u003eattack and I need help\u003cbr\u003e\u003cbr\u003eThu Jan 15 15:50:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

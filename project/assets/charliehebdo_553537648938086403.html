@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1357, "id": 0, "label": "553537648938086403", "shape": "dot", "size": 10, "title": "553537648938086403\u003cbr\u003eTo whom said #KillAllMuslims\njust in\u003cbr\u003ecase you are confused.\n\n#CharlieHebdo http://t.co/B52ts3Q8Dv\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:03:54 +0000 2015"}, {"group": 1357, "id": 1, "label": "553558196120326144", "shape": "dot", "size": 10, "title": "553558196120326144\u003cbr\u003e@AdnanKhojah the one on the\u003cbr\u003eleft is an #Islamist #JihadistJoe\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:25:33 +0000 2015"}, {"group": 1357, "id": 2, "label": "553576731714400256", "shape": "dot", "size": 10, "title": "553576731714400256\u003cbr\u003e@AdnanKhojah :ahmed are not considered\u003cbr\u003emuslim by muslims.\u003cbr\u003eFri Jan 09 15:39:12 +0000 2015"}, {"group": 1357, "id": 6, "label": "553756002898964481", "shape": "dot", "size": 10, "title": "553756002898964481\u003cbr\u003e@AdnanKhojah both are Muslims\u003cbr\u003eSat Jan 10 03:31:34 +0000 2015"}, {"group": 1357, "id": 4, "label": "553703924431990785", "shape": "dot", "size": 10, "title": "553703924431990785\u003cbr\u003e@tAsarlai\nI\u0027m stating facts, you are\u003cbr\u003eburping personal openion.\nkeep your personal\u003cbr\u003eissues to your self\nits embarissing\u003cbr\u003ehttp://t.co/TZgSBXDa9v\u003cbr\u003eSat Jan 10 00:04:37 +0000 2015"}, {"group": 1357, "id": 3, "label": "553616205840257025", "shape": "dot", "size": 10, "title": "553616205840257025\u003cbr\u003e@n_pummy\ncorrection: not considered a muslim\u003cbr\u003eby terrorists\u003cbr\u003eFri Jan 09 18:16:03 +0000 2015"}, {"group": 1357, "id": 8, "label": "553826657094471680", "shape": "dot", "size": 10, "title": "553826657094471680\u003cbr\u003e@AdnanKhojah :you mean whloe of\u003cbr\u003epakistan is terrorist.\u003cbr\u003eSat Jan 10 08:12:19 +0000 2015"}, {"group": 1357, "id": 5, "label": "553707245112803328", "shape": "dot", "size": 10, "title": "553707245112803328\u003cbr\u003e@AdnanKhojah Mohammed is not very\u003cbr\u003ehappy with you and this\u003cbr\u003epost...\u003cbr\u003eSat Jan 10 00:17:49 +0000 2015"}, {"group": 1357, "id": 7, "label": "553798592696029184", "shape": "dot", "size": 10, "title": "553798592696029184\u003cbr\u003e@JeffCallahan75\nand jews killd your god\u003cbr\u003e.. but who cares?\nnot you\u003cbr\u003eofourse.\nnot even saving your children\u003cbr\u003efrom pervert priests.. meh\u0027\u003cbr\u003eSat Jan 10 06:20:48 +0000 2015"}, {"group": 1357, "id": 18, "label": "553853265171861504", "shape": "dot", "size": 10, "title": "553853265171861504\u003cbr\u003e@AdnanKhojah Mohamhed pervert plowed a\u003cbr\u003e9yo girl? seriously?\u003cbr\u003eSat Jan 10 09:58:03 +0000 2015"}, {"group": 1357, "id": 9, "label": "553828126845714432", "shape": "dot", "size": 10, "title": "553828126845714432\u003cbr\u003e@n_pummy \nthat \"whole\" in your\u003cbr\u003ehead is your prblem, not\u003cbr\u003emine.\u003cbr\u003eSat Jan 10 08:18:09 +0000 2015"}, {"group": 1357, "id": 10, "label": "553830181480038400", "shape": "dot", "size": 10, "title": "553830181480038400\u003cbr\u003e@AdnanKhojah :the world is in\u003cbr\u003eproblem because of muslims.\u003cbr\u003eSat Jan 10 08:26:19 +0000 2015"}, {"group": 1357, "id": 11, "label": "553832164018487296", "shape": "dot", "size": 10, "title": "553832164018487296\u003cbr\u003e@n_pummy \nPlease, get your facts\u003cbr\u003echecked. http://t.co/tT4Q0oPkRo\u003cbr\u003eSat Jan 10 08:34:12 +0000 2015"}, {"group": 1357, "id": 12, "label": "553832823732187136", "shape": "dot", "size": 10, "title": "553832823732187136\u003cbr\u003e@AdnanKhojah :any thing ISIS \u0026amp;\u003cbr\u003eBOKO HARAM?\u003cbr\u003eSat Jan 10 08:36:49 +0000 2015"}, {"group": 1357, "id": 13, "label": "553832938156986369", "shape": "dot", "size": 10, "title": "553832938156986369\u003cbr\u003e@AdnanKhojah *anything about\u003cbr\u003eSat Jan 10 08:37:16 +0000 2015"}, {"group": 1357, "id": 14, "label": "553834598082179072", "shape": "dot", "size": 10, "title": "553834598082179072\u003cbr\u003e@n_pummy \nfunny, are those thugs\u003cbr\u003e\"world\" wide problem now?\nPoko baram\u003cbr\u003eis killing nigerians\nisis is killing\u003cbr\u003emuslims\nNo one cares to stop\u003cbr\u003ethem\u003cbr\u003eSat Jan 10 08:43:52 +0000 2015"}, {"group": 1357, "id": 15, "label": "553835327991717888", "shape": "dot", "size": 10, "title": "553835327991717888\u003cbr\u003e@n_pummy \nbecause, they are doing\u003cbr\u003ethe job that they were\u003cbr\u003ecreated (from no where) to\u003cbr\u003edo\nwhen their role is done,\u003cbr\u003eyou\u0027ll never hear from them\u003cbr\u003e\u003cbr\u003eSat Jan 10 08:46:46 +0000 2015"}, {"group": 1357, "id": 16, "label": "553838391410692096", "shape": "dot", "size": 10, "title": "553838391410692096\u003cbr\u003e@AdnanKhojah : so you know\u003cbr\u003ea lot about ISIS \u0026amp;\u003cbr\u003eBOKO HARAM. Are you among\u003cbr\u003ethem?\u003cbr\u003eSat Jan 10 08:58:56 +0000 2015"}, {"group": 1357, "id": 17, "label": "553841142572138496", "shape": "dot", "size": 10, "title": "553841142572138496\u003cbr\u003e@n_pummy \nI know alot, because\u003cbr\u003eI have a brain,\nsomething (your\u003cbr\u003equestune indicates) you don\u0027t have.\u003cbr\u003egrow one in your head,\u003cbr\u003eits kinda cool :)\u003cbr\u003eSat Jan 10 09:09:52 +0000 2015"}, {"group": 1357, "id": 23, "label": "553884492583038976", "shape": "dot", "size": 10, "title": "553884492583038976\u003cbr\u003e@AdnanKhojah : brain of a\u003cbr\u003eterrorist. To view non-muslims as\u003cbr\u003ekafirs.\u003cbr\u003eSat Jan 10 12:02:08 +0000 2015"}, {"group": 1357, "id": 19, "label": "553855537175994371", "shape": "dot", "size": 10, "title": "553855537175994371\u003cbr\u003e@JeffCallahan75\nseems like till 1937 it\u003cbr\u003ewas ok to marry a\u003cbr\u003echild in America. That is\u003cbr\u003ea fact, now whos the\u003cbr\u003epervert?\nI feel sorry for you.\u003cbr\u003e\u003cbr\u003eSat Jan 10 10:07:04 +0000 2015"}, {"group": 1357, "id": 20, "label": "553856067755458560", "shape": "dot", "size": 10, "title": "553856067755458560\u003cbr\u003e@JeffCallahan75 \nPlease, grow some brain\u003cbr\u003eyour head, its kinda cool\u003cbr\u003e:) http://t.co/DD5dxw9BBc\u003cbr\u003eSat Jan 10 10:09:11 +0000 2015"}, {"group": 1357, "id": 21, "label": "553857279594729473", "shape": "dot", "size": 10, "title": "553857279594729473\u003cbr\u003e@AdnanKhojah 9yo girl  what\u003cbr\u003ea savage!\u003cbr\u003eSat Jan 10 10:14:00 +0000 2015"}, {"group": 1357, "id": 22, "label": "553858884184440832", "shape": "dot", "size": 10, "title": "553858884184440832\u003cbr\u003e@AdnanKhojah na. We put men\u003cbr\u003eon the moon. You blow\u003cbr\u003eup children. God Bless Israel!\u003cbr\u003e\u003cbr\u003eSat Jan 10 10:20:22 +0000 2015"}, {"group": 1357, "id": 24, "label": "553894020498202624", "shape": "dot", "size": 10, "title": "553894020498202624\u003cbr\u003e@n_pummy \nNo, a brain of\u003cbr\u003ea human being, that a\u003cbr\u003eracist like you to view\u003cbr\u003e\"for exapmle\" Shudras as humans\u003cbr\u003etoo.\u003cbr\u003eSat Jan 10 12:39:59 +0000 2015"}, {"group": 1357, "id": 25, "label": "553897429385228288", "shape": "dot", "size": 10, "title": "553897429385228288\u003cbr\u003e@AdnanKhojah :shudras are by work\u003cbr\u003enot by birth. Study this\u003cbr\u003emuslims.\u003cbr\u003eSat Jan 10 12:53:32 +0000 2015"}, {"group": 1357, "id": 26, "label": "553899566492160001", "shape": "dot", "size": 10, "title": "553899566492160001\u003cbr\u003e@n_pummy \nWhat a Low life\u003cbr\u003eracist you are.\nI rest my\u003cbr\u003ecase.\u003cbr\u003eSat Jan 10 13:02:02 +0000 2015"}, {"group": 1357, "id": 27, "label": "553900639298662401", "shape": "dot", "size": 10, "title": "553900639298662401\u003cbr\u003e@AdnanKhojah : this is the\u003cbr\u003eproblem. Consider everyone one human\u003cbr\u003efirst rather than anything else.this\u003cbr\u003eis the only solution.\u003cbr\u003eSat Jan 10 13:06:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 18, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 23, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

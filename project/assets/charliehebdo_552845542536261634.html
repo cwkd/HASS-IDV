@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 603, "id": 0, "label": "552845542536261634", "shape": "dot", "size": 10, "title": "552845542536261634\u003cbr\u003eWhat jihadists are saying about\u003cbr\u003ethe deadly attack on French\u003cbr\u003emagazine Charlie Hebdo http://t.co/52DsuKv9X4 http://t.co/peQ2pCpHvo\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:13:43 +0000 2015"}, {"group": 603, "id": 1, "label": "552845840763482113", "shape": "dot", "size": 10, "title": "552845840763482113\u003cbr\u003e@NBCNews Who cares what psychos\u003cbr\u003eand cowards have to say\u003cbr\u003eabout a mass murder. Don\u0027t\u003cbr\u003egive them a voice\u003cbr\u003eWed Jan 07 15:14:54 +0000 2015"}, {"group": 603, "id": 2, "label": "552845908581572609", "shape": "dot", "size": 10, "title": "552845908581572609\u003cbr\u003e@NBCNews @YahooNews Who funded/armed/trained gunmen?\u003cbr\u003ehttps://t.co/iPBkLwhQk8 Jeffrey Epstein also in\u003cbr\u003eCFR+Trilateral Commission\u003cbr\u003eWed Jan 07 15:15:10 +0000 2015"}, {"group": 603, "id": 3, "label": "552845948423258112", "shape": "dot", "size": 10, "title": "552845948423258112\u003cbr\u003e@NBCNews Islam does NOT condone\u003cbr\u003eTerrorism!  I\u0027m against all\u003cbr\u003ekinds of terrorism on humanity!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:15:20 +0000 2015"}, {"group": 603, "id": 4, "label": "552846026445688832", "shape": "dot", "size": 10, "title": "552846026445688832\u003cbr\u003e@NBCNews Don\u0027t give them an\u003cbr\u003eaudience\u003cbr\u003eWed Jan 07 15:15:38 +0000 2015"}, {"group": 603, "id": 5, "label": "552846409415024640", "shape": "dot", "size": 10, "title": "552846409415024640\u003cbr\u003e@NBCNews They sure know how\u003cbr\u003eto use the media to\u003cbr\u003eget their message out and\u003cbr\u003ehave it repeated over and\u003cbr\u003eover and over and over\u003cbr\u003eand over again!\u003cbr\u003eWed Jan 07 15:17:10 +0000 2015"}, {"group": 603, "id": 6, "label": "552846787468623872", "shape": "dot", "size": 10, "title": "552846787468623872\u003cbr\u003e@NBCNews I saw one man\u003cbr\u003eon a stretcher (no blood)\u003cbr\u003eand no bodies on the\u003cbr\u003estreets or any covered up.\u003cbr\u003eSomething\u0027s not right here folks!\u003cbr\u003eThink!\u003cbr\u003eWed Jan 07 15:18:40 +0000 2015"}, {"group": 603, "id": 7, "label": "552847089785659393", "shape": "dot", "size": 10, "title": "552847089785659393\u003cbr\u003e@NBCNews Jihadis are Sub humans\u003cbr\u003ewith absolutely no intelligence.\u003cbr\u003eWed Jan 07 15:19:52 +0000 2015"}, {"group": 603, "id": 8, "label": "552847135826124800", "shape": "dot", "size": 10, "title": "552847135826124800\u003cbr\u003e@NBCNews @Rebeksy. Show the cartoons.\u003cbr\u003eStand up for a free\u003cbr\u003epress. Dont be your usual\u003cbr\u003egutless network.\u003cbr\u003eWed Jan 07 15:20:03 +0000 2015"}, {"group": 603, "id": 9, "label": "552848775921041408", "shape": "dot", "size": 10, "title": "552848775921041408\u003cbr\u003e\u201c@NBCNews: What jihadists are saying\u003cbr\u003eabout magazine Charlie Hebdo wajajajajaja\u003cbr\u003ehttp://t.co/0WuMexGoyO http://t.co/eQUwjleyWN\u201d\u003cbr\u003eWed Jan 07 15:26:34 +0000 2015"}, {"group": 603, "id": 10, "label": "552848885400748032", "shape": "dot", "size": 10, "title": "552848885400748032\u003cbr\u003e\u201cWhat jihadists are saying about\u003cbr\u003ethe deadly attack on French\u003cbr\u003emagazine Charlie Hebdo http://t.co/DhODgznvM8 http://t.co/inuX9Lhlqh\u201drt@NBCNews\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:27:00 +0000 2015"}, {"group": 603, "id": 11, "label": "552849411379052544", "shape": "dot", "size": 10, "title": "552849411379052544\u003cbr\u003e@NBCNews @Yahoo They say things\u003cbr\u003eand we make them feel\u003cbr\u003eimportant by telling everyone what\u003cbr\u003ethey\u0027ve said. Why?\u003cbr\u003eWed Jan 07 15:29:05 +0000 2015"}, {"group": 603, "id": 12, "label": "552850575612973056", "shape": "dot", "size": 10, "title": "552850575612973056\u003cbr\u003e@NBCNews people like that should\u003cbr\u003enot exist\u003cbr\u003eWed Jan 07 15:33:43 +0000 2015"}, {"group": 603, "id": 13, "label": "552850719607627776", "shape": "dot", "size": 10, "title": "552850719607627776\u003cbr\u003e@NBCNews fuck em\u003cbr\u003eWed Jan 07 15:34:17 +0000 2015"}, {"group": 603, "id": 14, "label": "552856234236211200", "shape": "dot", "size": 10, "title": "552856234236211200\u003cbr\u003e@NBCNews @MissUniversNEWS always an heartless\u003cbr\u003epiece of acts\u003cbr\u003eWed Jan 07 15:56:12 +0000 2015"}, {"group": 603, "id": 15, "label": "552857505894645760", "shape": "dot", "size": 10, "title": "552857505894645760\u003cbr\u003e@NBCNews the jihadists can go\u003cbr\u003efist themselves.  Bunch of\u003cbr\u003eimpotent cowards.\u003cbr\u003eWed Jan 07 16:01:15 +0000 2015"}, {"group": 603, "id": 16, "label": "552861588009803776", "shape": "dot", "size": 10, "title": "552861588009803776\u003cbr\u003e@NBCNews Yet, NBC is usually\u003cbr\u003eone of those spineless \u0027progressive\u0027\u003cbr\u003emedia outlets that tends to\u003cbr\u003emake excuses \u0026amp; stand up\u003cbr\u003efor this religion.\u003cbr\u003eWed Jan 07 16:17:28 +0000 2015"}, {"group": 603, "id": 17, "label": "552864390530072578", "shape": "dot", "size": 10, "title": "552864390530072578\u003cbr\u003e@NBCNews @YahooNews http://t.co/ye7uOpxyyu\u003cbr\u003eWed Jan 07 16:28:37 +0000 2015"}, {"group": 603, "id": 18, "label": "552865269321056256", "shape": "dot", "size": 10, "title": "552865269321056256\u003cbr\u003e@NBCNews  who cares kill\u003cbr\u003eall religions and the crazy\u003cbr\u003efollowers, killing cause they can\u0027t\u003cbr\u003etake a joke, them pricks\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:32:06 +0000 2015"}, {"group": 603, "id": 19, "label": "552865373968924673", "shape": "dot", "size": 10, "title": "552865373968924673\u003cbr\u003e@brussa24 @NBCNews i agree\u003cbr\u003eWed Jan 07 16:32:31 +0000 2015"}, {"group": 603, "id": 20, "label": "552887543759650816", "shape": "dot", "size": 10, "title": "552887543759650816\u003cbr\u003e@DJgizmo98 @NBCNews using religion as\u003cbr\u003ea shield to kill!!!. Sorry\u003cbr\u003ebut that is not religion\u003cbr\u003ethere!!. It\u0027s poor evil and\u003cbr\u003ethey need to be gone\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:00:37 +0000 2015"}, {"group": 603, "id": 21, "label": "552892703026204673", "shape": "dot", "size": 10, "title": "552892703026204673\u003cbr\u003e@brussa24 @NBCNews  nice pins\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:21:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 12, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

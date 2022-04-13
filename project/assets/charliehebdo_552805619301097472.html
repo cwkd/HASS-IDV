@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1704, "id": 0, "label": "552805619301097472", "shape": "dot", "size": 10, "title": "552805619301097472\u003cbr\u003enow 13 dead at Charlie\u003cbr\u003e#Hebdo; gunmen show signs of\u003cbr\u003emilitary training; fled in black\u003cbr\u003ecar, dumped it, hijacked another;\u003cbr\u003eset off for suburbs\u003cbr\u003eWed Jan 07 12:35:04 +0000 2015"}, {"group": 1704, "id": 1, "label": "552807666012422144", "shape": "dot", "size": 10, "title": "552807666012422144\u003cbr\u003e@jamiewrit if only people didn\u0027t\u003cbr\u003ehand out guns+training:https://t.co/iPBkLwhQk8 Jeffrey Epstein\u003cbr\u003ealso in CFR+Trilateral Commission\u003cbr\u003eWed Jan 07 12:43:12 +0000 2015"}, {"group": 1704, "id": 2, "label": "552808017482510336", "shape": "dot", "size": 10, "title": "552808017482510336\u003cbr\u003e@jamiewrit @EliotHiggins Looking at handling\u003cbr\u003eof  weapons , use\u003cbr\u003eof protective vests and how\u003cbr\u003ethey moved very calmly ,\u003cbr\u003ethat seems correct.\u003cbr\u003eWed Jan 07 12:44:36 +0000 2015"}, {"group": 1704, "id": 3, "label": "552825134739107840", "shape": "dot", "size": 10, "title": "552825134739107840\u003cbr\u003e@jamiewrit @SkyZeLimit the shooter (without\u003cbr\u003ebeige tactical vest) used his\u003cbr\u003eweapon as a kid... not\u003cbr\u003esure of your comment\u003cbr\u003eWed Jan 07 13:52:37 +0000 2015"}, {"group": 1704, "id": 4, "label": "552825843245150208", "shape": "dot", "size": 10, "title": "552825843245150208\u003cbr\u003e@jamiewrit @jpereztriana holding ak, relaxing\u003cbr\u003eposition you see all the\u003cbr\u003etime in ckeck points even\u003cbr\u003eafter the policeman\u003cbr\u003eWed Jan 07 13:55:26 +0000 2015"}, {"group": 1704, "id": 6, "label": "552917605929848833", "shape": "dot", "size": 10, "title": "552917605929848833\u003cbr\u003e@jamiewrit Military training, or watching\u003cbr\u003ea few caper movies?\u003cbr\u003eWed Jan 07 20:00:04 +0000 2015"}, {"group": 1704, "id": 8, "label": "553208776464297984", "shape": "dot", "size": 10, "title": "553208776464297984\u003cbr\u003e@jamiewrit But one of them\u003cbr\u003e(unconfirmed) conveniently left their identity\u003cbr\u003epass? #Hebdo\u003cbr\u003eThu Jan 08 15:17:05 +0000 2015"}, {"group": 1704, "id": 9, "label": "553329614936739842", "shape": "dot", "size": 10, "title": "553329614936739842\u003cbr\u003e@jamiewrit well good thing OUR\u003cbr\u003emilitary is in place to\u003cbr\u003ecounter them-- oh wait Obama\u003cbr\u003ecompletely retreated our military from\u003cbr\u003eevrywhere, nvm\u003cbr\u003eThu Jan 08 23:17:15 +0000 2015"}, {"group": 1704, "id": 5, "label": "552831680286060544", "shape": "dot", "size": 10, "title": "552831680286060544\u003cbr\u003e@space_trader @SkyZeLimit look at the\u003cbr\u003eclose grouping of fired AK47\u003cbr\u003erounds; and covering each other.\u003cbr\u003eThat\u0027s training, kid or otherwise.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:18:38 +0000 2015"}, {"group": 1704, "id": 7, "label": "552948960261058560", "shape": "dot", "size": 10, "title": "552948960261058560\u003cbr\u003e@berthyman US and UK vets\u003cbr\u003esay training of some kind\u003cbr\u003e\u003cbr\u003eWed Jan 07 22:04:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

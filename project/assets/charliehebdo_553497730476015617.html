@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1290, "id": 0, "label": "553497730476015617", "shape": "dot", "size": 10, "title": "553497730476015617\u003cbr\u003ePoor attempt by @bdutt to\u003cbr\u003ejustify #CharlieHebdo attack, despite the\u003cbr\u003efact that France was first\u003cbr\u003eto recognise Palestine http://t.co/e4BBlsWwOp\u003cbr\u003eFri Jan 09 10:25:17 +0000 2015"}, {"group": 1290, "id": 1, "label": "553498132949262336", "shape": "dot", "size": 10, "title": "553498132949262336\u003cbr\u003e@ggiittiikkaa Arre...Indian media might be\u003cbr\u003efeeling left out as they\u003cbr\u003eare not able to give\u003cbr\u003ea running commentary of the\u003cbr\u003ecrisis in Paris..\u003cbr\u003eFri Jan 09 10:26:53 +0000 2015"}, {"group": 1290, "id": 2, "label": "553499087014592512", "shape": "dot", "size": 10, "title": "553499087014592512\u003cbr\u003e@ggiittiikkaa @BDUTT Ye tweet kar\u003cbr\u003eke apne aap ko bahut\u003cbr\u003eshani samajh rahi haingi....hain jee!\u003cbr\u003eKya Aise hote hain Budhhijivi???\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:30:40 +0000 2015"}, {"group": 1290, "id": 3, "label": "553499303029641217", "shape": "dot", "size": 10, "title": "553499303029641217\u003cbr\u003e@ggiittiikkaa @BDUTT france banned protests\u003cbr\u003ebcs they were violent and\u003cbr\u003emuslims had damaged their public\u003cbr\u003eproperty there...\u003cbr\u003eFri Jan 09 10:31:32 +0000 2015"}, {"group": 1290, "id": 4, "label": "553499541631037440", "shape": "dot", "size": 10, "title": "553499541631037440\u003cbr\u003e@ggiittiikkaa @BDUTT  \"French Arabs\u003cbr\u003edefy pro-Palestine protest ban in\u003cbr\u003eParis\"- See pics n get\u003cbr\u003esome wisdom.Do\u0027t cheat http://t.co/D5NB9kUv0T\u003cbr\u003eFri Jan 09 10:32:28 +0000 2015"}, {"group": 1290, "id": 5, "label": "553499806409048064", "shape": "dot", "size": 10, "title": "553499806409048064\u003cbr\u003e@ggiittiikkaa @BDUTT #jihadibarkha\u003cbr\u003eFri Jan 09 10:33:32 +0000 2015"}, {"group": 1290, "id": 6, "label": "553500023346843648", "shape": "dot", "size": 10, "title": "553500023346843648\u003cbr\u003e@ggiittiikkaa Idiots like @BDUTT have\u003cbr\u003eno sense of knowledge, masquerading\u003cbr\u003eas intellectuals\u003cbr\u003eFri Jan 09 10:34:23 +0000 2015"}, {"group": 1290, "id": 7, "label": "553500421285621760", "shape": "dot", "size": 10, "title": "553500421285621760\u003cbr\u003e@ggiittiikkaa @hellboy300 @BDUTT sitting safe\u003cbr\u003ein offices and preaching about\u003cbr\u003eterror thats our Media does\u003cbr\u003e,justify terror free of cost\u003cbr\u003efor th\u003cbr\u003eFri Jan 09 10:35:58 +0000 2015"}, {"group": 1290, "id": 8, "label": "553502442235510784", "shape": "dot", "size": 10, "title": "553502442235510784\u003cbr\u003e@ggiittiikkaa @rajenderjoshi2 @BDUTT  Even\u003cbr\u003eif France banned any demonstrations,\u003cbr\u003ewill it justify massacre of\u003cbr\u003einnocents. Apologists shut up pl\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:44:00 +0000 2015"}, {"group": 1290, "id": 9, "label": "553502880578019328", "shape": "dot", "size": 10, "title": "553502880578019328\u003cbr\u003e@ggiittiikkaa @BDUTT This observation is\u003cbr\u003efull of stupidity as pro\u003cbr\u003epelistenian demonstration and vandalism in\u003cbr\u003eFrance was a stupid action.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:45:44 +0000 2015"}, {"group": 1290, "id": 10, "label": "553502882926845952", "shape": "dot", "size": 10, "title": "553502882926845952\u003cbr\u003e@ggiittiikkaa @BDUTT For e.g in\u003cbr\u003eIndia free speech cannot be\u003cbr\u003epro pak demonstration. Same holds\u003cbr\u003egood in France if law\u003cbr\u003esays so\u003cbr\u003eFri Jan 09 10:45:45 +0000 2015"}, {"group": 1290, "id": 11, "label": "553503147545464835", "shape": "dot", "size": 10, "title": "553503147545464835\u003cbr\u003e@ggiittiikkaa @rajenderjoshi2 @BDUTT  \u003cbr\u003emuslim secularism\u003cbr\u003eFri Jan 09 10:46:48 +0000 2015"}, {"group": 1290, "id": 12, "label": "553503910053171200", "shape": "dot", "size": 10, "title": "553503910053171200\u003cbr\u003e@ggiittiikkaa you have been blocked!\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:49:50 +0000 2015"}, {"group": 1290, "id": 13, "label": "553504722443698176", "shape": "dot", "size": 10, "title": "553504722443698176\u003cbr\u003e@ggiittiikkaa @rajenderjoshi2 \n@BDUTT \u0026lt;\u0026lt; You\u003cbr\u003estill believe in @RanaAyyub who\u003cbr\u003ehas worked with #Tejpal?\nHypocrisy lies\u003cbr\u003ethere.\u003cbr\u003eFri Jan 09 10:53:04 +0000 2015"}, {"group": 1290, "id": 14, "label": "553505793740255233", "shape": "dot", "size": 10, "title": "553505793740255233\u003cbr\u003e@ggiittiikkaa @BDUTT  I mean\u003cbr\u003ehow disgusting can this get\u003cbr\u003e! as @mediacrooks  Pigs\u003cbr\u003ewill alw\u003cbr\u003eFri Jan 09 10:57:19 +0000 2015"}, {"group": 1290, "id": 15, "label": "553506646777794561", "shape": "dot", "size": 10, "title": "553506646777794561\u003cbr\u003e@ggiittiikkaa this @BDUTT has arabic\u003cbr\u003edad and iraqi mother.\u003cbr\u003eFri Jan 09 11:00:42 +0000 2015"}, {"group": 1290, "id": 16, "label": "553513754202083328", "shape": "dot", "size": 10, "title": "553513754202083328\u003cbr\u003e@ggiittiikkaa @9315510425 @BDUTT\nWhat has @RanaAyyub\u003cbr\u003eto say of #Pakistan where\u003cbr\u003e#Islam is Religion of State\u003cbr\u003e\u0026amp; a #BlasphemyLaw to TAME\u003cbr\u003eothers?\u003cbr\u003eFri Jan 09 11:28:57 +0000 2015"}, {"group": 1290, "id": 17, "label": "553514502902120449", "shape": "dot", "size": 10, "title": "553514502902120449\u003cbr\u003e@BDUTT controversial tweets can help\u003cbr\u003eto become a celebrity... Dear\u003cbr\u003ebarkha this a cheap idea\u003cbr\u003e@rajenderjoshi2  @ggiittiikkaa\u003cbr\u003eFri Jan 09 11:31:55 +0000 2015"}, {"group": 1290, "id": 18, "label": "553515423581237249", "shape": "dot", "size": 10, "title": "553515423581237249\u003cbr\u003e@ggiittiikkaa So @BDUTT is justifying\u003cbr\u003ekillings at #CharlieHebdo for not\u003cbr\u003eallowing demonstrations in support of\u003cbr\u003ea third country.\u003cbr\u003eFri Jan 09 11:35:35 +0000 2015"}, {"group": 1290, "id": 19, "label": "553523612808773632", "shape": "dot", "size": 10, "title": "553523612808773632\u003cbr\u003e@ggiittiikkaa @BDUTT Exactly, France was\u003cbr\u003ethe first to recognise Palestine\u003cbr\u003eas a state.\u003cbr\u003eFri Jan 09 12:08:07 +0000 2015"}, {"group": 1290, "id": 20, "label": "553528309665914881", "shape": "dot", "size": 10, "title": "553528309665914881\u003cbr\u003e@AyushjhaJha @ggiittiikkaa @BDUTT arabic cash\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:26:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 15, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

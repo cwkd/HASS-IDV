@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 450, "id": 0, "label": "552833795142209536", "shape": "dot", "size": 10, "title": "552833795142209536\u003cbr\u003eThe East London Mosque would\u003cbr\u003elike to offer its sincere\u003cbr\u003econdolences to the families of\u003cbr\u003ethose killed during the #CharlieHebdo\u003cbr\u003eattacks (1/2)\u003cbr\u003eWed Jan 07 14:27:02 +0000 2015"}, {"group": 450, "id": 1, "label": "552839626059431936", "shape": "dot", "size": 10, "title": "552839626059431936\u003cbr\u003e@irvinegerard @elondonmosque  Actions not\u003cbr\u003eWords #CharlieHebdo http://t.co/wY0zPF934N\u003cbr\u003eWed Jan 07 14:50:12 +0000 2015"}, {"group": 450, "id": 2, "label": "552840236980768768", "shape": "dot", "size": 10, "title": "552840236980768768\u003cbr\u003e@elondonmosque @MoAnsar In the wake\u003cbr\u003eof #CharlieHebdo horror Europe needs\u003cbr\u003e#iwillridewithyou to defeat prejudice.\u003cbr\u003eWed Jan 07 14:52:38 +0000 2015"}, {"group": 450, "id": 3, "label": "552841262253240320", "shape": "dot", "size": 10, "title": "552841262253240320\u003cbr\u003e@elondonmosque @MoAnsar we join you\u003cbr\u003ein condolences for family and\u003cbr\u003edisgust. Thanks for the love\u003cbr\u003eshown in both tweets\u003cbr\u003eWed Jan 07 14:56:42 +0000 2015"}, {"group": 450, "id": 4, "label": "552886374618394625", "shape": "dot", "size": 10, "title": "552886374618394625\u003cbr\u003e@elondonmosque so the first time\u003cbr\u003eyou post on twitter in\u003cbr\u003ea month is to condemn\u003cbr\u003ethis attack, but you haven\u0027t\u003cbr\u003eonce bothered to come on\u003cbr\u003eto\u003cbr\u003eWed Jan 07 17:55:58 +0000 2015"}, {"group": 450, "id": 6, "label": "552887166339391488", "shape": "dot", "size": 10, "title": "552887166339391488\u003cbr\u003e@elondonmosque will u be praying\u003cbr\u003esalatul janazah for them?\u003cbr\u003eWed Jan 07 17:59:07 +0000 2015"}, {"group": 450, "id": 10, "label": "552905486123941888", "shape": "dot", "size": 10, "title": "552905486123941888\u003cbr\u003e@elondonmosque http://t.co/YtvhAGOjcG\u003cbr\u003eWed Jan 07 19:11:55 +0000 2015"}, {"group": 450, "id": 11, "label": "552964870271164417", "shape": "dot", "size": 10, "title": "552964870271164417\u003cbr\u003e@elondonmosque will u be offering\u003cbr\u003eyour sincere condolences to the\u003cbr\u003e#gitmo detainees who have been\u003cbr\u003eheld unjustly for the past\u003cbr\u003e13 years\u003cbr\u003eWed Jan 07 23:07:53 +0000 2015"}, {"group": 450, "id": 12, "label": "552977214019731458", "shape": "dot", "size": 10, "title": "552977214019731458\u003cbr\u003e@elondonmosque lol u moderate clowns,\u003cbr\u003eno hayaa\u0027\u003cbr\u003eWed Jan 07 23:56:56 +0000 2015"}, {"group": 450, "id": 13, "label": "553183414116188160", "shape": "dot", "size": 10, "title": "553183414116188160\u003cbr\u003e@elondonmosque will you be offering\u003cbr\u003eyour sincere condolonces to your\u003cbr\u003ebombed 24/7 innocent brothers and\u003cbr\u003esisters incl children?\u003cbr\u003eThu Jan 08 13:36:18 +0000 2015"}, {"group": 450, "id": 14, "label": "553183673244463105", "shape": "dot", "size": 10, "title": "553183673244463105\u003cbr\u003e@elondonmosque How about those who\u003cbr\u003eare repeatedly tortured in gitmo?\u003cbr\u003eIncl your SISTER Afia Sidique?\u003cbr\u003eWill you offer your sincere\u003cbr\u003econdolences?\u003cbr\u003eThu Jan 08 13:37:20 +0000 2015"}, {"group": 450, "id": 5, "label": "552886515601522688", "shape": "dot", "size": 10, "title": "552886515601522688\u003cbr\u003e@elondonmosque condemn the brutal killings\u003cbr\u003eof hundreds of muslims all\u003cbr\u003earound the globe\u003cbr\u003eWed Jan 07 17:56:32 +0000 2015"}, {"group": 450, "id": 7, "label": "552902355319279616", "shape": "dot", "size": 10, "title": "552902355319279616\u003cbr\u003e@IbnAbuHudhaifah @elondonmosque I think the\u003cbr\u003ereason they\u0027ve tweeted is to\u003cbr\u003edefuse the nationalist extremists. I\u0027m\u003cbr\u003esure they do care.\u003cbr\u003eWed Jan 07 18:59:28 +0000 2015"}, {"group": 450, "id": 8, "label": "552903073572872192", "shape": "dot", "size": 10, "title": "552903073572872192\u003cbr\u003e@IbnAbuHudhaifah @elondonmosque anyway, sorry to\u003cbr\u003ebutt in. I\u0027m online looking\u003cbr\u003efor material for that reason.\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:02:19 +0000 2015"}, {"group": 450, "id": 9, "label": "552905274034774017", "shape": "dot", "size": 10, "title": "552905274034774017\u003cbr\u003e@abuubaydah37 @Izharudeen1924 @elondonmosque Yah they\u003cbr\u003eshall also give them a\u003cbr\u003eghusul before janaza\u003cbr\u003eWed Jan 07 19:11:04 +0000 2015"}, {"group": 450, "id": 15, "label": "553186057601441792", "shape": "dot", "size": 10, "title": "553186057601441792\u003cbr\u003e@FirdousSeeker - Afia Sidique was\u003cbr\u003enever in GITMO. Please consider\u003cbr\u003eaccuracy in your outrage. \u003cbr\u003e@elondonmosque\u003cbr\u003eThu Jan 08 13:46:48 +0000 2015"}, {"group": 450, "id": 16, "label": "553192656084668416", "shape": "dot", "size": 10, "title": "553192656084668416\u003cbr\u003e@Justnrmlypissed @elondonmosque whether shes in\u003cbr\u003egitmo or not shes still\u003cbr\u003eheld without any trial and\u003cbr\u003eundergoes constant torture and rape\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:13:01 +0000 2015"}, {"group": 450, "id": 17, "label": "553192999774322688", "shape": "dot", "size": 10, "title": "553192999774322688\u003cbr\u003e@Justnrmlypissed @elondonmosque and ontop of\u003cbr\u003ethat she is INNOCENT too\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:14:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

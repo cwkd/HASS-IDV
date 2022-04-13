@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1207, "id": 0, "label": "553227220765130752", "shape": "dot", "size": 10, "title": "553227220765130752\u003cbr\u003eA 60-second tribute to the\u003cbr\u003evictims of the #CharlieHebdo attack\u003cbr\u003ehttp://t.co/SNQBRuh48T http://t.co/WFYN11sijj\u003cbr\u003eThu Jan 08 16:30:22 +0000 2015"}, {"group": 1207, "id": 1, "label": "553227475749044224", "shape": "dot", "size": 10, "title": "553227475749044224\u003cbr\u003e\u201c@BBCWorld: A 60-second tribute to\u003cbr\u003ethe victims of the #CharlieHebdo\u003cbr\u003eattack http://t.co/KDSLNB7vxr http://t.co/75sYOBsPo3\u201d \ud83d\udc40 God\u003cbr\u003eBless \ud83d\udc40\u003cbr\u003eThu Jan 08 16:31:23 +0000 2015"}, {"group": 1207, "id": 2, "label": "553227676488462336", "shape": "dot", "size": 10, "title": "553227676488462336\u003cbr\u003e@BBCWorld O\u00f9 sont-ils? et d\u0027ou\u003cbr\u003eviennent leurs soutiens ! \nhttp://t.co/8tNQ785G2s\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:32:11 +0000 2015"}, {"group": 1207, "id": 3, "label": "553227779517726720", "shape": "dot", "size": 10, "title": "553227779517726720\u003cbr\u003e@BBCWorld truly touching tribute\u003cbr\u003eThu Jan 08 16:32:35 +0000 2015"}, {"group": 1207, "id": 4, "label": "553227879262482433", "shape": "dot", "size": 10, "title": "553227879262482433\u003cbr\u003e@BBCWorld @BBCNews People need to\u003cbr\u003eget over this and move\u003cbr\u003eon.\u003cbr\u003eThu Jan 08 16:32:59 +0000 2015"}, {"group": 1207, "id": 5, "label": "553227965774200833", "shape": "dot", "size": 10, "title": "553227965774200833\u003cbr\u003e@BBCWorld What 2,000,000,000 Muslims NOT\u003cbr\u003econdemning a terror attack looks\u003cbr\u003elike. #TheSilenceIsDeafening\n#CharlieHebdo http://t.co/I9MSHcT3tV\u003cbr\u003eThu Jan 08 16:33:20 +0000 2015"}, {"group": 1207, "id": 6, "label": "553228234343858176", "shape": "dot", "size": 10, "title": "553228234343858176\u003cbr\u003e@BBCWorld #JeSuisCharlie   Thank\u003cbr\u003eyou.\u003cbr\u003eThu Jan 08 16:34:24 +0000 2015"}, {"group": 1207, "id": 7, "label": "553228378904756224", "shape": "dot", "size": 10, "title": "553228378904756224\u003cbr\u003e@BBCWorld  MERCI POUR EUX\u003cbr\u003e!!!\u003cbr\u003eThu Jan 08 16:34:58 +0000 2015"}, {"group": 1207, "id": 8, "label": "553228383006769152", "shape": "dot", "size": 10, "title": "553228383006769152\u003cbr\u003e@BBCWorld \nA sad day for\u003cbr\u003ethe free world. Vive la\u003cbr\u003eFrance!\nhttps://t.co/L2mlH3XjdE\n#JeSuisCharlie #CharlieHebdo\u003cbr\u003eThu Jan 08 16:34:59 +0000 2015"}, {"group": 1207, "id": 9, "label": "553228419128119296", "shape": "dot", "size": 10, "title": "553228419128119296\u003cbr\u003e\u201c@BBCWorld: A 60-second tribute to\u003cbr\u003ethe victims of the #CharlieHebdo\u003cbr\u003eattack http://t.co/MxOU7kPFJi http://t.co/89wkHce0sx\u201d #fb\u003cbr\u003eThu Jan 08 16:35:08 +0000 2015"}, {"group": 1207, "id": 10, "label": "553228551315804160", "shape": "dot", "size": 10, "title": "553228551315804160\u003cbr\u003e\u201c@BBCWorld: A 60-second tribute to\u003cbr\u003ethe victims of the #CharlieHebdo\u003cbr\u003eattack http://t.co/5metQrlXGg http://t.co/6vM3zY2tkD\u201d\u003cbr\u003eThu Jan 08 16:35:39 +0000 2015"}, {"group": 1207, "id": 11, "label": "553230059238993921", "shape": "dot", "size": 10, "title": "553230059238993921\u003cbr\u003e@BBCWorld #CharlieHebdo How about not\u003cbr\u003eplacing a ban of their\u003cbr\u003ework as a tribute #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:41:39 +0000 2015"}, {"group": 1207, "id": 12, "label": "553230141761933312", "shape": "dot", "size": 10, "title": "553230141761933312\u003cbr\u003e@BBCWorld their blood is on\u003cbr\u003eboth the cartoonists and the\u003cbr\u003ekillers\u003cbr\u003eThu Jan 08 16:41:58 +0000 2015"}, {"group": 1207, "id": 13, "label": "553230552002994176", "shape": "dot", "size": 10, "title": "553230552002994176\u003cbr\u003e@BBCWorld\u003cbr\u003eThu Jan 08 16:43:36 +0000 2015"}, {"group": 1207, "id": 14, "label": "553230796404686848", "shape": "dot", "size": 10, "title": "553230796404686848\u003cbr\u003e@BBCWorld \n\n\u0648\u06c1 \u062a\u06c1\u06cc \u062f\u0633\u062a \u0628\u06be\u06cc\u003cbr\u003e\u06a9\u06cc\u0627 \u062e\u0648\u0628 \u06a9\u06c1\u0627\u0646\u06cc \u06af\u0631 \u062a\u06be\u0627\n.\n\u0628\u0627\u062a\u0648\u06ba\u003cbr\u003e\u0628\u0627\u062a\u0648\u06ba \u0645\u06cc\u06ba \u0645\u062c\u06be\u06d2 \u0686\u0627\u0646\u062f \u0628\u06be\u06cc\u003cbr\u003e\u0644\u0627 \u062f\u06cc\u062a\u0627 \u062a\u06be\u0627...\u003cbr\u003eThu Jan 08 16:44:35 +0000 2015"}, {"group": 1207, "id": 15, "label": "553230870572974080", "shape": "dot", "size": 10, "title": "553230870572974080\u003cbr\u003e\u201c@BBCWorld:60-second tribute to the victims\u003cbr\u003eof the #CharlieHebdo attack http://t.co/JFGuNOWCOo\u003cbr\u003ehttp://t.co/UmrYlHUPj8\u201d\ud83d\ude25\u003cbr\u003eThu Jan 08 16:44:52 +0000 2015"}, {"group": 1207, "id": 17, "label": "553231291089309696", "shape": "dot", "size": 10, "title": "553231291089309696\u003cbr\u003e@BBCWorld\u003cbr\u003eThu Jan 08 16:46:32 +0000 2015"}, {"group": 1207, "id": 18, "label": "553231645654794240", "shape": "dot", "size": 10, "title": "553231645654794240\u003cbr\u003eRIP \n\u201c@BBCWorld: A 60-second tribute\u003cbr\u003eto the victims of the\u003cbr\u003e#CharlieHebdo attack http://t.co/RDlMT33uKc http://t.co/KgMAsk8Myr\u201d\u003cbr\u003eThu Jan 08 16:47:57 +0000 2015"}, {"group": 1207, "id": 16, "label": "553231137498087426", "shape": "dot", "size": 10, "title": "553231137498087426\u003cbr\u003e@nazmia are you kidding me?\u003cbr\u003eThe only blood is on\u003cbr\u003ethe killers hands. Don\u0027t like\u003cbr\u003efree speech change the channel.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:45:56 +0000 2015"}, {"group": 1207, "id": 19, "label": "553231933526646784", "shape": "dot", "size": 10, "title": "553231933526646784\u003cbr\u003e@SunilDeLaCroix what\u0027s so free about\u003cbr\u003einsults? I condemn both sides..Both\u003cbr\u003ehave blood on their hands..\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:49:06 +0000 2015"}, {"group": 1207, "id": 20, "label": "553237361664856064", "shape": "dot", "size": 10, "title": "553237361664856064\u003cbr\u003e@nazmia If you don\u0027t want\u003cbr\u003eanyone challenging your beliefs, crass\u003cbr\u003eor not, then don\u0027t live\u003cbr\u003ein a liberal western democracy.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:10:40 +0000 2015"}, {"group": 1207, "id": 21, "label": "553238334726610944", "shape": "dot", "size": 10, "title": "553238334726610944\u003cbr\u003e@SunilDeLaCroix What\u0027s so challenging in\u003cbr\u003estupid hatred based insults? I\u003cbr\u003einsist both parties have the\u003cbr\u003evictims\u0027 blood on their hands.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:14:32 +0000 2015"}, {"group": 1207, "id": 22, "label": "553239049582833664", "shape": "dot", "size": 10, "title": "553239049582833664\u003cbr\u003e@SunilDeLaCroix Thank God I do\u003cbr\u003enot live in any gimic\u003cbr\u003edemocracy\u003cbr\u003eThu Jan 08 17:17:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 12, "to": 16, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

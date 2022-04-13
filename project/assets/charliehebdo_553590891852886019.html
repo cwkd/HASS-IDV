@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2077, "id": 0, "label": "553590891852886019", "shape": "dot", "size": 10, "title": "553590891852886019\u003cbr\u003eFrench media reports two suspects\u003cbr\u003eof #CharlieHebdo attack are killed,\u003cbr\u003eand supermarket hostage-taker also killed\u003cbr\u003ehttp://t.co/9OV0KKlxXG\u003cbr\u003eFri Jan 09 16:35:28 +0000 2015"}, {"group": 2077, "id": 1, "label": "553591249580867586", "shape": "dot", "size": 10, "title": "553591249580867586\u003cbr\u003e@AJENews Trying moments for France\u003cbr\u003e#CharlieHebdo\u003cbr\u003eFri Jan 09 16:36:53 +0000 2015"}, {"group": 2077, "id": 2, "label": "553593451669757952", "shape": "dot", "size": 10, "title": "553593451669757952\u003cbr\u003e@AJENews http://t.co/OgOaIdExQq\u003cbr\u003eFri Jan 09 16:45:38 +0000 2015"}, {"group": 2077, "id": 3, "label": "553594587030503424", "shape": "dot", "size": 10, "title": "553594587030503424\u003cbr\u003e@AJENews Time to clean out\u003cbr\u003eYemen of al-Qaeda indoctrination schools,\u003cbr\u003esanctuaries, put them  out\u003cbr\u003eof business!\u003cbr\u003eFri Jan 09 16:50:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

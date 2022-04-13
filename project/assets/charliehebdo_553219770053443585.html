@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1181, "id": 0, "label": "553219770053443585", "shape": "dot", "size": 10, "title": "553219770053443585\u003cbr\u003e#CharlieHebdo: If we talk about\u003cbr\u003e\u2018war\u2019, we fall into the\u003cbr\u003etrap set by murderers, @robinlustig\u003cbr\u003ehttp://t.co/AwHoRooAyG http://t.co/kD7XkvUaUV\u003cbr\u003eThu Jan 08 16:00:46 +0000 2015"}, {"group": 1181, "id": 1, "label": "553221245441818624", "shape": "dot", "size": 10, "title": "553221245441818624\u003cbr\u003e. @IndyVoices @Independent @robinlustig like\u003cbr\u003eNATO right? Bc if we\u0027re\u003cbr\u003egoing to talk about murders\u003cbr\u003ethen really you all are\u003cbr\u003etop in the list\u003cbr\u003eThu Jan 08 16:06:37 +0000 2015"}, {"group": 1181, "id": 2, "label": "553224859069976577", "shape": "dot", "size": 10, "title": "553224859069976577\u003cbr\u003e@IndyVoices @Independent @robinlustig Winter, Paris,\u003cbr\u003eFrance ... Kiev! Do not\u003cbr\u003ekill the Donbass !!!! \u003cbr\u003e#CharlieHebdo http://t.co/inSJ5lN7cy\u003cbr\u003eThu Jan 08 16:20:59 +0000 2015"}, {"group": 1181, "id": 3, "label": "553227097091883008", "shape": "dot", "size": 10, "title": "553227097091883008\u003cbr\u003e@IndyVoices @Independent @robinlustig Je suis\u003cbr\u003eCharlie and I am not\u003cbr\u003eafraid.\u003cbr\u003eThu Jan 08 16:29:53 +0000 2015"}, {"group": 1181, "id": 4, "label": "553675747278479360", "shape": "dot", "size": 10, "title": "553675747278479360\u003cbr\u003e@IndyVoices @robinlustig well said! #wearefreedomofexpressionBristol\u003cbr\u003e\u003cbr\u003eFri Jan 09 22:12:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

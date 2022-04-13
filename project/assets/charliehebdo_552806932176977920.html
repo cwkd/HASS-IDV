@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 115, "id": 0, "label": "552806932176977920", "shape": "dot", "size": 10, "title": "552806932176977920\u003cbr\u003eWhen an ideology resorts to\u003cbr\u003emurdering satirists, it is publically\u003cbr\u003eadmitting how weak, insecure \u0026amp;\u003cbr\u003eridiculous it is. #CharlieHebdo\u003cbr\u003eWed Jan 07 12:40:17 +0000 2015"}, {"group": 115, "id": 1, "label": "552808904225480704", "shape": "dot", "size": 10, "title": "552808904225480704\u003cbr\u003e@AbiePB @TheRealPolina And when they\u003cbr\u003ecan get away with it\u003cbr\u003eit shows how complicit the\u003cbr\u003epowers that be are\u003cbr\u003eWed Jan 07 12:48:08 +0000 2015"}, {"group": 115, "id": 4, "label": "552812133109739520", "shape": "dot", "size": 10, "title": "552812133109739520\u003cbr\u003e@AbiePB but still lethal. And\u003cbr\u003ethat\u0027s more than too much.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:00:57 +0000 2015"}, {"group": 115, "id": 5, "label": "552856212350316544", "shape": "dot", "size": 10, "title": "552856212350316544\u003cbr\u003e@hahostolze @AbiePB Islam resort to\u003cbr\u003ekilling them? Seriously??\u003cbr\u003eWed Jan 07 15:56:07 +0000 2015"}, {"group": 115, "id": 13, "label": "552963385974095873", "shape": "dot", "size": 10, "title": "552963385974095873\u003cbr\u003e@AbiePB @frwololo not to justify\u003cbr\u003ethe criminal action in Paris\u003cbr\u003ebut the US did it\u003cbr\u003epreviously and no body spoke\u003cbr\u003eabout it.\u003cbr\u003eWed Jan 07 23:01:59 +0000 2015"}, {"group": 115, "id": 14, "label": "552963986736807937", "shape": "dot", "size": 10, "title": "552963986736807937\u003cbr\u003e@AbiePB @frwololo the US bombed\u003cbr\u003ethe house of the artist\u003cbr\u003ewho made this and killed\u003cbr\u003eher and her husband in\u003cbr\u003e1993 http://t.co/gtMuQnatLM\u003cbr\u003eWed Jan 07 23:04:22 +0000 2015"}, {"group": 115, "id": 2, "label": "552810515052118016", "shape": "dot", "size": 10, "title": "552810515052118016\u003cbr\u003e@post_it_51 @msilboun they were shouting\u003cbr\u003e\"Allah Akbar\". Unless you think\u003cbr\u003ethat was a heavy French\u003cbr\u003eaccent shouting \"Allez... ???\"\u003cbr\u003eWed Jan 07 12:54:32 +0000 2015"}, {"group": 115, "id": 3, "label": "552810965281300480", "shape": "dot", "size": 10, "title": "552810965281300480\u003cbr\u003e@AbiePB @msilboun \nand \"The prophet\u003cbr\u003ehas been avenged!\"\nBesides the fact\u003cbr\u003ethan far right (or any\u003cbr\u003eone else) don\u0027t kill people\u003cbr\u003eover pictures\u003cbr\u003eWed Jan 07 12:56:19 +0000 2015"}, {"group": 115, "id": 6, "label": "552856780259463168", "shape": "dot", "size": 10, "title": "552856780259463168\u003cbr\u003e@Razlansalim @AbiePB no, that is\u003cbr\u003enot what we\u0027re saying.\u003cbr\u003eWed Jan 07 15:58:22 +0000 2015"}, {"group": 115, "id": 9, "label": "552890144370749442", "shape": "dot", "size": 10, "title": "552890144370749442\u003cbr\u003e@Razlansalim @hahostolze I clarified what\u003cbr\u003eI meant by ideology, in\u003cbr\u003ethe next tweet. Made clear\u003cbr\u003eit was an ideology rejected\u003cbr\u003eby most Muslims\u003cbr\u003eWed Jan 07 18:10:57 +0000 2015"}, {"group": 115, "id": 7, "label": "552857283819216896", "shape": "dot", "size": 10, "title": "552857283819216896\u003cbr\u003e@Razlansalim firstly, I would never\u003cbr\u003ecall Islam only an ideology.\u003cbr\u003eIt is a (beautiful) religion.\u003cbr\u003eFundamentalist Islam, however, is ideological\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:00:22 +0000 2015"}, {"group": 115, "id": 8, "label": "552859028565409793", "shape": "dot", "size": 10, "title": "552859028565409793\u003cbr\u003e@hahostolze @AbiePB ignorance on my\u003cbr\u003epart then. Too many hate\u003cbr\u003espreading on my tl. Sorry\u003cbr\u003emy bad.\u003cbr\u003eWed Jan 07 16:07:18 +0000 2015"}, {"group": 115, "id": 10, "label": "552902203019513856", "shape": "dot", "size": 10, "title": "552902203019513856\u003cbr\u003e@AbiePB right. My mistake. Sorry\u003cbr\u003en thnks.\u003cbr\u003eWed Jan 07 18:58:52 +0000 2015"}, {"group": 115, "id": 11, "label": "552903993819938816", "shape": "dot", "size": 10, "title": "552903993819938816\u003cbr\u003e@Razlansalim no worries. There\u0027s too\u003cbr\u003emuch casual islamophobia online and\u003cbr\u003eelsewhere\u003cbr\u003eWed Jan 07 19:05:59 +0000 2015"}, {"group": 115, "id": 12, "label": "552912084111880193", "shape": "dot", "size": 10, "title": "552912084111880193\u003cbr\u003e@AbiePB true. It can happen\u003cbr\u003ein the simplest way. Like\u003cbr\u003emisreading a tweet.\u003cbr\u003eWed Jan 07 19:38:08 +0000 2015"}, {"group": 115, "id": 15, "label": "552974781331431424", "shape": "dot", "size": 10, "title": "552974781331431424\u003cbr\u003e@SaudiPolandball @AbiePB The official story\u003cbr\u003eis that she was involved\u003cbr\u003ein an assassination plot of\u003cbr\u003ea US president. Quite different\u003cbr\u003esituation?\u003cbr\u003eWed Jan 07 23:47:16 +0000 2015"}, {"group": 115, "id": 16, "label": "552975828620156929", "shape": "dot", "size": 10, "title": "552975828620156929\u003cbr\u003e@frwololo @AbiePB You believe that\u003cbr\u003eshit? They also said Iraq\u003cbr\u003ehas chemical weapons to invade\u003cbr\u003eit in 2003. They didn\u2019t\u003cbr\u003efind them, did they?\u003cbr\u003eWed Jan 07 23:51:25 +0000 2015"}, {"group": 115, "id": 17, "label": "552976344863506432", "shape": "dot", "size": 10, "title": "552976344863506432\u003cbr\u003e@frwololo @AbiePB the thing is\u003cbr\u003ethat work was an iconic\u003cbr\u003ething of the Iraqi govt\u003cbr\u003eagainst the US and was\u003cbr\u003emade by an order from\u003cbr\u003eSaddam Hussain.\u003cbr\u003eWed Jan 07 23:53:29 +0000 2015"}, {"group": 115, "id": 18, "label": "552976564548149251", "shape": "dot", "size": 10, "title": "552976564548149251\u003cbr\u003e@SaudiPolandball @AbiePB Only saying you\u003cbr\u003eare trying to relate 2\u003cbr\u003evastly different things. No legit\u003cbr\u003egovernment here is claiming the\u003cbr\u003eattack!\u003cbr\u003eWed Jan 07 23:54:21 +0000 2015"}, {"group": 115, "id": 19, "label": "552976829703680000", "shape": "dot", "size": 10, "title": "552976829703680000\u003cbr\u003e@SaudiPolandball @AbiePB Case in point:\u003cbr\u003ethe French government is often\u003cbr\u003ecriticized by Charlie Hebdo, and\u003cbr\u003eCharlie has no political allegiance\u003cbr\u003e\u003cbr\u003eWed Jan 07 23:55:24 +0000 2015"}, {"group": 115, "id": 20, "label": "552976943126425600", "shape": "dot", "size": 10, "title": "552976943126425600\u003cbr\u003e@frwololo @AbiePB my point was\u003cbr\u003ethe same as the original\u003cbr\u003etweet. Attacking innocents proves how\u003cbr\u003eweak your point is.\u003cbr\u003eWed Jan 07 23:55:51 +0000 2015"}, {"group": 115, "id": 21, "label": "552977066807664642", "shape": "dot", "size": 10, "title": "552977066807664642\u003cbr\u003e@SaudiPolandball @AbiePB Ok, that I\u003cbr\u003etotally agree with\u003cbr\u003eWed Jan 07 23:56:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 2, "to": 2, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

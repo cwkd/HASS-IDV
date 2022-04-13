@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1830, "id": 0, "label": "553186555150749696", "shape": "dot", "size": 10, "title": "553186555150749696\u003cbr\u003eIt ain\u0027t Banksy! Meet @LucilleClerc,\u003cbr\u003eartist behind the iconic #CharlieHebdo\u003cbr\u003epencil tribute http://t.co/dSLrOOGQN7 http://t.co/TU2rtmUSd9\u003cbr\u003eThu Jan 08 13:48:47 +0000 2015"}, {"group": 1830, "id": 1, "label": "553186613623529473", "shape": "dot", "size": 10, "title": "553186613623529473\u003cbr\u003e@moneyries Gah, had a sneaking\u003cbr\u003efeeling.\u003cbr\u003eThu Jan 08 13:49:01 +0000 2015"}, {"group": 1830, "id": 4, "label": "553189311282036737", "shape": "dot", "size": 10, "title": "553189311282036737\u003cbr\u003e@moneyries @atotalmonet @LucilleClerc Just an\u003cbr\u003eincredible work of art! Great\u003cbr\u003etribute.\u003cbr\u003eThu Jan 08 13:59:44 +0000 2015"}, {"group": 1830, "id": 5, "label": "553198811980771328", "shape": "dot", "size": 10, "title": "553198811980771328\u003cbr\u003e@moneyries @LucilleClerc @neilhimself awesome!\u003cbr\u003eThu Jan 08 14:37:29 +0000 2015"}, {"group": 1830, "id": 6, "label": "553200762957086720", "shape": "dot", "size": 10, "title": "553200762957086720\u003cbr\u003e\u201c@moneyries: ... Meet @LucilleClerc, artist\u003cbr\u003ebehind the iconic #CharlieHebdo pencil\u003cbr\u003etribute http://t.co/rSnhG3er6c http://t.co/T0haWmeDKW\u201d\u003cbr\u003eThu Jan 08 14:45:14 +0000 2015"}, {"group": 1830, "id": 7, "label": "553203265878237185", "shape": "dot", "size": 10, "title": "553203265878237185\u003cbr\u003e@moneyries @umairh @LucilleClerc so you\u003cbr\u003emean @jesus isn\u0027t really Jesus\u003cbr\u003eChrist? Wtf Twitter!!\u003cbr\u003eThu Jan 08 14:55:11 +0000 2015"}, {"group": 1830, "id": 9, "label": "553203555767963649", "shape": "dot", "size": 10, "title": "553203555767963649\u003cbr\u003e@moneyries @LucilleClerc\u003cbr\u003eThu Jan 08 14:56:20 +0000 2015"}, {"group": 1830, "id": 11, "label": "553205040853561345", "shape": "dot", "size": 10, "title": "553205040853561345\u003cbr\u003e@moneyries @nick_lowe_ @LucilleClerc brilliant!\u003cbr\u003eThu Jan 08 15:02:14 +0000 2015"}, {"group": 1830, "id": 14, "label": "553213553922953216", "shape": "dot", "size": 10, "title": "553213553922953216\u003cbr\u003e@moneyries @neilhimself @LucilleClerc Oh, that\u0027s\u003cbr\u003esuperb.\u003cbr\u003eThu Jan 08 15:36:04 +0000 2015"}, {"group": 1830, "id": 15, "label": "553216855033118721", "shape": "dot", "size": 10, "title": "553216855033118721\u003cbr\u003e@moneyries @denkely @LucilleClerc what\u0027s with\u003cbr\u003ethis ? I don\u0027t understand\u003cbr\u003e? Explain.. Someone anyone please\u003cbr\u003e\ud83d\ude05\u003cbr\u003eThu Jan 08 15:49:11 +0000 2015"}, {"group": 1830, "id": 16, "label": "553222926393421824", "shape": "dot", "size": 10, "title": "553222926393421824\u003cbr\u003e@moneyries @colehaddon @LucilleClerc Really loving\u003cbr\u003ethis!  Terrific campaign .\u003cbr\u003e. . pass it on!\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:13:18 +0000 2015"}, {"group": 1830, "id": 17, "label": "553223494885195776", "shape": "dot", "size": 10, "title": "553223494885195776\u003cbr\u003e@moneyries @NRandCo @LucilleClerc I was\u003cbr\u003ewondering about that. Wish Banksy\u003cbr\u003ehad given credit where it\u003cbr\u003ewas due.\u003cbr\u003eThu Jan 08 16:15:34 +0000 2015"}, {"group": 1830, "id": 19, "label": "553227158521651200", "shape": "dot", "size": 10, "title": "553227158521651200\u003cbr\u003eRT @moneyries: Meet @LucilleClerc, artist\u003cbr\u003ebehind the iconic #CharlieHebdo pencil\u003cbr\u003etribute http://t.co/pBa1ByN1l7 http://t.co/wUGdushACb\u003cbr\u003eThu Jan 08 16:30:07 +0000 2015"}, {"group": 1830, "id": 2, "label": "553186696406523904", "shape": "dot", "size": 10, "title": "553186696406523904\u003cbr\u003e@JasonAbbruzzese burn me on a\u003cbr\u003estake\u003cbr\u003eThu Jan 08 13:49:20 +0000 2015"}, {"group": 1830, "id": 3, "label": "553186738127257601", "shape": "dot", "size": 10, "title": "553186738127257601\u003cbr\u003e@moneyries Ill be there with\u003cbr\u003eya.\u003cbr\u003eThu Jan 08 13:49:30 +0000 2015"}, {"group": 1830, "id": 8, "label": "553203511031513088", "shape": "dot", "size": 10, "title": "553203511031513088\u003cbr\u003e@jmitura @umairh @LucilleClerc @jesus unless\u003cbr\u003eyou believe the Lord is\u003cbr\u003ea living, creative force, bad\u003cbr\u003ecomparison.\u003cbr\u003eThu Jan 08 14:56:09 +0000 2015"}, {"group": 1830, "id": 10, "label": "553204315540570112", "shape": "dot", "size": 10, "title": "553204315540570112\u003cbr\u003e@moneyries @umairh @LucilleClerc @jesus frack,\u003cbr\u003e8 yrs of catholic school\u003cbr\u003eis a lie? So who\u003cbr\u003ehas been talking to @SarahPalinUSA\u003cbr\u003eall these years?\u003cbr\u003eThu Jan 08 14:59:21 +0000 2015"}, {"group": 1830, "id": 12, "label": "553205590273449986", "shape": "dot", "size": 10, "title": "553205590273449986\u003cbr\u003e@moneyries blogger, too early to\u003cbr\u003ebe mean to the internets...be\u003cbr\u003ehappy!\u003cbr\u003eThu Jan 08 15:04:25 +0000 2015"}, {"group": 1830, "id": 13, "label": "553206888515780608", "shape": "dot", "size": 10, "title": "553206888515780608\u003cbr\u003e@jmitura heh\u003cbr\u003eThu Jan 08 15:09:34 +0000 2015"}, {"group": 1830, "id": 18, "label": "553226000507863040", "shape": "dot", "size": 10, "title": "553226000507863040\u003cbr\u003e@ShoraGonish Charlie?\u003cbr\u003eThu Jan 08 16:25:31 +0000 2015"}, {"group": 1830, "id": 20, "label": "553243346379210753", "shape": "dot", "size": 10, "title": "553243346379210753\u003cbr\u003e@Heidiroseb @NRandCo @LucilleClerc not even\u003cbr\u003ebanksy. A fake.\u003cbr\u003eThu Jan 08 17:34:27 +0000 2015"}, {"group": 1830, "id": 21, "label": "553266712460529665", "shape": "dot", "size": 10, "title": "553266712460529665\u003cbr\u003e@denkely yeah\u003cbr\u003eThu Jan 08 19:07:18 +0000 2015"}, {"group": 1830, "id": 22, "label": "553447140383801344", "shape": "dot", "size": 10, "title": "553447140383801344\u003cbr\u003e@ShoraGonish it is a tribute\u003cbr\u003eto the artists who lost\u003cbr\u003etheir lives. An \u0027Aluta continua\u0027\u003cbr\u003eof sorts.\u003cbr\u003eFri Jan 09 07:04:15 +0000 2015"}, {"group": 1830, "id": 23, "label": "553467560436330496", "shape": "dot", "size": 10, "title": "553467560436330496\u003cbr\u003e@denkely Amazing \ud83d\udc99 , is\u003cbr\u003eit in every January 8th\u003cbr\u003e?\u003cbr\u003eFri Jan 09 08:25:23 +0000 2015"}, {"group": 1830, "id": 24, "label": "553473124348727296", "shape": "dot", "size": 10, "title": "553473124348727296\u003cbr\u003e@ShoraGonish read this. http://t.co/TobNiFMI4E\u003cbr\u003eFri Jan 09 08:47:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

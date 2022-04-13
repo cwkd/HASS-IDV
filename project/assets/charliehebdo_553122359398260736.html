@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 807, "id": 0, "label": "553122359398260736", "shape": "dot", "size": 10, "title": "553122359398260736\u003cbr\u003eAfter the Charlie Hebdo attack,\u003cbr\u003ewe must resist the clash-of-civilisations\u003cbr\u003enarrative | Homa Khaleeli http://t.co/6iF3ugDMu3\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:33:41 +0000 2015"}, {"group": 807, "id": 1, "label": "553122870415880192", "shape": "dot", "size": 10, "title": "553122870415880192\u003cbr\u003e@guardian Too late for that,\u003cbr\u003eunfortunately. What you you have\u003cbr\u003ecreated is not a \"narrative\"\u003cbr\u003ebut a reality. And you\u003cbr\u003ehave blood on your hands.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:35:43 +0000 2015"}, {"group": 807, "id": 2, "label": "553123068592132096", "shape": "dot", "size": 10, "title": "553123068592132096\u003cbr\u003e@guardian but why??? groups like\u003cbr\u003eISIS are using islamic theology\u003cbr\u003eto JUSTIFY their evil. there\u003cbr\u003eIS a clash of civilizations:\u003cbr\u003efree vs theocracy\u003cbr\u003eThu Jan 08 09:36:30 +0000 2015"}, {"group": 807, "id": 3, "label": "553123365129818113", "shape": "dot", "size": 10, "title": "553123365129818113\u003cbr\u003e@guardian Perhaps tempering free speech\u003cbr\u003ewith respect and responsibility may\u003cbr\u003ehelp.\u003cbr\u003eThu Jan 08 09:37:41 +0000 2015"}, {"group": 807, "id": 4, "label": "553123637948325888", "shape": "dot", "size": 10, "title": "553123637948325888\u003cbr\u003e@guardian yes we must resist\u003cbr\u003eclash of civilisation narrative but\u003cbr\u003eMuslims are victims of terror\u003cbr\u003etoo the policeman murdered was\u003cbr\u003ea Muslim\u003cbr\u003eThu Jan 08 09:38:46 +0000 2015"}, {"group": 807, "id": 5, "label": "553124114278670336", "shape": "dot", "size": 10, "title": "553124114278670336\u003cbr\u003e@guardian How can there be?\u003cbr\u003eIt\u0027s a war of civilisation\u003cbr\u003eagainst islamist barbarism. You rabble\u003cbr\u003enormally side with the latter\u003cbr\u003ehowever...\u003cbr\u003eThu Jan 08 09:40:40 +0000 2015"}, {"group": 807, "id": 6, "label": "553124351491706880", "shape": "dot", "size": 10, "title": "553124351491706880\u003cbr\u003eRT \u201c@guardian: After the Charlie\u003cbr\u003eHebdo attack, we must resist\u003cbr\u003ethe clash-of-civilisations narrative | Homa\u003cbr\u003eKhaleeli http://t.co/b9UgpRLttT\u201d\u003cbr\u003eThu Jan 08 09:41:36 +0000 2015"}, {"group": 807, "id": 7, "label": "553125282006458368", "shape": "dot", "size": 10, "title": "553125282006458368\u003cbr\u003e@guardian @Hevallo they want ww\u003cbr\u003eIII because this is more\u003cbr\u003eprofitable, the cartel of FED\u003cbr\u003ehave a very clear strategy\u003cbr\u003e, study wwII!\u003cbr\u003eThu Jan 08 09:45:18 +0000 2015"}, {"group": 807, "id": 8, "label": "553126175305125888", "shape": "dot", "size": 10, "title": "553126175305125888\u003cbr\u003e@guardian But it IS a\u003cbr\u003eclash. Absolute, brutal theocracy which\u003cbr\u003ebrooks no dissent against democracy.\u003cbr\u003eSTAND UP for democracy!\u003cbr\u003eThu Jan 08 09:48:51 +0000 2015"}, {"group": 807, "id": 9, "label": "553126258331361281", "shape": "dot", "size": 10, "title": "553126258331361281\u003cbr\u003e@guardian They won\u0027t.\u003cbr\u003eThu Jan 08 09:49:11 +0000 2015"}, {"group": 807, "id": 10, "label": "553126366267596801", "shape": "dot", "size": 10, "title": "553126366267596801\u003cbr\u003e@guardian couldnt agree more. http://t.co/DIqM7gIn0J\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:49:36 +0000 2015"}, {"group": 807, "id": 11, "label": "553127379494002688", "shape": "dot", "size": 10, "title": "553127379494002688\u003cbr\u003e@guardian I totally agree!\u003cbr\u003eThu Jan 08 09:53:38 +0000 2015"}, {"group": 807, "id": 14, "label": "553127914137350144", "shape": "dot", "size": 10, "title": "553127914137350144\u003cbr\u003e@guardian US \u0026amp; UK are\u003cbr\u003eso greedy they arm Terrorists\u003cbr\u003ejust to Loot other Nations.\u003cbr\u003eUS has not learnt from\u003cbr\u003e9/11 \u0026amp; US armed OBL/Taliban.Haqqannis\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:55:46 +0000 2015"}, {"group": 807, "id": 15, "label": "553128488266260481", "shape": "dot", "size": 10, "title": "553128488266260481\u003cbr\u003e@guardian  the only thing\u003cbr\u003eI\u0027ve read with hints of\u003cbr\u003etruth after this while CharliHebdo\u003cbr\u003eincident. ThumbsUp\u003cbr\u003eThu Jan 08 09:58:02 +0000 2015"}, {"group": 807, "id": 16, "label": "553128650522886145", "shape": "dot", "size": 10, "title": "553128650522886145\u003cbr\u003e@guardian but that\u0027s what the\u003cbr\u003eterrorists are peddling. We are\u003cbr\u003eproclaiming solidarity with #illridewithyou and\u003cbr\u003eother gestures\u003cbr\u003eThu Jan 08 09:58:41 +0000 2015"}, {"group": 807, "id": 17, "label": "553131055075434498", "shape": "dot", "size": 10, "title": "553131055075434498\u003cbr\u003e@guardian   No we\u003cbr\u003etried to tolerate this barbaric\u003cbr\u003ereligion for too long Its\u003cbr\u003evalues are the opposite of\u003cbr\u003ethinking people\u003cbr\u003eThu Jan 08 10:08:14 +0000 2015"}, {"group": 807, "id": 18, "label": "553135521636311040", "shape": "dot", "size": 10, "title": "553135521636311040\u003cbr\u003e@guardian It is not a\u003cbr\u003eclash of civilizations, it is\u003cbr\u003ea demonstration of #criminal tyrants.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:25:59 +0000 2015"}, {"group": 807, "id": 19, "label": "553142774187692033", "shape": "dot", "size": 10, "title": "553142774187692033\u003cbr\u003e@guardian @NafeezAhmed we are plenty\u003cbr\u003eunified.  All you did\u003cbr\u003ehere was make a request.\u003cbr\u003e What part about the\u003cbr\u003eevent was civilized?\u003cbr\u003eThu Jan 08 10:54:48 +0000 2015"}, {"group": 807, "id": 12, "label": "553127536876863488", "shape": "dot", "size": 10, "title": "553127536876863488\u003cbr\u003e@irishfabian @guardian That wasn\u0027t intentional\u003cbr\u003ethough. It was our freedom\u003cbr\u003ethat was targeted.\u003cbr\u003eThu Jan 08 09:54:16 +0000 2015"}, {"group": 807, "id": 13, "label": "553127593466429441", "shape": "dot", "size": 10, "title": "553127593466429441\u003cbr\u003e@MrSubtle057 @guardian https://t.co/PX2EOKN2Ka\u003cbr\u003eThu Jan 08 09:54:29 +0000 2015"}, {"group": 807, "id": 20, "label": "553759423601311744", "shape": "dot", "size": 10, "title": "553759423601311744\u003cbr\u003e@Warren_Harper @guardian Very tragic mess\u003cbr\u003ehere\n\nRT\u2764\nhttp://t.co/q5KVXsz5dh\u003cbr\u003eSat Jan 10 03:45:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 4, "to": 12, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 6, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

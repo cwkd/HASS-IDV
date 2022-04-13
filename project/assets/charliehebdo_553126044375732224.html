@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 817, "id": 0, "label": "553126044375732224", "shape": "dot", "size": 10, "title": "553126044375732224\u003cbr\u003eWestern double standards hit a\u003cbr\u003enew low following #CharlieHebdo \nBy\u003cbr\u003ecartoonist @LatuffCartoons http://t.co/cvuwTFU7XY\u003cbr\u003eThu Jan 08 09:48:20 +0000 2015"}, {"group": 817, "id": 1, "label": "553127228054450176", "shape": "dot", "size": 10, "title": "553127228054450176\u003cbr\u003e@RanaHarbi @AlakhbarEnglish @LatuffCartoons Latuff is\u003cbr\u003ethe man.\u003cbr\u003eThu Jan 08 09:53:02 +0000 2015"}, {"group": 817, "id": 2, "label": "553128974574825473", "shape": "dot", "size": 10, "title": "553128974574825473\u003cbr\u003e@RanaHarbi @cy80s @LatuffCartoons is #CharlieHebdo\u003cbr\u003ea defender of free speech?\u003cbr\u003ehttp://t.co/Yf1YeoQv6l\u003cbr\u003eThu Jan 08 09:59:58 +0000 2015"}, {"group": 817, "id": 3, "label": "553129767424106496", "shape": "dot", "size": 10, "title": "553129767424106496\u003cbr\u003e@RanaHarbi @AlakhbarEnglish @LatuffCartoons this is\u003cbr\u003egoing to twist up some\u003cbr\u003eboxers.\u003cbr\u003eThu Jan 08 10:03:07 +0000 2015"}, {"group": 817, "id": 4, "label": "553135116042928128", "shape": "dot", "size": 10, "title": "553135116042928128\u003cbr\u003e@RanaHarbi @LatuffCartoons And the answer\u003cbr\u003eis to ensure Judaism can\u003cbr\u003ebe equally mocked. Many Hebdo\u003cbr\u003esupporters are highly critical of\u003cbr\u003eIsrael.\u003cbr\u003eThu Jan 08 10:24:23 +0000 2015"}, {"group": 817, "id": 5, "label": "553135395173445632", "shape": "dot", "size": 10, "title": "553135395173445632\u003cbr\u003e\u201c@RanaHarbi: Western double standards hit\u003cbr\u003ea new low following #CharlieHebdo\u003cbr\u003e\nBy cartoonist @LatuffCartoons http://t.co/Td7PuhPFoT\u201d\u003cbr\u003eThu Jan 08 10:25:29 +0000 2015"}, {"group": 817, "id": 9, "label": "553149863496802305", "shape": "dot", "size": 10, "title": "553149863496802305\u003cbr\u003e@RanaHarbi @ancienteast @LatuffCartoons \ud83d\ude02\ud83d\ude02 false.\u003cbr\u003eJewish beliefs and practises \u003cbr\u003eget the piss taken out\u003cbr\u003eof them a lot too\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:22:59 +0000 2015"}, {"group": 817, "id": 10, "label": "553152717070532609", "shape": "dot", "size": 10, "title": "553152717070532609\u003cbr\u003e@RanaHarbi @LatuffCartoons with all do\u003cbr\u003erespect nobody in the west\u003cbr\u003ekill a cartoonist for drawing\u003cbr\u003eanything against Jews\u003cbr\u003eThu Jan 08 11:34:19 +0000 2015"}, {"group": 817, "id": 11, "label": "553152984071561216", "shape": "dot", "size": 10, "title": "553152984071561216\u003cbr\u003e@RanaHarbi @LatuffCartoons the attack against\u003cbr\u003ethe French cartoonists is not\u003cbr\u003ejustifiable by any mean and\u003cbr\u003eyes it affects all civilized\u003cbr\u003epeople\u003cbr\u003eThu Jan 08 11:35:23 +0000 2015"}, {"group": 817, "id": 12, "label": "553158375123324929", "shape": "dot", "size": 10, "title": "553158375123324929\u003cbr\u003e\u201c@RanaHarbi: Western double standards hit\u003cbr\u003ea new low following #CharlieHebdo\u003cbr\u003e\nBy cartoonist @LatuffCartoons http://t.co/kFxBvN9Wkf\u201d\u003cbr\u003eThu Jan 08 11:56:48 +0000 2015"}, {"group": 817, "id": 13, "label": "553161499192352768", "shape": "dot", "size": 10, "title": "553161499192352768\u003cbr\u003e\u201c@RanaHarbi: Western double standards hit\u003cbr\u003ea new low following #CharlieHebdo\u003cbr\u003e\nBy cartoonist @LatuffCartoons http://t.co/Kj63gPciUN\u201d\u003cbr\u003eThu Jan 08 12:09:13 +0000 2015"}, {"group": 817, "id": 14, "label": "553208119753736193", "shape": "dot", "size": 10, "title": "553208119753736193\u003cbr\u003e@RanaHarbi @LatuffCartoons I see Charlie\u003cbr\u003eHebdo making satire at the\u003cbr\u003eexpense of all sorts -\u003cbr\u003ejust a selection below. http://t.co/ydVDG1lvgz\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:14:28 +0000 2015"}, {"group": 817, "id": 15, "label": "553532911019098112", "shape": "dot", "size": 10, "title": "553532911019098112\u003cbr\u003e@RanaHarbi @LatuffCartoons \n\nHi RanaHarbi,\n\nYou can\u003cbr\u003ethink, that you are right.\nI\u003cbr\u003eshow you, that you are\u003cbr\u003ewrong. http://t.co/TDSm3aDjj1\u003cbr\u003eFri Jan 09 12:45:04 +0000 2015"}, {"group": 817, "id": 16, "label": "553595850052870144", "shape": "dot", "size": 10, "title": "553595850052870144\u003cbr\u003e@RanaHarbi  This is fucking\u003cbr\u003estupid,  Charlie Hebdo ridiculised\u003cbr\u003eall faith.  Stop playi\u003cbr\u003eg the victim card, \u003cbr\u003eits ridiculous. #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:55:10 +0000 2015"}, {"group": 817, "id": 17, "label": "553605153224687616", "shape": "dot", "size": 10, "title": "553605153224687616\u003cbr\u003e@RanaHarbi @LatuffCartoons what a load\u003cbr\u003eof shite. No sympathy for\u003cbr\u003ethose killed ? Only the\u003cbr\u003eMuslim policeman ? Cartoonists brought\u003cbr\u003eit on ?Cunt.\u003cbr\u003eFri Jan 09 17:32:08 +0000 2015"}, {"group": 817, "id": 18, "label": "553611502859862017", "shape": "dot", "size": 10, "title": "553611502859862017\u003cbr\u003e@RanaHarbi Muslim double standards hit\u003cbr\u003ea new low by deflecting\u003cbr\u003efrom mass murder. @BooAzizi @LatuffCartoons\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:57:22 +0000 2015"}, {"group": 817, "id": 19, "label": "553968965710794753", "shape": "dot", "size": 10, "title": "553968965710794753\u003cbr\u003e\u201c@RanaHarbi: Western double standards hit\u003cbr\u003ea new low following #CharlieHebdo\u003cbr\u003e\nBy cartoonist @LatuffCartoons http://t.co/5e4y6PiTz3\u201d\u003cbr\u003eSat Jan 10 17:37:48 +0000 2015"}, {"group": 817, "id": 6, "label": "553138023404011520", "shape": "dot", "size": 10, "title": "553138023404011520\u003cbr\u003e@aramram @Safaa_15 @RanaHarbi @LatuffCartoons so\u003cbr\u003eu r in favor of\u003cbr\u003ekilling? anyone giving excuses to\u003cbr\u003ethe killing is a terrorist.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:35:56 +0000 2015"}, {"group": 817, "id": 7, "label": "553138185526861824", "shape": "dot", "size": 10, "title": "553138185526861824\u003cbr\u003e@aramram @RanaHarbi @LatuffCartoons  this\u003cbr\u003eis neither true nor fair\u003cbr\u003e\u0026amp; above all it\u0027s fucking\u003cbr\u003estupid \u0026amp; ill timed #JesuisCharlie\u003cbr\u003eet #jetemmerde\u003cbr\u003eThu Jan 08 10:36:34 +0000 2015"}, {"group": 817, "id": 8, "label": "553138700876808192", "shape": "dot", "size": 10, "title": "553138700876808192\u003cbr\u003e@aramram @RanaHarbi @LatuffCartoons republishing this\u003cbr\u003ecartoon now is a failed\u003cbr\u003eattempt to push the responsibility\u003cbr\u003eaway to the WEST/the JEWS\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:38:37 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

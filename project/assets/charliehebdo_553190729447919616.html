@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1072, "id": 0, "label": "553190729447919616", "shape": "dot", "size": 10, "title": "553190729447919616\u003cbr\u003eJihadist flags \u0026amp; petrol bombs\u003cbr\u003efound in car used by\u003cbr\u003e#CharlieHebdo attack suspects, sources tell\u003cbr\u003eFrench media http://t.co/9ZvWyifaLk\u003cbr\u003eThu Jan 08 14:05:22 +0000 2015"}, {"group": 1072, "id": 1, "label": "553190900697153536", "shape": "dot", "size": 10, "title": "553190900697153536\u003cbr\u003e@BBCBreaking Off to a footy\u003cbr\u003egame maybe?\u003cbr\u003eThu Jan 08 14:06:03 +0000 2015"}, {"group": 1072, "id": 2, "label": "553190922247491584", "shape": "dot", "size": 10, "title": "553190922247491584\u003cbr\u003e@BBCBreaking http://t.co/rPr5DhPfao\u003cbr\u003eThu Jan 08 14:06:08 +0000 2015"}, {"group": 1072, "id": 3, "label": "553190965159424001", "shape": "dot", "size": 10, "title": "553190965159424001\u003cbr\u003e@BBCBreaking http://t.co/DakCOZ00jc\u003cbr\u003eThu Jan 08 14:06:18 +0000 2015"}, {"group": 1072, "id": 4, "label": "553191084298612737", "shape": "dot", "size": 10, "title": "553191084298612737\u003cbr\u003e@BBCBreaking No bacon double cheeseburgers\u003cbr\u003ethen? I\u0027m shocked\u003cbr\u003eThu Jan 08 14:06:46 +0000 2015"}, {"group": 1072, "id": 5, "label": "553191388234276864", "shape": "dot", "size": 10, "title": "553191388234276864\u003cbr\u003e@BBCBreaking wait. Are they related\u003cbr\u003eto isis or nah?\u003cbr\u003eThu Jan 08 14:07:59 +0000 2015"}, {"group": 1072, "id": 6, "label": "553191528626421760", "shape": "dot", "size": 10, "title": "553191528626421760\u003cbr\u003e@BBCBreaking What\u0027s a \u0027jihadist flag\u0027?\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:08:32 +0000 2015"}, {"group": 1072, "id": 7, "label": "553192086607261696", "shape": "dot", "size": 10, "title": "553192086607261696\u003cbr\u003e@BBCBreaking That\u0027s awfully convenient.\u003cbr\u003eThu Jan 08 14:10:45 +0000 2015"}, {"group": 1072, "id": 8, "label": "553192286126104576", "shape": "dot", "size": 10, "title": "553192286126104576\u003cbr\u003e@BBCBreaking @BBCWorld #France under barbaric\u003cbr\u003eattack. #Police must bring these\u003cbr\u003ecowards to justice. #CharlieHebdo. #JeSuisCharlie.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:11:33 +0000 2015"}, {"group": 1072, "id": 9, "label": "553192532604379136", "shape": "dot", "size": 10, "title": "553192532604379136\u003cbr\u003e@BBCBreaking Wen caught Castrate the\u003cbr\u003ebastards handvthevbodies in the centre\u003cbr\u003eof Paris. Piss on them!\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:12:32 +0000 2015"}, {"group": 1072, "id": 10, "label": "553192600363339777", "shape": "dot", "size": 10, "title": "553192600363339777\u003cbr\u003e@BBCBreaking sounds like a set\u003cbr\u003eup !!! and they already\u003cbr\u003esupposed to have got the\u003cbr\u003egetaway car !! So what\u003cbr\u003ethey just ran to get\u003cbr\u003emore flags ?\u003cbr\u003eThu Jan 08 14:12:48 +0000 2015"}, {"group": 1072, "id": 12, "label": "553192703014338560", "shape": "dot", "size": 10, "title": "553192703014338560\u003cbr\u003e@BBCBreaking @EdMorrissey Ah, so \"motivation\u003cbr\u003eunclear\"...\u003cbr\u003eThu Jan 08 14:13:12 +0000 2015"}, {"group": 1072, "id": 13, "label": "553192734329032704", "shape": "dot", "size": 10, "title": "553192734329032704\u003cbr\u003e@BBCBreaking what source?\u003cbr\u003eThu Jan 08 14:13:20 +0000 2015"}, {"group": 1072, "id": 14, "label": "553192979260014594", "shape": "dot", "size": 10, "title": "553192979260014594\u003cbr\u003e@BBCBreaking Did Israeli head of\u003cbr\u003e@BBCNews edit this video? http://t.co/ZbSgpSxwR9\u003cbr\u003e@JournalNEO @MiddleEastEye @hrw @WeAreChangeNYC #911truth\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:14:18 +0000 2015"}, {"group": 1072, "id": 15, "label": "553193467082735616", "shape": "dot", "size": 10, "title": "553193467082735616\u003cbr\u003e@BBCBreaking\u003cbr\u003eThu Jan 08 14:16:15 +0000 2015"}, {"group": 1072, "id": 16, "label": "553193717960810496", "shape": "dot", "size": 10, "title": "553193717960810496\u003cbr\u003e@BBCBreaking - sounds a little\u003cbr\u003efishy to me. Is this\u003cbr\u003ea piss take ? Very\u003cbr\u003econvenient\u003cbr\u003eThu Jan 08 14:17:14 +0000 2015"}, {"group": 1072, "id": 18, "label": "553194496079306753", "shape": "dot", "size": 10, "title": "553194496079306753\u003cbr\u003e@BBCBreaking Hnst, hrd wrkng Muslims,\u003cbr\u003en EU \u0026amp; USA my\u003cbr\u003efce violnt backlash, from comnrs,incldg\u003cbr\u003emodern Muslims fr ths crime.Muslm\u003cbr\u003eclerics slnt ?\u003cbr\u003eThu Jan 08 14:20:20 +0000 2015"}, {"group": 1072, "id": 11, "label": "553192636094218242", "shape": "dot", "size": 10, "title": "553192636094218242\u003cbr\u003e@FocusedVentures @BBCBreaking he wont answer\u003cbr\u003ethe bell\u003cbr\u003eThu Jan 08 14:12:56 +0000 2015"}, {"group": 1072, "id": 21, "label": "553200851448115200", "shape": "dot", "size": 10, "title": "553200851448115200\u003cbr\u003e@unknownsock_zar @BBCBreaking  must be\u003cbr\u003efrom islington....\u003cbr\u003eThu Jan 08 14:45:35 +0000 2015"}, {"group": 1072, "id": 19, "label": "553194561892536320", "shape": "dot", "size": 10, "title": "553194561892536320\u003cbr\u003e@Jaz340 @BBCBreaking Mossad arent as\u003cbr\u003eclever as they think,and we\u0027re\u003cbr\u003enot as stupid as they\u003cbr\u003ewould like.\u003cbr\u003eThu Jan 08 14:20:36 +0000 2015"}, {"group": 1072, "id": 17, "label": "553193961402413056", "shape": "dot", "size": 10, "title": "553193961402413056\u003cbr\u003e@capontes2 @BBCBreaking Think you must\u003cbr\u003ehave missed him mate!\u003cbr\u003eThu Jan 08 14:18:12 +0000 2015"}, {"group": 1072, "id": 24, "label": "553288140673548288", "shape": "dot", "size": 10, "title": "553288140673548288\u003cbr\u003e@SanyalPrabir @BBCBreaking They must \u003cbr\u003eexclude radical preachers in mosques\u003cbr\u003eand community must take strong\u003cbr\u003eaction when see youth radicalised!\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:32:26 +0000 2015"}, {"group": 1072, "id": 20, "label": "553195218783444992", "shape": "dot", "size": 10, "title": "553195218783444992\u003cbr\u003e@LeonaCrawford16 @BBCBreaking MOSSAD ? ARE\u0027NT\u003cbr\u003eTHEY ISRAELI INTELLIGENCE ?\u003cbr\u003eThu Jan 08 14:23:12 +0000 2015"}, {"group": 1072, "id": 22, "label": "553201255049592832", "shape": "dot", "size": 10, "title": "553201255049592832\u003cbr\u003e@Jaz340 @BBCBreaking yes just so\u003cbr\u003ehappened it was an isreali\u003cbr\u003ewho took the footage of\u003cbr\u003eattack on victims\u003cbr\u003eThu Jan 08 14:47:11 +0000 2015"}, {"group": 1072, "id": 23, "label": "553209692655464448", "shape": "dot", "size": 10, "title": "553209692655464448\u003cbr\u003e\u201c@LeonaCrawford16: @Jaz340 @BBCBreaking yes just\u003cbr\u003eso happened it was an\u003cbr\u003eisreali who took the footage\u003cbr\u003eof attack on victims\u201d\n\nWho else,\u003cbr\u003eright?\u003cbr\u003eThu Jan 08 15:20:43 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 11, "weight": 1}, {"from": 4, "to": 21, "weight": 1}, {"from": 10, "to": 19, "weight": 1}, {"from": 11, "to": 17, "weight": 1}, {"from": 18, "to": 24, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

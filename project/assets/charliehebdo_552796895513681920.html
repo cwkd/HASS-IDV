@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 47, "id": 0, "label": "552796895513681920", "shape": "dot", "size": 10, "title": "552796895513681920\u003cbr\u003e#CharlieHebdo - Hollande: Media shooting\u003cbr\u003ewas \u0027undoubtedly terrorist attack\u0027. Photo:\u003cbr\u003eKenzo Tribouillard #AFP http://t.co/ZK41w7J7yc\u003cbr\u003eWed Jan 07 12:00:25 +0000 2015"}, {"group": 47, "id": 1, "label": "552798534752559106", "shape": "dot", "size": 10, "title": "552798534752559106\u003cbr\u003e\u201c@AFPphoto: #CharlieHebdo/Hollande: Media shooting was\u003cbr\u003e\u0027undoubtedly terrorist attack\u0027.Photo: Kenzo Tribouillard\u003cbr\u003e#AFP http://t.co/dTt2sHCLeY\u201d\u003cbr\u003eWed Jan 07 12:06:55 +0000 2015"}, {"group": 47, "id": 2, "label": "552804457252413442", "shape": "dot", "size": 10, "title": "552804457252413442\u003cbr\u003e@AFPphoto @Mystisith Watching live Sky\u003cbr\u003eNews coverage on @cbsN in\u003cbr\u003eU.S. Only story on A.M.\u003cbr\u003enews shows in U.S.\u003cbr\u003eWed Jan 07 12:30:27 +0000 2015"}, {"group": 47, "id": 3, "label": "552807799806119938", "shape": "dot", "size": 10, "title": "552807799806119938\u003cbr\u003e@AFPphoto @AFP good for him\u003cbr\u003eto call it terrorism right\u003cbr\u003eaway. Because it IS!\u003cbr\u003eWed Jan 07 12:43:44 +0000 2015"}, {"group": 47, "id": 4, "label": "552819807255425025", "shape": "dot", "size": 10, "title": "552819807255425025\u003cbr\u003e\u4ecf\u30d1\u30ea\u306e\u9283\u6483\u4e8b\u4ef6\u3002\u30aa\u30e9\u30f3\u30c9\u5927\u7d71\u9818\u304c\u300c\u7591\u3044\u306a\u3044\u30c6\u30ed\u30ea\u30ba\u30e0\u300d\u3068\u975e\u96e3\u3002@AFPphoto Hollande: Media shooting was\u003cbr\u003e\u0027undoubtedly terrorist attack\u0027.  http://t.co/txFvWrzZIX\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:31:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

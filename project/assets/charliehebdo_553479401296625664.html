@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1255, "id": 0, "label": "553479401296625664", "shape": "dot", "size": 10, "title": "553479401296625664\u003cbr\u003eCharlie Hebdo cartoonist Wolinski\u2019s daughter:\u003cbr\u003e\u2018I don\u2019t think you can\u003cbr\u003ekill ideas\u2019 http://t.co/7nWOgz3zs1\u003cbr\u003eFri Jan 09 09:12:27 +0000 2015"}, {"group": 1255, "id": 1, "label": "553479738355109888", "shape": "dot", "size": 10, "title": "553479738355109888\u003cbr\u003eU stoke ideas w this.\u003cbr\u003e@guardian: Charlie Hebdo cartoonist Wolinski\u2019s\u003cbr\u003edaughter: \u2018I don\u2019t think you\u003cbr\u003ecan kill ideas\u2019 http://t.co/pULaaG1nre\u003cbr\u003eFri Jan 09 09:13:47 +0000 2015"}, {"group": 1255, "id": 2, "label": "553480171756728320", "shape": "dot", "size": 10, "title": "553480171756728320\u003cbr\u003e@guardian I think so So\u003cbr\u003emany ideas have been forgot\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:15:30 +0000 2015"}, {"group": 1255, "id": 3, "label": "553480191784148992", "shape": "dot", "size": 10, "title": "553480191784148992\u003cbr\u003eOr arrest \u201c@guardian: Charlie Hebdo\u003cbr\u003ecartoonist Wolinski\u2019s daughter: \u2018I don\u2019t\u003cbr\u003ethink you can kill ideas\u2019\u003cbr\u003ehttp://t.co/WbhkqvBUDk\u201d\u003cbr\u003eFri Jan 09 09:15:35 +0000 2015"}, {"group": 1255, "id": 4, "label": "553480400774135808", "shape": "dot", "size": 10, "title": "553480400774135808\u003cbr\u003e@guardian INTERESTING!!! This is what\u003cbr\u003ecoons like Blaise Compaore did\u003cbr\u003eto African pride? http://t.co/mlHDGb8K7y\u003cbr\u003eFri Jan 09 09:16:25 +0000 2015"}, {"group": 1255, "id": 6, "label": "553480861576724480", "shape": "dot", "size": 10, "title": "553480861576724480\u003cbr\u003e@guardian Good girl.\u003cbr\u003eFri Jan 09 09:18:15 +0000 2015"}, {"group": 1255, "id": 7, "label": "553481430613770240", "shape": "dot", "size": 10, "title": "553481430613770240\u003cbr\u003e@guardian Tell that to the\u003cbr\u003eUS DoD and its partners.\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:20:30 +0000 2015"}, {"group": 1255, "id": 8, "label": "553482075492610048", "shape": "dot", "size": 10, "title": "553482075492610048\u003cbr\u003e\u201c@guardian: Charlie Hebdo cartoonist Wolinski\u2019s\u003cbr\u003edaughter: \u2018I don\u2019t think you\u003cbr\u003ecan kill ideas\u2019 http://t.co/JvJYLTGydO\u201d\u003cbr\u003eFri Jan 09 09:23:04 +0000 2015"}, {"group": 1255, "id": 9, "label": "553486093698744321", "shape": "dot", "size": 10, "title": "553486093698744321\u003cbr\u003e@guardian http://t.co/cjXgL6vzef no you can\u0027t\u003cbr\u003ekill ideas #JeSuisCharlie we can\u003cbr\u003eall take a #pen #write\u003cbr\u003e#draw #express our freedom of\u003cbr\u003ethoughts\u003cbr\u003eFri Jan 09 09:39:02 +0000 2015"}, {"group": 1255, "id": 10, "label": "553487650837917697", "shape": "dot", "size": 10, "title": "553487650837917697\u003cbr\u003e@guardian I agree entirely with\u003cbr\u003eElsa Wolinski, but like to\u003cbr\u003eremind the West that other\u003cbr\u003eppl\u0027s ideas also can\u0027t b\u003cbr\u003ekilled by force @SamadBilloo\u003cbr\u003eFri Jan 09 09:45:13 +0000 2015"}, {"group": 1255, "id": 12, "label": "553503650845171712", "shape": "dot", "size": 10, "title": "553503650845171712\u003cbr\u003e\u201c@guardian: Charlie Hebdo cartoonist Wolinski\u2019s\u003cbr\u003edaughter: \u2018I don\u2019t think you\u003cbr\u003ecan kill ideas\u2019 http://t.co/DSepxcis1Z\u201d #CharlieHebdo\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:48:48 +0000 2015"}, {"group": 1255, "id": 13, "label": "553509523512520704", "shape": "dot", "size": 10, "title": "553509523512520704\u003cbr\u003e@guardian not that kind of\u003cbr\u003eideas, i think\u003cbr\u003eFri Jan 09 11:12:08 +0000 2015"}, {"group": 1255, "id": 5, "label": "553480812751224832", "shape": "dot", "size": 10, "title": "553480812751224832\u003cbr\u003e@mozhefa @guardian You do not\u003cbr\u003eknow the important difference between\u003cbr\u003esatire and insult.\u003cbr\u003eFri Jan 09 09:18:03 +0000 2015"}, {"group": 1255, "id": 11, "label": "553499253759553536", "shape": "dot", "size": 10, "title": "553499253759553536\u003cbr\u003e@arembooks @guardian : is it\u003cbr\u003elike blood instead of sweat???\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:31:20 +0000 2015"}, {"group": 1255, "id": 14, "label": "553556224873332737", "shape": "dot", "size": 10, "title": "553556224873332737\u003cbr\u003e@mozhefa @guardian No it\u0027s \u003cbr\u003ethe difference between satire and\u003cbr\u003einsult. You quite clearly do\u003cbr\u003enot know. I\u0027d start with\u003cbr\u003eHogarth.\u003cbr\u003eFri Jan 09 14:17:43 +0000 2015"}, {"group": 1255, "id": 15, "label": "553558592163704833", "shape": "dot", "size": 10, "title": "553558592163704833\u003cbr\u003e@arembooks @guardian : of course\u003cbr\u003eyou would!!!\u003cbr\u003eFri Jan 09 14:27:07 +0000 2015"}, {"group": 1255, "id": 16, "label": "553559511102140416", "shape": "dot", "size": 10, "title": "553559511102140416\u003cbr\u003e@mozhefa @guardian   Aaaah\u003cbr\u003ewilfull ignorance. Fair enough.\u003cbr\u003eFri Jan 09 14:30:46 +0000 2015"}, {"group": 1255, "id": 17, "label": "553561173971697664", "shape": "dot", "size": 10, "title": "553561173971697664\u003cbr\u003e@arembooks @guardian : https://t.co/asIOFY6wAk\u003cbr\u003eFri Jan 09 14:37:23 +0000 2015"}, {"group": 1255, "id": 18, "label": "553561816874647552", "shape": "dot", "size": 10, "title": "553561816874647552\u003cbr\u003e@arembooks @guardian perhaps I\u0027m trying\u003cbr\u003eto ignore your irritating arse.....\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:39:56 +0000 2015"}, {"group": 1255, "id": 19, "label": "553563010011500544", "shape": "dot", "size": 10, "title": "553563010011500544\u003cbr\u003e@mozhefa @guardian You might body\u003cbr\u003eswerve education but you can\u0027t\u003cbr\u003emake fact untrue. Just like\u003cbr\u003eyou can\u0027t make fiction truth.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:44:40 +0000 2015"}, {"group": 1255, "id": 20, "label": "553563575705669632", "shape": "dot", "size": 10, "title": "553563575705669632\u003cbr\u003e@arembooks @guardian : you mean\u003cbr\u003eif I call it slavery\u003cbr\u003eyou\u0027re comfortable with capitalism???\u003cbr\u003eFri Jan 09 14:46:55 +0000 2015"}, {"group": 1255, "id": 21, "label": "553564239592689664", "shape": "dot", "size": 10, "title": "553564239592689664\u003cbr\u003e@mozhefa @guardian Now you\u0027re trying\u003cbr\u003eto fictionalise my life? Get\u003cbr\u003eyour head round satire first.\u003cbr\u003eOne step at a time.\u003cbr\u003eHere we go:\u003cbr\u003eFri Jan 09 14:49:34 +0000 2015"}, {"group": 1255, "id": 22, "label": "553564349835792386", "shape": "dot", "size": 10, "title": "553564349835792386\u003cbr\u003e@mozhefa @guardian Question 1. Do\u003cbr\u003eyou believe in talking snakes?\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:50:00 +0000 2015"}, {"group": 1255, "id": 23, "label": "553564500100911104", "shape": "dot", "size": 10, "title": "553564500100911104\u003cbr\u003e@mozhefa @guardian Question 2: Do\u003cbr\u003eyou believe that at one\u003cbr\u003etime horses could fly?\u003cbr\u003eFri Jan 09 14:50:36 +0000 2015"}, {"group": 1255, "id": 25, "label": "553564750483693568", "shape": "dot", "size": 10, "title": "553564750483693568\u003cbr\u003e@mozhefa @guardian  Question 3:Should\u003cbr\u003eall religions be treated equally?\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:51:35 +0000 2015"}, {"group": 1255, "id": 26, "label": "553564830255566849", "shape": "dot", "size": 10, "title": "553564830255566849\u003cbr\u003e@mozhefa @guardian Maybe a break\u003cbr\u003efor information.\u003cbr\u003eFri Jan 09 14:51:54 +0000 2015"}, {"group": 1255, "id": 24, "label": "553564748340805633", "shape": "dot", "size": 10, "title": "553564748340805633\u003cbr\u003e@arembooks @guardian \u0027your life?\u0027 Take\u003cbr\u003eyour \u0027rake\u0027 some other place.....\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:51:35 +0000 2015"}, {"group": 1255, "id": 30, "label": "553565732114825216", "shape": "dot", "size": 10, "title": "553565732114825216\u003cbr\u003e@arembooks @guardian : your tongue\u003cbr\u003eis pretty busy???\u003cbr\u003eFri Jan 09 14:55:29 +0000 2015"}, {"group": 1255, "id": 27, "label": "553565068613664769", "shape": "dot", "size": 10, "title": "553565068613664769\u003cbr\u003e@mozhefa @guardian Info 1: https://t.co/GkBASS4MTu\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:52:51 +0000 2015"}, {"group": 1255, "id": 28, "label": "553565214659313664", "shape": "dot", "size": 10, "title": "553565214659313664\u003cbr\u003e@mozhefa @guardian  Info 2:\u003cbr\u003ehttp://t.co/fhP3BoZ6dD\u003cbr\u003eFri Jan 09 14:53:26 +0000 2015"}, {"group": 1255, "id": 29, "label": "553565586165620736", "shape": "dot", "size": 10, "title": "553565586165620736\u003cbr\u003e@mozhefa @guardian   Question\u003cbr\u003e4: do you understand the\u003cbr\u003epicture below? http://t.co/0d3LhoOc3T\u003cbr\u003eFri Jan 09 14:54:55 +0000 2015"}, {"group": 1255, "id": 33, "label": "553566742174531584", "shape": "dot", "size": 10, "title": "553566742174531584\u003cbr\u003e@arembooks @guardian : there\u0027s isn\u0027t\u003cbr\u003ea fruit n veg stall\u003cbr\u003einsight???\u003cbr\u003eFri Jan 09 14:59:30 +0000 2015"}, {"group": 1255, "id": 31, "label": "553566376456384512", "shape": "dot", "size": 10, "title": "553566376456384512\u003cbr\u003e@mozhefa @guardian  Question 5:\u003cbr\u003eDo you understand this? http://t.co/EDnsiWEg5B\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:58:03 +0000 2015"}, {"group": 1255, "id": 32, "label": "553566543930753025", "shape": "dot", "size": 10, "title": "553566543930753025\u003cbr\u003e@mozhefa @guardian I\u0027m afraid you\u0027re\u003cbr\u003efailing this test miserably.\u003cbr\u003eFri Jan 09 14:58:43 +0000 2015"}, {"group": 1255, "id": 34, "label": "553566998798798848", "shape": "dot", "size": 10, "title": "553566998798798848\u003cbr\u003e@mozhefa @guardian  Question 6:\u003cbr\u003eDo you agree libraries should\u003cbr\u003ebe free to all?If so\u003cbr\u003ewhy don\u0027t u try using\u003cbr\u003eone?(This is a two part\u003cbr\u003equestion.)\u003cbr\u003eFri Jan 09 15:00:31 +0000 2015"}, {"group": 1255, "id": 35, "label": "553567670361419776", "shape": "dot", "size": 10, "title": "553567670361419776\u003cbr\u003e@arembooks @guardian : perhaps I\u003cbr\u003ehad equal control of my\u003cbr\u003ecomputer that question would be\u003cbr\u003epertinent???\u003cbr\u003eFri Jan 09 15:03:12 +0000 2015"}, {"group": 1255, "id": 36, "label": "553568943580131328", "shape": "dot", "size": 10, "title": "553568943580131328\u003cbr\u003e@mozhefa @guardian  No answer\u003cbr\u003eto any? You\u0027ve obviously not\u003cbr\u003ebeing studying. I\u0027m afraid u\u003cbr\u003e... http://t.co/VCenwyB5GZ\u003cbr\u003eFri Jan 09 15:08:15 +0000 2015"}, {"group": 1255, "id": 37, "label": "553570237225127936", "shape": "dot", "size": 10, "title": "553570237225127936\u003cbr\u003e@arembooks @guardian: if you weren\u0027t\u003cbr\u003eso quick to judge, you\u0027d\u003cbr\u003esee from outset, my point\u003cbr\u003eis not in defence of\u003cbr\u003ereligion, but african problems\u003cbr\u003eFri Jan 09 15:13:24 +0000 2015"}, {"group": 1255, "id": 39, "label": "553571772524924929", "shape": "dot", "size": 10, "title": "553571772524924929\u003cbr\u003e@arembooks @guardian ----- it about\u003cbr\u003eyou jumping on your crusading\u003cbr\u003ealter to better your criminal\u003cbr\u003eenterprise..........\u003cbr\u003eFri Jan 09 15:19:30 +0000 2015"}, {"group": 1255, "id": 38, "label": "553571202560954368", "shape": "dot", "size": 10, "title": "553571202560954368\u003cbr\u003e@mozhefa @guardian Its about you\u003cbr\u003emisunderstanding a satirical magazine.\u003cbr\u003eFri Jan 09 15:17:14 +0000 2015"}, {"group": 1255, "id": 40, "label": "553578838614351874", "shape": "dot", "size": 10, "title": "553578838614351874\u003cbr\u003e@mozhefa @guardian \u0027criminal enterprise\u0027? Education?\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:47:34 +0000 2015"}, {"group": 1255, "id": 41, "label": "553579377825701888", "shape": "dot", "size": 10, "title": "553579377825701888\u003cbr\u003e@arembooks @guardian : Yeah!!! From\u003cbr\u003eGreece with love.........\u003cbr\u003eFri Jan 09 15:49:43 +0000 2015"}, {"group": 1255, "id": 42, "label": "553581449878970368", "shape": "dot", "size": 10, "title": "553581449878970368\u003cbr\u003e@mozhefa @guardian Still no answer\u003cbr\u003eabout your foolish accusation.\u003cbr\u003eFri Jan 09 15:57:57 +0000 2015"}, {"group": 1255, "id": 43, "label": "553581969326743553", "shape": "dot", "size": 10, "title": "553581969326743553\u003cbr\u003e@arembooks: from outset, your arrogance\u003cbr\u003ewas clear: historic-imperial-legacy is unchallenged!\u003cbr\u003eGrow up!! We\u0027re sick of\u003cbr\u003ethis two-faced game\u003cbr\u003eFri Jan 09 16:00:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 20, "to": 25, "weight": 1}, {"from": 20, "to": 26, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 22, "to": 30, "weight": 1}, {"from": 24, "to": 27, "weight": 1}, {"from": 24, "to": 28, "weight": 1}, {"from": 24, "to": 29, "weight": 1}, {"from": 29, "to": 33, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 30, "to": 34, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 35, "to": 36, "weight": 1}, {"from": 36, "to": 37, "weight": 1}, {"from": 36, "to": 39, "weight": 1}, {"from": 37, "to": 38, "weight": 1}, {"from": 39, "to": 40, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 42, "to": 43, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

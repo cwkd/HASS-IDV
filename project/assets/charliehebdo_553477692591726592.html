@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1875, "id": 0, "label": "553477692591726592", "shape": "dot", "size": 10, "title": "553477692591726592\u003cbr\u003eBREAKING: At least one killed,\u003cbr\u003esevereal injured during shootout with\u003cbr\u003e#CharlieHebdo attack suspects - local\u003cbr\u003emedia http://t.co/G6eunBDIrj\u003cbr\u003eFri Jan 09 09:05:39 +0000 2015"}, {"group": 1875, "id": 1, "label": "553478228040359939", "shape": "dot", "size": 10, "title": "553478228040359939\u003cbr\u003e@rt_com: BREAKING: At least 1\u003cbr\u003ekilled, severeal injured during shootout\u003cbr\u003ew/ #CharlieHebdo attack suspects -\u003cbr\u003elocal media http://t.co/R8Bktsnebv\u003cbr\u003eFri Jan 09 09:07:47 +0000 2015"}, {"group": 1875, "id": 2, "label": "553479148736225280", "shape": "dot", "size": 10, "title": "553479148736225280\u003cbr\u003e@RT_com @anujg There is no\u003cbr\u003especific news as such each\u003cbr\u003emedia giving diffirent stories \u0026amp;\u003cbr\u003ediffirent figures Rumeors R rumeors\u003cbr\u003edont believe them\u003cbr\u003eFri Jan 09 09:11:26 +0000 2015"}, {"group": 1875, "id": 3, "label": "553479242306973696", "shape": "dot", "size": 10, "title": "553479242306973696\u003cbr\u003e@RT_com Those thugs aren\u0027t done\u003cbr\u003eyet?!\u003cbr\u003eFri Jan 09 09:11:49 +0000 2015"}, {"group": 1875, "id": 4, "label": "553479416202792961", "shape": "dot", "size": 10, "title": "553479416202792961\u003cbr\u003e@RT_com Crikey! Has Mourad Hamyd\u003cbr\u003enow left school? http://t.co/869pLcIAUi Where\u003cbr\u003edid he get picked-up? Confused.......\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:12:30 +0000 2015"}, {"group": 1875, "id": 5, "label": "553480024574427136", "shape": "dot", "size": 10, "title": "553480024574427136\u003cbr\u003e@RT_com there\u0027s more army personnel\u003cbr\u003ein Paris now than there\u003cbr\u003ewas to defend against the\u003cbr\u003eGerman army\u003cbr\u003eFri Jan 09 09:14:55 +0000 2015"}, {"group": 1875, "id": 6, "label": "553490004412882944", "shape": "dot", "size": 10, "title": "553490004412882944\u003cbr\u003e@RT_com http://t.co/ftyLojskb0\u003cbr\u003eFri Jan 09 09:54:35 +0000 2015"}, {"group": 1875, "id": 7, "label": "553509055847989248", "shape": "dot", "size": 10, "title": "553509055847989248\u003cbr\u003eReminder: 17 journalists were massacred\u003cbr\u003eby\n#Israel in #Gaza during 2014.\u003cbr\u003e#GazaUnderAttack\n#FreePalestine http://t.co/GoR6haJrhQ @rt_com\u003cbr\u003eFri Jan 09 11:10:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

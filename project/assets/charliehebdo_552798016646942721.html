@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 56, "id": 0, "label": "552798016646942721", "shape": "dot", "size": 10, "title": "552798016646942721\u003cbr\u003eCharlie Hebdo, we love you\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:04:52 +0000 2015"}, {"group": 56, "id": 1, "label": "552798217013043200", "shape": "dot", "size": 10, "title": "552798217013043200\u003cbr\u003e@thedailymash So print the exact\u003cbr\u003efront cover - all newspapers,\u003cbr\u003esatirical mags - on the\u003cbr\u003esame day\u003cbr\u003eWed Jan 07 12:05:40 +0000 2015"}, {"group": 56, "id": 2, "label": "552798551911444480", "shape": "dot", "size": 10, "title": "552798551911444480\u003cbr\u003eMy new favorite magazine. RT\u003cbr\u003e@thedailymash @museofhistory Charlie Hebdo, we\u003cbr\u003elove you\u003cbr\u003eWed Jan 07 12:06:59 +0000 2015"}, {"group": 56, "id": 3, "label": "552801486716284928", "shape": "dot", "size": 10, "title": "552801486716284928\u003cbr\u003e\u201c@thedailymash: Charlie Hebdo, we love\u003cbr\u003eyou\u201d Yes we do! Understanding\u003cbr\u003esatire requires intelligence, a quality\u003cbr\u003eterrorists seldom have.\u003cbr\u003eWed Jan 07 12:18:39 +0000 2015"}, {"group": 56, "id": 4, "label": "552810995769671680", "shape": "dot", "size": 10, "title": "552810995769671680\u003cbr\u003e@thedailymash Yanks: false flag artists\u003cbr\u003esince Boston tea party. \u003cbr\u003ehttp://t.co/vONOfZdx83\u003cbr\u003eWed Jan 07 12:56:26 +0000 2015"}, {"group": 56, "id": 5, "label": "552814044953186304", "shape": "dot", "size": 10, "title": "552814044953186304\u003cbr\u003e@thedailymash @LondonHistorian 4 centuries all\u003cbr\u003ecultures have been satired \u003cbr\u003efor fun.we must not let\u003cbr\u003epathetic jihad take away freedom\u003cbr\u003eof press\u003cbr\u003eWed Jan 07 13:08:33 +0000 2015"}, {"group": 56, "id": 6, "label": "552846821119500288", "shape": "dot", "size": 10, "title": "552846821119500288\u003cbr\u003e@thedailymash @nkgl http://t.co/E6kUmd7KmI\u003cbr\u003eWed Jan 07 15:18:48 +0000 2015"}, {"group": 56, "id": 7, "label": "552937549887336448", "shape": "dot", "size": 10, "title": "552937549887336448\u003cbr\u003e@thedailymash Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/RGfTplEJze\u003cbr\u003eWed Jan 07 21:19:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

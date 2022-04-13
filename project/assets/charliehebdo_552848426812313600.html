@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 636, "id": 0, "label": "552848426812313600", "shape": "dot", "size": 10, "title": "552848426812313600\u003cbr\u003eMT @grasswire: #CharlieHebdo editor, assassinated\u003cbr\u003etoday, in 2012:\"I prefer to\u003cbr\u003edie standing than to live\u003cbr\u003eon my knees.\" http://t.co/nUceGIaD03\u003cbr\u003eWed Jan 07 15:25:11 +0000 2015"}, {"group": 636, "id": 1, "label": "552849795430506496", "shape": "dot", "size": 10, "title": "552849795430506496\u003cbr\u003e@JackieBodnar @BradThor @grasswire Sadly, most\u003cbr\u003eU.S. \"journalists\" will rationalize this\u003cbr\u003einto the ground and be\u003cbr\u003eworse cowards than before.\u003cbr\u003eWed Jan 07 15:30:37 +0000 2015"}, {"group": 636, "id": 2, "label": "552850877795803136", "shape": "dot", "size": 10, "title": "552850877795803136\u003cbr\u003e@JackieBodnar @greggutfeld @grasswire oh my\u003cbr\u003egosh! I know him! So\u003cbr\u003esad we live in a\u003cbr\u003eworld of Terror no Freedom\u003cbr\u003eof expression!\ud83c\udf39\u003cbr\u003eWed Jan 07 15:34:55 +0000 2015"}, {"group": 636, "id": 3, "label": "552852396640976896", "shape": "dot", "size": 10, "title": "552852396640976896\u003cbr\u003e@JackieBodnar @BradThor @grasswire  \u003cbr\u003eRIP.\u003cbr\u003eWed Jan 07 15:40:57 +0000 2015"}, {"group": 636, "id": 4, "label": "552854075961012224", "shape": "dot", "size": 10, "title": "552854075961012224\u003cbr\u003e@JackieBodnar @greggutfeld @grasswire  No\u003cbr\u003eother news papers have the\u003cbr\u003eguts to fight i.e. NYT\u003cbr\u003eetc.\u003cbr\u003eWed Jan 07 15:47:37 +0000 2015"}, {"group": 636, "id": 5, "label": "552855555392684033", "shape": "dot", "size": 10, "title": "552855555392684033\u003cbr\u003e@JackieBodnar\n@greggutfeld - expecting a scathing\u003cbr\u003eeditorial from you today on\u003cbr\u003e@TheFive!\nobaMAO criticized:\nhttp://t.co/KDuYheePxy\n@grasswire\u003cbr\u003eWed Jan 07 15:53:30 +0000 2015"}, {"group": 636, "id": 6, "label": "552856235184115712", "shape": "dot", "size": 10, "title": "552856235184115712\u003cbr\u003e@JackieBodnar @greggutfeld @grasswire So true.\u003cbr\u003eIt\u0027s time for the U.S.\u003cbr\u003eto stand up. We don\u0027t\u003cbr\u003eneed a wimp in chief\u003cbr\u003eanymore.\u003cbr\u003eWed Jan 07 15:56:12 +0000 2015"}, {"group": 636, "id": 7, "label": "552875407654268928", "shape": "dot", "size": 10, "title": "552875407654268928\u003cbr\u003eMT.@JackieBodnar @grasswire #CharlieHebdo 2012: \"I\u003cbr\u003eprefer to die standing than\u003cbr\u003eto live on my knees.\"\u003cbr\u003ehttp://t.co/PZUxebQtma #FreeSpeech\u003cbr\u003eWed Jan 07 17:12:23 +0000 2015"}, {"group": 636, "id": 8, "label": "552951427560407040", "shape": "dot", "size": 10, "title": "552951427560407040\u003cbr\u003e@JackieBodnar @jackiebodnar @grasswire @greggutfeld @PzFeed\u003cbr\u003ekill em all let god\u003cbr\u003esort em out\u003cbr\u003eWed Jan 07 22:14:28 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

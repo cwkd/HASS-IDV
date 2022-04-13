@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 439, "id": 0, "label": "552833148128862208", "shape": "dot", "size": 10, "title": "552833148128862208\u003cbr\u003eDr Ali from the Irish\u003cbr\u003eIslamic Culture Centre just said\u003cbr\u003ehe would seek legal advice\u003cbr\u003eif any journalist tweets one\u003cbr\u003eof #CharlieHebdo cartoons.\u003cbr\u003eWed Jan 07 14:24:28 +0000 2015"}, {"group": 439, "id": 1, "label": "552833484684025857", "shape": "dot", "size": 10, "title": "552833484684025857\u003cbr\u003e@MikeHogan4FM True colours showing now,\u003cbr\u003etrying to excuse the violence\u003cbr\u003eof this morning!\u003cbr\u003eWed Jan 07 14:25:48 +0000 2015"}, {"group": 439, "id": 2, "label": "552834266837839873", "shape": "dot", "size": 10, "title": "552834266837839873\u003cbr\u003e@MikeHogan4FM What?! This is the\u003cbr\u003ekind of nonsense you get\u003cbr\u003ewhen blasphemy is an offence.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:28:55 +0000 2015"}, {"group": 439, "id": 4, "label": "552834658665504769", "shape": "dot", "size": 10, "title": "552834658665504769\u003cbr\u003e@MikeHogan4FM @colettebrowne Why wouldn\u0027t he\u003cbr\u003ewhen blasphemy is a criminal\u003cbr\u003eoffense in this country #thanksfiannafail\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:30:28 +0000 2015"}, {"group": 439, "id": 5, "label": "552834658715856896", "shape": "dot", "size": 10, "title": "552834658715856896\u003cbr\u003e@MikeHogan4FM What? Like this? http://t.co/EDK4HnU5Ft\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:30:28 +0000 2015"}, {"group": 439, "id": 6, "label": "552834707898257408", "shape": "dot", "size": 10, "title": "552834707898257408\u003cbr\u003e@MikeHogan4FM in which case, I\u003cbr\u003ehope every Irish journalist tweets\u003cbr\u003eit #CharlieHebdo #FreedomOfSpeech #Freedomofthepress\u003cbr\u003eWed Jan 07 14:30:40 +0000 2015"}, {"group": 439, "id": 7, "label": "552834943374876673", "shape": "dot", "size": 10, "title": "552834943374876673\u003cbr\u003e@MikeHogan4FM @colettebrowne where did he\u003cbr\u003esay that?\u003cbr\u003eWed Jan 07 14:31:36 +0000 2015"}, {"group": 439, "id": 8, "label": "552835421429051393", "shape": "dot", "size": 10, "title": "552835421429051393\u003cbr\u003e@MikeHogan4FM Feel free to refer\u003cbr\u003ethe good doctor to me.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 14:33:30 +0000 2015"}, {"group": 439, "id": 9, "label": "552835755023020033", "shape": "dot", "size": 10, "title": "552835755023020033\u003cbr\u003e@MikeHogan4FM Any chance someone can\u003cbr\u003epodcast that part of the\u003cbr\u003einterview with Ali?\u003cbr\u003eWed Jan 07 14:34:49 +0000 2015"}, {"group": 439, "id": 10, "label": "552836401096843266", "shape": "dot", "size": 10, "title": "552836401096843266\u003cbr\u003e@MikeHogan4FM that probably wasn\u0027t one\u003cbr\u003eof his wisest comments ever\u003cbr\u003e!!  #ChalieHebdo\u003cbr\u003eWed Jan 07 14:37:23 +0000 2015"}, {"group": 439, "id": 11, "label": "552836979810115584", "shape": "dot", "size": 10, "title": "552836979810115584\u003cbr\u003e@MikeHogan4FM That blasphemy law is\u003cbr\u003estill on the books here,\u003cbr\u003eright? Errr...\u003cbr\u003eWed Jan 07 14:39:41 +0000 2015"}, {"group": 439, "id": 12, "label": "552837075134087168", "shape": "dot", "size": 10, "title": "552837075134087168\u003cbr\u003e@MikeHogan4FM @Pmacgiollabhain For the attention\u003cbr\u003eof Dr Ali. http://t.co/XiWGJjtLOs\u003cbr\u003eWed Jan 07 14:40:04 +0000 2015"}, {"group": 439, "id": 13, "label": "552837207275630592", "shape": "dot", "size": 10, "title": "552837207275630592\u003cbr\u003e@MikeHogan4FM @scottdebuitleir Sp\u00e9isi\u00fal t\u00e1 (go\u003cbr\u003ef\u00f3ill) ceann ar shu\u00edomh an\u003cbr\u003eIrish Times anois! http://t.co/TbaGYWrnjM\u003cbr\u003eWed Jan 07 14:40:36 +0000 2015"}, {"group": 439, "id": 14, "label": "552837617616949250", "shape": "dot", "size": 10, "title": "552837617616949250\u003cbr\u003e@MikeHogan4FM @cybernoelie He lives in\u003cbr\u003ea society where we still\u003cbr\u003erespect freedom of the press.\u003cbr\u003eIf true it is a\u003cbr\u003edisgraceful statement\u003cbr\u003eWed Jan 07 14:42:13 +0000 2015"}, {"group": 439, "id": 15, "label": "552837686919430144", "shape": "dot", "size": 10, "title": "552837686919430144\u003cbr\u003e@MikeHogan4FM Has he lost his\u003cbr\u003esense of proportion as well\u003cbr\u003eas humour? Every paper should\u003cbr\u003eprint it in solidarity. http://t.co/F0wJME4PSx\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:42:30 +0000 2015"}, {"group": 439, "id": 16, "label": "552837696952217601", "shape": "dot", "size": 10, "title": "552837696952217601\u003cbr\u003e@MikeHogan4FM Dr Ali can go\u003cbr\u003ef*ck himself.\u003cbr\u003eWed Jan 07 14:42:32 +0000 2015"}, {"group": 439, "id": 18, "label": "552838854315888641", "shape": "dot", "size": 10, "title": "552838854315888641\u003cbr\u003e@MikeHogan4FM @jjsalmo get them tweeted\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:47:08 +0000 2015"}, {"group": 439, "id": 19, "label": "552839524355956736", "shape": "dot", "size": 10, "title": "552839524355956736\u003cbr\u003e@MikeHogan4FM I can give him\u003cbr\u003esome geographical advice - he\u0027s\u003cbr\u003enot in Saudi Arabia now\u003cbr\u003e#JeSuisCharlie\u003cbr\u003eWed Jan 07 14:49:48 +0000 2015"}, {"group": 439, "id": 3, "label": "552834513580351488", "shape": "dot", "size": 10, "title": "552834513580351488\u003cbr\u003e@colettebrowne @MikeHogan4FM Oh ffs.\u003cbr\u003eWed Jan 07 14:29:53 +0000 2015"}, {"group": 439, "id": 23, "label": "552851001112526848", "shape": "dot", "size": 10, "title": "552851001112526848\u003cbr\u003e@MikeHogan4FM Intimidation tactic against a\u003cbr\u003ecommunity in the shadow of\u003cbr\u003ea mass murder.. Talk about\u003cbr\u003epoking a (bleeding) bear. #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:35:24 +0000 2015"}, {"group": 439, "id": 24, "label": "552888767821119490", "shape": "dot", "size": 10, "title": "552888767821119490\u003cbr\u003e@colettebrowne @MikeHogan4FM you can listen\u003cbr\u003eto it here: https://t.co/ikU5yyVV3f\u003cbr\u003eWed Jan 07 18:05:29 +0000 2015"}, {"group": 439, "id": 17, "label": "552838485535899648", "shape": "dot", "size": 10, "title": "552838485535899648\u003cbr\u003e.@jjsalmo What we need now\u003cbr\u003eare Irish journalists who will\u003cbr\u003espend the day tweeting #CharlieHedbo\u003cbr\u003emagazine covers to challenge him.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:45:40 +0000 2015"}, {"group": 439, "id": 20, "label": "552840167074328577", "shape": "dot", "size": 10, "title": "552840167074328577\u003cbr\u003e@jjsalmo @MikeHogan4FM @cybernoelie Ah, but\u003cbr\u003ecriticising him would surely constitute\u003cbr\u003ecultural imperialism on our part...\u003cbr\u003e;-)\u003cbr\u003eWed Jan 07 14:52:21 +0000 2015"}, {"group": 439, "id": 21, "label": "552841000683831296", "shape": "dot", "size": 10, "title": "552841000683831296\u003cbr\u003e@cybernoelie Absolutely and for RTE\u003cbr\u003eNewstalk etc to hold him\u003cbr\u003eto account. Pluralism Yes, ghettoised\u003cbr\u003esectarian absolutism NON!\u003cbr\u003eWed Jan 07 14:55:40 +0000 2015"}, {"group": 439, "id": 22, "label": "552841203054837760", "shape": "dot", "size": 10, "title": "552841203054837760\u003cbr\u003e@EndaEndamac95 @MikeHogan4FM @cybernoelie Then my\u003cbr\u003eonly, less than eloquent response...FUCK\u003cbr\u003e\u0027EM\u003cbr\u003eWed Jan 07 14:56:28 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 6, "to": 23, "weight": 1}, {"from": 9, "to": 24, "weight": 1}, {"from": 14, "to": 17, "weight": 1}, {"from": 14, "to": 20, "weight": 1}, {"from": 17, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

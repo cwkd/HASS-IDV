@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 826, "id": 0, "label": "553127546129117184", "shape": "dot", "size": 10, "title": "553127546129117184\u003cbr\u003eFrance: Since last night, gunfire\u003cbr\u003eand bombings have targeted two\u003cbr\u003emosques, a prayer room, and\u003cbr\u003ea Muslim family\u0027s car. http://t.co/fXrG6y2uvX\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:54:18 +0000 2015"}, {"group": 826, "id": 1, "label": "553132806789169152", "shape": "dot", "size": 10, "title": "553132806789169152\u003cbr\u003e@MahmoudRamsey bloody idiots. These poor\u003cbr\u003epeople suffering a backlash by\u003cbr\u003euneducated morons. Please stay safe\u003cbr\u003exx\u003cbr\u003eThu Jan 08 10:15:12 +0000 2015"}, {"group": 826, "id": 2, "label": "553134249956876288", "shape": "dot", "size": 10, "title": "553134249956876288\u003cbr\u003e@MahmoudRamsey @ticgran wonder where these\u003cbr\u003epeople were radicalised and if\u003cbr\u003ethe media will report it\u003cbr\u003eas acts of terrorism as\u003cbr\u003eit did yesterday\u003cbr\u003eThu Jan 08 10:20:56 +0000 2015"}, {"group": 826, "id": 3, "label": "553144034915385344", "shape": "dot", "size": 10, "title": "553144034915385344\u003cbr\u003e@MahmoudRamsey @petedavo_world /The cycle will\u003cbr\u003ego on viciously.\u003cbr\u003eThu Jan 08 10:59:49 +0000 2015"}, {"group": 826, "id": 4, "label": "553144391364517888", "shape": "dot", "size": 10, "title": "553144391364517888\u003cbr\u003e@MahmoudRamsey @benabyad I hope these\u003cbr\u003eattacks are also treated and\u003cbr\u003edescribed as acts of terrorism\u003cbr\u003e#wishfulthinking\u003cbr\u003eThu Jan 08 11:01:14 +0000 2015"}, {"group": 826, "id": 5, "label": "553144768436662272", "shape": "dot", "size": 10, "title": "553144768436662272\u003cbr\u003e\u0027Several attacks\u0027, as in the\u003cbr\u003eevents being individually reported are\u003cbr\u003eonly the tip of the\u003cbr\u003eiceberg. https://t.co/ovUSPAp09m\u003cbr\u003eThu Jan 08 11:02:44 +0000 2015"}, {"group": 826, "id": 6, "label": "553144879237566465", "shape": "dot", "size": 10, "title": "553144879237566465\u003cbr\u003e@MahmoudRamsey @benabyad they have the\u003cbr\u003eMorons and the media to\u003cbr\u003ethank for the backlash!\u003cbr\u003eThu Jan 08 11:03:10 +0000 2015"}, {"group": 826, "id": 7, "label": "553147078684471296", "shape": "dot", "size": 10, "title": "553147078684471296\u003cbr\u003e#Hate \u201c@MahmoudRamsey: France: Gunfire \u0026amp;\u003cbr\u003ebombings have targeted two mosques,\u003cbr\u003ea prayer room \u0026amp; a\u003cbr\u003eMuslim family\u0027s car. http://t.co/BN69JRmxgI\"\u003cbr\u003eThu Jan 08 11:11:55 +0000 2015"}, {"group": 826, "id": 8, "label": "553147774745583616", "shape": "dot", "size": 10, "title": "553147774745583616\u003cbr\u003e@MahmoudRamsey @freegazaorg any casualty?\u003cbr\u003eThu Jan 08 11:14:41 +0000 2015"}, {"group": 826, "id": 11, "label": "553157268217548800", "shape": "dot", "size": 10, "title": "553157268217548800\u003cbr\u003e@MahmoudRamsey This is sad these\u003cbr\u003einnocent people getting caught up\u003cbr\u003ein this for no reason\u003cbr\u003ethan UNJUSTIFIED HATRED OF MUSLIMS.\u003cbr\u003eGet a grip ppl\u003cbr\u003eThu Jan 08 11:52:24 +0000 2015"}, {"group": 826, "id": 17, "label": "553165233410572288", "shape": "dot", "size": 10, "title": "553165233410572288\u003cbr\u003e@MahmoudRamsey WO dit it the\u003cbr\u003ewest ?\u003cbr\u003eThu Jan 08 12:24:03 +0000 2015"}, {"group": 826, "id": 9, "label": "553153295863128064", "shape": "dot", "size": 10, "title": "553153295863128064\u003cbr\u003e@ManPin @MahmoudRamsey I thought we\u003cbr\u003ejumped off the cycle with\u003cbr\u003e#illridewithyou but I suppose they\u003cbr\u003edon\u0027t get the concept in\u003cbr\u003eEurope.\u003cbr\u003eThu Jan 08 11:36:37 +0000 2015"}, {"group": 826, "id": 19, "label": "553166940567781376", "shape": "dot", "size": 10, "title": "553166940567781376\u003cbr\u003e@ManPin Then it is war\u003cbr\u003e! Relions always fight !\u003cbr\u003eI hoped whe are more\u003cbr\u003eeducated but no !Then the\u003cbr\u003ewar must go on !!We\u0027ll\u003cbr\u003ewithout ter.! Attacs !\u003cbr\u003eThu Jan 08 12:30:50 +0000 2015"}, {"group": 826, "id": 21, "label": "553312779651022848", "shape": "dot", "size": 10, "title": "553312779651022848\u003cbr\u003e@omaralzobi Stop talking about our\u003cbr\u003ecountry thanks because obviously you\u003cbr\u003edon\u0027t know anything. #JeSuisCharlie\u003cbr\u003eThu Jan 08 22:10:21 +0000 2015"}, {"group": 826, "id": 10, "label": "553154064440369153", "shape": "dot", "size": 10, "title": "553154064440369153\u003cbr\u003ehi @petedavo_world we\u0027ve aggregated news\u003cbr\u003eon multiculturalism from various medias\u003cbr\u003earound the world: http://t.co/zs7olmejL7\u003cbr\u003eThu Jan 08 11:39:40 +0000 2015"}, {"group": 826, "id": 12, "label": "553158469050978304", "shape": "dot", "size": 10, "title": "553158469050978304\u003cbr\u003e@petedavo_world #illridewithyou was contrived bullshit\u003cbr\u003eand you lot fell for\u003cbr\u003eit hook, line and sinker.\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:57:10 +0000 2015"}, {"group": 826, "id": 20, "label": "553167656464158720", "shape": "dot", "size": 10, "title": "553167656464158720\u003cbr\u003e@maiwaby @mb4peace @MahmoudRamsey so sad\u003cbr\u003emore worried about them being\u003cbr\u003ekillers who may have been\u003cbr\u003eMuslim / may not than\u003cbr\u003emourning the deaths\u003cbr\u003eThu Jan 08 12:33:41 +0000 2015"}, {"group": 826, "id": 13, "label": "553160365144420353", "shape": "dot", "size": 10, "title": "553160365144420353\u003cbr\u003e@manthonypopkins Doesn\u0027t matter that the\u003cbr\u003einitiative was contrived, because it\u003cbr\u003ewas taken over immediately \u0026amp;\u003cbr\u003eevolved into what it came\u003cbr\u003eto mean\u003cbr\u003eThu Jan 08 12:04:42 +0000 2015"}, {"group": 826, "id": 14, "label": "553160606229225473", "shape": "dot", "size": 10, "title": "553160606229225473\u003cbr\u003e@petedavo_world all it did was\u003cbr\u003edistract people from what the\u003cbr\u003epertinent issues were, it was\u003cbr\u003ecounter productive.\u003cbr\u003eThu Jan 08 12:05:40 +0000 2015"}, {"group": 826, "id": 15, "label": "553161021188096000", "shape": "dot", "size": 10, "title": "553161021188096000\u003cbr\u003e@manthonypopkins No, it represented the\u003cbr\u003epsychological antidote to what terrorism\u003cbr\u003etries to achieve\u003cbr\u003eThu Jan 08 12:07:19 +0000 2015"}, {"group": 826, "id": 16, "label": "553161413989244928", "shape": "dot", "size": 10, "title": "553161413989244928\u003cbr\u003e@petedavo_world granted, they want division,\u003cbr\u003ebut when the left start\u003cbr\u003eapologising, it doesn\u0027t address the\u003cbr\u003eroot cause of extremism.\u003cbr\u003eThu Jan 08 12:08:52 +0000 2015"}, {"group": 826, "id": 18, "label": "553165986673594368", "shape": "dot", "size": 10, "title": "553165986673594368\u003cbr\u003e@manthonypopkins They want fear and\u003cbr\u003ehate. That empowers them. That\u0027s\u003cbr\u003etheir leverage to getting what\u003cbr\u003ethey want.\u003cbr\u003eThu Jan 08 12:27:03 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 3, "to": 9, "weight": 1}, {"from": 3, "to": 19, "weight": 1}, {"from": 7, "to": 21, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 11, "to": 20, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

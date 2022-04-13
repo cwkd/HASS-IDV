@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 599, "id": 0, "label": "552845250268766209", "shape": "dot", "size": 10, "title": "552845250268766209\u003cbr\u003e#JeSuisCharlie trends worldwide: Online solidarity\u003cbr\u003eafter Charlie Hebdo attack http://t.co/q1yC7tmhDN\u003cbr\u003ehttp://t.co/nvrKqRY6EL\u003cbr\u003eWed Jan 07 15:12:33 +0000 2015"}, {"group": 599, "id": 1, "label": "552845832131985409", "shape": "dot", "size": 10, "title": "552845832131985409\u003cbr\u003e@Telegraph publish the unpixelated cartoons\u003cbr\u003eplease. Show your solidarity #jesuischarlie\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:14:52 +0000 2015"}, {"group": 599, "id": 2, "label": "552845956740558848", "shape": "dot", "size": 10, "title": "552845956740558848\u003cbr\u003e@Telegraph but you totally lack\u003cbr\u003ethe balls to print the\u003cbr\u003ecartoons..... so much for your\u003cbr\u003esolidarity @RolandXSweden\u003cbr\u003eWed Jan 07 15:15:22 +0000 2015"}, {"group": 599, "id": 3, "label": "552847192135069696", "shape": "dot", "size": 10, "title": "552847192135069696\u003cbr\u003e@Telegraph\u003cbr\u003eWed Jan 07 15:20:16 +0000 2015"}, {"group": 599, "id": 4, "label": "552847659841912832", "shape": "dot", "size": 10, "title": "552847659841912832\u003cbr\u003e\u201c@Telegraph: #JeSuisCharlie trends worldwide: Online\u003cbr\u003esolidarity after Charlie Hebdo attack\u003cbr\u003ehttp://t.co/SQYioeeeRG http://t.co/ExZIPoDoRi\u201d\u003cbr\u003eWed Jan 07 15:22:08 +0000 2015"}, {"group": 599, "id": 5, "label": "552847759498551297", "shape": "dot", "size": 10, "title": "552847759498551297\u003cbr\u003e@Telegraph @TelegraphNews PRINTE THE CARTOONS\u003cbr\u003e#JeSuisCharlie\u003cbr\u003eWed Jan 07 15:22:31 +0000 2015"}, {"group": 599, "id": 6, "label": "552847886263009282", "shape": "dot", "size": 10, "title": "552847886263009282\u003cbr\u003e@Telegraph Ed Ward, MD\u2019s Blog:\u003cbr\u003e#1 Google Result: Boston Treason,\u003cbr\u003e4 Articles https://t.co/sSTSOh5hNl\u003cbr\u003eWed Jan 07 15:23:02 +0000 2015"}, {"group": 599, "id": 7, "label": "552848333451313152", "shape": "dot", "size": 10, "title": "552848333451313152\u003cbr\u003e@Telegraph What people really need\u003cbr\u003eto be doing is questioning\u003cbr\u003ewhy EU leaders are allowing\u003cbr\u003ethis to happen. Dark forces\u003cbr\u003eare indeed at work!\u003cbr\u003eWed Jan 07 15:24:48 +0000 2015"}, {"group": 599, "id": 8, "label": "552849331376898050", "shape": "dot", "size": 10, "title": "552849331376898050\u003cbr\u003e@Telegraph #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:28:46 +0000 2015"}, {"group": 599, "id": 10, "label": "552851659001716736", "shape": "dot", "size": 10, "title": "552851659001716736\u003cbr\u003e@Telegraph\u003cbr\u003eWed Jan 07 15:38:01 +0000 2015"}, {"group": 599, "id": 11, "label": "552870224387911680", "shape": "dot", "size": 10, "title": "552870224387911680\u003cbr\u003e@Telegraph @TelegraphNews what would jesus\u003cbr\u003edo? prolly not sit around\u003cbr\u003eand draw satirical cartoons of\u003cbr\u003e the founder of islam\u003cbr\u003eand get paid 4 it!\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:51:47 +0000 2015"}, {"group": 599, "id": 9, "label": "552849359927513089", "shape": "dot", "size": 10, "title": "552849359927513089\u003cbr\u003e@bnp @Telegraph http://t.co/iVoC8HlSzc Dark forces\u003cbr\u003eare indeed at work here\u003cbr\u003etoo.\u003cbr\u003eWed Jan 07 15:28:53 +0000 2015"}, {"group": 599, "id": 12, "label": "552870925121486848", "shape": "dot", "size": 10, "title": "552870925121486848\u003cbr\u003e@bnp @superhoops34 @Telegraph #Jews http://t.co/gO1Z1nskXO\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:54:35 +0000 2015"}, {"group": 599, "id": 13, "label": "552871014682865664", "shape": "dot", "size": 10, "title": "552871014682865664\u003cbr\u003e@bnp @superhoops34 @Telegraph Yep aint\u003cbr\u003ethat the TRUTH...\u003cbr\u003eWed Jan 07 16:54:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 7, "to": 12, "weight": 1}, {"from": 7, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1834, "id": 0, "label": "553198972287082497", "shape": "dot", "size": 10, "title": "553198972287082497\u003cbr\u003eFrench officials say one of\u003cbr\u003ethe alleged gunman left ID\u003cbr\u003ein getaway car after #CharlieHebdo\u003cbr\u003eattack http://t.co/9c5VpoFxJI\u003cbr\u003eThu Jan 08 14:38:07 +0000 2015"}, {"group": 1834, "id": 1, "label": "553199298859765762", "shape": "dot", "size": 10, "title": "553199298859765762\u003cbr\u003eFrench officials say one of\u003cbr\u003ethe alleged gunman left ID\u003cbr\u003ein getaway car after #CharlieHebdo\u003cbr\u003eattack http://t.co/tF9xKUoLbR perfect via @WSJ\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:39:25 +0000 2015"}, {"group": 1834, "id": 2, "label": "553199349673390081", "shape": "dot", "size": 10, "title": "553199349673390081\u003cbr\u003e@WSJ look for the only\u003cbr\u003e2 people in Paris who\u003cbr\u003eare not crying.  http://t.co/GDXRTheRNx\u003cbr\u003ehttp://t.co/FUDLo8OwH6\u003cbr\u003eThu Jan 08 14:39:37 +0000 2015"}, {"group": 1834, "id": 3, "label": "553199354442694657", "shape": "dot", "size": 10, "title": "553199354442694657\u003cbr\u003e@WSJ 9/11 in france? again\u003cbr\u003ewithin 36 hours was found\u003cbr\u003eall terrorists... bullshit #IwantScania\u003cbr\u003eThu Jan 08 14:39:38 +0000 2015"}, {"group": 1834, "id": 4, "label": "553199453319221249", "shape": "dot", "size": 10, "title": "553199453319221249\u003cbr\u003e@WSJ Not as organized as\u003cbr\u003ewe thought.\u003cbr\u003eThu Jan 08 14:40:02 +0000 2015"}, {"group": 1834, "id": 5, "label": "553199522000928768", "shape": "dot", "size": 10, "title": "553199522000928768\u003cbr\u003e@WSJ @RuthBenderParis would they be\u003cbr\u003estupid to firstly carry their\u003cbr\u003eown id \u0026amp; secondly leave\u003cbr\u003eit behind#maybe  To distract\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:40:18 +0000 2015"}, {"group": 1834, "id": 6, "label": "553199580171337728", "shape": "dot", "size": 10, "title": "553199580171337728\u003cbr\u003e@WSJ @RuthBenderParis Who carries ID\u003cbr\u003ewhen going on a murderous\u003cbr\u003ecallous  rampage\u003cbr\u003eThu Jan 08 14:40:32 +0000 2015"}, {"group": 1834, "id": 7, "label": "553199900536872960", "shape": "dot", "size": 10, "title": "553199900536872960\u003cbr\u003e@WSJ @RuthBenderParis ikiz kule sald\u0131r\u0131lar\u0131nda\u003cbr\u003eda pilot pasaportunu d\u00fc\u015f\u00fcrm\u00fc\u015ft\u00fc...ayn\u0131 kap\u0131ya\u003cbr\u003e\u00e7\u0131k\u0131yor\u003cbr\u003eThu Jan 08 14:41:48 +0000 2015"}, {"group": 1834, "id": 9, "label": "553200084650053633", "shape": "dot", "size": 10, "title": "553200084650053633\u003cbr\u003e@WSJ That doesn\u0027t sound normal.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:42:32 +0000 2015"}, {"group": 1834, "id": 10, "label": "553200119814696960", "shape": "dot", "size": 10, "title": "553200119814696960\u003cbr\u003e@WSJ @RuthBenderParis BWAHAHAHAHAHA\u003cbr\u003eThu Jan 08 14:42:41 +0000 2015"}, {"group": 1834, "id": 11, "label": "553200334470795265", "shape": "dot", "size": 10, "title": "553200334470795265\u003cbr\u003e@WSJ @BaltoSpectator like Dorner\u0027s wallet\u003cbr\u003esurvived the fire?\u003cbr\u003eThu Jan 08 14:43:32 +0000 2015"}, {"group": 1834, "id": 12, "label": "553200647043309569", "shape": "dot", "size": 10, "title": "553200647043309569\u003cbr\u003e@WSJ Where is the critisism?\u003cbr\u003eIt sounds weird to leave\u003cbr\u003ean ID behind. And somehow\u003cbr\u003ethe suspects have been identified\u003cbr\u003eeven they have used masks.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:44:46 +0000 2015"}, {"group": 1834, "id": 13, "label": "553200690261028864", "shape": "dot", "size": 10, "title": "553200690261028864\u003cbr\u003e@WSJ @RuthBenderParis Dumb Criminals\u003cbr\u003eThu Jan 08 14:44:57 +0000 2015"}, {"group": 1834, "id": 14, "label": "553200764873879552", "shape": "dot", "size": 10, "title": "553200764873879552\u003cbr\u003e@WSJ yeah; course he did.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:45:14 +0000 2015"}, {"group": 1834, "id": 15, "label": "553200821924790272", "shape": "dot", "size": 10, "title": "553200821924790272\u003cbr\u003e\u201c@WSJ: French officials say one\u003cbr\u003eof the alleged gunman left\u003cbr\u003eID in getaway car after\u003cbr\u003e#CharlieHebdo attack http://t.co/1cPDKhYREj\u201d convenient\u003cbr\u003eThu Jan 08 14:45:28 +0000 2015"}, {"group": 1834, "id": 16, "label": "553200998232367105", "shape": "dot", "size": 10, "title": "553200998232367105\u003cbr\u003eTerrorist \"masterminds\" RT @WSJ officials\u003cbr\u003esay one of alleged gunman\u003cbr\u003eleft ID in getaway car\u003cbr\u003eafter #CharlieHebdo attack http://t.co/BrsU8a5jA9\u003cbr\u003eThu Jan 08 14:46:10 +0000 2015"}, {"group": 1834, "id": 17, "label": "553201316194181120", "shape": "dot", "size": 10, "title": "553201316194181120\u003cbr\u003e\u201c@WSJ: French officials say one\u003cbr\u003eof the alleged gunman left\u003cbr\u003eID in getaway car after\u003cbr\u003e#CharlieHebdo attack http://t.co/A2lPMPsRgP\u201d #bogus\u003cbr\u003eThu Jan 08 14:47:26 +0000 2015"}, {"group": 1834, "id": 18, "label": "553201447488454656", "shape": "dot", "size": 10, "title": "553201447488454656\u003cbr\u003e@WSJ @RuthBenderParis set up?\u003cbr\u003eThu Jan 08 14:47:57 +0000 2015"}, {"group": 1834, "id": 19, "label": "553209335648907264", "shape": "dot", "size": 10, "title": "553209335648907264\u003cbr\u003e@WSJ So convenient... Has happened\u003cbr\u003etoo often since 9/11 #CharlieHebdo\u003cbr\u003e#ParisShooting http://t.co/LfzOHtu15v\u003cbr\u003eThu Jan 08 15:19:18 +0000 2015"}, {"group": 1834, "id": 8, "label": "553200038399053827", "shape": "dot", "size": 10, "title": "553200038399053827\u003cbr\u003e@CareyPenaTV What a dumbasss! #cougar\u003cbr\u003e@WSJ\u003cbr\u003eThu Jan 08 14:42:21 +0000 2015"}, {"group": 1834, "id": 20, "label": "553220935021785088", "shape": "dot", "size": 10, "title": "553220935021785088\u003cbr\u003e@Mojostarz @WSJ yeah I know\u003cbr\u003eright.\u003cbr\u003eThu Jan 08 16:05:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 8, "weight": 1}, {"from": 11, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

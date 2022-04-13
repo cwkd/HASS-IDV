@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 779, "id": 0, "label": "553113395487330304", "shape": "dot", "size": 10, "title": "553113395487330304\u003cbr\u003eHow Parisians responded to the\u003cbr\u003e#CharlieHebdo attack... http://t.co/O1qrPOGOJ1 http://t.co/KnnfELpPM6\u003cbr\u003eThu Jan 08 08:58:04 +0000 2015"}, {"group": 779, "id": 1, "label": "553114139720450048", "shape": "dot", "size": 10, "title": "553114139720450048\u003cbr\u003e@Independent Best response possible.\u003cbr\u003eThu Jan 08 09:01:01 +0000 2015"}, {"group": 779, "id": 2, "label": "553115013238374400", "shape": "dot", "size": 10, "title": "553115013238374400\u003cbr\u003e@Independent heurese a voir ce\u003cbr\u003emoment\u003cbr\u003eThu Jan 08 09:04:30 +0000 2015"}, {"group": 779, "id": 3, "label": "553115709812002816", "shape": "dot", "size": 10, "title": "553115709812002816\u003cbr\u003e@Independent Keep it up.\u003cbr\u003eThu Jan 08 09:07:16 +0000 2015"}, {"group": 779, "id": 4, "label": "553115917216133120", "shape": "dot", "size": 10, "title": "553115917216133120\u003cbr\u003e\u201c@Independent: How Parisians responded to\u003cbr\u003ethe #CharlieHebdo attack... http://t.co/tIADLDedRu http://t.co/vMyJzjs1Ti\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:08:05 +0000 2015"}, {"group": 779, "id": 5, "label": "553116730361671680", "shape": "dot", "size": 10, "title": "553116730361671680\u003cbr\u003eViva France! #DoNotBend \u0026gt; @Independent:\u003cbr\u003eHow Parisians responded to the\u003cbr\u003e#CharlieHebdo attack...http://t.co/lQCvGmjFG5 http://t.co/3rMR6p1Y4Z\u003cbr\u003eThu Jan 08 09:11:19 +0000 2015"}, {"group": 779, "id": 6, "label": "553117094519525376", "shape": "dot", "size": 10, "title": "553117094519525376\u003cbr\u003e@Independent you can kill us,\u003cbr\u003ebut never our ideas #BrianHaw\u003cbr\u003e....... So many died for\u003cbr\u003ethe #FreedomOfSpeech and so many\u003cbr\u003ewill.\u003cbr\u003eThu Jan 08 09:12:46 +0000 2015"}, {"group": 779, "id": 7, "label": "553119611416104960", "shape": "dot", "size": 10, "title": "553119611416104960\u003cbr\u003e\u201c@Independent: How Parisians responded to\u003cbr\u003ethe #CharlieHebdo attack... http://t.co/TMI7xIXn59 http://t.co/8CYQQrYw4e\u201d\u003cbr\u003eVive la France!\u003cbr\u003eThu Jan 08 09:22:46 +0000 2015"}, {"group": 779, "id": 8, "label": "553124718623330304", "shape": "dot", "size": 10, "title": "553124718623330304\u003cbr\u003e@Independent Gracias por tu aportaci\u00f3n\u003cbr\u003ea las publicaciones del blog\u003cbr\u003esobre #TTIP #TAFTA en [ES]\u003cbr\u003ehttp://t.co/Q5cpdK9pv9\u003cbr\u003eThu Jan 08 09:43:04 +0000 2015"}, {"group": 779, "id": 9, "label": "553124988447096832", "shape": "dot", "size": 10, "title": "553124988447096832\u003cbr\u003e@Independent Paris victims, we all\u003cbr\u003emust stand for charlie. Give\u003cbr\u003eyour support here : http://t.co/NLySRUk2zb\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:44:08 +0000 2015"}, {"group": 779, "id": 10, "label": "553132545366581248", "shape": "dot", "size": 10, "title": "553132545366581248\u003cbr\u003e@Independent @ClaudiaJDean \n#JeSuisCharlie\u003cbr\u003eThu Jan 08 10:14:10 +0000 2015"}, {"group": 779, "id": 11, "label": "553147488073707520", "shape": "dot", "size": 10, "title": "553147488073707520\u003cbr\u003e@Independent people unite\u003cbr\u003eThu Jan 08 11:13:32 +0000 2015"}, {"group": 779, "id": 12, "label": "553151377644748800", "shape": "dot", "size": 10, "title": "553151377644748800\u003cbr\u003e@Independent Such blatant and disgusting\u003cbr\u003eIslamophobia!!\u003cbr\u003eThu Jan 08 11:29:00 +0000 2015"}, {"group": 779, "id": 13, "label": "553177728032071681", "shape": "dot", "size": 10, "title": "553177728032071681\u003cbr\u003e@Independent Good, be not afraid\u003cbr\u003eindeed, but have respect for\u003cbr\u003eothers when it comes to\u003cbr\u003eintense satire.\u003cbr\u003eThu Jan 08 13:13:42 +0000 2015"}, {"group": 779, "id": 14, "label": "553348346820050945", "shape": "dot", "size": 10, "title": "553348346820050945\u003cbr\u003e\u201c@Independent: How Parisians responded to\u003cbr\u003ethe #CharlieHebdo attack... http://t.co/ARAminvmUF http://t.co/4YDse8dUj5\u201d\n\n\u65e9\u304f\u30d5\u30e9\u30f3\u30b9\u306b\u65e5\u5e38\u304c\u623b\u308a\u307e\u3059\u3088\u3046\u306b\u2026\u003cbr\u003e\u003cbr\u003eFri Jan 09 00:31:41 +0000 2015"}, {"group": 779, "id": 15, "label": "554775521457102849", "shape": "dot", "size": 10, "title": "554775521457102849\u003cbr\u003e@Independent Should museums and galleries\u003cbr\u003enot exhibit certain items because\u003cbr\u003ethey cause offence?\u003cbr\u003eMon Jan 12 23:02:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

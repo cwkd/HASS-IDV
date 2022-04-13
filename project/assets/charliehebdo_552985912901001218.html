@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1781, "id": 0, "label": "552985912901001218", "shape": "dot", "size": 10, "title": "552985912901001218\u003cbr\u003e#Banksy has also contributed a\u003cbr\u003epowerful message of perseverance \u0026amp;\u003cbr\u003esupport after #CharlieHebdo attack. #JeSuisCharlie\u003cbr\u003ehttp://t.co/bm8uyixSma\u003cbr\u003eThu Jan 08 00:31:30 +0000 2015"}, {"group": 1781, "id": 1, "label": "552996371910107136", "shape": "dot", "size": 10, "title": "552996371910107136\u003cbr\u003e\u201c@ajplus: #Banksy has contributed a\u003cbr\u003epowerful msg of perseverance/support after\u003cbr\u003e#CharlieHebdo attack. #JeSuisCharlie http://t.co/cXvg0aQ2SI\u201d\u003cbr\u003eThu Jan 08 01:13:03 +0000 2015"}, {"group": 1781, "id": 2, "label": "553014443563814912", "shape": "dot", "size": 10, "title": "553014443563814912\u003cbr\u003eEl mensaje de apoyo de\u003cbr\u003e#Banksy para #CharlieHebdo. [v\u00eda @ajplus]\u003cbr\u003e#JeSuisCharlie http://t.co/MIXHdLmQAr\u003cbr\u003eThu Jan 08 02:24:52 +0000 2015"}, {"group": 1781, "id": 3, "label": "553050436857368577", "shape": "dot", "size": 10, "title": "553050436857368577\u003cbr\u003e@ajplus\u003cbr\u003eThu Jan 08 04:47:53 +0000 2015"}, {"group": 1781, "id": 4, "label": "553231377278062595", "shape": "dot", "size": 10, "title": "553231377278062595\u003cbr\u003eCorrection: This artwork was not\u003cbr\u003ecreated by famed street artist\u003cbr\u003eBanksy. This should be attributed\u003cbr\u003eto illustrator @LucilleClerc.\u003cbr\u003eThu Jan 08 16:46:53 +0000 2015"}, {"group": 1781, "id": 5, "label": "554390833693458432", "shape": "dot", "size": 10, "title": "554390833693458432\u003cbr\u003e@ajplus @Hammergts Not by Banksy,\u003cbr\u003eby a French cartoonist.\u003cbr\u003eSun Jan 11 21:34:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

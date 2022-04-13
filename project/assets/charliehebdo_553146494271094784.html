@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 900, "id": 0, "label": "553146494271094784", "shape": "dot", "size": 10, "title": "553146494271094784\u003cbr\u003eAmong the names of the\u003cbr\u003edead are \u0027Ahmed\u0027 and \u0027Mustapha\u0027\u003cbr\u003e-- both are also names\u003cbr\u003eof the Prophet Muhammad #CharlieHebdo\u003cbr\u003ehttps://t.co/APrF7K6H0n\u003cbr\u003eThu Jan 08 11:09:35 +0000 2015"}, {"group": 900, "id": 1, "label": "553147975552073730", "shape": "dot", "size": 10, "title": "553147975552073730\u003cbr\u003e@OmarWaraich @imsabbah #BreakingNews Correspondent: Charlie\u003cbr\u003eHebdo assailants spotted in central\u003cbr\u003eFrance  http://t.co/LBwlaaP4ie\u003cbr\u003eThu Jan 08 11:15:29 +0000 2015"}, {"group": 900, "id": 2, "label": "553148349159714816", "shape": "dot", "size": 10, "title": "553148349159714816\u003cbr\u003e@OmarWaraich #RespectForMuslims http://t.co/rZYUfwU0He\u003cbr\u003eThu Jan 08 11:16:58 +0000 2015"}, {"group": 900, "id": 3, "label": "553152939871989761", "shape": "dot", "size": 10, "title": "553152939871989761\u003cbr\u003e@OmarWaraich so what?\u003cbr\u003eThu Jan 08 11:35:12 +0000 2015"}, {"group": 900, "id": 4, "label": "553175089559003136", "shape": "dot", "size": 10, "title": "553175089559003136\u003cbr\u003eThese monsters kill the Prophet\u003cbr\u003eevry time MT \"@OmarWaraich: Among\u003cbr\u003ethe names of the dead\u003cbr\u003er \u0027Ahmed\u0027 \u0026amp;\u0027Mustapha\u0027-both r also\u003cbr\u003enames of Muhammad\u003cbr\u003eThu Jan 08 13:03:13 +0000 2015"}, {"group": 900, "id": 5, "label": "553203478277783553", "shape": "dot", "size": 10, "title": "553203478277783553\u003cbr\u003e@OmarWaraich @shahvaaralikhan Islam never allow\u003cbr\u003eviolence but how Ahmed \u0026amp;\u003cbr\u003eMustapha work in place where\u003cbr\u003eCartoon of Prophet(pbuh) drawn\u003cbr\u003eThu Jan 08 14:56:01 +0000 2015"}, {"group": 900, "id": 6, "label": "553207696116031488", "shape": "dot", "size": 10, "title": "553207696116031488\u003cbr\u003e@OmarWaraich @eyshah1 do they care???\u003cbr\u003eThey instigated this reaction by\u003cbr\u003eallowing these insults \u0026amp; cartoons\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:12:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

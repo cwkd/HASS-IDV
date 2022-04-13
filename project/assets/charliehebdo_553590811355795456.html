@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1591, "id": 0, "label": "553590811355795456", "shape": "dot", "size": 10, "title": "553590811355795456\u003cbr\u003eI see humans but no\u003cbr\u003ehumanity.\n#LiberteDExpression #JeSuisCharlie  #charliehebdo http://t.co/6jRiKDHTSr\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:35:09 +0000 2015"}, {"group": 1591, "id": 1, "label": "553603207226994690", "shape": "dot", "size": 10, "title": "553603207226994690\u003cbr\u003e@VigilanteArtist @Madonna @ladygaga @KingBrush @MiamiHerald\u003cbr\u003e @DRJAMESCABOT @sallybell26 @mileycyrus @FloydMayweather\u003cbr\u003ehttp://t.co/6jRiKDHTSr\u003cbr\u003eFri Jan 09 17:24:24 +0000 2015"}, {"group": 1591, "id": 5, "label": "554474146235949058", "shape": "dot", "size": 10, "title": "554474146235949058\u003cbr\u003e@VigilanteArtist @MarinaBush90 \ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\u003cbr\u003eMon Jan 12 03:05:12 +0000 2015"}, {"group": 1591, "id": 2, "label": "553610785629675520", "shape": "dot", "size": 10, "title": "553610785629675520\u003cbr\u003e@VigilanteArtist como estas,Ale?\u003cbr\u003eFri Jan 09 17:54:31 +0000 2015"}, {"group": 1591, "id": 3, "label": "553611065922433024", "shape": "dot", "size": 10, "title": "553611065922433024\u003cbr\u003e@Subaquei Muy bien gracias a\u003cbr\u003efull con la rehabilitacion el\u003cbr\u003e21 me operan la izq\u003cbr\u003eGRACIASS!!\u003cbr\u003eFri Jan 09 17:55:38 +0000 2015"}, {"group": 1591, "id": 4, "label": "553644174583803904", "shape": "dot", "size": 10, "title": "553644174583803904\u003cbr\u003e@VigilanteArtist Me alegro mucho!!! Todo\u003cbr\u003esaldr\u00e1 bien!! YEAHHHH!! Car\u00f1os a\u003cbr\u003e#Sally y a #Milano\u003cbr\u003eFri Jan 09 20:07:12 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

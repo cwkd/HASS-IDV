@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 998, "id": 0, "label": "553172148085620738", "shape": "dot", "size": 10, "title": "553172148085620738\u003cbr\u003eOne of the gunmen was\u003cbr\u003eradicalized by the horror at\u003cbr\u003eAbu Ghraib. #jesuischarlie cc @RumsfeldOffice\u003cbr\u003e http://t.co/N6WPLFYa2n\u003cbr\u003eThu Jan 08 12:51:32 +0000 2015"}, {"group": 998, "id": 1, "label": "553172666807767040", "shape": "dot", "size": 10, "title": "553172666807767040\u003cbr\u003e@ryangrim @RumsfeldOffice putting pink panties\u003cbr\u003eon the heads of Muslim\u003cbr\u003eprisoners is \"horror\"? I\u0027d call\u003cbr\u003ethat relaxation, entertain for troops\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:53:35 +0000 2015"}, {"group": 998, "id": 2, "label": "553172759019524096", "shape": "dot", "size": 10, "title": "553172759019524096\u003cbr\u003e@ryangrim @RumsfeldOffice \"We will be\u003cbr\u003epaying for Bush/Cheney for at\u003cbr\u003eleast another 20 years\".\u003cbr\u003eThu Jan 08 12:53:57 +0000 2015"}, {"group": 998, "id": 3, "label": "553172866423074816", "shape": "dot", "size": 10, "title": "553172866423074816\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice the \u0027gift\u0027\u003cbr\u003ethat keeps on giving.\u003cbr\u003eThu Jan 08 12:54:23 +0000 2015"}, {"group": 998, "id": 4, "label": "553173589848244224", "shape": "dot", "size": 10, "title": "553173589848244224\u003cbr\u003e@ryangrim @RumsfeldOffice are the bodies\u003cbr\u003ecold yet? @brianstelter @howardkurtz\u003cbr\u003eThu Jan 08 12:57:15 +0000 2015"}, {"group": 998, "id": 5, "label": "553174159862145027", "shape": "dot", "size": 10, "title": "553174159862145027\u003cbr\u003eThe images made me do\u003cbr\u003eit! These guys seem to\u003cbr\u003ehave lots of issues with\u003cbr\u003epictures and images. @ryangrim @ggreenwald\u003cbr\u003e@RumsfeldOffice\u003cbr\u003eThu Jan 08 12:59:31 +0000 2015"}, {"group": 998, "id": 6, "label": "553174166346944512", "shape": "dot", "size": 10, "title": "553174166346944512\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice Oh. So\u003cbr\u003eit\u0027s all good then? \u003cbr\u003eHello?\u003cbr\u003eThu Jan 08 12:59:33 +0000 2015"}, {"group": 998, "id": 7, "label": "553174239831138304", "shape": "dot", "size": 10, "title": "553174239831138304\u003cbr\u003e@ryangrim @RumsfeldOffice Please RT -\u003cbr\u003eDownload a hilarious FREE Koran\u003cbr\u003ePARODY for infidels of all\u003cbr\u003eages - https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 12:59:50 +0000 2015"}, {"group": 998, "id": 8, "label": "553174241802072064", "shape": "dot", "size": 10, "title": "553174241802072064\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice this is\u003cbr\u003ebs.  I make no\u003cbr\u003eexcuses for Israeli terror on\u003cbr\u003ethe Palestinians.  No excuses\u003cbr\u003efor these guys.\u003cbr\u003eThu Jan 08 12:59:51 +0000 2015"}, {"group": 998, "id": 9, "label": "553174449458257921", "shape": "dot", "size": 10, "title": "553174449458257921\u003cbr\u003e@ryangrim change \"was\" to \"claims\u003cbr\u003eto have been\". @ggreenwald @RumsfeldOffice\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:00:40 +0000 2015"}, {"group": 998, "id": 10, "label": "553174564143108098", "shape": "dot", "size": 10, "title": "553174564143108098\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice it horrified\u003cbr\u003eme too and it kept\u003cbr\u003ehappening!! These inmates should be\u003cbr\u003erespected, #BasicHumanRights\u003cbr\u003eThu Jan 08 13:01:08 +0000 2015"}, {"group": 998, "id": 11, "label": "553176999816998912", "shape": "dot", "size": 10, "title": "553176999816998912\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice the it\u0027s\u003cbr\u003eour fault media reawakens.\u003cbr\u003eThu Jan 08 13:10:48 +0000 2015"}, {"group": 998, "id": 12, "label": "553177424695791616", "shape": "dot", "size": 10, "title": "553177424695791616\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice radicalized by\u003cbr\u003eAbu Gharib kills 12 journalist,\u003cbr\u003egotcha.\u003cbr\u003eThu Jan 08 13:12:30 +0000 2015"}, {"group": 998, "id": 13, "label": "553177831912783872", "shape": "dot", "size": 10, "title": "553177831912783872\u003cbr\u003e@ryangrim @ggreenwald @RumsfeldOffice still suspected\u003cbr\u003egunmen\u003cbr\u003eThu Jan 08 13:14:07 +0000 2015"}, {"group": 998, "id": 14, "label": "553178127804162049", "shape": "dot", "size": 10, "title": "553178127804162049\u003cbr\u003e@ryangrim @RumsfeldOffice A complete GIF\u003cbr\u003eguide to Muslims Denouncing terrorism.\u003cbr\u003ehttp://t.co/s9rGMNFzda\u003cbr\u003eThu Jan 08 13:15:17 +0000 2015"}, {"group": 998, "id": 17, "label": "553180205364551680", "shape": "dot", "size": 10, "title": "553180205364551680\u003cbr\u003eContext matters. MT @ryangrim: One\u003cbr\u003eof the gunmen was radicalized\u003cbr\u003eby the horror at Abu\u003cbr\u003eGhraib. #jesuischarlie  http://t.co/9sX6Pt6Ccl\u003cbr\u003eThu Jan 08 13:23:33 +0000 2015"}, {"group": 998, "id": 15, "label": "553179374951088129", "shape": "dot", "size": 10, "title": "553179374951088129\u003cbr\u003e@themateos @ryangrim @ggreenwald @RumsfeldOffice it\u0027s\u003cbr\u003enot an excuse. It\u0027s showing\u003cbr\u003ehow blowback works.\u003cbr\u003eThu Jan 08 13:20:15 +0000 2015"}, {"group": 998, "id": 16, "label": "553179846449569794", "shape": "dot", "size": 10, "title": "553179846449569794\u003cbr\u003e@ldelvalle @ryangrim @ggreenwald @RumsfeldOffice it\u0027s\u003cbr\u003enot blaming, but showing that\u003cbr\u003etheir are consequences to the\u003cbr\u003elast 13+ years of US\u003cbr\u003eFP.\u003cbr\u003eThu Jan 08 13:22:07 +0000 2015"}, {"group": 998, "id": 19, "label": "553182398947397632", "shape": "dot", "size": 10, "title": "553182398947397632\u003cbr\u003e@readingliberty @ryangrim @ggreenwald @RumsfeldOffice no\u003cbr\u003eits not.  I love\u003cbr\u003egrim and gg work but\u003cbr\u003eppl make choices \u0026amp; they\u003cbr\u003emade 1\u0026amp; thats the WHY\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:32:16 +0000 2015"}, {"group": 998, "id": 20, "label": "553186518412431360", "shape": "dot", "size": 10, "title": "553186518412431360\u003cbr\u003e@readingliberty @ryangrim @ggreenwald @RumsfeldOffice besides\u003cbr\u003eFrance didn\u0027t even support Iraq\u003cbr\u003ewar or Abu Graib\u003cbr\u003eThu Jan 08 13:48:38 +0000 2015"}, {"group": 998, "id": 18, "label": "553181304347303938", "shape": "dot", "size": 10, "title": "553181304347303938\u003cbr\u003e@readingliberty @ryangrim @ggreenwald @RumsfeldOffice US\u003cbr\u003eFP behind the attack of\u003cbr\u003enewspaper critical of US ,\u003cbr\u003egotcha self-loathing fool.\u003cbr\u003eThu Jan 08 13:27:55 +0000 2015"}, {"group": 998, "id": 21, "label": "553213622936027137", "shape": "dot", "size": 10, "title": "553213622936027137\u003cbr\u003e@ldelvalle @ryangrim @ggreenwald @RumsfeldOffice no,\u003cbr\u003eU.S. FP creates a breeding\u003cbr\u003eground for extremists, who lash\u003cbr\u003eout around the world.\u003cbr\u003eThu Jan 08 15:36:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 11, "to": 16, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

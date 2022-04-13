@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 662, "id": 0, "label": "552850514132873217", "shape": "dot", "size": 10, "title": "552850514132873217\u003cbr\u003eTragic, powerful drawing on #CharlieHebdo\u003cbr\u003eby Canberra Times cartoonist @davpope\u003cbr\u003ehttp://t.co/ny2St7OiBd\u003cbr\u003eWed Jan 07 15:33:28 +0000 2015"}, {"group": 662, "id": 1, "label": "552851183011123200", "shape": "dot", "size": 10, "title": "552851183011123200\u003cbr\u003e@katz @davpope Where has that\u003cbr\u003ebeen drawn? It\u0027s still Jan\u003cbr\u003e7th here\u003cbr\u003eWed Jan 07 15:36:08 +0000 2015"}, {"group": 662, "id": 3, "label": "552851457129861120", "shape": "dot", "size": 10, "title": "552851457129861120\u003cbr\u003e@katz @MariosKaratzias @davpope \u03a4\u03c1\u03b1\u03b3\u03b9\u03ba\u03cc \u03b3\u03b5\u03b3\u03bf\u03bd\u03cc\u03c2\u003cbr\u003e\u039c\u03ac\u03c1\u03b9\u03b5.\u0395\u03af\u03bd\u03b1\u03b9 \u03bf\u03b9 \"\u03ba\u03b1\u03bb\u03ac\u0027 \u03c0\u03c1\u03bf\u03c3\u03c4\u03b1\u03c4\u03b5\u03c5\u03bc\u03ad\u03bd\u03b5\u03c2 \u03c7\u03ce\u03c1\u03b5\u03c2\u003cbr\u003e\u03b1\u03c5\u03c4\u03ad\u03c2.....\u003cbr\u003eWed Jan 07 15:37:13 +0000 2015"}, {"group": 662, "id": 4, "label": "552852954186014720", "shape": "dot", "size": 10, "title": "552852954186014720\u003cbr\u003e@katz @davpope \nLa SATIRA \u00c8\u003cbr\u003ePI\u00d9 GRANDE DI ALLAH -\u003cbr\u003ehttp://t.co/0iceu5jbgZ\u003cbr\u003eWed Jan 07 15:43:10 +0000 2015"}, {"group": 662, "id": 6, "label": "552854651876683777", "shape": "dot", "size": 10, "title": "552854651876683777\u003cbr\u003e\u201c@katz: Tragic, powerful drawing on\u003cbr\u003e#CharlieHebdo by Canberra Times cartoonist\u003cbr\u003e@davpope http://t.co/6pGPAGMRwE\u201d\u003cbr\u003eWed Jan 07 15:49:55 +0000 2015"}, {"group": 662, "id": 7, "label": "552857178999373826", "shape": "dot", "size": 10, "title": "552857178999373826\u003cbr\u003e@katz @szacki @davpope :-(((\u003cbr\u003eWed Jan 07 15:59:57 +0000 2015"}, {"group": 662, "id": 8, "label": "552860607087517696", "shape": "dot", "size": 10, "title": "552860607087517696\u003cbr\u003e\u201c@katz: Tragic, powerful drawing on\u003cbr\u003e#CharlieHebdo by Canberra Times cartoonist\u003cbr\u003e@davpope http://t.co/32X52qHhfW\u201d\u003cbr\u003eWed Jan 07 16:13:35 +0000 2015"}, {"group": 662, "id": 9, "label": "552862510320070656", "shape": "dot", "size": 10, "title": "552862510320070656\u003cbr\u003e@katz @gkhamba @davpope yeh drawing\u003cbr\u003eaatankwad ko chidhati rahegi or\u003cbr\u003eunke irade benakab karti rahegi\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:21:08 +0000 2015"}, {"group": 662, "id": 10, "label": "552866761897672706", "shape": "dot", "size": 10, "title": "552866761897672706\u003cbr\u003e#JeSuisCharlie \u201c@katz: Tragic, powerful drawing\u003cbr\u003eon #CharlieHebdo by Canberra Times\u003cbr\u003ecartoonist @davpope http://t.co/W6Px1RcJnc\u201d\u003cbr\u003eWed Jan 07 16:38:02 +0000 2015"}, {"group": 662, "id": 11, "label": "552867879654551553", "shape": "dot", "size": 10, "title": "552867879654551553\u003cbr\u003e@katz @andilinks @davpope Now French\u003cbr\u003eknow what kind of terrorists\u003cbr\u003ethey\u0027re dealing with. Guards should\u003cbr\u003ecarry more powerful weapons. #Paris\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:42:28 +0000 2015"}, {"group": 662, "id": 12, "label": "552870854934396928", "shape": "dot", "size": 10, "title": "552870854934396928\u003cbr\u003e@katz @davpope dont let the\u003cbr\u003eyellow swines win\u003cbr\u003eWed Jan 07 16:54:18 +0000 2015"}, {"group": 662, "id": 13, "label": "552874072426557440", "shape": "dot", "size": 10, "title": "552874072426557440\u003cbr\u003e\u201c@katz: Tragic, powerful drawing on\u003cbr\u003e#CharlieHebdo by Canberra Times cartoonist\u003cbr\u003e@davpope http://t.co/PUqJuKAicf\u003cbr\u003eWed Jan 07 17:07:05 +0000 2015"}, {"group": 662, "id": 14, "label": "552878701851860992", "shape": "dot", "size": 10, "title": "552878701851860992\u003cbr\u003e\u201c@katz: Tragic, powerful drawing on\u003cbr\u003e#CharlieHebdo by Canberra Times cartoonist\u003cbr\u003e@davpope http://t.co/2mLSS8O32d\u201d\u003cbr\u003eWed Jan 07 17:25:29 +0000 2015"}, {"group": 662, "id": 15, "label": "552883180504883202", "shape": "dot", "size": 10, "title": "552883180504883202\u003cbr\u003e@katz @gundarsreders @davpope This is\u003cbr\u003egone too far. The more\u003cbr\u003ewe tolerate beliefs, the more\u003cbr\u003ethey oppress the people of\u003cbr\u003efree will.\u003cbr\u003eWed Jan 07 17:43:16 +0000 2015"}, {"group": 662, "id": 16, "label": "552916370623451136", "shape": "dot", "size": 10, "title": "552916370623451136\u003cbr\u003e@katz @davpope\u003cbr\u003eWed Jan 07 19:55:10 +0000 2015"}, {"group": 662, "id": 17, "label": "552926078348427264", "shape": "dot", "size": 10, "title": "552926078348427264\u003cbr\u003e@katz @davpope\u003cbr\u003eWed Jan 07 20:33:44 +0000 2015"}, {"group": 662, "id": 2, "label": "552851378193068032", "shape": "dot", "size": 10, "title": "552851378193068032\u003cbr\u003e@laberblah @katz @davpope yep still\u003cbr\u003e7 jan here , soo\u003cbr\u003e....\u003cbr\u003eWed Jan 07 15:36:54 +0000 2015"}, {"group": 662, "id": 5, "label": "552853248735203329", "shape": "dot", "size": 10, "title": "552853248735203329\u003cbr\u003e@laberblah @katz @davpope Canberra in\u003cbr\u003eAustralia, it\u0027s Thursday AM there.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:44:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

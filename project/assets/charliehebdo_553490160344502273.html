@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1276, "id": 0, "label": "553490160344502273", "shape": "dot", "size": 10, "title": "553490160344502273\u003cbr\u003eThe Algerian Muslim editor -\u003cbr\u003ekilled in the #CharlieHebdo attack\u003cbr\u003e- nobody knows about: Moustapha\u003cbr\u003eOurrad. #JeSuisMuslim http://t.co/NizgHAxpsL\u003cbr\u003eFri Jan 09 09:55:12 +0000 2015"}, {"group": 1276, "id": 1, "label": "553491173810388993", "shape": "dot", "size": 10, "title": "553491173810388993\u003cbr\u003e@KhaledBeydoun @FrontaalNaakt Ik las in\u003cbr\u003eVK dat hij volgens collega\u0027s\u003cbr\u003egeen moslim was\u003cbr\u003eFri Jan 09 09:59:13 +0000 2015"}, {"group": 1276, "id": 2, "label": "553491481999069184", "shape": "dot", "size": 10, "title": "553491481999069184\u003cbr\u003e@KhaledBeydoun as every ID becomes\u003cbr\u003eknown I feel my heart\u003cbr\u003esink that little bit lower.\u003cbr\u003ebless all their souls god,we\u003cbr\u003ecertainly grieve theirLoss\u003cbr\u003eFri Jan 09 10:00:27 +0000 2015"}, {"group": 1276, "id": 3, "label": "553492630479585281", "shape": "dot", "size": 10, "title": "553492630479585281\u003cbr\u003e@KhaledBeydoun reminds me of the\u003cbr\u003eassassination of Algerian academics \u0026amp;\u003cbr\u003eintellectuals by fundamentalists in the\u003cbr\u003e1990s https://t.co/5N5MRy9oG4\u003cbr\u003eFri Jan 09 10:05:01 +0000 2015"}, {"group": 1276, "id": 4, "label": "553492729355706368", "shape": "dot", "size": 10, "title": "553492729355706368\u003cbr\u003e@KhaledBeydoun to hell\u003cbr\u003eFri Jan 09 10:05:24 +0000 2015"}, {"group": 1276, "id": 5, "label": "553493668855033857", "shape": "dot", "size": 10, "title": "553493668855033857\u003cbr\u003e@KhaledBeydoun There are Atheists, \u003cbr\u003eChristians, Muslims etc that do\u003cbr\u003egood AND that do evil.\u003cbr\u003eExtremism is the enemy.\u003cbr\u003eFri Jan 09 10:09:08 +0000 2015"}, {"group": 1276, "id": 8, "label": "553501720018313216", "shape": "dot", "size": 10, "title": "553501720018313216\u003cbr\u003e\u201c@KhaledBeydoun: The Algerian Muslim editor\u003cbr\u003e- killed in the #CharlieHebdo\u003cbr\u003eattack : Moustapha Ourrad. #JeSuisMuslim\u003cbr\u003ehttp://t.co/P9YfsdVDHl\u201d\u003cbr\u003eFri Jan 09 10:41:08 +0000 2015"}, {"group": 1276, "id": 9, "label": "553549852366622722", "shape": "dot", "size": 10, "title": "553549852366622722\u003cbr\u003e@KhaledBeydoun @erstlecocq http://t.co/QqCTpWod3k\u003cbr\u003eFri Jan 09 13:52:23 +0000 2015"}, {"group": 1276, "id": 11, "label": "553576755584589825", "shape": "dot", "size": 10, "title": "553576755584589825\u003cbr\u003e.@KhaledBeydoun @simonconroy That is due\u003cbr\u003eto selective reporting.  #SHAMESelectiveReporting\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:39:18 +0000 2015"}, {"group": 1276, "id": 12, "label": "553579905058111488", "shape": "dot", "size": 10, "title": "553579905058111488\u003cbr\u003eMT @KhaledBeydoun: The Algerian Muslim\u003cbr\u003eeditor - killed in the\u003cbr\u003e#CharlieHebdo attack - nobody knows\u003cbr\u003eabout: Moustapha Ourrad. #JeSuisMuslim\u003cbr\u003eFri Jan 09 15:51:49 +0000 2015"}, {"group": 1276, "id": 13, "label": "553583007932878849", "shape": "dot", "size": 10, "title": "553583007932878849\u003cbr\u003e@KhaledBeydoun @mohamedghilan now we do.\u003cbr\u003ethanks.\u003cbr\u003eFri Jan 09 16:04:08 +0000 2015"}, {"group": 1276, "id": 14, "label": "553585223905312768", "shape": "dot", "size": 10, "title": "553585223905312768\u003cbr\u003e\u201c@KhaledBeydoun: The editor killed in\u003cbr\u003ethe #CharlieHebdo attack nobody knows\u003cbr\u003eabout: Moustapha Ourrad. #JeSuisMuslim http://t.co/bwzGBScONT\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:12:57 +0000 2015"}, {"group": 1276, "id": 15, "label": "553601907940286465", "shape": "dot", "size": 10, "title": "553601907940286465\u003cbr\u003e@KhaledBeydoun This (I\u0027d use the\u003cbr\u003eB word here) worked for\u003cbr\u003ea magazine which BULLY MUSLIMs\u003cbr\u003eby TRYIN\u0027 to INSULT the\u003cbr\u003ePROPHET! #BAISEVOUSALGERIEN\u003cbr\u003eFri Jan 09 17:19:14 +0000 2015"}, {"group": 1276, "id": 16, "label": "553825201310285824", "shape": "dot", "size": 10, "title": "553825201310285824\u003cbr\u003e@KhaledBeydoun was Moustapha Ourrad Muslim?\u003cbr\u003eIsn\u0027t it rascist to assume\u003cbr\u003ethat based only on his\u003cbr\u003ename or country of birth?\u003cbr\u003e#JeSuisMuslim\u003cbr\u003eSat Jan 10 08:06:32 +0000 2015"}, {"group": 1276, "id": 6, "label": "553494052835188736", "shape": "dot", "size": 10, "title": "553494052835188736\u003cbr\u003e@Limerick1914 @KhaledBeydoun Those acad\u0026amp;intel were\u003cbr\u003efor freedom of speech Charlie\u003cbr\u003ewas thriving on provocative satire.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:10:40 +0000 2015"}, {"group": 1276, "id": 10, "label": "553575616667484161", "shape": "dot", "size": 10, "title": "553575616667484161\u003cbr\u003e@xsaintdjl @KhaledBeydoun well said!\u003cbr\u003eFri Jan 09 15:34:46 +0000 2015"}, {"group": 1276, "id": 7, "label": "553494628675375104", "shape": "dot", "size": 10, "title": "553494628675375104\u003cbr\u003e@FethyDjazairi @KhaledBeydoun and provocative satire\u003cbr\u003ecarries a death sentence? Fundamentalism\u003cbr\u003edoes not split hairs.\u003cbr\u003eFri Jan 09 10:12:57 +0000 2015"}, {"group": 1276, "id": 17, "label": "554023913051918337", "shape": "dot", "size": 10, "title": "554023913051918337\u003cbr\u003e@skender @khaledbeydoun So #JeSuisUnCoconut b\u003cbr\u003ea better hashtag where manythings\u003cbr\u003ecould b discussed not just\u003cbr\u003epeace @Patheos\u003cbr\u003eSat Jan 10 21:16:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 5, "to": 10, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

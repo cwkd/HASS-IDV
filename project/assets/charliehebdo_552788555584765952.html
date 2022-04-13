@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 13, "id": 0, "label": "552788555584765952", "shape": "dot", "size": 10, "title": "552788555584765952\u003cbr\u003eThe right to mock \u0026amp;\u003cbr\u003ecriticise religion is a key\u003cbr\u003etenet of a free and\u003cbr\u003edemocratic society, whether it be\u003cbr\u003eIslam or Christianity. #CharlieHebdo\u003cbr\u003eWed Jan 07 11:27:16 +0000 2015"}, {"group": 13, "id": 1, "label": "552790023922524161", "shape": "dot", "size": 10, "title": "552790023922524161\u003cbr\u003e@JuliaHB1 Tell that to twitter.\u003cbr\u003e#freejihadistjoe\u003cbr\u003eWed Jan 07 11:33:06 +0000 2015"}, {"group": 13, "id": 2, "label": "552790408636682240", "shape": "dot", "size": 10, "title": "552790408636682240\u003cbr\u003e@JuliaHB1 \n\nCannot say that I\u003cbr\u003ewhole heartedly agree with your\u003cbr\u003estatement. Religion in my view\u003cbr\u003eshould be shown more respect\u003cbr\u003eespecially media\u003cbr\u003eWed Jan 07 11:34:38 +0000 2015"}, {"group": 13, "id": 3, "label": "552790606292860929", "shape": "dot", "size": 10, "title": "552790606292860929\u003cbr\u003e@JuliaHB1 @sandylanceley http://t.co/VGynCN8fwK\u003cbr\u003eWed Jan 07 11:35:25 +0000 2015"}, {"group": 13, "id": 4, "label": "552790716888662016", "shape": "dot", "size": 10, "title": "552790716888662016\u003cbr\u003e@cannyfellow why? It\u0027s a fairy\u003cbr\u003estory\u003cbr\u003eWed Jan 07 11:35:51 +0000 2015"}, {"group": 13, "id": 5, "label": "552791494072209409", "shape": "dot", "size": 10, "title": "552791494072209409\u003cbr\u003e@NeilJIrving24 \nThat maybe your belief\u003cbr\u003enot mine\u003cbr\u003eWed Jan 07 11:38:57 +0000 2015"}, {"group": 13, "id": 6, "label": "552795838146433024", "shape": "dot", "size": 10, "title": "552795838146433024\u003cbr\u003e@FrasonicDC @HateKufr_4 @JuliaHB1 Goats Doug.\u003cbr\u003eGoats. Not girls.\u003cbr\u003eWed Jan 07 11:56:12 +0000 2015"}, {"group": 13, "id": 7, "label": "552809631299686400", "shape": "dot", "size": 10, "title": "552809631299686400\u003cbr\u003e@thereal_elcid @HateKufr_4 @JuliaHB1 not blocked\u003cbr\u003eme yet..must try harder\u003cbr\u003eWed Jan 07 12:51:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 6, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

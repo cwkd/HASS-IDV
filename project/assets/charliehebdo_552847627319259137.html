@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 632, "id": 0, "label": "552847627319259137", "shape": "dot", "size": 10, "title": "552847627319259137\u003cbr\u003eHe drew first, by @davpope.\u003cbr\u003e#CharlieHebdo #JeSuisCharlie http://t.co/SZ2hx3yBw4\u003cbr\u003eWed Jan 07 15:22:00 +0000 2015"}, {"group": 632, "id": 1, "label": "552847799092801537", "shape": "dot", "size": 10, "title": "552847799092801537\u003cbr\u003e#SinPalabras / \u201c@PzFeed: He drew\u003cbr\u003efirst, by @davpope. #CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/su7WNGHOnQ\u201d\u003cbr\u003eWed Jan 07 15:22:41 +0000 2015"}, {"group": 632, "id": 2, "label": "552847849223110656", "shape": "dot", "size": 10, "title": "552847849223110656\u003cbr\u003eHe drew first, by @davpope.\u003cbr\u003e#CharlieHebdo #JeSuisCharlie via @PzFeed http://t.co/6hSBjuSptj\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:22:53 +0000 2015"}, {"group": 632, "id": 3, "label": "552849332978712576", "shape": "dot", "size": 10, "title": "552849332978712576\u003cbr\u003e\u201c@PzFeed: He drew first, by\u003cbr\u003e@davpope. #CharlieHebdo #JeSuisCharlie http://t.co/7EI2ZcHCxe\u201d |\u003cbr\u003ea COWARDLY act.\u003cbr\u003eWed Jan 07 15:28:47 +0000 2015"}, {"group": 632, "id": 5, "label": "552850158736908288", "shape": "dot", "size": 10, "title": "552850158736908288\u003cbr\u003e@PzFeed @davpope when are we\u003cbr\u003ejust going to nuke these\u003cbr\u003edesert people and be done\u003cbr\u003ewith them?\u003cbr\u003eWed Jan 07 15:32:03 +0000 2015"}, {"group": 632, "id": 6, "label": "552850187597934592", "shape": "dot", "size": 10, "title": "552850187597934592\u003cbr\u003e@PzFeed @davpope An eye for\u003cbr\u003ean eye makes the world\u003cbr\u003eblind. Ghandi?\u003cbr\u003eWed Jan 07 15:32:10 +0000 2015"}, {"group": 632, "id": 7, "label": "552851028971106304", "shape": "dot", "size": 10, "title": "552851028971106304\u003cbr\u003e#THIS RT @PzFeed He drew\u003cbr\u003efirst, by @davpope. #CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/Fr10zX8sNQ\u003cbr\u003eWed Jan 07 15:35:31 +0000 2015"}, {"group": 632, "id": 8, "label": "552851906155278336", "shape": "dot", "size": 10, "title": "552851906155278336\u003cbr\u003e@PzFeed @davpope All the source\u003cbr\u003eof the terror in the\u003cbr\u003eworld from Iran directly or\u003cbr\u003eindirectly\u003cbr\u003eWed Jan 07 15:39:00 +0000 2015"}, {"group": 632, "id": 10, "label": "552852885508468736", "shape": "dot", "size": 10, "title": "552852885508468736\u003cbr\u003e@PzFeed @davpope animals.\u003cbr\u003eWed Jan 07 15:42:54 +0000 2015"}, {"group": 632, "id": 12, "label": "552854189505007617", "shape": "dot", "size": 10, "title": "552854189505007617\u003cbr\u003e@PzFeed @garnetfraser @davpope would be\u003cbr\u003efunny if it weren\u0027t depressing\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:48:04 +0000 2015"}, {"group": 632, "id": 13, "label": "552855007792738305", "shape": "dot", "size": 10, "title": "552855007792738305\u003cbr\u003e\u201c@PzFeed: He drew first, by\u003cbr\u003e@davpope. #CharlieHebdo #JeSuisCharlie http://t.co/ZzDVSTMtF3\u201d\u003cbr\u003eWed Jan 07 15:51:20 +0000 2015"}, {"group": 632, "id": 14, "label": "552857497883934720", "shape": "dot", "size": 10, "title": "552857497883934720\u003cbr\u003e\u201c@PzFeed: He drew first, by\u003cbr\u003e@davpope. #CharlieHebdo #JeSuisCharlie http://t.co/ptBFSVpRtz\u201d\u003cbr\u003eWed Jan 07 16:01:13 +0000 2015"}, {"group": 632, "id": 16, "label": "552861563884167169", "shape": "dot", "size": 10, "title": "552861563884167169\u003cbr\u003e@PzFeed proper on the ball\u003cbr\u003ecartoonist. Very nice work indeed.\u003cbr\u003eWhatever your feelings are on\u003cbr\u003ethe evil butchery.\u003cbr\u003eWed Jan 07 16:17:23 +0000 2015"}, {"group": 632, "id": 17, "label": "553023643320856576", "shape": "dot", "size": 10, "title": "553023643320856576\u003cbr\u003eWow. RT @PzFeed: He drew\u003cbr\u003efirst, by @davpope. #CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/CjLpJo2f0c\u003cbr\u003eThu Jan 08 03:01:25 +0000 2015"}, {"group": 632, "id": 4, "label": "552849614659805185", "shape": "dot", "size": 10, "title": "552849614659805185\u003cbr\u003e\u201c@rConflictNews: He drew first, by\u003cbr\u003e@davpope. #CharlieHebdo #JeSuisCharlie via @PzFeed\u003cbr\u003ehttp://t.co/7xFmkLDS3r\u201d RIP http://t.co/bvYmY7MqOc\u003cbr\u003eWed Jan 07 15:29:54 +0000 2015"}, {"group": 632, "id": 9, "label": "552852843087282178", "shape": "dot", "size": 10, "title": "552852843087282178\u003cbr\u003e@khamaileon @davpope @pzfeed gandhi.\u003cbr\u003eWed Jan 07 15:42:43 +0000 2015"}, {"group": 632, "id": 15, "label": "552859874192031744", "shape": "dot", "size": 10, "title": "552859874192031744\u003cbr\u003e@imadahmmad @PzFeed @davpope The one\u003cbr\u003ecountry besides Israel all Arabs\u003cbr\u003ehate?\u003cbr\u003eWed Jan 07 16:10:40 +0000 2015"}, {"group": 632, "id": 11, "label": "552854116972904448", "shape": "dot", "size": 10, "title": "552854116972904448\u003cbr\u003e@budha_monk @davpope @PzFeed Gandhi. Sorry.\u003cbr\u003eMy misspelling!\u003cbr\u003eWed Jan 07 15:47:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 9, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

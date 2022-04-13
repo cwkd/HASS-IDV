@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1062, "id": 0, "label": "553188115033387008", "shape": "dot", "size": 10, "title": "553188115033387008\u003cbr\u003eAttack that killed policewoman south\u003cbr\u003eof Paris being treated as\u003cbr\u003e\"terrorist\", French prosecutors say \u003cbr\u003ehttp://t.co/Dz1HZhy2Ul\u003cbr\u003eThu Jan 08 13:54:59 +0000 2015"}, {"group": 1062, "id": 1, "label": "553188460799221761", "shape": "dot", "size": 10, "title": "553188460799221761\u003cbr\u003e@BBCBreaking Sigh\u003cbr\u003eThu Jan 08 13:56:21 +0000 2015"}, {"group": 1062, "id": 2, "label": "553189077567410176", "shape": "dot", "size": 10, "title": "553189077567410176\u003cbr\u003e@BBCBreaking So does that makes\u003cbr\u003eit 13 killed?\u003cbr\u003eThu Jan 08 13:58:48 +0000 2015"}, {"group": 1062, "id": 3, "label": "553197294397714432", "shape": "dot", "size": 10, "title": "553197294397714432\u003cbr\u003e\u201c@BBCBreaking: Attack that killed policewoman\u003cbr\u003esouth of Paris being treated\u003cbr\u003eas \"terrorist\", French prosecutors say\u003cbr\u003e http://t.co/EaFfkGuEaV\u003cbr\u003eThu Jan 08 14:31:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

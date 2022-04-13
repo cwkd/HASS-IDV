@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 724, "id": 0, "label": "552984940900384769", "shape": "dot", "size": 10, "title": "552984940900384769\u003cbr\u003eI am a Muslim and\u003cbr\u003eI am trully condemning the\u003cbr\u003eFrance Gunmen for their idiotic\u003cbr\u003eand barbaric action! \n\n#JeSuisCharlie http://t.co/fgZixpykvG\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:27:38 +0000 2015"}, {"group": 724, "id": 1, "label": "552985855351349248", "shape": "dot", "size": 10, "title": "552985855351349248\u003cbr\u003e@fahdisme retweet this photo then\u003cbr\u003eto prove it. http://t.co/irExa5zS15\u003cbr\u003eThu Jan 08 00:31:16 +0000 2015"}, {"group": 724, "id": 2, "label": "552986538884493312", "shape": "dot", "size": 10, "title": "552986538884493312\u003cbr\u003e@fahdisme be a Christian then,\u003cbr\u003eIslam is murder\u003cbr\u003eThu Jan 08 00:33:59 +0000 2015"}, {"group": 724, "id": 3, "label": "553008234790137857", "shape": "dot", "size": 10, "title": "553008234790137857\u003cbr\u003e@fahdisme good.\u003cbr\u003eThu Jan 08 02:00:12 +0000 2015"}, {"group": 724, "id": 5, "label": "553023794000822273", "shape": "dot", "size": 10, "title": "553023794000822273\u003cbr\u003e@fahdisme\u003cbr\u003eThu Jan 08 03:02:01 +0000 2015"}, {"group": 724, "id": 6, "label": "553032665016709120", "shape": "dot", "size": 10, "title": "553032665016709120\u003cbr\u003e@fahdisme France should reconsidered its\u003cbr\u003eliberal immigration policies; Islam is\u003cbr\u003enot a religion of peace\u003cbr\u003eand it should remain in\u003cbr\u003ethe Far East\u003cbr\u003eThu Jan 08 03:37:16 +0000 2015"}, {"group": 724, "id": 7, "label": "553047923827949569", "shape": "dot", "size": 10, "title": "553047923827949569\u003cbr\u003e@fahdisme Idiotic ? They\u0027ve mocked\u003cbr\u003ethe messenger of God s.a.w.\u003cbr\u003eDon\u0027t defend them.\u003cbr\u003eThu Jan 08 04:37:54 +0000 2015"}, {"group": 724, "id": 8, "label": "553070408727932928", "shape": "dot", "size": 10, "title": "553070408727932928\u003cbr\u003e@fahdisme ur a muslin but\u003cbr\u003eur God and proph\u00e8te are\u003cbr\u003eth\u00e9 ones whose not leaving\u003cbr\u003eus alone\u003cbr\u003eThu Jan 08 06:07:15 +0000 2015"}, {"group": 724, "id": 9, "label": "553169671898562560", "shape": "dot", "size": 10, "title": "553169671898562560\u003cbr\u003e@fahdisme L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:41:41 +0000 2015"}, {"group": 724, "id": 4, "label": "553014926315618305", "shape": "dot", "size": 10, "title": "553014926315618305\u003cbr\u003e\"@roryslife: @fahdisme retweet this photo\u003cbr\u003ethen to prove it. http://t.co/fuxsaLXLcN\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 02:26:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 1, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

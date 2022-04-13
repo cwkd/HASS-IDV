@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1096, "id": 0, "label": "553197197618339841", "shape": "dot", "size": 10, "title": "553197197618339841\u003cbr\u003eSalman Rushdie defends Charlie Hebdo,\u003cbr\u003ecalls for \"fearless disrespect\" of\u003cbr\u003eall religions http://t.co/eSFhZflldV http://t.co/MP8T3q3Pjx\u003cbr\u003eThu Jan 08 14:31:04 +0000 2015"}, {"group": 1096, "id": 1, "label": "553199194253434881", "shape": "dot", "size": 10, "title": "553199194253434881\u003cbr\u003e@Salon Freakin Sal went on\u003cbr\u003ean anti rampage. I think\u003cbr\u003ehundreds of tweets a minute.\u003cbr\u003eHad to unfollowing, the guy\u003cbr\u003ehas strong hatered 4 religion.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:39:00 +0000 2015"}, {"group": 1096, "id": 2, "label": "553199436118380544", "shape": "dot", "size": 10, "title": "553199436118380544\u003cbr\u003e@Salon this seems very irresponsible\u003cbr\u003eto me. Antagonism gets us\u003cbr\u003enowhere.\u003cbr\u003eThu Jan 08 14:39:58 +0000 2015"}, {"group": 1096, "id": 3, "label": "553200341928652800", "shape": "dot", "size": 10, "title": "553200341928652800\u003cbr\u003e@Salon @PolarVan Agreed.\u003cbr\u003eThu Jan 08 14:43:34 +0000 2015"}, {"group": 1096, "id": 5, "label": "553201178541301760", "shape": "dot", "size": 10, "title": "553201178541301760\u003cbr\u003e@Salon  @AJ_Rutten ..yes\u003cbr\u003eThu Jan 08 14:46:53 +0000 2015"}, {"group": 1096, "id": 8, "label": "553204089174372352", "shape": "dot", "size": 10, "title": "553204089174372352\u003cbr\u003e@Salon Disrepect is not fearlessness.\u003cbr\u003eIt is the root of\u003cbr\u003eintellectual self-sabotage \u0026amp; extremism.\u003cbr\u003eThu Jan 08 14:58:27 +0000 2015"}, {"group": 1096, "id": 12, "label": "553205050458505216", "shape": "dot", "size": 10, "title": "553205050458505216\u003cbr\u003e@Salon Second that\u003cbr\u003eThu Jan 08 15:02:16 +0000 2015"}, {"group": 1096, "id": 13, "label": "553205715914211329", "shape": "dot", "size": 10, "title": "553205715914211329\u003cbr\u003e@Salon \"fearless disrespect\" ............Brilliant! What\u003cbr\u003ewould we do without such\u003cbr\u003ewisdom\u003cbr\u003eThu Jan 08 15:04:55 +0000 2015"}, {"group": 1096, "id": 18, "label": "553207749170196481", "shape": "dot", "size": 10, "title": "553207749170196481\u003cbr\u003eSigh. \u201c@Salon: Salman Rushdie defends\u003cbr\u003eCharlie Hebdo, calls for \"fearless\u003cbr\u003edisrespect\" of all religions http://t.co/JMzgB6PhXW\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:13:00 +0000 2015"}, {"group": 1096, "id": 19, "label": "553214978279239681", "shape": "dot", "size": 10, "title": "553214978279239681\u003cbr\u003e@Salon | religion deserves criticism\u003cbr\u003eand satire but not mockery!\u003cbr\u003eone should first understand the\u003cbr\u003edifference between satire and stupidity...\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:41:43 +0000 2015"}, {"group": 1096, "id": 20, "label": "553280256623542275", "shape": "dot", "size": 10, "title": "553280256623542275\u003cbr\u003e@RubbinaZafar @Salon  Perhaps if\u003cbr\u003eyou were given a fatwa,\u003cbr\u003ebe in hiding for years,ur\u003cbr\u003elife turned upside down, you\u0027ll\u003cbr\u003ebe singing the same tune.\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:01:07 +0000 2015"}, {"group": 1096, "id": 4, "label": "553200624670892035", "shape": "dot", "size": 10, "title": "553200624670892035\u003cbr\u003e@taymoss @Salon Tolerance of religion\u003cbr\u003ehas failed! Religion deserves nothing\u003cbr\u003ebut ridicule.\u003cbr\u003eThu Jan 08 14:44:41 +0000 2015"}, {"group": 1096, "id": 10, "label": "553204800289275904", "shape": "dot", "size": 10, "title": "553204800289275904\u003cbr\u003e@taymoss @Salon fearless disrespect means\u003cbr\u003efreedom of thought and expression.\u003cbr\u003eNot antagonism - that\u0027s what\u003cbr\u003ethe bastards in Paris displayed.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:01:17 +0000 2015"}, {"group": 1096, "id": 6, "label": "553203101793288192", "shape": "dot", "size": 10, "title": "553203101793288192\u003cbr\u003e@Scott31459 @Salon that\u0027s a pretty\u003cbr\u003eabsurd position considering that most\u003cbr\u003eof the world is \"religious.\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:54:32 +0000 2015"}, {"group": 1096, "id": 7, "label": "553203604589645824", "shape": "dot", "size": 10, "title": "553203604589645824\u003cbr\u003e@taymoss @Salon Religion is in\u003cbr\u003eitself absurd. Not compatible with\u003cbr\u003esociety.\u003cbr\u003eThu Jan 08 14:56:32 +0000 2015"}, {"group": 1096, "id": 9, "label": "553204203506921473", "shape": "dot", "size": 10, "title": "553204203506921473\u003cbr\u003e@Scott31459 @Salon that\u0027s demonstrably not\u003cbr\u003etrue, read a history book.\u003cbr\u003eName me a society without\u003cbr\u003ereligion.\u003cbr\u003eThu Jan 08 14:58:54 +0000 2015"}, {"group": 1096, "id": 11, "label": "553205025510801408", "shape": "dot", "size": 10, "title": "553205025510801408\u003cbr\u003e@taymoss @Salon Religion is very\u003cbr\u003eabsurd. Sweden has almost an\u003cbr\u003eentirely atheist society. There are\u003cbr\u003eothers too. I\u0027ve read a\u003cbr\u003efew books ;)\u003cbr\u003eThu Jan 08 15:02:10 +0000 2015"}, {"group": 1096, "id": 14, "label": "553206316391743490", "shape": "dot", "size": 10, "title": "553206316391743490\u003cbr\u003e@Scott31459 @Salon Yes, but those\u003cbr\u003ecountries aren\u0027t atheist, they observe\u003cbr\u003ereligious tolerance, which is what\u003cbr\u003eyou say doesn\u0027t work.\u003cbr\u003eThu Jan 08 15:07:18 +0000 2015"}, {"group": 1096, "id": 15, "label": "553206553999081473", "shape": "dot", "size": 10, "title": "553206553999081473\u003cbr\u003e@taymoss @Salon No, tolerance did\u003cbr\u003enot work. Religion must go!\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:08:15 +0000 2015"}, {"group": 1096, "id": 16, "label": "553207082577833984", "shape": "dot", "size": 10, "title": "553207082577833984\u003cbr\u003e@Scott31459 @Salon umm, okay... (Shrugs\u003cbr\u003eand walks away)\u003cbr\u003eThu Jan 08 15:10:21 +0000 2015"}, {"group": 1096, "id": 17, "label": "553207224697626625", "shape": "dot", "size": 10, "title": "553207224697626625\u003cbr\u003e@taymoss @Salon Good bye.\u003cbr\u003eThu Jan 08 15:10:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 20, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

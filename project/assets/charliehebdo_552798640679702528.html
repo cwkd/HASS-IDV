@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 59, "id": 0, "label": "552798640679702528", "shape": "dot", "size": 10, "title": "552798640679702528\u003cbr\u003eFreedom of expression should never\u003cbr\u003ebe an act of bravery.\u003cbr\u003eWhoever threatens it is an\u003cbr\u003eenemy of all freedom-loving people.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 12:07:21 +0000 2015"}, {"group": 59, "id": 1, "label": "552798954430427136", "shape": "dot", "size": 10, "title": "552798954430427136\u003cbr\u003e@MsIntervention yeah but surely there\u003cbr\u003eis a difference between freedom\u003cbr\u003eof expression \u0026amp; taking the\u003cbr\u003ep*ss especially about an already\u003cbr\u003evolatile\u003cbr\u003eWed Jan 07 12:08:35 +0000 2015"}, {"group": 59, "id": 2, "label": "552799159787716608", "shape": "dot", "size": 10, "title": "552799159787716608\u003cbr\u003e@MsIntervention situation. Would the horrific\u003cbr\u003eParis tragedy still of happened\u003cbr\u003eotherwise??? And people talk about\u003cbr\u003edemocracy???\u003cbr\u003eWed Jan 07 12:09:24 +0000 2015"}, {"group": 59, "id": 7, "label": "552802008340512768", "shape": "dot", "size": 10, "title": "552802008340512768\u003cbr\u003e@MsIntervention @michaeldickson freedom of expression\u003cbr\u003eis always an act of\u003cbr\u003ebravery. even if you\u0027re not\u003cbr\u003eshot, you have to expect\u003cbr\u003epushback.\u003cbr\u003eWed Jan 07 12:20:44 +0000 2015"}, {"group": 59, "id": 10, "label": "552804094491234304", "shape": "dot", "size": 10, "title": "552804094491234304\u003cbr\u003e@MsIntervention Freedom of expression is\u003cbr\u003eMADE an act of bravery\u003cbr\u003eby all those who \"protect\"\u003cbr\u003ereligion from satire and criticism\u003cbr\u003e #TheovanGogh\u003cbr\u003eWed Jan 07 12:29:01 +0000 2015"}, {"group": 59, "id": 16, "label": "552807097050488832", "shape": "dot", "size": 10, "title": "552807097050488832\u003cbr\u003e@MsIntervention @michaeldickson but Julie...dont u\u003cbr\u003elisten..islam is a peaceloving religion..we\u003cbr\u003eREAD it every day\u003cbr\u003eWed Jan 07 12:40:57 +0000 2015"}, {"group": 59, "id": 3, "label": "552799361793794048", "shape": "dot", "size": 10, "title": "552799361793794048\u003cbr\u003e@Sarah07909750 Congratulations.You have just blamed\u003cbr\u003ethe victims.\u003cbr\u003eWed Jan 07 12:10:13 +0000 2015"}, {"group": 59, "id": 17, "label": "552807291058008064", "shape": "dot", "size": 10, "title": "552807291058008064\u003cbr\u003e@Sarah07909750 @MsIntervention u are a\u003cbr\u003esicko for even THINKING that\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:41:43 +0000 2015"}, {"group": 59, "id": 4, "label": "552799472682803200", "shape": "dot", "size": 10, "title": "552799472682803200\u003cbr\u003e@MsIntervention I\u0027m not blaming the\u003cbr\u003evictims I\u0027m being realistic here\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:10:39 +0000 2015"}, {"group": 59, "id": 5, "label": "552799773812875265", "shape": "dot", "size": 10, "title": "552799773812875265\u003cbr\u003e@MsIntervention I\u0027m asking the question\u003cbr\u003ehave they openly made themselves\u003cbr\u003ea target for such horrific\u003cbr\u003eacts...you don\u0027t put your hand\u003cbr\u003ein the\u003cbr\u003eWed Jan 07 12:11:51 +0000 2015"}, {"group": 59, "id": 6, "label": "552799888787136513", "shape": "dot", "size": 10, "title": "552799888787136513\u003cbr\u003e@MsIntervention fire knowing it\u0027s going\u003cbr\u003eto get burnt...please correct if\u003cbr\u003eI am wrong here???\u003cbr\u003eWed Jan 07 12:12:18 +0000 2015"}, {"group": 59, "id": 8, "label": "552802834891026434", "shape": "dot", "size": 10, "title": "552802834891026434\u003cbr\u003e@Sarah07909750 @MsIntervention you\u0027r treatg muslims\u003cbr\u003eas animals who only react,\u003cbr\u003ehave no moral agency. it\u0027s\u003cbr\u003efault of those who provoke\u003cbr\u003ethem.\u003cbr\u003eWed Jan 07 12:24:01 +0000 2015"}, {"group": 59, "id": 9, "label": "552803246465904640", "shape": "dot", "size": 10, "title": "552803246465904640\u003cbr\u003e@richard_landes @Sarah07909750 @MsIntervention Islam is\u003cbr\u003eheathen, Islam is satanic Islam\u003cbr\u003eis a doctrine spawned in\u003cbr\u003ehell\" claims Irish preacher\u003cbr\u003eWed Jan 07 12:25:39 +0000 2015"}, {"group": 59, "id": 11, "label": "552804546087772160", "shape": "dot", "size": 10, "title": "552804546087772160\u003cbr\u003e@richard_landes @MsIntervention I kind of\u003cbr\u003eagree \u0026amp; disagree with what\u003cbr\u003eyou are saying here. I\u003cbr\u003edon\u0027t blame the victims that\u0027s\u003cbr\u003efor sure no\u003cbr\u003eWed Jan 07 12:30:49 +0000 2015"}, {"group": 59, "id": 12, "label": "552804593181425664", "shape": "dot", "size": 10, "title": "552804593181425664\u003cbr\u003e@richard_landes @MsIntervention matter what people\u003cbr\u003ethink\u003cbr\u003eWed Jan 07 12:31:00 +0000 2015"}, {"group": 59, "id": 13, "label": "552804813273321473", "shape": "dot", "size": 10, "title": "552804813273321473\u003cbr\u003e@JamzMurr @richard_landes @MsIntervention and what\u003cbr\u003eabout all the peaceful Muslims\u003cbr\u003ewho follow Islam are they\u003cbr\u003eevil too???\u003cbr\u003eWed Jan 07 12:31:52 +0000 2015"}, {"group": 59, "id": 14, "label": "552805586216030209", "shape": "dot", "size": 10, "title": "552805586216030209\u003cbr\u003e@Sarah07909750 @JamzMurr @MsIntervention talks to\u003cbr\u003eme about them when they\u003cbr\u003etake to streets in indignation\u003cbr\u003eat the behavior of *their*\u003cbr\u003ejihadis\u003cbr\u003eWed Jan 07 12:34:57 +0000 2015"}, {"group": 59, "id": 15, "label": "552806847850496000", "shape": "dot", "size": 10, "title": "552806847850496000\u003cbr\u003e@richard_landes @JamzMurr @MsIntervention I rest\u003cbr\u003emy case http://t.co/ThkqkjDfbx\u003cbr\u003eWed Jan 07 12:39:57 +0000 2015"}, {"group": 59, "id": 19, "label": "552808663606255617", "shape": "dot", "size": 10, "title": "552808663606255617\u003cbr\u003e@Sarah07909750 @JamzMurr @MsIntervention don\u0027t jump\u003cbr\u003ethe gun: \"But they feel\u003cbr\u003estigmatised... and provoked by Charlie\u003cbr\u003eHebdo.\" about #honorshame\u003cbr\u003eWed Jan 07 12:47:10 +0000 2015"}, {"group": 59, "id": 18, "label": "552808519716864000", "shape": "dot", "size": 10, "title": "552808519716864000\u003cbr\u003e@docrose_rose @MsIntervention I am so\u003cbr\u003esorry you think that \ud83d\ude14http://t.co/cvusXClJRi\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:46:36 +0000 2015"}, {"group": 59, "id": 20, "label": "552809614757343232", "shape": "dot", "size": 10, "title": "552809614757343232\u003cbr\u003e@richard_landes @JamzMurr @MsIntervention even though\u003cbr\u003eI seriously condemn the horrific\u003cbr\u003eterrorist attack I can also\u003cbr\u003esee how it has been\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:50:57 +0000 2015"}, {"group": 59, "id": 21, "label": "552809788246351872", "shape": "dot", "size": 10, "title": "552809788246351872\u003cbr\u003e@richard_landes @JamzMurr @MsIntervention provoked \u0026amp;\u003cbr\u003eI have been arguing the\u003cbr\u003etoss about it on Twitter\u003cbr\u003eto people reacting very horribly\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:51:38 +0000 2015"}, {"group": 59, "id": 22, "label": "552809953501913088", "shape": "dot", "size": 10, "title": "552809953501913088\u003cbr\u003e@richard_landes @JamzMurr @MsIntervention towards me\u003cbr\u003etoo to the extent I\u003cbr\u003enow feel like breaking down\u003cbr\u003ebecause people are arguing about\u003cbr\u003ethe\u003cbr\u003eWed Jan 07 12:52:18 +0000 2015"}, {"group": 59, "id": 23, "label": "552810130455416833", "shape": "dot", "size": 10, "title": "552810130455416833\u003cbr\u003e@richard_landes @JamzMurr @MsIntervention right of\u003cbr\u003eso called \"freedom of speech\"\u003cbr\u003ebut when I\u0027ve tried to\u003cbr\u003evoice my \"freedom of speech\"\u003cbr\u003eI\u0027ve\u003cbr\u003eWed Jan 07 12:53:00 +0000 2015"}, {"group": 59, "id": 24, "label": "552810228635684865", "shape": "dot", "size": 10, "title": "552810228635684865\u003cbr\u003e@richard_landes @JamzMurr @MsIntervention been treated\u003cbr\u003ein a very negative \u0026amp;\u003cbr\u003ehostile way \ud83d\ude14\u003cbr\u003eWed Jan 07 12:53:23 +0000 2015"}, {"group": 59, "id": 25, "label": "552812894996271105", "shape": "dot", "size": 10, "title": "552812894996271105\u003cbr\u003e@MsIntervention @JamzMurr\u0027s tweet ugly\u0026amp;obnoxious. @Sarah07909750,\u003cbr\u003eyr response too trite. why\u003cbr\u003eu got pushback. hold muslims\u003cbr\u003emorally accountabl\u003cbr\u003eWed Jan 07 13:03:59 +0000 2015"}, {"group": 59, "id": 26, "label": "552813429640396800", "shape": "dot", "size": 10, "title": "552813429640396800\u003cbr\u003e@richard_landes @MsIntervention @JamzMurr I got\u003cbr\u003epushed back for saying that\u003cbr\u003ethrough so called \"freedom of\u003cbr\u003espeech\" they made themselves a\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:06:07 +0000 2015"}, {"group": 59, "id": 27, "label": "552813614642757633", "shape": "dot", "size": 10, "title": "552813614642757633\u003cbr\u003e@richard_landes @MsIntervention @JamzMurr target to\u003cbr\u003eapparently \u0026amp; professional \u0026amp; well\u003cbr\u003eplanned horrific terrorist attack. Which\u003cbr\u003enow sadly\u003cbr\u003eWed Jan 07 13:06:51 +0000 2015"}, {"group": 59, "id": 28, "label": "552813759220420608", "shape": "dot", "size": 10, "title": "552813759220420608\u003cbr\u003e@richard_landes @MsIntervention @JamzMurr proves my\u003cbr\u003epoint even more \u0026amp; even\u003cbr\u003emore sadly has now cost\u003cbr\u003e12 lives in the process\u003cbr\u003e\ud83d\ude14\u003cbr\u003eWed Jan 07 13:07:25 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 2, "to": 17, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 9, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 19, "to": 22, "weight": 1}, {"from": 19, "to": 23, "weight": 1}, {"from": 19, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 25, "to": 28, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

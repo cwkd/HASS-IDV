@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2, "id": 0, "label": "552785391653494784", "shape": "dot", "size": 10, "title": "552785391653494784\u003cbr\u003ePrediction: the #CharlieHebdo massacre will\u003cbr\u003enot dent the political class\u0027s\u003cbr\u003ecomplacency one iota\u003cbr\u003eWed Jan 07 11:14:42 +0000 2015"}, {"group": 2, "id": 1, "label": "552785793375539200", "shape": "dot", "size": 10, "title": "552785793375539200\u003cbr\u003e@JamesDelingpole Shove your racist website\u003cbr\u003eup your arse.\u003cbr\u003eWed Jan 07 11:16:18 +0000 2015"}, {"group": 2, "id": 3, "label": "552786466666217472", "shape": "dot", "size": 10, "title": "552786466666217472\u003cbr\u003e.@JamesDelingpole But at least we\u003cbr\u003ecan be sure Private Eye\u003cbr\u003eunder Hyslop is safe -\u003cbr\u003ecos it is now so\u003cbr\u003every \u0027safe\u0027.\u003cbr\u003eWed Jan 07 11:18:58 +0000 2015"}, {"group": 2, "id": 4, "label": "552787727754985472", "shape": "dot", "size": 10, "title": "552787727754985472\u003cbr\u003e@JamesDelingpole Of course not. More\u003cbr\u003eimportantly, will it dent the\u003cbr\u003ecomplacency of the masses led\u003cbr\u003eby their noses by the\u003cbr\u003eliberal elite?\u003cbr\u003eWed Jan 07 11:23:59 +0000 2015"}, {"group": 2, "id": 16, "label": "552794479162163201", "shape": "dot", "size": 10, "title": "552794479162163201\u003cbr\u003e@JamesDelingpole @BenK84 not even if\u003cbr\u003ethey hit Le Monde. #narrative\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:50:48 +0000 2015"}, {"group": 2, "id": 18, "label": "552796456802070528", "shape": "dot", "size": 10, "title": "552796456802070528\u003cbr\u003e@JamesDelingpole @byzantinepower Hope you are\u003cbr\u003eabsolutely wrong about this. #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:58:40 +0000 2015"}, {"group": 2, "id": 2, "label": "552786136062783488", "shape": "dot", "size": 10, "title": "552786136062783488\u003cbr\u003e@Mr_JDTraynor @JamesDelingpole eloquent - he\u003cbr\u003eshould become Miliband\u0027s speech writer\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:17:39 +0000 2015"}, {"group": 2, "id": 8, "label": "552790186904788992", "shape": "dot", "size": 10, "title": "552790186904788992\u003cbr\u003e@JamesDelingpole You didn\u0027t reply, just\u003cbr\u003eretweeted to encourage the racist\u003cbr\u003ethugs who follow you to\u003cbr\u003esend me abuse.\u003cbr\u003eWed Jan 07 11:33:45 +0000 2015"}, {"group": 2, "id": 5, "label": "552789590747410432", "shape": "dot", "size": 10, "title": "552789590747410432\u003cbr\u003e@EddieTheBarstew UKIP scum\u003cbr\u003eWed Jan 07 11:31:23 +0000 2015"}, {"group": 2, "id": 6, "label": "552790015961759745", "shape": "dot", "size": 10, "title": "552790015961759745\u003cbr\u003e@Mr_JDTraynor @EddieTheBarstew Communists are very\u003cbr\u003eshouty, aren\u0027t they? And not\u003cbr\u003every nice by the looks\u003cbr\u003eof it....\u003cbr\u003eWed Jan 07 11:33:04 +0000 2015"}, {"group": 2, "id": 7, "label": "552790086375731200", "shape": "dot", "size": 10, "title": "552790086375731200\u003cbr\u003e@Mr_JDTraynor No - I\u0027ve never\u003cbr\u003evoted for them - but\u003cbr\u003eyou sir seem to be\u003cbr\u003ea hate addled moron, try\u003cbr\u003egetting back on your meds\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:33:21 +0000 2015"}, {"group": 2, "id": 15, "label": "552793377620910080", "shape": "dot", "size": 10, "title": "552793377620910080\u003cbr\u003e@Mr_JDTraynor @EddieTheBarstew nothing funnier than\u003cbr\u003e cross lefty\u003cbr\u003eWed Jan 07 11:46:26 +0000 2015"}, {"group": 2, "id": 9, "label": "552790459559735296", "shape": "dot", "size": 10, "title": "552790459559735296\u003cbr\u003e@KVet79 @Mr_JDTraynor tolerant too\u003cbr\u003eWed Jan 07 11:34:50 +0000 2015"}, {"group": 2, "id": 10, "label": "552791519376470017", "shape": "dot", "size": 10, "title": "552791519376470017\u003cbr\u003e@Mr_JDTraynor @JamesDelingpole Oh the irony...\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:39:03 +0000 2015"}, {"group": 2, "id": 11, "label": "552792019043491840", "shape": "dot", "size": 10, "title": "552792019043491840\u003cbr\u003e@Mr_JDTraynor @JamesDelingpole A typical batshit\u003cbr\u003einsane leftist angle \"not with\u003cbr\u003eus, must be racist /\u003cbr\u003esexist / homophobic\" debate not\u003cbr\u003eallowed\u003cbr\u003eWed Jan 07 11:41:02 +0000 2015"}, {"group": 2, "id": 13, "label": "552792195309522946", "shape": "dot", "size": 10, "title": "552792195309522946\u003cbr\u003e@Mr_JDTraynor Like you sent James\u003cbr\u003eabuse? @JamesDelingpole\u003cbr\u003eWed Jan 07 11:41:44 +0000 2015"}, {"group": 2, "id": 14, "label": "552793050737811457", "shape": "dot", "size": 10, "title": "552793050737811457\u003cbr\u003e@Mr_JDTraynor @JamesDelingpole He did not\u003cbr\u003ereply because quite frankly you\u003cbr\u003eare a non- entity.\u003cbr\u003eWed Jan 07 11:45:08 +0000 2015"}, {"group": 2, "id": 19, "label": "552801979605712896", "shape": "dot", "size": 10, "title": "552801979605712896\u003cbr\u003e@JamesDelingpole Your behaviour is sufficient\u003cbr\u003efor a physical response.\u003cbr\u003eWed Jan 07 12:20:37 +0000 2015"}, {"group": 2, "id": 24, "label": "552863199750815744", "shape": "dot", "size": 10, "title": "552863199750815744\u003cbr\u003e@Mr_JDTraynor @JamesDelingpole How ironic. John\u003cbr\u003eyou tweet like a communist\u003cbr\u003eracist thug. The Berlin wall\u003cbr\u003ecame down in 1989, get\u003cbr\u003eover it.\u003cbr\u003eWed Jan 07 16:23:53 +0000 2015"}, {"group": 2, "id": 12, "label": "552792131858096128", "shape": "dot", "size": 10, "title": "552792131858096128\u003cbr\u003e@sollygratia @Mr_JDTraynor @JamesDelingpole So, not\u003cbr\u003eonly are Communists very shouty,\u003cbr\u003ethey\u0027re also very sensitive. How\u003cbr\u003esweet!\u003cbr\u003eWed Jan 07 11:41:29 +0000 2015"}, {"group": 2, "id": 20, "label": "552803015443619840", "shape": "dot", "size": 10, "title": "552803015443619840\u003cbr\u003e@mkingscott So, he could have\u003cbr\u003ereplied to me, but he\u0027s\u003cbr\u003ea fucking coward.\u003cbr\u003eWed Jan 07 12:24:44 +0000 2015"}, {"group": 2, "id": 17, "label": "552794597458710530", "shape": "dot", "size": 10, "title": "552794597458710530\u003cbr\u003e@RobbieWaldie @Mr_JDTraynor I just want\u003cbr\u003eto know how they even\u003cbr\u003emanage to be consistently wrong\u003cbr\u003ewhen they lose control of\u003cbr\u003etheir emotions\u003cbr\u003eWed Jan 07 11:51:17 +0000 2015"}, {"group": 2, "id": 21, "label": "552804170173259776", "shape": "dot", "size": 10, "title": "552804170173259776\u003cbr\u003e@RobbieWaldie @Mr_JDTraynor @EddieTheBarstew having read\u003cbr\u003ehis bio he\u0027s clearly a\u003cbr\u003ementalist\u003cbr\u003eWed Jan 07 12:29:19 +0000 2015"}, {"group": 2, "id": 26, "label": "552876749848334336", "shape": "dot", "size": 10, "title": "552876749848334336\u003cbr\u003e@Mr_JDTraynor @JamesDelingpole Physical response ??\u003cbr\u003eAgree with me or i\u003cbr\u003ewill hit you\u003cbr\u003eWed Jan 07 17:17:43 +0000 2015"}, {"group": 2, "id": 22, "label": "552804453477519360", "shape": "dot", "size": 10, "title": "552804453477519360\u003cbr\u003e@Mr_JDTraynor What do you think\u003cbr\u003ean acceptable response to your\u003cbr\u003etweet would be?\u003cbr\u003eWed Jan 07 12:30:26 +0000 2015"}, {"group": 2, "id": 23, "label": "552804927106740224", "shape": "dot", "size": 10, "title": "552804927106740224\u003cbr\u003e@BritishWelsh @RobbieWaldie @Mr_JDTraynor certainly not\u003cbr\u003ethe smartest crayon in the\u003cbr\u003ebox\u003cbr\u003eWed Jan 07 12:32:19 +0000 2015"}, {"group": 2, "id": 25, "label": "552876611033239553", "shape": "dot", "size": 10, "title": "552876611033239553\u003cbr\u003e@andyblueskyz Can\u0027t see your face\u003cbr\u003e- another racist coward\u003cbr\u003eWed Jan 07 17:17:10 +0000 2015"}, {"group": 2, "id": 29, "label": "552881493237047297", "shape": "dot", "size": 10, "title": "552881493237047297\u003cbr\u003e@Mr_JDTraynor You racist communist.\u003cbr\u003eWed Jan 07 17:36:34 +0000 2015"}, {"group": 2, "id": 27, "label": "552877358709866496", "shape": "dot", "size": 10, "title": "552877358709866496\u003cbr\u003e@leeds9east Not what I meant,\u003cbr\u003eas you know; now, fuck\u003cbr\u003eoff up the queen\u0027s arsehole.\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:20:08 +0000 2015"}, {"group": 2, "id": 28, "label": "552877967677095937", "shape": "dot", "size": 10, "title": "552877967677095937\u003cbr\u003e@Mr_JDTraynor Physical response to me\u003cbr\u003emeans assault\u003cbr\u003eWed Jan 07 17:22:34 +0000 2015"}, {"group": 2, "id": 30, "label": "552881888478507009", "shape": "dot", "size": 10, "title": "552881888478507009\u003cbr\u003eDuck and Cover! RT @andyblueskyz:\u003cbr\u003e@Mr_JDTraynor You racist communist.\u003cbr\u003eWed Jan 07 17:38:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 8, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 15, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 8, "to": 13, "weight": 1}, {"from": 8, "to": 14, "weight": 1}, {"from": 8, "to": 19, "weight": 1}, {"from": 8, "to": 24, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 13, "to": 20, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 15, "to": 21, "weight": 1}, {"from": 19, "to": 26, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 29, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 29, "to": 30, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

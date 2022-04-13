@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 649, "id": 0, "label": "552849316021551105", "shape": "dot", "size": 10, "title": "552849316021551105\u003cbr\u003eGunmen attack Paris offices of\u003cbr\u003e#CharlieHebdo, kill at least 12.\u003cbr\u003ehttp://t.co/1R4tq5sOSV #JeSuisCharlie http://t.co/I369MibMXl\u003cbr\u003eWed Jan 07 15:28:43 +0000 2015"}, {"group": 649, "id": 1, "label": "552850692680216578", "shape": "dot", "size": 10, "title": "552850692680216578\u003cbr\u003e\u201c@pressfreedom:Gunmen attack Paris offices of\u003cbr\u003e#CharlieHebdo, kill at least 12.\u003cbr\u003ehttp://t.co/Tm5hvyfS6J #JeSuisCharlie http://t.co/TxFVjPx5ZV\u201d\u003cbr\u003eWed Jan 07 15:34:11 +0000 2015"}, {"group": 649, "id": 2, "label": "552858017545617408", "shape": "dot", "size": 10, "title": "552858017545617408\u003cbr\u003e@pressfreedom @sherifmnsour Judge hushes up\u003cbr\u003e#Erdo\u011fan\u0027s link to al-Qadi in\u003cbr\u003ehearing into bugging case http://t.co/rddqwAXxAD\u003cbr\u003e\u2026\u003cbr\u003eWed Jan 07 16:03:17 +0000 2015"}, {"group": 649, "id": 3, "label": "552858062831517697", "shape": "dot", "size": 10, "title": "552858062831517697\u003cbr\u003e@pressfreedom @sherifmnsour https://t.co/Usx86vx3sT\nhttp://t.co/6iNq9CqG0R\u003cbr\u003eWed Jan 07 16:03:28 +0000 2015"}, {"group": 649, "id": 4, "label": "552858152371503107", "shape": "dot", "size": 10, "title": "552858152371503107\u003cbr\u003e@pressfreedom @sherifmnsour According to President\u003cbr\u003eof Turkey; Erdogan..EU, Israel and\u003cbr\u003eUS is biggest enemy..All political\u003cbr\u003edissidents is enemy\u003cbr\u003eWed Jan 07 16:03:49 +0000 2015"}, {"group": 649, "id": 5, "label": "552879133362237440", "shape": "dot", "size": 10, "title": "552879133362237440\u003cbr\u003e@pressfreedom @FreedomofPress https://t.co/Usx86vx3sT\nhttp://t.co/6iNq9CqG0R\u003cbr\u003eWed Jan 07 17:27:12 +0000 2015"}, {"group": 649, "id": 6, "label": "552879181072453632", "shape": "dot", "size": 10, "title": "552879181072453632\u003cbr\u003e@pressfreedom @FreedomofPress Judge hushes up\u003cbr\u003e#Erdo\u011fan\u0027s link to al-Qadi in\u003cbr\u003ehearing into bugging case http://t.co/rddqwAXxAD\u003cbr\u003e\u2026\u003cbr\u003eWed Jan 07 17:27:23 +0000 2015"}, {"group": 649, "id": 7, "label": "552879260571283456", "shape": "dot", "size": 10, "title": "552879260571283456\u003cbr\u003e@pressfreedom @FreedomofPress According to President\u003cbr\u003eof Turkey;  R.T. Erdogan..EU,\u003cbr\u003eIsrael and US is biggest\u003cbr\u003eenemy..\u003cbr\u003eWed Jan 07 17:27:42 +0000 2015"}, {"group": 649, "id": 8, "label": "552879358885785600", "shape": "dot", "size": 10, "title": "552879358885785600\u003cbr\u003e@pressfreedom @FreedomofPress Karaca is in\u003cbr\u003eprison..in jail..Release Samanyolu Broadcasting Group\u003cbr\u003eChairman Dr. Hidayet Karaca in\u003cbr\u003eTurkey!..\u003cbr\u003eWed Jan 07 17:28:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

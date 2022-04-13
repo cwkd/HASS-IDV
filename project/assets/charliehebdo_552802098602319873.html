@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 76, "id": 0, "label": "552802098602319873", "shape": "dot", "size": 10, "title": "552802098602319873\u003cbr\u003eMap shows where gun attack\u003cbr\u003eon satirical magazine #CharlieHebdo took\u003cbr\u003eplace in central Paris http://t.co/5AZAKumpNd\u003cbr\u003ehttp://t.co/ECFYztMVk9\u003cbr\u003eWed Jan 07 12:21:05 +0000 2015"}, {"group": 76, "id": 1, "label": "552803467711242241", "shape": "dot", "size": 10, "title": "552803467711242241\u003cbr\u003e@BBCNewsGraphics @BBCBreaking\u003cbr\u003eWed Jan 07 12:26:31 +0000 2015"}, {"group": 76, "id": 2, "label": "552803557192126467", "shape": "dot", "size": 10, "title": "552803557192126467\u003cbr\u003e@BBCNewsGraphics\u003cbr\u003eWed Jan 07 12:26:53 +0000 2015"}, {"group": 76, "id": 3, "label": "552803602923008001", "shape": "dot", "size": 10, "title": "552803602923008001\u003cbr\u003e@BBCNewsGraphics Your tweet really makes\u003cbr\u003ethis page stronger: http://t.co/nimTIZwcND\u003cbr\u003eWed Jan 07 12:27:04 +0000 2015"}, {"group": 76, "id": 4, "label": "552803630878040065", "shape": "dot", "size": 10, "title": "552803630878040065\u003cbr\u003e@BBCNewsGraphics @bbc5live  if only\u003cbr\u003epeople didn\u0027t hand out guns:https://t.co/iPBkLwhQk8\u003cbr\u003eJeffrey Epstein also in CFR+Trilateral\u003cbr\u003eCommission\u003cbr\u003eWed Jan 07 12:27:10 +0000 2015"}, {"group": 76, "id": 5, "label": "552803942972022784", "shape": "dot", "size": 10, "title": "552803942972022784\u003cbr\u003e@BBCNewsGraphics id add one more\u003cbr\u003elevel on that - street\u003cbr\u003eview of office frontage? seems\u003cbr\u003edistant\u003cbr\u003eWed Jan 07 12:28:25 +0000 2015"}, {"group": 76, "id": 6, "label": "552804587024158720", "shape": "dot", "size": 10, "title": "552804587024158720\u003cbr\u003e@bbcnewsgraphics google earth cool\u003cbr\u003eWed Jan 07 12:30:58 +0000 2015"}, {"group": 76, "id": 7, "label": "552805489156063232", "shape": "dot", "size": 10, "title": "552805489156063232\u003cbr\u003e@BBCNewsGraphics when will these cruel\u003cbr\u003eacts ever end in the\u003cbr\u003ename if trying to make\u003cbr\u003elousy statements? \nSorry 4 they\u003cbr\u003ethe lost their loved ones\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:34:33 +0000 2015"}, {"group": 76, "id": 8, "label": "552807635532382208", "shape": "dot", "size": 10, "title": "552807635532382208\u003cbr\u003eOh. Muslims. Weird. \"@BBCNewsGraphics: Map\u003cbr\u003eshows where gun attack on\u003cbr\u003emagazine place in Paris http://t.co/enUPaimLpX\u003cbr\u003ehttp://t.co/RG590I7Xzb\u201d\u003cbr\u003eWed Jan 07 12:43:05 +0000 2015"}, {"group": 76, "id": 9, "label": "552808050273554432", "shape": "dot", "size": 10, "title": "552808050273554432\u003cbr\u003e@BBCNewsGraphics @BBCWorld\u003cbr\u003eWed Jan 07 12:44:44 +0000 2015"}, {"group": 76, "id": 10, "label": "552809193296908289", "shape": "dot", "size": 10, "title": "552809193296908289\u003cbr\u003e@BBCNewsGraphics @BBCWorld this is serious\u003cbr\u003eact the work most come\u003cbr\u003etogether an stop these men.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:49:17 +0000 2015"}, {"group": 76, "id": 11, "label": "552809228755550208", "shape": "dot", "size": 10, "title": "552809228755550208\u003cbr\u003e@BBCNewsGraphics @BBCWorld\u003cbr\u003eWed Jan 07 12:49:25 +0000 2015"}, {"group": 76, "id": 12, "label": "552809570150924288", "shape": "dot", "size": 10, "title": "552809570150924288\u003cbr\u003e@BBCNewsGraphics Need for firmer international\u003cbr\u003econsolidation against crime\u003cbr\u003eWed Jan 07 12:50:46 +0000 2015"}, {"group": 76, "id": 13, "label": "552810347438952450", "shape": "dot", "size": 10, "title": "552810347438952450\u003cbr\u003e@BBCNewsGraphics @BBCBreaking It is clear\u003cbr\u003emap..\u003cbr\u003eWed Jan 07 12:53:52 +0000 2015"}, {"group": 76, "id": 14, "label": "552810741385166848", "shape": "dot", "size": 10, "title": "552810741385166848\u003cbr\u003e@BBCNewsGraphics This is just behind\u003cbr\u003ethe appartment block I was\u003cbr\u003eliving in up until two\u003cbr\u003emonths ago...shocking!!\u003cbr\u003eWed Jan 07 12:55:26 +0000 2015"}, {"group": 76, "id": 15, "label": "552810892123832321", "shape": "dot", "size": 10, "title": "552810892123832321\u003cbr\u003e@BBCNewsGraphics @BBCWorld\u003cbr\u003eWed Jan 07 12:56:02 +0000 2015"}, {"group": 76, "id": 16, "label": "552810897802932224", "shape": "dot", "size": 10, "title": "552810897802932224\u003cbr\u003e@BBCNewsGraphics @BBCWorld know\u003cbr\u003eWed Jan 07 12:56:03 +0000 2015"}, {"group": 76, "id": 17, "label": "552811247088185344", "shape": "dot", "size": 10, "title": "552811247088185344\u003cbr\u003e@BBCNewsGraphics Take a closer look\u003cbr\u003eat Nigerian politics. Same group\u003cbr\u003ebackground. Gang up against govt\u003cbr\u003eof the day. Intimidation every\u003cbr\u003ewhere.\u003cbr\u003eWed Jan 07 12:57:26 +0000 2015"}, {"group": 76, "id": 18, "label": "552811927173623809", "shape": "dot", "size": 10, "title": "552811927173623809\u003cbr\u003e@BBCNewsGraphics @BBCWorld @AITHasAkodih #were could\u003cbr\u003ebe the save heaven for\u003cbr\u003epple now #\u003cbr\u003eWed Jan 07 13:00:08 +0000 2015"}, {"group": 76, "id": 19, "label": "552813048906674179", "shape": "dot", "size": 10, "title": "552813048906674179\u003cbr\u003e@BBCNewsGraphics\u003cbr\u003eWed Jan 07 13:04:36 +0000 2015"}, {"group": 76, "id": 21, "label": "552850770916569088", "shape": "dot", "size": 10, "title": "552850770916569088\u003cbr\u003e@ColoradoHawkeye @BBCNewsGraphics \nTerrorist is a\u003cbr\u003eterrorist, nothing 2do with religion,\u003cbr\u003eno exceptions / no excuses.\u003cbr\u003eStop mentioning muslims.\u003cbr\u003eWed Jan 07 15:34:29 +0000 2015"}, {"group": 76, "id": 20, "label": "552827783257137153", "shape": "dot", "size": 10, "title": "552827783257137153\u003cbr\u003e@crazysandrita @BBCNewsGraphics  thank God\u003cbr\u003efor your life.\u003cbr\u003eWed Jan 07 14:03:09 +0000 2015"}, {"group": 76, "id": 22, "label": "552911082549813248", "shape": "dot", "size": 10, "title": "552911082549813248\u003cbr\u003e@yasirmcs @BBCNewsGraphics Nothing to do\u003cbr\u003ewith religion??? Lulz. Okay. I\u003cbr\u003eguess Islam doesn\u0027t have a\u003cbr\u003eterrorism problem then.\u003cbr\u003eWed Jan 07 19:34:09 +0000 2015"}, {"group": 76, "id": 23, "label": "552914956719771648", "shape": "dot", "size": 10, "title": "552914956719771648\u003cbr\u003e@ColoradoHawkeye @BBCNewsGraphics we all have\u003cbr\u003ethis problem - not specific\u003cbr\u003eto any group in the\u003cbr\u003esociety. These terrorists are biggest\u003cbr\u003ethreat!\u003cbr\u003eWed Jan 07 19:49:33 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 8, "to": 21, "weight": 1}, {"from": 14, "to": 20, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

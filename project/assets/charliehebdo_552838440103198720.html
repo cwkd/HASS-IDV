@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 527, "id": 0, "label": "552838440103198720", "shape": "dot", "size": 10, "title": "552838440103198720\u003cbr\u003eApproximate translation: \"Freedom of expression\u003cbr\u003eis spilling ink, not shedding\u003cbr\u003eblood.\" #JeSuisCharlie http://t.co/eC2DR9a1tb\u003cbr\u003eWed Jan 07 14:45:30 +0000 2015"}, {"group": 527, "id": 1, "label": "552839579808858112", "shape": "dot", "size": 10, "title": "552839579808858112\u003cbr\u003eMT \"@GwydionS: ...\"Freedom of expression\u003cbr\u003eis spilling ink, not shedding\u003cbr\u003eblood.\" #JeSuisCharlie http://t.co/AWG8yAjEZM\u201d #cninow\u003cbr\u003eWed Jan 07 14:50:01 +0000 2015"}, {"group": 527, "id": 2, "label": "552892018549338112", "shape": "dot", "size": 10, "title": "552892018549338112\u003cbr\u003e.@GwydionS: Approximate translation: \"Freedom of\u003cbr\u003eexpression is spilling ink, not\u003cbr\u003eshedding blood.\" #JeSuisCharlie http://t.co/ADkKWvqDNp\u003cbr\u003eWed Jan 07 18:18:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

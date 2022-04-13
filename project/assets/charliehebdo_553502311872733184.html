@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1911, "id": 0, "label": "553502311872733184", "shape": "dot", "size": 10, "title": "553502311872733184\u003cbr\u003eField near printers has become\u003cbr\u003ea makeshift helicopter pad for\u003cbr\u003eairforce and gendarmerie Puma helicopters\u003cbr\u003e#charliehebdo http://t.co/O5VQOFpWlV\u003cbr\u003eFri Jan 09 10:43:29 +0000 2015"}, {"group": 1911, "id": 1, "label": "553503460378030081", "shape": "dot", "size": 10, "title": "553503460378030081\u003cbr\u003e@RobNisbetSky Grey one will be\u003cbr\u003e\u0027Armee de l\u0027air\u0027 - used\u003cbr\u003eby French special forces\u003cbr\u003eFri Jan 09 10:48:03 +0000 2015"}, {"group": 1911, "id": 2, "label": "553504450569318400", "shape": "dot", "size": 10, "title": "553504450569318400\u003cbr\u003eField near printers has become\u003cbr\u003ea makeshift helicopter pad for\u003cbr\u003ePuma helicopters #charliehebdo via @RobNisbetSky\u003cbr\u003ehttp://t.co/jKcyL58ohG\u003cbr\u003eFri Jan 09 10:51:59 +0000 2015"}, {"group": 1911, "id": 3, "label": "553504842761510912", "shape": "dot", "size": 10, "title": "553504842761510912\u003cbr\u003e@RobNisbetSky @SkyNews \nIt\u0027s third world\u003cbr\u003ewar people.\ud83d\ude05\ud83d\ude05\u003cbr\u003eFri Jan 09 10:53:32 +0000 2015"}, {"group": 1911, "id": 4, "label": "553506275766829058", "shape": "dot", "size": 10, "title": "553506275766829058\u003cbr\u003e@RobNisbetSky conflict news beat you\u003cbr\u003eto the pic rob\u003cbr\u003eFri Jan 09 10:59:14 +0000 2015"}, {"group": 1911, "id": 5, "label": "553507176460062720", "shape": "dot", "size": 10, "title": "553507176460062720\u003cbr\u003e@RobNisbetSky @SkyNews Nah its still\u003cbr\u003ea field. They can land\u003cbr\u003epretty much anywhere\u003cbr\u003eFri Jan 09 11:02:49 +0000 2015"}, {"group": 1911, "id": 6, "label": "553507820164112384", "shape": "dot", "size": 10, "title": "553507820164112384\u003cbr\u003e@RobNisbetSky @SkyNews Since 1950\u0027s, the\u003cbr\u003eGENESIS of training of most\u003cbr\u003eFreedom Fighters was in CUBA,\u003cbr\u003eUSSR\u0027s KGB, SYRIA, N. KOREA,\u003cbr\u003eAND CHINA.\u003cbr\u003eFri Jan 09 11:05:22 +0000 2015"}, {"group": 1911, "id": 7, "label": "553508984293187584", "shape": "dot", "size": 10, "title": "553508984293187584\u003cbr\u003e@RobNisbetSky @RAeSTimR In fact Arm\u00e9e\u003cbr\u003ede l\u0027air and Am\u00e9e de\u003cbr\u003eTerre on the photo. The\u003cbr\u003eGendarmerie lighter helicopters EC135 have\u003cbr\u003eFlir bowls\u003cbr\u003eFri Jan 09 11:10:00 +0000 2015"}, {"group": 1911, "id": 8, "label": "553511329928339456", "shape": "dot", "size": 10, "title": "553511329928339456\u003cbr\u003e@RobNisbetSky @RAeSTimR GIGN operation. Best\u003cbr\u003ein world at hostage/siege situations\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:19:19 +0000 2015"}, {"group": 1911, "id": 9, "label": "553516450263359488", "shape": "dot", "size": 10, "title": "553516450263359488\u003cbr\u003e@RobNisbetSky so when does Liam\u003cbr\u003eneeson turn up :)\u003cbr\u003eFri Jan 09 11:39:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

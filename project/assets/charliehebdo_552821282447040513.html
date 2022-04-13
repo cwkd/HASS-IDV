@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 284, "id": 0, "label": "552821282447040513", "shape": "dot", "size": 10, "title": "552821282447040513\u003cbr\u003eCartoonists are on the frontline\u003cbr\u003edefending freedom of expression. My\u003cbr\u003ethoughts are w the #CharlieHebdo\u003cbr\u003evitims, their loved ones \u0026amp;\u003cbr\u003ecolleagues\u003cbr\u003eWed Jan 07 13:37:19 +0000 2015"}, {"group": 284, "id": 1, "label": "552822854266683392", "shape": "dot", "size": 10, "title": "552822854266683392\u003cbr\u003e@LotteLeicht1 @hrw I strongly condemn\u003cbr\u003ethis terrorist attack as a\u003cbr\u003eTurkish Muslim.Terrorists Cannot represent Islam\u003cbr\u003e#notinmyname #CharlieHebdo\u003cbr\u003eWed Jan 07 13:43:34 +0000 2015"}, {"group": 284, "id": 2, "label": "552822992842260481", "shape": "dot", "size": 10, "title": "552822992842260481\u003cbr\u003e@LotteLeicht1 @hrw prayers for France!\u003cbr\u003eUSA SUPPORTS FREEDOM OF THE\u003cbr\u003ePRESS!\u003cbr\u003eWed Jan 07 13:44:07 +0000 2015"}, {"group": 284, "id": 3, "label": "552823520125018112", "shape": "dot", "size": 10, "title": "552823520125018112\u003cbr\u003e@LotteLeicht1 you can always express\u003cbr\u003ewhat you want. always could.\u003cbr\u003ejust know that free expression\u003cbr\u003eis not absolute\u003cbr\u003eWed Jan 07 13:46:12 +0000 2015"}, {"group": 284, "id": 4, "label": "552832371649937408", "shape": "dot", "size": 10, "title": "552832371649937408\u003cbr\u003e@lotteleicht1 At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:21:23 +0000 2015"}, {"group": 284, "id": 5, "label": "552835573174390784", "shape": "dot", "size": 10, "title": "552835573174390784\u003cbr\u003e@LotteLeicht1 @hrw Paris Attack is\u003cbr\u003eworth condemnations But Remember, words\u003cbr\u003ehurts as much as the\u003cbr\u003ebullet. This shall not trigger\u003cbr\u003emore cartoons\u003cbr\u003eWed Jan 07 14:34:06 +0000 2015"}, {"group": 284, "id": 6, "label": "552836620836417536", "shape": "dot", "size": 10, "title": "552836620836417536\u003cbr\u003e\u201c@LotteLeicht1: Cartoonists on the frontline\u003cbr\u003edefending freedom of expression. My\u003cbr\u003ethoughts w the #CharlieHebdo victims,\u003cbr\u003etheir loved ones\u201d\u003cbr\u003eWed Jan 07 14:38:16 +0000 2015"}, {"group": 284, "id": 7, "label": "552838890680500224", "shape": "dot", "size": 10, "title": "552838890680500224\u003cbr\u003e@LotteLeicht1 religion will die.kiss logic\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:47:17 +0000 2015"}, {"group": 284, "id": 8, "label": "552869202730954754", "shape": "dot", "size": 10, "title": "552869202730954754\u003cbr\u003e@LotteLeicht1 @rebeccawisocky #Love has many\u003cbr\u003efaces, but love to #violence\u003cbr\u003eis definitely the worst of\u003cbr\u003eher! #ParisShooting #CharlieHebdo\u003cbr\u003eWed Jan 07 16:47:44 +0000 2015"}, {"group": 284, "id": 9, "label": "554093424488763392", "shape": "dot", "size": 10, "title": "554093424488763392\u003cbr\u003e@LotteLeicht1 @MarkGKirshner Sky News Reporter\u003cbr\u003eSays Blood Has Been Put\u003cbr\u003eThere?Paris ... http://t.co/v5u8LhwC6c\u003cbr\u003eSun Jan 11 01:52:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

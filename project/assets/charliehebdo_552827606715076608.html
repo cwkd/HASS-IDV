@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 368, "id": 0, "label": "552827606715076608", "shape": "dot", "size": 10, "title": "552827606715076608\u003cbr\u003eLove is stronger than hate/L\u0027amour\u003cbr\u003eplus fort que la haine\u003cbr\u003eh/t @bouckap #CharlieHebdo http://t.co/TvgGJIMdr0\u003cbr\u003eWed Jan 07 14:02:27 +0000 2015"}, {"group": 368, "id": 1, "label": "552829296231059456", "shape": "dot", "size": 10, "title": "552829296231059456\u003cbr\u003e@monaeltahawy @missellabell @bouckap Why provoke\u003cbr\u003ethe enemy? You like war?\u003cbr\u003eHave you had any of\u003cbr\u003eyour friends killed, as I\u003cbr\u003ehave. GROW UP!\u003cbr\u003eWed Jan 07 14:09:09 +0000 2015"}, {"group": 368, "id": 2, "label": "552829626553491457", "shape": "dot", "size": 10, "title": "552829626553491457\u003cbr\u003e#jesuischarlie RT@monaeltahawy: Love is stronger\u003cbr\u003ethan hate/L\u0027amour plus fort que\u003cbr\u003ela haine h/t @bouckap #CharlieHebdo\u003cbr\u003ehttp://t.co/3SeGxQ4Hju\u201d\u003cbr\u003eWed Jan 07 14:10:28 +0000 2015"}, {"group": 368, "id": 3, "label": "552829652415172608", "shape": "dot", "size": 10, "title": "552829652415172608\u003cbr\u003e@monaeltahawy @bouckap Great message,wish THEY\u003cbr\u003eunderstand that through logic you\u003cbr\u003ecan move mountains and not\u003cbr\u003ethrough brazen brutal attacks!\u003cbr\u003eWed Jan 07 14:10:34 +0000 2015"}, {"group": 368, "id": 4, "label": "552831094220136448", "shape": "dot", "size": 10, "title": "552831094220136448\u003cbr\u003eRT @monaeltahawy: Love is stronger\u003cbr\u003ethan hate/L\u0027amour plus fort que\u003cbr\u003ela haine #CharlieHebdo http://t.co/GVWDTkiZL2\u003cbr\u003eWed Jan 07 14:16:18 +0000 2015"}, {"group": 368, "id": 7, "label": "552835657413165057", "shape": "dot", "size": 10, "title": "552835657413165057\u003cbr\u003e@monaeltahawy Tu parle Francais, aussi?\u003cbr\u003e#WonderWoman @bouckap\u003cbr\u003eWed Jan 07 14:34:26 +0000 2015"}, {"group": 368, "id": 8, "label": "552836496118804481", "shape": "dot", "size": 10, "title": "552836496118804481\u003cbr\u003e@monaeltahawy @Helskog @bouckap Love doesn\u0027t\u003cbr\u003eseem to be winning at\u003cbr\u003ethe moment.\u003cbr\u003eWed Jan 07 14:37:46 +0000 2015"}, {"group": 368, "id": 9, "label": "552836831851868160", "shape": "dot", "size": 10, "title": "552836831851868160\u003cbr\u003e@monaeltahawy @bouckap fuck religion in\u003cbr\u003ethe ass\u003cbr\u003eWed Jan 07 14:39:06 +0000 2015"}, {"group": 368, "id": 10, "label": "552838185307209729", "shape": "dot", "size": 10, "title": "552838185307209729\u003cbr\u003e\u201c@monaeltahawy: Love is stronger than\u003cbr\u003ehate/L\u0027amour plus fort que la\u003cbr\u003ehaine h/t @bouckap #CharlieHebdo http://t.co/XhUdFvS8yu\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:44:29 +0000 2015"}, {"group": 368, "id": 11, "label": "553013168889679872", "shape": "dot", "size": 10, "title": "553013168889679872\u003cbr\u003e\u201c@monaeltahawy: Love is stronger than\u003cbr\u003ehate/L\u0027amour plus fort que la\u003cbr\u003ehaine h/t @bouckap #CharlieHebdo http://t.co/RsAgfVglwz\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 02:19:48 +0000 2015"}, {"group": 368, "id": 6, "label": "552834305777750016", "shape": "dot", "size": 10, "title": "552834305777750016\u003cbr\u003e@andystez @monaeltahawy @missellabell @bouckap Sometimes\u003cbr\u003eit has to be done,\u003cbr\u003eotherwise freedom of speech and\u003cbr\u003ebelief = down the pan!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:04 +0000 2015"}, {"group": 368, "id": 5, "label": "552831176763654146", "shape": "dot", "size": 10, "title": "552831176763654146\u003cbr\u003e@monaeltahawy Prophet(PBUH) forgave his enemies\u003cbr\u003edespite losing his dear ones\u003cbr\u003eto them! How can you\u003cbr\u003ewreak havoc in HIS name?Simple!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:16:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 3, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

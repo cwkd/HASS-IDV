@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 309, "id": 0, "label": "552822873773993984", "shape": "dot", "size": 10, "title": "552822873773993984\u003cbr\u003eAs we watch the horror\u003cbr\u003eof the terror attacks in\u003cbr\u003eParis, consider this: \n\nOur President\u003cbr\u003econtinues to release these assholes\u003cbr\u003efrom Gitmo.\u003cbr\u003eWed Jan 07 13:43:38 +0000 2015"}, {"group": 309, "id": 1, "label": "552841245027221504", "shape": "dot", "size": 10, "title": "552841245027221504\u003cbr\u003e@FredZeppelin12 @PaulReverePress and what is\u003cbr\u003ehe ----\u0026gt; MUSLIM!!!!\u003cbr\u003eWed Jan 07 14:56:38 +0000 2015"}, {"group": 309, "id": 2, "label": "552841386383659010", "shape": "dot", "size": 10, "title": "552841386383659010\u003cbr\u003e@FredZeppelin12 @PaulReverePress http://t.co/2dL0dq14C2\u003cbr\u003eWed Jan 07 14:57:12 +0000 2015"}, {"group": 309, "id": 3, "label": "552851538637365249", "shape": "dot", "size": 10, "title": "552851538637365249\u003cbr\u003e@FredZeppelin12 @Doc_JJK he\u0027s such an\u003cbr\u003easshole\u003cbr\u003eWed Jan 07 15:37:32 +0000 2015"}, {"group": 309, "id": 4, "label": "552853906355916801", "shape": "dot", "size": 10, "title": "552853906355916801\u003cbr\u003e\u201c@FredZeppelin12: As we watch the\u003cbr\u003ehorror/terror attacks in Paris, :Our\u003cbr\u003ePresident continues 2release these assholes\u003cbr\u003efrom Gitmo.\u201d@juderymer\u003cbr\u003eWed Jan 07 15:46:57 +0000 2015"}, {"group": 309, "id": 6, "label": "552857045968617472", "shape": "dot", "size": 10, "title": "552857045968617472\u003cbr\u003e@FredZeppelin12 Would be horrible if\u003cbr\u003eit was one of the\u003cbr\u003ereleased/reformed prisoners.\u003cbr\u003eWed Jan 07 15:59:26 +0000 2015"}, {"group": 309, "id": 13, "label": "552878518527217664", "shape": "dot", "size": 10, "title": "552878518527217664\u003cbr\u003e@FredZeppelin12 @NahBabyNah Yep, he\u0027s really\u003cbr\u003esupporting the wrong side, huh?\u003cbr\u003e #Sickening #AntiAmerican\u003cbr\u003eWed Jan 07 17:24:45 +0000 2015"}, {"group": 309, "id": 14, "label": "552878700325122049", "shape": "dot", "size": 10, "title": "552878700325122049\u003cbr\u003e@FredZeppelin12 @NahBabyNah thought you were\u003cbr\u003egoing to say Ferguson. There\u003cbr\u003eis a common thread.\u003cbr\u003eWed Jan 07 17:25:28 +0000 2015"}, {"group": 309, "id": 15, "label": "552879257211654144", "shape": "dot", "size": 10, "title": "552879257211654144\u003cbr\u003eBetter a thousand journalists die\u003cbr\u003ethan one terrorist get water\u003cbr\u003eon his face... or something.\u003cbr\u003e@FredZeppelin12 @NahBabyNah\u003cbr\u003eWed Jan 07 17:27:41 +0000 2015"}, {"group": 309, "id": 16, "label": "552890710756585472", "shape": "dot", "size": 10, "title": "552890710756585472\u003cbr\u003e@FredZeppelin12 @1MedicMom\nI guess 0bomba\u0027s releasing\u003cbr\u003ethe terrorists from gitmo because\u003cbr\u003ehe wants to be \"all\u003cbr\u003eby his lonesome\" when he\u0027s\u003cbr\u003ethere\u003cbr\u003eWed Jan 07 18:13:12 +0000 2015"}, {"group": 309, "id": 18, "label": "552895030818377728", "shape": "dot", "size": 10, "title": "552895030818377728\u003cbr\u003e@FredZeppelin12 @LizLuras Our president doesn\u0027t\u003cbr\u003eget it, for that matter\u003cbr\u003eneither does the legislature. Ban\u003cbr\u003eISLAM from U.S.\u003cbr\u003eWed Jan 07 18:30:22 +0000 2015"}, {"group": 309, "id": 5, "label": "552854266084605953", "shape": "dot", "size": 10, "title": "552854266084605953\u003cbr\u003e@karenpiscopo1 @FredZeppelin12 Most of the\u003cbr\u003epeople in Gitmo were there\u003cbr\u003eillegally or are there illegally.\u003cbr\u003eAnd have committed no crime.\u003cbr\u003eCreep.\u003cbr\u003eWed Jan 07 15:48:23 +0000 2015"}, {"group": 309, "id": 7, "label": "552857338684907521", "shape": "dot", "size": 10, "title": "552857338684907521\u003cbr\u003e@juderymer @FredZeppelin12 you r so\u003cbr\u003ewrong I can\u0027t even laugh.\u003cbr\u003eDamn u stopped me from\u003cbr\u003elaughing! #offwithyourhead\u003cbr\u003eWed Jan 07 16:00:35 +0000 2015"}, {"group": 309, "id": 10, "label": "552861608461205505", "shape": "dot", "size": 10, "title": "552861608461205505\u003cbr\u003e@juderymer @FredZeppelin12 @karenpiscopo1 actually they\u003cbr\u003eare legal detainees but needed\u003cbr\u003eto release my brethren to\u003cbr\u003ecause havoc upon the world\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:17:33 +0000 2015"}, {"group": 309, "id": 12, "label": "552863855232036865", "shape": "dot", "size": 10, "title": "552863855232036865\u003cbr\u003e@juderymer @karenpiscopo1 \n\nThanks for sharing\u003cbr\u003eyour knowledge. You seem really\u003cbr\u003esmart. The \"creep\" part was\u003cbr\u003ea nice touch as well.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:26:29 +0000 2015"}, {"group": 309, "id": 19, "label": "552899603255672832", "shape": "dot", "size": 10, "title": "552899603255672832\u003cbr\u003e@juderymer @FredZeppelin12 @karenpiscopo1 : Judy,\u003cbr\u003eyou are living in a\u003cbr\u003edream world. Those in Gitmo\u003cbr\u003eare there because they threatened\u003cbr\u003ethe US\u003cbr\u003eWed Jan 07 18:48:32 +0000 2015"}, {"group": 309, "id": 8, "label": "552857974805630976", "shape": "dot", "size": 10, "title": "552857974805630976\u003cbr\u003e@karenpiscopo1 @FredZeppelin12 #karen #ignorant #cantread\u003cbr\u003e#specialkindofstupid\u003cbr\u003eWed Jan 07 16:03:07 +0000 2015"}, {"group": 309, "id": 9, "label": "552858794083225600", "shape": "dot", "size": 10, "title": "552858794083225600\u003cbr\u003e\u201c@juderymer:  #ignorant #cantread #specialkindofstupid\u201d#judi.\u003cbr\u003eYes that\u0027s what u r!\u003cbr\u003e@FredZeppelin12\u003cbr\u003eWed Jan 07 16:06:22 +0000 2015"}, {"group": 309, "id": 11, "label": "552862697466105856", "shape": "dot", "size": 10, "title": "552862697466105856\u003cbr\u003e@thedemorats @juderymer @FredZeppelin12 Juday is\u003cbr\u003ewaiting for them with open\u003cbr\u003earms and a neck to\u003cbr\u003edie for!\u003cbr\u003eWed Jan 07 16:21:53 +0000 2015"}, {"group": 309, "id": 17, "label": "552893445782929408", "shape": "dot", "size": 10, "title": "552893445782929408\u003cbr\u003e@foxrocks2012 @FredZeppelin12 LOL\u003cbr\u003eWed Jan 07 18:24:04 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 10, "weight": 1}, {"from": 5, "to": 12, "weight": 1}, {"from": 5, "to": 19, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

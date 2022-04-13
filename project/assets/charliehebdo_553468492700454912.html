@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1843, "id": 0, "label": "553468492700454912", "shape": "dot", "size": 10, "title": "553468492700454912\u003cbr\u003eBREAKING NEWS - Exchange of\u003cbr\u003efire reported in #DammartinEnGoele \u003cbr\u003ehttp://t.co/2A0s2WxBmZ #CharlieHebdo http://t.co/FuysX2plAj\u003cbr\u003eFri Jan 09 08:29:06 +0000 2015"}, {"group": 1843, "id": 1, "label": "553469551497977856", "shape": "dot", "size": 10, "title": "553469551497977856\u003cbr\u003e@Le_Figaro http://t.co/FHl10WWsGE\u003cbr\u003eFri Jan 09 08:33:18 +0000 2015"}, {"group": 1843, "id": 2, "label": "553469575904632832", "shape": "dot", "size": 10, "title": "553469575904632832\u003cbr\u003e@Le_Figaro depuis quand le FIGARO\u003cbr\u003ejournal fran\u00e7ais, s\u0027exprime en anglais\u003cbr\u003e?\u003cbr\u003eFri Jan 09 08:33:24 +0000 2015"}, {"group": 1843, "id": 3, "label": "553469993976074240", "shape": "dot", "size": 10, "title": "553469993976074240\u003cbr\u003e@Le_Figaro You made my @RebelMouse\u003cbr\u003ehttp://t.co/70hd2CKyYu\u003cbr\u003eFri Jan 09 08:35:04 +0000 2015"}, {"group": 1843, "id": 4, "label": "553470131297599488", "shape": "dot", "size": 10, "title": "553470131297599488\u003cbr\u003e@Superconard1 Pas mal de suivi\u003cbr\u003ede suivi de l\u0027affaire #CharlieHebdo\u003cbr\u003edepuis l\u0027international.\u003cbr\u003eFri Jan 09 08:35:36 +0000 2015"}, {"group": 1843, "id": 5, "label": "553471365035360257", "shape": "dot", "size": 10, "title": "553471365035360257\u003cbr\u003e@MarieAmelie le fran\u00e7ais est une\u003cbr\u003elangue internationale ch\u00e8re Madame.\u003cbr\u003eFri Jan 09 08:40:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

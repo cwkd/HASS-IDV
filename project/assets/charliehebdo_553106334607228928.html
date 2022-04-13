@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 758, "id": 0, "label": "553106334607228928", "shape": "dot", "size": 10, "title": "553106334607228928\u003cbr\u003eOur cowardice helped to allow\u003cbr\u003ethis attack - @DAaronovitch on\u003cbr\u003e#CharlieHebdo http://t.co/MO0rqnomiP http://t.co/jGs2NGnAOp\u003cbr\u003eThu Jan 08 08:30:01 +0000 2015"}, {"group": 758, "id": 1, "label": "553108633786277888", "shape": "dot", "size": 10, "title": "553108633786277888\u003cbr\u003e@thetimes @DAaronovitch #wefiles\u003cbr\u003eThu Jan 08 08:39:09 +0000 2015"}, {"group": 758, "id": 2, "label": "553108668250873856", "shape": "dot", "size": 10, "title": "553108668250873856\u003cbr\u003e@thetimes @DAaronovitch Many will argue\u003cbr\u003ethat Muslims have got it\u003cbr\u003etough in Europe. Just look\u003cbr\u003eat the anti Islam Marches\u003cbr\u003eand rise in bigotry\u003cbr\u003eThu Jan 08 08:39:17 +0000 2015"}, {"group": 758, "id": 3, "label": "553109490615484416", "shape": "dot", "size": 10, "title": "553109490615484416\u003cbr\u003e@thetimes @DAaronovitch i thought the\u003cbr\u003emedia was about reporting the\u003cbr\u003etruth, not hurling insults at\u003cbr\u003eany religion.\u003cbr\u003eThu Jan 08 08:42:33 +0000 2015"}, {"group": 758, "id": 5, "label": "553110510561165312", "shape": "dot", "size": 10, "title": "553110510561165312\u003cbr\u003e@thetimes @DAaronovitch thank you David\u003cbr\u003eI hope the shameful lickspittles\u003cbr\u003eat  @FT read that!\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:46:36 +0000 2015"}, {"group": 758, "id": 6, "label": "553110674491338752", "shape": "dot", "size": 10, "title": "553110674491338752\u003cbr\u003e@thetimes @DAaronovitch As with J.Major\u003cbr\u003eallowing Bradford Muslims burn Rushtie\u0027s\u003cbr\u003ebook with impunity!\u003cbr\u003eThu Jan 08 08:47:15 +0000 2015"}, {"group": 758, "id": 7, "label": "553111248993132544", "shape": "dot", "size": 10, "title": "553111248993132544\u003cbr\u003e@thetimes @DAaronovitch @timesnow  @ndtv\u003cbr\u003e  Not only politician\u003cbr\u003ebut  news traders support\u003cbr\u003ethis terrorist and justify this\u003cbr\u003eattack.\u003cbr\u003eThu Jan 08 08:49:32 +0000 2015"}, {"group": 758, "id": 8, "label": "553112051049312256", "shape": "dot", "size": 10, "title": "553112051049312256\u003cbr\u003e\u201c@thetimes: Our cowardice helped to\u003cbr\u003eallow this attack - @DAaronovitch\u003cbr\u003eon #CharlieHebdo http://t.co/PNOWttwswr http://t.co/JDXVic0hDI\u201d\u003cbr\u003eThu Jan 08 08:52:43 +0000 2015"}, {"group": 758, "id": 9, "label": "553112479145132032", "shape": "dot", "size": 10, "title": "553112479145132032\u003cbr\u003e@thetimes @DAaronovitch this is just\u003cbr\u003ea reason! Keeping silent towards\u003cbr\u003edictatorship in region is a\u003cbr\u003eimportant reason!\u003cbr\u003eThu Jan 08 08:54:26 +0000 2015"}, {"group": 758, "id": 10, "label": "553112634598637568", "shape": "dot", "size": 10, "title": "553112634598637568\u003cbr\u003e@thetimes @DAaronovitch \u0424\u0440\u0430\u043d\u0446\u0438\u044e \u043d\u0430\u043a\u0430\u0437\u0430\u043b\u0438 \u0437\u0430\u003cbr\u003e\u0420\u0430\u0431\u043b\u0435 \u0438 \u0412\u043e\u043b\u044c\u0442\u0435\u0440\u0430...https://t.co/NQvLBDK8jd \u2026\u003cbr\u003eThu Jan 08 08:55:03 +0000 2015"}, {"group": 758, "id": 11, "label": "553112893714345985", "shape": "dot", "size": 10, "title": "553112893714345985\u003cbr\u003e@thetimes @lambandflag99 @DAaronovitch An example\u003cbr\u003eof this is the Telegraph\u003cbr\u003ewhere a picture on the\u003cbr\u003efront page of a Charlie\u003cbr\u003emag is pixellated.\u003cbr\u003eThu Jan 08 08:56:04 +0000 2015"}, {"group": 758, "id": 12, "label": "553112901502763010", "shape": "dot", "size": 10, "title": "553112901502763010\u003cbr\u003e@thetimes @DAaronovitch plus allowing the\u003cbr\u003erich countries to promote extremism\u003cbr\u003ein your countries is the\u003cbr\u003esecond big reason!\u003cbr\u003eThu Jan 08 08:56:06 +0000 2015"}, {"group": 758, "id": 14, "label": "553113436138532864", "shape": "dot", "size": 10, "title": "553113436138532864\u003cbr\u003e@thetimes @2tweetaboutit @DAaronovitch Should have\u003cbr\u003elistened to the general #public\u003cbr\u003emore. They have been way\u003cbr\u003eahead of you people on\u003cbr\u003ethis one.\u003cbr\u003eThu Jan 08 08:58:14 +0000 2015"}, {"group": 758, "id": 15, "label": "553114556734504960", "shape": "dot", "size": 10, "title": "553114556734504960\u003cbr\u003e@thetimes @DAaronovitch Agree. Britons confused\u003cbr\u003ethe world with Cowardice disguised\u003cbr\u003eas Secularism \u0026amp; left indians\u003cbr\u003eto be its biggest victims.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:02:41 +0000 2015"}, {"group": 758, "id": 4, "label": "553110228628410368", "shape": "dot", "size": 10, "title": "553110228628410368\u003cbr\u003e@Majedsblog @thetimes @DAaronovitch Terrorism is\u003cbr\u003enot something you can sit\u003cbr\u003eon the fence about. If\u003cbr\u003eyou\u0027re not against it, you\u0027re\u003cbr\u003efor it.\u003cbr\u003eThu Jan 08 08:45:29 +0000 2015"}, {"group": 758, "id": 16, "label": "553114814810431488", "shape": "dot", "size": 10, "title": "553114814810431488\u003cbr\u003e@Majedsblog @thetimes @DAaronovitch Disagree entirely\u003cbr\u003emate. Most #westerners much more\u003cbr\u003etolerant than #muslims will ever\u003cbr\u003ebe. Fact !\u003cbr\u003eThu Jan 08 09:03:42 +0000 2015"}, {"group": 758, "id": 22, "label": "553178806542802944", "shape": "dot", "size": 10, "title": "553178806542802944\u003cbr\u003e@Majedsblog @thetimes @DAaronovitch diid they\u003cbr\u003ekiild any1 ?? Any1.. no??\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:17:59 +0000 2015"}, {"group": 758, "id": 17, "label": "553115577976619008", "shape": "dot", "size": 10, "title": "553115577976619008\u003cbr\u003e@thepowerofdoubt @thetimes @DAaronovitch #Media not\u003cbr\u003ejust reporting #news. Also about\u003cbr\u003echallenging #hypocrisy \u0026amp; those who\u003cbr\u003eget above themselves\u003cbr\u003eThu Jan 08 09:06:44 +0000 2015"}, {"group": 758, "id": 23, "label": "553606504050614272", "shape": "dot", "size": 10, "title": "553606504050614272\u003cbr\u003e@thepowerofdoubt Then you missed the\u003cbr\u003epoint.\u003cbr\u003eFri Jan 09 17:37:30 +0000 2015"}, {"group": 758, "id": 13, "label": "553113230344986624", "shape": "dot", "size": 10, "title": "553113230344986624\u003cbr\u003e@figurewizard @thetimes @lambandflag99 @DAaronovitch Reluctance\u003cbr\u003eto satirise? Reluctance to say\u003cbr\u003eanything at all, you mean.\u003cbr\u003eEnough is enough.\u003cbr\u003eThu Jan 08 08:57:25 +0000 2015"}, {"group": 758, "id": 18, "label": "553122557210415104", "shape": "dot", "size": 10, "title": "553122557210415104\u003cbr\u003e@SayMwah @Majedsblog @thetimes @DAaronovitch That\u0027s\u003cbr\u003edefinitely not a fact.\u003cbr\u003eThu Jan 08 09:34:28 +0000 2015"}, {"group": 758, "id": 19, "label": "553123761667723264", "shape": "dot", "size": 10, "title": "553123761667723264\u003cbr\u003e@NaughtyDogJames @Majedsblog @thetimes @DAaronovitch All\u003cbr\u003eI can say to that\u003cbr\u003ethen is that you are\u003cbr\u003ein denial.Think u need 2get\u003cbr\u003eout of yr bubble\u003cbr\u003eThu Jan 08 09:39:15 +0000 2015"}, {"group": 758, "id": 20, "label": "553125721737281537", "shape": "dot", "size": 10, "title": "553125721737281537\u003cbr\u003e@SayMwah @Majedsblog @thetimes @DAaronovitch Care\u003cbr\u003eto provide some evidence then?\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:47:03 +0000 2015"}, {"group": 758, "id": 21, "label": "553173239573540864", "shape": "dot", "size": 10, "title": "553173239573540864\u003cbr\u003e@NaughtyDogJames @SayMwah @thetimes @DAaronovitch Not\u003cbr\u003eseen the reports on the\u003cbr\u003emarches in Germany, EDL in\u003cbr\u003eUK etc.\u003cbr\u003eThu Jan 08 12:55:52 +0000 2015"}, {"group": 758, "id": 24, "label": "553859522956382208", "shape": "dot", "size": 10, "title": "553859522956382208\u003cbr\u003e@RobertH1946 the point is double\u003cbr\u003estandards, if i insult a\u003cbr\u003emuslim, i go to jail,\u003cbr\u003ebut a journalist can engage\u003cbr\u003ein xenophobia?\u003cbr\u003eSat Jan 10 10:22:55 +0000 2015"}, {"group": 758, "id": 25, "label": "553860625995407360", "shape": "dot", "size": 10, "title": "553860625995407360\u003cbr\u003e@thepowerofdoubt One has the right\u003cbr\u003eto say this or that\u003cbr\u003ereligion is silly.\u003cbr\u003eSat Jan 10 10:27:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 2, "to": 16, "weight": 1}, {"from": 2, "to": 22, "weight": 1}, {"from": 3, "to": 17, "weight": 1}, {"from": 3, "to": 23, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

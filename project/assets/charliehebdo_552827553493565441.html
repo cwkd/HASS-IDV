@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 367, "id": 0, "label": "552827553493565441", "shape": "dot", "size": 10, "title": "552827553493565441\u003cbr\u003e\u0027Attack on media...World community can\u0027t\u003cbr\u003eallow extremists to silence free\u003cbr\u003eflow of opinions, ideas\u0027 Irina\u003cbr\u003eBokova of @UNESCO #JeSuisCharlie\u003cbr\u003eWed Jan 07 14:02:14 +0000 2015"}, {"group": 367, "id": 1, "label": "552830865001426944", "shape": "dot", "size": 10, "title": "552830865001426944\u003cbr\u003e@EmmaDaly  #Shame\u003cbr\u003eWed Jan 07 14:15:23 +0000 2015"}, {"group": 367, "id": 2, "label": "552831099626594304", "shape": "dot", "size": 10, "title": "552831099626594304\u003cbr\u003e@EmmaDaly @hrw @UNESCO prayers for\u003cbr\u003eFrance! USA SUPPORTS FREEDOM OF\u003cbr\u003eTHE PRESS!\u003cbr\u003eWed Jan 07 14:16:19 +0000 2015"}, {"group": 367, "id": 3, "label": "552831277670612993", "shape": "dot", "size": 10, "title": "552831277670612993\u003cbr\u003e\u201c@EmmaDaly: \u0027World...can\u0027t allow extremists to\u003cbr\u003esilence free flow of opinions,\u003cbr\u003eideas\u0027 I.Bokova @UNESCO #JeSuisCharlie\u201d cc\u003cbr\u003e@pressfreedom\u003cbr\u003eWed Jan 07 14:17:02 +0000 2015"}, {"group": 367, "id": 4, "label": "552832033999699968", "shape": "dot", "size": 10, "title": "552832033999699968\u003cbr\u003e@EmmaDaly @hrw @UNESCO if U\u003cbr\u003etell me not 2 insult\u003cbr\u003eur family everyday \u0026amp;I keep\u003cbr\u003edoing it disregarding ur feelings\u003cbr\u003eshould I b mad when\u003cbr\u003eu hit me?\u003cbr\u003eWed Jan 07 14:20:02 +0000 2015"}, {"group": 367, "id": 5, "label": "552832314816737280", "shape": "dot", "size": 10, "title": "552832314816737280\u003cbr\u003e@EmmaDaly @hrw @UNESCO sure but\u003cbr\u003ekeep Religion out of it!\u003cbr\u003eRespect Religion and Culture it\u0027s\u003cbr\u003eVital why target Religions? Why\u003cbr\u003eprovoke violence\u003cbr\u003eWed Jan 07 14:21:09 +0000 2015"}, {"group": 367, "id": 6, "label": "552834467635949569", "shape": "dot", "size": 10, "title": "552834467635949569\u003cbr\u003e@EmmaDaly @hrw @UNESCO cartonist... http://t.co/izRZ7ptNuT\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:42 +0000 2015"}, {"group": 367, "id": 7, "label": "552834540490981376", "shape": "dot", "size": 10, "title": "552834540490981376\u003cbr\u003e@EmmaDaly @WillatFIRE @UNESCO When The\u003cbr\u003eSatanic Verses was published, the\u003cbr\u003eUN attacked France for not\u003cbr\u003ebanning it.\u003cbr\u003eWed Jan 07 14:30:00 +0000 2015"}, {"group": 367, "id": 9, "label": "552838364466929664", "shape": "dot", "size": 10, "title": "552838364466929664\u003cbr\u003e@EmmaDaly @UNESCO one day our\u003cbr\u003eonly communication will be through\u003cbr\u003emedia on the ground Coast\u003cbr\u003eto Coast, perhaps Country to\u003cbr\u003eCountry!\u003cbr\u003eWed Jan 07 14:45:11 +0000 2015"}, {"group": 367, "id": 10, "label": "552840897482608640", "shape": "dot", "size": 10, "title": "552840897482608640\u003cbr\u003e@EmmaDaly @hrw @UNESCO http://t.co/jchBhSb4Cs\u003cbr\u003eWed Jan 07 14:55:15 +0000 2015"}, {"group": 367, "id": 11, "label": "552850330195468288", "shape": "dot", "size": 10, "title": "552850330195468288\u003cbr\u003e@EmmaDaly @hrw @UNESCO there is\u003cbr\u003ea difference between flow of\u003cbr\u003eopinions and disrespecting others opinions.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:32:44 +0000 2015"}, {"group": 367, "id": 12, "label": "552851072713113601", "shape": "dot", "size": 10, "title": "552851072713113601\u003cbr\u003e@EmmaDaly @UNESCO @hrw  west\u003cbr\u003eadopted extremist since usa used\u003cbr\u003ebin laden against russia. They\u003cbr\u003estood with them against arab\u003cbr\u003egovts\u003cbr\u003eWed Jan 07 15:35:41 +0000 2015"}, {"group": 367, "id": 13, "label": "552851226442735618", "shape": "dot", "size": 10, "title": "552851226442735618\u003cbr\u003e@EmmaDaly @hrw @UNESCO also governments\u003cbr\u003emost of the time silence\u003cbr\u003eyour opinion if it\u0027s not\u003cbr\u003einline with their interest\u003cbr\u003eWed Jan 07 15:36:18 +0000 2015"}, {"group": 367, "id": 14, "label": "552975805911818240", "shape": "dot", "size": 10, "title": "552975805911818240\u003cbr\u003e@EmmaDaly @mojmarineman @UNESCO But Murdoch\u003cbr\u003edoes.\u003cbr\u003eWed Jan 07 23:51:20 +0000 2015"}, {"group": 367, "id": 16, "label": "554494069188341760", "shape": "dot", "size": 10, "title": "554494069188341760\u003cbr\u003e@EmmaDaly @WillatFIRE @UNESCO Liberal college\u003cbr\u003eadministrators shouldn\u0027t be doing it\u003cbr\u003eeither.\u003cbr\u003eMon Jan 12 04:24:22 +0000 2015"}, {"group": 367, "id": 8, "label": "552835319788498946", "shape": "dot", "size": 10, "title": "552835319788498946\u003cbr\u003e@taniafarzana @EmmaDaly @hrw @UNESCO it\u003cbr\u003edoesn\u0027t me u can kill\u003cbr\u003eppl\u003cbr\u003eWed Jan 07 14:33:06 +0000 2015"}, {"group": 367, "id": 15, "label": "552985724874547202", "shape": "dot", "size": 10, "title": "552985724874547202\u003cbr\u003e@mickdundee48 @EmmaDaly @UNESCO Blinkered approach\u003cbr\u003eby Murdock #news group in\u003cbr\u003epropogandering ultra Neoconservatism lowers respect\u003cbr\u003efor #media\u003cbr\u003eThu Jan 08 00:30:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 14, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

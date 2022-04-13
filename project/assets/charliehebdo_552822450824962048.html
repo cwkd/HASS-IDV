@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 299, "id": 0, "label": "552822450824962048", "shape": "dot", "size": 10, "title": "552822450824962048\u003cbr\u003eWe are all Charlie Hebdo.\u003cbr\u003eKill us all! \n#CharlieHebdo @Charlie_Hebdo_\u003cbr\u003ehttp://t.co/7jFelOTDxw\u003cbr\u003eWed Jan 07 13:41:57 +0000 2015"}, {"group": 299, "id": 1, "label": "552824854819643392", "shape": "dot", "size": 10, "title": "552824854819643392\u003cbr\u003e@channeldraw @kitsonde @Charlie_Hebdo_ Speak for\u003cbr\u003eyourself!\u003cbr\u003eWed Jan 07 13:51:31 +0000 2015"}, {"group": 299, "id": 2, "label": "552827393640267776", "shape": "dot", "size": 10, "title": "552827393640267776\u003cbr\u003e@channeldraw @LizardoGramcko @Charlie_Hebdo_ If those\u003cbr\u003ewierdos can they will...\u003cbr\u003eWed Jan 07 14:01:36 +0000 2015"}, {"group": 299, "id": 3, "label": "552828171251642368", "shape": "dot", "size": 10, "title": "552828171251642368\u003cbr\u003e@channeldraw @Charlie_Hebdo_ we are all\u003cbr\u003eanti Muhammed or And islamiszm\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:04:41 +0000 2015"}, {"group": 299, "id": 4, "label": "552831658693783552", "shape": "dot", "size": 10, "title": "552831658693783552\u003cbr\u003e@channeldraw @Charlie_Hebdo_ @WYE_John \u2026\u2026#I\u2019llPrintWithYou\u2026..\u003cbr\u003eWed Jan 07 14:18:33 +0000 2015"}, {"group": 299, "id": 5, "label": "552863020825980929", "shape": "dot", "size": 10, "title": "552863020825980929\u003cbr\u003e@channeldraw @_BekkyC_ @Charlie_Hebdo_ Well, they\u0027ll,\u003cbr\u003eif given a chance, we\u003cbr\u003eknow that already.The question is,\u003cbr\u003eare we going to let\u003cbr\u003eit happen\u003cbr\u003eWed Jan 07 16:23:10 +0000 2015"}, {"group": 299, "id": 6, "label": "552863885183942656", "shape": "dot", "size": 10, "title": "552863885183942656\u003cbr\u003e@channeldraw @Woodlandbookshp @Charlie_Hebdo_ It\u0027s the\u003cbr\u003eprimary belief of Islam; what\u003cbr\u003eis to be done to\u003cbr\u003eemasculate Islam in Europe?\n\n*Urgent*\u003cbr\u003eWed Jan 07 16:26:36 +0000 2015"}, {"group": 299, "id": 7, "label": "552878249379123201", "shape": "dot", "size": 10, "title": "552878249379123201\u003cbr\u003e@channeldraw @Woodlandbookshp @Charlie_Hebdo_ mmm \u003cbr\u003ethey prob will!\u003cbr\u003eWed Jan 07 17:23:41 +0000 2015"}, {"group": 299, "id": 8, "label": "552932984618110977", "shape": "dot", "size": 10, "title": "552932984618110977\u003cbr\u003e@channeldraw @Charlie_Hebdo_\u003cbr\u003eWed Jan 07 21:01:11 +0000 2015"}, {"group": 299, "id": 9, "label": "553328006367019008", "shape": "dot", "size": 10, "title": "553328006367019008\u003cbr\u003e@channeldraw @_CFJ_ @Charlie_Hebdo_  They\u003cbr\u003eare giving it a good\u003cbr\u003etry.\u003cbr\u003eThu Jan 08 23:10:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

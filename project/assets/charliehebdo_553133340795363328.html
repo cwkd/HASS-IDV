@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 848, "id": 0, "label": "553133340795363328", "shape": "dot", "size": 10, "title": "553133340795363328\u003cbr\u003eIllustrators and cartoonists respond to\u003cbr\u003ethe horrific attack at Charlie\u003cbr\u003eHebdo #JeSuisCharlie http://t.co/lpy41iM6zE http://t.co/r6ERv3PFRg\u003cbr\u003eThu Jan 08 10:17:19 +0000 2015"}, {"group": 848, "id": 1, "label": "553133665530957824", "shape": "dot", "size": 10, "title": "553133665530957824\u003cbr\u003e@CreativeReview yet i cant fail\u003cbr\u003eto notice how they all\u003cbr\u003ecarefully avoid drawing muslim symbols\u003cbr\u003e\u0026amp; muhammad for fear of\u003cbr\u003eretribution\u003cbr\u003eThu Jan 08 10:18:37 +0000 2015"}, {"group": 848, "id": 2, "label": "553133948847804417", "shape": "dot", "size": 10, "title": "553133948847804417\u003cbr\u003e@CreativeReview That Banksy image is\u003cbr\u003eactually by @LucilleClerc FYI. http://t.co/p4FPsN1ROV\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:19:44 +0000 2015"}, {"group": 848, "id": 17, "label": "553170054876246017", "shape": "dot", "size": 10, "title": "553170054876246017\u003cbr\u003e@CreativeReview The pen is mightier\u003cbr\u003ethan the sword.\u003cbr\u003eThu Jan 08 12:43:13 +0000 2015"}, {"group": 848, "id": 18, "label": "553201414051082241", "shape": "dot", "size": 10, "title": "553201414051082241\u003cbr\u003e@CreativeReview Je Suis Charlie.\n#JeSuisCharlie #CharlieHebdo\u003cbr\u003e#JeSuisCharliePencil http://t.co/oAb7lmnT6q\u003cbr\u003eThu Jan 08 14:47:49 +0000 2015"}, {"group": 848, "id": 4, "label": "553135072275361792", "shape": "dot", "size": 10, "title": "553135072275361792\u003cbr\u003e@ambrablu @CreativeReview A self-declared muslim\u003cbr\u003eextremist + assassin is not\u003cbr\u003eautomatically a representative of muslims,\u003cbr\u003eor of their prophet\u2026\u003cbr\u003eThu Jan 08 10:24:12 +0000 2015"}, {"group": 848, "id": 13, "label": "553158732683956224", "shape": "dot", "size": 10, "title": "553158732683956224\u003cbr\u003e@ambrablu @CreativeReview retaliation by the\u003cbr\u003eWest against the whole of\u003cbr\u003eIslam is what terrorists want.\u003cbr\u003eTheir power grows in fear\u003cbr\u003e\u0026amp; division.\u003cbr\u003eThu Jan 08 11:58:13 +0000 2015"}, {"group": 848, "id": 3, "label": "553134576596697088", "shape": "dot", "size": 10, "title": "553134576596697088\u003cbr\u003e@mitchblunt @LucilleClerc apologies, corrected\u003cbr\u003eThu Jan 08 10:22:14 +0000 2015"}, {"group": 848, "id": 5, "label": "553137342442401793", "shape": "dot", "size": 10, "title": "553137342442401793\u003cbr\u003e@Bokstavkjekk @CreativeReview yes but the\u003cbr\u003eanti islamist (amongst others) stance\u003cbr\u003etook by @Charlie_Hebdo_  is\u003cbr\u003ewhat prompted the attacks\u003cbr\u003eThu Jan 08 10:33:13 +0000 2015"}, {"group": 848, "id": 6, "label": "553138165880721408", "shape": "dot", "size": 10, "title": "553138165880721408\u003cbr\u003e@ambrablu was Anti Fundamentalist.\u003cbr\u003eThu Jan 08 10:36:30 +0000 2015"}, {"group": 848, "id": 7, "label": "553138989499424769", "shape": "dot", "size": 10, "title": "553138989499424769\u003cbr\u003e@Bokstavkjekk not necessarilly, no\u003cbr\u003eThu Jan 08 10:39:46 +0000 2015"}, {"group": 848, "id": 8, "label": "553141077717569536", "shape": "dot", "size": 10, "title": "553141077717569536\u003cbr\u003e@ambrablu @Charlie_Hebdo_ is anti any\u003cbr\u003ereligious system of beliefs and\u003cbr\u003epolitically atheist/ left wing; this\u003cbr\u003esparked some fundamentalists.\u003cbr\u003eThu Jan 08 10:48:04 +0000 2015"}, {"group": 848, "id": 9, "label": "553142219226775552", "shape": "dot", "size": 10, "title": "553142219226775552\u003cbr\u003e@Bokstavkjekk @Charlie_Hebdo_ i know they\u003cbr\u003ewere taking on the catholic\u003cbr\u003echurch before poking fun at\u003cbr\u003emuslim fundamentalists\u003cbr\u003eThu Jan 08 10:52:36 +0000 2015"}, {"group": 848, "id": 10, "label": "553144728771133440", "shape": "dot", "size": 10, "title": "553144728771133440\u003cbr\u003e@ambrablu @Charlie_Hebdo_ dates back to\u003cbr\u003ethe 50\u0027s, and has been\u003cbr\u003etaking on mostly everyone with\u003cbr\u003ePower \u0027till today http://t.co/hYau6yozdD\u003cbr\u003eThu Jan 08 11:02:34 +0000 2015"}, {"group": 848, "id": 11, "label": "553144907511365633", "shape": "dot", "size": 10, "title": "553144907511365633\u003cbr\u003e@Bokstavkjekk @Charlie_Hebdo_ looks a bit\u003cbr\u003elike le canard enchaine\u003cbr\u003eThu Jan 08 11:03:17 +0000 2015"}, {"group": 848, "id": 12, "label": "553145412191010816", "shape": "dot", "size": 10, "title": "553145412191010816\u003cbr\u003e@ambrablu I am not sure\u003cbr\u003etheir respective journalistic levels are\u003cbr\u003equite the same though \u2013\u003cbr\u003ejust a hunch\u2026\u003cbr\u003eThu Jan 08 11:05:17 +0000 2015"}, {"group": 848, "id": 14, "label": "553159417848680448", "shape": "dot", "size": 10, "title": "553159417848680448\u003cbr\u003e@paolo_oprandi @CreativeReview youre talking about\u003cbr\u003efrance though and its hardline\u003cbr\u003epolicy against islam  -\u003cbr\u003eremember the veil\u003cbr\u003eThu Jan 08 12:00:57 +0000 2015"}, {"group": 848, "id": 15, "label": "553159606789492737", "shape": "dot", "size": 10, "title": "553159606789492737\u003cbr\u003e@paolo_oprandi @CreativeReview why deny the\u003cbr\u003eterrorists\u0027 religious allegiance? they are\u003cbr\u003emuslim after all, who moreover\u003cbr\u003ekilled 2 of their own\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:01:42 +0000 2015"}, {"group": 848, "id": 16, "label": "553163437128556544", "shape": "dot", "size": 10, "title": "553163437128556544\u003cbr\u003e@paolo_oprandi @CreativeReview on @BBCWorld azhar\u003cbr\u003esiddique warns against radicalizations of\u003cbr\u003emuslims by imams in prisons\u003cbr\u003ein france.\u003cbr\u003eThu Jan 08 12:16:55 +0000 2015"}, {"group": 848, "id": 19, "label": "553213001973911552", "shape": "dot", "size": 10, "title": "553213001973911552\u003cbr\u003e@ambrablu @BBCWorld Arab cartoonists join\u003cbr\u003eothers in condemning the attacks,and\u003cbr\u003elampooning the attackers http://t.co/Z3gM2kKwYp\u003cbr\u003eThu Jan 08 15:33:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 1, "to": 13, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 16, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

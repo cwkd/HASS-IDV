@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1635, "id": 0, "label": "552786818853113857", "shape": "dot", "size": 10, "title": "552786818853113857\u003cbr\u003eArmed with kalachnikovs \u0026amp; rocketlauncher,\u003cbr\u003e2 men open fire at\u003cbr\u003eFrench satirical mag Charlie Hebdo\u003cbr\u003ethat published Prophet Mohamed cartoons\u003cbr\u003e@AFP\u003cbr\u003eWed Jan 07 11:20:22 +0000 2015"}, {"group": 1635, "id": 1, "label": "552786962948440065", "shape": "dot", "size": 10, "title": "552786962948440065\u003cbr\u003e@jenanmoussa @AFP Savages\u003cbr\u003eWed Jan 07 11:20:56 +0000 2015"}, {"group": 1635, "id": 2, "label": "552787275407695872", "shape": "dot", "size": 10, "title": "552787275407695872\u003cbr\u003e@jenanmoussa @AFP What town is\u003cbr\u003ethis in.\u003cbr\u003eWed Jan 07 11:22:11 +0000 2015"}, {"group": 1635, "id": 3, "label": "552787299550101506", "shape": "dot", "size": 10, "title": "552787299550101506\u003cbr\u003eA rocketlauncher? MT \u201c@jenanmoussa: Armed\u003cbr\u003ewith kalachnikovs \u0026amp; rocketlauncher, 2\u003cbr\u003emen open fire at French\u003cbr\u003esatirical mag Charlie Hebdo....\u201d\u003cbr\u003eWed Jan 07 11:22:17 +0000 2015"}, {"group": 1635, "id": 4, "label": "552787655436828672", "shape": "dot", "size": 10, "title": "552787655436828672\u003cbr\u003e@jenanmoussa @AFP \n\nI promise I\u0027m\u003cbr\u003ea tolerant man, but when\u003cbr\u003eI 1st heard of the\u003cbr\u003eshooting I couldn\u0027t help but\u003cbr\u003eguess \u0027angry Muslims.\u0027\u003cbr\u003eWed Jan 07 11:23:42 +0000 2015"}, {"group": 1635, "id": 5, "label": "552787745374871553", "shape": "dot", "size": 10, "title": "552787745374871553\u003cbr\u003e@jenanmoussa @AFP Wow. Rocket launchers\u003cbr\u003ein Paris. What about Istanbul\u003cbr\u003ewho was behind it?\u003cbr\u003eWed Jan 07 11:24:03 +0000 2015"}, {"group": 1635, "id": 6, "label": "552787802094448640", "shape": "dot", "size": 10, "title": "552787802094448640\u003cbr\u003e@jenanmoussa cc @rahulroushan 10 frenchmen\u003cbr\u003ekilled by follower of Religion\u003cbr\u003eof Peace. @afp\u003cbr\u003eWed Jan 07 11:24:16 +0000 2015"}, {"group": 1635, "id": 7, "label": "552787853193670656", "shape": "dot", "size": 10, "title": "552787853193670656\u003cbr\u003e@jenanmoussa @ramana1729 @AFP Sad, when\u003cbr\u003eare the MIC\u0027s going to\u003cbr\u003estop selling arms to these\u003cbr\u003eMessengers of Peace?\u003cbr\u003eWed Jan 07 11:24:29 +0000 2015"}, {"group": 1635, "id": 8, "label": "552788018679918592", "shape": "dot", "size": 10, "title": "552788018679918592\u003cbr\u003ePeaceful peoples\u0027 peaceful reaction to\u003cbr\u003eArt \u0026amp; Creativity. @jenanmoussa @kushanmitra\u003cbr\u003e@AFP http://t.co/jG5gXBRCUG\u003cbr\u003eWed Jan 07 11:25:08 +0000 2015"}, {"group": 1635, "id": 9, "label": "552788435912495104", "shape": "dot", "size": 10, "title": "552788435912495104\u003cbr\u003eWoh... RT @jenanmoussa: Armed with\u003cbr\u003ekalachnikovs 2 men open fire\u003cbr\u003eat mag Charlie Hebdo that\u003cbr\u003epublished Prophet Mohamed cartoons @AFP\u003cbr\u003e#paris\u003cbr\u003eWed Jan 07 11:26:48 +0000 2015"}, {"group": 1635, "id": 10, "label": "552788440673038337", "shape": "dot", "size": 10, "title": "552788440673038337\u003cbr\u003e@jenanmoussa @AFP  cc @farzana_versey\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:26:49 +0000 2015"}, {"group": 1635, "id": 12, "label": "552797527754678273", "shape": "dot", "size": 10, "title": "552797527754678273\u003cbr\u003e@jenanmoussa @AFP RPGs?  How\u003cbr\u003edid they get them in\u003cbr\u003efrance?\u003cbr\u003eWed Jan 07 12:02:55 +0000 2015"}, {"group": 1635, "id": 13, "label": "552828951366623232", "shape": "dot", "size": 10, "title": "552828951366623232\u003cbr\u003e@jenanmoussa @wcu80 @AFP Any #Muslimapologies\u003cbr\u003eforthcoming? Fuck Islam, fuck Mohammad.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:07:47 +0000 2015"}, {"group": 1635, "id": 11, "label": "552788836577583106", "shape": "dot", "size": 10, "title": "552788836577583106\u003cbr\u003e.@shukla_tarun @jenanmoussa @AFP clearly a\u003cbr\u003eterorrist attack. No part of\u003cbr\u003ethe world is safe anymore.\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:28:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 9, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 280, "id": 0, "label": "552820930419109888", "shape": "dot", "size": 10, "title": "552820930419109888\u003cbr\u003eRemember this? Those men died\u003cbr\u003efor our right to freedom\u003cbr\u003eof speech. Don\u0027t let that\u003cbr\u003esacrifice be in vain. #CharlieHebdo\u003cbr\u003ehttp://t.co/vXzD9am4Zq\u003cbr\u003eWed Jan 07 13:35:55 +0000 2015"}, {"group": 280, "id": 1, "label": "552821078066999296", "shape": "dot", "size": 10, "title": "552821078066999296\u003cbr\u003e@JuliaHB1 Too late.\u003cbr\u003eWed Jan 07 13:36:30 +0000 2015"}, {"group": 280, "id": 2, "label": "552821329402269697", "shape": "dot", "size": 10, "title": "552821329402269697\u003cbr\u003e.@JuliaHB1 I think you should\u003cbr\u003etweet a cartoon of mohammed\u003cbr\u003efor the sake of that\u003cbr\u003efreedom of speech.\u003cbr\u003eWed Jan 07 13:37:30 +0000 2015"}, {"group": 280, "id": 3, "label": "552821361228673026", "shape": "dot", "size": 10, "title": "552821361228673026\u003cbr\u003e@JuliaHB1 1. they were conscripted\u003cbr\u003e(did they have any choice?)\u003cbr\u003e2. some of them were\u003cbr\u003ewomen\u003cbr\u003eWed Jan 07 13:37:38 +0000 2015"}, {"group": 280, "id": 4, "label": "552821365318119424", "shape": "dot", "size": 10, "title": "552821365318119424\u003cbr\u003e@JuliaHB1 This is a great\u003cbr\u003eday for those who want\u003cbr\u003eus to hate each other.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:37:39 +0000 2015"}, {"group": 280, "id": 5, "label": "552821372620394497", "shape": "dot", "size": 10, "title": "552821372620394497\u003cbr\u003e@JuliaHB1 I don\u0027t expect we\u0027ll\u003cbr\u003ebe seeing much satire about\u003cbr\u003eIslam in future, I hate\u003cbr\u003eto say.\u003cbr\u003eWed Jan 07 13:37:40 +0000 2015"}, {"group": 280, "id": 6, "label": "552821643765374977", "shape": "dot", "size": 10, "title": "552821643765374977\u003cbr\u003e@JuliaHB1 Actually, there\u0027s a bridge\u003cbr\u003every close to the Tower\u003cbr\u003eof London which I\u0027d like\u003cbr\u003eto sell you.\u003cbr\u003eWed Jan 07 13:38:45 +0000 2015"}, {"group": 280, "id": 8, "label": "552821746622291968", "shape": "dot", "size": 10, "title": "552821746622291968\u003cbr\u003e@JuliaHB1 #charliehebdo freedom of speech\u003cbr\u003eusing as freedom of spitting\u003cbr\u003edangerous people, is not very\u003cbr\u003eintelligent\u003cbr\u003eWed Jan 07 13:39:09 +0000 2015"}, {"group": 280, "id": 9, "label": "552821799931895808", "shape": "dot", "size": 10, "title": "552821799931895808\u003cbr\u003e.@JuliaHB1 Are those poppies? Because\u003cbr\u003eWWI wasn\u0027t fought for free\u003cbr\u003espeech.\u003cbr\u003eWed Jan 07 13:39:22 +0000 2015"}, {"group": 280, "id": 10, "label": "552821849504362497", "shape": "dot", "size": 10, "title": "552821849504362497\u003cbr\u003e@JuliaHB1 It\u0027s not the ordinary\u003cbr\u003eperson who has to fight\u003cbr\u003ethis new fight, it\u0027s the\u003cbr\u003ewestern media.\u003cbr\u003eWed Jan 07 13:39:34 +0000 2015"}, {"group": 280, "id": 11, "label": "552821950259933184", "shape": "dot", "size": 10, "title": "552821950259933184\u003cbr\u003e@JuliaHB1 Just a shame freedom\u003cbr\u003eof speech is not accepted\u003cbr\u003eby Islam?\u003cbr\u003eWed Jan 07 13:39:58 +0000 2015"}, {"group": 280, "id": 12, "label": "552822003552763904", "shape": "dot", "size": 10, "title": "552822003552763904\u003cbr\u003e@JuliaHB1 @Audere2010 Er, no they\u003cbr\u003edidn\u0027t.\u003cbr\u003eWed Jan 07 13:40:11 +0000 2015"}, {"group": 280, "id": 13, "label": "552822043323166721", "shape": "dot", "size": 10, "title": "552822043323166721\u003cbr\u003e.@JuliaHB1 they did die in\u003cbr\u003evain. There is no free\u003cbr\u003espeech for ordinary people. Police\u003cbr\u003ePoliticians and Journalists have betrayed\u003cbr\u003eus all\u003cbr\u003eWed Jan 07 13:40:20 +0000 2015"}, {"group": 280, "id": 14, "label": "552822074897874944", "shape": "dot", "size": 10, "title": "552822074897874944\u003cbr\u003e@JuliaHB1 Not sure freedom of\u003cbr\u003espeech was at the forefront\u003cbr\u003eof the thoughts of the\u003cbr\u003emen, women and children who\u003cbr\u003egave their lives.\u003cbr\u003eWed Jan 07 13:40:28 +0000 2015"}, {"group": 280, "id": 15, "label": "552822487042756609", "shape": "dot", "size": 10, "title": "552822487042756609\u003cbr\u003e@JuliaHB1 no they died for\u003cbr\u003eBelgian\u0027s freedom of speech.\u003cbr\u003eWed Jan 07 13:42:06 +0000 2015"}, {"group": 280, "id": 18, "label": "552823631584428032", "shape": "dot", "size": 10, "title": "552823631584428032\u003cbr\u003e@JuliaHB1 None of the poor\u003cbr\u003ebastards who died in WW1\u003cbr\u003edid so to protect \"freedom\u003cbr\u003eof speech\". What a cretinous,\u003cbr\u003eignorant remark.\u003cbr\u003eWed Jan 07 13:46:39 +0000 2015"}, {"group": 280, "id": 7, "label": "552821683485413376", "shape": "dot", "size": 10, "title": "552821683485413376\u003cbr\u003e@ACloakedFigure I have already done\u003cbr\u003eso\u003cbr\u003eWed Jan 07 13:38:54 +0000 2015"}, {"group": 280, "id": 17, "label": "552823356970786816", "shape": "dot", "size": 10, "title": "552823356970786816\u003cbr\u003e@fascistCOW @exiledenglander @JuliaHB1 spot on.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:45:33 +0000 2015"}, {"group": 280, "id": 19, "label": "552823899013271552", "shape": "dot", "size": 10, "title": "552823899013271552\u003cbr\u003e@fascistCOW @JuliaHB1 I wish they\u0027d\u003cbr\u003ehave done it to our\u003cbr\u003ecomplicit media.\u003cbr\u003eWed Jan 07 13:47:43 +0000 2015"}, {"group": 280, "id": 16, "label": "552822672112234497", "shape": "dot", "size": 10, "title": "552822672112234497\u003cbr\u003e@NapoleonSMill lol\u003cbr\u003eWed Jan 07 13:42:50 +0000 2015"}, {"group": 280, "id": 22, "label": "553001836933025792", "shape": "dot", "size": 10, "title": "553001836933025792\u003cbr\u003e@cjocarroll @JuliaHB1 Freedom look it\u003cbr\u003eup in the dictionary it\u003cbr\u003ecovers everything.\u003cbr\u003eThu Jan 08 01:34:46 +0000 2015"}, {"group": 280, "id": 20, "label": "552824416800088064", "shape": "dot", "size": 10, "title": "552824416800088064\u003cbr\u003e@UpNorthandGRIM @JuliaHB1 lol they could\u003cbr\u003ehave a field day with\u003cbr\u003ethe  guardian and bbc\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:49:46 +0000 2015"}, {"group": 280, "id": 21, "label": "552825359130193922", "shape": "dot", "size": 10, "title": "552825359130193922\u003cbr\u003e@fascistCOW @JuliaHB1 Yeah, I wouldn\u0027t\u003cbr\u003emind seeing #KayBurley being chased\u003cbr\u003eround a studio with a\u003cbr\u003eAK47 wielding Islamic MadMan\n@SkyNews\u003cbr\u003eWed Jan 07 13:53:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 2, "to": 7, "weight": 1}, {"from": 13, "to": 17, "weight": 1}, {"from": 13, "to": 19, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 18, "to": 22, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

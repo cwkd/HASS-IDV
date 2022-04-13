@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 536, "id": 0, "label": "552839190921351168", "shape": "dot", "size": 10, "title": "552839190921351168\u003cbr\u003eeven after #CharlieHebdo massacre,journalists like\u003cbr\u003e@sagarikaGhose (in todays #HindustanTimes) wl\u003cbr\u003econtinue t defend #islam \u0026amp;\u003cbr\u003erun down Hindus\u003cbr\u003eWed Jan 07 14:48:29 +0000 2015"}, {"group": 536, "id": 1, "label": "552839588776267776", "shape": "dot", "size": 10, "title": "552839588776267776\u003cbr\u003e@fgautier26 She @sagarikaghose  wrote\u003cbr\u003e\"Yes We Khan\", and the\u003cbr\u003eterrorists proved that yes they\u003cbr\u003eare indeed Khan. Small pleasures\u003cbr\u003eof secularists\u003cbr\u003eWed Jan 07 14:50:03 +0000 2015"}, {"group": 536, "id": 2, "label": "552839752026570752", "shape": "dot", "size": 10, "title": "552839752026570752\u003cbr\u003e@fgautier26 @sagarikaghose Article also printed\u003cbr\u003eon today\u0027s TOI.\u003cbr\u003eWed Jan 07 14:50:42 +0000 2015"}, {"group": 536, "id": 3, "label": "552840778079166465", "shape": "dot", "size": 10, "title": "552840778079166465\u003cbr\u003e@fgautier26 @sagarikaghose she was defending\u003cbr\u003ejournalistic freedom after her hubby\u0027s\u003cbr\u003emisadventure in Madison. Not sure\u003cbr\u003eif she\u0027ll do it now\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:54:47 +0000 2015"}, {"group": 536, "id": 4, "label": "552841252480118785", "shape": "dot", "size": 10, "title": "552841252480118785\u003cbr\u003e@fgautier26 @sagarikaghose She dont want\u003cbr\u003eto offend Allah, she is\u003cbr\u003eafraid that her husband may\u003cbr\u003emiss the chance to get\u003cbr\u003e72 houries afterlife\u003cbr\u003eWed Jan 07 14:56:40 +0000 2015"}, {"group": 536, "id": 5, "label": "552841892908380162", "shape": "dot", "size": 10, "title": "552841892908380162\u003cbr\u003e@fgautier26 @AarushSuvrat @sagarikaghose is she\u003cbr\u003ejourno? I thought news trader\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:59:13 +0000 2015"}, {"group": 536, "id": 6, "label": "552844500561711106", "shape": "dot", "size": 10, "title": "552844500561711106\u003cbr\u003e@fgautier26 @AnithaNadsal Moron @sagarikaghose recited\u003cbr\u003eSatanic Verses in @TOIIndiaNews. Using\u003cbr\u003emoderate Muslim face she defended\u003cbr\u003ethe Jehadis\u003cbr\u003eWed Jan 07 15:09:34 +0000 2015"}, {"group": 536, "id": 7, "label": "552845037357133824", "shape": "dot", "size": 10, "title": "552845037357133824\u003cbr\u003e@fgautier26 @Saffrelin @sagarikaghose hence they\u003cbr\u003eare secular animals defends peace\u003cbr\u003eloving people who never in\u003cbr\u003epeace\u003cbr\u003eWed Jan 07 15:11:42 +0000 2015"}, {"group": 536, "id": 8, "label": "552854540429430784", "shape": "dot", "size": 10, "title": "552854540429430784\u003cbr\u003e@fgautier26 And there will shameless\u003cbr\u003eHindus supporting her in the\u003cbr\u003eguise of secularists!\u003cbr\u003eWed Jan 07 15:49:28 +0000 2015"}, {"group": 536, "id": 11, "label": "552884650847113216", "shape": "dot", "size": 10, "title": "552884650847113216\u003cbr\u003e@fgautier26 @sagarikaghose They\u0027ll never learn\u003cbr\u003euntil something like this happens\u003cbr\u003eto one of them...\u003cbr\u003eWed Jan 07 17:49:07 +0000 2015"}, {"group": 536, "id": 12, "label": "552891417564282882", "shape": "dot", "size": 10, "title": "552891417564282882\u003cbr\u003e@fgautier26 @sagarikaghose She\u0027d come clean\u003cbr\u003ewith her faith or any\u003cbr\u003ebenefit she receives defending #Islam.\u003cbr\u003eAt least respect humanity. @ndtv\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:16:00 +0000 2015"}, {"group": 536, "id": 13, "label": "552912377822183424", "shape": "dot", "size": 10, "title": "552912377822183424\u003cbr\u003e@fgautier26 Well, thats what she\u003cbr\u003eknow. How else do you\u003cbr\u003eexpect her to earn her\u003cbr\u003eliving ? @UnSubtleDesi @sagarikaghose\u003cbr\u003eWed Jan 07 19:39:18 +0000 2015"}, {"group": 536, "id": 14, "label": "552914723650686977", "shape": "dot", "size": 10, "title": "552914723650686977\u003cbr\u003e@fgautier26 @UnSubtleDesi @sagarikaghose Sir she\u0027s\u003cbr\u003ebelong 2 sickular group of\u003cbr\u003ejournos. Black spot of Indian\u003cbr\u003ejournalism.\u003cbr\u003eWed Jan 07 19:48:37 +0000 2015"}, {"group": 536, "id": 15, "label": "553025286791372801", "shape": "dot", "size": 10, "title": "553025286791372801\u003cbr\u003e@fgautier26 @sagarikaghose she is out\u003cbr\u003eto prove screaming lies a\u003cbr\u003ethousand times can make people\u003cbr\u003ebelieve the lies\u003cbr\u003eThu Jan 08 03:07:57 +0000 2015"}, {"group": 536, "id": 9, "label": "552859380736352256", "shape": "dot", "size": 10, "title": "552859380736352256\u003cbr\u003e@6amiji @fgautier26 @sagarikaghose it ha\u003cbr\u003ebecome thier bread n butter\u003cbr\u003eissue. They have sold thier\u003cbr\u003esouls\u003cbr\u003eWed Jan 07 16:08:42 +0000 2015"}, {"group": 536, "id": 10, "label": "552875288770531328", "shape": "dot", "size": 10, "title": "552875288770531328\u003cbr\u003e@6amiji @fgautier26 @sagarikaghose no she\u003cbr\u003eiis prepariing for an artiicle\u003cbr\u003eYES WE KHAN-2\u003cbr\u003eWed Jan 07 17:11:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 1, "to": 9, "weight": 1}, {"from": 1, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

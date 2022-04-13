@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1225, "id": 0, "label": "553230614712033283", "shape": "dot", "size": 10, "title": "553230614712033283\u003cbr\u003eWho profits from killing Charlie?\u003cbr\u003e(Op-Edge by Pepe Escobar) #CharlieHebdo\u003cbr\u003ehttp://t.co/p0LpnuyntG http://t.co/OoTUd8R1uO\u003cbr\u003eThu Jan 08 16:43:51 +0000 2015"}, {"group": 1225, "id": 1, "label": "553231701653336064", "shape": "dot", "size": 10, "title": "553231701653336064\u003cbr\u003eAlready read the Kremlin memo.\u003cbr\u003eRT: \u201c@RT_com: Who profits from\u003cbr\u003ekilling Charlie? (Op-Ed by Pepe\u003cbr\u003eEscobar) #CharlieHebdo http://t.co/JPGK1SCFnN\u201d\u003cbr\u003eThu Jan 08 16:48:10 +0000 2015"}, {"group": 1225, "id": 2, "label": "553231990787694592", "shape": "dot", "size": 10, "title": "553231990787694592\u003cbr\u003e@RT_com actually, who dows not\u003cbr\u003eprofit ...\u003cbr\u003eThu Jan 08 16:49:19 +0000 2015"}, {"group": 1225, "id": 3, "label": "553233775556313088", "shape": "dot", "size": 10, "title": "553233775556313088\u003cbr\u003e@RT_com Ridiculous question to which\u003cbr\u003ethe answer is nobody, least\u003cbr\u003eof all those who think\u003cbr\u003ethey are beneficiaries! The whole\u003cbr\u003eworld loses.\u003cbr\u003eThu Jan 08 16:56:25 +0000 2015"}, {"group": 1225, "id": 4, "label": "553237306090717184", "shape": "dot", "size": 10, "title": "553237306090717184\u003cbr\u003e@RT_com Good conspiracy theory as\u003cbr\u003eusual. On the same day,\u003cbr\u003eover 100 people were killed\u003cbr\u003eby Boko Haram in Nigeria.\u003cbr\u003eWhat does our theorist say?\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:10:27 +0000 2015"}, {"group": 1225, "id": 5, "label": "553243284915888129", "shape": "dot", "size": 10, "title": "553243284915888129\u003cbr\u003e@RT_com Armoury shareholders \u0026amp; media\u003cbr\u003eshareholders/ Israel\u003cbr\u003eThu Jan 08 17:34:12 +0000 2015"}, {"group": 1225, "id": 6, "label": "553259780081336320", "shape": "dot", "size": 10, "title": "553259780081336320\u003cbr\u003e@RT_com I\u0027m Charlie. Not because\u003cbr\u003ethey made us laugh; but\u003cbr\u003ebecause they were sacrificial lambs\u003cbr\u003ein a nastier+gruesome+never-ending shadow play.\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:39:45 +0000 2015"}, {"group": 1225, "id": 7, "label": "553266536933511169", "shape": "dot", "size": 10, "title": "553266536933511169\u003cbr\u003e@RT_com @banksterslayer its all metaphors.\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:06:36 +0000 2015"}, {"group": 1225, "id": 8, "label": "553267422711783425", "shape": "dot", "size": 10, "title": "553267422711783425\u003cbr\u003e@RT_com can\u0027t open the link,\u003cbr\u003esubject is very interesting\u003cbr\u003eThu Jan 08 19:10:07 +0000 2015"}, {"group": 1225, "id": 9, "label": "553270082114424832", "shape": "dot", "size": 10, "title": "553270082114424832\u003cbr\u003e@RT_com #CharlieHabdo will hold nothing\u003cbr\u003eback against these #IslamScum looking\u003cbr\u003eforward to the abuse these\u003cbr\u003epigs will get.\u003cbr\u003eThu Jan 08 19:20:41 +0000 2015"}, {"group": 1225, "id": 10, "label": "553286797854142464", "shape": "dot", "size": 10, "title": "553286797854142464\u003cbr\u003e\u201c@RT_com: Who profits from killing\u003cbr\u003eCharlie? #CharlieHebdo http://t.co/LJlmZZbnsW\" @MMFlint I\u003cbr\u003ethink you would find this\u003cbr\u003earticle interesting\u003cbr\u003eThu Jan 08 20:27:06 +0000 2015"}, {"group": 1225, "id": 11, "label": "553351266617683968", "shape": "dot", "size": 10, "title": "553351266617683968\u003cbr\u003e@RT_com @CaroChristie about right\u003cbr\u003eFri Jan 09 00:43:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

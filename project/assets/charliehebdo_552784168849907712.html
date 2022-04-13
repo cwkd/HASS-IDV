@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1624, "id": 0, "label": "552784168849907712", "shape": "dot", "size": 10, "title": "552784168849907712\u003cbr\u003eBREAKING: 10 dead in shooting\u003cbr\u003eat headquarters of French satirical\u003cbr\u003eweekly #CharlieHebdo - French media\u003cbr\u003eciting witnesses. #France\u003cbr\u003eWed Jan 07 11:09:50 +0000 2015"}, {"group": 1624, "id": 1, "label": "552784554650767361", "shape": "dot", "size": 10, "title": "552784554650767361\u003cbr\u003eWTF \u0026gt; @AlArabiya_Eng: BREAKING 10\u003cbr\u003edead in shooting at headquarters\u003cbr\u003eof French satirical weekly #CharlieHebdo\u003cbr\u003e- French media citing witnesses.\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:11:22 +0000 2015"}, {"group": 1624, "id": 2, "label": "552785577980862467", "shape": "dot", "size": 10, "title": "552785577980862467\u003cbr\u003e@AlArabiya_Eng Let me make a\u003cbr\u003ewild guess, it was #muslims\u003cbr\u003ewho did it!!!!\u003cbr\u003eWed Jan 07 11:15:26 +0000 2015"}, {"group": 1624, "id": 3, "label": "552787301253009412", "shape": "dot", "size": 10, "title": "552787301253009412\u003cbr\u003e@AlArabiya_Eng @SamMaloneUK it\u0027ll be your\u003cbr\u003elot again Malone you fucking\u003cbr\u003eIslamist supporting scum.\u003cbr\u003eWed Jan 07 11:22:17 +0000 2015"}, {"group": 1624, "id": 4, "label": "552788909277843456", "shape": "dot", "size": 10, "title": "552788909277843456\u003cbr\u003e@brianlongstaff @AlArabiya_Eng My lot? Lol.\u003cbr\u003eFuck off troll.\u003cbr\u003eWed Jan 07 11:28:40 +0000 2015"}, {"group": 1624, "id": 5, "label": "552789341714784256", "shape": "dot", "size": 10, "title": "552789341714784256\u003cbr\u003e@SamMaloneUK @AlArabiya_Eng unless its the\u003cbr\u003eEDL that carried out this\u003cbr\u003eattack?\u003cbr\u003eWed Jan 07 11:30:24 +0000 2015"}, {"group": 1624, "id": 6, "label": "552790298313912321", "shape": "dot", "size": 10, "title": "552790298313912321\u003cbr\u003e@brianlongstaff @AlArabiya_Eng Fuck off troll.\u003cbr\u003eIf you didnt think it\u003cbr\u003ehad anything to do with\u003cbr\u003emuslims you wouldnt give two\u003cbr\u003eshits.\u003cbr\u003eWed Jan 07 11:34:12 +0000 2015"}, {"group": 1624, "id": 7, "label": "552790928067678208", "shape": "dot", "size": 10, "title": "552790928067678208\u003cbr\u003e@SamMaloneUK @AlArabiya_Eng they\u0027ll not be\u003cbr\u003e\u0027real\u0027 Muslims. Nothing to do\u003cbr\u003ewith Islam. Nothing to see\u003cbr\u003ehere. Typical apologist bullshit.\u003cbr\u003eWed Jan 07 11:36:42 +0000 2015"}, {"group": 1624, "id": 8, "label": "552791579497627648", "shape": "dot", "size": 10, "title": "552791579497627648\u003cbr\u003e@brianlongstaff @AlArabiya_Eng Like I said\u003cbr\u003e- if you didnt think\u003cbr\u003emuslims were involved u wouldnt\u003cbr\u003ecare. Fuck off\u003cbr\u003eWed Jan 07 11:39:17 +0000 2015"}, {"group": 1624, "id": 13, "label": "552808648829710336", "shape": "dot", "size": 10, "title": "552808648829710336\u003cbr\u003e@brianlongstaff @SamMaloneUK @AlArabiya_Eng Real Muslims?\u003cbr\u003eDo u mean like, Muslims\u003cbr\u003eand Muslims-Lite? Lmao. Have both\u003cbr\u003eof them fight each other\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:47:07 +0000 2015"}, {"group": 1624, "id": 9, "label": "552791870200619008", "shape": "dot", "size": 10, "title": "552791870200619008\u003cbr\u003e@SamMaloneUK @AlArabiya_Eng scum. Scum. \u003cbr\u003eScum.\u003cbr\u003eWed Jan 07 11:40:26 +0000 2015"}, {"group": 1624, "id": 10, "label": "552793299803992064", "shape": "dot", "size": 10, "title": "552793299803992064\u003cbr\u003e@brianlongstaff @AlArabiya_Eng #Meltdown? Fuck off\u003cbr\u003egrief tourist.\u003cbr\u003eWed Jan 07 11:46:07 +0000 2015"}, {"group": 1624, "id": 11, "label": "552793719628648448", "shape": "dot", "size": 10, "title": "552793719628648448\u003cbr\u003e@SamMaloneUK @AlArabiya_Eng shouldn\u0027t you be\u003cbr\u003eshagging someone\u0027s mum?\u003cbr\u003eWed Jan 07 11:47:47 +0000 2015"}, {"group": 1624, "id": 12, "label": "552795549939036161", "shape": "dot", "size": 10, "title": "552795549939036161\u003cbr\u003e@brianlongstaff Too busy with yours\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:55:04 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 13, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

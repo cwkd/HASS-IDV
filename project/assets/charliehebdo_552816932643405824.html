@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1735, "id": 0, "label": "552816932643405824", "shape": "dot", "size": 10, "title": "552816932643405824\u003cbr\u003eTop French cartoonists Charb, Cabu,\u003cbr\u003eWolinski, Tignous confirmed among dead\u003cbr\u003ein #Paris #CharlieHebdo attack. Editor\u003cbr\u003eis critically wounded.\u003cbr\u003eWed Jan 07 13:20:02 +0000 2015"}, {"group": 1735, "id": 1, "label": "552817493170204672", "shape": "dot", "size": 10, "title": "552817493170204672\u003cbr\u003e@bouckap @Quickieleaks where is nelson\u003cbr\u003efrom the simpsons when u\u003cbr\u003eneed him!\u003cbr\u003eWed Jan 07 13:22:15 +0000 2015"}, {"group": 1735, "id": 2, "label": "552817741288443905", "shape": "dot", "size": 10, "title": "552817741288443905\u003cbr\u003e@bouckap this is sad day\u003cbr\u003ein a sadder world, may\u003cbr\u003ethey rest in peace.\u003cbr\u003eWed Jan 07 13:23:15 +0000 2015"}, {"group": 1735, "id": 3, "label": "552819314332811266", "shape": "dot", "size": 10, "title": "552819314332811266\u003cbr\u003e@bouckap @MagsNews Every Magazine \u0026amp;\u003cbr\u003eNewspaper should reprint the article\u003cbr\u003ethat these vicious beast\u0027s have\u003cbr\u003etaken exception to. Don\u0027t be\u003cbr\u003ecowed\u003cbr\u003eWed Jan 07 13:29:30 +0000 2015"}, {"group": 1735, "id": 4, "label": "552823532716298240", "shape": "dot", "size": 10, "title": "552823532716298240\u003cbr\u003eUnbelievably heartbreaking RT @bouckap Top\u003cbr\u003eFrench cartoonists Charb, Cabu, Wolinski,\u003cbr\u003eTignous confirmed dead in #Paris\u003cbr\u003e#CharlieHebdo attack.\u003cbr\u003eWed Jan 07 13:46:15 +0000 2015"}, {"group": 1735, "id": 5, "label": "552852220924788736", "shape": "dot", "size": 10, "title": "552852220924788736\u003cbr\u003e@bouckap @Quickieleaks Tragic incident.. How\u003cbr\u003esuch attack can happen in\u003cbr\u003ethe most civilised part of\u003cbr\u003ethe world.. Shocked.\u003cbr\u003eWed Jan 07 15:40:15 +0000 2015"}, {"group": 1735, "id": 6, "label": "552885622520958976", "shape": "dot", "size": 10, "title": "552885622520958976\u003cbr\u003e@bouckap @porliniers mucho Liniers http://t.co/IANt1t9zkJ\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:52:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

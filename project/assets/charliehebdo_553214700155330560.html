@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1157, "id": 0, "label": "553214700155330560", "shape": "dot", "size": 10, "title": "553214700155330560\u003cbr\u003eWe have reached peak stupid\u003cbr\u003ehttp://t.co/8XQoZ05pgZ http://t.co/pP4b9Mbaoi\u003cbr\u003eThu Jan 08 15:40:37 +0000 2015"}, {"group": 1157, "id": 1, "label": "553215019664814080", "shape": "dot", "size": 10, "title": "553215019664814080\u003cbr\u003e@AdamWagner1 I fear we\u0027ve yet\u003cbr\u003eto see the high water\u003cbr\u003emark.\u003cbr\u003eThu Jan 08 15:41:53 +0000 2015"}, {"group": 1157, "id": 2, "label": "553215249223258113", "shape": "dot", "size": 10, "title": "553215249223258113\u003cbr\u003e@AdamWagner1 for the sake of\u003cbr\u003emy blood pressure, I am\u003cbr\u003eforced to ask: is this\u003cbr\u003ea parody?\u003cbr\u003eThu Jan 08 15:42:48 +0000 2015"}, {"group": 1157, "id": 4, "label": "553216103577829376", "shape": "dot", "size": 10, "title": "553216103577829376\u003cbr\u003e@AdamWagner1 Actually, it makes sense\u003cbr\u003eif HRA is epitome of\u003cbr\u003eliberalism and it is believed\u003cbr\u003ethat liberal toleration allows radicals\u003cbr\u003eto flourish\u003cbr\u003eThu Jan 08 15:46:12 +0000 2015"}, {"group": 1157, "id": 5, "label": "553216611201855488", "shape": "dot", "size": 10, "title": "553216611201855488\u003cbr\u003e@AdamWagner1 \u0027regardless of any penalty\u0027\u003cbr\u003e- I thought we were\u003cbr\u003emeant to be a decent,\u003cbr\u003ehumane country!\u003cbr\u003eThu Jan 08 15:48:13 +0000 2015"}, {"group": 1157, "id": 6, "label": "553217207971631104", "shape": "dot", "size": 10, "title": "553217207971631104\u003cbr\u003e@AdamWagner1 the old Tory line\u003cbr\u003eof \"there must be\". They\u003cbr\u003elove advocating policy based on\u003cbr\u003efeelings, not evidence don\u0027t they.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:50:35 +0000 2015"}, {"group": 1157, "id": 7, "label": "553217276133261313", "shape": "dot", "size": 10, "title": "553217276133261313\u003cbr\u003e@AdamWagner1 \"regardless of any penalty\"\u003cbr\u003ejeeeeezzz....\u003cbr\u003eThu Jan 08 15:50:51 +0000 2015"}, {"group": 1157, "id": 8, "label": "553218234431049728", "shape": "dot", "size": 10, "title": "553218234431049728\u003cbr\u003e@AdamWagner1 @DawnHFoster Think we hit\u003cbr\u003epeak stupid in 2010.\u003cbr\u003eThu Jan 08 15:54:40 +0000 2015"}, {"group": 1157, "id": 9, "label": "553220989505781760", "shape": "dot", "size": 10, "title": "553220989505781760\u003cbr\u003e@AdamWagner1 @Downfader Yep.  Exactly\u003cbr\u003ewhat fundamentalists and jihadis need\u003cbr\u003eto take a full victory.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:05:36 +0000 2015"}, {"group": 1157, "id": 10, "label": "553221532525555716", "shape": "dot", "size": 10, "title": "553221532525555716\u003cbr\u003e@AdamWagner1 @BenParfitt The terrible attacks\u003cbr\u003ein [insert name of event]\u003cbr\u003eshow that we need to\u003cbr\u003e[insert thing I agree with/disagree\u003cbr\u003ewith]\u003cbr\u003eThu Jan 08 16:07:46 +0000 2015"}, {"group": 1157, "id": 11, "label": "553221566486818819", "shape": "dot", "size": 10, "title": "553221566486818819\u003cbr\u003e@AdamWagner1 Would support revoking his\u003cbr\u003ehuman rights after reading this.\u003cbr\u003e@taramclean\u003cbr\u003eThu Jan 08 16:07:54 +0000 2015"}, {"group": 1157, "id": 14, "label": "553223548459036672", "shape": "dot", "size": 10, "title": "553223548459036672\u003cbr\u003eI don\u0027t even... RT @AdamWagner1:\u003cbr\u003eWe have reached peak stupid\u003cbr\u003ehttp://t.co/Ns1JjdwQ4O http://t.co/ADQcgVMI2x\u003cbr\u003eThu Jan 08 16:15:47 +0000 2015"}, {"group": 1157, "id": 15, "label": "553224585467158528", "shape": "dot", "size": 10, "title": "553224585467158528\u003cbr\u003e@AdamWagner1 @Glinner \"anyone suspected of\".\u003cbr\u003ePeak stupid, indeed\u003cbr\u003eThu Jan 08 16:19:54 +0000 2015"}, {"group": 1157, "id": 17, "label": "553224788479860736", "shape": "dot", "size": 10, "title": "553224788479860736\u003cbr\u003e@AdamWagner1 @crazybladeuk Dors the bridge\u003cbr\u003ego through his empty head?\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:20:42 +0000 2015"}, {"group": 1157, "id": 18, "label": "553225566090842112", "shape": "dot", "size": 10, "title": "553225566090842112\u003cbr\u003e@AdamWagner1 @Glinner Dude, never say\u003cbr\u003ethings like that! People take\u003cbr\u003eit as a challenge!\u003cbr\u003eThu Jan 08 16:23:48 +0000 2015"}, {"group": 1157, "id": 19, "label": "553230171944550400", "shape": "dot", "size": 10, "title": "553230171944550400\u003cbr\u003e@AdamWagner1 @mcpeake_liam Why wouldn\u0027t the\u003cbr\u003e#corruptestablishment let one of their\u003cbr\u003ecreations go ffs? lol\u003cbr\u003eThu Jan 08 16:42:06 +0000 2015"}, {"group": 1157, "id": 3, "label": "553215661955350530", "shape": "dot", "size": 10, "title": "553215661955350530\u003cbr\u003e@seanjones11kbw @AdamWagner1 Hahahaha...I marvel... I\u003cbr\u003ereally do... beyond stupid! Good\u003cbr\u003eafternoon, by the way! Has\u003cbr\u003eto go on t\u0027blog!\u003cbr\u003eThu Jan 08 15:44:26 +0000 2015"}, {"group": 1157, "id": 12, "label": "553222085942992898", "shape": "dot", "size": 10, "title": "553222085942992898\u003cbr\u003e@lldzne @AdamWagner1 quite the opposite\u003cbr\u003ea truly equitable and tolerant\u003cbr\u003esociety is what destroys radicalism.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:09:58 +0000 2015"}, {"group": 1157, "id": 13, "label": "553223470340112384", "shape": "dot", "size": 10, "title": "553223470340112384\u003cbr\u003e@verlaine101 @lldzne @AdamWagner1 \"and here\u003cbr\u003eis the paper\" sound familiar?\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:15:28 +0000 2015"}, {"group": 1157, "id": 20, "label": "553269233065684992", "shape": "dot", "size": 10, "title": "553269233065684992\u003cbr\u003e@verlaine101 @AdamWagner1 that is an\u003cbr\u003eunproven assumption that flies in\u003cbr\u003ethe face of history and\u003cbr\u003ehuman nature.\u003cbr\u003eThu Jan 08 19:17:19 +0000 2015"}, {"group": 1157, "id": 16, "label": "553224593818013698", "shape": "dot", "size": 10, "title": "553224593818013698\u003cbr\u003e@Santa401 @lldzne @AdamWagner1 that was\u003cbr\u003ewhen authoritarians who  scapegoated\u003cbr\u003eethnic groups during an economic\u003cbr\u003edepression were in power?.\u003cbr\u003eThu Jan 08 16:19:56 +0000 2015"}, {"group": 1157, "id": 30, "label": "553362061259190273", "shape": "dot", "size": 10, "title": "553362061259190273\u003cbr\u003e@verlaine101 @lldzne @AdamWagner1 you can\u0027t\u003cbr\u003esee the similarity between Nazism\u003cbr\u003e\u0026amp; Islam. i.e fear of\u003cbr\u003espeaking out against those in\u003cbr\u003epower?\u003cbr\u003eFri Jan 09 01:26:11 +0000 2015"}, {"group": 1157, "id": 21, "label": "553276691809042432", "shape": "dot", "size": 10, "title": "553276691809042432\u003cbr\u003e@lldzne @AdamWagner1 really can you\u003cbr\u003epoint any examples of \u003cbr\u003etolerant and equitable countries riven\u003cbr\u003eby terrorism and radicalism?\u003cbr\u003eThu Jan 08 19:46:57 +0000 2015"}, {"group": 1157, "id": 22, "label": "553277642825560067", "shape": "dot", "size": 10, "title": "553277642825560067\u003cbr\u003e@verlaine101 @AdamWagner1 point me to\u003cbr\u003ea tolerant and equitable country.\u003cbr\u003eNone exist that I have\u003cbr\u003eseen.\u003cbr\u003eThu Jan 08 19:50:44 +0000 2015"}, {"group": 1157, "id": 23, "label": "553279162111516673", "shape": "dot", "size": 10, "title": "553279162111516673\u003cbr\u003e@lldzne @AdamWagner1 I suppose the\u003cbr\u003ebest we have are the\u003cbr\u003eNordic countries that have been\u003cbr\u003ein recent history the most\u003cbr\u003epeaceful.\u003cbr\u003eThu Jan 08 19:56:46 +0000 2015"}, {"group": 1157, "id": 24, "label": "553279420715511808", "shape": "dot", "size": 10, "title": "553279420715511808\u003cbr\u003e@lldzne @AdamWagner1 we have many\u003cbr\u003eexample authoritarianism, inequality and intolerance\u003cbr\u003eleading an escalation in strife.\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:57:47 +0000 2015"}, {"group": 1157, "id": 25, "label": "553279910559907840", "shape": "dot", "size": 10, "title": "553279910559907840\u003cbr\u003e@lldzne @AdamWagner1 I\u0027m not claiming\u003cbr\u003ethat anywhere is perfect but\u003cbr\u003eon the sliding scale liberal\u003cbr\u003eand equal societies are more\u003cbr\u003epeaceful.\u003cbr\u003eThu Jan 08 19:59:44 +0000 2015"}, {"group": 1157, "id": 27, "label": "553284272610893825", "shape": "dot", "size": 10, "title": "553284272610893825\u003cbr\u003e@verlaine101 @AdamWagner1 They have their\u003cbr\u003eown intolerances. One could say\u003cbr\u003eall societies have them, we\u003cbr\u003ejust like ours and dislike\u003cbr\u003etheirs.\u003cbr\u003eThu Jan 08 20:17:04 +0000 2015"}, {"group": 1157, "id": 26, "label": "553284018025013248", "shape": "dot", "size": 10, "title": "553284018025013248\u003cbr\u003e@verlaine101 @AdamWagner1 Yes, Korea, Vietnam,\u003cbr\u003eIraq x2, Afghanistan Ferguson, LA,\u003cbr\u003eFalklands, NI, London Riots yes,\u003cbr\u003equite peaceful democracy\u003cbr\u003eThu Jan 08 20:16:04 +0000 2015"}, {"group": 1157, "id": 28, "label": "553284412180561920", "shape": "dot", "size": 10, "title": "553284412180561920\u003cbr\u003e@lldzne @AdamWagner1 Speak for yourself.\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:17:38 +0000 2015"}, {"group": 1157, "id": 29, "label": "553284904067559424", "shape": "dot", "size": 10, "title": "553284904067559424\u003cbr\u003e@verlaine101 @AdamWagner1 So you like\u003cbr\u003ethe Islamists prejudices?\u003cbr\u003eThu Jan 08 20:19:35 +0000 2015"}, {"group": 1157, "id": 31, "label": "553455049926799362", "shape": "dot", "size": 10, "title": "553455049926799362\u003cbr\u003e@Santa401 @lldzne @AdamWagner1 aren\u0027t nearly\u003cbr\u003eall religions authoritarian? It\u0027s their\u003cbr\u003ething \"do what you\u0027re told\u003cbr\u003eor you go to hell\"\u003cbr\u003e\u003cbr\u003eFri Jan 09 07:35:41 +0000 2015"}, {"group": 1157, "id": 32, "label": "553462510217863169", "shape": "dot", "size": 10, "title": "553462510217863169\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 The UK\u003cbr\u003ehas hate speech laws and\u003cbr\u003eit has a law against\u003cbr\u003etreason which includes plotting.\u003cbr\u003eFri Jan 09 08:05:19 +0000 2015"}, {"group": 1157, "id": 33, "label": "553462604036063232", "shape": "dot", "size": 10, "title": "553462604036063232\u003cbr\u003e@verlaine101 @Santa401 @AdamWagner1 All communities\u003cbr\u003etry to tyrannize thought.\u003cbr\u003eFri Jan 09 08:05:42 +0000 2015"}, {"group": 1157, "id": 35, "label": "553470126356701185", "shape": "dot", "size": 10, "title": "553470126356701185\u003cbr\u003e@verlaine101 @lldzne @AdamWagner1 IS have\u003cbr\u003eanother version \"be like us\u003cbr\u003eor we will kill you\u003cbr\u003e\u0026amp; we just might kill\u003cbr\u003eyou and your family anyway\"\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:35:35 +0000 2015"}, {"group": 1157, "id": 36, "label": "553470707020365825", "shape": "dot", "size": 10, "title": "553470707020365825\u003cbr\u003e@verlaine101 @lldzne @AdamWagner1 if that\u0027s\u003cbr\u003enot fascism, then I don\u0027t\u003cbr\u003eknow what is.\u003cbr\u003eFri Jan 09 08:37:54 +0000 2015"}, {"group": 1157, "id": 34, "label": "553467366093619201", "shape": "dot", "size": 10, "title": "553467366093619201\u003cbr\u003e@lldzne @Santa401 @AdamWagner1 not sure\u003cbr\u003ewhat that say about the\u003cbr\u003eridiculous notion of diminishing human\u003cbr\u003eright to fight fascism?\u003cbr\u003eFri Jan 09 08:24:37 +0000 2015"}, {"group": 1157, "id": 39, "label": "553473630899023872", "shape": "dot", "size": 10, "title": "553473630899023872\u003cbr\u003e@verlaine101 @Santa401 @AdamWagner1 You prefer\u003cbr\u003eyour fascism to theirs, is\u003cbr\u003ethat correct?\u003cbr\u003eFri Jan 09 08:49:31 +0000 2015"}, {"group": 1157, "id": 37, "label": "553473312362602497", "shape": "dot", "size": 10, "title": "553473312362602497\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 Is IS\u003cbr\u003ein UK or EU or\u003cbr\u003eUS? Are there people fighting\u003cbr\u003eand dying to stop IS?\u003cbr\u003eIs IS going to sweep\u003cbr\u003eEurope?\u003cbr\u003eFri Jan 09 08:48:15 +0000 2015"}, {"group": 1157, "id": 38, "label": "553473497721495552", "shape": "dot", "size": 10, "title": "553473497721495552\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 So you\u003cbr\u003eaccept that all communities attempt\u003cbr\u003eto tyrannize thought and you\u003cbr\u003elike yours more than theirs?\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:48:59 +0000 2015"}, {"group": 1157, "id": 40, "label": "553474948778708992", "shape": "dot", "size": 10, "title": "553474948778708992\u003cbr\u003e@lldzne @verlaine101 @AdamWagner1 do you\u003cbr\u003ebelieve in fairies, archangels and\u003cbr\u003eghosts? And violently obey what\u003cbr\u003ethey are reported to have\u003cbr\u003esaid\u003cbr\u003eFri Jan 09 08:54:45 +0000 2015"}, {"group": 1157, "id": 41, "label": "553475175367573504", "shape": "dot", "size": 10, "title": "553475175367573504\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 Socrates used\u003cbr\u003eto follow his daimon and\u003cbr\u003eaccepted views of oracles, was\u003cbr\u003ehe not wise?\u003cbr\u003eFri Jan 09 08:55:39 +0000 2015"}, {"group": 1157, "id": 42, "label": "553476137700294656", "shape": "dot", "size": 10, "title": "553476137700294656\u003cbr\u003e@lldzne @verlaine101 @AdamWagner1 yes but\u003cbr\u003edo you?\u003cbr\u003eFri Jan 09 08:59:28 +0000 2015"}, {"group": 1157, "id": 43, "label": "553476519226793984", "shape": "dot", "size": 10, "title": "553476519226793984\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 I would\u003cbr\u003elike to aspire to be\u003cbr\u003eas wise as Socrates. Wouldn\u0027t\u003cbr\u003eyou?\u003cbr\u003eFri Jan 09 09:00:59 +0000 2015"}, {"group": 1157, "id": 47, "label": "553479117715542016", "shape": "dot", "size": 10, "title": "553479117715542016\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 yes, I\u003cbr\u003efollow my conscience and God,\u003cbr\u003ethe creator. Who else created\u003cbr\u003ethe universe and life?\u003cbr\u003eFri Jan 09 09:11:19 +0000 2015"}, {"group": 1157, "id": 44, "label": "553478523084869632", "shape": "dot", "size": 10, "title": "553478523084869632\u003cbr\u003e@lldzne @verlaine101 @AdamWagner1 I don\u0027t\u003cbr\u003erecall reports of Socrates or\u003cbr\u003eany of his subsequent followers\u003cbr\u003ebeheading people for not agreeing\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:08:57 +0000 2015"}, {"group": 1157, "id": 45, "label": "553478740232396800", "shape": "dot", "size": 10, "title": "553478740232396800\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 Many of\u003cbr\u003ehis pupils became tyrants, Critias\u003cbr\u003efor example executed many Athenians.\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:09:49 +0000 2015"}, {"group": 1157, "id": 46, "label": "553478914442792960", "shape": "dot", "size": 10, "title": "553478914442792960\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 They didn\u0027t\u003cbr\u003ewant to be ruled by\u003cbr\u003ea tyrant, and he executes\u003cbr\u003ethem.\u003cbr\u003eFri Jan 09 09:10:31 +0000 2015"}, {"group": 1157, "id": 48, "label": "553480194796040192", "shape": "dot", "size": 10, "title": "553480194796040192\u003cbr\u003e@lldzne @verlaine101 @AdamWagner1 Mohammed, Jesus,\u003cbr\u003eRah, which man made ghost\u003cbr\u003ein particular? Haha\u003cbr\u003eFri Jan 09 09:15:36 +0000 2015"}, {"group": 1157, "id": 49, "label": "553480827800412161", "shape": "dot", "size": 10, "title": "553480827800412161\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 I take\u003cbr\u003eit you believe in nothing,\u003cbr\u003eyou have nothing to explain\u003cbr\u003ethe universe or its origin?\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:18:07 +0000 2015"}, {"group": 1157, "id": 50, "label": "553488337257115648", "shape": "dot", "size": 10, "title": "553488337257115648\u003cbr\u003e@Santa401 @verlaine101 @AdamWagner1 all Americans\u003cbr\u003ebelieve in the laws nature\u003cbr\u003eand nature\u0027s god. It is\u003cbr\u003ein our Declaration of Independence.\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:47:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 4, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 12, "to": 20, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 16, "to": 30, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 23, "to": 27, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 31, "to": 35, "weight": 1}, {"from": 31, "to": 36, "weight": 1}, {"from": 32, "to": 34, "weight": 1}, {"from": 34, "to": 39, "weight": 1}, {"from": 35, "to": 37, "weight": 1}, {"from": 36, "to": 38, "weight": 1}, {"from": 39, "to": 40, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 42, "to": 43, "weight": 1}, {"from": 42, "to": 47, "weight": 1}, {"from": 43, "to": 44, "weight": 1}, {"from": 44, "to": 45, "weight": 1}, {"from": 44, "to": 46, "weight": 1}, {"from": 47, "to": 48, "weight": 1}, {"from": 48, "to": 49, "weight": 1}, {"from": 48, "to": 50, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1258, "id": 0, "label": "553480333954678784", "shape": "dot", "size": 10, "title": "553480333954678784\u003cbr\u003eIn case you are confused\u2026#CharlieHebdo\u003cbr\u003e@lucasofri \n(via @disinformatico) http://t.co/Dme3G2FLkJ\u003cbr\u003eFri Jan 09 09:16:09 +0000 2015"}, {"group": 1258, "id": 1, "label": "553486298456264704", "shape": "dot", "size": 10, "title": "553486298456264704\u003cbr\u003e@robi @lucasofri per essere \"vera\"\u003cbr\u003ela didascalia dovrebbe dire \"this\u003cbr\u003eis a french muslim terrorist\"\u003cbr\u003e- \"this is a french\u003cbr\u003emuslim police agent\"\u003cbr\u003eFri Jan 09 09:39:51 +0000 2015"}, {"group": 1258, "id": 3, "label": "553487036523749376", "shape": "dot", "size": 10, "title": "553487036523749376\u003cbr\u003e@robi @lucasofri @disinformatico \"This is\u003cbr\u003ea muslim terrorist\" - \"This\u003cbr\u003eis a muslim\".\n\nBoth are muslims,\u003cbr\u003eno?\u003cbr\u003eFri Jan 09 09:42:47 +0000 2015"}, {"group": 1258, "id": 7, "label": "553492752793890816", "shape": "dot", "size": 10, "title": "553492752793890816\u003cbr\u003e@robi @lucasofri @disinformatico ma sofri\u003cbr\u003enon ha appena scritto che\u003cbr\u003enon si pu\u00f2 negare il\u003cbr\u003elegame fra religione e sue\u003cbr\u003econseguenze?\u003cbr\u003eFri Jan 09 10:05:30 +0000 2015"}, {"group": 1258, "id": 9, "label": "553494567740514305", "shape": "dot", "size": 10, "title": "553494567740514305\u003cbr\u003e\u201c@robi: In case you are\u003cbr\u003econfused\u2026#CharlieHebdo\n(via @disinformatico) http://t.co/dWmIIfX3p8\u201d\u003cbr\u003eFri Jan 09 10:12:43 +0000 2015"}, {"group": 1258, "id": 10, "label": "553494873740173312", "shape": "dot", "size": 10, "title": "553494873740173312\u003cbr\u003e@robi @lucasofri @disinformatico, omettendo di\u003cbr\u003edire che il terroriista \u00e8\u003cbr\u003emusulmano, motivazioni e link cn\u003cbr\u003ealQaeda , i veri confusi\u003cbr\u003esiete voi\u003cbr\u003eFri Jan 09 10:13:55 +0000 2015"}, {"group": 1258, "id": 11, "label": "553495712336719872", "shape": "dot", "size": 10, "title": "553495712336719872\u003cbr\u003e@robi @goetherdam @lucasofri @disinformatico C\u0027E\u003cbr\u003eUN PICCOLO INSIGNIFICANTE PARTICOLARE.IL TERRORISTA\u003cbr\u003eAMMAZZA IN NOME DELLO STESSO\u003cbr\u003eDIO.\u003cbr\u003eFri Jan 09 10:17:15 +0000 2015"}, {"group": 1258, "id": 15, "label": "553507757438291968", "shape": "dot", "size": 10, "title": "553507757438291968\u003cbr\u003e@robi Just praying for the\u003cbr\u003epeople\u0027s safety in France!! world\u003cbr\u003eglobal religion news http://t.co/iuCxBFOaAJ\u003cbr\u003eFri Jan 09 11:05:07 +0000 2015"}, {"group": 1258, "id": 17, "label": "553556598397083648", "shape": "dot", "size": 10, "title": "553556598397083648\u003cbr\u003e@robi @lucasofri @disinformatico #Catchthoseterrorists\u003cbr\u003eFri Jan 09 14:19:12 +0000 2015"}, {"group": 1258, "id": 19, "label": "553573151402381312", "shape": "dot", "size": 10, "title": "553573151402381312\u003cbr\u003e\u201c@robi: In case you are\u003cbr\u003econfused\u2026#CharlieHebdo @lucasofri \n(via @disinformatico) http://t.co/cKyXK2vfG3\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:24:58 +0000 2015"}, {"group": 1258, "id": 2, "label": "553486731094536192", "shape": "dot", "size": 10, "title": "553486731094536192\u003cbr\u003e@fquintay Media have repeatedly said\u003cbr\u003eit\u0027s not confirmed he was\u003cbr\u003ea muslim.\u003cbr\u003eFri Jan 09 09:41:34 +0000 2015"}, {"group": 1258, "id": 4, "label": "553487729422778368", "shape": "dot", "size": 10, "title": "553487729422778368\u003cbr\u003e@fquintay Agree. O qualcosa tipo\u003cbr\u003e\u201cThis is a terrorist /\u003cbr\u003eThis is a police agent\u003cbr\u003e/ Both are muslims\u201d\u003cbr\u003eFri Jan 09 09:45:32 +0000 2015"}, {"group": 1258, "id": 5, "label": "553490412221251584", "shape": "dot", "size": 10, "title": "553490412221251584\u003cbr\u003e@fquintay @stiandeh In case you\u003cbr\u003eare confused\u2026 (Take 2) #CharlieHebdo\u003cbr\u003ehttp://t.co/tlOFietB5a\u003cbr\u003eFri Jan 09 09:56:12 +0000 2015"}, {"group": 1258, "id": 18, "label": "553559499534254080", "shape": "dot", "size": 10, "title": "553559499534254080\u003cbr\u003e@rixstepnews http://t.co/7epfrEUuEi\u003cbr\u003eFri Jan 09 14:30:43 +0000 2015"}, {"group": 1258, "id": 16, "label": "553507981678374912", "shape": "dot", "size": 10, "title": "553507981678374912\u003cbr\u003e@stiandeh @robi @lucasofri @disinformatico and\u003cbr\u003eboth of this are chatolics\u003cbr\u003ehttp://t.co/5HVWTC8WPG\u003cbr\u003eFri Jan 09 11:06:01 +0000 2015"}, {"group": 1258, "id": 6, "label": "553491211953393664", "shape": "dot", "size": 10, "title": "553491211953393664\u003cbr\u003e@robi @fquintay much better and\u003cbr\u003efactually correct. However his reasons\u003cbr\u003ewere to avenge the prophet.\u003cbr\u003eReason for terrorism is not\u003cbr\u003eirrelevant..\u003cbr\u003eFri Jan 09 09:59:22 +0000 2015"}, {"group": 1258, "id": 8, "label": "553493930906763264", "shape": "dot", "size": 10, "title": "553493930906763264\u003cbr\u003e@pietrobazzani Musulmani poliziotti \u0026gt; musul.\u003cbr\u003eterroristi. Cosi\u2019 come prete ok\u003cbr\u003e\u0026gt; prete pedofilo. Homo homini\u003cbr\u003elupus non correla con religione.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:10:11 +0000 2015"}, {"group": 1258, "id": 12, "label": "553498908425719809", "shape": "dot", "size": 10, "title": "553498908425719809\u003cbr\u003e@robi \"jihad\" le dice niente?\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:29:57 +0000 2015"}, {"group": 1258, "id": 13, "label": "553500214074806272", "shape": "dot", "size": 10, "title": "553500214074806272\u003cbr\u003e@pietrobazzani Mi ripeto: non credo\u003cbr\u003eche esista correlazione statistica fra\u003cbr\u003egli eventi di homo homini\u003cbr\u003elupus e la variabile religione.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:35:09 +0000 2015"}, {"group": 1258, "id": 14, "label": "553500499581079552", "shape": "dot", "size": 10, "title": "553500499581079552\u003cbr\u003e@robi gridare \"allahu akbar\" fuori\u003cbr\u003eda una redazione di un\u003cbr\u003egiornale che fa vignette in\u003cbr\u003ecui raffigura Maometto non c\u0027entra\u003cbr\u003enulla? Mah\u003cbr\u003eFri Jan 09 10:36:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 2, "to": 18, "weight": 1}, {"from": 3, "to": 16, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

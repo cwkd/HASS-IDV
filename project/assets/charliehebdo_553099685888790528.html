@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1789, "id": 0, "label": "553099685888790528", "shape": "dot", "size": 10, "title": "553099685888790528\u003cbr\u003eBanksy account joins cartoonists support\u003cbr\u003efor #CharlieHebdo #JeSuisCharlie  http://t.co/nFD1N4Yqu0\u003cbr\u003ehttp://t.co/R2bEWKupRt\u003cbr\u003eThu Jan 08 08:03:35 +0000 2015"}, {"group": 1789, "id": 1, "label": "553100879268958209", "shape": "dot", "size": 10, "title": "553100879268958209\u003cbr\u003e@ThePoke sadly not his work\u003cbr\u003ethough\u003cbr\u003eThu Jan 08 08:08:20 +0000 2015"}, {"group": 1789, "id": 2, "label": "553101773041565697", "shape": "dot", "size": 10, "title": "553101773041565697\u003cbr\u003e@ThePoke \u201c@TheAzzo: NB- this pencil\u003cbr\u003esketch being RTd from Banksy\u0027s\u003cbr\u003eaccount is actually by @lucilleclerc\u003cbr\u003ehttp://t.co/24fifrxHOF\u201d\u003cbr\u003eThu Jan 08 08:11:53 +0000 2015"}, {"group": 1789, "id": 3, "label": "553105251201712128", "shape": "dot", "size": 10, "title": "553105251201712128\u003cbr\u003e@ThePoke \"Continuons le combat de\u003cbr\u003ela libert\u00e9 d\u0027expression : JE\u003cbr\u003eSUIS CHARLIE\"\u003cbr\u003eThu Jan 08 08:25:42 +0000 2015"}, {"group": 1789, "id": 5, "label": "553108050752843776", "shape": "dot", "size": 10, "title": "553108050752843776\u003cbr\u003e@ThePoke its a Chegwin I\u003cbr\u003ethink you\u0027ll find.\u003cbr\u003eThu Jan 08 08:36:50 +0000 2015"}, {"group": 1789, "id": 6, "label": "553117123703087104", "shape": "dot", "size": 10, "title": "553117123703087104\u003cbr\u003e@ThePoke\u003cbr\u003eThu Jan 08 09:12:53 +0000 2015"}, {"group": 1789, "id": 7, "label": "553120172077486080", "shape": "dot", "size": 10, "title": "553120172077486080\u003cbr\u003e1. It\u0027s a fan account\u003cbr\u003e- Banksy\u0027s not on Twitter.\u003cbr\u003e2. It\u0027s by @LucilleClerc. @ThePoke\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:25:00 +0000 2015"}, {"group": 1789, "id": 8, "label": "553120310208512000", "shape": "dot", "size": 10, "title": "553120310208512000\u003cbr\u003e@nora_eats It\u0027s a fan account\u003cbr\u003e- Banksy isn\u0027t on Twitter.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:25:33 +0000 2015"}, {"group": 1789, "id": 4, "label": "553107231416545280", "shape": "dot", "size": 10, "title": "553107231416545280\u003cbr\u003e@ThePoke @ben_cameron @markofrespect thanks to\u003cbr\u003e@TheAzzo for provenance \ud83d\udc4d (@LucilleClerc)\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:33:34 +0000 2015"}, {"group": 1789, "id": 9, "label": "553121079020240897", "shape": "dot", "size": 10, "title": "553121079020240897\u003cbr\u003e@JohnDougherty8 absolutely, the tweet is\u003cbr\u003eabout crediting the original artist,\u003cbr\u003ewhich the banksy account failed\u003cbr\u003eto do. #creditwherecreditsdue\u003cbr\u003eThu Jan 08 09:28:36 +0000 2015"}, {"group": 1789, "id": 10, "label": "553121677807472642", "shape": "dot", "size": 10, "title": "553121677807472642\u003cbr\u003e@JohnDougherty8 I see that lots\u003cbr\u003eof artists incorporate their Twitter\u003cbr\u003ehandle into their work now\u003cbr\u003efor this very reason presumably?\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:30:59 +0000 2015"}, {"group": 1789, "id": 11, "label": "553122290779848704", "shape": "dot", "size": 10, "title": "553122290779848704\u003cbr\u003e@nora_eats I get that -\u003cbr\u003ehave spent too much time\u003cbr\u003ethis morning already correcting people\u003cbr\u003ewho are attributing it to\u003cbr\u003eBanksy...\u003cbr\u003eThu Jan 08 09:33:25 +0000 2015"}, {"group": 1789, "id": 14, "label": "553123223031017474", "shape": "dot", "size": 10, "title": "553123223031017474\u003cbr\u003e@nora_eats Presumably. It\u0027s a good\u003cbr\u003eidea. Likewise photographers. People don\u0027t\u003cbr\u003eget copyright.\u003cbr\u003eThu Jan 08 09:37:07 +0000 2015"}, {"group": 1789, "id": 12, "label": "553122981636227072", "shape": "dot", "size": 10, "title": "553122981636227072\u003cbr\u003e@nora_eats ...but by the same\u003cbr\u003etoken, calling it Banksy\u0027s account\u003cbr\u003ewhen it isn\u0027t is an\u003cbr\u003eequally grave misattribution...\u003cbr\u003eThu Jan 08 09:36:10 +0000 2015"}, {"group": 1789, "id": 13, "label": "553123043787431937", "shape": "dot", "size": 10, "title": "553123043787431937\u003cbr\u003e@nora_eats ... which is leading\u003cbr\u003eto Banksy\u0027s being falsely accused\u003cbr\u003eof plagiarism.\u003cbr\u003eThu Jan 08 09:36:24 +0000 2015"}, {"group": 1789, "id": 15, "label": "553123451557675008", "shape": "dot", "size": 10, "title": "553123451557675008\u003cbr\u003e@JohnDougherty8 yep, it\u0027s quite nuanced\u003cbr\u003eisn\u0027t it?! \"The Banksy account\"\u003cbr\u003eis what I\u0027ve seen written\u003cbr\u003eand suggests it isn\u0027t actually\u003cbr\u003ebanksy. \ud83d\udc4dta\u003cbr\u003eThu Jan 08 09:38:02 +0000 2015"}, {"group": 1789, "id": 16, "label": "553123597842382848", "shape": "dot", "size": 10, "title": "553123597842382848\u003cbr\u003e@JohnDougherty8 ripping off photos on\u003cbr\u003eTwitter is so widespread!\u003cbr\u003eThu Jan 08 09:38:36 +0000 2015"}, {"group": 1789, "id": 17, "label": "553123734832553985", "shape": "dot", "size": 10, "title": "553123734832553985\u003cbr\u003e@nora_eats Yup - though still\u003cbr\u003eopen to misinterpretation, I think.\u003cbr\u003eDamn this character limit!\u003cbr\u003eThu Jan 08 09:39:09 +0000 2015"}, {"group": 1789, "id": 18, "label": "553123796111343616", "shape": "dot", "size": 10, "title": "553123796111343616\u003cbr\u003e@JohnDougherty8 \ud83d\ude0a\u003cbr\u003eThu Jan 08 09:39:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 2, "to": 8, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 10, "to": 14, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

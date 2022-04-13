@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1098, "id": 0, "label": "553198107278987264", "shape": "dot", "size": 10, "title": "553198107278987264\u003cbr\u003eWe\u0027re not responsible of http://t.co/SBWJDNXpjH,\u003cbr\u003ethis is a fake, and\u003cbr\u003emaybe a scam. Avoid it\u003cbr\u003e! #OpCharlieHebdo #JeSuisCharlie #CharlieHebdo\u003cbr\u003eThu Jan 08 14:34:41 +0000 2015"}, {"group": 1098, "id": 1, "label": "553211889317347329", "shape": "dot", "size": 10, "title": "553211889317347329\u003cbr\u003e@OpCharlieHebdo Mais alors, qui et\u003cbr\u003epourquoi ?\u003cbr\u003eThu Jan 08 15:29:27 +0000 2015"}, {"group": 1098, "id": 2, "label": "553214848457539585", "shape": "dot", "size": 10, "title": "553214848457539585\u003cbr\u003e@OpCharlieHebdo @or3lie So you give\u003cbr\u003ethe url of a site\u003cbr\u003eto tell people not to\u003cbr\u003ego on it...\u003cbr\u003eThu Jan 08 15:41:12 +0000 2015"}, {"group": 1098, "id": 5, "label": "553221300651839489", "shape": "dot", "size": 10, "title": "553221300651839489\u003cbr\u003e@OpCharlieHebdo et si on a\u003cbr\u003ecliqu\u00e9 comme une brebis?\u003cbr\u003eThu Jan 08 16:06:51 +0000 2015"}, {"group": 1098, "id": 6, "label": "553231646313291777", "shape": "dot", "size": 10, "title": "553231646313291777\u003cbr\u003e@OpCharlieHebdo\u003cbr\u003eThu Jan 08 16:47:57 +0000 2015"}, {"group": 1098, "id": 7, "label": "553234915589128192", "shape": "dot", "size": 10, "title": "553234915589128192\u003cbr\u003e@OpCharlieHebdo concr\u00e8tement, quoi, et pourquoi\u003cbr\u003e?\u003cbr\u003eThu Jan 08 17:00:57 +0000 2015"}, {"group": 1098, "id": 8, "label": "553240398962110466", "shape": "dot", "size": 10, "title": "553240398962110466\u003cbr\u003e.@OpCharlieHebdo @BiellaColeman But are you\u003cbr\u003ethe author of the Pastebin\u003cbr\u003efull of mistakes?Orthography, meaning of\u003cbr\u003ewords? It\u0027s so badly written\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:22:44 +0000 2015"}, {"group": 1098, "id": 9, "label": "553245996155928579", "shape": "dot", "size": 10, "title": "553245996155928579\u003cbr\u003e@OpCharlieHebdo Maybe you can hack\u003cbr\u003eit?\u003cbr\u003eThu Jan 08 17:44:58 +0000 2015"}, {"group": 1098, "id": 10, "label": "553307613304455169", "shape": "dot", "size": 10, "title": "553307613304455169\u003cbr\u003e@OpCharlieHebdo @FredGOUTH What\u0027s that countdown\u003cbr\u003egoing to?\u003cbr\u003eThu Jan 08 21:49:49 +0000 2015"}, {"group": 1098, "id": 14, "label": "553342487168045057", "shape": "dot", "size": 10, "title": "553342487168045057\u003cbr\u003e@OpCharlieHebdo il se passe quoi\u003cbr\u003esi on a cliqu\u00e9 comme\u003cbr\u003eun bleu :/\u003cbr\u003eFri Jan 09 00:08:24 +0000 2015"}, {"group": 1098, "id": 15, "label": "553346951312588800", "shape": "dot", "size": 10, "title": "553346951312588800\u003cbr\u003e@OpCharlieHebdo @Marion_Vct regarde les coms\u003cbr\u003e\u003cbr\u003eFri Jan 09 00:26:08 +0000 2015"}, {"group": 1098, "id": 16, "label": "553351561678979073", "shape": "dot", "size": 10, "title": "553351561678979073\u003cbr\u003e@OpCharlieHebdo r\u00e9agissons! Ensemble nous sommes\u003cbr\u003eplus fort!Et si nous et\u003cbr\u003enos ordinateurs peuvent soutenir ceux\u003cbr\u003equi luttent il faut le\u003cbr\u003efaire!\u003cbr\u003eFri Jan 09 00:44:27 +0000 2015"}, {"group": 1098, "id": 18, "label": "553369171141332992", "shape": "dot", "size": 10, "title": "553369171141332992\u003cbr\u003e@OpCharlieHebdo cc @epenser\u003cbr\u003eFri Jan 09 01:54:26 +0000 2015"}, {"group": 1098, "id": 19, "label": "553375574715273216", "shape": "dot", "size": 10, "title": "553375574715273216\u003cbr\u003e@OpCharlieHebdo Piratez le non?\u003cbr\u003eFri Jan 09 02:19:52 +0000 2015"}, {"group": 1098, "id": 3, "label": "553215961747435520", "shape": "dot", "size": 10, "title": "553215961747435520\u003cbr\u003e@ZiggyButterfly @OpCharlieHebdo Ce sont des\u003cbr\u003ebots spam facebook avec ce\u003cbr\u003elien pour faire de l\u0027argent\u003cbr\u003egr\u00e2ce \u00e0 googleanalytic. Des cons\u003cbr\u003equoi\u003cbr\u003eThu Jan 08 15:45:38 +0000 2015"}, {"group": 1098, "id": 4, "label": "553218006726496257", "shape": "dot", "size": 10, "title": "553218006726496257\u003cbr\u003e@TheuMaux @OpCharlieHebdo Merci pour l\u0027explication.\u003cbr\u003eQuels minables...\u003cbr\u003eThu Jan 08 15:53:45 +0000 2015"}, {"group": 1098, "id": 11, "label": "553309435989602305", "shape": "dot", "size": 10, "title": "553309435989602305\u003cbr\u003e@TheuMaux @ZiggyButterfly @OpCharlieHebdo il y\u003cbr\u003ea aucune pub donc dur\u003cbr\u003ede ce faire de l\u003cbr\u003eargent non?\u003cbr\u003eThu Jan 08 21:57:04 +0000 2015"}, {"group": 1098, "id": 20, "label": "553655447971192833", "shape": "dot", "size": 10, "title": "553655447971192833\u003cbr\u003e@TheuMaux @ZiggyButterfly @OpCharlieHebdo on fait\u003cbr\u003epas d\u0027argent avec Analytics..\u003cbr\u003eFri Jan 09 20:51:59 +0000 2015"}, {"group": 1098, "id": 17, "label": "553359773530603522", "shape": "dot", "size": 10, "title": "553359773530603522\u003cbr\u003e@xemxav @OpCharlieHebdo je suis pas\u003cbr\u003ele seul au moin. c\u0027est\u003cbr\u003erassurant.\u003cbr\u003eFri Jan 09 01:17:05 +0000 2015"}, {"group": 1098, "id": 12, "label": "553310380832071682", "shape": "dot", "size": 10, "title": "553310380832071682\u003cbr\u003e@Mas_Colin  la magie de\u003cbr\u003egoogle analytics fait qu\u0027avec un\u003cbr\u003epeu dastuce pas besoin de\u003cbr\u003epub pour se faire de\u003cbr\u003elargent\u003cbr\u003eThu Jan 08 22:00:49 +0000 2015"}, {"group": 1098, "id": 13, "label": "553315180688715776", "shape": "dot", "size": 10, "title": "553315180688715776\u003cbr\u003e@TheuMaux a okai merci je\u003cbr\u003esavais pas\u003cbr\u003eThu Jan 08 22:19:53 +0000 2015"}, {"group": 1098, "id": 21, "label": "553656853931249664", "shape": "dot", "size": 10, "title": "553656853931249664\u003cbr\u003e@rd69ig @ZiggyButterfly @OpCharlieHebdo  oe\u003cbr\u003eta raison, pour ca quil\u003cbr\u003eexiste des millier dentreprise qui\u003cbr\u003efont que ca. x)\u003cbr\u003eFri Jan 09 20:57:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 3, "to": 20, "weight": 1}, {"from": 5, "to": 17, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

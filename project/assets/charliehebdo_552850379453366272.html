@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 661, "id": 0, "label": "552850379453366272", "shape": "dot", "size": 10, "title": "552850379453366272\u003cbr\u003eIf your religion is worth\u003cbr\u003ekilling for, please start with\u003cbr\u003eyourself. #CharlieHebdo #ParisShooting #ParisAttack\u003cbr\u003eWed Jan 07 15:32:56 +0000 2015"}, {"group": 661, "id": 1, "label": "552854883313790976", "shape": "dot", "size": 10, "title": "552854883313790976\u003cbr\u003e@TwitsOfGod @DeepakKodela Got a problem\u003cbr\u003eif we start with our\u003cbr\u003ereligions God\ud83d\ude01\ud83d\ude01\ud83d\ude02\u003cbr\u003eWed Jan 07 15:50:50 +0000 2015"}, {"group": 661, "id": 2, "label": "552857057997516801", "shape": "dot", "size": 10, "title": "552857057997516801\u003cbr\u003e@TwitsOfGod No GoD No religion\u003cbr\u003eNo ass holes...everything would have\u003cbr\u003ebeen so much better without\u003cbr\u003eyou\u003cbr\u003eWed Jan 07 15:59:28 +0000 2015"}, {"group": 661, "id": 3, "label": "552858031675826176", "shape": "dot", "size": 10, "title": "552858031675826176\u003cbr\u003e@TwitsOfGod #ParisAttack is the answer\u003cbr\u003eto the people who were\u003cbr\u003easking why Aamir Khan and\u003cbr\u003eRK Hirani did not make\u003cbr\u003efun of other religions in\u003cbr\u003e#PK\u003cbr\u003eWed Jan 07 16:03:21 +0000 2015"}, {"group": 661, "id": 4, "label": "552867052055064576", "shape": "dot", "size": 10, "title": "552867052055064576\u003cbr\u003e@TwitsOfGod  Religion was made\u003cbr\u003ein thine name to bring\u003cbr\u003epeace. These days all we\u003cbr\u003esee is your children in\u003cbr\u003epieces. Shame!\u003cbr\u003eWed Jan 07 16:39:11 +0000 2015"}, {"group": 661, "id": 5, "label": "552874288131239938", "shape": "dot", "size": 10, "title": "552874288131239938\u003cbr\u003e@TwitsOfGod @kejriwalfanclub no Religion talks\u003cbr\u003eof Violence its their distributor\u003cbr\u003ewho do that\u003cbr\u003eWed Jan 07 17:07:56 +0000 2015"}, {"group": 661, "id": 6, "label": "552892866800807936", "shape": "dot", "size": 10, "title": "552892866800807936\u003cbr\u003e@TwitsOfGod Please. Just don\u0027t encourage\u003cbr\u003ethat. They do that too.\u003cbr\u003eWe call them suicide bombers\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:21:46 +0000 2015"}, {"group": 661, "id": 7, "label": "552895027857219584", "shape": "dot", "size": 10, "title": "552895027857219584\u003cbr\u003e@TwitsOfGod @RanaAyyub\u003cbr\u003eWed Jan 07 18:30:21 +0000 2015"}, {"group": 661, "id": 8, "label": "552929436530929664", "shape": "dot", "size": 10, "title": "552929436530929664\u003cbr\u003e@TwitsOfGod @geebsinleeds bible is full\u003cbr\u003eof wars and destruction\u003cbr\u003eWed Jan 07 20:47:05 +0000 2015"}, {"group": 661, "id": 9, "label": "552931860213673984", "shape": "dot", "size": 10, "title": "552931860213673984\u003cbr\u003e@TwitsOfGod if you were any\u003cbr\u003egood, you\u0027d sort these dicks\u003cbr\u003eout!!!\u003cbr\u003eWed Jan 07 20:56:43 +0000 2015"}, {"group": 661, "id": 10, "label": "552933015283056641", "shape": "dot", "size": 10, "title": "552933015283056641\u003cbr\u003e@TwitsOfGod @CEMB_forum\u003cbr\u003eWed Jan 07 21:01:18 +0000 2015"}, {"group": 661, "id": 11, "label": "552938316832595968", "shape": "dot", "size": 10, "title": "552938316832595968\u003cbr\u003e@TwitsOfGod @LittleWombat666 Can we call\u003cbr\u003efor volunteers to help them\u003cbr\u003eto martyrdom? #multiculturalism #Muslims #Islam\u003cbr\u003e#fitinorfuckoff #auspol\u003cbr\u003eWed Jan 07 21:22:22 +0000 2015"}, {"group": 661, "id": 12, "label": "552953408270139394", "shape": "dot", "size": 10, "title": "552953408270139394\u003cbr\u003e@TwitsOfGod Thats what we do\u003cbr\u003e:) Suicide attacks.\u003cbr\u003eWed Jan 07 22:22:20 +0000 2015"}, {"group": 661, "id": 13, "label": "552956982001692673", "shape": "dot", "size": 10, "title": "552956982001692673\u003cbr\u003e@TwitsOfGod thank you God. Well\u003cbr\u003esaid!!\u003cbr\u003eWed Jan 07 22:36:32 +0000 2015"}, {"group": 661, "id": 14, "label": "552963582237765632", "shape": "dot", "size": 10, "title": "552963582237765632\u003cbr\u003e@TwitsOfGod Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/KXv9Mgguhh\u003cbr\u003eWed Jan 07 23:02:46 +0000 2015"}, {"group": 661, "id": 15, "label": "552968943632416768", "shape": "dot", "size": 10, "title": "552968943632416768\u003cbr\u003e@TwitsOfGod @sametoyoutoo #NEUTRALIZEISIS\u003cbr\u003eWed Jan 07 23:24:04 +0000 2015"}, {"group": 661, "id": 16, "label": "552999425665007617", "shape": "dot", "size": 10, "title": "552999425665007617\u003cbr\u003eRT \u201c@TwitsOfGod: If your religion\u003cbr\u003eis worth killing for, please\u003cbr\u003estart with yourself. #CharlieHebdo #ParisShooting\u003cbr\u003e#ParisAttack\u201d\u003cbr\u003eThu Jan 08 01:25:11 +0000 2015"}, {"group": 661, "id": 17, "label": "554679408548909056", "shape": "dot", "size": 10, "title": "554679408548909056\u003cbr\u003e@TwitsOfGod We can defeat terror\u003cbr\u003ewith a spirit of unity\u003cbr\u003e#ParisUnityMarch. world global religion news\u003cbr\u003ehttp://t.co/C9zColflCF\u003cbr\u003eMon Jan 12 16:40:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

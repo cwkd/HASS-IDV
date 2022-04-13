@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 308, "id": 0, "label": "552822841541144577", "shape": "dot", "size": 10, "title": "552822841541144577\u003cbr\u003eIf you\u0027re a media outlet\u003cbr\u003ereporting on #CharlieHebdo and blurring\u003cbr\u003eout the cartoons you\u0027re reporting\u003cbr\u003eon, you\u0027re doing journalism wrong.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:43:31 +0000 2015"}, {"group": 308, "id": 1, "label": "552825588327940097", "shape": "dot", "size": 10, "title": "552825588327940097\u003cbr\u003e@a_picazo maybe they fear for\u003cbr\u003etheir lives? can\u0027t blame\u0027m.\u003cbr\u003eWed Jan 07 13:54:25 +0000 2015"}, {"group": 308, "id": 3, "label": "552837217962704897", "shape": "dot", "size": 10, "title": "552837217962704897\u003cbr\u003e@a_picazo WE STAND WITH THEM.\u003cbr\u003eBut not really...\u003cbr\u003eWed Jan 07 14:40:38 +0000 2015"}, {"group": 308, "id": 2, "label": "552836935388254208", "shape": "dot", "size": 10, "title": "552836935388254208\u003cbr\u003e@dispatchadvice @a_picazo Maybe you should\u003cbr\u003eask yourself why they do\u003cbr\u003eso then.\u003cbr\u003eWed Jan 07 14:39:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 1, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 382, "id": 0, "label": "552828872379875328", "shape": "dot", "size": 10, "title": "552828872379875328\u003cbr\u003eIf criticism of Islam results\u003cbr\u003ein violence, this is hard\u003cbr\u003eevidence that criticism of Islam\u003cbr\u003eis desperately needed.\n\n#CharlieHebdo #Barbarism\u003cbr\u003eWed Jan 07 14:07:28 +0000 2015"}, {"group": 382, "id": 1, "label": "552829839632109570", "shape": "dot", "size": 10, "title": "552829839632109570\u003cbr\u003e@francosoup I agree its time\u003cbr\u003ethat we throw these pigs\u003cbr\u003eout of this planet\u003cbr\u003eWed Jan 07 14:11:19 +0000 2015"}, {"group": 382, "id": 2, "label": "552832606060810240", "shape": "dot", "size": 10, "title": "552832606060810240\u003cbr\u003e@francosoup @Epigrammist no. It is\u003cbr\u003eevidence that extremists exist. Nothing\u003cbr\u003emore.\u003cbr\u003eWed Jan 07 14:22:19 +0000 2015"}, {"group": 382, "id": 3, "label": "552834369011081219", "shape": "dot", "size": 10, "title": "552834369011081219\u003cbr\u003e@francosoup @DynoJJ If peaceful muslims\u003cbr\u003edo exist, they should be\u003cbr\u003every pissed at the terrorists.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:19 +0000 2015"}, {"group": 382, "id": 7, "label": "552837226930139137", "shape": "dot", "size": 10, "title": "552837226930139137\u003cbr\u003e.@francosoup  AND if criticism\u003cbr\u003eof Commie Marxist Jews results\u003cbr\u003ein charges of anti-Semitism, then\u003cbr\u003ecriticism of Jews is desparately\u003cbr\u003eneeded.\u003cbr\u003eWed Jan 07 14:40:40 +0000 2015"}, {"group": 382, "id": 5, "label": "552836353025929216", "shape": "dot", "size": 10, "title": "552836353025929216\u003cbr\u003e@amitraj4023 Pretty sure that\u0027s not\u003cbr\u003eexactly what @francosoup meant.\u003cbr\u003eWed Jan 07 14:37:12 +0000 2015"}, {"group": 382, "id": 8, "label": "552837616690008064", "shape": "dot", "size": 10, "title": "552837616690008064\u003cbr\u003e.@PolemiCol @francosoup @Epigrammist No such\u003cbr\u003ething as a moderate Muslim.\u003cbr\u003eNo such thing as a\u003cbr\u003emoderate Jew. References: #TALMUD \u003cbr\u003e#Koran\u003cbr\u003eWed Jan 07 14:42:13 +0000 2015"}, {"group": 382, "id": 16, "label": "552839220239552512", "shape": "dot", "size": 10, "title": "552839220239552512\u003cbr\u003e.@PolemiCol @francosoup @Epigrammist You are\u003cbr\u003esuch a good Goy. \u003cbr\u003eLMAO.\u003cbr\u003eWed Jan 07 14:48:36 +0000 2015"}, {"group": 382, "id": 4, "label": "552834823543619584", "shape": "dot", "size": 10, "title": "552834823543619584\u003cbr\u003e@JConsciousness @francosoup \n\nThe silence is\u003cbr\u003edeafening.\u003cbr\u003eWed Jan 07 14:31:07 +0000 2015"}, {"group": 382, "id": 9, "label": "552837804305440770", "shape": "dot", "size": 10, "title": "552837804305440770\u003cbr\u003e.@JConsciousness @francosoup @DynoJJ Have you\u003cbr\u003eseen any of those openly\u003cbr\u003eprotesting any of this??? \u003cbr\u003eMe neither. LOL.\u003cbr\u003eWed Jan 07 14:42:58 +0000 2015"}, {"group": 382, "id": 6, "label": "552836686645047297", "shape": "dot", "size": 10, "title": "552836686645047297\u003cbr\u003e@incredispaz @amitraj4023 It wasn\u0027t what\u003cbr\u003eI meant, AT ALL. Another\u003cbr\u003eperson who is unable to\u003cbr\u003edifferentiate between an ideology \u0026amp;\u003cbr\u003epeople.\u003cbr\u003eWed Jan 07 14:38:31 +0000 2015"}, {"group": 382, "id": 10, "label": "552838040775716864", "shape": "dot", "size": 10, "title": "552838040775716864\u003cbr\u003e@HowardRoarrk \nCongratulations!\nYou are the first\u003cbr\u003eaddition to my stnuc list\u003cbr\u003etoday. \n@francosoup @Epigrammist\u003cbr\u003eWed Jan 07 14:43:54 +0000 2015"}, {"group": 382, "id": 11, "label": "552838044617687040", "shape": "dot", "size": 10, "title": "552838044617687040\u003cbr\u003e@HowardRoarrk @PolemiCol @francosoup is \"You\u003cbr\u003eshall not kill\" really such\u003cbr\u003ea difficult concept for people\u003cbr\u003eto grasp?\u003cbr\u003eWed Jan 07 14:43:55 +0000 2015"}, {"group": 382, "id": 14, "label": "552839114064941056", "shape": "dot", "size": 10, "title": "552839114064941056\u003cbr\u003e@HowardRoarrk @francosoup @DynoJJ\nI can\u0027t tell\u003cbr\u003eif they are afraid or\u003cbr\u003edon\u0027t care.\u003cbr\u003eWed Jan 07 14:48:10 +0000 2015"}, {"group": 382, "id": 17, "label": "552839289663676418", "shape": "dot", "size": 10, "title": "552839289663676418\u003cbr\u003e@HowardRoarrk @francosoup @DynoJJ \nI don\u0027t\u003cbr\u003ewant to preach hate against\u003cbr\u003eany group - including muslims.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:48:52 +0000 2015"}, {"group": 382, "id": 12, "label": "552838861613957120", "shape": "dot", "size": 10, "title": "552838861613957120\u003cbr\u003e@Epigrammist @HowardRoarrk @PolemiCol @francosoup \n\nThese\u003cbr\u003ebooks are littered with commands\u003cbr\u003eto genocide, rape \u0026amp; slave\u003cbr\u003etrade. Its barbaric.\u003cbr\u003eWed Jan 07 14:47:10 +0000 2015"}, {"group": 382, "id": 13, "label": "552839033777168385", "shape": "dot", "size": 10, "title": "552839033777168385\u003cbr\u003e@DynoJJ @HowardRoarrk @PolemiCol @francosoup yeah\u003cbr\u003eI\u0027m familiar with them.\u003cbr\u003eWed Jan 07 14:47:51 +0000 2015"}, {"group": 382, "id": 15, "label": "552839184931508224", "shape": "dot", "size": 10, "title": "552839184931508224\u003cbr\u003e@DynoJJ @Epigrammist @HowardRoarrk @francosoup agreed.\u003cbr\u003eCriticise the religion and the\u003cbr\u003etexts, not the people.\u003cbr\u003eWed Jan 07 14:48:27 +0000 2015"}, {"group": 382, "id": 20, "label": "552839790383882240", "shape": "dot", "size": 10, "title": "552839790383882240\u003cbr\u003e@PolemiCol @Epigrammist @HowardRoarrk @francosoup Education\u003cbr\u003eis the key. It\u0027s obviously\u003cbr\u003ea threat to the extremists.\u003cbr\u003eThe cycle needs breaking.\u003cbr\u003eWed Jan 07 14:50:51 +0000 2015"}, {"group": 382, "id": 18, "label": "552839586519322626", "shape": "dot", "size": 10, "title": "552839586519322626\u003cbr\u003e@HowardRoarrk \nReading your tweets I\u003cbr\u003esee nothing but hate, hate\u003cbr\u003efor Muslims, Jews and Blacks.\u003cbr\u003e\n#KKK\n@francosoup @Epigrammist\u003cbr\u003eWed Jan 07 14:50:03 +0000 2015"}, {"group": 382, "id": 19, "label": "552839720833933312", "shape": "dot", "size": 10, "title": "552839720833933312\u003cbr\u003e@PolemiCol @francosoup @Epigrammist ha ha\u003cbr\u003eha ha you are shitting\u003cbr\u003eyourself in fear.\u003cbr\u003eWed Jan 07 14:50:35 +0000 2015"}, {"group": 382, "id": 21, "label": "552840220882661376", "shape": "dot", "size": 10, "title": "552840220882661376\u003cbr\u003e@HowardRoarrk \nI DON\u0027T FEAR BIGOTS.\u003cbr\u003e\nI EAT THEM FOR BREAKFAST.\u003cbr\u003e\n\n @francosoup @Epigrammist\u003cbr\u003eWed Jan 07 14:52:34 +0000 2015"}, {"group": 382, "id": 22, "label": "552840291778961408", "shape": "dot", "size": 10, "title": "552840291778961408\u003cbr\u003e@DynoJJ @PolemiCol @HowardRoarrk @francosoup that\u0027s\u003cbr\u003ea big part of it.\u003cbr\u003eWe should also stop killing\u003cbr\u003einnocent people.\u003cbr\u003eWed Jan 07 14:52:51 +0000 2015"}, {"group": 382, "id": 23, "label": "552840506674515968", "shape": "dot", "size": 10, "title": "552840506674515968\u003cbr\u003e@PolemiCol I don\u0027t need to\u003cbr\u003ebe part of your argument\u003cbr\u003ewith that ghastly man. Exclude\u003cbr\u003eme please.\u003cbr\u003eWed Jan 07 14:53:42 +0000 2015"}, {"group": 382, "id": 24, "label": "552840793665576961", "shape": "dot", "size": 10, "title": "552840793665576961\u003cbr\u003e@Epigrammist @PolemiCol @HowardRoarrk @francosoup \n\nI\u003cbr\u003ewish they would stop hiding\u003cbr\u003ebehind innocent people. Point taken,\u003cbr\u003ethough.\u003cbr\u003eWed Jan 07 14:54:51 +0000 2015"}, {"group": 382, "id": 25, "label": "552841898478419968", "shape": "dot", "size": 10, "title": "552841898478419968\u003cbr\u003e@DynoJJ When any war is\u003cbr\u003efought innocent people always die.\nThis\u003cbr\u003eis a war. \n @Epigrammist\u003cbr\u003e@HowardRoarrk @francosoup\u003cbr\u003eWed Jan 07 14:59:14 +0000 2015"}, {"group": 382, "id": 26, "label": "552844311486685184", "shape": "dot", "size": 10, "title": "552844311486685184\u003cbr\u003e@PolemiCol @DynoJJ @HowardRoarrk @francosoup yeah\u003cbr\u003enah this is a crime,\u003cbr\u003enot a war.\u003cbr\u003eWed Jan 07 15:08:49 +0000 2015"}, {"group": 382, "id": 27, "label": "552844659265777664", "shape": "dot", "size": 10, "title": "552844659265777664\u003cbr\u003e@Epigrammist @DynoJJ @HowardRoarrk @francosoup it\u003cbr\u003eis a war that has\u003cbr\u003ebeen bubbling over for decades.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:10:12 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 2, "to": 8, "weight": 1}, {"from": 2, "to": 16, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 9, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 9, "to": 17, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

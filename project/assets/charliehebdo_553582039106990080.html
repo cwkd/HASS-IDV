@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1522, "id": 0, "label": "553582039106990080", "shape": "dot", "size": 10, "title": "553582039106990080\u003cbr\u003eVIDEO: Gunfire and explosions heard\u003cbr\u003eat printworks in Dammartin-en-Goele siege\u003cbr\u003ehttp://t.co/RviRV0H3AV\u003cbr\u003eFri Jan 09 16:00:17 +0000 2015"}, {"group": 1522, "id": 1, "label": "553582149572771841", "shape": "dot", "size": 10, "title": "553582149572771841\u003cbr\u003e@SkyNews @ProSyndicate omg \ud83d\ude30\u003cbr\u003eFri Jan 09 16:00:44 +0000 2015"}, {"group": 1522, "id": 2, "label": "553582222335565824", "shape": "dot", "size": 10, "title": "553582222335565824\u003cbr\u003e@SkyNews @terrier4life\u003cbr\u003eFri Jan 09 16:01:01 +0000 2015"}, {"group": 1522, "id": 3, "label": "553582243516809217", "shape": "dot", "size": 10, "title": "553582243516809217\u003cbr\u003e\u201c@SkyNews: VIDEO: Gunfire and explosions\u003cbr\u003eheard at printworks in Dammartin-en-Goele\u003cbr\u003esiege http://t.co/eztXeJmzVA\u201d not again :-(\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:01:06 +0000 2015"}, {"group": 1522, "id": 4, "label": "553582301792436224", "shape": "dot", "size": 10, "title": "553582301792436224\u003cbr\u003e\u201c@SkyNews: VIDEO: Gunfire and explosions\u003cbr\u003eheard at printworks in Dammartin-en-Goele\u003cbr\u003esiege http://t.co/4n9oIULaQP\u201d sorry but this\u003cbr\u003eis stupid\u003cbr\u003eFri Jan 09 16:01:20 +0000 2015"}, {"group": 1522, "id": 5, "label": "553582340132573185", "shape": "dot", "size": 10, "title": "553582340132573185\u003cbr\u003e\u201c@SkyNews: VIDEO: Gunfire and explosions\u003cbr\u003eheard at printworks in Dammartin-en-Goele\u003cbr\u003esiege http://t.co/mnfJ0lYCAQ\u201d\u003cbr\u003eFri Jan 09 16:01:29 +0000 2015"}, {"group": 1522, "id": 6, "label": "553582361167007745", "shape": "dot", "size": 10, "title": "553582361167007745\u003cbr\u003e@SkyNews @ProSyndicate Je comfirme, c\u0027est\u003cbr\u003ela guerre l\u00e0 bas.\u003cbr\u003eFri Jan 09 16:01:34 +0000 2015"}, {"group": 1522, "id": 7, "label": "553582364094631937", "shape": "dot", "size": 10, "title": "553582364094631937\u003cbr\u003e\u201c@SkyNews: VIDEO: Gunfire and explosions\u003cbr\u003eheard at printworks in Dammartin-en-Goele\u003cbr\u003esiege http://t.co/L5xuyHmXBB\u201d @cruevertonian\u003cbr\u003eFri Jan 09 16:01:35 +0000 2015"}, {"group": 1522, "id": 8, "label": "553582421569175552", "shape": "dot", "size": 10, "title": "553582421569175552\u003cbr\u003e\u201c@SkyNews: VIDEO: Gunfire and explosions\u003cbr\u003eheard at printworks in Dammartin-en-Goele\u003cbr\u003esiege http://t.co/AFtpwY4yHZ\u201d\u003cbr\u003eFri Jan 09 16:01:49 +0000 2015"}, {"group": 1522, "id": 9, "label": "553582437939560448", "shape": "dot", "size": 10, "title": "553582437939560448\u003cbr\u003e\u201c@SkyNews: VIDEO: Gunfire and explosions\u003cbr\u003eheard at printworks in Dammartin-en-Goele\u003cbr\u003esiege http://t.co/O3D5ew6yYw\u201d oh cazzo\u003cbr\u003eFri Jan 09 16:01:52 +0000 2015"}, {"group": 1522, "id": 10, "label": "553582450094653440", "shape": "dot", "size": 10, "title": "553582450094653440\u003cbr\u003e@SkyNews pariiiiis \u0026lt;333\u003cbr\u003eFri Jan 09 16:01:55 +0000 2015"}, {"group": 1522, "id": 11, "label": "553582459552821249", "shape": "dot", "size": 10, "title": "553582459552821249\u003cbr\u003eVIDEO: Gunfire and explosions heard\u003cbr\u003eat printworks in Dammartin-en-Goele siege\u003cbr\u003evia @SkyNews http://t.co/jsOkRYk391\u003cbr\u003eFri Jan 09 16:01:58 +0000 2015"}, {"group": 1522, "id": 12, "label": "553582538770612225", "shape": "dot", "size": 10, "title": "553582538770612225\u003cbr\u003e@SkyNews @EricAmey2 hell you guys\u003cbr\u003ewere faster than FOX, you\u003cbr\u003emust be there.\u003cbr\u003eFri Jan 09 16:02:16 +0000 2015"}, {"group": 1522, "id": 13, "label": "553582621612318720", "shape": "dot", "size": 10, "title": "553582621612318720\u003cbr\u003e@SkyNews @RiceeChrispies shit on a\u003cbr\u003estick man :c\u003cbr\u003eFri Jan 09 16:02:36 +0000 2015"}, {"group": 1522, "id": 14, "label": "553582659621117952", "shape": "dot", "size": 10, "title": "553582659621117952\u003cbr\u003e@SkyNews Hoping the hostages are\u003cbr\u003eall ok.\u003cbr\u003eFri Jan 09 16:02:45 +0000 2015"}, {"group": 1522, "id": 15, "label": "553582697780879360", "shape": "dot", "size": 10, "title": "553582697780879360\u003cbr\u003e@SkyNews next !!!!!\u003cbr\u003eFri Jan 09 16:02:54 +0000 2015"}, {"group": 1522, "id": 16, "label": "553582715921260544", "shape": "dot", "size": 10, "title": "553582715921260544\u003cbr\u003e@SkyNews @ProSyndicate Wow. Just, wow...\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:02:59 +0000 2015"}, {"group": 1522, "id": 17, "label": "553582729003298816", "shape": "dot", "size": 10, "title": "553582729003298816\u003cbr\u003e@SkyNews @jxshtayloor\u003cbr\u003eFri Jan 09 16:03:02 +0000 2015"}, {"group": 1522, "id": 18, "label": "553582754689191936", "shape": "dot", "size": 10, "title": "553582754689191936\u003cbr\u003e@SkyNews Great visual coverage...but when\u003cbr\u003eyou going to start asking\u003cbr\u003ethe questions that the public\u003cbr\u003eare asking.\u003cbr\u003eFri Jan 09 16:03:08 +0000 2015"}, {"group": 1522, "id": 19, "label": "553582808137232384", "shape": "dot", "size": 10, "title": "553582808137232384\u003cbr\u003e@SkyNews @TheDreamox\u003cbr\u003eFri Jan 09 16:03:21 +0000 2015"}, {"group": 1522, "id": 20, "label": "553583713586774017", "shape": "dot", "size": 10, "title": "553583713586774017\u003cbr\u003e@lucyreesxo @SkyNews Watched it unfold,\u003cbr\u003ehappened to have it on\u003cbr\u003e):\u003cbr\u003eFri Jan 09 16:06:57 +0000 2015"}, {"group": 1522, "id": 23, "label": "553601832187334657", "shape": "dot", "size": 10, "title": "553601832187334657\u003cbr\u003e@lucyreesxo @SkyNews Oh no\u003cbr\u003eFri Jan 09 17:18:56 +0000 2015"}, {"group": 1522, "id": 21, "label": "553583923301978113", "shape": "dot", "size": 10, "title": "553583923301978113\u003cbr\u003e@AlexHH25 @SkyNews it\u0027s honestly so\u003cbr\u003ehorrible.\u003cbr\u003eFri Jan 09 16:07:47 +0000 2015"}, {"group": 1522, "id": 22, "label": "553583982869495808", "shape": "dot", "size": 10, "title": "553583982869495808\u003cbr\u003e@lucyreesxo @SkyNews I know ):\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:08:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 20, "weight": 1}, {"from": 3, "to": 23, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

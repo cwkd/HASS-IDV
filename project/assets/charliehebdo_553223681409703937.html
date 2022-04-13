@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1191, "id": 0, "label": "553223681409703937", "shape": "dot", "size": 10, "title": "553223681409703937\u003cbr\u003eTimes Now is pillorying Mani\u003cbr\u003eShankar Iyer for \u0027backlash\u0027 remark\u003cbr\u003eon #CharlieHebdo.Why spare Kiran Bedi\u0027s\u003cbr\u003e\u0027provoke/poke\u0027 tweet tho?\u003cbr\u003eThu Jan 08 16:16:18 +0000 2015"}, {"group": 1191, "id": 1, "label": "553225345415933953", "shape": "dot", "size": 10, "title": "553225345415933953\u003cbr\u003e@kavita_krishnan you are not serving\u003cbr\u003esociety in any way by\u003cbr\u003esupporting such horrible argument but\u003cbr\u003ejust demeaning urself by showing\u003cbr\u003etrue clrs\u003cbr\u003eThu Jan 08 16:22:55 +0000 2015"}, {"group": 1191, "id": 3, "label": "553226577061109761", "shape": "dot", "size": 10, "title": "553226577061109761\u003cbr\u003e@kavita_krishnan Now, every channel carrying\u003cbr\u003enews with some political agenda\u003cbr\u003etoo. The quality of journalism\u003cbr\u003edecreasing day by day. Shame!\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:27:49 +0000 2015"}, {"group": 1191, "id": 4, "label": "553226628583522304", "shape": "dot", "size": 10, "title": "553226628583522304\u003cbr\u003e@kavita_krishnan @MANJULtoons are you not\u003cbr\u003ea wanted criminal in naxal\u003cbr\u003estrong hold states?\u003cbr\u003eThu Jan 08 16:28:01 +0000 2015"}, {"group": 1191, "id": 5, "label": "553226750121893888", "shape": "dot", "size": 10, "title": "553226750121893888\u003cbr\u003e@kavita_krishnan @MANJULtoons  Mani aiyar\u003cbr\u003eis a traitor who disrespected\u003cbr\u003ea patriot Veer Savarkar...mani doesn\u0027t\u003cbr\u003eeven deserve this attention..\u003cbr\u003eThu Jan 08 16:28:30 +0000 2015"}, {"group": 1191, "id": 6, "label": "553226762486689792", "shape": "dot", "size": 10, "title": "553226762486689792\u003cbr\u003e@kavita_krishnan @MANJULtoons free sex Naxalite\u003cbr\u003eshouldn\u0027t be bothered about all\u003cbr\u003ethese things \ud83d\ude1c\u003cbr\u003eThu Jan 08 16:28:33 +0000 2015"}, {"group": 1191, "id": 10, "label": "553228148532187136", "shape": "dot", "size": 10, "title": "553228148532187136\u003cbr\u003e@kavita_krishnan\nTimes now is media partner\u003cbr\u003eof BJP/Govt.\nAiyer absolutely correct, peace\u003cbr\u003eis not possible without analysing\u003cbr\u003ecauses of terror.\u003cbr\u003eThu Jan 08 16:34:03 +0000 2015"}, {"group": 1191, "id": 12, "label": "553228368087248897", "shape": "dot", "size": 10, "title": "553228368087248897\u003cbr\u003e@kavita_krishnan what was ur reaction\u003cbr\u003eabt #PK ? Just remind\u003cbr\u003eu ur hypocrisy\u003cbr\u003eThu Jan 08 16:34:56 +0000 2015"}, {"group": 1191, "id": 18, "label": "553231543984848897", "shape": "dot", "size": 10, "title": "553231543984848897\u003cbr\u003e(Are you serious) x 4\u003cbr\u003e@kavita_krishnan! MSA is a senior\u003cbr\u003epolitician of most secular party...who\u003cbr\u003eis Kiran Bedi?\u003cbr\u003eThu Jan 08 16:47:33 +0000 2015"}, {"group": 1191, "id": 2, "label": "553226039485165569", "shape": "dot", "size": 10, "title": "553226039485165569\u003cbr\u003e@Ashutosh_bhard Who says I support\u003cbr\u003ethe argument by Mani or\u003cbr\u003eKiran?! See my response to\u003cbr\u003esuch arguments http://t.co/msaiA2N59X\u003cbr\u003eThu Jan 08 16:25:40 +0000 2015"}, {"group": 1191, "id": 7, "label": "553227511014780928", "shape": "dot", "size": 10, "title": "553227511014780928\u003cbr\u003e@mandargv Savarkar is in fact\u003cbr\u003ethe traitor, plus mentor to\u003cbr\u003eIndia\u0027s first terrorist Godse @MANJULtoons\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:31:31 +0000 2015"}, {"group": 1191, "id": 29, "label": "553266432528498689", "shape": "dot", "size": 10, "title": "553266432528498689\u003cbr\u003e@mandargv New One: Savarkar a\u003cbr\u003epatriot? Ashamed to read his\u003cbr\u003ecringing letter to British captors\u003cbr\u003ebegging for a reprieve @kavita_krishnan\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:06:11 +0000 2015"}, {"group": 1191, "id": 8, "label": "553227739252015104", "shape": "dot", "size": 10, "title": "553227739252015104\u003cbr\u003e@rohitagarwal86 You have unfree sex,\u003cbr\u003eI,e you rape? @MANJULtoons\u003cbr\u003eThu Jan 08 16:32:26 +0000 2015"}, {"group": 1191, "id": 9, "label": "553228012007587841", "shape": "dot", "size": 10, "title": "553228012007587841\u003cbr\u003e@kavita_krishnan @MANJULtoons Read Savarkar n\u003cbr\u003ethen talk..No one can deny\u003cbr\u003ehis contributions..he was social reformer\u003cbr\u003eas well..Read n then talk\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:33:31 +0000 2015"}, {"group": 1191, "id": 28, "label": "553244156941058048", "shape": "dot", "size": 10, "title": "553244156941058048\u003cbr\u003eSavarkar was accused in #MahatmaGandhi\u2019s\u003cbr\u003emurder \nhttp://t.co/UbRrkYwGWr\nhttp://t.co/qBZN3dflDq\n\n@kavita_krishnan @mandargv @MANJULtoons @ap\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:37:40 +0000 2015"}, {"group": 1191, "id": 11, "label": "553228209647415296", "shape": "dot", "size": 10, "title": "553228209647415296\u003cbr\u003e@kavita_krishnan @MANJULtoons you are so\u003cbr\u003edumb that you don\u0027t know\u003cbr\u003ewhat @Swamy39 meant there? You\u003cbr\u003eare Maoist and sickular hypocrite.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:34:18 +0000 2015"}, {"group": 1191, "id": 14, "label": "553229057257525248", "shape": "dot", "size": 10, "title": "553229057257525248\u003cbr\u003e@kavita_krishnan @MANJULtoons we know your\u003cbr\u003ebias and your outrage in\u003cbr\u003esome cases and silence in\u003cbr\u003eSickular cases. You are just\u003cbr\u003ean apologist.\u003cbr\u003eThu Jan 08 16:37:40 +0000 2015"}, {"group": 1191, "id": 13, "label": "553229026802671617", "shape": "dot", "size": 10, "title": "553229026802671617\u003cbr\u003e@rajeshsocio Analysis is one thing\u003cbr\u003ebut I don\u0027t hold with\u003cbr\u003e\u0027backlash\u0027 arguments for indefensible acts.\u003cbr\u003eSee attached pl http://t.co/JDKaz7b4QP\u003cbr\u003eThu Jan 08 16:37:33 +0000 2015"}, {"group": 1191, "id": 24, "label": "553234267635859456", "shape": "dot", "size": 10, "title": "553234267635859456\u003cbr\u003e@kavita_krishnan \nBacklash may be undesirable\u003cbr\u003ein context but the emphasis\u003cbr\u003eon implicit contradictions is welcome\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:58:22 +0000 2015"}, {"group": 1191, "id": 17, "label": "553230045695582208", "shape": "dot", "size": 10, "title": "553230045695582208\u003cbr\u003e@RAJNIKANTDAVE I didn\u0027t argue backlash\u003cbr\u003efor PK! On Mani, Kiran\u003cbr\u003eetc see attached http://t.co/uceNktWE81\u003cbr\u003eThu Jan 08 16:41:36 +0000 2015"}, {"group": 1191, "id": 15, "label": "553229444211437569", "shape": "dot", "size": 10, "title": "553229444211437569\u003cbr\u003e@rajeshsocio I would instead point\u003cbr\u003eout that imperialism is violent\u003cbr\u003etowards free speech, free countries,\u003cbr\u003etoo.\u003cbr\u003eThu Jan 08 16:39:12 +0000 2015"}, {"group": 1191, "id": 16, "label": "553229784931516417", "shape": "dot", "size": 10, "title": "553229784931516417\u003cbr\u003e@rajeshsocio By instead I mean\u003cbr\u003einstead of \u0027backlash\u0027 arguments, \u0027hypocrisy\u0027\u003cbr\u003earguments are wiser, better. Eg,\u003cbr\u003eUS has funded, armed Taliban!\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:40:33 +0000 2015"}, {"group": 1191, "id": 19, "label": "553231572711645184", "shape": "dot", "size": 10, "title": "553231572711645184\u003cbr\u003e@kavita_krishnan\nMay b, however the crux\u003cbr\u003eof Aiyer\u0027s argument is: it\u0027s\u003cbr\u003ean instance of interactional logic\u003cbr\u003eof \u0027War on terror\u0027 vs\u003cbr\u003eJehadi terror\u003cbr\u003eThu Jan 08 16:47:40 +0000 2015"}, {"group": 1191, "id": 22, "label": "553232501510918144", "shape": "dot", "size": 10, "title": "553232501510918144\u003cbr\u003e@kavita_krishnan\nIf d dialectics between d\u003cbr\u003e\u0027global state\u0027 \u0026amp; d other\u003cbr\u003eworld is not debunked, neither\u003cbr\u003epeace nor freedom of commoners\u003cbr\u003epossible\u003cbr\u003eThu Jan 08 16:51:21 +0000 2015"}, {"group": 1191, "id": 27, "label": "553238388849917953", "shape": "dot", "size": 10, "title": "553238388849917953\u003cbr\u003e@kavita_krishnan sorry to disturb u\u003cbr\u003ebut havent heard abusive words\u003cbr\u003efrom u as u r\u003cbr\u003eusing for sanghi\u003cbr\u003eThu Jan 08 17:14:45 +0000 2015"}, {"group": 1191, "id": 20, "label": "553231942372446208", "shape": "dot", "size": 10, "title": "553231942372446208\u003cbr\u003e@dixitnamrata Read the complete tweets\u003cbr\u003eof @thekiranbedi first in that\u003cbr\u003econtext .u know @kavita_krishnan is\u003cbr\u003eNaxalite\u003cbr\u003eThu Jan 08 16:49:08 +0000 2015"}, {"group": 1191, "id": 21, "label": "553232491385851904", "shape": "dot", "size": 10, "title": "553232491385851904\u003cbr\u003e@rajeshsocio His use of the\u003cbr\u003e\u0027backlash\u0027 word in this context\u003cbr\u003eis where I disagree.\u003cbr\u003eThu Jan 08 16:51:19 +0000 2015"}, {"group": 1191, "id": 23, "label": "553233253268611072", "shape": "dot", "size": 10, "title": "553233253268611072\u003cbr\u003e@rajeshsocio No difference here. But\u003cbr\u003eby using \u0027backlash\u0027 word he\u0027s\u003cbr\u003eopened himself to comparisons with\u003cbr\u003eNewton theory walas....\u003cbr\u003eThu Jan 08 16:54:20 +0000 2015"}, {"group": 1191, "id": 25, "label": "553234694712471552", "shape": "dot", "size": 10, "title": "553234694712471552\u003cbr\u003e@rajeshsocio By choosing to invoke\u003cbr\u003ebacklash he has made it\u003cbr\u003emore difficult to speak of\u003cbr\u003ethose contradictions.\u003cbr\u003eThu Jan 08 17:00:04 +0000 2015"}, {"group": 1191, "id": 26, "label": "553237505722429440", "shape": "dot", "size": 10, "title": "553237505722429440\u003cbr\u003e@kavita_krishnan\nI disagree, his weakness and\u003cbr\u003estrength can b highlighted \u0026amp;\u003cbr\u003econtradictions of the forces b\u003cbr\u003eused,tactically to argue for peace\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:11:14 +0000 2015"}, {"group": 1191, "id": 30, "label": "553272625577750528", "shape": "dot", "size": 10, "title": "553272625577750528\u003cbr\u003e@totabola1 @kavita_krishnan I wish u\u003cbr\u003eever read about his sacrifices...whatever\u003cbr\u003eanyone says..he was a HERO..Salute\u003cbr\u003eto the gr8 man!!\u003cbr\u003eThu Jan 08 19:30:47 +0000 2015"}, {"group": 1191, "id": 31, "label": "553449890437533696", "shape": "dot", "size": 10, "title": "553449890437533696\u003cbr\u003e@mandargv How can a person\u003cbr\u003ebetray his fellow prisoners in\u003cbr\u003eexchange for his own personal\u003cbr\u003efreedom? whose hero? @kavita_krishnan\u003cbr\u003eFri Jan 09 07:15:11 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 29, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 7, "to": 28, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 8, "to": 14, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 10, "to": 24, "weight": 1}, {"from": 12, "to": 17, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 16, "to": 22, "weight": 1}, {"from": 17, "to": 27, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

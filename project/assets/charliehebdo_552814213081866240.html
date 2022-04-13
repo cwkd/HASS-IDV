@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 191, "id": 0, "label": "552814213081866240", "shape": "dot", "size": 10, "title": "552814213081866240\u003cbr\u003e#CHARLIEHEBDO SHOOTING: Gunmen still at\u003cbr\u003elarge, manhunt underway - LIVE\u003cbr\u003eUPDATES http://t.co/3Jsosc7yl3 http://t.co/LzCuCBqQP8\u003cbr\u003eWed Jan 07 13:09:13 +0000 2015"}, {"group": 191, "id": 1, "label": "552814442573230080", "shape": "dot", "size": 10, "title": "552814442573230080\u003cbr\u003e@RT_com Has anyone claimed responsibility\u003cbr\u003eso far? Any updates on\u003cbr\u003ewho these gunmen were and\u003cbr\u003ewhat their motives were?\u003cbr\u003eWed Jan 07 13:10:08 +0000 2015"}, {"group": 191, "id": 2, "label": "552815210093117440", "shape": "dot", "size": 10, "title": "552815210093117440\u003cbr\u003e\u201c@RT_com: #CHARLIEHEBDO SHOOTING: Gunmen at\u003cbr\u003elarge, manhunt underway - http://t.co/UEH08nPyPx\u003cbr\u003ehttp://t.co/zWx9QgxHV6\u201d MT #radicalislamists\u003cbr\u003eWed Jan 07 13:13:11 +0000 2015"}, {"group": 191, "id": 3, "label": "552815265369436160", "shape": "dot", "size": 10, "title": "552815265369436160\u003cbr\u003e@RT_com ISlam is cancer to\u003cbr\u003eentire world, all countries must\u003cbr\u003ebe islam free except middle\u003cbr\u003eeast\u003cbr\u003eWed Jan 07 13:13:24 +0000 2015"}, {"group": 191, "id": 4, "label": "552815341873528833", "shape": "dot", "size": 10, "title": "552815341873528833\u003cbr\u003eRT \u201c@RT_com: #CHARLIEHEBDO SHOOTING: Gunmen\u003cbr\u003estill at large, manhunt underway\u003cbr\u003e- LIVE UPDATES http://t.co/aBg4JfFYNx http://t.co/IKieStfjQe\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:13:42 +0000 2015"}, {"group": 191, "id": 5, "label": "552816611225530368", "shape": "dot", "size": 10, "title": "552816611225530368\u003cbr\u003e@RT_com NEXT TIME THE FRENCH\u003cbr\u003eWILL THINK TWICE WHETHER TO\u003cbr\u003eVOTE FOR TERRORIST PALESTINE\u003cbr\u003eWed Jan 07 13:18:45 +0000 2015"}, {"group": 191, "id": 6, "label": "552816782072086528", "shape": "dot", "size": 10, "title": "552816782072086528\u003cbr\u003e@RT_com Bigotry: The Dark Danger\nhttp://t.co/stSqMpXQgX\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:19:26 +0000 2015"}, {"group": 191, "id": 7, "label": "552816838225440768", "shape": "dot", "size": 10, "title": "552816838225440768\u003cbr\u003e@RT_com Bigotry: The Dark Danger\u003cbr\u003e\nhttp://t.co/stSqMpXQgX\u003cbr\u003eWed Jan 07 13:19:39 +0000 2015"}, {"group": 191, "id": 8, "label": "552816884400541698", "shape": "dot", "size": 10, "title": "552816884400541698\u003cbr\u003e@RT_com Bigotry: The Dark Danger\u003cbr\u003e  \nhttp://t.co/stSqMpXQgX\u003cbr\u003eWed Jan 07 13:19:50 +0000 2015"}, {"group": 191, "id": 9, "label": "552816927576715265", "shape": "dot", "size": 10, "title": "552816927576715265\u003cbr\u003e@RT_com   Bigotry: The\u003cbr\u003eDark Danger\nhttp://t.co/stSqMpXQgX\u003cbr\u003eWed Jan 07 13:20:01 +0000 2015"}, {"group": 191, "id": 10, "label": "552819569740742656", "shape": "dot", "size": 10, "title": "552819569740742656\u003cbr\u003e@RT_com This wasn\u0027t a 5\u003cbr\u003eminute attack. In Central Paris,and\u003cbr\u003ethe police didn\u0027t even show\u003cbr\u003eup. Attackers didn\u0027t even use\u003cbr\u003ea get away driver.\u003cbr\u003eWed Jan 07 13:30:30 +0000 2015"}, {"group": 191, "id": 11, "label": "552819963849760768", "shape": "dot", "size": 10, "title": "552819963849760768\u003cbr\u003e@RT_com \n: Shocked and appaled.\u003cbr\u003eNothing can justify attack against\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 13:32:04 +0000 2015"}, {"group": 191, "id": 12, "label": "552821382753837057", "shape": "dot", "size": 10, "title": "552821382753837057\u003cbr\u003e\u201c@RT_com: #CHARLIEHEBDO SHOOTING: Gunmen still\u003cbr\u003eat large, manhunt underway -\u003cbr\u003eLIVE UPDATES http://t.co/dEj9V1AUkE http://t.co/vQYpUZb2K9\u201d\u003cbr\u003eWed Jan 07 13:37:43 +0000 2015"}, {"group": 191, "id": 15, "label": "552839431053266944", "shape": "dot", "size": 10, "title": "552839431053266944\u003cbr\u003e@RT_com @southerntalker Freedom of -naughty\u003cbr\u003eevil-Speech leads to FREEDOM of\u003cbr\u003emurder.\u003cbr\u003eWed Jan 07 14:49:26 +0000 2015"}, {"group": 191, "id": 16, "label": "552840411987722240", "shape": "dot", "size": 10, "title": "552840411987722240\u003cbr\u003e@RT_com @southerntalker 4 howlong,world\u0027l recognize:\u003cbr\u003eMuhammad is not a game.\u003cbr\u003eFREEdom of (naughty-evel) speech leads\u003cbr\u003eto FREEdom of killing.\u003cbr\u003eWed Jan 07 14:53:20 +0000 2015"}, {"group": 191, "id": 13, "label": "552823700832407552", "shape": "dot", "size": 10, "title": "552823700832407552\u003cbr\u003e@kamalkran @RT_com your obviously an\u003cbr\u003eabsolute fucking tosser!!\u003cbr\u003eWed Jan 07 13:46:55 +0000 2015"}, {"group": 191, "id": 14, "label": "552829807059169282", "shape": "dot", "size": 10, "title": "552829807059169282\u003cbr\u003e@HusseinPolat @RT_com why your ass\u003cbr\u003eis buring out? DO you\u003cbr\u003ehave answers of Iraq, Syria,\u003cbr\u003eFrance, PAkistan killings, why? #peaceinislam\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:11:11 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

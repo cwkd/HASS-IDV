@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 667, "id": 0, "label": "552850725467082752", "shape": "dot", "size": 10, "title": "552850725467082752\u003cbr\u003eI wonder how many of\u003cbr\u003ethe people criticizing Charlie Hebdo\u0027s\u003cbr\u003efree speech this week defended\u003cbr\u003eFranco \u0026amp; Rogen\u0027s free speech\u003cbr\u003elast week?\u003cbr\u003eWed Jan 07 15:34:19 +0000 2015"}, {"group": 667, "id": 1, "label": "552851194390261761", "shape": "dot", "size": 10, "title": "552851194390261761\u003cbr\u003e@jtLOL @AceofSpadesHQ Franco and Rogen\u0027s\u003cbr\u003espeech was highly offensive. \u003cbr\u003eI mean to put out\u003cbr\u003ea movie that bad? \u003cbr\u003eThey should be punished!\u003cbr\u003eWed Jan 07 15:36:10 +0000 2015"}, {"group": 667, "id": 2, "label": "552851204607598592", "shape": "dot", "size": 10, "title": "552851204607598592\u003cbr\u003e@jtLOL @AceofSpadesHQ The Venn Diagram\u003cbr\u003eis two congruent circles.\u003cbr\u003eWed Jan 07 15:36:13 +0000 2015"}, {"group": 667, "id": 3, "label": "552996813964587010", "shape": "dot", "size": 10, "title": "552996813964587010\u003cbr\u003e@jtLOL @DLoesch and how many\u003cbr\u003ethe video before benghazi???\u003cbr\u003eThu Jan 08 01:14:49 +0000 2015"}, {"group": 667, "id": 4, "label": "552999039952617472", "shape": "dot", "size": 10, "title": "552999039952617472\u003cbr\u003e@jtLOL I defended the right\u003cbr\u003eto free speech but I\u0027m\u003cbr\u003enot a fan of either.\u003cbr\u003eI defend the right for\u003cbr\u003ethem to offend me.\u003cbr\u003eThu Jan 08 01:23:40 +0000 2015"}, {"group": 667, "id": 5, "label": "552999860815671296", "shape": "dot", "size": 10, "title": "552999860815671296\u003cbr\u003e@jtLOL @DLoesch An MSNBC commentator\u003cbr\u003eliked the terrorist attack with\u003cbr\u003eFalwell suing Hustler. Mass Murder\u003cbr\u003e= Libel Lawsuit??  Really!?!\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:26:55 +0000 2015"}, {"group": 667, "id": 6, "label": "553010429061238784", "shape": "dot", "size": 10, "title": "553010429061238784\u003cbr\u003e@jtLOL @DLoesch I suspect that\u003cbr\u003enumber is lower than it\u003cbr\u003eshould be sadly.\u003cbr\u003eThu Jan 08 02:08:55 +0000 2015"}, {"group": 667, "id": 7, "label": "553012247933767680", "shape": "dot", "size": 10, "title": "553012247933767680\u003cbr\u003e@jtLOL @Sherlockdown83 The hypocritical lib\u003cbr\u003emedia criticizing Christians \u0026amp; Jews\u003cbr\u003eis hiding under desks now,\u003cbr\u003eplotting how to placate Islam.\u003cbr\u003e\u003cbr\u003eThu Jan 08 02:16:09 +0000 2015"}, {"group": 667, "id": 8, "label": "553024003724423168", "shape": "dot", "size": 10, "title": "553024003724423168\u003cbr\u003e@jtLOL @DLoesch   Freedom\u003cbr\u003eof speech is one thing\u003cbr\u003eto incite a barbarian is\u003cbr\u003eanother.\u003cbr\u003eThu Jan 08 03:02:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

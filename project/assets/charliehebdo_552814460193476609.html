@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 197, "id": 0, "label": "552814460193476609", "shape": "dot", "size": 10, "title": "552814460193476609\u003cbr\u003eA brief history of Charlie\u003cbr\u003eHebdo, the satirical magazine at\u003cbr\u003ethe centre of today\u0027s terror\u003cbr\u003eattack in Paris http://t.co/mewhhD9cOm #paris\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:10:12 +0000 2015"}, {"group": 197, "id": 1, "label": "552814880106246144", "shape": "dot", "size": 10, "title": "552814880106246144\u003cbr\u003eBreve historia de la revista\u003cbr\u003eCharlie Hebdo. V\u00eda @guardian http://t.co/6LmikQ8Lt0\u003cbr\u003e#paris\u201d\u003cbr\u003eWed Jan 07 13:11:52 +0000 2015"}, {"group": 197, "id": 2, "label": "552814882492788738", "shape": "dot", "size": 10, "title": "552814882492788738\u003cbr\u003e@guardian baise les muslims\u003cbr\u003eWed Jan 07 13:11:53 +0000 2015"}, {"group": 197, "id": 3, "label": "552815104363085824", "shape": "dot", "size": 10, "title": "552815104363085824\u003cbr\u003e@guardian had along history of\u003cbr\u003eanti israel coverage too http://t.co/cZNiuyQf6j\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:12:46 +0000 2015"}, {"group": 197, "id": 4, "label": "552815333774745600", "shape": "dot", "size": 10, "title": "552815333774745600\u003cbr\u003e@guardian http://t.co/NOdqbKwsRz\u003cbr\u003eWed Jan 07 13:13:41 +0000 2015"}, {"group": 197, "id": 6, "label": "552816001473986560", "shape": "dot", "size": 10, "title": "552816001473986560\u003cbr\u003e@guardian Many more innocents will\u003cbr\u003edie till we see that\u003cbr\u003ewe are at war against\u003cbr\u003ean ideology incompatible with human\u003cbr\u003erights \u0026amp; personal freedoms\u003cbr\u003eWed Jan 07 13:16:20 +0000 2015"}, {"group": 197, "id": 7, "label": "552816522922835968", "shape": "dot", "size": 10, "title": "552816522922835968\u003cbr\u003eRT \u201c@guardian: A brief history\u003cbr\u003eof Charlie Hebdo, the satirical\u003cbr\u003emagazine at the centre of\u003cbr\u003etoday\u0027s attack in Paris http://t.co/nVA0xc9zbA\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:18:24 +0000 2015"}, {"group": 197, "id": 9, "label": "552816862036504576", "shape": "dot", "size": 10, "title": "552816862036504576\u003cbr\u003eFight intimidation with controversy: MT\u003cbr\u003e@guardian: A brief history of\u003cbr\u003e#CharlieHebdo... http://t.co/vR7rAm290x #paris\u003cbr\u003eWed Jan 07 13:19:45 +0000 2015"}, {"group": 197, "id": 10, "label": "552818358446739457", "shape": "dot", "size": 10, "title": "552818358446739457\u003cbr\u003e\u201c@guardian: A brief history of\u003cbr\u003e#CharlieHebdo, the satirical magazine http://t.co/YSRb9t887n\u201d\u003cbr\u003e\u0026lt;-- Para entender lo que\u003cbr\u003eest\u00e1 sucediendo\u003cbr\u003eWed Jan 07 13:25:42 +0000 2015"}, {"group": 197, "id": 11, "label": "552822703791820800", "shape": "dot", "size": 10, "title": "552822703791820800\u003cbr\u003eRT @guardian A brief history\u003cbr\u003eof Charlie Hebdo, satirical magazine\u003cbr\u003eat the centre of today\u0027s\u003cbr\u003eterror attack in Paris http://t.co/ku3Q2Bn1ST\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:42:58 +0000 2015"}, {"group": 197, "id": 16, "label": "552923301895757825", "shape": "dot", "size": 10, "title": "552923301895757825\u003cbr\u003e@guardian Print the cartoons of\u003cbr\u003e#CharlieHebdo #jesuischarlie . Today. \u003cbr\u003eOr it\u0027s all just empty\u003cbr\u003etalk and cowardly shit on\u003cbr\u003eyour part, Guardian.\u003cbr\u003eWed Jan 07 20:22:42 +0000 2015"}, {"group": 197, "id": 14, "label": "552869854798417921", "shape": "dot", "size": 10, "title": "552869854798417921\u003cbr\u003e@ambrablu @guardian liar.\u003cbr\u003eWed Jan 07 16:50:19 +0000 2015"}, {"group": 197, "id": 5, "label": "552815360731529216", "shape": "dot", "size": 10, "title": "552815360731529216\u003cbr\u003e@Perseus009 @guardian After the 1962\u003cbr\u003eCuban Missile Crisis, then came:\u003cbr\u003ehttp://t.co/sh5mFenFTK \u2026 and http://t.co/K120Lr0lUN \u2026\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:13:47 +0000 2015"}, {"group": 197, "id": 8, "label": "552816684655181825", "shape": "dot", "size": 10, "title": "552816684655181825\u003cbr\u003e@Perseus009 @guardian After the 1962\u003cbr\u003eCuban Missile Crisis, then came:\u003cbr\u003ehttp://t.co/sh5mFenFTK \u2026 and http://t.co/K120Lr0lUN \u2026\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:19:03 +0000 2015"}, {"group": 197, "id": 12, "label": "552839210110308352", "shape": "dot", "size": 10, "title": "552839210110308352\u003cbr\u003e@rafagaceves @guardian gracias Rafa, ahora\u003cbr\u003eentiendo mejor lo que est\u00e1\u003cbr\u003esucediendo\u003cbr\u003eWed Jan 07 14:48:33 +0000 2015"}, {"group": 197, "id": 13, "label": "552840260326277121", "shape": "dot", "size": 10, "title": "552840260326277121\u003cbr\u003e@mexicano_activo un abrazo To\u00f1o! Lo\u003cbr\u003emejor para 2015\u003cbr\u003eWed Jan 07 14:52:43 +0000 2015"}, {"group": 197, "id": 15, "label": "552879935061524480", "shape": "dot", "size": 10, "title": "552879935061524480\u003cbr\u003e@umars32 @guardian shut it\u003cbr\u003eWed Jan 07 17:30:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 2, "to": 14, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 14, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

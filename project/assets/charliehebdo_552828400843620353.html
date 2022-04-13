@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 378, "id": 0, "label": "552828400843620353", "shape": "dot", "size": 10, "title": "552828400843620353\u003cbr\u003eFM #Steinmeier on #CharlieHebdo attack:\u003cbr\u003eAbominable act of terror against\u003cbr\u003ethe free+critical press is an\u003cbr\u003eoutright assault on European values.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:05:36 +0000 2015"}, {"group": 378, "id": 1, "label": "552829134473527297", "shape": "dot", "size": 10, "title": "552829134473527297\u003cbr\u003e@GermanyDiplo genau\u003cbr\u003eWed Jan 07 14:08:31 +0000 2015"}, {"group": 378, "id": 2, "label": "552829881520631809", "shape": "dot", "size": 10, "title": "552829881520631809\u003cbr\u003e@germanydiplo @osfjustice  this is\u003cbr\u003ean attack on humanity as\u003cbr\u003ewell.\u003cbr\u003eWed Jan 07 14:11:29 +0000 2015"}, {"group": 378, "id": 3, "label": "552831265481953280", "shape": "dot", "size": 10, "title": "552831265481953280\u003cbr\u003e@GermanyDiplo  This behavior is\u003cbr\u003enot acceptable in civilised society\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:16:59 +0000 2015"}, {"group": 378, "id": 4, "label": "552831686619439106", "shape": "dot", "size": 10, "title": "552831686619439106\u003cbr\u003e@GermanyDiplo but #Merkel thinks there\u003cbr\u003eisn\u0027t a problem with all\u003cbr\u003ethese Muslims in eu well\u003cbr\u003eshe and most other politicians\u003cbr\u003eare wrong #pegida\u003cbr\u003eWed Jan 07 14:18:39 +0000 2015"}, {"group": 378, "id": 5, "label": "552863945762308096", "shape": "dot", "size": 10, "title": "552863945762308096\u003cbr\u003e\u201c@GermanyDiplo: #CharlieHebdo attack: Abominable act\u003cbr\u003eof terror against the free+critical\u003cbr\u003epress is an outright assault\u003cbr\u003eon European values.\u201d\u003cbr\u003eWed Jan 07 16:26:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

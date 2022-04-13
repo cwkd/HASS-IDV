@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1576, "id": 0, "label": "553589610014867456", "shape": "dot", "size": 10, "title": "553589610014867456\u003cbr\u003eKouachi brothers, suspects in #CharlieHebdo\u003cbr\u003emassacre, killed as police storm\u003cbr\u003ebuilding outside Paris - reports\u003cbr\u003ehttp://t.co/utGjvxPhOi\u003cbr\u003eFri Jan 09 16:30:22 +0000 2015"}, {"group": 1576, "id": 1, "label": "553589694500724736", "shape": "dot", "size": 10, "title": "553589694500724736\u003cbr\u003e@BBCBreaking GOOD\u003cbr\u003eFri Jan 09 16:30:43 +0000 2015"}, {"group": 1576, "id": 2, "label": "553589727262420992", "shape": "dot", "size": 10, "title": "553589727262420992\u003cbr\u003e@BBCBreaking good\u003cbr\u003eFri Jan 09 16:30:50 +0000 2015"}, {"group": 1576, "id": 3, "label": "553589739019055104", "shape": "dot", "size": 10, "title": "553589739019055104\u003cbr\u003e\u201c@BBCBreaking: Kouachi brothers, suspects in\u003cbr\u003e#CharlieHebdo massacre, killed as police\u003cbr\u003estorm building outside Paris.\n\nhttps://t.co/TWe84Rsy8G\u003cbr\u003eFri Jan 09 16:30:53 +0000 2015"}, {"group": 1576, "id": 4, "label": "553589783457701888", "shape": "dot", "size": 10, "title": "553589783457701888\u003cbr\u003e@BBCBreaking finally! evil cunts\u003cbr\u003eFri Jan 09 16:31:04 +0000 2015"}, {"group": 1576, "id": 6, "label": "553590102208049152", "shape": "dot", "size": 10, "title": "553590102208049152\u003cbr\u003eWell done France!! MT:\u201c@BBCBreaking: Kouachi\u003cbr\u003ebrothers, suspects in #CharlieHebdo massacre\u003cbr\u003ehttp://t.co/bi0wgegZpm\u201d\u003cbr\u003eFri Jan 09 16:32:20 +0000 2015"}, {"group": 1576, "id": 7, "label": "553590119727661056", "shape": "dot", "size": 10, "title": "553590119727661056\u003cbr\u003e\"@BBCBreaking: Kouachi brothers, suspects #CharlieHebdo\u003cbr\u003emassacre, killed as police storm\u003cbr\u003ebuilding outside Paris http://t.co/0y4rrX1VZH\" #fb\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:32:24 +0000 2015"}, {"group": 1576, "id": 9, "label": "553590481574453249", "shape": "dot", "size": 10, "title": "553590481574453249\u003cbr\u003eKouachi brothers, suspects in #CharlieHebdo\u003cbr\u003emassacre, killed as police storm\u003cbr\u003ebuilding outside Paris http://t.co/06tctNNOVC (@BBCBreaking)\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:33:50 +0000 2015"}, {"group": 1576, "id": 10, "label": "553590491464613888", "shape": "dot", "size": 10, "title": "553590491464613888\u003cbr\u003e.@BBCBreaking @DaveCullen Damn, if true.\u003cbr\u003eI wanted them alive, tried,\u003cbr\u003eand rotting in jail if\u003cbr\u003eor when convicted.\u003cbr\u003eFri Jan 09 16:33:53 +0000 2015"}, {"group": 1576, "id": 11, "label": "553590522393022464", "shape": "dot", "size": 10, "title": "553590522393022464\u003cbr\u003e@BBCBreaking @Dralnoaimi it was better\u003cbr\u003eto arrest them not to\u003cbr\u003ekill them!\n#CharlieHebdo #Paris #ParisAttack\u003cbr\u003eFri Jan 09 16:34:00 +0000 2015"}, {"group": 1576, "id": 12, "label": "553590556153368576", "shape": "dot", "size": 10, "title": "553590556153368576\u003cbr\u003e@BBCBreaking @disinformatico in realt\u00e0 pare\u003cbr\u003esiano usciti i due sparando\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:34:08 +0000 2015"}, {"group": 1576, "id": 13, "label": "553590882319208448", "shape": "dot", "size": 10, "title": "553590882319208448\u003cbr\u003e@BBCBreaking great\u003cbr\u003eFri Jan 09 16:35:26 +0000 2015"}, {"group": 1576, "id": 14, "label": "553591571682045952", "shape": "dot", "size": 10, "title": "553591571682045952\u003cbr\u003eGot the fuckers! MT @BBCBreaking:\u003cbr\u003eKouachi brothers, suspects in #CharlieHebdo\u003cbr\u003eattack, killed. http://t.co/wlOcMh84Su\u003cbr\u003eFri Jan 09 16:38:10 +0000 2015"}, {"group": 1576, "id": 15, "label": "553591657086869509", "shape": "dot", "size": 10, "title": "553591657086869509\u003cbr\u003e@BBCBreaking @ShellyLipton it would be\u003cbr\u003egreat if they just call\u003cbr\u003ethem suspects..\u003cbr\u003eFri Jan 09 16:38:30 +0000 2015"}, {"group": 1576, "id": 16, "label": "553592145060192256", "shape": "dot", "size": 10, "title": "553592145060192256\u003cbr\u003e@BBCBreaking #CharlieHebdo Such brutal behaviour\u003cbr\u003eof the brothers will end\u003cbr\u003eup in #Hell not #Heavan\u003cbr\u003e..as they always claim!Peace upon\u003cbr\u003eall.\u003cbr\u003eFri Jan 09 16:40:27 +0000 2015"}, {"group": 1576, "id": 5, "label": "553590029986312193", "shape": "dot", "size": 10, "title": "553590029986312193\u003cbr\u003e@ThatGWord @BBCBreaking except that they\u003cbr\u003eprobably saw this as a\u003cbr\u003emartyrdom mission and considered death\u003cbr\u003einevitable\u003cbr\u003eFri Jan 09 16:32:03 +0000 2015"}, {"group": 1576, "id": 8, "label": "553590318428618753", "shape": "dot", "size": 10, "title": "553590318428618753\u003cbr\u003e@quistead @BBCBreaking I think most\u003cbr\u003epeople saw their death as\u003cbr\u003einevitable. I\u0027m just glad they\u0027re\u003cbr\u003edead.\u003cbr\u003eFri Jan 09 16:33:11 +0000 2015"}, {"group": 1576, "id": 21, "label": "553596689928290304", "shape": "dot", "size": 10, "title": "553596689928290304\u003cbr\u003e@adiupadhyay that sucks. Really wished\u003cbr\u003ethey had been arrested\u003cbr\u003eFri Jan 09 16:58:30 +0000 2015"}, {"group": 1576, "id": 17, "label": "553592320755777536", "shape": "dot", "size": 10, "title": "553592320755777536\u003cbr\u003e@rj_c now they\u0027re just plain\u003cbr\u003edead.\u003cbr\u003eFri Jan 09 16:41:09 +0000 2015"}, {"group": 1576, "id": 18, "label": "553592790157111296", "shape": "dot", "size": 10, "title": "553592790157111296\u003cbr\u003e@ShellyLipton exactly :)\u003cbr\u003eFri Jan 09 16:43:01 +0000 2015"}, {"group": 1576, "id": 19, "label": "553594321576800256", "shape": "dot", "size": 10, "title": "553594321576800256\u003cbr\u003e@mags1310 maybe and good to\u003cbr\u003ehear about the hostages but\u003cbr\u003ewe missed the truth.\n#CharlieHebdo #Paris\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:49:06 +0000 2015"}, {"group": 1576, "id": 20, "label": "553595896156663808", "shape": "dot", "size": 10, "title": "553595896156663808\u003cbr\u003e@AL_ZAABIF @mags1310 Correct - they\u003cbr\u003ewere actually \u0027suspects\u0027, but they\u003cbr\u003eshot out at the police\u003cbr\u003e- hostage in danger.\u003cbr\u003eFri Jan 09 16:55:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 14, "to": 21, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 19, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 321, "id": 0, "label": "552823933381394432", "shape": "dot", "size": 10, "title": "552823933381394432\u003cbr\u003e12 shocking #CharlieHebdo covers from\u003cbr\u003eMuhammad to Michael Jackson http://t.co/sT93i3WTWi\u003cbr\u003ehttp://t.co/flEmCiRds2\u003cbr\u003eWed Jan 07 13:47:51 +0000 2015"}, {"group": 321, "id": 1, "label": "552824120313126912", "shape": "dot", "size": 10, "title": "552824120313126912\u003cbr\u003e@thedailybeast @holysmoke Shocking?\u003cbr\u003eWed Jan 07 13:48:35 +0000 2015"}, {"group": 321, "id": 2, "label": "552825026727407616", "shape": "dot", "size": 10, "title": "552825026727407616\u003cbr\u003e@thedailybeast regardless of circumstance, I\u003cbr\u003ethink it is wrong to\u003cbr\u003erepublish offensive caricatures of the\u003cbr\u003eProphet Muhammad.\u003cbr\u003eWed Jan 07 13:52:12 +0000 2015"}, {"group": 321, "id": 3, "label": "552825142410096642", "shape": "dot", "size": 10, "title": "552825142410096642\u003cbr\u003e\u201c@thedailybeast:12 shocking #CharlieHebdo covers from\u003cbr\u003eMuhammad to Michael Jackson http://t.co/7TnbRy6yGB\u003cbr\u003ehttp://t.co/FeLfcfQAks\u201d click bait!\u003cbr\u003eWed Jan 07 13:52:39 +0000 2015"}, {"group": 321, "id": 4, "label": "552825506186661889", "shape": "dot", "size": 10, "title": "552825506186661889\u003cbr\u003e@thedailybeast @arctichamster Satirizing ridiculous, violent\u003cbr\u003ereligious beliefs is not \"shocking\".\u003cbr\u003e The beliefs themselves are\u003cbr\u003eshocking.\u003cbr\u003eWed Jan 07 13:54:06 +0000 2015"}, {"group": 321, "id": 13, "label": "552827401244516352", "shape": "dot", "size": 10, "title": "552827401244516352\u003cbr\u003e@thedailybeast Got shock? Cuz it\u003cbr\u003eain\u0027t here.\u003cbr\u003eWed Jan 07 14:01:38 +0000 2015"}, {"group": 321, "id": 5, "label": "552825772382359552", "shape": "dot", "size": 10, "title": "552825772382359552\u003cbr\u003e@James__Nesbitt @thedailybeast why?\u003cbr\u003eWed Jan 07 13:55:09 +0000 2015"}, {"group": 321, "id": 9, "label": "552826655052689408", "shape": "dot", "size": 10, "title": "552826655052689408\u003cbr\u003e@James__Nesbitt @thedailybeast the offended have\u003cbr\u003ethe problem. They could choose\u003cbr\u003enot to be.\u003cbr\u003eWed Jan 07 13:58:40 +0000 2015"}, {"group": 321, "id": 15, "label": "552827552470142976", "shape": "dot", "size": 10, "title": "552827552470142976\u003cbr\u003e@James__Nesbitt @thedailybeast Sorry, but it\u003cbr\u003eis exactly the circumstances that\u003cbr\u003ewarrant it--we don\u0027t want to\u003cbr\u003ebe intimidated into silence.\u003cbr\u003eWed Jan 07 14:02:14 +0000 2015"}, {"group": 321, "id": 6, "label": "552826168471478272", "shape": "dot", "size": 10, "title": "552826168471478272\u003cbr\u003e@AllenStarr1 @thedailybeast because they are\u003cbr\u003ecrass, Islamophobic and serve only\u003cbr\u003eto inflame tensions. Have some\u003cbr\u003erespect.\u003cbr\u003eWed Jan 07 13:56:44 +0000 2015"}, {"group": 321, "id": 7, "label": "552826312138973184", "shape": "dot", "size": 10, "title": "552826312138973184\u003cbr\u003e@James__Nesbitt @thedailybeast Why?\u003cbr\u003eWed Jan 07 13:57:18 +0000 2015"}, {"group": 321, "id": 8, "label": "552826470385876992", "shape": "dot", "size": 10, "title": "552826470385876992\u003cbr\u003e@James__Nesbitt @thedailybeast The problem is\u003cbr\u003ewith the people that take\u003cbr\u003eoffense. They are clearly mentally\u003cbr\u003eunstable.\u003cbr\u003eWed Jan 07 13:57:56 +0000 2015"}, {"group": 321, "id": 21, "label": "552828454321004544", "shape": "dot", "size": 10, "title": "552828454321004544\u003cbr\u003e@James__Nesbitt @thedailybeast So shove this\u003cbr\u003ewhere the sun doesn\u0027t shine\u003cbr\u003e... http://t.co/QjdOAprdcC\u003cbr\u003eWed Jan 07 14:05:49 +0000 2015"}, {"group": 321, "id": 10, "label": "552826862016401409", "shape": "dot", "size": 10, "title": "552826862016401409\u003cbr\u003e@AllenStarr1 @thedailybeast absolutely wrong. It\u003cbr\u003eis codified in Islam that\u003cbr\u003edepictions of God or the\u003cbr\u003eProphet are forbidden.\u003cbr\u003eWed Jan 07 13:59:29 +0000 2015"}, {"group": 321, "id": 11, "label": "552827051510886400", "shape": "dot", "size": 10, "title": "552827051510886400\u003cbr\u003e@SlagBass @thedailybeast the cartoons are\u003cbr\u003edesigned to be as provocative\u003cbr\u003eas possible, as you are\u003cbr\u003ewell aware.\u003cbr\u003eWed Jan 07 14:00:14 +0000 2015"}, {"group": 321, "id": 17, "label": "552828023704399872", "shape": "dot", "size": 10, "title": "552828023704399872\u003cbr\u003e@James__Nesbitt @thedailybeast But we\u0027re not\u003cbr\u003emuslim. Don\u0027t you get that?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:04:06 +0000 2015"}, {"group": 321, "id": 20, "label": "552828232048078848", "shape": "dot", "size": 10, "title": "552828232048078848\u003cbr\u003e@James__Nesbitt @thedailybeast As I said,\u003cbr\u003ementally unstable to kill non-muslims\u003cbr\u003efor doing something that the\u003cbr\u003eare not forbidden to do.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:04:56 +0000 2015"}, {"group": 321, "id": 23, "label": "552828532746092544", "shape": "dot", "size": 10, "title": "552828532746092544\u003cbr\u003e@James__Nesbitt @thedailybeast And this ...\u003cbr\u003ehttp://t.co/GOirTH9P2q\u003cbr\u003eWed Jan 07 14:06:07 +0000 2015"}, {"group": 321, "id": 12, "label": "552827278124937218", "shape": "dot", "size": 10, "title": "552827278124937218\u003cbr\u003e@James__Nesbitt @thedailybeast and the bigger\u003cbr\u003eman is not provoked\u003cbr\u003eWed Jan 07 14:01:08 +0000 2015"}, {"group": 321, "id": 14, "label": "552827540382179328", "shape": "dot", "size": 10, "title": "552827540382179328\u003cbr\u003e@James__Nesbitt @thedailybeast people really need\u003cbr\u003eto get a grip. All\u003cbr\u003ereligion deserves ridicule.\u003cbr\u003eWed Jan 07 14:02:11 +0000 2015"}, {"group": 321, "id": 16, "label": "552827754161643520", "shape": "dot", "size": 10, "title": "552827754161643520\u003cbr\u003e@SlagBass @thedailybeast the \u0027bigger man\u0027\u003cbr\u003edoesn\u0027t create or publish this\u003cbr\u003etype of trash in the\u003cbr\u003efirst place. 2 wrongs don\u0027t\u003cbr\u003emake a right.\u003cbr\u003eWed Jan 07 14:03:02 +0000 2015"}, {"group": 321, "id": 18, "label": "552828130038411264", "shape": "dot", "size": 10, "title": "552828130038411264\u003cbr\u003e@fdeperis @thedailybeast Tensions are extremely\u003cbr\u003ehigh and the cartoons are\u003cbr\u003eoffensive. This is a time\u003cbr\u003eto talk peace, not share\u003cbr\u003eprovocations.\u003cbr\u003eWed Jan 07 14:04:31 +0000 2015"}, {"group": 321, "id": 19, "label": "552828198648811521", "shape": "dot", "size": 10, "title": "552828198648811521\u003cbr\u003e@James__Nesbitt @thedailybeast  It\u0027s religion.\u003cbr\u003eit\u0027s ridiculous - it deserves\u003cbr\u003eto be ridiculed. There really\u003cbr\u003eis no need for imaginary\u003cbr\u003efriends\u003cbr\u003eWed Jan 07 14:04:48 +0000 2015"}, {"group": 321, "id": 22, "label": "552828522843365376", "shape": "dot", "size": 10, "title": "552828522843365376\u003cbr\u003e@AllenStarr1 @thedailybeast uh huh, but\u003cbr\u003eit is not irrational as\u003cbr\u003eu claimed to be offended\u003cbr\u003eby them. And I take\u003cbr\u003eissue with the insensitivity.\u003cbr\u003eWed Jan 07 14:06:05 +0000 2015"}, {"group": 321, "id": 24, "label": "552829231131295744", "shape": "dot", "size": 10, "title": "552829231131295744\u003cbr\u003e@James__Nesbitt @thedailybeast Except satire, unlike\u003cbr\u003emen with automatic weapons, is\u003cbr\u003enot an act of non-peace.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:08:54 +0000 2015"}, {"group": 321, "id": 26, "label": "552829532974379008", "shape": "dot", "size": 10, "title": "552829532974379008\u003cbr\u003e@James__Nesbitt @thedailybeast And, should I\u003cbr\u003eclose my twitter account should\u003cbr\u003esomeone find that women speaking\u003cbr\u003etheir mind is \u0027offensive\u0027?\u003cbr\u003eWed Jan 07 14:10:06 +0000 2015"}, {"group": 321, "id": 25, "label": "552829314606309376", "shape": "dot", "size": 10, "title": "552829314606309376\u003cbr\u003e@AllenStarr1 @thedailybeast you\u0027re a racist,\u003cbr\u003eIslamophobic moron. You and the\u003cbr\u003eterrorists are 2 sides of\u003cbr\u003ethe same coin. Blocked.\u003cbr\u003eWed Jan 07 14:09:14 +0000 2015"}, {"group": 321, "id": 27, "label": "552829949913350144", "shape": "dot", "size": 10, "title": "552829949913350144\u003cbr\u003e@fdeperis @thedailybeast hate speech isn\u0027t\u003cbr\u003ean act of peace. I\u0027d\u003cbr\u003ecall u a bully but\u003cbr\u003eur not, ur just the\u003cbr\u003ebuillies\u0027 laugh-along sidekick.\u003cbr\u003eWed Jan 07 14:11:45 +0000 2015"}, {"group": 321, "id": 28, "label": "552830289761009664", "shape": "dot", "size": 10, "title": "552830289761009664\u003cbr\u003e@fdeperis @thedailybeast Nope. I\u0027m just\u003cbr\u003easking people to be considerate\u003cbr\u003eof the world\u0027s 1 billion+\u003cbr\u003eMuslims \u0026amp; not share those\u003cbr\u003ecartoons.\u003cbr\u003eWed Jan 07 14:13:06 +0000 2015"}, {"group": 321, "id": 30, "label": "552834899112370176", "shape": "dot", "size": 10, "title": "552834899112370176\u003cbr\u003e@James__Nesbitt @thedailybeast Satire is not\u003cbr\u003ehate speech. And how is\u003cbr\u003ea guy with a pen\u003cbr\u003emore of a bully than\u003cbr\u003ea guy with a gun?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:31:25 +0000 2015"}, {"group": 321, "id": 29, "label": "552834523847983105", "shape": "dot", "size": 10, "title": "552834523847983105\u003cbr\u003e@James__Nesbitt @thedailybeast Lots of people\u003cbr\u003eare offended by a lot\u003cbr\u003eof different things--do you eat\u003cbr\u003epork? are you going to\u003cbr\u003estop soon?\u003cbr\u003eWed Jan 07 14:29:56 +0000 2015"}, {"group": 321, "id": 31, "label": "552835237974405122", "shape": "dot", "size": 10, "title": "552835237974405122\u003cbr\u003e@fdeperis @thedailybeast no, but I\u003cbr\u003edon\u0027t go and stick a\u003cbr\u003ephoto of me eating a\u003cbr\u003ebacon sandwich on my neighbour\u0027s\u003cbr\u003edoor.\u003cbr\u003eWed Jan 07 14:32:46 +0000 2015"}, {"group": 321, "id": 32, "label": "552835442551574528", "shape": "dot", "size": 10, "title": "552835442551574528\u003cbr\u003e@fdeperis @thedailybeast I never said\u003cbr\u003ehe was. But I\u0027m glad\u003cbr\u003eyou can recognise their similarities.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:33:35 +0000 2015"}, {"group": 321, "id": 33, "label": "552835580900704257", "shape": "dot", "size": 10, "title": "552835580900704257\u003cbr\u003e@James__Nesbitt @thedailybeast And how would\u003cbr\u003ethat be satire? Again, satire\u003cbr\u003e\u0026lt;\u0026gt; hate speech/provocation.\u003cbr\u003eWed Jan 07 14:34:08 +0000 2015"}, {"group": 321, "id": 35, "label": "552836787874586625", "shape": "dot", "size": 10, "title": "552836787874586625\u003cbr\u003e@James__Nesbitt @thedailybeast What similarities?You must\u003cbr\u003ebe trolling. You really want\u003cbr\u003eto compare being \u0027offended\u0027 to\u003cbr\u003ebeing savagely killed?\u003cbr\u003eWed Jan 07 14:38:56 +0000 2015"}, {"group": 321, "id": 34, "label": "552836065787412480", "shape": "dot", "size": 10, "title": "552836065787412480\u003cbr\u003e@fdeperis @thedailybeast it wouldn\u0027t be\u003cbr\u003eas offensive as publishing a\u003cbr\u003ecaricature of the Prophet Muhammad.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:36:03 +0000 2015"}, {"group": 321, "id": 37, "label": "552838200625229824", "shape": "dot", "size": 10, "title": "552838200625229824\u003cbr\u003e@James__Nesbitt @thedailybeast The point is,\u003cbr\u003eno one has the right\u003cbr\u003eto kill/silence you for being\u003cbr\u003eoffensive (unless they win a\u003cbr\u003efair lawsuit).\u003cbr\u003eWed Jan 07 14:44:32 +0000 2015"}, {"group": 321, "id": 36, "label": "552837214359785472", "shape": "dot", "size": 10, "title": "552837214359785472\u003cbr\u003e@fdeperis @thedailybeast Not really. But\u003cbr\u003ewhat I\u0027m saying is the\u003cbr\u003ekillings don\u0027t retrospectively justify the\u003cbr\u003eprovocations.\u003cbr\u003eWed Jan 07 14:40:37 +0000 2015"}, {"group": 321, "id": 38, "label": "552839331552182272", "shape": "dot", "size": 10, "title": "552839331552182272\u003cbr\u003e@James__Nesbitt @thedailybeast But the entire\u003cbr\u003epoint of satire IS being\u003cbr\u003eprovocative. Banning \u0027offensiveness\u0027 is banning\u003cbr\u003efree speech.Gotta go.\u003cbr\u003eWed Jan 07 14:49:02 +0000 2015"}, {"group": 321, "id": 39, "label": "552840596856258560", "shape": "dot", "size": 10, "title": "552840596856258560\u003cbr\u003e@fdeperis @thedailybeast think I missed\u003cbr\u003ethe joke on the lawsuit\u003cbr\u003ebit, but otherwise I completely\u003cbr\u003eagree with you there.\u003cbr\u003eWed Jan 07 14:54:04 +0000 2015"}, {"group": 321, "id": 41, "label": "552841322798014464", "shape": "dot", "size": 10, "title": "552841322798014464\u003cbr\u003e@fdeperis @thedailybeast not sure about\u003cbr\u003ebanning it, but just because\u003cbr\u003esomething\u0027s legal doesn\u0027t make it\u003cbr\u003emoral.\u003cbr\u003eWed Jan 07 14:56:57 +0000 2015"}, {"group": 321, "id": 40, "label": "552840814263795714", "shape": "dot", "size": 10, "title": "552840814263795714\u003cbr\u003e@fdeperis @thedailybeast ok now I\u003cbr\u003eget it, they can silence\u003cbr\u003eyou if they win a\u003cbr\u003elawsuit. Not kill you though!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:54:56 +0000 2015"}, {"group": 321, "id": 42, "label": "552890712212377600", "shape": "dot", "size": 10, "title": "552890712212377600\u003cbr\u003e@James__Nesbitt @thedailybeast But offensiveness IS\u003cbr\u003eNOT and CAN NOT be\u003cbr\u003ethe measure of morality.Ugly world\u003cbr\u003ethat would be: where would\u003cbr\u003eit end?\u003cbr\u003eWed Jan 07 18:13:12 +0000 2015"}, {"group": 321, "id": 43, "label": "552912651622567936", "shape": "dot", "size": 10, "title": "552912651622567936\u003cbr\u003e@fdeperis @thedailybeast not saying nothing\u003cbr\u003eshould ever be offensive, I\u0027m\u003cbr\u003esaying caricaturing the Prophet is\u003cbr\u003eway over line of acceptability.\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:40:23 +0000 2015"}, {"group": 321, "id": 44, "label": "552918798719004672", "shape": "dot", "size": 10, "title": "552918798719004672\u003cbr\u003e@James__Nesbitt @thedailybeast Why? what makes\u003cbr\u003eMohammed (or any other prophet)\u003cbr\u003eso special? My point exactly:\u003cbr\u003ehttps://t.co/wSBJZdDlHe\u003cbr\u003eWed Jan 07 20:04:49 +0000 2015"}, {"group": 321, "id": 45, "label": "552919328618999808", "shape": "dot", "size": 10, "title": "552919328618999808\u003cbr\u003e@James__Nesbitt @thedailybeast Evolution is \u0027way\u003cbr\u003eover the line of acceptability\u0027\u003cbr\u003efor creationists, should we stop\u003cbr\u003eteaching it?\u003cbr\u003eWed Jan 07 20:06:55 +0000 2015"}, {"group": 321, "id": 46, "label": "552936433397547008", "shape": "dot", "size": 10, "title": "552936433397547008\u003cbr\u003e@fdeperis @thedailybeast It\u0027s not the\u003cbr\u003esame. Criticising Islam is 1\u003cbr\u003ething, publishing caricatures of Muhammad\u003cbr\u003eis a no-no.\u003cbr\u003eWed Jan 07 21:14:53 +0000 2015"}, {"group": 321, "id": 47, "label": "552936962332844032", "shape": "dot", "size": 10, "title": "552936962332844032\u003cbr\u003e@fdeperis @thedailybeast Sorry I was\u003cbr\u003eunclear there. I\u0027m not saying\u003cbr\u003enever be offensive, but those\u003cbr\u003ecartoons are way way too\u003cbr\u003efar.\u003cbr\u003eWed Jan 07 21:16:59 +0000 2015"}, {"group": 321, "id": 48, "label": "552963300804550657", "shape": "dot", "size": 10, "title": "552963300804550657\u003cbr\u003e@James__Nesbitt @thedailybeast You still haven\u0027t\u003cbr\u003eexplained why we should care\u003cbr\u003eabout Muslim no-nos (more than\u003cbr\u003ecreationst no-nos?).\u003cbr\u003eWed Jan 07 23:01:39 +0000 2015"}, {"group": 321, "id": 49, "label": "552992836317376512", "shape": "dot", "size": 10, "title": "552992836317376512\u003cbr\u003e@fdeperis @thedailybeast it\u0027s a dumb\u003cbr\u003ecomparison\u003cbr\u003eThu Jan 08 00:59:00 +0000 2015"}, {"group": 321, "id": 50, "label": "553111848837722112", "shape": "dot", "size": 10, "title": "553111848837722112\u003cbr\u003e@James__Nesbitt @thedailybeast What is? Please\u003cbr\u003eanswer, why should we give\u003cbr\u003ea damn what Muslims find\u003cbr\u003eoffensive? or any other religious\u003cbr\u003egroup?\u003cbr\u003eThu Jan 08 08:51:55 +0000 2015"}, {"group": 321, "id": 51, "label": "553112672464809984", "shape": "dot", "size": 10, "title": "553112672464809984\u003cbr\u003e@James__Nesbitt @thedailybeast Nobody forces Muslims\u003cbr\u003eto read Charlie Hebdo, why\u003cbr\u003eshould freedom of speech be\u003cbr\u003elimited on their account?\u003cbr\u003eThu Jan 08 08:55:12 +0000 2015"}, {"group": 321, "id": 52, "label": "553119899728773120", "shape": "dot", "size": 10, "title": "553119899728773120\u003cbr\u003e@fdeperis @thedailybeast Cos they\u0027re human\u003cbr\u003ebeings \u0026amp; there\u0027s no need\u003cbr\u003eto be a douche? Ur\u003cbr\u003ea bigot, no better than\u003cbr\u003ea high school bully.\u003cbr\u003eThu Jan 08 09:23:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 2, "to": 9, "weight": 1}, {"from": 2, "to": 15, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 6, "to": 21, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 10, "to": 17, "weight": 1}, {"from": 10, "to": 20, "weight": 1}, {"from": 10, "to": 23, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 12, "to": 16, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 17, "to": 22, "weight": 1}, {"from": 18, "to": 24, "weight": 1}, {"from": 18, "to": 26, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 24, "to": 27, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 27, "to": 30, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 32, "to": 35, "weight": 1}, {"from": 33, "to": 34, "weight": 1}, {"from": 34, "to": 37, "weight": 1}, {"from": 35, "to": 36, "weight": 1}, {"from": 36, "to": 38, "weight": 1}, {"from": 37, "to": 39, "weight": 1}, {"from": 38, "to": 41, "weight": 1}, {"from": 39, "to": 40, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 42, "to": 43, "weight": 1}, {"from": 43, "to": 44, "weight": 1}, {"from": 43, "to": 45, "weight": 1}, {"from": 45, "to": 46, "weight": 1}, {"from": 46, "to": 47, "weight": 1}, {"from": 46, "to": 48, "weight": 1}, {"from": 48, "to": 49, "weight": 1}, {"from": 49, "to": 50, "weight": 1}, {"from": 49, "to": 51, "weight": 1}, {"from": 50, "to": 52, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

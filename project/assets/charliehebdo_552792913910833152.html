@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1663, "id": 0, "label": "552792913910833152", "shape": "dot", "size": 10, "title": "552792913910833152\u003cbr\u003eAt least 11 dead in\u003cbr\u003eshooting at HQ of #CharlieHebdo\u003cbr\u003ein #Paris (police source)\nhttps://t.co/e4dBcNVbvD\u003cbr\u003eWed Jan 07 11:44:35 +0000 2015"}, {"group": 1663, "id": 1, "label": "552793275770613760", "shape": "dot", "size": 10, "title": "552793275770613760\u003cbr\u003eRT @FRANCE24 At least 11\u003cbr\u003edead in shooting at HQ\u003cbr\u003eof #CharlieHebdo in #Paris (police\u003cbr\u003esource)\nhttps://t.co/Ty6ffQz7I3\u003cbr\u003eWed Jan 07 11:46:02 +0000 2015"}, {"group": 1663, "id": 2, "label": "552793675697094657", "shape": "dot", "size": 10, "title": "552793675697094657\u003cbr\u003e@FRANCE24 Only time I was\u003cbr\u003ein France, traveled from Switzerland\u003cbr\u003eto the UK. Dirty country,\u003cbr\u003eterrible roads. People jammed together.\u003cbr\u003eWon\u0027t visit\u003cbr\u003eWed Jan 07 11:47:37 +0000 2015"}, {"group": 1663, "id": 3, "label": "552793775740055552", "shape": "dot", "size": 10, "title": "552793775740055552\u003cbr\u003e\u201c@FRANCE24: At least 11 dead\u003cbr\u003ein shooting at HQ of\u003cbr\u003e#CharlieHebdo in #Paris (police source)\nhttps://t.co/A8KPeuiVHR\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:48:01 +0000 2015"}, {"group": 1663, "id": 4, "label": "552794232503951360", "shape": "dot", "size": 10, "title": "552794232503951360\u003cbr\u003e@FRANCE24 This is the future\u003cbr\u003eof Europe. Thank you...\u003cbr\u003eWed Jan 07 11:49:50 +0000 2015"}, {"group": 1663, "id": 5, "label": "552805269441622017", "shape": "dot", "size": 10, "title": "552805269441622017\u003cbr\u003e@herself311 @FRANCE24  France is\u003cbr\u003ea very beautiful country\u003cbr\u003eWed Jan 07 12:33:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 2, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

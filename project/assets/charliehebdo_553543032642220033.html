@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1394, "id": 0, "label": "553543032642220033", "shape": "dot", "size": 10, "title": "553543032642220033\u003cbr\u003eIf you tweeted #JeSuisCharlie, now\u003cbr\u003ewe need you to tweet\u003cbr\u003e#JeSuisJuif\u003cbr\u003eFri Jan 09 13:25:17 +0000 2015"}, {"group": 1394, "id": 1, "label": "553543895775461377", "shape": "dot", "size": 10, "title": "553543895775461377\u003cbr\u003e@simoncobbs1 @IntJewCon It must be\u003cbr\u003eclear Jews + Israel LOVE\u003cbr\u003eus - Islam HATES THEM\u003cbr\u003e+ US. stand for Israel\u003cbr\u003e= PEACE. #JeSuisJuif #ILoveIsrael\u003cbr\u003eFri Jan 09 13:28:43 +0000 2015"}, {"group": 1394, "id": 3, "label": "553547771790520320", "shape": "dot", "size": 10, "title": "553547771790520320\u003cbr\u003e@simoncobbs1 @MelanieLatest Dream!\u003cbr\u003eFri Jan 09 13:44:07 +0000 2015"}, {"group": 1394, "id": 4, "label": "553557102309167105", "shape": "dot", "size": 10, "title": "553557102309167105\u003cbr\u003e@simoncobbs1 @MarthavanderPol #JeSuisJuif\u003cbr\u003eFri Jan 09 14:21:12 +0000 2015"}, {"group": 1394, "id": 5, "label": "554016790742040576", "shape": "dot", "size": 10, "title": "554016790742040576\u003cbr\u003e@simoncobbs1 Doing better!  #JeSuisJuif\u003cbr\u003e @GoldsteinBrooke\u003cbr\u003eSat Jan 10 20:47:50 +0000 2015"}, {"group": 1394, "id": 6, "label": "554020170499653632", "shape": "dot", "size": 10, "title": "554020170499653632\u003cbr\u003e@simoncobbs1 @StandWithUs #JeSuisJuif\u003cbr\u003eSat Jan 10 21:01:16 +0000 2015"}, {"group": 1394, "id": 7, "label": "554022196805632000", "shape": "dot", "size": 10, "title": "554022196805632000\u003cbr\u003e@simoncobbs1 @GoldsteinBrooke #JeSuisJuif #AmYisraelChai\u003cbr\u003eSat Jan 10 21:09:19 +0000 2015"}, {"group": 1394, "id": 2, "label": "553547586289008640", "shape": "dot", "size": 10, "title": "553547586289008640\u003cbr\u003e@MarthavanderPol @simoncobbs1 @IntJewCon true English\u003cbr\u003emen support Israel... We are\u003cbr\u003ewatching Gaza\u0027s spring up all\u003cbr\u003earound us in the UK!!\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:43:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 1, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

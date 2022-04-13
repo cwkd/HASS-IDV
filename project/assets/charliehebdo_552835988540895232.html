@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 477, "id": 0, "label": "552835988540895232", "shape": "dot", "size": 10, "title": "552835988540895232\u003cbr\u003eNow\u0027s a good time to\u003cbr\u003eread Christopher Hitchens\u0027 case for\u003cbr\u003emocking religion: http://t.co/x9gPr2Y9Y1 #CharlieHebdo #StandWithCharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:35:45 +0000 2015"}, {"group": 477, "id": 1, "label": "552836111756972033", "shape": "dot", "size": 10, "title": "552836111756972033\u003cbr\u003e@Slate It\u0027s always a good\u003cbr\u003etime to read the Hitch\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:36:14 +0000 2015"}, {"group": 477, "id": 2, "label": "552836435074482177", "shape": "dot", "size": 10, "title": "552836435074482177\u003cbr\u003e@Slate I\u0027m all 4 mocking\u003cbr\u003ereligion - done so -\u003cbr\u003ebut it\u0027s also time 2\u003cbr\u003eadmit Y France votes itself\u003cbr\u003eas a nation of assholes\u003cbr\u003eevery year. We lie.\u003cbr\u003eWed Jan 07 14:37:31 +0000 2015"}, {"group": 477, "id": 3, "label": "552836454322552832", "shape": "dot", "size": 10, "title": "552836454322552832\u003cbr\u003e@Slate He sheltered beneath the\u003cbr\u003eprotection of Christian civilization, against\u003cbr\u003ethe aggression of jihadist Islam.\u003cbr\u003eAll religions are not =.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:37:36 +0000 2015"}, {"group": 477, "id": 4, "label": "552836641430458368", "shape": "dot", "size": 10, "title": "552836641430458368\u003cbr\u003e@Slate I strongly condemn this\u003cbr\u003eterrorist attack as a Turkish\u003cbr\u003eMuslim.Terrorists Cannot represent Islam #notinmyname\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:38:21 +0000 2015"}, {"group": 477, "id": 5, "label": "552837146248482816", "shape": "dot", "size": 10, "title": "552837146248482816\u003cbr\u003e\u201c@Slate: Now\u0027s a good time\u003cbr\u003eto read Christopher Hitchens\u0027 mocking\u003cbr\u003ereligion: http://t.co/8nidEHPj9G #CharlieHebdo #StandWithCharlieHebdo\u201d\u003cbr\u003eWed Jan 07 14:40:21 +0000 2015"}, {"group": 477, "id": 8, "label": "552837294042783745", "shape": "dot", "size": 10, "title": "552837294042783745\u003cbr\u003e@Slate @LogicalAnalysis Bombas contra Charlie:\u003cbr\u003euna barbarie. http://t.co/aoAZIj5nos\u003cbr\u003eWed Jan 07 14:40:56 +0000 2015"}, {"group": 477, "id": 11, "label": "552837575577448449", "shape": "dot", "size": 10, "title": "552837575577448449\u003cbr\u003e@Slate You still can\u0027t say\u003cbr\u003ethe \u0027M\u0027 word, can you?\u003cbr\u003e\n#Muslims\n#Muslims\n#Muslims\n#Muslims\n#Muslims\n#Muslims\n#Muslims\n#Muslims\n#Muslims\n#Muslims\u003cbr\u003eWed Jan 07 14:42:03 +0000 2015"}, {"group": 477, "id": 12, "label": "552837708674916352", "shape": "dot", "size": 10, "title": "552837708674916352\u003cbr\u003e@Slate @LogicalAnalysis This is no\u003cbr\u003etime for extreme reactions. There\u003cbr\u003eis then no difference between\u003cbr\u003ethe extremists and us\u003cbr\u003eWed Jan 07 14:42:35 +0000 2015"}, {"group": 477, "id": 13, "label": "552837721182318594", "shape": "dot", "size": 10, "title": "552837721182318594\u003cbr\u003e@Slate good idea to mock\u003cbr\u003ereligion, but also good idea\u003cbr\u003eto mock Hitchens sometimes. Also,\u003cbr\u003emocking a minority rel. can\u003cbr\u003ejustify racism.\u003cbr\u003eWed Jan 07 14:42:38 +0000 2015"}, {"group": 477, "id": 14, "label": "552837779881988096", "shape": "dot", "size": 10, "title": "552837779881988096\u003cbr\u003e@Slate Time to stand all\u003cbr\u003etogether against the islamo fascists\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:42:52 +0000 2015"}, {"group": 477, "id": 6, "label": "552837228762652672", "shape": "dot", "size": 10, "title": "552837228762652672\u003cbr\u003e@wheatus @Slate  Israel love\u003cbr\u003eyou\ud83d\ude0d\ud83d\ude18\ud83d\ude18\u003cbr\u003eWed Jan 07 14:40:41 +0000 2015"}, {"group": 477, "id": 7, "label": "552837290259922944", "shape": "dot", "size": 10, "title": "552837290259922944\u003cbr\u003e@wheatus follow me pslsss\u003cbr\u003eWed Jan 07 14:40:55 +0000 2015"}, {"group": 477, "id": 9, "label": "552837344081227776", "shape": "dot", "size": 10, "title": "552837344081227776\u003cbr\u003e@wheatus can u follow me\u003cbr\u003eplsss \ud83d\ude4f\ud83d\ude4f\ud83d\ude4f\u003cbr\u003eWed Jan 07 14:41:08 +0000 2015"}, {"group": 477, "id": 10, "label": "552837370446610433", "shape": "dot", "size": 10, "title": "552837370446610433\u003cbr\u003e@wheatus @Slate heyyyy\u003cbr\u003eWed Jan 07 14:41:14 +0000 2015"}, {"group": 477, "id": 16, "label": "552838653131915265", "shape": "dot", "size": 10, "title": "552838653131915265\u003cbr\u003e@techrsr @Slate The funny thing\u003cbr\u003eis that mocking religion is\u003cbr\u003esupposed to be an \"extreme\u003cbr\u003ereaction\". And by mocking he\u003cbr\u003emeans: joking about.\u003cbr\u003eWed Jan 07 14:46:20 +0000 2015"}, {"group": 477, "id": 15, "label": "552838623557857280", "shape": "dot", "size": 10, "title": "552838623557857280\u003cbr\u003e@daughterof133 @Slate Islam in\u0027t a\u003cbr\u003erace though?\u003cbr\u003eWed Jan 07 14:46:13 +0000 2015"}, {"group": 477, "id": 18, "label": "552839743667326977", "shape": "dot", "size": 10, "title": "552839743667326977\u003cbr\u003e@tweetdeanhere @Slate right...but rel. is\u003cbr\u003etoo often used to stand\u003cbr\u003efor nationality \"those so and\u003cbr\u003eso\u0027s taking over our country,\u003cbr\u003e\" etc.\u003cbr\u003eWed Jan 07 14:50:40 +0000 2015"}, {"group": 477, "id": 19, "label": "552840223436988416", "shape": "dot", "size": 10, "title": "552840223436988416\u003cbr\u003e@tweetdeanhere @Slate when a global\u003cbr\u003ereligion is incorrectly conflated w\u003cbr\u003eso called \"brown foreigners\"\u003cbr\u003eWed Jan 07 14:52:35 +0000 2015"}, {"group": 477, "id": 17, "label": "552839067948171264", "shape": "dot", "size": 10, "title": "552839067948171264\u003cbr\u003e@LogicalAnalysis @Slate I see your\u003cbr\u003epoint. But we should strive\u003cbr\u003eto understand religion and indoctrination,\u003cbr\u003eif we are to solve\u003cbr\u003eextremism\u003cbr\u003eWed Jan 07 14:47:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 5, "to": 10, "weight": 1}, {"from": 12, "to": 16, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

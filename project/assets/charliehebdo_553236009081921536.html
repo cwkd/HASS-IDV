@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1239, "id": 0, "label": "553236009081921536", "shape": "dot", "size": 10, "title": "553236009081921536\u003cbr\u003eIran condemns #CharlieHebdo massacre?! What\u003cbr\u003eabout this man on death\u003cbr\u003erow... for blogging! http://t.co/H1Kbn2AltW http://t.co/wSeuOMPtuf\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:05:17 +0000 2015"}, {"group": 1239, "id": 1, "label": "553238887834087425", "shape": "dot", "size": 10, "title": "553238887834087425\u003cbr\u003eNiceQuestion @LisaDaftari ExeptionWithWhatHappened in #Paris,We`veAlwaysPaidByDeath\u0026amp;Blood\u003cbr\u003ein #Iran #Syria #Iraq 4\u003cbr\u003e@BarackObama`s Appeasment\u003cbr\u003eThu Jan 08 17:16:44 +0000 2015"}, {"group": 1239, "id": 2, "label": "553242098456363009", "shape": "dot", "size": 10, "title": "553242098456363009\u003cbr\u003e@LisaDaftari @LibertysSpirit or Raif Badawl\u003cbr\u003elies=lies=lies #CDCwhistleblower\u003cbr\u003eThu Jan 08 17:29:29 +0000 2015"}, {"group": 1239, "id": 3, "label": "553251439682666496", "shape": "dot", "size": 10, "title": "553251439682666496\u003cbr\u003e@LisaDaftari Didn\u0027t he blog about\u003cbr\u003ePre Islamic Achaemenid Iran/Persia? You\u003cbr\u003eshould just broadcast an Achaemenid\u003cbr\u003efeature. Progressive past.\u003cbr\u003eThu Jan 08 18:06:36 +0000 2015"}, {"group": 1239, "id": 4, "label": "553265262963609602", "shape": "dot", "size": 10, "title": "553265262963609602\u003cbr\u003e@LisaDaftari @sylvielasserre what happened with\u003cbr\u003ethis man?\ncan anybody tell plz\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:01:32 +0000 2015"}, {"group": 1239, "id": 5, "label": "553289365170814976", "shape": "dot", "size": 10, "title": "553289365170814976\u003cbr\u003e@LisaDaftari #Iran was D 1st\u003cbr\u003ecountry 2call 4 killing of\u003cbr\u003ewriter,Salman Rushdie. 100rds Bloggers+Journalists are\u003cbr\u003eon Death row #JeSuisCharlie\u003cbr\u003eThu Jan 08 20:37:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

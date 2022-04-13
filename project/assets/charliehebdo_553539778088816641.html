@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1371, "id": 0, "label": "553539778088816641", "shape": "dot", "size": 10, "title": "553539778088816641\u003cbr\u003eBreaking News: Paris Police Respond\u003cbr\u003eto Report of Second Hostage-Taking\nhttp://t.co/U8BE162qls\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:12:22 +0000 2015"}, {"group": 1371, "id": 1, "label": "553540010629398528", "shape": "dot", "size": 10, "title": "553540010629398528\u003cbr\u003e\u201c@nytimes: Breaking News: Paris Police\u003cbr\u003eRespond to Report of Second\u003cbr\u003eHostage-Taking\nhttp://t.co/juzXeVZ2Jp\u201d @acardenasfx @andresortu\u003cbr\u003eFri Jan 09 13:13:17 +0000 2015"}, {"group": 1371, "id": 2, "label": "553540141080662017", "shape": "dot", "size": 10, "title": "553540141080662017\u003cbr\u003e\u201c@nytimes: Breaking News: Paris Police\u003cbr\u003eRespond to Report of Second\u003cbr\u003eHostage-Taking\nhttp://t.co/THi2ChVeBz\u201d omg \ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\u003cbr\u003eFri Jan 09 13:13:48 +0000 2015"}, {"group": 1371, "id": 3, "label": "553540170130399233", "shape": "dot", "size": 10, "title": "553540170130399233\u003cbr\u003eWhy is it that every\u003cbr\u003eJew politician in the #USA\u003cbr\u003eand #France is for more\u003cbr\u003eMoslem \u0026amp; non-White immigration?@nytimes #NY\u003cbr\u003e#NYT #NYC\u003cbr\u003eFri Jan 09 13:13:55 +0000 2015"}, {"group": 1371, "id": 4, "label": "553540276065935361", "shape": "dot", "size": 10, "title": "553540276065935361\u003cbr\u003e#PrayersforParis\u201c@nytimes: Breaking News: Paris Police\u003cbr\u003eRespond to Report of Second\u003cbr\u003eHostage-Taking\nhttp://t.co/BzXJ1qCDrT\u201d\u003cbr\u003eFri Jan 09 13:14:20 +0000 2015"}, {"group": 1371, "id": 5, "label": "553540691754622977", "shape": "dot", "size": 10, "title": "553540691754622977\u003cbr\u003e@nytimes So, how many lonewolves\u003cbr\u003emake up a cell?\u003cbr\u003eFri Jan 09 13:15:59 +0000 2015"}, {"group": 1371, "id": 6, "label": "553541050690990081", "shape": "dot", "size": 10, "title": "553541050690990081\u003cbr\u003e@nytimes here in paris it\u0027s\u003cbr\u003elike wars, problem, no visible\u003cbr\u003eennemy.\u003cbr\u003eFri Jan 09 13:17:25 +0000 2015"}, {"group": 1371, "id": 7, "label": "553541158245531648", "shape": "dot", "size": 10, "title": "553541158245531648\u003cbr\u003e@nytimes The site is a\u003cbr\u003eKosher Deli. Still denying that\u003cbr\u003ethis is religious? Your political\u003cbr\u003ecorrectness is going to get\u003cbr\u003epeople killed.\u003cbr\u003eFri Jan 09 13:17:51 +0000 2015"}, {"group": 1371, "id": 8, "label": "553541204411813888", "shape": "dot", "size": 10, "title": "553541204411813888\u003cbr\u003e@nytimes be nice if they\u003cbr\u003estill had the guillotine in\u003cbr\u003euse.\u003cbr\u003eFri Jan 09 13:18:02 +0000 2015"}, {"group": 1371, "id": 9, "label": "553541813559369728", "shape": "dot", "size": 10, "title": "553541813559369728\u003cbr\u003e@nytimes were the Palestinians ?\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:20:27 +0000 2015"}, {"group": 1371, "id": 10, "label": "553542108766670848", "shape": "dot", "size": 10, "title": "553542108766670848\u003cbr\u003eMT @nytimes: Breaking News: Paris\u003cbr\u003ePolice Respond to Report of\u003cbr\u003eSecond Hostage-Taking\nhttp://t.co/0CeXirB4KU\u201d #Saskatchewan #saskatoon #yxe\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:21:37 +0000 2015"}, {"group": 1371, "id": 11, "label": "553542318339272704", "shape": "dot", "size": 10, "title": "553542318339272704\u003cbr\u003eThis is getting crazier....RT\u201c@nytimes: Breaking\u003cbr\u003eNews: Paris Police Respond to\u003cbr\u003eReport of Second Hostage-Taking\nhttp://t.co/fWhTmHpCk9\u201d\u003cbr\u003eFri Jan 09 13:22:27 +0000 2015"}, {"group": 1371, "id": 12, "label": "553542803796807680", "shape": "dot", "size": 10, "title": "553542803796807680\u003cbr\u003e\u201c@nytimes: Breaking News: Paris Police\u003cbr\u003eRespond to Report of Second\u003cbr\u003eHostage-Taking\nhttp://t.co/jRGatZCQWh\u201d Getting worse and worse..\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:24:23 +0000 2015"}, {"group": 1371, "id": 13, "label": "553543199382581248", "shape": "dot", "size": 10, "title": "553543199382581248\u003cbr\u003e@nytimes portrait of the hostage\u003cbr\u003etaker http://t.co/mfGzvLl3uu\u003cbr\u003eFri Jan 09 13:25:57 +0000 2015"}, {"group": 1371, "id": 14, "label": "553545017395261440", "shape": "dot", "size": 10, "title": "553545017395261440\u003cbr\u003e\u201c@nytimes: Breaking News: Paris Police\u003cbr\u003eRespond to Report of Second\u003cbr\u003eHostage-Taking\nhttp://t.co/M1f6z2XSwl\u201d \ud83d\udc94\u003cbr\u003eFri Jan 09 13:33:11 +0000 2015"}, {"group": 1371, "id": 15, "label": "553546188012941313", "shape": "dot", "size": 10, "title": "553546188012941313\u003cbr\u003eInternational \u201c@nytimes: Breaking News: Paris\u003cbr\u003ePolice Respond to Report of\u003cbr\u003eSecond Hostage-Taking\nhttp://t.co/r7VSWQmgjY\u201d\u003cbr\u003eFri Jan 09 13:37:50 +0000 2015"}, {"group": 1371, "id": 16, "label": "553548639126052866", "shape": "dot", "size": 10, "title": "553548639126052866\u003cbr\u003e@nytimes What if police blast\u003cbr\u003everses from Koran that states\u003cbr\u003emurder is wrong.  You\u003cbr\u003ethink they will see the\u003cbr\u003elight + surrender?  #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:47:34 +0000 2015"}, {"group": 1371, "id": 17, "label": "553549416037359616", "shape": "dot", "size": 10, "title": "553549416037359616\u003cbr\u003ePrayers for all, esp French\u003cbr\u003eJews on this Shabbat. RT@nytimes:\u003cbr\u003eParis Police Respond to Report\u003cbr\u003eof Second Hostage-Taking\nhttp://t.co/uC3GcZBcTb\u003cbr\u003eFri Jan 09 13:50:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

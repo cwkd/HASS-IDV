@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 465, "id": 0, "label": "552834808121163776", "shape": "dot", "size": 10, "title": "552834808121163776\u003cbr\u003eStanding up for freedom of\u003cbr\u003espeech, I am tweeting the\u003cbr\u003e#CharlieHebdo cartoon  http://t.co/iYEyRxeaDk My\u003cbr\u003ehomage to the French martyrs\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:31:04 +0000 2015"}, {"group": 465, "id": 1, "label": "552835151911084032", "shape": "dot", "size": 10, "title": "552835151911084032\u003cbr\u003e@sarkar_swati A movie that\u0027s been\u003cbr\u003estalled by Censor Board for\u003cbr\u003etwo years for hurting Christian\u003cbr\u003esentiments http://t.co/q5USi22lBZ\u003cbr\u003eWed Jan 07 14:32:26 +0000 2015"}, {"group": 465, "id": 2, "label": "552840893175455744", "shape": "dot", "size": 10, "title": "552840893175455744\u003cbr\u003e@sarkar_swati Can someone translate what\u003cbr\u003ethe cartoon says please?\u003cbr\u003eWed Jan 07 14:55:14 +0000 2015"}, {"group": 465, "id": 4, "label": "552843744903712768", "shape": "dot", "size": 10, "title": "552843744903712768\u003cbr\u003e@sarkar_swati @venkyganesan I say it\u003cbr\u003eas atheist that live inside\u003cbr\u003eJewish-Arab society-we shouldn\u0027t RT pics\u003cbr\u003ethat affect the religious feelings\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:06:34 +0000 2015"}, {"group": 465, "id": 5, "label": "552844779319341056", "shape": "dot", "size": 10, "title": "552844779319341056\u003cbr\u003e@sarkar_swati Translation needed ..without it\u003cbr\u003eits not making much impact..\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:10:41 +0000 2015"}, {"group": 465, "id": 8, "label": "552848139716030464", "shape": "dot", "size": 10, "title": "552848139716030464\u003cbr\u003e@sarkar_swati What is d significance\u003cbr\u003eof d stony silence of\u003cbr\u003eleftists?\u003cbr\u003eWed Jan 07 15:24:02 +0000 2015"}, {"group": 465, "id": 11, "label": "553017439966216193", "shape": "dot", "size": 10, "title": "553017439966216193\u003cbr\u003e@sarkar_swati @shakkuiyer Thank you\u003cbr\u003eThu Jan 08 02:36:46 +0000 2015"}, {"group": 465, "id": 6, "label": "552844785367523330", "shape": "dot", "size": 10, "title": "552844785367523330\u003cbr\u003e@BiggBossage @sarkar_swati All #pk supporter\u003cbr\u003epls note\u003cbr\u003eWed Jan 07 15:10:42 +0000 2015"}, {"group": 465, "id": 3, "label": "552842255942565888", "shape": "dot", "size": 10, "title": "552842255942565888\u003cbr\u003e@NarasingM @sarkar_swati \"100 lashes if\u003cbr\u003eyou are not dying of\u003cbr\u003elaughter\"\u003cbr\u003eWed Jan 07 15:00:39 +0000 2015"}, {"group": 465, "id": 7, "label": "552845912779669505", "shape": "dot", "size": 10, "title": "552845912779669505\u003cbr\u003e@GennadySimanovs @sarkar_swati I am sorry\u003cbr\u003ebut I disagree. I am\u003cbr\u003ean atheist also but no\u003cbr\u003ecommunity gets to decide freedom\u003cbr\u003eof speech\u003cbr\u003eWed Jan 07 15:15:11 +0000 2015"}, {"group": 465, "id": 9, "label": "552850068945256448", "shape": "dot", "size": 10, "title": "552850068945256448\u003cbr\u003e@venkyganesan @sarkar_swati Dear Venky, in\u003cbr\u003eour imperfect reality by touching\u003cbr\u003ethese super sensitive  issues\u003cbr\u003ewe serve our enemies.\u003cbr\u003eWed Jan 07 15:31:42 +0000 2015"}, {"group": 465, "id": 10, "label": "552866301899599872", "shape": "dot", "size": 10, "title": "552866301899599872\u003cbr\u003e@GennadySimanovs @sarkar_swati I know what\u003cbr\u003eyou mean.  Just frustrating\u003cbr\u003ethat some people express their\u003cbr\u003eissues by taking innocent lives\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:36:12 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

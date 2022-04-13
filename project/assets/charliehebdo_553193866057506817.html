@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1079, "id": 0, "label": "553193866057506817", "shape": "dot", "size": 10, "title": "553193866057506817\u003cbr\u003e#CharlieHebdo will continue publishing in\u003cbr\u003ewake of the attack: http://t.co/djW9x4BqHQ\u003cbr\u003ehttp://t.co/xDlLZ4AtPe\u003cbr\u003eThu Jan 08 14:17:50 +0000 2015"}, {"group": 1079, "id": 1, "label": "553194074904465408", "shape": "dot", "size": 10, "title": "553194074904465408\u003cbr\u003e@WSJ bECAUSE THEY ARE VERY\u003cbr\u003eBRAVE.\u003cbr\u003eThu Jan 08 14:18:39 +0000 2015"}, {"group": 1079, "id": 2, "label": "553194113273987072", "shape": "dot", "size": 10, "title": "553194113273987072\u003cbr\u003e@wsj Got bored, Play it!\nMost\u003cbr\u003eBoring\nhttps://t.co/z67RKu8P7b\nhttp://t.co/9OsIRDKID6\u003cbr\u003eThu Jan 08 14:18:49 +0000 2015"}, {"group": 1079, "id": 3, "label": "553194362000007169", "shape": "dot", "size": 10, "title": "553194362000007169\u003cbr\u003e@WSJ they need to continue\u003cbr\u003eto publish, Never let them\u003cbr\u003esilence freedom of speech\u003cbr\u003eThu Jan 08 14:19:48 +0000 2015"}, {"group": 1079, "id": 4, "label": "553194367016779776", "shape": "dot", "size": 10, "title": "553194367016779776\u003cbr\u003e@wsj I dont know why\u003cbr\u003epeople never get it. Just\u003cbr\u003edont upset the media. It\u003cbr\u003ejust gets crazier.\u003cbr\u003eThu Jan 08 14:19:49 +0000 2015"}, {"group": 1079, "id": 5, "label": "553194382682112000", "shape": "dot", "size": 10, "title": "553194382682112000\u003cbr\u003e@WSJ \n#stophatingislam  #BlameTheMuslimGame\nHow media\u003cbr\u003espreads hate for ISLAM \u0026amp;\u003cbr\u003eMUSLIMS\u00a0\nhttp://t.co/MgfMgZzYz4\u003cbr\u003eThu Jan 08 14:19:53 +0000 2015"}, {"group": 1079, "id": 6, "label": "553194421559123969", "shape": "dot", "size": 10, "title": "553194421559123969\u003cbr\u003e\u201c@WSJ: #CharlieHebdo will continue publishing\u003cbr\u003ein wake of the attack:\u003cbr\u003ehttp://t.co/4JDsihfSNY http://t.co/36nWehqpKS\u201d good. Don\u0027t let\u003cbr\u003ethem win\u003cbr\u003eThu Jan 08 14:20:02 +0000 2015"}, {"group": 1079, "id": 7, "label": "553194878331781120", "shape": "dot", "size": 10, "title": "553194878331781120\u003cbr\u003eThe Hebdo lives on: #CharlieHebdo\u003cbr\u003ewill continue publishing in wake\u003cbr\u003eof the attack: http://t.co/Dj7W9Rig4x http://t.co/VgxCd8Q4k2\u003cbr\u003e@WSJ\u003cbr\u003eThu Jan 08 14:21:51 +0000 2015"}, {"group": 1079, "id": 8, "label": "553194899273961472", "shape": "dot", "size": 10, "title": "553194899273961472\u003cbr\u003e@WSJ good.\u003cbr\u003eThu Jan 08 14:21:56 +0000 2015"}, {"group": 1079, "id": 9, "label": "553195076193894400", "shape": "dot", "size": 10, "title": "553195076193894400\u003cbr\u003e@WSJ A complete GIF guide\u003cbr\u003eto Muslims Denouncing terrorism. http://t.co/s9rGMNFzda\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:22:38 +0000 2015"}, {"group": 1079, "id": 10, "label": "553195341794017280", "shape": "dot", "size": 10, "title": "553195341794017280\u003cbr\u003e@WSJ Only good news to\u003cbr\u003ecome out of this tragedy\u003cbr\u003eso far.\u003cbr\u003eThu Jan 08 14:23:42 +0000 2015"}, {"group": 1079, "id": 11, "label": "553197119708733441", "shape": "dot", "size": 10, "title": "553197119708733441\u003cbr\u003e@WSJ http://t.co/3DpEXMg9re\u003cbr\u003eThu Jan 08 14:30:45 +0000 2015"}, {"group": 1079, "id": 12, "label": "553198007509073921", "shape": "dot", "size": 10, "title": "553198007509073921\u003cbr\u003e@WSJ #CharlieHebdo very brave of\u003cbr\u003eu.Pls print something as funny\u003cbr\u003efor Moses,Jesus,Budha \u0026amp; Hindu Lords\u003cbr\u003eas u did for Muhammed.#NoDiscrimination\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:34:17 +0000 2015"}, {"group": 1079, "id": 13, "label": "553198378914304000", "shape": "dot", "size": 10, "title": "553198378914304000\u003cbr\u003e@WSJ Very brave response. Never\u003cbr\u003eGive Up if front of\u003cbr\u003esome bunch of loosers!!!\u003cbr\u003eThu Jan 08 14:35:46 +0000 2015"}, {"group": 1079, "id": 14, "label": "553199188410781696", "shape": "dot", "size": 10, "title": "553199188410781696\u003cbr\u003e@WSJ killing will continue then\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:38:59 +0000 2015"}, {"group": 1079, "id": 15, "label": "553199679937069056", "shape": "dot", "size": 10, "title": "553199679937069056\u003cbr\u003e@WSJ Pen/click mightier than sword.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:40:56 +0000 2015"}, {"group": 1079, "id": 16, "label": "553199799218892801", "shape": "dot", "size": 10, "title": "553199799218892801\u003cbr\u003eDon\u0027t be too brave \u201c@WSJ:\u003cbr\u003e#CharlieHebdo will continue publishing in\u003cbr\u003ewake of the attack: http://t.co/9itNdgO1ny\u003cbr\u003ehttp://t.co/2CNERkHg1m\u201d\u003cbr\u003eThu Jan 08 14:41:24 +0000 2015"}, {"group": 1079, "id": 17, "label": "553202041498394624", "shape": "dot", "size": 10, "title": "553202041498394624\u003cbr\u003e@WSJ c\u0027est  corageux, \u003cbr\u003ecourage charlie!\u003cbr\u003eThu Jan 08 14:50:19 +0000 2015"}, {"group": 1079, "id": 18, "label": "553202171143925760", "shape": "dot", "size": 10, "title": "553202171143925760\u003cbr\u003e@WSJ Greetings to them.They represent\u003cbr\u003ebest of humanity.\u003cbr\u003eThu Jan 08 14:50:50 +0000 2015"}, {"group": 1079, "id": 19, "label": "553204194443022336", "shape": "dot", "size": 10, "title": "553204194443022336\u003cbr\u003e@neidopak @WSJ Why? Help me\u003cbr\u003eunderstand why the killing will\u003cbr\u003econtinue.\u003cbr\u003eThu Jan 08 14:58:52 +0000 2015"}, {"group": 1079, "id": 20, "label": "553236784553787392", "shape": "dot", "size": 10, "title": "553236784553787392\u003cbr\u003e@bdt53 @WSJ  thing is\u003cbr\u003ey they pik up most\u003cbr\u003esensitive things that r really\u003cbr\u003erelated to a specific relgon.\u003cbr\u003eThr r mny othr ways2\u003cbr\u003eopose fanaticism\u003cbr\u003eThu Jan 08 17:08:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 14, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

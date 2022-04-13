@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 688, "id": 0, "label": "552978972963643392", "shape": "dot", "size": 10, "title": "552978972963643392\u003cbr\u003eCartoonists respond with the only\u003cbr\u003etools they have http://t.co/DTN7gXj1tl #JeSuisCharlie\u003cbr\u003ehttp://t.co/FOEwIMvar0\u003cbr\u003eThu Jan 08 00:03:55 +0000 2015"}, {"group": 688, "id": 1, "label": "552983249425686528", "shape": "dot", "size": 10, "title": "552983249425686528\u003cbr\u003e@larasinclair @HumanHeadline Spitting in face\u003cbr\u003eof civilisation....\u003cbr\u003eThu Jan 08 00:20:55 +0000 2015"}, {"group": 688, "id": 2, "label": "552985089458446336", "shape": "dot", "size": 10, "title": "552985089458446336\u003cbr\u003e@larasinclair @NazHz the best tools\u003cbr\u003ethey have.\u003cbr\u003eThu Jan 08 00:28:13 +0000 2015"}, {"group": 688, "id": 3, "label": "552986417941323776", "shape": "dot", "size": 10, "title": "552986417941323776\u003cbr\u003e@larasinclair @HumanHeadline  Je suis\u003cbr\u003eCarlie. The pen must prevail\u003cbr\u003e#JeSuisCharlie #FreedomOfThePress\u003cbr\u003eThu Jan 08 00:33:30 +0000 2015"}, {"group": 688, "id": 4, "label": "552988680038526977", "shape": "dot", "size": 10, "title": "552988680038526977\u003cbr\u003e\u201c@larasinclair: heartbreaking brilliance. http://t.co/aPEgcagcAQ #JeSuisCharlie\u003cbr\u003ehttp://t.co/qlpzSSqUgD\u201d\u003cbr\u003eThu Jan 08 00:42:30 +0000 2015"}, {"group": 688, "id": 5, "label": "552990417588068353", "shape": "dot", "size": 10, "title": "552990417588068353\u003cbr\u003e\u201c@larasinclair: Cartoonists respond with the\u003cbr\u003eonly tools they have http://t.co/Ppd2cFJklC\u003cbr\u003e#JeSuisCharlie http://t.co/1ILSIv1Nqg\u201d \ud83d\ude14\u003cbr\u003eThu Jan 08 00:49:24 +0000 2015"}, {"group": 688, "id": 6, "label": "552993072569942017", "shape": "dot", "size": 10, "title": "552993072569942017\u003cbr\u003e@larasinclair We have Mr Bean/Johnny\u003cbr\u003eEnglish\u0026amp;women since 1900 riding bicycles\u003cbr\u003ewhere they like http://t.co/axZJrOfgF2 http://t.co/4PplawFWvW\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:59:57 +0000 2015"}, {"group": 688, "id": 7, "label": "552993287074619392", "shape": "dot", "size": 10, "title": "552993287074619392\u003cbr\u003e@larasinclair @australian They have more\u003cbr\u003etools than the PEN. They\u003cbr\u003echoose to use the PEN\u003cbr\u003eand not the gun.\u003cbr\u003eThu Jan 08 01:00:48 +0000 2015"}, {"group": 688, "id": 8, "label": "553110533679763457", "shape": "dot", "size": 10, "title": "553110533679763457\u003cbr\u003e@larasinclair @australian\u003cbr\u003eThu Jan 08 08:46:42 +0000 2015"}, {"group": 688, "id": 9, "label": "553169916304818176", "shape": "dot", "size": 10, "title": "553169916304818176\u003cbr\u003e@larasinclair L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:42:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

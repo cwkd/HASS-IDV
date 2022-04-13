@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 99, "id": 0, "label": "552805169206157312", "shape": "dot", "size": 10, "title": "552805169206157312\u003cbr\u003eThe attack on #CharlieHebdo is\u003cbr\u003ecowardly and senseless.. As a\u003cbr\u003eMuslim I am outraged by\u003cbr\u003ewhat happened today. Prayers to\u003cbr\u003ethe families\u003cbr\u003eWed Jan 07 12:33:17 +0000 2015"}, {"group": 99, "id": 1, "label": "552805971219578880", "shape": "dot", "size": 10, "title": "552805971219578880\u003cbr\u003e@LibyanBentBladi @jenanmoussa I\u0027ve grown intolerant\u003cbr\u003eof religious tolerance. All religion\u003cbr\u003eis lunacy. Some are just\u003cbr\u003emore barbaric than others.\u003cbr\u003eWed Jan 07 12:36:28 +0000 2015"}, {"group": 99, "id": 2, "label": "552806379556470784", "shape": "dot", "size": 10, "title": "552806379556470784\u003cbr\u003e@LibyanBentBladi As a person of\u003cbr\u003eno religion I am also\u003cbr\u003eoutraged but saddened that every\u003cbr\u003eMuslim I know feels the\u003cbr\u003eneed to apologise\u003cbr\u003eWed Jan 07 12:38:06 +0000 2015"}, {"group": 99, "id": 3, "label": "552806769651896320", "shape": "dot", "size": 10, "title": "552806769651896320\u003cbr\u003e@LibyanBentBladi @jenanmoussa Dear #Muslims -\u003cbr\u003eplease go back to the\u003cbr\u003ecountries where this shit is\u003cbr\u003eacceptable. Signed- The Free World\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:39:39 +0000 2015"}, {"group": 99, "id": 4, "label": "552806990037020674", "shape": "dot", "size": 10, "title": "552806990037020674\u003cbr\u003e@LibyanBentBladi to hell with your\u003cbr\u003eprayers and superstitions Grow up\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:40:31 +0000 2015"}, {"group": 99, "id": 8, "label": "552807539415728128", "shape": "dot", "size": 10, "title": "552807539415728128\u003cbr\u003e@LibyanBentBladi @jenanmoussa Preach it.\u003cbr\u003eWed Jan 07 12:42:42 +0000 2015"}, {"group": 99, "id": 14, "label": "552812168757121024", "shape": "dot", "size": 10, "title": "552812168757121024\u003cbr\u003e@LibyanBentBladi The \u201cfew bad apples\u201d\u003cbr\u003eexplanation is wearing thin.\u003cbr\u003eWed Jan 07 13:01:06 +0000 2015"}, {"group": 99, "id": 5, "label": "552807358708326400", "shape": "dot", "size": 10, "title": "552807358708326400\u003cbr\u003e@soapboxdiatribe @LibyanBentBladi @jenanmoussa well said\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:41:59 +0000 2015"}, {"group": 99, "id": 6, "label": "552807385166016512", "shape": "dot", "size": 10, "title": "552807385166016512\u003cbr\u003e@betwixt2greens not a need to\u003cbr\u003eapologize but it\u0027s important to\u003cbr\u003esay that as a Muslim\u003cbr\u003eI refuse to justify violence\u003cbr\u003ein name of my religion\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:42:05 +0000 2015"}, {"group": 99, "id": 7, "label": "552807446796722176", "shape": "dot", "size": 10, "title": "552807446796722176\u003cbr\u003e@betwixt2greens doubt the likes of\u003cbr\u003eyou will get it even\u003cbr\u003eas they the Muslim takes\u003cbr\u003eyour last breath\u003cbr\u003eWed Jan 07 12:42:20 +0000 2015"}, {"group": 99, "id": 9, "label": "552807731112189952", "shape": "dot", "size": 10, "title": "552807731112189952\u003cbr\u003e@ThomasRadcliff7 @LibyanBentBladi @jenanmoussa Fuck you.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:43:28 +0000 2015"}, {"group": 99, "id": 11, "label": "552808869152714752", "shape": "dot", "size": 10, "title": "552808869152714752\u003cbr\u003e@LibyanBentBladi When it is equally\u003cbr\u003eimportant for every Christian, Jew,\u003cbr\u003eSikh, Budhist to do the\u003cbr\u003esame then I will wholeheartedly\u003cbr\u003econcur.\u003cbr\u003eWed Jan 07 12:47:59 +0000 2015"}, {"group": 99, "id": 21, "label": "553674005320716290", "shape": "dot", "size": 10, "title": "553674005320716290\u003cbr\u003e@LibyanBentBladi @betwixt2greens but your religion\u003cbr\u003eis about spreading violence\u003cbr\u003eFri Jan 09 22:05:44 +0000 2015"}, {"group": 99, "id": 12, "label": "552809246673604608", "shape": "dot", "size": 10, "title": "552809246673604608\u003cbr\u003e@TheodboatKris Get \"what\" exactly? The\u003cbr\u003efact that there will always\u003cbr\u003ebe random nutters out there\u003cbr\u003ewith no respect for human\u003cbr\u003elife?\u003cbr\u003eWed Jan 07 12:49:29 +0000 2015"}, {"group": 99, "id": 10, "label": "552808012742930432", "shape": "dot", "size": 10, "title": "552808012742930432\u003cbr\u003e@lui_log @LibyanBentBladi @jenanmoussa Nope- Fuck\u003cbr\u003eYOU. Keep apologizing for the\u003cbr\u003emost violent religion currently infecting\u003cbr\u003ethis planet. Idiot\u003cbr\u003eWed Jan 07 12:44:35 +0000 2015"}, {"group": 99, "id": 13, "label": "552810098079195137", "shape": "dot", "size": 10, "title": "552810098079195137\u003cbr\u003e@betwixt2greens random nutters.So randomly non\u003cbr\u003eMuslims carry out 1000s of\u003cbr\u003eterror attacks shouting God is\u003cbr\u003eGreat or is it a\u003cbr\u003emore narrow group\u003cbr\u003eWed Jan 07 12:52:52 +0000 2015"}, {"group": 99, "id": 15, "label": "552812628163448832", "shape": "dot", "size": 10, "title": "552812628163448832\u003cbr\u003e@TheodboatKris I don\u0027t debate with\u003cbr\u003ebigots either side of the\u003cbr\u003eline.\u003cbr\u003eWed Jan 07 13:02:55 +0000 2015"}, {"group": 99, "id": 16, "label": "552813262975164417", "shape": "dot", "size": 10, "title": "552813262975164417\u003cbr\u003e@TheodboatKris @betwixt2greens Ask those who\u003cbr\u003edied in IRA and loyalist\u003cbr\u003eterrorism. Politico-religious?\u003cbr\u003eWed Jan 07 13:05:27 +0000 2015"}, {"group": 99, "id": 17, "label": "552813758503215104", "shape": "dot", "size": 10, "title": "552813758503215104\u003cbr\u003e@betwixt2greens @TheodboatKris well said\u003cbr\u003eWed Jan 07 13:07:25 +0000 2015"}, {"group": 99, "id": 18, "label": "552813794519683072", "shape": "dot", "size": 10, "title": "552813794519683072\u003cbr\u003e@ridgiedidge @TheodboatKris I grew up\u003cbr\u003ein an area deeply affected\u003cbr\u003eby the troubles. I will\u003cbr\u003enever forget witnessing tarring and\u003cbr\u003efeathering\u003cbr\u003eWed Jan 07 13:07:34 +0000 2015"}, {"group": 99, "id": 19, "label": "552814951690039296", "shape": "dot", "size": 10, "title": "552814951690039296\u003cbr\u003e@ridgiedidge @betwixt2greens all the dead\u003cbr\u003ein the troubles wouldn\u0027t add\u003cbr\u003eup 2 half a week\u003cbr\u003ein Syria Don\u0027t let facts\u003cbr\u003ewake u from your slumber\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:12:09 +0000 2015"}, {"group": 99, "id": 20, "label": "552816864028413952", "shape": "dot", "size": 10, "title": "552816864028413952\u003cbr\u003e@TheodboatKris @betwixt2greens Don\u0027t know about\u003cbr\u003eyou: I can\u0027t blame (jail\u003cbr\u003eor exterminate) 1.5 billion Muslims\u003cbr\u003efor the crime in Paris\u003cbr\u003etoday.\u003cbr\u003eWed Jan 07 13:19:45 +0000 2015"}, {"group": 99, "id": 22, "label": "553674907499114496", "shape": "dot", "size": 10, "title": "553674907499114496\u003cbr\u003e@lolitstattai @LibyanBentBladi \nNo it is\u003cbr\u003enot Read the Quoran, the\u003cbr\u003eBible and the Torah. Same\u003cbr\u003estory, different scriptwriters. #IHaveNoReligion\u003cbr\u003eFri Jan 09 22:09:19 +0000 2015"}, {"group": 99, "id": 23, "label": "553794266082705409", "shape": "dot", "size": 10, "title": "553794266082705409\u003cbr\u003e@betwixt2greens @LibyanBentBladi so you\u0027re telling\u003cbr\u003eme that Jesus and Muhammad\u003cbr\u003eare similar when it comes\u003cbr\u003eto written stories?\u003cbr\u003eSat Jan 10 06:03:36 +0000 2015"}, {"group": 99, "id": 24, "label": "553881296062009344", "shape": "dot", "size": 10, "title": "553881296062009344\u003cbr\u003e@betwixt2greens @LibyanBentBladi also you should\u003cbr\u003eread the Quran again because\u003cbr\u003eI don\u0027t know how it\u0027s\u003cbr\u003esimilar to the bible at\u003cbr\u003eall\u003cbr\u003eSat Jan 10 11:49:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 2, "to": 7, "weight": 1}, {"from": 3, "to": 9, "weight": 1}, {"from": 6, "to": 11, "weight": 1}, {"from": 6, "to": 21, "weight": 1}, {"from": 7, "to": 12, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

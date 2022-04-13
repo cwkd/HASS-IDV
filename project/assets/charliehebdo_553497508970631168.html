@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1289, "id": 0, "label": "553497508970631168", "shape": "dot", "size": 10, "title": "553497508970631168\u003cbr\u003eA picture is worth a\u003cbr\u003ethousand words. \n#JeSuisCharlie \n#JeSuisAhmed\n#JeSuisHumain\n\n#CharlieHebdo\n\nvia @Raseef22\u003cbr\u003ehttp://t.co/EKYcmauf33\u003cbr\u003eFri Jan 09 10:24:24 +0000 2015"}, {"group": 1289, "id": 1, "label": "553511590696591360", "shape": "dot", "size": 10, "title": "553511590696591360\u003cbr\u003e@LibyaLiberty @Raseef22 these are the\u003cbr\u003ereal Muslims, Who demonstrate the\u003cbr\u003espirit of Islam in their\u003cbr\u003ebehavior\u003cbr\u003eFri Jan 09 11:20:21 +0000 2015"}, {"group": 1289, "id": 2, "label": "553512952176074753", "shape": "dot", "size": 10, "title": "553512952176074753\u003cbr\u003e\u201c@LibyaLiberty: A picture is worth\u003cbr\u003ea thousand words. \n#JeSuisCharlie \n#JeSuisAhmed\n#JeSuisHumain\n\n#CharlieHebdo\nhttp://t.co/K7fXKVa7qU\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:25:46 +0000 2015"}, {"group": 1289, "id": 3, "label": "553514463966818304", "shape": "dot", "size": 10, "title": "553514463966818304\u003cbr\u003e@LibyaLiberty @Raseef22 #JeSuisAhmed #JeSuisMuslim #JeSuisHuman\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:31:46 +0000 2015"}, {"group": 1289, "id": 4, "label": "553520824582684672", "shape": "dot", "size": 10, "title": "553520824582684672\u003cbr\u003e@LibyaLiberty @Raseef22 \n#JeSuisCharlie \n#JeSuisAhmed\n#JeSuisHumain this\u003cbr\u003eseries of hash-tags is worth\u003cbr\u003ea thousand pictures!\n#noussommeshumain\u003cbr\u003eFri Jan 09 11:57:03 +0000 2015"}, {"group": 1289, "id": 5, "label": "553525977067028481", "shape": "dot", "size": 10, "title": "553525977067028481\u003cbr\u003e@LibyaLiberty @nprscottsimon @Raseef22 Great sign,\u003cbr\u003eto honour the victim\u0027s, the\u003cbr\u003emuslim\u0027s has with Ahmed Merabet,\u003cbr\u003elost one of them\u003cbr\u003eFri Jan 09 12:17:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

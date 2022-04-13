@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 787, "id": 0, "label": "553115341338198016", "shape": "dot", "size": 10, "title": "553115341338198016\u003cbr\u003eThe \"Extremist\" Muslims are actually\u003cbr\u003eobeying The Qur\u0027an.\nThe \"Moderate\" Muslims\u003cbr\u003emerely stand by and watch.\n\n#CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:05:48 +0000 2015"}, {"group": 787, "id": 1, "label": "553115993417846784", "shape": "dot", "size": 10, "title": "553115993417846784\u003cbr\u003e@TRobinsonNewEra @tufailelif The \u0027moderate muslims\u0027\u003cbr\u003eis a transitory phase as\u003cbr\u003ewe can see from @anjumchaudry\u0027s\u003cbr\u003epiece in papers today.\u003cbr\u003eThu Jan 08 09:08:23 +0000 2015"}, {"group": 787, "id": 2, "label": "553116351288844288", "shape": "dot", "size": 10, "title": "553116351288844288\u003cbr\u003e@TRobinsonNewEra watch them do their\u003cbr\u003edirty work ...\u003cbr\u003eThu Jan 08 09:09:49 +0000 2015"}, {"group": 787, "id": 3, "label": "553117367853940736", "shape": "dot", "size": 10, "title": "553117367853940736\u003cbr\u003e@TRobinsonNewEra That is a true\u003cbr\u003eword. I hope you don\u0027t\u003cbr\u003emind that I press the\u003cbr\u003etwo revolving arrows on your\u003cbr\u003ebehalf, and ofcourse the star!\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:13:51 +0000 2015"}, {"group": 787, "id": 4, "label": "553118765056282625", "shape": "dot", "size": 10, "title": "553118765056282625\u003cbr\u003e@TRobinsonNewEra that\u0027s right that\u0027s what\u003cbr\u003ethe Quran says http://t.co/0594aGRJ0x http://t.co/9EAAMMI8yQ\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:19:24 +0000 2015"}, {"group": 787, "id": 5, "label": "553119217323487232", "shape": "dot", "size": 10, "title": "553119217323487232\u003cbr\u003e@TRobinsonNewEra A radical \u0027peaceful\u0027 wants\u003cbr\u003eto behead you. A moderate\u003cbr\u003epeaceful wants to see a\u003cbr\u003eradical one beheads you.\u003cbr\u003eThu Jan 08 09:21:12 +0000 2015"}, {"group": 787, "id": 6, "label": "553119613995999232", "shape": "dot", "size": 10, "title": "553119613995999232\u003cbr\u003e@TRobinsonNewEra all at charlie hebdo\u003cbr\u003e(a left wing publication) would\u003cbr\u003ehave despised everything you stand\u003cbr\u003efor and any association with\u003cbr\u003eyou\u003cbr\u003eThu Jan 08 09:22:47 +0000 2015"}, {"group": 787, "id": 7, "label": "553120116993720320", "shape": "dot", "size": 10, "title": "553120116993720320\u003cbr\u003e@TRobinsonNewEra @ineessdz shows no sympathy\u003cbr\u003efor victims, insteads start blamethemuslimgame\u003cbr\u003etrend. muslim mentality\u003cbr\u003eThu Jan 08 09:24:47 +0000 2015"}, {"group": 787, "id": 8, "label": "553120973663137793", "shape": "dot", "size": 10, "title": "553120973663137793\u003cbr\u003e@TRobinsonNewEra there is no such\u003cbr\u003ething as moderate Muslim http://t.co/h0TIXMPY3P\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:28:11 +0000 2015"}, {"group": 787, "id": 9, "label": "553122705256759296", "shape": "dot", "size": 10, "title": "553122705256759296\u003cbr\u003e@TRobinsonNewEra @tufailelif Terror may not\u003cbr\u003ehave a religion but terrorists\u003cbr\u003edo claim to have one\u003cbr\u003e\u0026amp;they kill in its name\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:35:04 +0000 2015"}, {"group": 787, "id": 10, "label": "553123829967376384", "shape": "dot", "size": 10, "title": "553123829967376384\u003cbr\u003e@TRobinsonNewEra moderates are the one\u003cbr\u003eholding you down with their\u003cbr\u003elies while extremists cut your\u003cbr\u003ethroat\u003cbr\u003eThu Jan 08 09:39:32 +0000 2015"}, {"group": 787, "id": 11, "label": "553124972202573824", "shape": "dot", "size": 10, "title": "553124972202573824\u003cbr\u003e@TRobinsonNewEra @Seccie The Quran says\u003cbr\u003ethat \"moderate\" muslims are the\u003cbr\u003ebad ones. http://t.co/g9mttKrWqe\u003cbr\u003eThu Jan 08 09:44:04 +0000 2015"}, {"group": 787, "id": 12, "label": "553127941551710211", "shape": "dot", "size": 10, "title": "553127941551710211\u003cbr\u003e@TRobinsonNewEra Eliminating the enemies of\u003cbr\u003eIslam is a collective duty,\u003cbr\u003ebut can be executed by\u003cbr\u003eindividuals. http://t.co/Movlk0NF2l\u003cbr\u003eThu Jan 08 09:55:52 +0000 2015"}, {"group": 787, "id": 13, "label": "553130031283961856", "shape": "dot", "size": 10, "title": "553130031283961856\u003cbr\u003e@TRobinsonNewEra Paris cop has died\u003cbr\u003e#je suis charlie\u003cbr\u003eThu Jan 08 10:04:10 +0000 2015"}, {"group": 787, "id": 14, "label": "553130267381358593", "shape": "dot", "size": 10, "title": "553130267381358593\u003cbr\u003e@TRobinsonNewEra @zolawasgod One of the\u003cbr\u003emore stupid and uneducated tweets\u003cbr\u003eI have seen.\u003cbr\u003eThu Jan 08 10:05:07 +0000 2015"}, {"group": 787, "id": 15, "label": "553131113481535488", "shape": "dot", "size": 10, "title": "553131113481535488\u003cbr\u003e@dannysj76 @TRobinsonNewEra Gets better.Sura 9:67-68\u003cbr\u003esays those who \"close their\u003cbr\u003ehands\" (don\u0027t wage jihad) are\u003cbr\u003ecursed to \"the fires of\u003cbr\u003eHell\"\u003cbr\u003eThu Jan 08 10:08:28 +0000 2015"}, {"group": 787, "id": 16, "label": "553131529552277504", "shape": "dot", "size": 10, "title": "553131529552277504\u003cbr\u003e@dannysj76 @TRobinsonNewEra The Qur\u0027an is\u003cbr\u003every clear as to what\u003cbr\u003ea Muslim must do in\u003cbr\u003eservice for his/her \"faith http://t.co/9MyI9OUjJM\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:10:07 +0000 2015"}, {"group": 787, "id": 18, "label": "553140346645794816", "shape": "dot", "size": 10, "title": "553140346645794816\u003cbr\u003e@dannysj76 @pragnik @TRobinsonNewEra And the\u003cbr\u003eonly REWARD alla has is\u003cbr\u003e72 virgins after death. What\u003cbr\u003ea stupid belief system !!\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:45:10 +0000 2015"}, {"group": 787, "id": 17, "label": "553133624665833472", "shape": "dot", "size": 10, "title": "553133624665833472\u003cbr\u003e@CFLancop @TRobinsonNewEra those that kill\u003cbr\u003eand are killed receive the\u003cbr\u003egreatest reward, I call it\u003cbr\u003ethe 9-11 verse http://t.co/AYphvFHOxm\u003cbr\u003eThu Jan 08 10:18:27 +0000 2015"}, {"group": 787, "id": 19, "label": "553182339099295746", "shape": "dot", "size": 10, "title": "553182339099295746\u003cbr\u003e@JS_Nigeria @pragnik @TRobinsonNewEra 72 virgins\u003cbr\u003eisn\u0027t in the Quran, probably\u003cbr\u003esome crap the made up.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:32:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 4, "to": 16, "weight": 1}, {"from": 4, "to": 18, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 18, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

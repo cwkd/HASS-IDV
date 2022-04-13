@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1, "id": 0, "label": "552784898743099392", "shape": "dot", "size": 10, "title": "552784898743099392\u003cbr\u003eCharlie Hebdo\u2019s Last Tweet Before\u003cbr\u003eShootings http://t.co/9Oa2xAqOcM http://t.co/skJHNEQcn0\u003cbr\u003eWed Jan 07 11:12:44 +0000 2015"}, {"group": 1, "id": 1, "label": "552785520028557314", "shape": "dot", "size": 10, "title": "552785520028557314\u003cbr\u003e@GuidoFawkes what is that, for\u003cbr\u003ethose of us hard of\u003cbr\u003eFrench?\u003cbr\u003eWed Jan 07 11:15:12 +0000 2015"}, {"group": 1, "id": 2, "label": "552785988234125313", "shape": "dot", "size": 10, "title": "552785988234125313\u003cbr\u003e@GuidoFawkes @JamesDelingpole Looks to me\u003cbr\u003elike the religion of peace\u003cbr\u003ehas struck again, no?\u003cbr\u003eWed Jan 07 11:17:04 +0000 2015"}, {"group": 1, "id": 3, "label": "552786454007783424", "shape": "dot", "size": 10, "title": "552786454007783424\u003cbr\u003e@GuidoFawkes ha, those peace-loving muslims!\u003cbr\u003e Allah bless them!\u003cbr\u003eWed Jan 07 11:18:55 +0000 2015"}, {"group": 1, "id": 4, "label": "552787579096293377", "shape": "dot", "size": 10, "title": "552787579096293377\u003cbr\u003e@GuidoFawkes @apwtrader here\u0027s one off\u003cbr\u003ethe shelf section for the\u003cbr\u003earticle - \u0027it\u0027s not islam,\u003cbr\u003edefinitely not islam.\u0027\u003cbr\u003eWed Jan 07 11:23:23 +0000 2015"}, {"group": 1, "id": 5, "label": "552799630900334592", "shape": "dot", "size": 10, "title": "552799630900334592\u003cbr\u003e@GuidoFawkes @benjaminkatzeff Any1 w dignity\u003cbr\u003eshld condemn the barbaric terrorist\u003cbr\u003eact in #Paris Terrorists stop\u003cbr\u003ethe destruction #world peace\u003cbr\u003eWed Jan 07 12:11:17 +0000 2015"}, {"group": 1, "id": 6, "label": "552800663596703744", "shape": "dot", "size": 10, "title": "552800663596703744\u003cbr\u003eiSSlam #tcot #UK #Cameron #EU\u003cbr\u003e#BREAKING @GuidoFawkes @friendsofbibi http://t.co/0cQdGEi1rT\u003cbr\u003eWed Jan 07 12:15:23 +0000 2015"}, {"group": 1, "id": 7, "label": "552826452983701504", "shape": "dot", "size": 10, "title": "552826452983701504\u003cbr\u003e@GuidoFawkes @R_Christianity_ Another reason to\u003cbr\u003esay Fuck #Muslims and Fuck\u003cbr\u003e#Islam\u003cbr\u003eWed Jan 07 13:57:52 +0000 2015"}, {"group": 1, "id": 9, "label": "554390627069472770", "shape": "dot", "size": 10, "title": "554390627069472770\u003cbr\u003e@GuidoFawkes @R_Christianity_\u003cbr\u003eSun Jan 11 21:33:20 +0000 2015"}, {"group": 1, "id": 8, "label": "552846821375369216", "shape": "dot", "size": 10, "title": "552846821375369216\u003cbr\u003e@pasty_muncher @GuidoFawkes \"Good health to\u003cbr\u003eeveryone!\" - (New Year greeting\u003cbr\u003eby Al-Baghdadi, head of ISIS).\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:18:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 1, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

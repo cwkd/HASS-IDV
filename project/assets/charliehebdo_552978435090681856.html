@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 684, "id": 0, "label": "552978435090681856", "shape": "dot", "size": 10, "title": "552978435090681856\u003cbr\u003eFull @GlobeOpinion editorial on slain\u003cbr\u003e#CharlieHebdo journalists:  #JeSuisCharlie http://t.co/ouqpug8y9i\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:01:47 +0000 2015"}, {"group": 684, "id": 1, "label": "553166498601369600", "shape": "dot", "size": 10, "title": "553166498601369600\u003cbr\u003eFrom @GlobeOpinion: a cartoon editorial.\u003cbr\u003e Bravo. #CharlieHebdo #JeSuisCharlie http://t.co/q3zktZk0fp\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:29:05 +0000 2015"}, {"group": 684, "id": 2, "label": "553166745569984513", "shape": "dot", "size": 10, "title": "553166745569984513\u003cbr\u003e\u201c@GlobeOpinion: Full @GlobeOpinion editorial on\u003cbr\u003eslain #CharlieHebdo journalists:  #JeSuisCharlie\u003cbr\u003ehttp://t.co/P9jJEajMDs\u201d @cspanwj\u003cbr\u003eThu Jan 08 12:30:04 +0000 2015"}, {"group": 684, "id": 3, "label": "553166953469476864", "shape": "dot", "size": 10, "title": "553166953469476864\u003cbr\u003eToday\u0027s @GlobeOpinion editorial on slain\u003cbr\u003e#ChalieHebdo journalists. #JeSuisCharlie http://t.co/gJFyCObPYS\u003cbr\u003eThu Jan 08 12:30:53 +0000 2015"}, {"group": 684, "id": 4, "label": "553167888388198400", "shape": "dot", "size": 10, "title": "553167888388198400\u003cbr\u003e@globeopinion @LaurieWBZ  one word:\u003cbr\u003eexcellent  !!\u003cbr\u003eThu Jan 08 12:34:36 +0000 2015"}, {"group": 684, "id": 6, "label": "553169939683897345", "shape": "dot", "size": 10, "title": "553169939683897345\u003cbr\u003e\u201c@GlobeOpinion: Full @GlobeOpinion editorial on\u003cbr\u003eslain #CharlieHebdo journalists:  #JeSuisCharlie\u003cbr\u003ehttp://t.co/A5lWQeujKH\u201d\u003cbr\u003eThu Jan 08 12:42:45 +0000 2015"}, {"group": 684, "id": 7, "label": "553171538523193344", "shape": "dot", "size": 10, "title": "553171538523193344\u003cbr\u003e@GlobeOpinion @melanierenzulli YES !!! \u003cbr\u003eThank you, Boston Globe !!!\u003cbr\u003eThank you !!!\u003cbr\u003eThu Jan 08 12:49:06 +0000 2015"}, {"group": 684, "id": 9, "label": "553180025256964096", "shape": "dot", "size": 10, "title": "553180025256964096\u003cbr\u003e@GlobeOpinion @dremmelqueen #JeSuisCharlie #JeSuisDegoute\u003cbr\u003eThu Jan 08 13:22:50 +0000 2015"}, {"group": 684, "id": 10, "label": "553180479310950400", "shape": "dot", "size": 10, "title": "553180479310950400\u003cbr\u003e@GlobeOpinion @GorgiCoghlan #JeSuisCharlie\u003cbr\u003eThu Jan 08 13:24:38 +0000 2015"}, {"group": 684, "id": 12, "label": "553181645675986945", "shape": "dot", "size": 10, "title": "553181645675986945\u003cbr\u003e@GlobeOpinion @larrytravi There could be\u003cbr\u003eno better tribute to the\u003cbr\u003edefiant cartoonists \u0026amp; editors at\u003cbr\u003e#CharlieHebdo \n#JeSuisCharlie .\u003cbr\u003eThu Jan 08 13:29:16 +0000 2015"}, {"group": 684, "id": 14, "label": "553184731232477184", "shape": "dot", "size": 10, "title": "553184731232477184\u003cbr\u003e@GlobeOpinion awesome - this is\u003cbr\u003ethe greatest political cartoon/editorial ever.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:41:32 +0000 2015"}, {"group": 684, "id": 16, "label": "553213784316080128", "shape": "dot", "size": 10, "title": "553213784316080128\u003cbr\u003e#JeSuisCharlie \u201c@GlobeOpinion: Full @GlobeOpinion editorial\u003cbr\u003eon slain #CharlieHebdo journalists: \u003cbr\u003e#JeSuisCharlie http://t.co/O6Z4bVWqQG\u201d\u003cbr\u003eThu Jan 08 15:36:59 +0000 2015"}, {"group": 684, "id": 20, "label": "553221947300282369", "shape": "dot", "size": 10, "title": "553221947300282369\u003cbr\u003e@GlobeOpinion @davidhazony Brilliant \u263a\u003cbr\u003eThu Jan 08 16:09:25 +0000 2015"}, {"group": 684, "id": 5, "label": "553169366460944384", "shape": "dot", "size": 10, "title": "553169366460944384\u003cbr\u003e@katiekings @GlobeOpinion excellent\u003cbr\u003eThu Jan 08 12:40:29 +0000 2015"}, {"group": 684, "id": 8, "label": "553178316761743360", "shape": "dot", "size": 10, "title": "553178316761743360\u003cbr\u003e\"@FoxNews @katiekings @JoshBlockDC @GlobeOpinion One\u003cbr\u003epositive thing to consider: they\u003cbr\u003ewon\u0027t be able to publish\u003cbr\u003etheir anti-God rhetoric.\u003cbr\u003eThu Jan 08 13:16:02 +0000 2015"}, {"group": 684, "id": 11, "label": "553181016614240256", "shape": "dot", "size": 10, "title": "553181016614240256\u003cbr\u003e@katiekings @GlobeOpinion \"They Mocked Mullahs,\u003cbr\u003ePriests, and Orthodox Jews\"\n*Orthodox Jews*\nNo\u003cbr\u003ewonder they died\u003cbr\u003eThu Jan 08 13:26:46 +0000 2015"}, {"group": 684, "id": 15, "label": "553206126817607680", "shape": "dot", "size": 10, "title": "553206126817607680\u003cbr\u003e@katiekings @GlobeOpinion @SteveSaleeba Note that\u003cbr\u003ethe @BostonGlobe won\u2019t print the\u003cbr\u003ecartoons that offended the terrorists.\u003cbr\u003eSurrendered.\u003cbr\u003eThu Jan 08 15:06:33 +0000 2015"}, {"group": 684, "id": 17, "label": "553218183536979968", "shape": "dot", "size": 10, "title": "553218183536979968\u003cbr\u003e@katiekings @GlobeOpinion #ChalieHebdo is a\u003cbr\u003e#FalseFlag Anti Muslim #UN Planned\u003cbr\u003e#MeloDrama To spread #SpiritualNumbness \n\n#WakeUpMuslims\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:54:27 +0000 2015"}, {"group": 684, "id": 18, "label": "553220088997113856", "shape": "dot", "size": 10, "title": "553220088997113856\u003cbr\u003e@katiekings @GlobeOpinion\u003cbr\u003eThu Jan 08 16:02:02 +0000 2015"}, {"group": 684, "id": 13, "label": "553183281160937472", "shape": "dot", "size": 10, "title": "553183281160937472\u003cbr\u003e@larrytravi @globeopinion A fitting tribute\u003cbr\u003eto the defiant cartoonists and\u003cbr\u003eeditors at #CharlieHebdo #JeSuisCharlie .\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:35:46 +0000 2015"}, {"group": 684, "id": 19, "label": "553221090399760384", "shape": "dot", "size": 10, "title": "553221090399760384\u003cbr\u003e@LaurieWBZ @larrytravi @GlobeOpinion Defiant or\u003cbr\u003ehonorable,  and thank god!\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:06:00 +0000 2015"}, {"group": 684, "id": 21, "label": "553266364409217024", "shape": "dot", "size": 10, "title": "553266364409217024\u003cbr\u003e@rufitiruffruff @globeopinion @lauriewbz  totally\u003cbr\u003e :)\u003cbr\u003eThu Jan 08 19:05:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 20, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 3, "to": 15, "weight": 1}, {"from": 3, "to": 17, "weight": 1}, {"from": 3, "to": 18, "weight": 1}, {"from": 4, "to": 13, "weight": 1}, {"from": 13, "to": 19, "weight": 1}, {"from": 19, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

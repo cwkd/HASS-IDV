@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1233, "id": 0, "label": "553233130275221504", "shape": "dot", "size": 10, "title": "553233130275221504\u003cbr\u003eTo those who believe terror\u003cbr\u003eworks - the Charlie Hebdo\u003cbr\u003eprint run for next week\u0027s\u003cbr\u003eissue increased from its usual\u003cbr\u003e60,000 copies to one million.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:53:51 +0000 2015"}, {"group": 1233, "id": 1, "label": "553236534770794497", "shape": "dot", "size": 10, "title": "553236534770794497\u003cbr\u003e@TonyParsonsUK It can work -\u003cbr\u003ethe AP has censored Piss\u003cbr\u003eChrist from its archives\u003cbr\u003eThu Jan 08 17:07:23 +0000 2015"}, {"group": 1233, "id": 2, "label": "553238273498570752", "shape": "dot", "size": 10, "title": "553238273498570752\u003cbr\u003e@TonyParsonsUK everybody who believes in\u003cbr\u003ethe freedom of speech should\u003cbr\u003ebuy a copy. Where can\u003cbr\u003eI get mine?\u003cbr\u003eThu Jan 08 17:14:17 +0000 2015"}, {"group": 1233, "id": 3, "label": "553243808994197505", "shape": "dot", "size": 10, "title": "553243808994197505\u003cbr\u003e@TonyParsonsUK Would like to agree,but\u003cbr\u003ehow many British papers have\u003cbr\u003edared publish the cartoons.\u003cbr\u003eThu Jan 08 17:36:17 +0000 2015"}, {"group": 1233, "id": 4, "label": "553244627965587456", "shape": "dot", "size": 10, "title": "553244627965587456\u003cbr\u003e.@TonyParsonsUK any comment on the\u003cbr\u003eterrorism of #BrendaLeyland Tony? #McCann\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:39:32 +0000 2015"}, {"group": 1233, "id": 5, "label": "553245014600744961", "shape": "dot", "size": 10, "title": "553245014600744961\u003cbr\u003e@TonyParsonsUK @bernerlap Seems to have\u003cbr\u003eworked on the British press\u003cbr\u003ethough Tony...sadly!\u003cbr\u003eThu Jan 08 17:41:04 +0000 2015"}, {"group": 1233, "id": 6, "label": "553245407200157696", "shape": "dot", "size": 10, "title": "553245407200157696\u003cbr\u003e@TonyParsonsUK @ImGregCook The west\u0027s mainstream\u003cbr\u003emedia is already \"racialising\" the\u003cbr\u003eattack as they have with\u003cbr\u003emany others. Disgusting.\u003cbr\u003eThu Jan 08 17:42:38 +0000 2015"}, {"group": 1233, "id": 7, "label": "553246293917978624", "shape": "dot", "size": 10, "title": "553246293917978624\u003cbr\u003e@TonyParsonsUK @bernerlap will they be\u003cbr\u003eavailable here in the UK?\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:46:09 +0000 2015"}, {"group": 1233, "id": 8, "label": "553250170121768960", "shape": "dot", "size": 10, "title": "553250170121768960\u003cbr\u003e@bernerlap @TonyParsonsUK I want to\u003cbr\u003ebuy a copy! #JeSuisCharlie\u003cbr\u003eThu Jan 08 18:01:34 +0000 2015"}, {"group": 1233, "id": 9, "label": "553254689337528320", "shape": "dot", "size": 10, "title": "553254689337528320\u003cbr\u003e@TonyParsonsUK @LorraChaplin Where can I\u003cbr\u003eget one?\u003cbr\u003eThu Jan 08 18:19:31 +0000 2015"}, {"group": 1233, "id": 10, "label": "553282664728653825", "shape": "dot", "size": 10, "title": "553282664728653825\u003cbr\u003e@TonyParsonsUK @InfensusInfidel  Very few\u003cbr\u003epeople had seen their cartoons,\u003cbr\u003enow the whole world has.\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:10:41 +0000 2015"}, {"group": 1233, "id": 13, "label": "553297758959173633", "shape": "dot", "size": 10, "title": "553297758959173633\u003cbr\u003e@TonyParsonsUK @JamesPurefoy and that will\u003cbr\u003esell out\u003cbr\u003eThu Jan 08 21:10:40 +0000 2015"}, {"group": 1233, "id": 14, "label": "553298005831720960", "shape": "dot", "size": 10, "title": "553298005831720960\u003cbr\u003e@TonyParsonsUK @JamesPurefoy Depressingly, the purpose\u003cbr\u003eof terror is to draw\u003cbr\u003eattention to a cause, rather\u003cbr\u003ethan eliminate a single target.\u003cbr\u003e\u003cbr\u003eThu Jan 08 21:11:39 +0000 2015"}, {"group": 1233, "id": 15, "label": "553389872606871552", "shape": "dot", "size": 10, "title": "553389872606871552\u003cbr\u003e@DaSteelMan Solicitors say what\u0027s being\u003cbr\u003edone to #McCann justice-seekers is\u003cbr\u003eTERRORISM \u0026gt;\u0026gt; and police must\u003cbr\u003eaccept this @TonyParsonsUK #McCann\u003cbr\u003eFri Jan 09 03:16:41 +0000 2015"}, {"group": 1233, "id": 11, "label": "553284436503302145", "shape": "dot", "size": 10, "title": "553284436503302145\u003cbr\u003e@HKeithbuckley @TonyParsonsUK It\u0027s great to\u003cbr\u003esee the increase of people\u003cbr\u003edrawing offensive Islam related cartoons.\u003cbr\u003eMuzzers will be raging :-)\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:17:43 +0000 2015"}, {"group": 1233, "id": 12, "label": "553284850581794816", "shape": "dot", "size": 10, "title": "553284850581794816\u003cbr\u003e@InfensusInfidel  Very few had\u003cbr\u003eseen the cartoons before yesterday,\u003cbr\u003enow the whole a world\u003cbr\u003ehas. Talk about shooting yourself\u003cbr\u003ein the foot.\u003cbr\u003eThu Jan 08 20:19:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

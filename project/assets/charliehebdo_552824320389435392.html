@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 328, "id": 0, "label": "552824320389435392", "shape": "dot", "size": 10, "title": "552824320389435392\u003cbr\u003e4 cartoonists who died in\u003cbr\u003ethe attack on #CharlieHebdo -\u003cbr\u003eAFP http://t.co/UmyMvBKAa8\u003cbr\u003eWed Jan 07 13:49:23 +0000 2015"}, {"group": 328, "id": 1, "label": "552824496998977536", "shape": "dot", "size": 10, "title": "552824496998977536\u003cbr\u003e@timesofindia soul rest in peace\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:50:05 +0000 2015"}, {"group": 328, "id": 2, "label": "552824572492652544", "shape": "dot", "size": 10, "title": "552824572492652544\u003cbr\u003e@timesofindia  There are more\u003cbr\u003eto do the dirty job.\u003cbr\u003ePrepare to save!\u003cbr\u003eWed Jan 07 13:50:23 +0000 2015"}, {"group": 328, "id": 3, "label": "552824610652426240", "shape": "dot", "size": 10, "title": "552824610652426240\u003cbr\u003e@timesofindia RIP.\u003cbr\u003eWed Jan 07 13:50:32 +0000 2015"}, {"group": 328, "id": 4, "label": "552824826423803904", "shape": "dot", "size": 10, "title": "552824826423803904\u003cbr\u003e@timesofindia #RIP for all #cartoonist\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 13:51:24 +0000 2015"}, {"group": 328, "id": 5, "label": "552825011841806337", "shape": "dot", "size": 10, "title": "552825011841806337\u003cbr\u003e@timesofindia @smitaprakash He said that\u003cbr\u003ea funny cartoon will never\u003cbr\u003etake anyone\u0027s life n he\u003cbr\u003eis killed b/c of same\u003cbr\u003ecartoon.\u003cbr\u003eWed Jan 07 13:52:08 +0000 2015"}, {"group": 328, "id": 6, "label": "552825016778096640", "shape": "dot", "size": 10, "title": "552825016778096640\u003cbr\u003e@timesofindia Barbaric. Inhuman\u003cbr\u003eWed Jan 07 13:52:09 +0000 2015"}, {"group": 328, "id": 7, "label": "552825073359282176", "shape": "dot", "size": 10, "title": "552825073359282176\u003cbr\u003e@timesofindia Sad. Rest in Peace.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:52:23 +0000 2015"}, {"group": 328, "id": 8, "label": "552825099993104385", "shape": "dot", "size": 10, "title": "552825099993104385\u003cbr\u003e@timesofindia \nmay his soul rest\u003cbr\u003ein peace !\u003cbr\u003eWed Jan 07 13:52:29 +0000 2015"}, {"group": 328, "id": 9, "label": "552825199809146881", "shape": "dot", "size": 10, "title": "552825199809146881\u003cbr\u003e@timesofindia @smitaprakash RIP\u003cbr\u003eWed Jan 07 13:52:53 +0000 2015"}, {"group": 328, "id": 10, "label": "552825387135143936", "shape": "dot", "size": 10, "title": "552825387135143936\u003cbr\u003e\u201c@timesofindia: 4 cartoonists who died\u003cbr\u003ein the attack on #CharlieHebdo\u003cbr\u003e- AFP http://t.co/kDQt2vUIHT\u201d so sad\u003cbr\u003eRIP sir\u0027s !!!\u003cbr\u003eWed Jan 07 13:53:37 +0000 2015"}, {"group": 328, "id": 11, "label": "552825518295244800", "shape": "dot", "size": 10, "title": "552825518295244800\u003cbr\u003e@timesofindia 4 cartoonists die in\u003cbr\u003eattack\u003cbr\u003eWed Jan 07 13:54:09 +0000 2015"}, {"group": 328, "id": 12, "label": "552825623970713601", "shape": "dot", "size": 10, "title": "552825623970713601\u003cbr\u003e\"@timesofindia: 4 cartoonists who died\u003cbr\u003ein the attack on #CharlieHebdo\u003cbr\u003e- AFP http://t.co/svf49nRBjU\" RT via\u003cbr\u003e@smitaprakash\u003cbr\u003eWed Jan 07 13:54:34 +0000 2015"}, {"group": 328, "id": 13, "label": "552826864210046976", "shape": "dot", "size": 10, "title": "552826864210046976\u003cbr\u003e@timesofindia \nThese cartoonist should have\u003cbr\u003elearn from bollywood \u0026amp; made\u003cbr\u003efun on Hindus\n#PKdebate #PK\nTerror have\u003cbr\u003eno religion\u003cbr\u003eWed Jan 07 13:59:30 +0000 2015"}, {"group": 328, "id": 14, "label": "552827010683125760", "shape": "dot", "size": 10, "title": "552827010683125760\u003cbr\u003e@timesofindia  #TerrorStrikesAgain. Time to\u003cbr\u003etake collective action.\u003cbr\u003eWed Jan 07 14:00:05 +0000 2015"}, {"group": 328, "id": 15, "label": "552827854820368384", "shape": "dot", "size": 10, "title": "552827854820368384\u003cbr\u003e@timesofindia\u003cbr\u003eWed Jan 07 14:03:26 +0000 2015"}, {"group": 328, "id": 16, "label": "552828369994149888", "shape": "dot", "size": 10, "title": "552828369994149888\u003cbr\u003eJust not fair. Damn. RT\u003cbr\u003e@timesofindia 4 cartoonists who died\u003cbr\u003ein the attack on #CharlieHebdo\u003cbr\u003e- AFP http://t.co/YT3LJMy2iw\u003cbr\u003eWed Jan 07 14:05:29 +0000 2015"}, {"group": 328, "id": 17, "label": "552830571475652608", "shape": "dot", "size": 10, "title": "552830571475652608\u003cbr\u003e@timesofindia At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:14:13 +0000 2015"}, {"group": 328, "id": 18, "label": "552833542325944321", "shape": "dot", "size": 10, "title": "552833542325944321\u003cbr\u003e@timesofindia @Buzzookaa very sad to\u003cbr\u003eknow..........\u003cbr\u003eWed Jan 07 14:26:02 +0000 2015"}, {"group": 328, "id": 19, "label": "552834370688409600", "shape": "dot", "size": 10, "title": "552834370688409600\u003cbr\u003e@timesofindia @Buzzookaa it is a\u003cbr\u003egreat loss for us\u003cbr\u003eWed Jan 07 14:29:19 +0000 2015"}, {"group": 328, "id": 20, "label": "553075592103735297", "shape": "dot", "size": 10, "title": "553075592103735297\u003cbr\u003e@deepikaa123  I hope you\u003cbr\u003edo now consider my once\u003cbr\u003eupon a time tweet \"Religion\u003cbr\u003eis the root of all\u003cbr\u003eevil\" :)\u003cbr\u003eThu Jan 08 06:27:51 +0000 2015"}, {"group": 328, "id": 21, "label": "553149247873232896", "shape": "dot", "size": 10, "title": "553149247873232896\u003cbr\u003e@akhilzoomin I still don\u0027t agree\u003cbr\u003e...it\u0027s not the religion but\u003cbr\u003ethe fanatic people who don\u0027t\u003cbr\u003eunderstand what religion is all\u003cbr\u003eabout!!\u003cbr\u003eThu Jan 08 11:20:32 +0000 2015"}, {"group": 328, "id": 22, "label": "553181074264948736", "shape": "dot", "size": 10, "title": "553181074264948736\u003cbr\u003e@deepikaa123 okay by the way\u003cbr\u003eI am just playing :D\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:27:00 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 10, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

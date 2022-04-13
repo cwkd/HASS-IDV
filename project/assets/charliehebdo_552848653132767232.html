@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 639, "id": 0, "label": "552848653132767232", "shape": "dot", "size": 10, "title": "552848653132767232\u003cbr\u003eEditor Stephane Charbonnier, 4 cartoonists\u003cbr\u003ereported killed in #CharlieHebdo attack\u003cbr\u003e(AP photo): http://t.co/qTB7uIurjN http://t.co/GjglEVLmLF\u003cbr\u003eWed Jan 07 15:26:04 +0000 2015"}, {"group": 639, "id": 1, "label": "552848857898713088", "shape": "dot", "size": 10, "title": "552848857898713088\u003cbr\u003e@USATODAY #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:26:53 +0000 2015"}, {"group": 639, "id": 2, "label": "552848908955947008", "shape": "dot", "size": 10, "title": "552848908955947008\u003cbr\u003eShow the cartoon. @USATODAY\u003cbr\u003eWed Jan 07 15:27:05 +0000 2015"}, {"group": 639, "id": 3, "label": "552849271780020225", "shape": "dot", "size": 10, "title": "552849271780020225\u003cbr\u003e@USATODAY  Cartoonist... http://t.co/T8YTpcWLLe\u003cbr\u003eWed Jan 07 15:28:32 +0000 2015"}, {"group": 639, "id": 4, "label": "552849325978836993", "shape": "dot", "size": 10, "title": "552849325978836993\u003cbr\u003e@USATODAY Bravely cropping the picture.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:28:45 +0000 2015"}, {"group": 639, "id": 5, "label": "552849396627689473", "shape": "dot", "size": 10, "title": "552849396627689473\u003cbr\u003eStand up for your rights\u003cbr\u003eor one day you wont\u003cbr\u003ebe. @USATODAY https://t.co/sXQ46i79r4\u003cbr\u003eWed Jan 07 15:29:02 +0000 2015"}, {"group": 639, "id": 6, "label": "552849613112487937", "shape": "dot", "size": 10, "title": "552849613112487937\u003cbr\u003e@USATODAY http://t.co/xVvAe93NlP\u003cbr\u003eWed Jan 07 15:29:53 +0000 2015"}, {"group": 639, "id": 7, "label": "552849946777378816", "shape": "dot", "size": 10, "title": "552849946777378816\u003cbr\u003e@USATODAY Every major newspaper and\u003cbr\u003emagazine in the free world\u003cbr\u003eshould reprint the cartoons that\u003cbr\u003ethe #IslamicTerrorists found so offensive.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:31:13 +0000 2015"}, {"group": 639, "id": 9, "label": "552850965389656065", "shape": "dot", "size": 10, "title": "552850965389656065\u003cbr\u003eMT .@USATODAY: Editor Stephane Charbonnier,\u003cbr\u003e4 cartoonists killed in #CharlieHebdo\u003cbr\u003eattack: http://t.co/7q17vdRpE6 http://t.co/dAKYFHInTv\u003cbr\u003eWed Jan 07 15:35:16 +0000 2015"}, {"group": 639, "id": 10, "label": "552852819103870976", "shape": "dot", "size": 10, "title": "552852819103870976\u003cbr\u003e#JeSuisCharlie are you? @USATODAY http://t.co/aVY6x1LqAn\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:42:38 +0000 2015"}, {"group": 639, "id": 11, "label": "552855251775012865", "shape": "dot", "size": 10, "title": "552855251775012865\u003cbr\u003e#ReligionOfPeace @USATODAY: 4 cartoonists reported\u003cbr\u003ekilled in #CharlieHebdo attack: http://t.co/SAvnbI2dYo\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:52:18 +0000 2015"}, {"group": 639, "id": 12, "label": "552865073132486657", "shape": "dot", "size": 10, "title": "552865073132486657\u003cbr\u003e@USATODAY \u044d\u0442\u043e \u043d\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0434\u043e\u043a\u0430\u0440\u0438\u043a\u0430\u0442\u0443\u0440\u0438\u043b\u0441\u044f.\u003cbr\u003eWed Jan 07 16:31:19 +0000 2015"}, {"group": 639, "id": 13, "label": "552885289375379458", "shape": "dot", "size": 10, "title": "552885289375379458\u003cbr\u003e\u201c@USATODAY: Editor Stephane Charbonnier, 4\u003cbr\u003ecartoonists reported killed in. AP\u003cbr\u003ephoto): http://t.co/24TPMGG0BS http://t.co/396KUcKszb\u201d\u003cbr\u003eWed Jan 07 17:51:39 +0000 2015"}, {"group": 639, "id": 14, "label": "552909894266146817", "shape": "dot", "size": 10, "title": "552909894266146817\u003cbr\u003e@USATODAY sad day when freedom\u003cbr\u003eof expression/speech are met w\u003cbr\u003emurder.Every worldwide publication should stand\u003cbr\u003etogether reprint the cartoon.\u003cbr\u003eWed Jan 07 19:29:26 +0000 2015"}, {"group": 639, "id": 8, "label": "552850943407312896", "shape": "dot", "size": 10, "title": "552850943407312896\u003cbr\u003e@RyanBLeslie @USATODAY they are pussies.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:35:11 +0000 2015"}, {"group": 639, "id": 15, "label": "552910757458087938", "shape": "dot", "size": 10, "title": "552910757458087938\u003cbr\u003e@moodyzaky , @lifegallery spotted your\u003cbr\u003ephoto http://t.co/EGHvdnhkpB\u003cbr\u003eWed Jan 07 19:32:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 2, "to": 8, "weight": 1}, {"from": 13, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

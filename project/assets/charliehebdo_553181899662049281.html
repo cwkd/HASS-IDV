@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1035, "id": 0, "label": "553181899662049281", "shape": "dot", "size": 10, "title": "553181899662049281\u003cbr\u003eToo many equivocating opinion pieces\u003cbr\u003eon #CharlieHebdo. The quality of\u003cbr\u003esatire or speech is irrelevant.\u003cbr\u003eMurder for \u0027blasphemy\u0027 is an\u003cbr\u003eoutrage.\u003cbr\u003eThu Jan 08 13:30:17 +0000 2015"}, {"group": 1035, "id": 1, "label": "553184826074095616", "shape": "dot", "size": 10, "title": "553184826074095616\u003cbr\u003e@JohnAmaechi be angry at the\u003cbr\u003emurderers, not the millions who\u003cbr\u003ehave and want nothing to\u003cbr\u003edo with them.\u003cbr\u003eThu Jan 08 13:41:54 +0000 2015"}, {"group": 1035, "id": 9, "label": "553191127902216194", "shape": "dot", "size": 10, "title": "553191127902216194\u003cbr\u003e@JohnAmaechi @Stugotz790 would ANY of\u003cbr\u003ethe cartoons run in US\u003cbr\u003epapers?  Don\u0027t read French,\u003cbr\u003ebut they seemed very nasty.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:06:57 +0000 2015"}, {"group": 1035, "id": 10, "label": "553192465704833025", "shape": "dot", "size": 10, "title": "553192465704833025\u003cbr\u003e@Stugotz790 Did you understand a\u003cbr\u003eword @JohnAmaechi just said?\u003cbr\u003eThu Jan 08 14:12:16 +0000 2015"}, {"group": 1035, "id": 18, "label": "553197312999047169", "shape": "dot", "size": 10, "title": "553197312999047169\u003cbr\u003e@JohnAmaechi @MichelleDBeadle but why poke\u003cbr\u003ea beehive and get surprised\u003cbr\u003ewhen you get stung\u003cbr\u003eThu Jan 08 14:31:31 +0000 2015"}, {"group": 1035, "id": 19, "label": "553197319827755009", "shape": "dot", "size": 10, "title": "553197319827755009\u003cbr\u003e@JohnAmaechi millions of Muslims disagree\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:31:33 +0000 2015"}, {"group": 1035, "id": 2, "label": "553185791984533505", "shape": "dot", "size": 10, "title": "553185791984533505\u003cbr\u003e@tessabdi I\u0027m not sure I\u003cbr\u003esaid anything different\u003cbr\u003eThu Jan 08 13:45:45 +0000 2015"}, {"group": 1035, "id": 3, "label": "553186059375640577", "shape": "dot", "size": 10, "title": "553186059375640577\u003cbr\u003e@tessabdi but I AM angry\u003cbr\u003eat people who equivocate or\u003cbr\u003esuggest that C.H. Somehow \"asked\u003cbr\u003efor it.\"\u003cbr\u003eThu Jan 08 13:46:48 +0000 2015"}, {"group": 1035, "id": 4, "label": "553186408152973313", "shape": "dot", "size": 10, "title": "553186408152973313\u003cbr\u003e@tessabdi however, insulting belief is\u003cbr\u003enot a crime...\u003cbr\u003eThu Jan 08 13:48:12 +0000 2015"}, {"group": 1035, "id": 11, "label": "553192608156352512", "shape": "dot", "size": 10, "title": "553192608156352512\u003cbr\u003e@JohnAmaechi @tessabdi Agreed. To suggest\u003cbr\u003eCH provoked this attack is\u003cbr\u003elike saying Malala Yousefzai provoked\u003cbr\u003ethe Taliban by going to\u003cbr\u003eschool.\u003cbr\u003eThu Jan 08 14:12:50 +0000 2015"}, {"group": 1035, "id": 5, "label": "553188139809128448", "shape": "dot", "size": 10, "title": "553188139809128448\u003cbr\u003e@JohnAmaechi you\u0027re right, it isn\u0027t.\u003cbr\u003eEveryone should have the freedom\u003cbr\u003eto state their opinion.\u003cbr\u003eThu Jan 08 13:55:04 +0000 2015"}, {"group": 1035, "id": 6, "label": "553188471867969537", "shape": "dot", "size": 10, "title": "553188471867969537\u003cbr\u003e@JohnAmaechi but at the same\u003cbr\u003etime, calling a person \"fictional\"\u003cbr\u003eas if to insult a\u003cbr\u003egroup of people who are\u003cbr\u003ejust as angry. At the\u003cbr\u003emurders (c)\u003cbr\u003eThu Jan 08 13:56:24 +0000 2015"}, {"group": 1035, "id": 7, "label": "553188556215431168", "shape": "dot", "size": 10, "title": "553188556215431168\u003cbr\u003e@JohnAmaechi in France as you\u003cbr\u003eare, is hardly fair\u003cbr\u003eThu Jan 08 13:56:44 +0000 2015"}, {"group": 1035, "id": 8, "label": "553189040355565568", "shape": "dot", "size": 10, "title": "553189040355565568\u003cbr\u003e@JohnAmaechi to quote Voltaire, \"I\u003cbr\u003edo not agree with what\u003cbr\u003eyou have to say but\u003cbr\u003eI will fight to death\u003cbr\u003efor your right to say\u003cbr\u003eit.\"\u003cbr\u003eThu Jan 08 13:58:39 +0000 2015"}, {"group": 1035, "id": 45, "label": "553205811678162945", "shape": "dot", "size": 10, "title": "553205811678162945\u003cbr\u003e.@JohnAmaechi @tessabdi the \"HB asked\u003cbr\u003efor it\" argument is a\u003cbr\u003estrategy to devalue Islam \u0026amp;\u003cbr\u003epromote Christianity. Its a sales\u003cbr\u003estrategy\u003cbr\u003eThu Jan 08 15:05:18 +0000 2015"}, {"group": 1035, "id": 14, "label": "553193995770548225", "shape": "dot", "size": 10, "title": "553193995770548225\u003cbr\u003e@gioman62 @Stugotz790 why would how\u003cbr\u003e\u0027nasty\u0027 they are be relevant?\u003cbr\u003eDo I get to kill\u003cbr\u003epeople who call me a\u003cbr\u003enames on twitter? No. I\u003cbr\u003ehit \u0027block.\u0027\u003cbr\u003eThu Jan 08 14:18:21 +0000 2015"}, {"group": 1035, "id": 15, "label": "553194395357691904", "shape": "dot", "size": 10, "title": "553194395357691904\u003cbr\u003e@gioman62 @Stugotz790 killing for being\u003cbr\u003enasty about religion is no\u003cbr\u003emore logical than killing for\u003cbr\u003erudeness to Shakespeare\u003cbr\u003eThu Jan 08 14:19:56 +0000 2015"}, {"group": 1035, "id": 13, "label": "553193709614153729", "shape": "dot", "size": 10, "title": "553193709614153729\u003cbr\u003e@CFoster92 @Stugotz790 *ouch*\u003cbr\u003eThu Jan 08 14:17:12 +0000 2015"}, {"group": 1035, "id": 12, "label": "553193644849893377", "shape": "dot", "size": 10, "title": "553193644849893377\u003cbr\u003e@TodVictoria @tessabdi agreed!\u003cbr\u003eThu Jan 08 14:16:57 +0000 2015"}, {"group": 1035, "id": 16, "label": "553195105751171072", "shape": "dot", "size": 10, "title": "553195105751171072\u003cbr\u003e@JohnAmaechi @CFoster92 I kind of\u003cbr\u003edeserve that response Meech.\u003cbr\u003eThu Jan 08 14:22:45 +0000 2015"}, {"group": 1035, "id": 17, "label": "553195842786439168", "shape": "dot", "size": 10, "title": "553195842786439168\u003cbr\u003e@JohnAmaechi @Stugotz790 some/most aren\u0027t as\u003cbr\u003epolite and classy as yourself!\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:25:41 +0000 2015"}, {"group": 1035, "id": 20, "label": "553197532432838657", "shape": "dot", "size": 10, "title": "553197532432838657\u003cbr\u003e@gioman62 @Stugotz790 I\u0027m not quite\u003cbr\u003eas classy asI wish I\u003cbr\u003ewas!!\u003cbr\u003eThu Jan 08 14:32:24 +0000 2015"}, {"group": 1035, "id": 22, "label": "553197749504864257", "shape": "dot", "size": 10, "title": "553197749504864257\u003cbr\u003e@Millhouse213 @MichelleDBeadle That is some\u003cbr\u003eof the most insanely spurious\u003cbr\u003ebunkum. Congrats.\u003cbr\u003eThu Jan 08 14:33:16 +0000 2015"}, {"group": 1035, "id": 21, "label": "553197634220224512", "shape": "dot", "size": 10, "title": "553197634220224512\u003cbr\u003e@mckspuds68 not just Muslims...\u003cbr\u003eThu Jan 08 14:32:48 +0000 2015"}, {"group": 1035, "id": 23, "label": "553198122672095234", "shape": "dot", "size": 10, "title": "553198122672095234\u003cbr\u003e@JohnAmaechi true but time for\u003cbr\u003eMuslims to step up and\u003cbr\u003espeak out I think the\u003cbr\u003emajority of Muslims get and\u003cbr\u003euse there free pass to\u003cbr\u003eremain silent\u003cbr\u003eThu Jan 08 14:34:45 +0000 2015"}, {"group": 1035, "id": 24, "label": "553198146277240833", "shape": "dot", "size": 10, "title": "553198146277240833\u003cbr\u003e@JohnAmaechi I\u0027ve learned not to\u003cbr\u003eargue with strangers on Twitter.\u003cbr\u003eSo much more you can\u003cbr\u003edo with that time. #freedom\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:34:50 +0000 2015"}, {"group": 1035, "id": 25, "label": "553198746847031296", "shape": "dot", "size": 10, "title": "553198746847031296\u003cbr\u003e@JohnAmaechi @MichelleDBeadle Truth hurts I\u003cbr\u003eguess.  Like Stephen A\u003cbr\u003esaid, don\u0027t provoke\u003cbr\u003eThu Jan 08 14:37:13 +0000 2015"}, {"group": 1035, "id": 33, "label": "553202612867436544", "shape": "dot", "size": 10, "title": "553202612867436544\u003cbr\u003e@JohnAmaechi that might be the\u003cbr\u003emost british tweet of all\u003cbr\u003etime\u003cbr\u003eThu Jan 08 14:52:35 +0000 2015"}, {"group": 1035, "id": 29, "label": "553202255223328768", "shape": "dot", "size": 10, "title": "553202255223328768\u003cbr\u003e@MichelleDBeadle @JohnAmaechi but then we\u0027d\u003cbr\u003elose John\u0027s marvelously scathing responses\u003cbr\u003eafter Lebatard show appearances!\u003cbr\u003eThu Jan 08 14:51:10 +0000 2015"}, {"group": 1035, "id": 26, "label": "553200307363381248", "shape": "dot", "size": 10, "title": "553200307363381248\u003cbr\u003e@Millhouse213 @MichelleDBeadle not really, what\u003cbr\u003eyou said was a nonsense.\u003cbr\u003eregurgitated \u0026amp; poorly thought out\u003cbr\u003etalking points. Lazy, not hurtful\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:43:25 +0000 2015"}, {"group": 1035, "id": 27, "label": "553201098249359360", "shape": "dot", "size": 10, "title": "553201098249359360\u003cbr\u003e@JohnAmaechi @MichelleDBeadle Not really, just\u003cbr\u003epointing the obvious. You are\u003cbr\u003ea bit bias since you\u003cbr\u003eare from France, I\u0027m speaking\u003cbr\u003eobjectively\u003cbr\u003eThu Jan 08 14:46:34 +0000 2015"}, {"group": 1035, "id": 28, "label": "553202001807695872", "shape": "dot", "size": 10, "title": "553202001807695872\u003cbr\u003e@Millhouse213 @MichelleDBeadle You\u0027re dense. Get\u003cbr\u003ea passport \u0026amp; maybe you\u0027ll\u003cbr\u003eunderstand the difference between Paris\u003cbr\u003eand Manchester. Sigh.\u003cbr\u003eThu Jan 08 14:50:09 +0000 2015"}, {"group": 1035, "id": 32, "label": "553202592869019648", "shape": "dot", "size": 10, "title": "553202592869019648\u003cbr\u003e@Millhouse213 @JohnAmaechi @MichelleDBeadle Any doubt\u003cbr\u003eyou were victim blaming has\u003cbr\u003ebeen erased.\u003cbr\u003eThu Jan 08 14:52:30 +0000 2015"}, {"group": 1035, "id": 30, "label": "553202446764224512", "shape": "dot", "size": 10, "title": "553202446764224512\u003cbr\u003e@JohnAmaechi @Millhouse213 He\u0027s the guy\u003cbr\u003eyou block. Push the button\u003cbr\u003eand move on. But sadly,\u003cbr\u003ethere are too many like\u003cbr\u003ehim. Not worth the time.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:51:55 +0000 2015"}, {"group": 1035, "id": 35, "label": "553202919055831041", "shape": "dot", "size": 10, "title": "553202919055831041\u003cbr\u003e@JohnAmaechi @MichelleDBeadle Whatever, same thing.\u003cbr\u003eLondon, France, Italy etc it\u0027s\u003cbr\u003eall the same to us\u003cbr\u003eout here \ud83d\udc4c\u003cbr\u003eThu Jan 08 14:53:48 +0000 2015"}, {"group": 1035, "id": 31, "label": "553202460446449665", "shape": "dot", "size": 10, "title": "553202460446449665\u003cbr\u003e@JimJimsonJr @MichelleDBeadle lol... I can\u0027t\u003cbr\u003eresist!!\u003cbr\u003eThu Jan 08 14:51:59 +0000 2015"}, {"group": 1035, "id": 38, "label": "553204325455892480", "shape": "dot", "size": 10, "title": "553204325455892480\u003cbr\u003e@MichelleDBeadle @JohnAmaechi Coming from a\u003cbr\u003edrunk groupie with no professionalism\u003cbr\u003ethat is hated by her\u003cbr\u003eco-workers, stfu\u003cbr\u003eThu Jan 08 14:59:23 +0000 2015"}, {"group": 1035, "id": 39, "label": "553204509011607552", "shape": "dot", "size": 10, "title": "553204509011607552\u003cbr\u003e@MichelleDBeadle @JohnAmaechi Aren\u0027t you from\u003cbr\u003ethe Ukraine, Meech? Or are\u003cbr\u003eyou just there visiting your\u003cbr\u003epal Vitaly Potapenko in the\u003cbr\u003eoffseason?\u003cbr\u003eThu Jan 08 15:00:07 +0000 2015"}, {"group": 1035, "id": 40, "label": "553204612795498496", "shape": "dot", "size": 10, "title": "553204612795498496\u003cbr\u003e@MichelleDBeadle I need to listen\u003cbr\u003eto you earlier in my\u003cbr\u003erants!! He\u0027s blocked! And thanks!\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:00:32 +0000 2015"}, {"group": 1035, "id": 34, "label": "553202843176697856", "shape": "dot", "size": 10, "title": "553202843176697856\u003cbr\u003e@bomani_jones I\u0027m laughing because you\u0027re\u003cbr\u003eright!\u003cbr\u003eThu Jan 08 14:53:30 +0000 2015"}, {"group": 1035, "id": 36, "label": "553203069350334464", "shape": "dot", "size": 10, "title": "553203069350334464\u003cbr\u003e@JohnAmaechi if i could combine\u003cbr\u003ebritish diction with southern vernacular\u003cbr\u003eand add an accent to\u003cbr\u003eboot, i\u2019d be a billionaire.\u003cbr\u003eyou guys win words\u003cbr\u003eThu Jan 08 14:54:24 +0000 2015"}, {"group": 1035, "id": 37, "label": "553203910933241856", "shape": "dot", "size": 10, "title": "553203910933241856\u003cbr\u003e@bomani_jones @JohnAmaechi This conversation has\u003cbr\u003eme genuinely laughing out loud,\u003cbr\u003eso true \u0026amp; so funny\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:57:45 +0000 2015"}, {"group": 1035, "id": 46, "label": "553264114731352064", "shape": "dot", "size": 10, "title": "553264114731352064\u003cbr\u003e@bomani_jones @JohnAmaechi  gotta get\u003cbr\u003eJohn on a Wednesday and\u003cbr\u003ehe works on your British\u003cbr\u003eaccent. Papi British accent is\u003cbr\u003egreat\u003cbr\u003eThu Jan 08 18:56:58 +0000 2015"}, {"group": 1035, "id": 41, "label": "553204786611638273", "shape": "dot", "size": 10, "title": "553204786611638273\u003cbr\u003e@ChrisMannixSI @MichelleDBeadle NEVER bring his\u003cbr\u003ename up!!  ;-) He\u003cbr\u003eHATED me, and I never\u003cbr\u003equite figured out why...\u003cbr\u003eThu Jan 08 15:01:13 +0000 2015"}, {"group": 1035, "id": 43, "label": "553204943327207424", "shape": "dot", "size": 10, "title": "553204943327207424\u003cbr\u003e@ChrisMannixSI @MichelleDBeadle @JohnAmaechi Oh look\u003cbr\u003eanother smart ass.\u003cbr\u003eThu Jan 08 15:01:51 +0000 2015"}, {"group": 1035, "id": 44, "label": "553204944384192514", "shape": "dot", "size": 10, "title": "553204944384192514\u003cbr\u003e@JohnAmaechi you\u0027re welcome!! It\u0027s always\u003cbr\u003ethe losers with the most\u003cbr\u003eannoying voices that love the\u003cbr\u003esounds of their own voices.\u003cbr\u003eLoneliness\u003cbr\u003eThu Jan 08 15:01:51 +0000 2015"}, {"group": 1035, "id": 42, "label": "553204935924662272", "shape": "dot", "size": 10, "title": "553204935924662272\u003cbr\u003e@JohnAmaechi Haha, I remember...\u003cbr\u003eThu Jan 08 15:01:49 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 4, "to": 45, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 9, "to": 15, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 14, "to": 17, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 18, "to": 22, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 22, "to": 33, "weight": 1}, {"from": 24, "to": 29, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 27, "to": 32, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 28, "to": 35, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 30, "to": 38, "weight": 1}, {"from": 30, "to": 39, "weight": 1}, {"from": 30, "to": 40, "weight": 1}, {"from": 33, "to": 34, "weight": 1}, {"from": 34, "to": 36, "weight": 1}, {"from": 36, "to": 37, "weight": 1}, {"from": 36, "to": 46, "weight": 1}, {"from": 39, "to": 41, "weight": 1}, {"from": 39, "to": 43, "weight": 1}, {"from": 40, "to": 44, "weight": 1}, {"from": 41, "to": 42, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

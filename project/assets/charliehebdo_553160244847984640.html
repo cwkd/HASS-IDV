@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 957, "id": 0, "label": "553160244847984640", "shape": "dot", "size": 10, "title": "553160244847984640\u003cbr\u003eTwo mosque attacks reported in\u003cbr\u003ewake of Charlie Hebdo attack\u003cbr\u003e \nhttp://t.co/mPr3rXnx7i #C4News\u003cbr\u003eThu Jan 08 12:04:14 +0000 2015"}, {"group": 957, "id": 1, "label": "553160648050614272", "shape": "dot", "size": 10, "title": "553160648050614272\u003cbr\u003eOne attack took place at\u003cbr\u003ea kebab shop next to\u003cbr\u003ea mosque in the town\u003cbr\u003eof Villefranche-sur-Sa\u00f4ne, grenades were thrown\u003cbr\u003eat a mosque in Le\u003cbr\u003eMan\u003cbr\u003eThu Jan 08 12:05:50 +0000 2015"}, {"group": 957, "id": 3, "label": "553160794872246272", "shape": "dot", "size": 10, "title": "553160794872246272\u003cbr\u003eUh-oh: \"@Channel4News: Two mosque attacks\u003cbr\u003ereported in wake of Charlie\u003cbr\u003eHebdo attack  \nhttp://t.co/GXszRs8oOD #C4News\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:06:25 +0000 2015"}, {"group": 957, "id": 10, "label": "553162715636989952", "shape": "dot", "size": 10, "title": "553162715636989952\u003cbr\u003e@Channel4News @markthomasinfo That\u0027ll help no\u003cbr\u003eend.\u003cbr\u003eThu Jan 08 12:14:03 +0000 2015"}, {"group": 957, "id": 11, "label": "553162978556915712", "shape": "dot", "size": 10, "title": "553162978556915712\u003cbr\u003e@Channel4News @markthomasinfo Only 2? Good\u003cbr\u003eto see everyone is being\u003cbr\u003eso restrained. Look what happened\u003cbr\u003eto all the Hindu temples\u003cbr\u003ein Pakistan..\u003cbr\u003eThu Jan 08 12:15:06 +0000 2015"}, {"group": 957, "id": 12, "label": "553164582336724993", "shape": "dot", "size": 10, "title": "553164582336724993\u003cbr\u003e@markthomasinfo @Channel4News crap :(\u003cbr\u003eThu Jan 08 12:21:28 +0000 2015"}, {"group": 957, "id": 13, "label": "553164821966123008", "shape": "dot", "size": 10, "title": "553164821966123008\u003cbr\u003e@Channel4News They are not \u0027controversial\u003cbr\u003ecartoons\u0027 they are merely \u0027cartoons\u0027.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:22:25 +0000 2015"}, {"group": 957, "id": 14, "label": "553165098760830976", "shape": "dot", "size": 10, "title": "553165098760830976\u003cbr\u003e@Channel4News @markthomasinfo -two wrongs doesn\u0027t\u003cbr\u003emake a right. #JustStop Don\u0027t\u003cbr\u003estoop down to the killers\u003cbr\u003elevel. Be better than them.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:23:31 +0000 2015"}, {"group": 957, "id": 16, "label": "553166472420552704", "shape": "dot", "size": 10, "title": "553166472420552704\u003cbr\u003e@Channel4News has \"Freedom of speech\"\u003cbr\u003egot anything to do with\u003cbr\u003eliving in a democratic society\u003cbr\u003e?\u003cbr\u003eThu Jan 08 12:28:59 +0000 2015"}, {"group": 957, "id": 2, "label": "553160691230982144", "shape": "dot", "size": 10, "title": "553160691230982144\u003cbr\u003e\u0027Under the guise of free\u003cbr\u003espeech, it\u0027s likely that the\u003cbr\u003ehaters will emerge \u2013 from\u003cbr\u003eboth sides \u2013 seeking to\u003cbr\u003edrag us all down\u0027 @lowles_nick\u003cbr\u003ewarns\u003cbr\u003eThu Jan 08 12:06:00 +0000 2015"}, {"group": 957, "id": 5, "label": "553161544222396419", "shape": "dot", "size": 10, "title": "553161544222396419\u003cbr\u003e@Channel4News Now our silent wars\u003cbr\u003eon race and religion have\u003cbr\u003ebecome active.  This is\u003cbr\u003eAmerica not a third world\u003cbr\u003ecountry.  Keep our peace!\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:09:24 +0000 2015"}, {"group": 957, "id": 7, "label": "553161971827503106", "shape": "dot", "size": 10, "title": "553161971827503106\u003cbr\u003e@Channel4News Training grenades, meaning fireworks.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:11:05 +0000 2015"}, {"group": 957, "id": 9, "label": "553162249754648576", "shape": "dot", "size": 10, "title": "553162249754648576\u003cbr\u003e@Channel4News @trevorreeve Before this event,\u003cbr\u003emany repeated attacks against Muslims\u003cbr\u003ein Malmo, Sweden, over 20\u003cbr\u003ekilled\u003cbr\u003eThu Jan 08 12:12:12 +0000 2015"}, {"group": 957, "id": 17, "label": "553167204884418561", "shape": "dot", "size": 10, "title": "553167204884418561\u003cbr\u003e@Channel4News Le Mans\u003cbr\u003eThu Jan 08 12:31:53 +0000 2015"}, {"group": 957, "id": 6, "label": "553161869788463104", "shape": "dot", "size": 10, "title": "553161869788463104\u003cbr\u003e@Channel4News @lowles_nick Those who do\u003cbr\u003edo are no better than\u003cbr\u003ethe perpetrators of such appalling\u003cbr\u003ecrimes against humanity.\n#OneWorld\u003cbr\u003eThu Jan 08 12:10:41 +0000 2015"}, {"group": 957, "id": 8, "label": "553162222156144640", "shape": "dot", "size": 10, "title": "553162222156144640\u003cbr\u003e@Channel4News @lowles_nick drag us all\u003cbr\u003edown with their free speech?\u003cbr\u003ewhat can be done to\u003cbr\u003esave us from such tyranny?\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:12:05 +0000 2015"}, {"group": 957, "id": 19, "label": "553169881835638784", "shape": "dot", "size": 10, "title": "553169881835638784\u003cbr\u003e@Channel4News @ryandal @lowles_nick Yes -\u003cbr\u003eand the likes of Farage\u003cbr\u003ewill use it to fuel\u003cbr\u003ethe hate.\u003cbr\u003eThu Jan 08 12:42:31 +0000 2015"}, {"group": 957, "id": 20, "label": "553175319830491136", "shape": "dot", "size": 10, "title": "553175319830491136\u003cbr\u003e@Channel4News @lowles_nick So true they\u003cbr\u003ewill  use it for\u003cbr\u003eall it\u0027s worth\u003cbr\u003eThu Jan 08 13:04:08 +0000 2015"}, {"group": 957, "id": 25, "label": "553188315932135424", "shape": "dot", "size": 10, "title": "553188315932135424\u003cbr\u003e@Channel4News @lowles_nick  He should\u003cbr\u003emake his mind up http://t.co/l73CfTYbH2\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:55:46 +0000 2015"}, {"group": 957, "id": 31, "label": "553205714119053312", "shape": "dot", "size": 10, "title": "553205714119053312\u003cbr\u003e@Channel4News @lowles_nick Declaring a stand\u003cbr\u003efor freedom of speech doesnt\u003cbr\u003emean you \u0027hate\u0027 it means\u003cbr\u003eyouve chosen a side.\u003cbr\u003eThu Jan 08 15:04:54 +0000 2015"}, {"group": 957, "id": 32, "label": "553459182046019584", "shape": "dot", "size": 10, "title": "553459182046019584\u003cbr\u003e@Channel4News @DazyFrogg @lowles_nick thats the\u003cbr\u003ewhole point of free speech,\u003cbr\u003eand its much better than\u003cbr\u003eoppression and murder\u003cbr\u003eFri Jan 09 07:52:06 +0000 2015"}, {"group": 957, "id": 33, "label": "553729995248775168", "shape": "dot", "size": 10, "title": "553729995248775168\u003cbr\u003e@Channel4News @lowles_nick I don\u0027t get\u003cbr\u003ethat quote?\u003cbr\u003eSat Jan 10 01:48:13 +0000 2015"}, {"group": 957, "id": 4, "label": "553161238947966977", "shape": "dot", "size": 10, "title": "553161238947966977\u003cbr\u003e@lynseyaddario its stupidity to attack\u003cbr\u003epeople who are not at\u003cbr\u003eall related to the crime.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:08:11 +0000 2015"}, {"group": 957, "id": 15, "label": "553166383434190848", "shape": "dot", "size": 10, "title": "553166383434190848\u003cbr\u003e@RBHamilton1 @Channel4News @lowles_nick You equating\u003cbr\u003ebeing nasty to murder?\u003cbr\u003eThu Jan 08 12:28:37 +0000 2015"}, {"group": 957, "id": 22, "label": "553185693019955201", "shape": "dot", "size": 10, "title": "553185693019955201\u003cbr\u003e@BobBergh @Channel4News It\u0027s cartoons that\u003cbr\u003ehas caused controversy.  Is\u003cbr\u003eit really that much of\u003cbr\u003ea stretch to call them\u003cbr\u003econtroversial cartoons?\u003cbr\u003eThu Jan 08 13:45:21 +0000 2015"}, {"group": 957, "id": 18, "label": "553168952856444928", "shape": "dot", "size": 10, "title": "553168952856444928\u003cbr\u003e@KevTwitta @Channel4News @lowles_nick \n\nAbsolutely not!\n\nThe\u003cbr\u003epoint I make is that\u003cbr\u003eword terrorist can appear to\u003cbr\u003esome, to \"glamourise\" them.\u003cbr\u003eThu Jan 08 12:38:50 +0000 2015"}, {"group": 957, "id": 21, "label": "553178148456894464", "shape": "dot", "size": 10, "title": "553178148456894464\u003cbr\u003e@RBHamilton1 @Channel4News @lowles_nick so what?\u003cbr\u003eThat\u0027s their misguided interpretation\u003cbr\u003eThu Jan 08 13:15:22 +0000 2015"}, {"group": 957, "id": 23, "label": "553186114102902784", "shape": "dot", "size": 10, "title": "553186114102902784\u003cbr\u003e@KevTwitta @Channel4News @lowles_nick Thank you\u003cbr\u003efor your opinion but these\u003cbr\u003eare my views.\u003cbr\u003eThu Jan 08 13:47:01 +0000 2015"}, {"group": 957, "id": 24, "label": "553187810099081216", "shape": "dot", "size": 10, "title": "553187810099081216\u003cbr\u003e@MorganTheRabbit @Channel4News Yes, the thing\u003cbr\u003ethat has caused controversy is\u003cbr\u003eIslamic Religion and it\u0027s insistence\u003cbr\u003eof being above reproach.\u003cbr\u003eThu Jan 08 13:53:46 +0000 2015"}, {"group": 957, "id": 28, "label": "553190957576097794", "shape": "dot", "size": 10, "title": "553190957576097794\u003cbr\u003e@RBHamilton1 @Channel4News @lowles_nick I know,\u003cbr\u003eand these are mine. This\u003cbr\u003eis how Twitter works.\u003cbr\u003eThu Jan 08 14:06:16 +0000 2015"}, {"group": 957, "id": 26, "label": "553188372630736896", "shape": "dot", "size": 10, "title": "553188372630736896\u003cbr\u003e@BobBergh @Channel4News Oooh, you\u0027re a\u003cbr\u003enutcase!  Sorry, I didn\u0027t\u003cbr\u003erealise :) I\u0027ll let you\u003cbr\u003eget back to your internet\u003cbr\u003eraging.\u003cbr\u003eThu Jan 08 13:56:00 +0000 2015"}, {"group": 957, "id": 27, "label": "553188930644746240", "shape": "dot", "size": 10, "title": "553188930644746240\u003cbr\u003e@MorganTheRabbit Lost the argument, so\u003cbr\u003estarted calling me names.\u003cbr\u003eThu Jan 08 13:58:13 +0000 2015"}, {"group": 957, "id": 29, "label": "553193064991567873", "shape": "dot", "size": 10, "title": "553193064991567873\u003cbr\u003e@BobBergh Sorry, what was the\u003cbr\u003eargument again? I think I\u003cbr\u003emust have missed that part\u003cbr\u003e:|\u003cbr\u003eThu Jan 08 14:14:39 +0000 2015"}, {"group": 957, "id": 30, "label": "553193664848355330", "shape": "dot", "size": 10, "title": "553193664848355330\u003cbr\u003e@BobBergh lost the argument and\u003cbr\u003eso blocked me ;)\u003cbr\u003eThu Jan 08 14:17:02 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 1, "to": 7, "weight": 1}, {"from": 1, "to": 9, "weight": 1}, {"from": 1, "to": 17, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 2, "to": 8, "weight": 1}, {"from": 2, "to": 19, "weight": 1}, {"from": 2, "to": 20, "weight": 1}, {"from": 2, "to": 25, "weight": 1}, {"from": 2, "to": 31, "weight": 1}, {"from": 2, "to": 32, "weight": 1}, {"from": 2, "to": 33, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 6, "to": 15, "weight": 1}, {"from": 13, "to": 22, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 23, "to": 28, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 29, "to": 30, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 405, "id": 0, "label": "552830599002857472", "shape": "dot", "size": 10, "title": "552830599002857472\u003cbr\u003e#JeSuisCharlie #CharlieHebd #ChalieHebdo One Child,\u003cbr\u003eone teacher, one book, and\u003cbr\u003eone pen,can Change the World\u003cbr\u003e-Malala-  http://t.co/I2MpQdnA7G\u003cbr\u003eWed Jan 07 14:14:20 +0000 2015"}, {"group": 405, "id": 1, "label": "552831415923277825", "shape": "dot", "size": 10, "title": "552831415923277825\u003cbr\u003e@lluisahicart @w_nicht #JeSuisCharlie Thank you\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:17:35 +0000 2015"}, {"group": 405, "id": 2, "label": "552834410069098496", "shape": "dot", "size": 10, "title": "552834410069098496\u003cbr\u003e@lluisahicart si consentimos en nuestras\u003cbr\u003eciudades el uso del burka,\u003cbr\u003enikab, la aplicaci\u00f3n de la\u003cbr\u003eshar\u00eda m\u00e1s radical..etc estamos contribuyendo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:29 +0000 2015"}, {"group": 405, "id": 3, "label": "552862604579049475", "shape": "dot", "size": 10, "title": "552862604579049475\u003cbr\u003e@lluisahicart @kcornelius75 hehehe\u003cbr\u003eWed Jan 07 16:21:31 +0000 2015"}, {"group": 405, "id": 4, "label": "552871956559974400", "shape": "dot", "size": 10, "title": "552871956559974400\u003cbr\u003e@lluisahicart. Education not extremists. But\u003cbr\u003ewho can change that? Its\u003cbr\u003eno freedom for journalism anymore,\u003cbr\u003eits freedom for extremism! Sick!\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:58:40 +0000 2015"}, {"group": 405, "id": 5, "label": "552875749947232257", "shape": "dot", "size": 10, "title": "552875749947232257\u003cbr\u003e@lluisahicart \u03b7 \u03b1\u03bb\u03ae\u03b8\u03b5\u03b9\u03b1\u003cbr\u003eWed Jan 07 17:13:45 +0000 2015"}, {"group": 405, "id": 6, "label": "552926639399923712", "shape": "dot", "size": 10, "title": "552926639399923712\u003cbr\u003e. @lluisahicart science and education\u003cbr\u003ehurts their religious feelings. Havn\u0027t\u003cbr\u003ewe heard this before from\u003cbr\u003ethe Bible belt?\u003cbr\u003eWed Jan 07 20:35:58 +0000 2015"}, {"group": 405, "id": 7, "label": "553974327318966273", "shape": "dot", "size": 10, "title": "553974327318966273\u003cbr\u003e@lluisahicart @mhdesesgaulx\u003cbr\u003eSat Jan 10 17:59:06 +0000 2015"}, {"group": 405, "id": 8, "label": "554383530252591104", "shape": "dot", "size": 10, "title": "554383530252591104\u003cbr\u003e\u201c@lluisahicart: one Child, one teacher,\u003cbr\u003eone book, and one pen,\u003cbr\u003ecan change the World -Malala-\u003cbr\u003ehttp://t.co/lkr8w4sOxS\" #JeSuisCharlie\u003cbr\u003eSun Jan 11 21:05:08 +0000 2015"}, {"group": 405, "id": 9, "label": "554383829453266945", "shape": "dot", "size": 10, "title": "554383829453266945\u003cbr\u003e@yvdu @lluisahicart brilliant!\u003cbr\u003eSun Jan 11 21:06:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

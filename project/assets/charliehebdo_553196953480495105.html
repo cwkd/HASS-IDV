@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1094, "id": 0, "label": "553196953480495105", "shape": "dot", "size": 10, "title": "553196953480495105\u003cbr\u003eOne million copies of #CharlieHebdo\u003cbr\u003ewill be printed next week,\u003cbr\u003ewhich typically has a print\u003cbr\u003erun of 60,000 http://t.co/cH1DEZb0A1\u003cbr\u003eThu Jan 08 14:30:06 +0000 2015"}, {"group": 1094, "id": 1, "label": "553197331831881728", "shape": "dot", "size": 10, "title": "553197331831881728\u003cbr\u003e@mashable I d be surprised\u003cbr\u003eif it wouldn\u0027t go for\u003cbr\u003emore\u003cbr\u003eThu Jan 08 14:31:36 +0000 2015"}, {"group": 1094, "id": 2, "label": "553197731091861504", "shape": "dot", "size": 10, "title": "553197731091861504\u003cbr\u003e@mashable is there a fund\u003cbr\u003ebeing set up by them?\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:33:11 +0000 2015"}, {"group": 1094, "id": 3, "label": "553198833141035009", "shape": "dot", "size": 10, "title": "553198833141035009\u003cbr\u003e@mashable Great decision. Will definitely\u003cbr\u003ebe getting a copy. #StupidityWillNotWin\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:37:34 +0000 2015"}, {"group": 1094, "id": 4, "label": "553199180420628480", "shape": "dot", "size": 10, "title": "553199180420628480\u003cbr\u003e.@mashable stay can you say,\u003cbr\u003edeath sells.\u003cbr\u003eThu Jan 08 14:38:57 +0000 2015"}, {"group": 1094, "id": 5, "label": "553200731390763008", "shape": "dot", "size": 10, "title": "553200731390763008\u003cbr\u003e@mashable How can we subscribe?\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:45:06 +0000 2015"}, {"group": 1094, "id": 6, "label": "553205878489219072", "shape": "dot", "size": 10, "title": "553205878489219072\u003cbr\u003e@mashable Nsp TODAY  in\u003cbr\u003eKanpur-India LIGHTED UP CANDELS \u0026amp;\u003cbr\u003ePROTESTED AGAINST TERORIZM ATTACKED IN\u003cbr\u003ePERIS  ON MEDIA. http://t.co/BmmolS2SUp\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:05:34 +0000 2015"}, {"group": 1094, "id": 7, "label": "553206231129919489", "shape": "dot", "size": 10, "title": "553206231129919489\u003cbr\u003e@mashable good!\u003cbr\u003eThu Jan 08 15:06:58 +0000 2015"}, {"group": 1094, "id": 8, "label": "553214265470230528", "shape": "dot", "size": 10, "title": "553214265470230528\u003cbr\u003e@mashable @taslimanasreen  - So\u003cbr\u003enow everyone can officially laugh\u003cbr\u003eat these moronic extremists. More\u003cbr\u003epeople will see what they\u003cbr\u003edespise\u003cbr\u003eThu Jan 08 15:38:53 +0000 2015"}, {"group": 1094, "id": 9, "label": "553282065530380288", "shape": "dot", "size": 10, "title": "553282065530380288\u003cbr\u003e@mashable @riwired .......How can I\u003cbr\u003ebuy a copy!\u003cbr\u003eThu Jan 08 20:08:18 +0000 2015"}, {"group": 1094, "id": 10, "label": "553938852868792321", "shape": "dot", "size": 10, "title": "553938852868792321\u003cbr\u003e@mashable @Emma_J88 print millions if\u003cbr\u003eyou like, islam will rise.\u003cbr\u003eWe are patiently watching who\u003cbr\u003eis fooling who\u003cbr\u003eSat Jan 10 15:38:08 +0000 2015"}, {"group": 1094, "id": 16, "label": "556603640681889792", "shape": "dot", "size": 10, "title": "556603640681889792\u003cbr\u003e@mashable Thanks for sharing! You\u0027re\u003cbr\u003enow featured on http://t.co/bxZXqTNRj8\u003cbr\u003eSun Jan 18 00:07:03 +0000 2015"}, {"group": 1094, "id": 11, "label": "553939037711785984", "shape": "dot", "size": 10, "title": "553939037711785984\u003cbr\u003e@dannykeighobadi @mashable Islam will rise.\u003cbr\u003eKeep printing and we are\u003cbr\u003epatiently watching,\u003cbr\u003eSat Jan 10 15:38:52 +0000 2015"}, {"group": 1094, "id": 12, "label": "553939675900309504", "shape": "dot", "size": 10, "title": "553939675900309504\u003cbr\u003e@elmukty1 @mashable The whole point\u003cbr\u003eis that those 2 brothers\u003cbr\u003emade situation worse. They only\u003cbr\u003eprinted 60,000 before now...million.\u003cbr\u003eSat Jan 10 15:41:25 +0000 2015"}, {"group": 1094, "id": 15, "label": "554025610155401216", "shape": "dot", "size": 10, "title": "554025610155401216\u003cbr\u003e@elmukty1 @mashable I\u0027m alright thanks,\u003cbr\u003erather live in the free\u003cbr\u003eworld.\u003cbr\u003eSat Jan 10 21:22:53 +0000 2015"}, {"group": 1094, "id": 13, "label": "553940057745530880", "shape": "dot", "size": 10, "title": "553940057745530880\u003cbr\u003e@Emma_J88 @mashable the thing is,\u003cbr\u003eeven if they are printing\u003cbr\u003ehundred of millions, it will\u003cbr\u003enot reduce they value of\u003cbr\u003eour great prophet\u003cbr\u003eSat Jan 10 15:42:56 +0000 2015"}, {"group": 1094, "id": 14, "label": "553941318163263488", "shape": "dot", "size": 10, "title": "553941318163263488\u003cbr\u003e@elmukty1 People doing harm in\u003cbr\u003eit\u0027s name mostly reduce value\u003cbr\u003eof religion.Satire only picks up\u003cbr\u003eon it. Same w/ satire\u003cbr\u003eon Christianity, priests\u003cbr\u003eSat Jan 10 15:47:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

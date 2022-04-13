@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1009, "id": 0, "label": "553174536028303360", "shape": "dot", "size": 10, "title": "553174536028303360\u003cbr\u003eWorld sends messages of condolence,\u003cbr\u003eoutrage, defiance via #JeSuisCharlie after\u003cbr\u003eParis attack: http://t.co/deqrOSVi0m http://t.co/Ama2pSOvZN\u003cbr\u003eThu Jan 08 13:01:01 +0000 2015"}, {"group": 1009, "id": 1, "label": "553174747463159810", "shape": "dot", "size": 10, "title": "553174747463159810\u003cbr\u003e@ABC http://t.co/A4GK0uDtZo\u003cbr\u003eThu Jan 08 13:01:51 +0000 2015"}, {"group": 1009, "id": 2, "label": "553175253351145472", "shape": "dot", "size": 10, "title": "553175253351145472\u003cbr\u003e@ABC Same pain as we\u003cbr\u003efeel for our brothers and\u003cbr\u003esister France killing daily.\u003cbr\u003eThu Jan 08 13:03:52 +0000 2015"}, {"group": 1009, "id": 4, "label": "553176761756688384", "shape": "dot", "size": 10, "title": "553176761756688384\u003cbr\u003e@ABC #JeSuisCharlie\ud83d\ude4f\ud83d\ude4f\ud83d\ude4f\u003cbr\u003eThu Jan 08 13:09:52 +0000 2015"}, {"group": 1009, "id": 5, "label": "553177605289955328", "shape": "dot", "size": 10, "title": "553177605289955328\u003cbr\u003e@ABC #ParisShooting France will rise\u003cbr\u003eand get the justice they\u003cbr\u003edeserve.\u003cbr\u003eThu Jan 08 13:13:13 +0000 2015"}, {"group": 1009, "id": 6, "label": "553177757858136065", "shape": "dot", "size": 10, "title": "553177757858136065\u003cbr\u003e@ABC #YoSoyCharlie #PuertoRico N #LATINOAMERICA\u003cbr\u003eREPORTERS SUPPORT FREE PRESS @ActualidadRT\u003cbr\u003e@GMamery @enosotras @LeninPR @NoticiasMVS @uprrp\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:13:49 +0000 2015"}, {"group": 1009, "id": 7, "label": "553179057400332289", "shape": "dot", "size": 10, "title": "553179057400332289\u003cbr\u003e@ABC\u003cbr\u003eThu Jan 08 13:18:59 +0000 2015"}, {"group": 1009, "id": 8, "label": "553180765479923712", "shape": "dot", "size": 10, "title": "553180765479923712\u003cbr\u003e@ABC: World sends messages of\u003cbr\u003econdolence outrage defiance #JeSuisCharlie after\u003cbr\u003eParis attack!!!\nhttp://t.co/ZHJ19zQzgK http://t.co/GVjF6WbAOr\u003cbr\u003eThu Jan 08 13:25:46 +0000 2015"}, {"group": 1009, "id": 9, "label": "553180942035320832", "shape": "dot", "size": 10, "title": "553180942035320832\u003cbr\u003e@ABC The World needs to\u003cbr\u003ecome together and stop this\u003cbr\u003emadness.\u003cbr\u003eThu Jan 08 13:26:28 +0000 2015"}, {"group": 1009, "id": 10, "label": "553181480592351232", "shape": "dot", "size": 10, "title": "553181480592351232\u003cbr\u003e@ABC the world and it\u003cbr\u003ebiased mind. Many died here\u003cbr\u003eeveryday and no one ever\u003cbr\u003eseems to care. Well, accept\u003cbr\u003emy condolence the people of\u003cbr\u003eFrance.\u003cbr\u003eThu Jan 08 13:28:37 +0000 2015"}, {"group": 1009, "id": 11, "label": "553185052709093376", "shape": "dot", "size": 10, "title": "553185052709093376\u003cbr\u003e@abc on va le charlinizer\u003cbr\u003ede nouveaux\u003cbr\u003eThu Jan 08 13:42:48 +0000 2015"}, {"group": 1009, "id": 12, "label": "553202840278425600", "shape": "dot", "size": 10, "title": "553202840278425600\u003cbr\u003e@ABC @Hamilton4TX Report this:Americans DON\u0027T\u003cbr\u003ewant to close Gitmo or\u003cbr\u003erelease terrorists. Obama not listening\u003cbr\u003eto ppl or this will\u003cbr\u003ebe us.\u003cbr\u003eThu Jan 08 14:53:29 +0000 2015"}, {"group": 1009, "id": 3, "label": "553175596168380416", "shape": "dot", "size": 10, "title": "553175596168380416\u003cbr\u003e@ABC Je suis Muslim.\u003cbr\u003eThu Jan 08 13:05:14 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 2, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

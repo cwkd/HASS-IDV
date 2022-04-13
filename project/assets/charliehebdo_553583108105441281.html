@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1533, "id": 0, "label": "553583108105441281", "shape": "dot", "size": 10, "title": "553583108105441281\u003cbr\u003eThe \u0027freedom of speech\u0027 western\u003cbr\u003ehypocrisy.. #France #JeSuisCharlie http://t.co/pk9oWF19kg\u003cbr\u003eFri Jan 09 16:04:32 +0000 2015"}, {"group": 1533, "id": 1, "label": "553584181897601024", "shape": "dot", "size": 10, "title": "553584181897601024\u003cbr\u003e@RamiAlLolah Just false and stupid.\u003cbr\u003eIt\u0027s seem you fully ignore\u003cbr\u003ewhat freedom of speech mean.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:08:48 +0000 2015"}, {"group": 1533, "id": 2, "label": "553585595054686208", "shape": "dot", "size": 10, "title": "553585595054686208\u003cbr\u003eSick, perverted hate RT \u201c@RamiAlLolah:\u003cbr\u003eThe \u0027freedom of speech\u0027 western\u003cbr\u003ehypocrisy.. #France #JeSuisCharlie http://t.co/wfurXWFTx6\u201d\u003cbr\u003eFri Jan 09 16:14:25 +0000 2015"}, {"group": 1533, "id": 3, "label": "553585929475358724", "shape": "dot", "size": 10, "title": "553585929475358724\u003cbr\u003e@RamiAlLolah what like attacking Europe\u003cbr\u003ewho gives you benefits and\u003cbr\u003efree housing?\u003cbr\u003eFri Jan 09 16:15:45 +0000 2015"}, {"group": 1533, "id": 4, "label": "553588142935011329", "shape": "dot", "size": 10, "title": "553588142935011329\u003cbr\u003e@RamiAlLolah Ridiculous. No one is\u003cbr\u003esaying that it is good\u003cbr\u003eto insult someone else\u0027s religion,\u003cbr\u003ebut we have the right\u003cbr\u003eexpress ourselves freely\u003cbr\u003eFri Jan 09 16:24:33 +0000 2015"}, {"group": 1533, "id": 5, "label": "553588550361702400", "shape": "dot", "size": 10, "title": "553588550361702400\u003cbr\u003e#Israel (pioneers of freedom \u0026amp;\u003cbr\u003edemocracy) also killed with a\u003cbr\u003ecold blood cartoonist Naji al-Ali\u003cbr\u003e#France #JeSuisCharlie http://t.co/X8NDFzYOvn\u003cbr\u003eFri Jan 09 16:26:10 +0000 2015"}, {"group": 1533, "id": 6, "label": "553591459706712064", "shape": "dot", "size": 10, "title": "553591459706712064\u003cbr\u003eExcept that the cover of\u003cbr\u003eCharlie Hebdo had both Mohammad\u003cbr\u003eand a Jew on it....\u003cbr\u003e@RamiAlLolah those two dead terrorists\u003cbr\u003emurdered those who spoke\u003cbr\u003eFri Jan 09 16:37:43 +0000 2015"}, {"group": 1533, "id": 7, "label": "553591639600414721", "shape": "dot", "size": 10, "title": "553591639600414721\u003cbr\u003e@RamiAlLolah for both Muslims and\u003cbr\u003eJew. Fucking filthy savages.\u003cbr\u003eFri Jan 09 16:38:26 +0000 2015"}, {"group": 1533, "id": 8, "label": "553591974901870592", "shape": "dot", "size": 10, "title": "553591974901870592\u003cbr\u003e@RamiAlLolah @Kemety Bullshit. http://t.co/5hTztxy4Wr\u003cbr\u003eFri Jan 09 16:39:46 +0000 2015"}, {"group": 1533, "id": 12, "label": "553604358353719296", "shape": "dot", "size": 10, "title": "553604358353719296\u003cbr\u003e@RamiAlLolah https://t.co/gT5ASq4Mum - take a\u003cbr\u003eread please akhi. Feedback most\u003cbr\u003eappreciated. Jzk.\u003cbr\u003eFri Jan 09 17:28:59 +0000 2015"}, {"group": 1533, "id": 13, "label": "553604534149582848", "shape": "dot", "size": 10, "title": "553604534149582848\u003cbr\u003e@RamiAlLolah No you idiot. A\u003cbr\u003ecartoon hating people is not\u003cbr\u003ethe same as a cartoon\u003cbr\u003eridiculing an ideology.\u003cbr\u003eFri Jan 09 17:29:41 +0000 2015"}, {"group": 1533, "id": 14, "label": "553604894645821440", "shape": "dot", "size": 10, "title": "553604894645821440\u003cbr\u003eAdres ver Selefi dalyarak adres\u003cbr\u003e@RamiAlLolah \nhttp://t.co/gxZIar6j0B\u003cbr\u003eFri Jan 09 17:31:07 +0000 2015"}, {"group": 1533, "id": 15, "label": "553605325744771072", "shape": "dot", "size": 10, "title": "553605325744771072\u003cbr\u003e@RamiAlLolah I don\u0027t remember Jewish\u003cbr\u003ejihadists butchering any cartoonist or\u003cbr\u003ewriter. and charlie had its\u003cbr\u003eshare of jew-mocking.\u003cbr\u003eFri Jan 09 17:32:49 +0000 2015"}, {"group": 1533, "id": 21, "label": "553702792570093569", "shape": "dot", "size": 10, "title": "553702792570093569\u003cbr\u003e@ShiekhHamSam @RamiAlLolah don\u0027t assume he\u003cbr\u003eis in Europe stupid\u003cbr\u003eSat Jan 10 00:00:07 +0000 2015"}, {"group": 1533, "id": 10, "label": "553604065717137408", "shape": "dot", "size": 10, "title": "553604065717137408\u003cbr\u003e#Aljazeera Allouni jailed for 7+\u003cbr\u003eyrs for violating freedom of\u003cbr\u003espeech in interview w Bin\u003cbr\u003eLaden #France #JeSuisCharlie http://t.co/nlHce8WkCp\u003cbr\u003eFri Jan 09 17:27:49 +0000 2015"}, {"group": 1533, "id": 18, "label": "553607511795052545", "shape": "dot", "size": 10, "title": "553607511795052545\u003cbr\u003e@RamiAlLolah no no. he was\u003cbr\u003ekilled ny Ismail Sowan -\u003cbr\u003ea PLO agent for drawing\u003cbr\u003ecartoons against Arab regimes. Learn\u003cbr\u003esome history.\u003cbr\u003eFri Jan 09 17:41:30 +0000 2015"}, {"group": 1533, "id": 23, "label": "556601278160453632", "shape": "dot", "size": 10, "title": "556601278160453632\u003cbr\u003e#CNN fired him because his\u003cbr\u003etweets violated #Israel|i freedom of\u003cbr\u003espeech policies: http://t.co/YllXNhJDlP #CharlieHebdo #JeSuisCharlie\u003cbr\u003e#France\u003cbr\u003eSat Jan 17 23:57:40 +0000 2015"}, {"group": 1533, "id": 9, "label": "553592536493592577", "shape": "dot", "size": 10, "title": "553592536493592577\u003cbr\u003eThat magazine is known for\u003cbr\u003emaking fun of every ideology\u003cbr\u003e@BemetOr8 @RamiAlLolah one of their\u003cbr\u003efavorites was Catholics, why didn\u0027t\u003cbr\u003ethey attack?\u003cbr\u003eFri Jan 09 16:42:00 +0000 2015"}, {"group": 1533, "id": 11, "label": "553604326937989121", "shape": "dot", "size": 10, "title": "553604326937989121\u003cbr\u003e@RamiAlLolah You might appreciate this\u003cbr\u003ehttp://t.co/8wZNIvCmTA\u003cbr\u003eFri Jan 09 17:28:51 +0000 2015"}, {"group": 1533, "id": 17, "label": "553607303170375681", "shape": "dot", "size": 10, "title": "553607303170375681\u003cbr\u003e#Aljazeera cameraman released after 6+\u003cbr\u003eyrs of horribles in the\u003cbr\u003eFreedom College of #Guantanamo #France\u003cbr\u003e#JeSuisCharlie http://t.co/uL4q29Usba\u003cbr\u003eFri Jan 09 17:40:41 +0000 2015"}, {"group": 1533, "id": 16, "label": "553605848686395392", "shape": "dot", "size": 10, "title": "553605848686395392\u003cbr\u003e@RamiAlLolah in fact: http://t.co/OPUkHRygm3 so\u003cbr\u003ewho is the hypocrite now?\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:34:54 +0000 2015"}, {"group": 1533, "id": 19, "label": "553609489560379392", "shape": "dot", "size": 10, "title": "553609489560379392\u003cbr\u003e@RamiAlLolah hang on Rami, how\u003cbr\u003ecome he still has his\u003cbr\u003ehead?\u003cbr\u003eFri Jan 09 17:49:22 +0000 2015"}, {"group": 1533, "id": 20, "label": "553653913426337792", "shape": "dot", "size": 10, "title": "553653913426337792\u003cbr\u003e@RamiAlLolah You are cheering beheadings\u003cbr\u003eof journalists, you fucking psychopath\u003cbr\u003e\u003cbr\u003eFri Jan 09 20:45:54 +0000 2015"}, {"group": 1533, "id": 22, "label": "554204418066100225", "shape": "dot", "size": 10, "title": "554204418066100225\u003cbr\u003e@Vandaliser @RamiAlLolah he is in\u003cbr\u003eEurope. Dumbass\u003cbr\u003eSun Jan 11 09:13:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 3, "to": 21, "weight": 1}, {"from": 5, "to": 10, "weight": 1}, {"from": 5, "to": 18, "weight": 1}, {"from": 5, "to": 23, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 17, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

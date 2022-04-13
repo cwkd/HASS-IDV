@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 421, "id": 0, "label": "552831524002103297", "shape": "dot", "size": 10, "title": "552831524002103297\u003cbr\u003ePlease RT petition calling for\u003cbr\u003esolidarity w #CharlieHebdo https://t.co/1YiIfUdPW4 \u2026\u003cbr\u003e@MaryamNamazie @NickyAACampbell @FFRF @OpenlySecular\u003cbr\u003eWed Jan 07 14:18:01 +0000 2015"}, {"group": 421, "id": 1, "label": "552839451328929794", "shape": "dot", "size": 10, "title": "552839451328929794\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular I find it kind\u003cbr\u003eof sad that this doesn\u0027t\u003cbr\u003ecome natural,\u003cbr\u003eWed Jan 07 14:49:31 +0000 2015"}, {"group": 421, "id": 2, "label": "552839530198597632", "shape": "dot", "size": 10, "title": "552839530198597632\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular and even needs a\u003cbr\u003epetition. /signed.\u003cbr\u003eWed Jan 07 14:49:49 +0000 2015"}, {"group": 421, "id": 3, "label": "552839746171699201", "shape": "dot", "size": 10, "title": "552839746171699201\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular topical today https://t.co/aPitTDzx5j\u003cbr\u003eWed Jan 07 14:50:41 +0000 2015"}, {"group": 421, "id": 4, "label": "552840337451139072", "shape": "dot", "size": 10, "title": "552840337451139072\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular Nothing says solidarity with\u003cbr\u003evictims like a petition.\u003cbr\u003eWed Jan 07 14:53:02 +0000 2015"}, {"group": 421, "id": 5, "label": "552840351887925248", "shape": "dot", "size": 10, "title": "552840351887925248\u003cbr\u003e#JeSuisCharlie\n@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular\n#IAmCharlie\u003cbr\u003eWed Jan 07 14:53:05 +0000 2015"}, {"group": 421, "id": 6, "label": "552840478409117696", "shape": "dot", "size": 10, "title": "552840478409117696\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie  @FFRF\u003cbr\u003e@OpenlySecular  Better petition to\u003cbr\u003eput firearms in the hands\u003cbr\u003eof defenceless citizens\u003cbr\u003eWed Jan 07 14:53:35 +0000 2015"}, {"group": 421, "id": 7, "label": "552841522581078017", "shape": "dot", "size": 10, "title": "552841522581078017\u003cbr\u003e#JeSuisCharlie\n@ChrisMoos_ @MaryamNamazie @NickyAACampbell @FFRF @OpenlySecular\n#IAmCharlie\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:57:44 +0000 2015"}, {"group": 421, "id": 8, "label": "552841895471087616", "shape": "dot", "size": 10, "title": "552841895471087616\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular Please submit your own\u003cbr\u003eversions of #cartoonallah also.\u003cbr\u003eWed Jan 07 14:59:13 +0000 2015"}, {"group": 421, "id": 9, "label": "552848044073709569", "shape": "dot", "size": 10, "title": "552848044073709569\u003cbr\u003e#JeSuisCharlieHebdo\n@ChrisMoos_ @MaryamNamazie @NickyAACampbell @FFRF @OpenlySecular\n#IAmCharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:23:39 +0000 2015"}, {"group": 421, "id": 10, "label": "552858324496953346", "shape": "dot", "size": 10, "title": "552858324496953346\u003cbr\u003e@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular hey I\u0027m not putting\u003cbr\u003emy address on that petition.\u003cbr\u003eChange tht\u003cbr\u003eWed Jan 07 16:04:30 +0000 2015"}, {"group": 421, "id": 11, "label": "552881293231284225", "shape": "dot", "size": 10, "title": "552881293231284225\u003cbr\u003e.@ChrisMoos_ @RichardDawkins @MaryamNamazie @NickyAACampbell @FFRF\u003cbr\u003e@OpenlySecular how about a petition\u003cbr\u003eto stop these cartoons?\u003cbr\u003eWed Jan 07 17:35:47 +0000 2015"}, {"group": 421, "id": 12, "label": "552882596624207872", "shape": "dot", "size": 10, "title": "552882596624207872\u003cbr\u003e@Vickivancouver Sure. After I set\u003cbr\u003eup a petition to censor\u003cbr\u003eyour freedom of expression.\u003cbr\u003eWed Jan 07 17:40:57 +0000 2015"}, {"group": 421, "id": 13, "label": "552882840413544449", "shape": "dot", "size": 10, "title": "552882840413544449\u003cbr\u003e@ChrisMoos_ freedom of common sense:\u003cbr\u003ewhat a concept.\u003cbr\u003eWed Jan 07 17:41:55 +0000 2015"}, {"group": 421, "id": 14, "label": "552883193343651840", "shape": "dot", "size": 10, "title": "552883193343651840\u003cbr\u003e@Vickivancouver Yes, that\u0027s what I\u003cbr\u003ewas thinking when I saw\u003cbr\u003eyour tweet. Now bugger off.\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:43:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

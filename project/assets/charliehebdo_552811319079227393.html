@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 158, "id": 0, "label": "552811319079227393", "shape": "dot", "size": 10, "title": "552811319079227393\u003cbr\u003e#CharlieHebdo shooting: what we know\u003cbr\u003eso far http://t.co/6YUX5mot92 http://t.co/nC9fYCh6qd\u003cbr\u003eWed Jan 07 12:57:43 +0000 2015"}, {"group": 158, "id": 1, "label": "552811652056629248", "shape": "dot", "size": 10, "title": "552811652056629248\u003cbr\u003e@guardiannews thanks a lot for\u003cbr\u003esticking to the facts and\u003cbr\u003eleaving out the guess-work!\u003cbr\u003eWed Jan 07 12:59:03 +0000 2015"}, {"group": 158, "id": 2, "label": "552811796793655296", "shape": "dot", "size": 10, "title": "552811796793655296\u003cbr\u003eRT @guardiannews: #CharlieHebdo shooting: what\u003cbr\u003ewe know so far http://t.co/szj9Q06Tdj\u003cbr\u003ehttp://t.co/ZV8f9QQwpy\u003cbr\u003eWed Jan 07 12:59:37 +0000 2015"}, {"group": 158, "id": 3, "label": "552811945410433024", "shape": "dot", "size": 10, "title": "552811945410433024\u003cbr\u003eFurchtbar. RT \"@guardiannews #CharlieHebdo shooting:\u003cbr\u003ewhat we know so far\u003cbr\u003ehttp://t.co/UtHlv5oBmh\"\u003cbr\u003eWed Jan 07 13:00:13 +0000 2015"}, {"group": 158, "id": 4, "label": "552812113430085633", "shape": "dot", "size": 10, "title": "552812113430085633\u003cbr\u003e@guardiannews @kris_kinder What we know\u003cbr\u003eis that islam is a\u003cbr\u003ecancer on the world, and\u003cbr\u003ewill one day bring the\u003cbr\u003eend of civilization #savages\u003cbr\u003eWed Jan 07 13:00:53 +0000 2015"}, {"group": 158, "id": 6, "label": "552813110667800577", "shape": "dot", "size": 10, "title": "552813110667800577\u003cbr\u003eRT @guardiannews: #CharlieHebdo shooting: what\u003cbr\u003ewe know so far http://t.co/4Ak0nThpOF\u003cbr\u003ehttp://t.co/YqEIAmfifi\u003cbr\u003eWed Jan 07 13:04:51 +0000 2015"}, {"group": 158, "id": 7, "label": "552813195430494208", "shape": "dot", "size": 10, "title": "552813195430494208\u003cbr\u003e\u201c@guardiannews: #CharlieHebdo shooting: what we\u003cbr\u003eknow so far http://t.co/HAonPlIlzT http://t.co/UIgd0qAvtG\u201d\n\nMercy!!!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:05:11 +0000 2015"}, {"group": 158, "id": 8, "label": "552813827273015296", "shape": "dot", "size": 10, "title": "552813827273015296\u003cbr\u003eSo heartbreaking, so cowardly. \u201c@guardiannews:\u003cbr\u003e#CharlieHebdo shooting: what we know\u003cbr\u003eso far http://t.co/T3TBrc2E8Y http://t.co/kQ3qz2uXRE\u201d\u003cbr\u003eWed Jan 07 13:07:41 +0000 2015"}, {"group": 158, "id": 9, "label": "552814665810841600", "shape": "dot", "size": 10, "title": "552814665810841600\u003cbr\u003e@guardiannews @londil :Oriana Fallaci and\u003cbr\u003eIslam: \"We will become Eurabia\".\u003cbr\u003eThe enemy is in our\u003cbr\u003ehouse and does not want\u003cbr\u003eto talk.\u003cbr\u003eWed Jan 07 13:11:01 +0000 2015"}, {"group": 158, "id": 10, "label": "552815867793117186", "shape": "dot", "size": 10, "title": "552815867793117186\u003cbr\u003e@guardiannews shooting #CharlieHebdo is nothing\u003cbr\u003eshort of #TerrorAttack on basic\u003cbr\u003e#HumanRights of FreeSpeach. Highly #Condemnable\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:15:48 +0000 2015"}, {"group": 158, "id": 12, "label": "552817841138057217", "shape": "dot", "size": 10, "title": "552817841138057217\u003cbr\u003e@guardiannews @littletxlady Please RT -\u003cbr\u003eDownload a hilarious FREE Koran\u003cbr\u003ePARODY for infidels of all\u003cbr\u003eages - https://t.co/hXbeZHdguj\u003cbr\u003eWed Jan 07 13:23:38 +0000 2015"}, {"group": 158, "id": 15, "label": "552819461351555072", "shape": "dot", "size": 10, "title": "552819461351555072\u003cbr\u003e\u201c@guardiannews: #CharlieHebdo shooting: what we\u003cbr\u003eknow so far http://t.co/g70ZX8zND8 http://t.co/HPOVe6QVFN\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:30:05 +0000 2015"}, {"group": 158, "id": 16, "label": "552821182639382529", "shape": "dot", "size": 10, "title": "552821182639382529\u003cbr\u003eRT \u201c@guardiannews: #CharlieHebdo shooting: what\u003cbr\u003ewe know so far http://t.co/BbA37QcDBz\u003cbr\u003ehttp://t.co/rVEsDw9gLA\u201d\u003cbr\u003eWed Jan 07 13:36:55 +0000 2015"}, {"group": 158, "id": 17, "label": "552843228412936192", "shape": "dot", "size": 10, "title": "552843228412936192\u003cbr\u003e\u201c@guardiannews: #CharlieHebdo shooting: what we\u003cbr\u003eknow so far http://t.co/NYbzANxDkH http://t.co/2LpO1GtSEl\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:04:31 +0000 2015"}, {"group": 158, "id": 5, "label": "552812865401663489", "shape": "dot", "size": 10, "title": "552812865401663489\u003cbr\u003e@b0ilingfr0g @guardiannews @kris_kinder Your prejudice\u003cbr\u003eand hate are not welcome\u003cbr\u003ehere. This is a place\u003cbr\u003efor the sharing of information.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:03:52 +0000 2015"}, {"group": 158, "id": 11, "label": "552816574777008128", "shape": "dot", "size": 10, "title": "552816574777008128\u003cbr\u003e.@RRuby44 @b0ilingfr0g @guardiannews @kris_kinder Actually,\u003cbr\u003eyour useful idiocy is even\u003cbr\u003eless welcome, which aids and\u003cbr\u003eabets acts such as this.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:18:36 +0000 2015"}, {"group": 158, "id": 13, "label": "552818153902718976", "shape": "dot", "size": 10, "title": "552818153902718976\u003cbr\u003e@RRuby44 @b0ilingfr0g @guardiannews @kris_kinder Denying\u003cbr\u003ethe role of Islam is\u003cbr\u003enot information. It is intellectual\u003cbr\u003edishonesty and hypocrisy.\u003cbr\u003eWed Jan 07 13:24:53 +0000 2015"}, {"group": 158, "id": 14, "label": "552818183204122625", "shape": "dot", "size": 10, "title": "552818183204122625\u003cbr\u003e@RRuby44 @b0ilingfr0g @guardiannews @kris_kinder Rachel,\u003cbr\u003ewake UP. Islam is not\u003cbr\u003eyour friend.\u003cbr\u003eWed Jan 07 13:25:00 +0000 2015"}, {"group": 158, "id": 23, "label": "552857537918566401", "shape": "dot", "size": 10, "title": "552857537918566401\u003cbr\u003e@RRuby44 @guardiannews @kris_kinder Please do\u003cbr\u003etell the Twitterverse, gentle white\u003cbr\u003eliberal sympathizer- what do they\u003cbr\u003econtribute to the world?\u003cbr\u003eWed Jan 07 16:01:23 +0000 2015"}, {"group": 158, "id": 24, "label": "552857710027616257", "shape": "dot", "size": 10, "title": "552857710027616257\u003cbr\u003e@RRuby44 @guardiannews @kris_kinder Also, I\u0027m\u003cbr\u003esharing a fact everyone knows\u003cbr\u003ebut must are reluctant to\u003cbr\u003esay publicly. #islamiscancer\u003cbr\u003eWed Jan 07 16:02:04 +0000 2015"}, {"group": 158, "id": 18, "label": "552847812418084864", "shape": "dot", "size": 10, "title": "552847812418084864\u003cbr\u003e.@haziqmir @b0ilingfr0g @kris_kinder There is\u003cbr\u003ea HUGE difference between Islam\u003cbr\u003eand radical Islam. Two completely\u003cbr\u003edifferent things\u003cbr\u003eWed Jan 07 15:22:44 +0000 2015"}, {"group": 158, "id": 20, "label": "552849037796581376", "shape": "dot", "size": 10, "title": "552849037796581376\u003cbr\u003e@Noslm1 @b0ilingfr0g @guardiannews @kris_kinder Your\u003cbr\u003eTwitter Tag is Civil Discourse!\u003cbr\u003eDoesn\u0027t that mean you\u0027re open\u003cbr\u003eto differing opinions?\u003cbr\u003eWed Jan 07 15:27:36 +0000 2015"}, {"group": 158, "id": 19, "label": "552848099035860992", "shape": "dot", "size": 10, "title": "552848099035860992\u003cbr\u003e.@haziqmir @b0ilingfr0g @kris_kinder Radical forms\u003cbr\u003eof any religion can be\u003cbr\u003eharmful. But they do not\u003cbr\u003ereflect or honor the religions\u003cbr\u003ethemselves\u003cbr\u003eWed Jan 07 15:23:52 +0000 2015"}, {"group": 158, "id": 25, "label": "552858033429422082", "shape": "dot", "size": 10, "title": "552858033429422082\u003cbr\u003e@RRuby44 @haziqmir @kris_kinder Yes -\u003cbr\u003eone beheads people while the\u003cbr\u003eother sits by silent and\u003cbr\u003eimplicitly approves. Thanks for clarifying\u003cbr\u003e#gtfo\u003cbr\u003eWed Jan 07 16:03:21 +0000 2015"}, {"group": 158, "id": 27, "label": "552862630918885378", "shape": "dot", "size": 10, "title": "552862630918885378\u003cbr\u003e@RRuby44 @haziqmir @b0ilingfr0g @kris_kinder Rachel,\u003cbr\u003etelling someone to shut their\u003cbr\u003emouth? I thought you were\u003cbr\u003eso open to others\u0027 ideas!\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:21:37 +0000 2015"}, {"group": 158, "id": 29, "label": "552863150974849024", "shape": "dot", "size": 10, "title": "552863150974849024\u003cbr\u003e@RRuby44 @haziqmir @b0ilingfr0g @kris_kinder Also,\u003cbr\u003eplease consider the words of\u003cbr\u003ethe Prime Minister of Turkey:\u003cbr\u003e\"There is no moderate Islam.\"\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:23:41 +0000 2015"}, {"group": 158, "id": 21, "label": "552856445104844801", "shape": "dot", "size": 10, "title": "552856445104844801\u003cbr\u003e@RRuby44 @b0ilingfr0g @guardiannews @kris_kinder Sure,\u003cbr\u003elet\u0027s have some civil discussion\u003cbr\u003eabout how Islam treats women.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:57:02 +0000 2015"}, {"group": 158, "id": 22, "label": "552857231411007488", "shape": "dot", "size": 10, "title": "552857231411007488\u003cbr\u003e@RRuby44 @b0ilingfr0g @guardiannews @kris_kinder \"Civil\u003cbr\u003ediscourse\" refers to discoursing in\u003cbr\u003ea civil manner, not agreeing\u003cbr\u003ewith every opinion.\u003cbr\u003eWed Jan 07 16:00:10 +0000 2015"}, {"group": 158, "id": 26, "label": "552860733940461570", "shape": "dot", "size": 10, "title": "552860733940461570\u003cbr\u003e@b0ilingfr0g \u0026amp; millions are furious\u003cbr\u003etheir faith is skewed by\u003cbr\u003edisgusting terrorists. I pray you\u003cbr\u003eeither open your mind or\u003cbr\u003eshut your mouth ;-)\u003cbr\u003eWed Jan 07 16:14:05 +0000 2015"}, {"group": 158, "id": 28, "label": "552863040811839488", "shape": "dot", "size": 10, "title": "552863040811839488\u003cbr\u003e@Noslm1 @haziqmir @b0ilingfr0g @kris_kinder Haha\u003cbr\u003eideas yes, hatred and blanket\u003cbr\u003eprejudice are hard to condone\u003cbr\u003e:-P\u003cbr\u003eWed Jan 07 16:23:15 +0000 2015"}, {"group": 158, "id": 31, "label": "552863835963400193", "shape": "dot", "size": 10, "title": "552863835963400193\u003cbr\u003e@RRuby44 @haziqmir @b0ilingfr0g @kris_kinder It\u003cbr\u003eis not hatred to oppose\u003cbr\u003ea supremecist, sexist cult responsible\u003cbr\u003e4 mass murder. #CharlieHebdo\u003cbr\u003eWed Jan 07 16:26:24 +0000 2015"}, {"group": 158, "id": 30, "label": "552863536511483904", "shape": "dot", "size": 10, "title": "552863536511483904\u003cbr\u003e@Noslm1 @haziqmir @b0ilingfr0g @kris_kinder There\u003cbr\u003eis. I\u0027ve met wonderful, kind,\u003cbr\u003epeaceful Muslims. Blanket assumptions will\u003cbr\u003ealways be wrong\u003cbr\u003eWed Jan 07 16:25:13 +0000 2015"}, {"group": 158, "id": 32, "label": "552864647385059328", "shape": "dot", "size": 10, "title": "552864647385059328\u003cbr\u003e@RRuby44 @haziqmir @b0ilingfr0g @kris_kinder Yes,\u003cbr\u003emost Muslims, thank God, do\u003cbr\u003enot emulate Mohammed, as they\u003cbr\u003eare supposed to.\u003cbr\u003eWed Jan 07 16:29:38 +0000 2015"}, {"group": 158, "id": 34, "label": "552865464284508161", "shape": "dot", "size": 10, "title": "552865464284508161\u003cbr\u003e@RRuby44 @haziqmir @b0ilingfr0g @kris_kinder Meeting\u003cbr\u003esome \"nice Muslims\" does not\u003cbr\u003eprove that the ideology as\u003cbr\u003ea whole isn\u0027t warped \u0026amp;\u003cbr\u003eviolent.\u003cbr\u003eWed Jan 07 16:32:53 +0000 2015"}, {"group": 158, "id": 35, "label": "552865940887461888", "shape": "dot", "size": 10, "title": "552865940887461888\u003cbr\u003e@RRuby44 @haziqmir @b0ilingfr0g @kris_kinder Rachel,\u003cbr\u003eI dare you 2 go\u003cbr\u003eSyria or Saudi Arabia and\u003cbr\u003etry to live...see how long\u003cbr\u003eyou would like it.\u003cbr\u003eWed Jan 07 16:34:46 +0000 2015"}, {"group": 158, "id": 40, "label": "552869280375926784", "shape": "dot", "size": 10, "title": "552869280375926784\u003cbr\u003e@RRuby44 @Noslm1 @haziqmir @kris_kinder So\u003cbr\u003eplease tell us - what\u003cbr\u003eapproximate percentage of muslims are\u003cbr\u003ewhat you consider \"radical\"?\u003cbr\u003eWed Jan 07 16:48:02 +0000 2015"}, {"group": 158, "id": 33, "label": "552865025225150464", "shape": "dot", "size": 10, "title": "552865025225150464\u003cbr\u003e.@Noslm1 Agreed! Radical religious #terrorism\u003cbr\u003eis shameful \u0026amp; disgusting. But\u003cbr\u003eso is blaming random #Muslims\u003cbr\u003efor terrorism\n#CharlieHebdo\u003cbr\u003eWed Jan 07 16:31:08 +0000 2015"}, {"group": 158, "id": 36, "label": "552866350096330753", "shape": "dot", "size": 10, "title": "552866350096330753\u003cbr\u003e@RRuby44 No one is \"blaming\u003cbr\u003erandom Muslims.\" People are blaming\u003cbr\u003ethe violent, vengeful ideology that\u003cbr\u003eincited 3 French Muslims to\u003cbr\u003edo this.\u003cbr\u003eWed Jan 07 16:36:24 +0000 2015"}, {"group": 158, "id": 37, "label": "552866608482242561", "shape": "dot", "size": 10, "title": "552866608482242561\u003cbr\u003e@RRuby44 Islam is a threat,\u003cbr\u003eclear and simple. The evidence\u003cbr\u003eis right before our eyes.\u003cbr\u003eIgnore it at our peril.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 16:37:25 +0000 2015"}, {"group": 158, "id": 38, "label": "552867128508817408", "shape": "dot", "size": 10, "title": "552867128508817408\u003cbr\u003e@RRuby44 Rachel, most ppl like\u003cbr\u003eme no more hate Muslims\u003cbr\u003ethan my grandparents hated individual\u003cbr\u003eGermans. We reject the ideology,\u003cbr\u003enot humans.\u003cbr\u003eWed Jan 07 16:39:29 +0000 2015"}, {"group": 158, "id": 39, "label": "552867321211912192", "shape": "dot", "size": 10, "title": "552867321211912192\u003cbr\u003e@RRuby44 I hope you can\u003cbr\u003esee the difference. (And that\u003cbr\u003eI am indeed trying for\u003cbr\u003ecivil discourse with you. :))\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:40:15 +0000 2015"}, {"group": 158, "id": 48, "label": "552887390583672833", "shape": "dot", "size": 10, "title": "552887390583672833\u003cbr\u003e@Noslm1 @haziqmir @b0ilingfr0g @kris_kinder True!\u003cbr\u003eBecause of the people in\u003cbr\u003echarge. Have you seen pictures\u003cbr\u003eof Afghanistan 30 yrs ago?\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:00:00 +0000 2015"}, {"group": 158, "id": 47, "label": "552887093387886592", "shape": "dot", "size": 10, "title": "552887093387886592\u003cbr\u003e.@Noslm1 Nothing at all wrong\u003cbr\u003ew/ rejecting radical religious ideology.\u003cbr\u003eThe problem comes when we\u003cbr\u003econnect regular Muslims to radical\u003cbr\u003eIslam\u003cbr\u003eWed Jan 07 17:58:49 +0000 2015"}, {"group": 158, "id": 46, "label": "552886716022132736", "shape": "dot", "size": 10, "title": "552886716022132736\u003cbr\u003e@Noslm1 I do appreciate that,\u003cbr\u003ethank you!\u003cbr\u003eWed Jan 07 17:57:19 +0000 2015"}, {"group": 158, "id": 41, "label": "552870161170984960", "shape": "dot", "size": 10, "title": "552870161170984960\u003cbr\u003e@b0ilingfr0g @RRuby44 @haziqmir @kris_kinder Good\u003cbr\u003equestion, Frog. A 2006 poll\u003cbr\u003eshowed 40% of London Muslims\u003cbr\u003ewanted Shariah law. Higher now?\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:51:32 +0000 2015"}, {"group": 158, "id": 42, "label": "552872197094899712", "shape": "dot", "size": 10, "title": "552872197094899712\u003cbr\u003e@Noslm1 @RRuby44 @haziqmir @kris_kinder I\u0027m\u003cbr\u003enot sure there\u0027s an apples\u003cbr\u003eto apples of Sharia being\u003cbr\u003ethe \"radicalized\" ones were concerned\u003cbr\u003ewith\u003cbr\u003eWed Jan 07 16:59:38 +0000 2015"}, {"group": 158, "id": 43, "label": "552872509386027008", "shape": "dot", "size": 10, "title": "552872509386027008\u003cbr\u003e@Noslm1 @RRuby44 @haziqmir @kris_kinder By\u003cbr\u003eradical I mean \"capable and\u003cbr\u003edesirous of violence\" - what\u0027s\u003cbr\u003eTHAT percentage?\u003cbr\u003eWed Jan 07 17:00:52 +0000 2015"}, {"group": 158, "id": 44, "label": "552872940539109377", "shape": "dot", "size": 10, "title": "552872940539109377\u003cbr\u003e@b0ilingfr0g @RRuby44 @haziqmir @kris_kinder Even\u003cbr\u003eif it\u0027s only 1%, with\u003cbr\u003eover a BILLION Muslims in\u003cbr\u003ethe world, that\u0027s a huge\u003cbr\u003ethreat.\u003cbr\u003eWed Jan 07 17:02:35 +0000 2015"}, {"group": 158, "id": 45, "label": "552886541736239104", "shape": "dot", "size": 10, "title": "552886541736239104\u003cbr\u003e.@Noslm1 @b0ilingfr0g @haziqmir @kris_kinder 1.6\u003cbr\u003ebillion Muslims in the world.\u003cbr\u003e1% = 16 million. If\u003cbr\u003eeven 1% were a threat,\u003cbr\u003ewe\u0027d lose that war\u003cbr\u003eWed Jan 07 17:56:38 +0000 2015"}, {"group": 158, "id": 49, "label": "552925290151047169", "shape": "dot", "size": 10, "title": "552925290151047169\u003cbr\u003e@RRuby44 @Noslm1 @haziqmir @kris_kinder Terrific!\u003cbr\u003eI think we are all\u003cbr\u003eaware of your resolve. Now\u003cbr\u003ehow about you answer the\u003cbr\u003equestion?\u003cbr\u003eWed Jan 07 20:30:36 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 5, "to": 14, "weight": 1}, {"from": 5, "to": 23, "weight": 1}, {"from": 5, "to": 24, "weight": 1}, {"from": 13, "to": 18, "weight": 1}, {"from": 14, "to": 20, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 18, "to": 25, "weight": 1}, {"from": 18, "to": 27, "weight": 1}, {"from": 18, "to": 29, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 28, "to": 31, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 30, "to": 34, "weight": 1}, {"from": 30, "to": 35, "weight": 1}, {"from": 30, "to": 40, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 33, "to": 36, "weight": 1}, {"from": 33, "to": 37, "weight": 1}, {"from": 33, "to": 38, "weight": 1}, {"from": 33, "to": 39, "weight": 1}, {"from": 35, "to": 48, "weight": 1}, {"from": 38, "to": 47, "weight": 1}, {"from": 39, "to": 46, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 41, "to": 43, "weight": 1}, {"from": 43, "to": 44, "weight": 1}, {"from": 44, "to": 45, "weight": 1}, {"from": 45, "to": 49, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

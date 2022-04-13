@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 834, "id": 0, "label": "553129478008758272", "shape": "dot", "size": 10, "title": "553129478008758272\u003cbr\u003eA few of the best\u003cbr\u003ecartoons drawn \u0026amp; shared in\u003cbr\u003esolidarity with #CharlieHebdo after yesterday\u0027s\u003cbr\u003emassacre #JeSuisCharlie http://t.co/87et0xpNwr\u003cbr\u003eThu Jan 08 10:01:58 +0000 2015"}, {"group": 834, "id": 1, "label": "553142492758298625", "shape": "dot", "size": 10, "title": "553142492758298625\u003cbr\u003e@theinquisitr War profiteers x\u0027d #PrincessDiana\u003cbr\u003e\u0026amp; DodiFayed in #Paris. Pushing\u003cbr\u003e#France to join war on\u003cbr\u003eterror VIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003eThu Jan 08 10:53:41 +0000 2015"}, {"group": 834, "id": 2, "label": "553164806434611200", "shape": "dot", "size": 10, "title": "553164806434611200\u003cbr\u003e@theinquisitr L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:22:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

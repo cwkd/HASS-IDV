@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 222, "id": 0, "label": "552816288612225024", "shape": "dot", "size": 10, "title": "552816288612225024\u003cbr\u003e#CharlieHebdo attack: terrified witness films\u003cbr\u003emasked gunmen shooting man on\u003cbr\u003epavement http://t.co/4K2F98Q4JT http://t.co/LwggGQP0Ao\u003cbr\u003eWed Jan 07 13:17:28 +0000 2015"}, {"group": 222, "id": 1, "label": "552816703500214273", "shape": "dot", "size": 10, "title": "552816703500214273\u003cbr\u003e@TelegraphNews Stupid people with their\u003cbr\u003estupid gods ARSEHOLES!!\u003cbr\u003eWed Jan 07 13:19:07 +0000 2015"}, {"group": 222, "id": 3, "label": "552817438174507008", "shape": "dot", "size": 10, "title": "552817438174507008\u003cbr\u003e@TelegraphNews this shit has 2\u003cbr\u003estop now.\u003cbr\u003eWed Jan 07 13:22:02 +0000 2015"}, {"group": 222, "id": 4, "label": "552818081391988736", "shape": "dot", "size": 10, "title": "552818081391988736\u003cbr\u003e@TelegraphNews This wasn\u0027t a 5\u003cbr\u003eminute attacks.Central Paris,and the police\u003cbr\u003edidn\u0027t even show up.Attackers didn\u0027t\u003cbr\u003eeven use a get away\u003cbr\u003edriver.\u003cbr\u003eWed Jan 07 13:24:36 +0000 2015"}, {"group": 222, "id": 5, "label": "552819336763957248", "shape": "dot", "size": 10, "title": "552819336763957248\u003cbr\u003e@TelegraphNews It appears they were\u003cbr\u003ewearing body armour or bullet\u003cbr\u003eresistant vests.\u003cbr\u003eWed Jan 07 13:29:35 +0000 2015"}, {"group": 222, "id": 7, "label": "552820481511141376", "shape": "dot", "size": 10, "title": "552820481511141376\u003cbr\u003e@TelegraphNews   Get all\u003cbr\u003eIslamists out of europe to\u003cbr\u003ewhere they belong.\u003cbr\u003eWed Jan 07 13:34:08 +0000 2015"}, {"group": 222, "id": 8, "label": "552822043906170880", "shape": "dot", "size": 10, "title": "552822043906170880\u003cbr\u003e@TelegraphNews Free Press? Publish cartoons\u003cbr\u003eso we can see why\u003cbr\u003ecriminally insane ppl r killing\u003cbr\u003ejournalists.Compare reactions to NK \u0026amp;\u003cbr\u003ecartoons\u003cbr\u003eWed Jan 07 13:40:20 +0000 2015"}, {"group": 222, "id": 9, "label": "552822404003934209", "shape": "dot", "size": 10, "title": "552822404003934209\u003cbr\u003e@TelegraphNews I am utterly disgusted,\u003cbr\u003ethis is not what humanity\u003cbr\u003eis supposed to be about\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:41:46 +0000 2015"}, {"group": 222, "id": 10, "label": "552827905873838080", "shape": "dot", "size": 10, "title": "552827905873838080\u003cbr\u003e\u201c@TelegraphNews: #CharlieHebdo attack: terrified witness\u003cbr\u003efilms masked gunmen shooting man\u003cbr\u003e http://t.co/rE9CShDF21 http://t.co/MytIr4hqNy\u201d\u003cbr\u003eWed Jan 07 14:03:38 +0000 2015"}, {"group": 222, "id": 11, "label": "552836158359887872", "shape": "dot", "size": 10, "title": "552836158359887872\u003cbr\u003e@TelegraphNews @SukunaBikona7 \u7d76\u5bfe\u306b\u6050\u308d\u3057\u3044...\u003cbr\u003eWed Jan 07 14:36:26 +0000 2015"}, {"group": 222, "id": 12, "label": "552925066845908995", "shape": "dot", "size": 10, "title": "552925066845908995\u003cbr\u003e@TelegraphNews weak as\u003cbr\u003eWed Jan 07 20:29:43 +0000 2015"}, {"group": 222, "id": 2, "label": "552817362119192576", "shape": "dot", "size": 10, "title": "552817362119192576\u003cbr\u003e@Pierssy @TelegraphNews Stupid people who\u003cbr\u003elet them come into Europe!\u003cbr\u003eSend them all back into\u003cbr\u003ethe desert!\u003cbr\u003eWed Jan 07 13:21:44 +0000 2015"}, {"group": 222, "id": 6, "label": "552819853850324993", "shape": "dot", "size": 10, "title": "552819853850324993\u003cbr\u003e@Kybeline @TelegraphNews And stupid xenophobes\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:31:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

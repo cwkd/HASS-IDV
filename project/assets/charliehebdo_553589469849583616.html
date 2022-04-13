@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1575, "id": 0, "label": "553589469849583616", "shape": "dot", "size": 10, "title": "553589469849583616\u003cbr\u003eMORE: #CharlieHebdo suspects killed http://t.co/EzZfZdtFEH\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:29:49 +0000 2015"}, {"group": 1575, "id": 1, "label": "553589819281252352", "shape": "dot", "size": 10, "title": "553589819281252352\u003cbr\u003e@HuffingtonPost supermarket suspect too\u003cbr\u003eFri Jan 09 16:31:12 +0000 2015"}, {"group": 1575, "id": 2, "label": "553590192989143041", "shape": "dot", "size": 10, "title": "553590192989143041\u003cbr\u003e@HuffingtonPost worse possible ending...now they\u003cbr\u003ewill be martyrs\u003cbr\u003eFri Jan 09 16:32:41 +0000 2015"}, {"group": 1575, "id": 3, "label": "553590222768713728", "shape": "dot", "size": 10, "title": "553590222768713728\u003cbr\u003e@HuffingtonPost keep publicizing it...you\u0027ll make\u003cbr\u003ethem martyrs in no time!\u003cbr\u003e #waytogodouchebags\u003cbr\u003eFri Jan 09 16:32:48 +0000 2015"}, {"group": 1575, "id": 4, "label": "553590483432517632", "shape": "dot", "size": 10, "title": "553590483432517632\u003cbr\u003e@HuffingtonPost Chance lost to bring\u003cbr\u003ethem to big trial and\u003cbr\u003eexposure to the world. A\u003cbr\u003epitty they were not caught\u003cbr\u003ealive! Now they are martirs!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:33:51 +0000 2015"}, {"group": 1575, "id": 5, "label": "553590531537010689", "shape": "dot", "size": 10, "title": "553590531537010689\u003cbr\u003e\u201c@HuffingtonPost: MORE: #CharlieHebdo suspects killed\u003cbr\u003ehttp://t.co/vGpMP8PLcJ\u201d\u003cbr\u003eFri Jan 09 16:34:02 +0000 2015"}, {"group": 1575, "id": 6, "label": "553590762710237186", "shape": "dot", "size": 10, "title": "553590762710237186\u003cbr\u003e@HuffingtonPost why give them press?\u003cbr\u003eFeed them to the pigs\u003cbr\u003eand move on with life.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:34:57 +0000 2015"}, {"group": 1575, "id": 7, "label": "553591431747878913", "shape": "dot", "size": 10, "title": "553591431747878913\u003cbr\u003eRT @HuffingtonPost: #CharlieHebdo suspects killed\u003cbr\u003ehttp://t.co/IFsjyaAH30\u003cbr\u003eFri Jan 09 16:37:37 +0000 2015"}, {"group": 1575, "id": 8, "label": "553592829382262784", "shape": "dot", "size": 10, "title": "553592829382262784\u003cbr\u003e@HuffingtonPost Bury them at sea\u003cbr\u003ein pig skin bags #ParisShooting\u003cbr\u003e#CharlieHebdo #Muslims #terroistattack\u003cbr\u003eFri Jan 09 16:43:10 +0000 2015"}, {"group": 1575, "id": 9, "label": "553596917566156800", "shape": "dot", "size": 10, "title": "553596917566156800\u003cbr\u003e@HuffingtonPost In 2012-------Obama warned that\u003cbr\u003eFrench newspaper to stop disrespecting\u003cbr\u003eIslam\n\nArticle and videos http://t.co/pS5nIvBrn5\u003cbr\u003eFri Jan 09 16:59:25 +0000 2015"}, {"group": 1575, "id": 10, "label": "553597056796086273", "shape": "dot", "size": 10, "title": "553597056796086273\u003cbr\u003e@HuffingtonPost gotta hand it to\u003cbr\u003eFrench-they handled w/quickness \u0026amp; efficiency-no\u003cbr\u003emessing around #LessonForUS\u003cbr\u003eFri Jan 09 16:59:58 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

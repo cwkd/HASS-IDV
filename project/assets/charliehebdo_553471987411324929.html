@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1852, "id": 0, "label": "553471987411324929", "shape": "dot", "size": 10, "title": "553471987411324929\u003cbr\u003eBREAKING: Gunfire, hostages taken in\u003cbr\u003eDammartin-en-Go\u00eble, east of Paris, as\u003cbr\u003epolice chase suspected #CharlieHedbo attackers\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:42:59 +0000 2015"}, {"group": 1852, "id": 1, "label": "553472226830581761", "shape": "dot", "size": 10, "title": "553472226830581761\u003cbr\u003e@NBCNews \n\nIN UKRAINE HAVE GIVEN\u003cbr\u003eTHE NAZI COUP, SUPPORTED BY\u003cbr\u003eNATO AND MEDIA COMMUNICATION,AS SEE\u003cbr\u003ePHOTO.\nhttp://t.co/tYCudKSLwr\u003cbr\u003eFri Jan 09 08:43:56 +0000 2015"}, {"group": 1852, "id": 2, "label": "553472352378707968", "shape": "dot", "size": 10, "title": "553472352378707968\u003cbr\u003e@NBCNews May The Holy Guardian\u003cbr\u003eAngels protect all who are\u003cbr\u003einvolved!!\u003cbr\u003eFri Jan 09 08:44:26 +0000 2015"}, {"group": 1852, "id": 3, "label": "553472388030296064", "shape": "dot", "size": 10, "title": "553472388030296064\u003cbr\u003e\u201c@NBCNews: BREAKING: Gunfire, hostages taken\u003cbr\u003ein Dammartin-en-Go\u00eble, east of Paris,\u003cbr\u003eas police chase suspected #CharlieHedbo\u003cbr\u003eattackers\u201d\u003cbr\u003eFri Jan 09 08:44:34 +0000 2015"}, {"group": 1852, "id": 4, "label": "553472571539070976", "shape": "dot", "size": 10, "title": "553472571539070976\u003cbr\u003e@NBCNews  yes . Im\u003cbr\u003ewatching on cnn live now\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:45:18 +0000 2015"}, {"group": 1852, "id": 5, "label": "553473010972119040", "shape": "dot", "size": 10, "title": "553473010972119040\u003cbr\u003e@NBCNews @TODAYshow WTH?\u003cbr\u003eFri Jan 09 08:47:03 +0000 2015"}, {"group": 1852, "id": 6, "label": "553473071256846337", "shape": "dot", "size": 10, "title": "553473071256846337\u003cbr\u003eRT @NBCNews: BREAKING: Gunfire, hostages\u003cbr\u003etaken in Dammartin-en-Go\u00eble, east of\u003cbr\u003eParis, as police chase suspected\u003cbr\u003e#CharlieHedbo attackers.\u003cbr\u003eFri Jan 09 08:47:17 +0000 2015"}, {"group": 1852, "id": 7, "label": "553473765326090241", "shape": "dot", "size": 10, "title": "553473765326090241\u003cbr\u003e@NBCNews @TODAYshow my goodness, what\u003cbr\u003ehas our world come to?!\u003cbr\u003ePraying that everyone is safe\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:50:03 +0000 2015"}, {"group": 1852, "id": 8, "label": "553474428705984512", "shape": "dot", "size": 10, "title": "553474428705984512\u003cbr\u003e@NBCNews   If you\u003cbr\u003edare  Watch the evil\u003cbr\u003etruth of jihad and how\u003cbr\u003eIslam is blinding our governments\u003cbr\u003e https://t.co/PerzKpBU0v\u003cbr\u003eFri Jan 09 08:52:41 +0000 2015"}, {"group": 1852, "id": 9, "label": "553497297481633792", "shape": "dot", "size": 10, "title": "553497297481633792\u003cbr\u003e\u201c@NBCNews: BREAKING: Gunfire, hostages taken\u003cbr\u003ein Dammartin-en-Go\u00eble, east of Paris,\u003cbr\u003eas police chase suspected #CharlieHedbo\u003cbr\u003eattackers\u201d :(\u003cbr\u003eFri Jan 09 10:23:33 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

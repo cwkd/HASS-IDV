@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1854, "id": 0, "label": "553472437644320769", "shape": "dot", "size": 10, "title": "553472437644320769\u003cbr\u003eBREAKING: French police chasing a\u003cbr\u003ePeugeot on motorway around Paris\u003cbr\u003eand say hostages have been\u003cbr\u003etaken by Cahrlie Hedbo attack\u003cbr\u003egunmen.\u003cbr\u003eFri Jan 09 08:44:46 +0000 2015"}, {"group": 1854, "id": 1, "label": "553477170925142017", "shape": "dot", "size": 10, "title": "553477170925142017\u003cbr\u003e@INTLSpectator @boasonbusiness getting messy\u003cbr\u003eFri Jan 09 09:03:35 +0000 2015"}, {"group": 1854, "id": 2, "label": "553478992662376448", "shape": "dot", "size": 10, "title": "553478992662376448\u003cbr\u003e@riggsbeem @intlspectator Paris attack raises\u003cbr\u003equestions about Obama\u0027s policies http://t.co/DA50JYJG9o\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:10:49 +0000 2015"}, {"group": 1854, "id": 3, "label": "553479729165398016", "shape": "dot", "size": 10, "title": "553479729165398016\u003cbr\u003eRobert DeNiro in \"Ronin\" RT\u003cbr\u003e@INTLSpectator BREAKING: French police chasing\u003cbr\u003ePeugeot on motorway around Paris\u003cbr\u003e\u0026amp; say hostages have been\u003cbr\u003etaken\u003cbr\u003eFri Jan 09 09:13:45 +0000 2015"}, {"group": 1854, "id": 4, "label": "553495772256538624", "shape": "dot", "size": 10, "title": "553495772256538624\u003cbr\u003e@douglas_nilsson @intlspectator Paris attack raises\u003cbr\u003equestions about Obama\u0027s policies http://t.co/DA50JYJG9o\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:17:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

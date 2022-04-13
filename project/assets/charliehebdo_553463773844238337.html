@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1241, "id": 0, "label": "553463773844238337", "shape": "dot", "size": 10, "title": "553463773844238337\u003cbr\u003eSteve Bell on the Charlie\u003cbr\u003eHebdo attackers \u2013 cartoon http://t.co/OkFs66mAmX\u003cbr\u003ehttp://t.co/jDclFGrzXD\u003cbr\u003eFri Jan 09 08:10:21 +0000 2015"}, {"group": 1241, "id": 1, "label": "553463994460020736", "shape": "dot", "size": 10, "title": "553463994460020736\u003cbr\u003e@guardian French brothers killed French,\u003cbr\u003enothing to do wth Faith\u003cbr\u003e#CharlieHebdo #JeSuisCharlie #ParisShooting @SkyNewsBreak\u003cbr\u003eFri Jan 09 08:11:13 +0000 2015"}, {"group": 1241, "id": 2, "label": "553464033668780032", "shape": "dot", "size": 10, "title": "553464033668780032\u003cbr\u003e\u201cSteve Bell on the Charlie\u003cbr\u003eHebdo attackers \u2013 cartoon http://t.co/okPKCy67YU\u003cbr\u003ehttp://t.co/WoTx2ObXHk\n@guardian\u003cbr\u003eFri Jan 09 08:11:23 +0000 2015"}, {"group": 1241, "id": 3, "label": "553464192909336576", "shape": "dot", "size": 10, "title": "553464192909336576\u003cbr\u003e@guardian http://t.co/pXTxf2MhmK\u003cbr\u003eFri Jan 09 08:12:01 +0000 2015"}, {"group": 1241, "id": 4, "label": "553464269963292672", "shape": "dot", "size": 10, "title": "553464269963292672\u003cbr\u003e@guardian Not as good as\u003cbr\u003ehttp://t.co/CMq4kFN9kH\u003cbr\u003eFri Jan 09 08:12:19 +0000 2015"}, {"group": 1241, "id": 5, "label": "553464407989428224", "shape": "dot", "size": 10, "title": "553464407989428224\u003cbr\u003eM\u00e1s vi\u00f1etas! via \u201c@guardian: Steve\u003cbr\u003eBell on the Charlie Hebdo\u003cbr\u003eattackers \u2013 cartoon http://t.co/BpKAQWAkwO http://t.co/2V2nChoAMl\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:12:52 +0000 2015"}, {"group": 1241, "id": 6, "label": "553464592043892736", "shape": "dot", "size": 10, "title": "553464592043892736\u003cbr\u003e@guardian These maybe ? \u003cbr\u003eOr to soon ? http://t.co/1h3RFBEkS8\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:13:36 +0000 2015"}, {"group": 1241, "id": 7, "label": "553464724038225921", "shape": "dot", "size": 10, "title": "553464724038225921\u003cbr\u003e@guardian @EliotHiggins But 12 people\u003cbr\u003ewere killed, not 4. They\u003cbr\u003eall deserve to be honoured.\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:14:07 +0000 2015"}, {"group": 1241, "id": 8, "label": "553464827159785472", "shape": "dot", "size": 10, "title": "553464827159785472\u003cbr\u003e\u201c@guardian: Steve Bell on the\u003cbr\u003eCharlie Hebdo attackers \u2013 cartoon\u003cbr\u003ehttp://t.co/0LhF8foc2D http://t.co/7weBcHIxVZ\u201d\u003cbr\u003eFri Jan 09 08:14:32 +0000 2015"}, {"group": 1241, "id": 10, "label": "553464850513264640", "shape": "dot", "size": 10, "title": "553464850513264640\u003cbr\u003e@guardian FanBLOODYtastic!!!\u003cbr\u003eFri Jan 09 08:14:37 +0000 2015"}, {"group": 1241, "id": 11, "label": "553465076867276801", "shape": "dot", "size": 10, "title": "553465076867276801\u003cbr\u003e@guardian grt one Steve Bell.\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:15:31 +0000 2015"}, {"group": 1241, "id": 12, "label": "553465160707604480", "shape": "dot", "size": 10, "title": "553465160707604480\u003cbr\u003e@guardian Those who were executed\u003cbr\u003ewere \"freedom of press and\u003cbr\u003espeech\" fanatics. Therefore they entered\u003cbr\u003emartyrdom just as Islam fanatics\u003cbr\u003edo\u003cbr\u003eFri Jan 09 08:15:51 +0000 2015"}, {"group": 1241, "id": 14, "label": "553465443860893697", "shape": "dot", "size": 10, "title": "553465443860893697\u003cbr\u003e\u201c@guardian: Steve Bell on the\u003cbr\u003eCharlie Hebdo attackers \u2013 cartoon\u003cbr\u003ehttp://t.co/6F2aBrKGTJ http://t.co/NJNsaLWDkg\u201d\u003cbr\u003eFri Jan 09 08:16:59 +0000 2015"}, {"group": 1241, "id": 15, "label": "553466620513763328", "shape": "dot", "size": 10, "title": "553466620513763328\u003cbr\u003e\u201c@guardian: Steve Bell on the\u003cbr\u003eCharlie Hebdo attackers \u2013 cartoon\u003cbr\u003ehttp://t.co/wmdV5Wvii2 http://t.co/WiDSTzJit6\u201d \ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\u003cbr\u003eFri Jan 09 08:21:39 +0000 2015"}, {"group": 1241, "id": 16, "label": "553466937121185792", "shape": "dot", "size": 10, "title": "553466937121185792\u003cbr\u003eRT @guardian Steve Bell on\u003cbr\u003ethe Charlie Hebdo attackers \u2013\u003cbr\u003ecartoon http://t.co/cmruSaqs3T\u003cbr\u003eFri Jan 09 08:22:55 +0000 2015"}, {"group": 1241, "id": 17, "label": "553466968138072064", "shape": "dot", "size": 10, "title": "553466968138072064\u003cbr\u003eBrave @guardian - what color\u003cbr\u003epencil are U today?\u003cbr\u003eFri Jan 09 08:23:02 +0000 2015"}, {"group": 1241, "id": 18, "label": "553467761741938688", "shape": "dot", "size": 10, "title": "553467761741938688\u003cbr\u003e@guardian  with my regards\u003cbr\u003e\n\n#CharlieHebdo #parisattack #ParisShooting http://t.co/SAHjwzCd9j\u003cbr\u003eFri Jan 09 08:26:11 +0000 2015"}, {"group": 1241, "id": 19, "label": "553469330541658114", "shape": "dot", "size": 10, "title": "553469330541658114\u003cbr\u003e@guardian Obama/CIA Comic Book\n\"2400 ways\u003cbr\u003eto Murder Muslim Baby\u0027s with\u003cbr\u003eDrones\", Zion Laugh at Corpses\u003cbr\u003ehttp://t.co/g44gSJ4RAm\u003cbr\u003eFri Jan 09 08:32:26 +0000 2015"}, {"group": 1241, "id": 9, "label": "553464844402569216", "shape": "dot", "size": 10, "title": "553464844402569216\u003cbr\u003e@alexalqausar The perpetrators say loud\u003cbr\u003e\u0026amp; clear that it was\u003cbr\u003eeverything to do with their\u003cbr\u003efaith, but you know better?\n@guardian\u003cbr\u003e@SkyNewsBreak\u003cbr\u003eFri Jan 09 08:14:36 +0000 2015"}, {"group": 1241, "id": 13, "label": "553465374146953217", "shape": "dot", "size": 10, "title": "553465374146953217\u003cbr\u003e@Dimorfik @guardian @SkyNewsBreak would robber\u003cbr\u003eshout loud, \"i am robber\u003cbr\u003en robbing this bank??\" wise\u003cbr\u003ething to say dimorfik\u003cbr\u003eFri Jan 09 08:16:42 +0000 2015"}, {"group": 1241, "id": 26, "label": "553520700456071169", "shape": "dot", "size": 10, "title": "553520700456071169\u003cbr\u003e@Dimorfik @alexalqausar @guardian @SkyNewsBreak yes\u003cbr\u003ethey made it clear that\u003cbr\u003eit is all about their\u003cbr\u003efaith.\u003cbr\u003eFri Jan 09 11:56:33 +0000 2015"}, {"group": 1241, "id": 20, "label": "553483085120294912", "shape": "dot", "size": 10, "title": "553483085120294912\u003cbr\u003e@alexalqausar  I see that\u003cbr\u003eyou know better than that\u003cbr\u003ebank robber too. Well done.\n@guardian\u003cbr\u003e@SkyNewsBreak\u003cbr\u003eFri Jan 09 09:27:05 +0000 2015"}, {"group": 1241, "id": 25, "label": "553519898807123968", "shape": "dot", "size": 10, "title": "553519898807123968\u003cbr\u003e@SniperAbha @guardian rubbish!\u003cbr\u003eFri Jan 09 11:53:22 +0000 2015"}, {"group": 1241, "id": 24, "label": "553519810122743808", "shape": "dot", "size": 10, "title": "553519810122743808\u003cbr\u003e@Clinton2016Nazi @guardian if they weren\u0027t\u003cbr\u003eneeded drones wouldn\u0027t be there.\u003cbr\u003eThey do not target children.\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:53:01 +0000 2015"}, {"group": 1241, "id": 21, "label": "553483673392005123", "shape": "dot", "size": 10, "title": "553483673392005123\u003cbr\u003e@Dimorfik @guardian @SkyNewsBreak well am\u003cbr\u003enot the one hiding my\u003cbr\u003eface behind a fucking deer\u003cbr\u003ethou\u003cbr\u003eFri Jan 09 09:29:25 +0000 2015"}, {"group": 1241, "id": 22, "label": "553484538392100864", "shape": "dot", "size": 10, "title": "553484538392100864\u003cbr\u003e@alexalqausar Hey, down to insults,\u003cbr\u003espelling mistakes and swear words\u003cbr\u003ealready!! Marvellous.\nHave a nice day\u003cbr\u003e:-)\n@guardian @SkyNewsBreak\u003cbr\u003eFri Jan 09 09:32:51 +0000 2015"}, {"group": 1241, "id": 23, "label": "553489052591063040", "shape": "dot", "size": 10, "title": "553489052591063040\u003cbr\u003e@Dimorfik @guardian @SkyNewsBreak love deer\u003cbr\u003ebut hate those manipulate them.\u003cbr\u003ehaha\u003cbr\u003eFri Jan 09 09:50:48 +0000 2015"}, {"group": 1241, "id": 27, "label": "553536416206966784", "shape": "dot", "size": 10, "title": "553536416206966784\u003cbr\u003e@suzannelombardo @Dimorfik @guardian @SkyNewsBreak why\u003cbr\u003ewould people listen to a\u003cbr\u003eperson hiding her face behind\u003cbr\u003ean egg??\u003cbr\u003eFri Jan 09 12:59:00 +0000 2015"}, {"group": 1241, "id": 28, "label": "553536960396918785", "shape": "dot", "size": 10, "title": "553536960396918785\u003cbr\u003e@alexalqausar @Dimorfik @guardian @SkyNewsBreak you\u003cbr\u003eare a prat.\u003cbr\u003eFri Jan 09 13:01:10 +0000 2015"}, {"group": 1241, "id": 29, "label": "553537646442463232", "shape": "dot", "size": 10, "title": "553537646442463232\u003cbr\u003e@suzannelombardo @Dimorfik @guardian @SkyNewsBreak http://t.co/SJaxaTCnE2\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:03:53 +0000 2015"}, {"group": 1241, "id": 30, "label": "553537735722422272", "shape": "dot", "size": 10, "title": "553537735722422272\u003cbr\u003e@suzannelombardo @Dimorfik @guardian @SkyNewsBreak dont\u003cbr\u003ebreak under pressure egg face\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:04:15 +0000 2015"}, {"group": 1241, "id": 31, "label": "553542427152105473", "shape": "dot", "size": 10, "title": "553542427152105473\u003cbr\u003e@alexalqausar @Dimorfik @guardian @SkyNewsBreak Alex\u003cbr\u003eyou a nasty person. Go\u003cbr\u003eaway and waste someone else\u0027s\u003cbr\u003etime.\u003cbr\u003eFri Jan 09 13:22:53 +0000 2015"}, {"group": 1241, "id": 32, "label": "553546970564800512", "shape": "dot", "size": 10, "title": "553546970564800512\u003cbr\u003e@suzannelombardo @Dimorfik @guardian @SkyNewsBreak werent\u003cbr\u003eme responding to your smelly\u003cbr\u003etweet, was an egg concording\u003cbr\u003emine\u003cbr\u003eFri Jan 09 13:40:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 9, "weight": 1}, {"from": 9, "to": 13, "weight": 1}, {"from": 9, "to": 26, "weight": 1}, {"from": 13, "to": 20, "weight": 1}, {"from": 18, "to": 25, "weight": 1}, {"from": 19, "to": 24, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 28, "to": 31, "weight": 1}, {"from": 31, "to": 32, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1701, "id": 0, "label": "552805267990413312", "shape": "dot", "size": 10, "title": "552805267990413312\u003cbr\u003eCartoonists Cabu and Charb died\u003cbr\u003ein the attack against #CharlieHebdo,\u003cbr\u003e@LePoint reports http://t.co/nBdM0iZIq4  http://t.co/XMCXKb8QtK\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:33:41 +0000 2015"}, {"group": 1701, "id": 1, "label": "552806641310392320", "shape": "dot", "size": 10, "title": "552806641310392320\u003cbr\u003e#Cabu is a household name\u003cbr\u003ein France. When I was\u003cbr\u003ea kid, he worked for\u003cbr\u003echildren TV show Club Doroth\u00e9e.\u003cbr\u003eMore recently for Le Canard\u003cbr\u003eEncha\u00een\u00e9\u003cbr\u003eWed Jan 07 12:39:08 +0000 2015"}, {"group": 1701, "id": 2, "label": "552807051923976193", "shape": "dot", "size": 10, "title": "552807051923976193\u003cbr\u003e@CecileBrisson @bnox @LePoint the whole\u003cbr\u003eworld should now satirise the\u003cbr\u003ecowardly inhuman zealots who did\u003cbr\u003ethis\u003cbr\u003eWed Jan 07 12:40:46 +0000 2015"}, {"group": 1701, "id": 3, "label": "552809043488944128", "shape": "dot", "size": 10, "title": "552809043488944128\u003cbr\u003e@CecileBrisson @LePoint Very sad to\u003cbr\u003esee strong advocates of free-speech\u003cbr\u003edying at the hands of\u003cbr\u003ebrainwashed idiots. All behind #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:48:41 +0000 2015"}, {"group": 1701, "id": 4, "label": "552810221194973185", "shape": "dot", "size": 10, "title": "552810221194973185\u003cbr\u003e@CecileBrisson @porliniers @LePoint que baj\u00f3n\u003cbr\u003eche!\u003cbr\u003eWed Jan 07 12:53:22 +0000 2015"}, {"group": 1701, "id": 5, "label": "552810741926219776", "shape": "dot", "size": 10, "title": "552810741926219776\u003cbr\u003e\u201c@CecileBrisson: Cabu and Charb died\u003cbr\u003ein attack against #CharlieHebdo @LePoint\u003cbr\u003ereports http://t.co/PqZWiBTzvQ  http://t.co/OMGQu24toi\u201d p\u00e9same\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:55:26 +0000 2015"}, {"group": 1701, "id": 6, "label": "552811654405435392", "shape": "dot", "size": 10, "title": "552811654405435392\u003cbr\u003e@CecileBrisson #YourAspirations, #Opposed2 #CorporateGovernance, #ModernDaySlavery;\u003cbr\u003ethat\u0027s what my site is\u003cbr\u003eall about. http://t.co/6oUE0fzfB0\u003cbr\u003eWed Jan 07 12:59:03 +0000 2015"}, {"group": 1701, "id": 7, "label": "552812504313626624", "shape": "dot", "size": 10, "title": "552812504313626624\u003cbr\u003e@CecileBrisson @parulbajaj @LePoint Very sad.\n\nAmazing\u003cbr\u003eQTablet\nhttp://t.co/C6ux2iB3Mb\u003cbr\u003eWed Jan 07 13:02:26 +0000 2015"}, {"group": 1701, "id": 8, "label": "552815638457384960", "shape": "dot", "size": 10, "title": "552815638457384960\u003cbr\u003e@CecileBrisson @StellaJoseM @LePoint En Francia\u003cbr\u003esi habl\u00e1s mal de los\u003cbr\u003enazis del gob de Vichy\u003cbr\u003etambi\u00e9n te matan\u003cbr\u003eWed Jan 07 13:14:53 +0000 2015"}, {"group": 1701, "id": 9, "label": "552815820280434688", "shape": "dot", "size": 10, "title": "552815820280434688\u003cbr\u003e@CecileBrisson @StellaJoseM @LePoint En France\u003cbr\u003e, si vous parlez mauvaise\u003cbr\u003egob Vichy nazie aussi vous\u003cbr\u003etuer\u003cbr\u003eWed Jan 07 13:15:37 +0000 2015"}, {"group": 1701, "id": 10, "label": "552815935191785472", "shape": "dot", "size": 10, "title": "552815935191785472\u003cbr\u003e@CecileBrisson @StellaJoseM @LePoint Solidaridad con\u003cbr\u003elos muertos por el fanatismo\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:16:04 +0000 2015"}, {"group": 1701, "id": 11, "label": "552816389137129472", "shape": "dot", "size": 10, "title": "552816389137129472\u003cbr\u003e@CecileBrisson  @LePoint  Celui-Ci\u003cbr\u003e@StellaJoseM est la bande de\u003cbr\u003efanatiques\u003cbr\u003eWed Jan 07 13:17:52 +0000 2015"}, {"group": 1701, "id": 12, "label": "552822820594782208", "shape": "dot", "size": 10, "title": "552822820594782208\u003cbr\u003eWolinski, cartoonist for Charlie Hebdo\u003cbr\u003eand Paris-Match, also reported dead\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:43:26 +0000 2015"}, {"group": 1701, "id": 13, "label": "552826615315828736", "shape": "dot", "size": 10, "title": "552826615315828736\u003cbr\u003e@CecileBrisson @benavu54 @LePoint Baruch Dayan\u003cbr\u003eHaemet\u003cbr\u003eWed Jan 07 13:58:30 +0000 2015"}, {"group": 1701, "id": 14, "label": "552828078112911361", "shape": "dot", "size": 10, "title": "552828078112911361\u003cbr\u003e@CecileBrisson @LePoint @abc_mundo Hoy \u003cbr\u003ela sociedad tiene obligaci\u00f3n de\u003cbr\u003eno ser indiferente, condenar ataque\u003cbr\u003ey defender valores democr\u00e1ticos.\u003cbr\u003eWed Jan 07 14:04:19 +0000 2015"}, {"group": 1701, "id": 15, "label": "552828941774630912", "shape": "dot", "size": 10, "title": "552828941774630912\u003cbr\u003e@CecileBrisson @cjcaston @LePoint Je was\u003cbr\u003eprobably the target.\u003cbr\u003eWed Jan 07 14:07:45 +0000 2015"}, {"group": 1701, "id": 16, "label": "552890434448789505", "shape": "dot", "size": 10, "title": "552890434448789505\u003cbr\u003e@CecileBrisson @LePoint Viva Charlie Hebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:12:06 +0000 2015"}, {"group": 1701, "id": 17, "label": "553006010743685120", "shape": "dot", "size": 10, "title": "553006010743685120\u003cbr\u003e@CecileBrisson @porliniers @LePoint // Que\u003cbr\u003esignifica esa imagen y que\u003cbr\u003ehace ese bochorno all\u00ed?\u003cbr\u003eThu Jan 08 01:51:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

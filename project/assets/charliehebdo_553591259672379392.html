@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2078, "id": 0, "label": "553591259672379392", "shape": "dot", "size": 10, "title": "553591259672379392\u003cbr\u003eUpdate - PA: gunman holding\u003cbr\u003ehostages in #Paris grocery has\u003cbr\u003ebeen killed\u003cbr\u003eFri Jan 09 16:36:56 +0000 2015"}, {"group": 2078, "id": 1, "label": "553591373073747969", "shape": "dot", "size": 10, "title": "553591373073747969\u003cbr\u003e\u201c@SkyNewsBreak: Update - PA: gunman\u003cbr\u003eholding hostages in #Paris grocery\u003cbr\u003ehas been killed\u201d \ud83d\ude4f\ud83d\ude4f\u003cbr\u003eFri Jan 09 16:37:23 +0000 2015"}, {"group": 2078, "id": 2, "label": "553591448797716480", "shape": "dot", "size": 10, "title": "553591448797716480\u003cbr\u003e.@SkyNewsBreak any news on the\u003cbr\u003ehostages or what? Dont care\u003cbr\u003eabout the terrorists\u003cbr\u003eFri Jan 09 16:37:41 +0000 2015"}, {"group": 2078, "id": 3, "label": "553591524391669761", "shape": "dot", "size": 10, "title": "553591524391669761\u003cbr\u003e@SkyNewsBreak surely you mean Islamist\u003cbr\u003eterrorist not gunman !!\u003cbr\u003eFri Jan 09 16:37:59 +0000 2015"}, {"group": 2078, "id": 4, "label": "553591530163027968", "shape": "dot", "size": 10, "title": "553591530163027968\u003cbr\u003e@SkyNewsBreak rot in hell!\u003cbr\u003eFri Jan 09 16:38:00 +0000 2015"}, {"group": 2078, "id": 5, "label": "553591734702460928", "shape": "dot", "size": 10, "title": "553591734702460928\u003cbr\u003e@SkyNewsBreak Amen to that\u003cbr\u003eFri Jan 09 16:38:49 +0000 2015"}, {"group": 2078, "id": 6, "label": "553591939296411648", "shape": "dot", "size": 10, "title": "553591939296411648\u003cbr\u003e@SkyNewsBreak great result ,,,,no messing\u003cbr\u003efrench love em , we\u003cbr\u003ewould still be fucking around\u003cbr\u003eif happened here , PC\u003cbr\u003ebegrade  rule the uk\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:39:38 +0000 2015"}, {"group": 2078, "id": 7, "label": "553592053134012416", "shape": "dot", "size": 10, "title": "553592053134012416\u003cbr\u003eHope he fucking rots in\u003cbr\u003ehell. @SkyNewsBreak\u003cbr\u003eFri Jan 09 16:40:05 +0000 2015"}, {"group": 2078, "id": 8, "label": "553592068271263745", "shape": "dot", "size": 10, "title": "553592068271263745\u003cbr\u003e@SkyNewsBreak @SteeryBlade GOOD \ud83d\ude03\u003cbr\u003eFri Jan 09 16:40:08 +0000 2015"}, {"group": 2078, "id": 9, "label": "553592108930850816", "shape": "dot", "size": 10, "title": "553592108930850816\u003cbr\u003e@SkyNewsBreak good.\u003cbr\u003eFri Jan 09 16:40:18 +0000 2015"}, {"group": 2078, "id": 10, "label": "553592262538829824", "shape": "dot", "size": 10, "title": "553592262538829824\u003cbr\u003e@SkyNewsBreak thank fuck for that!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:40:55 +0000 2015"}, {"group": 2078, "id": 11, "label": "553592267626520576", "shape": "dot", "size": 10, "title": "553592267626520576\u003cbr\u003e@SkyNewsBreak \ud83d\udc4f\ud83d\udc4d well done \ud83c\uddeb\ud83c\uddf7best\u003cbr\u003eway to deal with the\u003cbr\u003escum\u003cbr\u003eFri Jan 09 16:40:56 +0000 2015"}, {"group": 2078, "id": 12, "label": "553592409205243906", "shape": "dot", "size": 10, "title": "553592409205243906\u003cbr\u003e@SkyNewsBreak Evil Bastards!!\u003cbr\u003eFri Jan 09 16:41:30 +0000 2015"}, {"group": 2078, "id": 13, "label": "553593247730507776", "shape": "dot", "size": 10, "title": "553593247730507776\u003cbr\u003e@SkyNewsBreak Any news on the\u003cbr\u003ewoman hostage taker?\u003cbr\u003eFri Jan 09 16:44:50 +0000 2015"}, {"group": 2078, "id": 14, "label": "553593628267130880", "shape": "dot", "size": 10, "title": "553593628267130880\u003cbr\u003e@SkyNewsBreak @cumbermon good! hope he/she\u003cbr\u003erots in hell,sending thoughts to\u003cbr\u003ethe victims and hostages at\u003cbr\u003ethis awful time.\u003cbr\u003eFri Jan 09 16:46:20 +0000 2015"}, {"group": 2078, "id": 15, "label": "553593706499293186", "shape": "dot", "size": 10, "title": "553593706499293186\u003cbr\u003e@SkyNewsBreak Wish we\u0027d been as\u003cbr\u003edecisive with the Lee Rigby\u003cbr\u003ekillers\u003cbr\u003eFri Jan 09 16:46:39 +0000 2015"}, {"group": 2078, "id": 16, "label": "553595135297335296", "shape": "dot", "size": 10, "title": "553595135297335296\u003cbr\u003e@SkyNewsBreak good shoot them all\u003cbr\u003e#Paris will mourn forever\u003cbr\u003eFri Jan 09 16:52:20 +0000 2015"}, {"group": 2078, "id": 17, "label": "553595342944759809", "shape": "dot", "size": 10, "title": "553595342944759809\u003cbr\u003e@SkyNewsBreak @SteeryBlade GET IN! Fucking\u003cbr\u003elunatic prick\u003cbr\u003eFri Jan 09 16:53:09 +0000 2015"}, {"group": 2078, "id": 18, "label": "553595649951006720", "shape": "dot", "size": 10, "title": "553595649951006720\u003cbr\u003e\u201c@SkyNewsBreak: Update - PA: gunman\u003cbr\u003eholding hostages in #Paris grocery\u003cbr\u003ehas been killed\u201d #TangoDown\u003cbr\u003eFri Jan 09 16:54:22 +0000 2015"}, {"group": 2078, "id": 19, "label": "553598299639676928", "shape": "dot", "size": 10, "title": "553598299639676928\u003cbr\u003e@SkyNewsBreak ...... I hope it\u003cbr\u003ewas VERY painful . Rot\u003cbr\u003ein hell.\u003cbr\u003eFri Jan 09 17:04:54 +0000 2015"}, {"group": 2078, "id": 20, "label": "553603492666146817", "shape": "dot", "size": 10, "title": "553603492666146817\u003cbr\u003e@maisy59 @SkyNewsBreak \"them all\" there\u003cbr\u003ewas two....\u003cbr\u003eFri Jan 09 17:25:32 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 16, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

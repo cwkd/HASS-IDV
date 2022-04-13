@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1632, "id": 0, "label": "552786016906383360", "shape": "dot", "size": 10, "title": "552786016906383360\u003cbr\u003eBREAKING: Paris: 10 dead in\u003cbr\u003eattack on satirical paper that\u003cbr\u003epoked fun at Mohammed http://t.co/4qqVIjLP8A\u003cbr\u003e#CharlieHebdo http://t.co/kqQecEWknq\u003cbr\u003eWed Jan 07 11:17:11 +0000 2015"}, {"group": 1632, "id": 1, "label": "552790168235548672", "shape": "dot", "size": 10, "title": "552790168235548672\u003cbr\u003e@ynetnews more from the \u0027religion\u003cbr\u003eof peace\u0027...u mean piece of\u003cbr\u003eshxt\u003cbr\u003eWed Jan 07 11:33:41 +0000 2015"}, {"group": 1632, "id": 2, "label": "552793123475456002", "shape": "dot", "size": 10, "title": "552793123475456002\u003cbr\u003e@ynetnews And this surprises approximately........no-one\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:45:25 +0000 2015"}, {"group": 1632, "id": 3, "label": "552794292276559872", "shape": "dot", "size": 10, "title": "552794292276559872\u003cbr\u003e@ynetnews cc @geetaSkapoor\u003cbr\u003eWed Jan 07 11:50:04 +0000 2015"}, {"group": 1632, "id": 5, "label": "552797237013540865", "shape": "dot", "size": 10, "title": "552797237013540865\u003cbr\u003e@ynetnews Terror attack\u003cbr\u003eWed Jan 07 12:01:46 +0000 2015"}, {"group": 1632, "id": 8, "label": "552800715308273665", "shape": "dot", "size": 10, "title": "552800715308273665\u003cbr\u003e.@ynetnews Not sure. There\u0027s another\u003cbr\u003esuspect: http://t.co/cS6PLrMKed\u003cbr\u003eWed Jan 07 12:15:35 +0000 2015"}, {"group": 1632, "id": 12, "label": "552810311359922176", "shape": "dot", "size": 10, "title": "552810311359922176\u003cbr\u003e@ynetnews Extremism and Terrorism has\u003cbr\u003eno place in Islam #ParisAttack\u003cbr\u003ehttps://t.co/CukDPguk0U \nhttp://t.co/0m0hV86weU\u003cbr\u003eWed Jan 07 12:53:43 +0000 2015"}, {"group": 1632, "id": 13, "label": "552827556026544133", "shape": "dot", "size": 10, "title": "552827556026544133\u003cbr\u003e@ynetnews there is place in\u003cbr\u003eIslam who kill any people...and\u003cbr\u003ewho not give respect any\u003cbr\u003ereligon\u003cbr\u003eWed Jan 07 14:02:15 +0000 2015"}, {"group": 1632, "id": 14, "label": "552830149755158528", "shape": "dot", "size": 10, "title": "552830149755158528\u003cbr\u003e@ynetnews With The Happy Family\u003cbr\u003eless Amsterdam Jihadists fighters\u2019 abroad.\u003cbr\u003ehttp://t.co/43MOBjtnk6\u003cbr\u003eWed Jan 07 14:12:33 +0000 2015"}, {"group": 1632, "id": 7, "label": "552800581446664192", "shape": "dot", "size": 10, "title": "552800581446664192\u003cbr\u003e@docrose_rose @ynetnews its a religion\u003cbr\u003eof piece piece..\u003cbr\u003eWed Jan 07 12:15:03 +0000 2015"}, {"group": 1632, "id": 4, "label": "552795327837650945", "shape": "dot", "size": 10, "title": "552795327837650945\u003cbr\u003e@SecularTrainee  i know they\u003cbr\u003er coverin up so thers\u003cbr\u003eno anti islam backlash\u003cbr\u003eWed Jan 07 11:54:11 +0000 2015"}, {"group": 1632, "id": 6, "label": "552799584439640066", "shape": "dot", "size": 10, "title": "552799584439640066\u003cbr\u003e@geetaSkapoor yes\u003cbr\u003eWed Jan 07 12:11:06 +0000 2015"}, {"group": 1632, "id": 9, "label": "552808243169624065", "shape": "dot", "size": 10, "title": "552808243169624065\u003cbr\u003e@ofehr_en very sure (listen to\u003cbr\u003eshouting in videos). probably nuts\u003cbr\u003ereturning from isis holly war.\u003cbr\u003e @ynetnews\u003cbr\u003eWed Jan 07 12:45:30 +0000 2015"}, {"group": 1632, "id": 10, "label": "552808922562969600", "shape": "dot", "size": 10, "title": "552808922562969600\u003cbr\u003e.@bugiriba @ynetnews those are all\u003cbr\u003eassumptions at this point...\u003cbr\u003eWed Jan 07 12:48:12 +0000 2015"}, {"group": 1632, "id": 11, "label": "552809081237700608", "shape": "dot", "size": 10, "title": "552809081237700608\u003cbr\u003e@ofehr_en http://t.co/KewgMPdzqe @ynetnews\u003cbr\u003eWed Jan 07 12:48:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 1, "to": 7, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

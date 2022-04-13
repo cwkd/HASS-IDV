@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1885, "id": 0, "label": "553481076916883456", "shape": "dot", "size": 10, "title": "553481076916883456\u003cbr\u003eBREAKING: Hostage taken after Charlie\u003cbr\u003eHebdo suspects sighted north of\u003cbr\u003eParis http://t.co/nXWWIfklMi\u003cbr\u003eFri Jan 09 09:19:06 +0000 2015"}, {"group": 1885, "id": 1, "label": "553481587627552769", "shape": "dot", "size": 10, "title": "553481587627552769\u003cbr\u003eBREAKING: Hostage taken after Charlie\u003cbr\u003eHebdo suspects sighted north of\u003cbr\u003eParis http://t.co/3C1arbpJb0 via @HuffingtonPost\u003cbr\u003eFri Jan 09 09:21:08 +0000 2015"}, {"group": 1885, "id": 2, "label": "553481984337784832", "shape": "dot", "size": 10, "title": "553481984337784832\u003cbr\u003e\u201c@HuffingtonPost: BREAKING: Hostage taken after\u003cbr\u003eCharlie Hebdo suspects sighted north\u003cbr\u003eof Paris http://t.co/gQaZUMamf1\u201d Praying for\u003cbr\u003eall\ud83d\ude4f\ud83c\uddeb\ud83c\uddf7\ud83d\udc99\u2764\ud83c\uddeb\ud83c\uddf7\u003cbr\u003eFri Jan 09 09:22:42 +0000 2015"}, {"group": 1885, "id": 3, "label": "553482047462055936", "shape": "dot", "size": 10, "title": "553482047462055936\u003cbr\u003e@HuffingtonPost @Aashishynwa Again. #Islaimcterror #CharlieHebdo\u003cbr\u003e#ParisShooting #Shameless\u003cbr\u003eFri Jan 09 09:22:57 +0000 2015"}, {"group": 1885, "id": 4, "label": "553486365720322048", "shape": "dot", "size": 10, "title": "553486365720322048\u003cbr\u003e@HuffingtonPost has the terrorist been\u003cbr\u003enabbed\u003cbr\u003eFri Jan 09 09:40:07 +0000 2015"}, {"group": 1885, "id": 5, "label": "553489120274956289", "shape": "dot", "size": 10, "title": "553489120274956289\u003cbr\u003e@HuffingtonPost just shared your tweet\u003cbr\u003eon my site: http://t.co/lXlBXI9EG5\u003cbr\u003eFri Jan 09 09:51:04 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

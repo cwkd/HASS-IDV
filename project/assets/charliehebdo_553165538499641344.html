@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 980, "id": 0, "label": "553165538499641344", "shape": "dot", "size": 10, "title": "553165538499641344\u003cbr\u003e\"NOT AFRAID\" - Thousands in\u003cbr\u003eFrance gather to a send\u003cbr\u003emessage after Charlie Hebdo attack.\u003cbr\u003ehttp://t.co/i4iNC9hLs3 http://t.co/IgiP5dkW1g\u003cbr\u003eThu Jan 08 12:25:16 +0000 2015"}, {"group": 980, "id": 1, "label": "553165980554117121", "shape": "dot", "size": 10, "title": "553165980554117121\u003cbr\u003e@GMA \"NOT AFRAID\"\ud83d\ude4f\ud83d\ude4f\ud83d\ude4f #JeSuisCharlie #ParisShooting\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:27:01 +0000 2015"}, {"group": 980, "id": 2, "label": "553166109944201216", "shape": "dot", "size": 10, "title": "553166109944201216\u003cbr\u003e@GMA Wait a minute, Charlie\u003cbr\u003eis a newspaper not a\u003cbr\u003eperson? Who drew the cartoons,\u003cbr\u003edifferent people? What happened to\u003cbr\u003enames like Le Monde?\u003cbr\u003eThu Jan 08 12:27:32 +0000 2015"}, {"group": 980, "id": 8, "label": "553169571205505027", "shape": "dot", "size": 10, "title": "553169571205505027\u003cbr\u003e@GMA #stopIslamaphobiaNow #embraceunitedlove http://t.co/i3FKkQMfLA\u003cbr\u003eThu Jan 08 12:41:17 +0000 2015"}, {"group": 980, "id": 9, "label": "553169706669318145", "shape": "dot", "size": 10, "title": "553169706669318145\u003cbr\u003eRT @GMA \"NOT AFRAID\" -Thousands\u003cbr\u003ein France gather to a\u003cbr\u003esend message after Charlie Hebdo\u003cbr\u003eattack. http://t.co/3GzRS6O6V7 http://t.co/9nJowcfRKW\u003cbr\u003eThu Jan 08 12:41:50 +0000 2015"}, {"group": 980, "id": 10, "label": "553169870398189569", "shape": "dot", "size": 10, "title": "553169870398189569\u003cbr\u003e@GMA @Philellina   myself.\u003cbr\u003eEither http://t.co/UnwI9t9kse\u003cbr\u003eThu Jan 08 12:42:29 +0000 2015"}, {"group": 980, "id": 11, "label": "553170225173368833", "shape": "dot", "size": 10, "title": "553170225173368833\u003cbr\u003e@GMA @Jolinar752\u003cbr\u003eThu Jan 08 12:43:53 +0000 2015"}, {"group": 980, "id": 12, "label": "553170337371025409", "shape": "dot", "size": 10, "title": "553170337371025409\u003cbr\u003e@GMA @ABC Should be afraid.\u003cbr\u003eThese religious nuts kill people\u003cbr\u003ewhen they don\u0027t like something\u003cbr\u003eyou said. Barbarians.\u003cbr\u003eThu Jan 08 12:44:20 +0000 2015"}, {"group": 980, "id": 15, "label": "553172331359895553", "shape": "dot", "size": 10, "title": "553172331359895553\u003cbr\u003e@GMA @ABC so this really\u003cbr\u003emeans, u can mock more\u003cbr\u003eof others? is mocking really\u003cbr\u003ea good, honorable attitude to\u003cbr\u003edo?\u003cbr\u003eThu Jan 08 12:52:15 +0000 2015"}, {"group": 980, "id": 17, "label": "553172928305856512", "shape": "dot", "size": 10, "title": "553172928305856512\u003cbr\u003e@GMA @ABC May the Force\u003cbr\u003ebe with you.  Always.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:54:38 +0000 2015"}, {"group": 980, "id": 19, "label": "553173249002315776", "shape": "dot", "size": 10, "title": "553173249002315776\u003cbr\u003eRT @GMA:\"NOT AFRAID\"-Thousands in France\u003cbr\u003egather to a send message\u003cbr\u003eafter Charlie Hebdo attack. http://t.co/BL7I2VP5bj\u003cbr\u003ehttp://t.co/6zwWRBDqVL\u201d\u003cbr\u003eThu Jan 08 12:55:54 +0000 2015"}, {"group": 980, "id": 3, "label": "553166819930828800", "shape": "dot", "size": 10, "title": "553166819930828800\u003cbr\u003e@teddyboylocsin @GMA Not as important\u003cbr\u003eas Charlie apparently.\u003cbr\u003eThu Jan 08 12:30:21 +0000 2015"}, {"group": 980, "id": 4, "label": "553167233208180738", "shape": "dot", "size": 10, "title": "553167233208180738\u003cbr\u003e@faridlatiff @GMA Seriously, who is\u003cbr\u003ethe cartoonist? Anonymous?\u003cbr\u003eThu Jan 08 12:32:00 +0000 2015"}, {"group": 980, "id": 5, "label": "553168008248426496", "shape": "dot", "size": 10, "title": "553168008248426496\u003cbr\u003e@teddyboylocsin @GMA News agencies like\u003cbr\u003eBBC have published the names\u003cbr\u003eof the victims. I don\u0027t\u003cbr\u003ethink the anonymity is preserved.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:35:05 +0000 2015"}, {"group": 980, "id": 6, "label": "553168908912324608", "shape": "dot", "size": 10, "title": "553168908912324608\u003cbr\u003e@teddyboylocsin http://t.co/hbJu4PEJOY\u003cbr\u003eThu Jan 08 12:38:39 +0000 2015"}, {"group": 980, "id": 13, "label": "553171105419366402", "shape": "dot", "size": 10, "title": "553171105419366402\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA the cartoonists\u003cbr\u003eare  very famous ones.\u003cbr\u003eTheir names belongs to their\u003cbr\u003enewspaper. Not forgetting the cops\u003cbr\u003etoo\u003cbr\u003eThu Jan 08 12:47:23 +0000 2015"}, {"group": 980, "id": 7, "label": "553169063677943808", "shape": "dot", "size": 10, "title": "553169063677943808\u003cbr\u003e@faridlatiff @GMA yes but who\u003cbr\u003ewas the cartoonist? so he\u003cbr\u003ecan be honored.\u003cbr\u003eThu Jan 08 12:39:16 +0000 2015"}, {"group": 980, "id": 30, "label": "553178796132925440", "shape": "dot", "size": 10, "title": "553178796132925440\u003cbr\u003e@passiontedreams @GMA \ud83d\ude14\u003cbr\u003eThu Jan 08 13:17:57 +0000 2015"}, {"group": 980, "id": 14, "label": "553171385137106945", "shape": "dot", "size": 10, "title": "553171385137106945\u003cbr\u003e@LP_Angels @teddyboylocsin @GMA I read\u003cbr\u003ein some news, the 2\u003cbr\u003ecops had no relation with\u003cbr\u003ethe Charlie attack apparently. But,\u003cbr\u003eshould be respected\u003cbr\u003eThu Jan 08 12:48:30 +0000 2015"}, {"group": 980, "id": 16, "label": "553172906927083520", "shape": "dot", "size": 10, "title": "553172906927083520\u003cbr\u003e@LP_Angels @faridlatiff @GMA Where any\u003cbr\u003eof the actual cartoonists hurt\u003cbr\u003eor only the staff of\u003cbr\u003ethe paper?\u003cbr\u003eThu Jan 08 12:54:33 +0000 2015"}, {"group": 980, "id": 18, "label": "553172993157758976", "shape": "dot", "size": 10, "title": "553172993157758976\u003cbr\u003e@faridlatiff @LP_Angels @GMA Thos are\u003cbr\u003eprobably Arab newspapers assuming there\u003cbr\u003eare such things.\u003cbr\u003eThu Jan 08 12:54:53 +0000 2015"}, {"group": 980, "id": 22, "label": "553174213625135104", "shape": "dot", "size": 10, "title": "553174213625135104\u003cbr\u003e@faridlatiff @teddyboylocsin @GMA they were\u003cbr\u003ecalled when the attack started\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:59:44 +0000 2015"}, {"group": 980, "id": 20, "label": "553173370163183616", "shape": "dot", "size": 10, "title": "553173370163183616\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA the 6\u003cbr\u003emost famous names of the\u003cbr\u003enewspaper died . They were\u003cbr\u003etargeted . they were all\u003cbr\u003every much liked here\u003cbr\u003eThu Jan 08 12:56:23 +0000 2015"}, {"group": 980, "id": 21, "label": "553173907357044736", "shape": "dot", "size": 10, "title": "553173907357044736\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA no it\u003cbr\u003es a French satirical newspaper\u003cbr\u003e. Very famous for its\u003cbr\u003ecartoons\u003cbr\u003eThu Jan 08 12:58:31 +0000 2015"}, {"group": 980, "id": 24, "label": "553174887775215616", "shape": "dot", "size": 10, "title": "553174887775215616\u003cbr\u003e@LP_Angels @faridlatiff @GMA All talented\u003cbr\u003eveterans. What great losses. Don\u0027t\u003cbr\u003elose sight of them for\u003cbr\u003ethe newspaper, that is only\u003cbr\u003ea product.\u003cbr\u003eThu Jan 08 13:02:25 +0000 2015"}, {"group": 980, "id": 23, "label": "553174612238807040", "shape": "dot", "size": 10, "title": "553174612238807040\u003cbr\u003e@LP_Angels @faridlatiff @GMA I just\u003cbr\u003ediscovered, just NOW, that there\u003cbr\u003eis a human Charlie Hebdo,\u003cbr\u003ea very brave decent man.\u003cbr\u003eNever mind the paper\u003cbr\u003eThu Jan 08 13:01:19 +0000 2015"}, {"group": 980, "id": 25, "label": "553175264646414336", "shape": "dot", "size": 10, "title": "553175264646414336\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA that can\u0027t\u003cbr\u003ehappen...they were and always will\u003cbr\u003ebe the faces of Charlie\u003cbr\u003eHebdo !\u003cbr\u003eThu Jan 08 13:03:55 +0000 2015"}, {"group": 980, "id": 26, "label": "553175476571627522", "shape": "dot", "size": 10, "title": "553175476571627522\u003cbr\u003e@LP_Angels @teddyboylocsin @GMA RIP!\u003cbr\u003eThu Jan 08 13:04:45 +0000 2015"}, {"group": 980, "id": 27, "label": "553177820680425473", "shape": "dot", "size": 10, "title": "553177820680425473\u003cbr\u003e@teddyboylocsin @faridlatiff RIP: WOLINSKI- CABU-\u003cbr\u003eCHARBONNIER- TIGNOUS- HONOR\u00c9- MARIS- CAYAT-\u003cbr\u003eBRINSOLARE- OURRAD- MERABET- BOISSEAU- RENAUD\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:14:04 +0000 2015"}, {"group": 980, "id": 28, "label": "553178340689858560", "shape": "dot", "size": 10, "title": "553178340689858560\u003cbr\u003e@LP_Angels @faridlatiff @GMA I worked\u003cbr\u003ein my father\u0027s paper until\u003cbr\u003ethe Army shut it down\u003cbr\u003eafter US sponsored coup; they\u003cbr\u003eare like dad\u0027s people.\u003cbr\u003eThu Jan 08 13:16:08 +0000 2015"}, {"group": 980, "id": 29, "label": "553178631120252928", "shape": "dot", "size": 10, "title": "553178631120252928\u003cbr\u003e@LP_Angels @faridlatiff I will remember\u003cbr\u003etheir names as I do\u003cbr\u003ethose who were arrested after\u003cbr\u003eUS-backed martial law in my\u003cbr\u003ecountry in 1972.\u003cbr\u003eThu Jan 08 13:17:17 +0000 2015"}, {"group": 980, "id": 31, "label": "553178844098596865", "shape": "dot", "size": 10, "title": "553178844098596865\u003cbr\u003e@LP_Angels @faridlatiff They stood for\u003cbr\u003edecency and against Christian, Jewish\u003cbr\u003eand Muslim zealotry.\u003cbr\u003eThu Jan 08 13:18:08 +0000 2015"}, {"group": 980, "id": 33, "label": "553179049179111424", "shape": "dot", "size": 10, "title": "553179049179111424\u003cbr\u003e@LP_Angels @faridlatiff When writing about\u003cbr\u003ethis, name them all always;\u003cbr\u003eit is the least we\u003cbr\u003ecan do; don\u0027t bury them\u003cbr\u003eunder a generic headstone.\u003cbr\u003eThu Jan 08 13:18:57 +0000 2015"}, {"group": 980, "id": 32, "label": "553179000680370176", "shape": "dot", "size": 10, "title": "553179000680370176\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA i grew\u003cbr\u003eup with cartoons of #Cabu\u003cbr\u003eor #Wolinski.....they were targeted many\u003cbr\u003etimes but never gave up\u003cbr\u003e!\u003cbr\u003eThu Jan 08 13:18:45 +0000 2015"}, {"group": 980, "id": 34, "label": "553179349705170944", "shape": "dot", "size": 10, "title": "553179349705170944\u003cbr\u003e@LP_Angels @faridlatiff @GMA Okay, as\u003cbr\u003ea publisher myself, I would\u003cbr\u003ehave stopped them. I cared\u003cbr\u003emore for my people than\u003cbr\u003efor any cause.\u003cbr\u003eThu Jan 08 13:20:09 +0000 2015"}, {"group": 980, "id": 35, "label": "553179875528683520", "shape": "dot", "size": 10, "title": "553179875528683520\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA they always\u003cbr\u003ethought Freedom was more important\u003cbr\u003eand they always stood for\u003cbr\u003eit through their cartoons\u003cbr\u003eThu Jan 08 13:22:14 +0000 2015"}, {"group": 980, "id": 36, "label": "553180091077758977", "shape": "dot", "size": 10, "title": "553180091077758977\u003cbr\u003e@LP_Angels @faridlatiff @GMA best are\u003cbr\u003elike that but publisher\u0027s duty\u003cbr\u003eis first to his people\u003cbr\u003eand then to their causes.\u003cbr\u003eEverybody knows that.\u003cbr\u003eThu Jan 08 13:23:05 +0000 2015"}, {"group": 980, "id": 37, "label": "553180996984913920", "shape": "dot", "size": 10, "title": "553180996984913920\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA All people\u003cbr\u003e\u0026amp; cartoonists of Charlie Hebdo\u003cbr\u003ehad \u0026amp; will always have\u003cbr\u003ethe same battle fr freedom\u003cbr\u003ethrough humor\u003cbr\u003eThu Jan 08 13:26:41 +0000 2015"}, {"group": 980, "id": 38, "label": "553181562473152512", "shape": "dot", "size": 10, "title": "553181562473152512\u003cbr\u003e@LP_Angels @faridlatiff @GMA Another one\u003cbr\u003ewas Lenny Bruce finally memorialized\u003cbr\u003eby the masterpiece UNDERWORLD.\u003cbr\u003eThu Jan 08 13:28:56 +0000 2015"}, {"group": 980, "id": 39, "label": "553182532230209537", "shape": "dot", "size": 10, "title": "553182532230209537\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA A great\u003cbr\u003eone......not the same ennemies at\u003cbr\u003ethat time\u003cbr\u003eThu Jan 08 13:32:47 +0000 2015"}, {"group": 980, "id": 40, "label": "553183777426378752", "shape": "dot", "size": 10, "title": "553183777426378752\u003cbr\u003e@LP_Angels @faridlatiff @GMA No, Lenny\u003cbr\u003ewas fighting a lying and\u003cbr\u003ecomplacent society; harder to fight;\u003cbr\u003edeadlier foe.\u003cbr\u003eThu Jan 08 13:37:44 +0000 2015"}, {"group": 980, "id": 41, "label": "553184307641327616", "shape": "dot", "size": 10, "title": "553184307641327616\u003cbr\u003e@teddyboylocsin @faridlatiff @GMA All those\u003cbr\u003etalented and great people contribute\u003cbr\u003eto make the world a\u003cbr\u003ebetter place ...\u003cbr\u003eThu Jan 08 13:39:51 +0000 2015"}, {"group": 980, "id": 42, "label": "553185044563369985", "shape": "dot", "size": 10, "title": "553185044563369985\u003cbr\u003e@LP_Angels @faridlatiff @GMA goodnight\u003cbr\u003eThu Jan 08 13:42:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 13, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 11, "to": 30, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 14, "to": 18, "weight": 1}, {"from": 14, "to": 22, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 20, "to": 24, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 25, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 27, "to": 31, "weight": 1}, {"from": 27, "to": 33, "weight": 1}, {"from": 28, "to": 32, "weight": 1}, {"from": 32, "to": 34, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 35, "to": 36, "weight": 1}, {"from": 36, "to": 37, "weight": 1}, {"from": 37, "to": 38, "weight": 1}, {"from": 38, "to": 39, "weight": 1}, {"from": 39, "to": 40, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 42, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

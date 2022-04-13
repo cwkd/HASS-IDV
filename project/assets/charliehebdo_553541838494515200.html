@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1384, "id": 0, "label": "553541838494515200", "shape": "dot", "size": 10, "title": "553541838494515200\u003cbr\u003eAll who said #JeSuisCharlie this\u003cbr\u003eweek must today say #JeSuisJuif\u003cbr\u003e- I am a Jew.\u003cbr\u003eStand with France\u0027s Jews against\u003cbr\u003ethis vile attack.\u003cbr\u003eFri Jan 09 13:20:33 +0000 2015"}, {"group": 1384, "id": 1, "label": "553541975698604032", "shape": "dot", "size": 10, "title": "553541975698604032\u003cbr\u003e@AJCGlobal L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #FranceStrong\u003cbr\u003eFri Jan 09 13:21:05 +0000 2015"}, {"group": 1384, "id": 2, "label": "553542367501111296", "shape": "dot", "size": 10, "title": "553542367501111296\u003cbr\u003e@AJCGlobal YES!! WE ALL UNITE\u003cbr\u003eAGAISNT THIS ONGOING BATTEL OF\u003cbr\u003eLIFE..AMEN DEAR GOD ON HIGH\u003cbr\u003eBE W US..PEACE TO YOU!\u003cbr\u003eTKS..HAVE A GREAT DAY..\u003cbr\u003eFri Jan 09 13:22:39 +0000 2015"}, {"group": 1384, "id": 3, "label": "553543048240832512", "shape": "dot", "size": 10, "title": "553543048240832512\u003cbr\u003e. @AJCGlobal @haivri naa Jews\u003cbr\u003edeserve it because occupation settlement\u003cbr\u003einternational banks war hate. #sarcasm\u003cbr\u003e#wearealljews\u003cbr\u003eFri Jan 09 13:25:21 +0000 2015"}, {"group": 1384, "id": 5, "label": "553543814653440001", "shape": "dot", "size": 10, "title": "553543814653440001\u003cbr\u003e@AJCGlobal *snort* that\u0027ll be the\u003cbr\u003eday. How about #ILLSHOPWITHJEW\u003cbr\u003eFri Jan 09 13:28:24 +0000 2015"}, {"group": 1384, "id": 6, "label": "553544100151300097", "shape": "dot", "size": 10, "title": "553544100151300097\u003cbr\u003e@AJCGlobal @YehoshuaOz good luck with\u003cbr\u003ethat\u003cbr\u003eFri Jan 09 13:29:32 +0000 2015"}, {"group": 1384, "id": 7, "label": "553544501281955840", "shape": "dot", "size": 10, "title": "553544501281955840\u003cbr\u003e@AJCGlobal @Cameron_Gray\u003cbr\u003eFri Jan 09 13:31:08 +0000 2015"}, {"group": 1384, "id": 8, "label": "553549669406896128", "shape": "dot", "size": 10, "title": "553549669406896128\u003cbr\u003e@AJCGlobal #JeSuisCharlie #JeSuisJuif cc @haivri\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:51:40 +0000 2015"}, {"group": 1384, "id": 9, "label": "553557309075386368", "shape": "dot", "size": 10, "title": "553557309075386368\u003cbr\u003e@AJCGlobal @AvitalLeibovich I Stand with\u003cbr\u003eFrance\u0027s Jews #JeSuisJuif\u003cbr\u003eFri Jan 09 14:22:01 +0000 2015"}, {"group": 1384, "id": 10, "label": "553557569256828928", "shape": "dot", "size": 10, "title": "553557569256828928\u003cbr\u003e@AJCGlobal @AvitalLeibovich\u003cbr\u003eFri Jan 09 14:23:03 +0000 2015"}, {"group": 1384, "id": 11, "label": "553558170434805760", "shape": "dot", "size": 10, "title": "553558170434805760\u003cbr\u003e@AJCGlobal @MrBadgerWrites All the \"Je\u003cbr\u003eSuis\" in the world, although\u003cbr\u003eadmirable, will not discourage demented\u003cbr\u003esavages one iota unfortunately.\u003cbr\u003eFri Jan 09 14:25:27 +0000 2015"}, {"group": 1384, "id": 17, "label": "553563460902993920", "shape": "dot", "size": 10, "title": "553563460902993920\u003cbr\u003e@AJCGlobal @AvitalLeibovich Amen to that,\u003cbr\u003etoo. #JeSuisJuif\u003cbr\u003eFri Jan 09 14:46:28 +0000 2015"}, {"group": 1384, "id": 18, "label": "553566947229855744", "shape": "dot", "size": 10, "title": "553566947229855744\u003cbr\u003e@AJCGlobal I do!\u003cbr\u003eFri Jan 09 15:00:19 +0000 2015"}, {"group": 1384, "id": 4, "label": "553543733464272897", "shape": "dot", "size": 10, "title": "553543733464272897\u003cbr\u003e@brianoflondon @AJCGlobal @haivri don\u0027t forget\u003cbr\u003eZionism Zionism Rothschilds NWO.\u003cbr\u003eFri Jan 09 13:28:05 +0000 2015"}, {"group": 1384, "id": 19, "label": "553636515230654464", "shape": "dot", "size": 10, "title": "553636515230654464\u003cbr\u003e@MaraMacSeoinin come and talk with\u003cbr\u003elike minded people at doom\u003cbr\u003echat http://t.co/y3jKRC1a1D\u003cbr\u003eFri Jan 09 19:36:45 +0000 2015"}, {"group": 1384, "id": 12, "label": "553560290076688384", "shape": "dot", "size": 10, "title": "553560290076688384\u003cbr\u003e@Miguelencasa @AJCGlobal You are right,\u003cbr\u003ebut line in sand has\u003cbr\u003ebeen drawn.\u003cbr\u003eFri Jan 09 14:33:52 +0000 2015"}, {"group": 1384, "id": 13, "label": "553560691899379712", "shape": "dot", "size": 10, "title": "553560691899379712\u003cbr\u003e@MrBadgerWrites @AJCGlobal I hope you\u003cbr\u003eareight but I doubt it.\u003cbr\u003eWeak appeasing govts have no\u003cbr\u003ereal stomach for the strong\u003cbr\u003eaction required.\u003cbr\u003eFri Jan 09 14:35:28 +0000 2015"}, {"group": 1384, "id": 14, "label": "553561218162913280", "shape": "dot", "size": 10, "title": "553561218162913280\u003cbr\u003e@Miguelencasa @AJCGlobal Aside from the\u003cbr\u003eIsraelis, no.\u003cbr\u003eFri Jan 09 14:37:33 +0000 2015"}, {"group": 1384, "id": 15, "label": "553561738847981568", "shape": "dot", "size": 10, "title": "553561738847981568\u003cbr\u003e@Miguelencasa @AJCGlobal And Churchill and\u003cbr\u003eThatcher would have acted, too.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:39:37 +0000 2015"}, {"group": 1384, "id": 16, "label": "553561994822168576", "shape": "dot", "size": 10, "title": "553561994822168576\u003cbr\u003e@MrBadgerWrites @AJCGlobal Churchill yes, not\u003cbr\u003eso sure about Mrs T.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:40:38 +0000 2015"}, {"group": 1384, "id": 20, "label": "554236892271890432", "shape": "dot", "size": 10, "title": "554236892271890432\u003cbr\u003e@doomchat No.\u003cbr\u003eSun Jan 11 11:22:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 19, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

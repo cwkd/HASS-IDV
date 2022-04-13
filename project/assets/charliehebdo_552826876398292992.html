@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 358, "id": 0, "label": "552826876398292992", "shape": "dot", "size": 10, "title": "552826876398292992\u003cbr\u003eRT this cartoon and pay\u003cbr\u003eyour tribute\nshow them real face\u003cbr\u003eof MUHAMMAD\n#CharlieHebdo\n#ParisShooting http://t.co/a6SPI3F3ow\u003cbr\u003eWed Jan 07 13:59:33 +0000 2015"}, {"group": 358, "id": 1, "label": "552828850103521282", "shape": "dot", "size": 10, "title": "552828850103521282\u003cbr\u003e@HinduDefense sure!\u003cbr\u003eWed Jan 07 14:07:23 +0000 2015"}, {"group": 358, "id": 2, "label": "552830286480699393", "shape": "dot", "size": 10, "title": "552830286480699393\u003cbr\u003e@HinduDefense Twitter is not allowing\u003cbr\u003eretweet of your tweet!! @DushyantNaMo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:13:06 +0000 2015"}, {"group": 358, "id": 3, "label": "552833835746869248", "shape": "dot", "size": 10, "title": "552833835746869248\u003cbr\u003e@HinduDefense : please send this\u003cbr\u003eto Dhongi Khan \u0026amp; Hirsni\u003cbr\u003ewith challenge to make movie\u003cbr\u003eon this desert cult\u0027s messenger\u003cbr\u003e\u0026amp; his antics.\u003cbr\u003eWed Jan 07 14:27:12 +0000 2015"}, {"group": 358, "id": 4, "label": "552842455419072512", "shape": "dot", "size": 10, "title": "552842455419072512\u003cbr\u003e@HinduDefense Somewhere in the heaven\u003cbr\u003ea painter called M F\u003cbr\u003eHussain is laughing loud after\u003cbr\u003ereading this tweet of yours!\u003cbr\u003e@keshda\u003cbr\u003eWed Jan 07 15:01:27 +0000 2015"}, {"group": 358, "id": 5, "label": "552854278369337344", "shape": "dot", "size": 10, "title": "552854278369337344\u003cbr\u003e@HinduDefense @TeqTrader cc @Enli8ndMuslim\u003cbr\u003eWed Jan 07 15:48:26 +0000 2015"}, {"group": 358, "id": 7, "label": "552860092404494336", "shape": "dot", "size": 10, "title": "552860092404494336\u003cbr\u003e@HinduDefense @anilkohli54 TAKEN \u092b\u093f\u0932\u092e \u092e\u0947\u0902\u003cbr\u003e\u092f\u0947 \u092c\u0916\u0942\u092c\u0940 \u0926\u093f\u0916\u093e\u092f\u093e \u0939\u0948 \u0964\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:11:32 +0000 2015"}, {"group": 358, "id": 8, "label": "553179109367762944", "shape": "dot", "size": 10, "title": "553179109367762944\u003cbr\u003e@HinduDefense @Puchynator \"Ein M\u00e4dchen von\u003cbr\u003edrei Jahren und einem Tag\u003cbr\u003eist zum Beischlaf geeignet.\" Steht\u003cbr\u003eso im Talmud.\u003cbr\u003eThu Jan 08 13:19:11 +0000 2015"}, {"group": 358, "id": 9, "label": "553213369671376896", "shape": "dot", "size": 10, "title": "553213369671376896\u003cbr\u003e@HinduDefense @An_AtheistHindu \u092a\u0947\u0930\u093f\u0938 \u0915\u093e \u0939\u093e\u0932\u003cbr\u003e\u0926\u0947\u0916\u094b, \u092a\u094d\u0930\u0923 \u0915\u0930\u094b ! \u091c\u0939\u093e\u003cbr\u003e\u0915\u094b\u0908 \u0928\u0947\u0924\u093e, \u092e\u0940\u0921\u0940\u092f\u093e \u0935\u093e\u0932\u093e, \u0938\u0947\u0915\u0942\u0932\u0930\u093f\u091c\u093c\u094d\u092e\u003cbr\u003e\u092c\u0915\u0947, \u091a\u092a\u094d\u092a\u0932 \u0916\u094b\u0932 \u0932\u094b\u0917\u0947 !\u003cbr\u003e\u0935\u093e\u0926\u093e \u0915\u0930\u094b !\u003cbr\u003eThu Jan 08 15:35:20 +0000 2015"}, {"group": 358, "id": 6, "label": "552855522550894592", "shape": "dot", "size": 10, "title": "552855522550894592\u003cbr\u003e@crowthinks Gaandu kauvve, naatak mat\u003cbr\u003ekar @hindudefense @teqtrader\u003cbr\u003eWed Jan 07 15:53:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 5, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

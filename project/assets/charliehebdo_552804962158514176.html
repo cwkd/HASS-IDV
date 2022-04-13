@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 96, "id": 0, "label": "552804962158514176", "shape": "dot", "size": 10, "title": "552804962158514176\u003cbr\u003eUtterly disgusting. @AlJazeera blaming free\u003cbr\u003espeech and Berlin protests for\u003cbr\u003eattack on #CharlieHebdo\u003cbr\u003eWed Jan 07 12:32:28 +0000 2015"}, {"group": 96, "id": 1, "label": "552805846150033411", "shape": "dot", "size": 10, "title": "552805846150033411\u003cbr\u003e@mmoskvit are they? I just\u003cbr\u003ewent on the website and\u003cbr\u003ecouldnt see that\u003cbr\u003eWed Jan 07 12:35:59 +0000 2015"}, {"group": 96, "id": 2, "label": "552805922050162688", "shape": "dot", "size": 10, "title": "552805922050162688\u003cbr\u003e@mmoskvit @olibennett @AlJazeera BBC doing\u003cbr\u003ethe same - CH was\u003cbr\u003e\"brazen and provocative\".\u003cbr\u003eWed Jan 07 12:36:17 +0000 2015"}, {"group": 96, "id": 3, "label": "552806474507104256", "shape": "dot", "size": 10, "title": "552806474507104256\u003cbr\u003e@mmoskvit @Irmak_Ye @AlJazeera please provide\u003cbr\u003elink.\u003cbr\u003eWed Jan 07 12:38:28 +0000 2015"}, {"group": 96, "id": 4, "label": "552806616903729152", "shape": "dot", "size": 10, "title": "552806616903729152\u003cbr\u003e@mmoskvit @CEMB_forum @AlJazeera How journalists\u003cbr\u003ecan state that #CharlieHebdo must\u003cbr\u003eapologise for their challenging content\u003cbr\u003eis beyond belief\u003cbr\u003eWed Jan 07 12:39:02 +0000 2015"}, {"group": 96, "id": 5, "label": "552806827118055424", "shape": "dot", "size": 10, "title": "552806827118055424\u003cbr\u003e@mmoskvit @yusufkadra @AlJazeera They also\u003cbr\u003esupport terrorist in Syria, no\u003cbr\u003esurprise there...\u003cbr\u003eWed Jan 07 12:39:52 +0000 2015"}, {"group": 96, "id": 6, "label": "552806862744469504", "shape": "dot", "size": 10, "title": "552806862744469504\u003cbr\u003eRemember, journalism is not a\u003cbr\u003ecrime when Egypt jails @AlJazeera\u003cbr\u003emen, but it is if\u003cbr\u003eyou criticize Islam. #CharlieHebdo\u003cbr\u003eWed Jan 07 12:40:01 +0000 2015"}, {"group": 96, "id": 8, "label": "552808430373580800", "shape": "dot", "size": 10, "title": "552808430373580800\u003cbr\u003e@mmoskvit @pegasus191 Gasp! A news\u003cbr\u003echannel that is owned by\u003cbr\u003eHouse of Thani \u0026amp; supports\u003cbr\u003eMuslim brotherhood did what? @AlJazeera\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:46:15 +0000 2015"}, {"group": 96, "id": 13, "label": "552811862694576128", "shape": "dot", "size": 10, "title": "552811862694576128\u003cbr\u003e.@mmoskvit @AlJazeera #CharlieHebdo The Enlightenment\u003cbr\u003eredux: the power of liberating\u003cbr\u003eideas vs the claustrophobic sickness\u003cbr\u003eof perfect faith.\u003cbr\u003eWed Jan 07 12:59:53 +0000 2015"}, {"group": 96, "id": 14, "label": "552812000901079041", "shape": "dot", "size": 10, "title": "552812000901079041\u003cbr\u003e@mmoskvit @CEMB_forum @AlJazeera Are you\u003cbr\u003erealy surprised?\u003cbr\u003eWed Jan 07 13:00:26 +0000 2015"}, {"group": 96, "id": 16, "label": "552812397430202369", "shape": "dot", "size": 10, "title": "552812397430202369\u003cbr\u003e@mmoskvit @AlJazeera is a jihadi\u003cbr\u003earab payroll paper\u003cbr\u003eWed Jan 07 13:02:00 +0000 2015"}, {"group": 96, "id": 17, "label": "552813059270377474", "shape": "dot", "size": 10, "title": "552813059270377474\u003cbr\u003e@mmoskvit @TheJaggi @AlJazeera No matter\u003cbr\u003ewhat or where, muslims have\u003cbr\u003eto play the victim.\u003cbr\u003eWed Jan 07 13:04:38 +0000 2015"}, {"group": 96, "id": 19, "label": "552814352093290496", "shape": "dot", "size": 10, "title": "552814352093290496\u003cbr\u003e@mmoskvit @TheJaggi  #Remorseless @AlJazeera\u003cbr\u003estill continuing with their veiled\u003cbr\u003equestions \"do you think they\u003cbr\u003ecrossed a line in their\u003cbr\u003esatire\"\u003cbr\u003eWed Jan 07 13:09:46 +0000 2015"}, {"group": 96, "id": 7, "label": "552808245644238849", "shape": "dot", "size": 10, "title": "552808245644238849\u003cbr\u003e@robbiewinters listen to live video\u003cbr\u003ecoverage on their site.\u003cbr\u003eWed Jan 07 12:45:31 +0000 2015"}, {"group": 96, "id": 9, "label": "552808581897412608", "shape": "dot", "size": 10, "title": "552808581897412608\u003cbr\u003e@Ginarbe @Irmak_Ye @AlJazeera live video\u003cbr\u003ecoverage on their site.\u003cbr\u003eWed Jan 07 12:46:51 +0000 2015"}, {"group": 96, "id": 10, "label": "552808652034154496", "shape": "dot", "size": 10, "title": "552808652034154496\u003cbr\u003e@jn_mec @mmoskvit @AlJazeera :-)\u003cbr\u003eWed Jan 07 12:47:07 +0000 2015"}, {"group": 96, "id": 12, "label": "552809120093704192", "shape": "dot", "size": 10, "title": "552809120093704192\u003cbr\u003e@jn_mec @pegasus191 @AlJazeera Some people\u003cbr\u003ekeep telling me the news\u003cbr\u003eis very good and balanced.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:48:59 +0000 2015"}, {"group": 96, "id": 11, "label": "552808825250533376", "shape": "dot", "size": 10, "title": "552808825250533376\u003cbr\u003e@pegasus191 @mmoskvit @AlJazeera ;)\u003cbr\u003eWed Jan 07 12:47:49 +0000 2015"}, {"group": 96, "id": 15, "label": "552812382771101696", "shape": "dot", "size": 10, "title": "552812382771101696\u003cbr\u003e@mmoskvit @pegasus191 @AlJazeera are good\u003cbr\u003eat making things appear balanced.\u003cbr\u003ePolished British accents tend to\u003cbr\u003edo that.\u003cbr\u003eWed Jan 07 13:01:57 +0000 2015"}, {"group": 96, "id": 21, "label": "553754924656652288", "shape": "dot", "size": 10, "title": "553754924656652288\u003cbr\u003e@ABCBuzzCreative @mmoskvit @AlJazeera Jesus said\u003cbr\u003efaith can move mountains. You\u003cbr\u003esay it\u0027s claustrophobic sickness. Who\u003cbr\u003eshould I believe?\u003cbr\u003eSat Jan 10 03:27:16 +0000 2015"}, {"group": 96, "id": 18, "label": "552813810160246787", "shape": "dot", "size": 10, "title": "552813810160246787\u003cbr\u003e@jn_mec @pegasus191 @AlJazeera They and\u003cbr\u003ePutin\u0027s RT crap.\u003cbr\u003eWed Jan 07 13:07:37 +0000 2015"}, {"group": 96, "id": 20, "label": "552814462806536192", "shape": "dot", "size": 10, "title": "552814462806536192\u003cbr\u003e@UmaDwarak @TheJaggi @AlJazeera Well, we\u003cbr\u003ecan always start another #illridewithyou\u003cbr\u003ehashtag.\u003cbr\u003eWed Jan 07 13:10:13 +0000 2015"}, {"group": 96, "id": 22, "label": "553920518769094656", "shape": "dot", "size": 10, "title": "553920518769094656\u003cbr\u003e@theidealtwit @mmoskvit @AlJazeera \"Who should\u003cbr\u003eI believe?\" is like \"Whose\u003cbr\u003eslave shall I be?\" How\u003cbr\u003eabout \"Think for yourself. Figure\u003cbr\u003eit out.\"\u003cbr\u003eSat Jan 10 14:25:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 7, "weight": 1}, {"from": 3, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 13, "to": 21, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

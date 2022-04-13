@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 363, "id": 0, "label": "552827123963281408", "shape": "dot", "size": 10, "title": "552827123963281408\u003cbr\u003eFrench cartoonists Charb, Cabu, Tignous\u003cbr\u003eand Wolinski all killed in\u003cbr\u003e Charlie Hebdo attack http://t.co/RO1XV1AZaG\u003cbr\u003ehttp://t.co/0gkVyvhZSS\u003cbr\u003eWed Jan 07 14:00:32 +0000 2015"}, {"group": 363, "id": 1, "label": "552828553197531136", "shape": "dot", "size": 10, "title": "552828553197531136\u003cbr\u003e@thei100 At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:06:12 +0000 2015"}, {"group": 363, "id": 2, "label": "552828819875180545", "shape": "dot", "size": 10, "title": "552828819875180545\u003cbr\u003e@thei100 AND HILLARY RECOMMENDS EMPATHY\u003cbr\u003eFOR THE TERRORISTS..YUCK! MY SYMPATHY\u003cbr\u003eTO THE FAMILIES AND FRIENDS\u003cbr\u003eOF THOSE KILLED. SO SAD.\u003cbr\u003e#RIP\u003cbr\u003eWed Jan 07 14:07:16 +0000 2015"}, {"group": 363, "id": 3, "label": "552831238164447233", "shape": "dot", "size": 10, "title": "552831238164447233\u003cbr\u003e@thei100 @PaddyVipond Is #Israel punishing\u003cbr\u003eFrance for supporting Palestine or\u003cbr\u003ejust coincidence? Israeli owned MSM\u003cbr\u003ewill have field day today.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:16:52 +0000 2015"}, {"group": 363, "id": 4, "label": "552831340744544257", "shape": "dot", "size": 10, "title": "552831340744544257\u003cbr\u003eToday we are all Cartoonists\u003cbr\u003e@thei100 @film_girl\u003cbr\u003eWed Jan 07 14:17:17 +0000 2015"}, {"group": 363, "id": 5, "label": "552831862620823552", "shape": "dot", "size": 10, "title": "552831862620823552\u003cbr\u003e@thei100 @red13charlie Shit, not Cabu?\u003cbr\u003e Oh no.\u003cbr\u003eWed Jan 07 14:19:21 +0000 2015"}, {"group": 363, "id": 6, "label": "552832509520932864", "shape": "dot", "size": 10, "title": "552832509520932864\u003cbr\u003e@stevemakastevem Not sure Israel had\u003cbr\u003eanything to do with the\u003cbr\u003eevents in Paris today.\u003cbr\u003eWed Jan 07 14:21:56 +0000 2015"}, {"group": 363, "id": 11, "label": "552917276136308737", "shape": "dot", "size": 10, "title": "552917276136308737\u003cbr\u003e@James_Aston_29 @Roger_Sout http://t.co/5jGww94lPl I think\u003cbr\u003eyou\u0027ll find ALL religions have\u003cbr\u003eloony people killing in the\u003cbr\u003ename a higher power.\u003cbr\u003eWed Jan 07 19:58:45 +0000 2015"}, {"group": 363, "id": 7, "label": "552834874194034688", "shape": "dot", "size": 10, "title": "552834874194034688\u003cbr\u003e@PaddyVipond Then mission accomplished. Others\u003cbr\u003esuch as this one have\u003cbr\u003ebeen expecting their retaliation.\u003cbr\u003eWed Jan 07 14:31:19 +0000 2015"}, {"group": 363, "id": 8, "label": "552835358938124290", "shape": "dot", "size": 10, "title": "552835358938124290\u003cbr\u003e.@stevemakastevem I think you\u0027re drawing\u003cbr\u003econclusions where there are none.\u003cbr\u003eTerror attacks in Europe don\u0027t\u003cbr\u003edetract from Palestines struggle.\u003cbr\u003eWed Jan 07 14:33:15 +0000 2015"}, {"group": 363, "id": 9, "label": "552837156256120832", "shape": "dot", "size": 10, "title": "552837156256120832\u003cbr\u003e@PaddyVipond We no have to\u003cbr\u003eagree what you think. \u003cbr\u003eWas much surprise for many\u003cbr\u003ewhen find who fund al\u003cbr\u003eQaeda \u0026amp; JSIL though many\u003cbr\u003ealready knew.\u003cbr\u003eWed Jan 07 14:40:23 +0000 2015"}, {"group": 363, "id": 10, "label": "552841783403872256", "shape": "dot", "size": 10, "title": "552841783403872256\u003cbr\u003e@PaddyVipond RT @Perseus009 Recent French\u003cbr\u003epublication Charlie Hebdo widely criticized\u003cbr\u003efor being overly pro Palestinian\u003cbr\u003epro Muslim #lookitup\u003cbr\u003eWed Jan 07 14:58:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

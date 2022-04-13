@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1712, "id": 0, "label": "552807528070131712", "shape": "dot", "size": 10, "title": "552807528070131712\u003cbr\u003eFrench police confirm that the\u003cbr\u003e#CharlieHebdo attackers shouted \"The Prophet\u003cbr\u003ehas been avenged\".\n\nSigh.\u003cbr\u003eWed Jan 07 12:42:40 +0000 2015"}, {"group": 1712, "id": 1, "label": "552808884419985408", "shape": "dot", "size": 10, "title": "552808884419985408\u003cbr\u003e@ManhattanDoc imagine a world free\u003cbr\u003eof religion..if fucking only\u003cbr\u003eWed Jan 07 12:48:03 +0000 2015"}, {"group": 1712, "id": 2, "label": "552809884631465984", "shape": "dot", "size": 10, "title": "552809884631465984\u003cbr\u003e@ManhattanDoc 1 of the 1st\u003cbr\u003eteachings of Islam is to\u003cbr\u003ekill 1 person will be\u003cbr\u003eas though you\u0027ve killed all\u003cbr\u003ehumanity - ergo, militants are\u003cbr\u003emongs.\u003cbr\u003eWed Jan 07 12:52:01 +0000 2015"}, {"group": 1712, "id": 3, "label": "552810854568431616", "shape": "dot", "size": 10, "title": "552810854568431616\u003cbr\u003e@ManhattanDoc @CEMB_forum hardly surprising.Same types\u0027ve\u003cbr\u003ebeen hounding Jews since 2000\u003cbr\u003e\u0026amp; recently attacked police in\u003cbr\u003ename of same religion\u003cbr\u003eWed Jan 07 12:55:53 +0000 2015"}, {"group": 1712, "id": 4, "label": "552811206172758016", "shape": "dot", "size": 10, "title": "552811206172758016\u003cbr\u003e@ManhattanDoc @CEMB_forum But it\u0027s \"Nothing\u003cbr\u003eto do with Islam\", right?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:57:16 +0000 2015"}, {"group": 1712, "id": 5, "label": "552811827022016512", "shape": "dot", "size": 10, "title": "552811827022016512\u003cbr\u003e@ManhattanDoc @coldtusker makes me hate\u003cbr\u003eislam n muslims, wish they\u003cbr\u003edisappear from the face of\u003cbr\u003ethe earth\u003cbr\u003eWed Jan 07 12:59:44 +0000 2015"}, {"group": 1712, "id": 6, "label": "552811882382626816", "shape": "dot", "size": 10, "title": "552811882382626816\u003cbr\u003e\u201c@ManhattanDoc: French police confirm that\u003cbr\u003ethe #CharlieHebdo attackers shouted \"The\u003cbr\u003eProphet has been avenged\".\n\nSigh.\u201d\u003cbr\u003eWed Jan 07 12:59:58 +0000 2015"}, {"group": 1712, "id": 7, "label": "552812105901305856", "shape": "dot", "size": 10, "title": "552812105901305856\u003cbr\u003e@ManhattanDoc @CEMB_forum More frightening than\u003cbr\u003ethe attack is that we\u003cbr\u003ewill fight back with \u0027talks\u0027.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:00:51 +0000 2015"}, {"group": 1712, "id": 8, "label": "552814234741268480", "shape": "dot", "size": 10, "title": "552814234741268480\u003cbr\u003e\u201c@ManhattanDoc: French police confirm that\u003cbr\u003ethe #CharlieHebdo attackers shouted \"The\u003cbr\u003eProphet has been avenged\".\n\nSigh.\u201d \n\nFor\u003cbr\u003efuck sake\u003cbr\u003eWed Jan 07 13:09:19 +0000 2015"}, {"group": 1712, "id": 9, "label": "552814438600810496", "shape": "dot", "size": 10, "title": "552814438600810496\u003cbr\u003e@ManhattanDoc who did they think\u003cbr\u003ethey were? Avenging in the\u003cbr\u003ename of the Prophet. The\u003cbr\u003eProphet doesn\u0027t even need that.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:10:07 +0000 2015"}, {"group": 1712, "id": 10, "label": "552816825017597952", "shape": "dot", "size": 10, "title": "552816825017597952\u003cbr\u003e@ManhattanDoc @Ladyofhadess to be fair,\u003cbr\u003eit\u0027d be the best way\u003cbr\u003eto deflect suspicion. But, that\u0027s\u003cbr\u003epretty convoluted.\u003cbr\u003eWed Jan 07 13:19:36 +0000 2015"}, {"group": 1712, "id": 11, "label": "552832777356193792", "shape": "dot", "size": 10, "title": "552832777356193792\u003cbr\u003e@ManhattanDoc Terror HAS Religion IF\n\nTerrorists\u003cbr\u003eseek inspiration in it \u0026amp;\n\nReligious\u003cbr\u003eleaders provide moral justification for\u003cbr\u003etheir acts\u003cbr\u003eWed Jan 07 14:22:59 +0000 2015"}, {"group": 1712, "id": 12, "label": "552838376210984963", "shape": "dot", "size": 10, "title": "552838376210984963\u003cbr\u003e@ManhattanDoc @lyonsnyc Nothing whatsoever to\u003cbr\u003edo with Islam #tweetlikejoe\u003cbr\u003eWed Jan 07 14:45:14 +0000 2015"}, {"group": 1712, "id": 13, "label": "552838660714811392", "shape": "dot", "size": 10, "title": "552838660714811392\u003cbr\u003e@ManhattanDoc @TheJaggi \"Police confirm shouts\u003cbr\u003eof \u0027prophet has been avenged\u0027\u003cbr\u003e\"\nOops ... some libtards in\u003cbr\u003eIndia will consider it typecasting.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:46:22 +0000 2015"}, {"group": 1712, "id": 14, "label": "552854404257562625", "shape": "dot", "size": 10, "title": "552854404257562625\u003cbr\u003e@StaunchA I disagree: http://t.co/Jgy24v2F41 @ManhattanDoc\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:48:56 +0000 2015"}, {"group": 1712, "id": 15, "label": "552923337999937537", "shape": "dot", "size": 10, "title": "552923337999937537\u003cbr\u003e@lyonsnyc @ManhattanDoc I\u0027m not being\u003cbr\u003eserious. IRONY. I\u0027m not reading\u003cbr\u003ethat. Too busy.\u003cbr\u003eWed Jan 07 20:22:51 +0000 2015"}, {"group": 1712, "id": 16, "label": "552956287860764672", "shape": "dot", "size": 10, "title": "552956287860764672\u003cbr\u003e@StaunchA Given your handle I\u003cbr\u003ethought it might be irony\u003cbr\u003ebut I wasn\u0027t sure. Deadpan\u003cbr\u003eis hard to tell sometimes\u003cbr\u003ew/ so few words! @ManhattanDoc\u003cbr\u003e\u003cbr\u003eWed Jan 07 22:33:47 +0000 2015"}, {"group": 1712, "id": 17, "label": "553061709682704385", "shape": "dot", "size": 10, "title": "553061709682704385\u003cbr\u003e@lyonsnyc @ManhattanDoc mmm...sometimes 140 characters\u003cbr\u003ecan cause more arguments than\u003cbr\u003eit solves.\u003cbr\u003eThu Jan 08 05:32:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

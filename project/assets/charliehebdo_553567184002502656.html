@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1473, "id": 0, "label": "553567184002502656", "shape": "dot", "size": 10, "title": "553567184002502656\u003cbr\u003eEvery time I think I\u003cbr\u003esee the best #CharlieHebdo cartoon\u003cbr\u003eanother great one comes out.\u003cbr\u003e#JeSuisCharlie http://t.co/UzOVNAsx8G\u003cbr\u003eFri Jan 09 15:01:16 +0000 2015"}, {"group": 1473, "id": 1, "label": "553567522377990145", "shape": "dot", "size": 10, "title": "553567522377990145\u003cbr\u003e\u201c@Bipartisanism: Every time I think\u003cbr\u003eI see the best #CharlieHebdo\u003cbr\u003ecartoon another great one comes\u003cbr\u003eout. #JeSuisCharlie http://t.co/3oQT6QbvKO\u201d\u003cbr\u003eFri Jan 09 15:02:36 +0000 2015"}, {"group": 1473, "id": 2, "label": "553567658344722432", "shape": "dot", "size": 10, "title": "553567658344722432\u003cbr\u003e@Bipartisanism the racist ones are\u003cbr\u003emy faves \u0026lt;3 \u0026lt;3 \u0026lt;3\u003cbr\u003eso talented in his depiction\u003cbr\u003eof Black people as apes\u003cbr\u003e:D\u003cbr\u003eFri Jan 09 15:03:09 +0000 2015"}, {"group": 1473, "id": 4, "label": "553568861061398528", "shape": "dot", "size": 10, "title": "553568861061398528\u003cbr\u003e@Bipartisanism I so agree with\u003cbr\u003eu on that .. @Cartoon_Hebdo\u003cbr\u003e_\u003cbr\u003eFri Jan 09 15:07:55 +0000 2015"}, {"group": 1473, "id": 5, "label": "553624514756501504", "shape": "dot", "size": 10, "title": "553624514756501504\u003cbr\u003e@Bipartisanism @P0TUS I found about\u003cbr\u003e20 in my @DeviantArt stream.\u003cbr\u003e \n(I may have to\u003cbr\u003emake one of my own)\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:49:04 +0000 2015"}, {"group": 1473, "id": 6, "label": "553624728703729664", "shape": "dot", "size": 10, "title": "553624728703729664\u003cbr\u003e@Bipartisanism http://t.co/mR5vXN9wBL\u003cbr\u003eFri Jan 09 18:49:55 +0000 2015"}, {"group": 1473, "id": 7, "label": "553624906626506753", "shape": "dot", "size": 10, "title": "553624906626506753\u003cbr\u003e@Bipartisanism @moxyladies The \"PEN\" got\u003cbr\u003eme know where. \n#Letters \n#Time\u003cbr\u003e\n#NoReply \n#War \n#SupremeCourt  \n#Canada\u003cbr\u003e\n#NonHuman \n#Vote \n#White\u003cbr\u003eFri Jan 09 18:50:38 +0000 2015"}, {"group": 1473, "id": 8, "label": "553633734730076161", "shape": "dot", "size": 10, "title": "553633734730076161\u003cbr\u003e@Bipartisanism @BanjoHfuhruhur The pen is\u003cbr\u003emore powerful than the sword!\u003cbr\u003e\u003cbr\u003eFri Jan 09 19:25:43 +0000 2015"}, {"group": 1473, "id": 3, "label": "553567723616501761", "shape": "dot", "size": 10, "title": "553567723616501761\u003cbr\u003e@Bipartisanism fuck ass.\u003cbr\u003eFri Jan 09 15:03:24 +0000 2015"}, {"group": 1473, "id": 9, "label": "553633943434825728", "shape": "dot", "size": 10, "title": "553633943434825728\u003cbr\u003e@ian_baylis @Bipartisanism As long as\u003cbr\u003eit is \u0027sharpe\u0027 enough...\u003cbr\u003eFri Jan 09 19:26:32 +0000 2015"}, {"group": 1473, "id": 10, "label": "553636478413070336", "shape": "dot", "size": 10, "title": "553636478413070336\u003cbr\u003e@BanjoHfuhruhur @Bipartisanism My father told\u003cbr\u003eme never to get in\u003cbr\u003ebetween duelling banjos!\u003cbr\u003eFri Jan 09 19:36:37 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

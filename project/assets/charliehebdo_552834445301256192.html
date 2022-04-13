@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1757, "id": 0, "label": "552834445301256192", "shape": "dot", "size": 10, "title": "552834445301256192\u003cbr\u003eBREAKING: Three gunmen involved in\u003cbr\u003eattack on Charlie Hebdo magazine,\u003cbr\u003eFrench Interior Minister Bernard Cazeneuve\u003cbr\u003esays. http://t.co/ak9mTVfJdR\u003cbr\u003eWed Jan 07 14:29:37 +0000 2015"}, {"group": 1757, "id": 1, "label": "552878484964397056", "shape": "dot", "size": 10, "title": "552878484964397056\u003cbr\u003e@cnni the Islamic leaders should\u003cbr\u003edo something about the image\u003cbr\u003eof islam by speaking out\u003cbr\u003eagainst the terrorists\u003cbr\u003eWed Jan 07 17:24:37 +0000 2015"}, {"group": 1757, "id": 2, "label": "552882284609961984", "shape": "dot", "size": 10, "title": "552882284609961984\u003cbr\u003e@cnni expel muslims from european\u003cbr\u003esoil and destroy all the\u003cbr\u003emosques.\u003cbr\u003eWed Jan 07 17:39:43 +0000 2015"}, {"group": 1757, "id": 3, "label": "552984051158888448", "shape": "dot", "size": 10, "title": "552984051158888448\u003cbr\u003e@cnni it\u0027s not the religion.\u003cbr\u003e But how the people\u003cbr\u003e interpret the writings and\u003cbr\u003ethat\u0027s what causes them to\u003cbr\u003edo bad things.\u003cbr\u003eThu Jan 08 00:24:06 +0000 2015"}, {"group": 1757, "id": 4, "label": "553061638392532992", "shape": "dot", "size": 10, "title": "553061638392532992\u003cbr\u003e@cnni terrorism needs concerted efforts\u003cbr\u003efrom every citizen to fight\u003cbr\u003eit,religion is going beyond boundaries\u003cbr\u003eif it can cause terror\u003cbr\u003eattacks\u003cbr\u003eThu Jan 08 05:32:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

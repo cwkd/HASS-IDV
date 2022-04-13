@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1425, "id": 0, "label": "553551279620755458", "shape": "dot", "size": 10, "title": "553551279620755458\u003cbr\u003eA James O\u2019Brien master class\u003cbr\u003ein how to deal with\u003cbr\u003epeople demanding that Muslims apologise\u003cbr\u003efor #Charliehebdo https://t.co/l5qVL7m2Ca\u003cbr\u003eFri Jan 09 13:58:04 +0000 2015"}, {"group": 1425, "id": 1, "label": "553551866727264256", "shape": "dot", "size": 10, "title": "553551866727264256\u003cbr\u003e@LBC Why should they apologise?\u003cbr\u003eI would just like to\u003cbr\u003esee the same amount of\u003cbr\u003eprotesting and denunciations as we\u003cbr\u003edo for Gaza.\u003cbr\u003eFri Jan 09 14:00:24 +0000 2015"}, {"group": 1425, "id": 2, "label": "553552001481863168", "shape": "dot", "size": 10, "title": "553552001481863168\u003cbr\u003e@LBC Apologise, no. Condemn it,\u003cbr\u003eyes.\u003cbr\u003eFri Jan 09 14:00:56 +0000 2015"}, {"group": 1425, "id": 5, "label": "553556530893975552", "shape": "dot", "size": 10, "title": "553556530893975552\u003cbr\u003e@LBC @mrjamesob man I\u0027m sorry\u003cbr\u003efor the ignorant shit you\u003cbr\u003eget\u003cbr\u003eFri Jan 09 14:18:56 +0000 2015"}, {"group": 1425, "id": 6, "label": "553556993831886849", "shape": "dot", "size": 10, "title": "553556993831886849\u003cbr\u003e. @LBC @mrjamesob hahaha \"the\u003cbr\u003eshoe bomber was called Richard.\u003cbr\u003eSo all Richards should apologise\"\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:20:46 +0000 2015"}, {"group": 1425, "id": 11, "label": "553575597591777282", "shape": "dot", "size": 10, "title": "553575597591777282\u003cbr\u003e@LBC I wud love 2\u003cbr\u003esee James go 2 Rochdale\u003cbr\u003eRotherham, and stand in the\u003cbr\u003estreet and make a broadcats\u003cbr\u003efrom there and see how\u003cbr\u003ehe gets on.\u003cbr\u003eFri Jan 09 15:34:42 +0000 2015"}, {"group": 1425, "id": 3, "label": "553553694109995008", "shape": "dot", "size": 10, "title": "553553694109995008\u003cbr\u003e@Jonnyarsenal @LBC Fat chance ,\u003cbr\u003ethe great unwashed won\u0027t come\u003cbr\u003edown to london to demonstrate\u003cbr\u003eas they did in the\u003cbr\u003esummer , no Jews no\u003cbr\u003eint\u003cbr\u003eFri Jan 09 14:07:39 +0000 2015"}, {"group": 1425, "id": 4, "label": "553553895394664449", "shape": "dot", "size": 10, "title": "553553895394664449\u003cbr\u003e@HPat67 @LBC Nope, no interest\u003cbr\u003eat all. Sad isn\u0027t it.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:08:27 +0000 2015"}, {"group": 1425, "id": 19, "label": "553582658627055616", "shape": "dot", "size": 10, "title": "553582658627055616\u003cbr\u003e@Jonnyarsenal @LBC Sad how mainstream\u003cbr\u003emedia won\u0027t say a peep\u003cbr\u003e, naturally hostage taken at\u003cbr\u003eJewish deli. All else fails\u003cbr\u003ekill Jews\u003cbr\u003eFri Jan 09 16:02:45 +0000 2015"}, {"group": 1425, "id": 21, "label": "553582686816985088", "shape": "dot", "size": 10, "title": "553582686816985088\u003cbr\u003e@Jonnyarsenal @LBC Default setting\u003cbr\u003eFri Jan 09 16:02:52 +0000 2015"}, {"group": 1425, "id": 7, "label": "553557819191209984", "shape": "dot", "size": 10, "title": "553557819191209984\u003cbr\u003e@HereBeSin @LBC Thank you, but\u003cbr\u003eI\u0027d be more bothered if\u003cbr\u003eit stopped! It\u0027s part of\u003cbr\u003emy job to show that\u003cbr\u003epeople (with votes) have such\u003cbr\u003e\u0027views\u0027.\u003cbr\u003eFri Jan 09 14:24:03 +0000 2015"}, {"group": 1425, "id": 8, "label": "553558052969136128", "shape": "dot", "size": 10, "title": "553558052969136128\u003cbr\u003e@mrjamesob @LBC that guy wasnt\u003cbr\u003etoo awful, but just the\u003cbr\u003etweets in the reply, wow.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:24:59 +0000 2015"}, {"group": 1425, "id": 13, "label": "553577579996000256", "shape": "dot", "size": 10, "title": "553577579996000256\u003cbr\u003e@mrjamesob @HereBeSin @LBC may be\u003cbr\u003ein your world. They wouldn\u0027t\u003cbr\u003ebe allowed the vote! #perfectworld\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:42:34 +0000 2015"}, {"group": 1425, "id": 9, "label": "553558657070530560", "shape": "dot", "size": 10, "title": "553558657070530560\u003cbr\u003e@HereBeSin Fairly mild today. Although\u003cbr\u003eyou\u0027ll be able to see\u003cbr\u003ewhat people I\u0027ve already blocked/muted\u003cbr\u003esay about a show they\u003cbr\u003e\u0027never\u0027 listen to!\u003cbr\u003eFri Jan 09 14:27:23 +0000 2015"}, {"group": 1425, "id": 10, "label": "553559441904533504", "shape": "dot", "size": 10, "title": "553559441904533504\u003cbr\u003e@mrjamesob the most \u0027reasonable\u0027 are\u003cbr\u003esaying Muslims shouldn\u0027t apologise but\u003cbr\u003eshould condemn the attack. Where\u003cbr\u003edo you even start with\u003cbr\u003ethat?!\u003cbr\u003eFri Jan 09 14:30:30 +0000 2015"}, {"group": 1425, "id": 12, "label": "553577214571474945", "shape": "dot", "size": 10, "title": "553577214571474945\u003cbr\u003e@mrjamesob @HereBeSin Would James like\u003cbr\u003eto apologise Now for the\u003cbr\u003eattacks that will soon come\u003cbr\u003eto London no doubt. You\u003cbr\u003eseem to block everyone!\u003cbr\u003eFri Jan 09 15:41:07 +0000 2015"}, {"group": 1425, "id": 14, "label": "553578444622401538", "shape": "dot", "size": 10, "title": "553578444622401538\u003cbr\u003e@TrevorJenkins2 *yawn* sod off already.\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:46:00 +0000 2015"}, {"group": 1425, "id": 15, "label": "553578848957505537", "shape": "dot", "size": 10, "title": "553578848957505537\u003cbr\u003e@HereBeSin I forgot you were\u003cbr\u003ea fascist, oh your so\u003cbr\u003eunimportant view..!\u003cbr\u003eFri Jan 09 15:47:37 +0000 2015"}, {"group": 1425, "id": 16, "label": "553581160673341441", "shape": "dot", "size": 10, "title": "553581160673341441\u003cbr\u003e@HereBeSin @lbc @mrjamesob  I\u003cbr\u003ethink it\u0027s funny when trolls\u003cbr\u003edon\u0027t like their own medicine\u003cbr\u003ethen block you! #halallover http://t.co/4Tkv7suOej\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:56:48 +0000 2015"}, {"group": 1425, "id": 17, "label": "553581676086198272", "shape": "dot", "size": 10, "title": "553581676086198272\u003cbr\u003e@TrevorJenkins2 @HereBeSin @LBC @mrjamesob Looking\u003cbr\u003eat her profile, she a\u003cbr\u003ebig support of the #halal\u003cbr\u003etrade!\u003cbr\u003eFri Jan 09 15:58:51 +0000 2015"}, {"group": 1425, "id": 18, "label": "553582476845924352", "shape": "dot", "size": 10, "title": "553582476845924352\u003cbr\u003e@BrianOJames1984 @TrevorJenkins2  firstly I\u0027m\u003cbr\u003ea bloke, secondly I\u0027m a\u003cbr\u003evegan, thirdly, sod off x2\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:02:02 +0000 2015"}, {"group": 1425, "id": 20, "label": "553582662259343360", "shape": "dot", "size": 10, "title": "553582662259343360\u003cbr\u003e@HereBeSin @TrevorJenkins2 Well you don\u0027t\u003cbr\u003eoppose Halal\u003cbr\u003eFri Jan 09 16:02:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 19, "weight": 1}, {"from": 4, "to": 21, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 13, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

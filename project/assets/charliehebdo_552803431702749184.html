@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 83, "id": 0, "label": "552803431702749184", "shape": "dot", "size": 10, "title": "552803431702749184\u003cbr\u003eI do not agree with\u003cbr\u003ewhat you have to say,\u003cbr\u003ebut I\u0027ll defend to the\u003cbr\u003edeath your right to say\u003cbr\u003eit - Voltaire #CharlieHebdo http://t.co/5fzKhE1LdJ\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:26:23 +0000 2015"}, {"group": 83, "id": 1, "label": "552804306559053824", "shape": "dot", "size": 10, "title": "552804306559053824\u003cbr\u003e@AdityaRajKaul I get your point\u003cbr\u003eand support it but Voltaire\u003cbr\u003enever said that :-(\u003cbr\u003eWed Jan 07 12:29:51 +0000 2015"}, {"group": 83, "id": 2, "label": "552804521450438660", "shape": "dot", "size": 10, "title": "552804521450438660\u003cbr\u003e@AdityaRajKaul \"To say it\" Not\u003cbr\u003eto blaspheme it. The nuance\u003cbr\u003eis subtle. #CharlieHebdo had to\u003cbr\u003ebe creative in expressing his\u003cbr\u003eantagonistic views.\u003cbr\u003eWed Jan 07 12:30:43 +0000 2015"}, {"group": 83, "id": 3, "label": "552804943187705856", "shape": "dot", "size": 10, "title": "552804943187705856\u003cbr\u003e@AdityaRajKaul These were not his\u003cbr\u003ewords, but rather those of\u003cbr\u003eEvelyn Beatrice Hall, written under\u003cbr\u003ethe pseudonym S. G. Tallentyre.\u003cbr\u003e- Wikipedia\u003cbr\u003eWed Jan 07 12:32:23 +0000 2015"}, {"group": 83, "id": 4, "label": "552808667343384576", "shape": "dot", "size": 10, "title": "552808667343384576\u003cbr\u003e@AdityaRajKaul . Will u? Let\u0027s\u003cbr\u003esee if @timesnow and u\u003cbr\u003ehave the guts to publish\u003cbr\u003eit!\u003cbr\u003eWed Jan 07 12:47:11 +0000 2015"}, {"group": 83, "id": 5, "label": "552809499552010242", "shape": "dot", "size": 10, "title": "552809499552010242\u003cbr\u003e@AdityaRajKaul @kailashkaushik8 haha...are bjp guys\u003cbr\u003e\u0026amp; Hindus included in that\u003cbr\u003eex. Sakshi Maharaj\u003cbr\u003eWed Jan 07 12:50:30 +0000 2015"}, {"group": 83, "id": 6, "label": "552811010482913281", "shape": "dot", "size": 10, "title": "552811010482913281\u003cbr\u003eMr @AdityaRajKaul ..... do you\u003cbr\u003eagree that \"right to not\u003cbr\u003esay anything\" is also my\u003cbr\u003eright and you should defend\u003cbr\u003eit. #Hypocrisy @TheSheWoolf\u003cbr\u003eWed Jan 07 12:56:30 +0000 2015"}, {"group": 83, "id": 7, "label": "552811436611608576", "shape": "dot", "size": 10, "title": "552811436611608576\u003cbr\u003eWhen @AdityaRajKaul was shoving his\u003cbr\u003emic on a Rajasthan Ministers\u003cbr\u003eface, he forgot this. U\u003cbr\u003eshould stop taking moral high\u003cbr\u003eground. @TheSheWoolf\u003cbr\u003eWed Jan 07 12:58:11 +0000 2015"}, {"group": 83, "id": 8, "label": "552814408166940672", "shape": "dot", "size": 10, "title": "552814408166940672\u003cbr\u003e@AdityaRajKaul yes keep saying it\u003cbr\u003emoron...tolerance is only valid to\u003cbr\u003ehindus, try criticizing others, u\u003cbr\u003ewill also end like those\u003cbr\u003ein french\u003cbr\u003eWed Jan 07 13:10:00 +0000 2015"}, {"group": 83, "id": 10, "label": "553029942808961024", "shape": "dot", "size": 10, "title": "553029942808961024\u003cbr\u003e@AdityaRajKaul @shaunhurrell A famous misquote\u003cbr\u003e\u003cbr\u003eThu Jan 08 03:26:27 +0000 2015"}, {"group": 83, "id": 9, "label": "552815503412965378", "shape": "dot", "size": 10, "title": "552815503412965378\u003cbr\u003e@AdityaRajKaul tell me more about\u003cbr\u003ethose moral lessons Mr Kashmiri\u003cbr\u003epandit..i hearing everything except criticizing\u003cbr\u003eislam from you people\u003cbr\u003eWed Jan 07 13:14:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

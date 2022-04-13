@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 907, "id": 0, "label": "553148844574511104", "shape": "dot", "size": 10, "title": "553148844574511104\u003cbr\u003eAmidst 100s gathered as close\u003cbr\u003eto #CharlieHebdo office as we\u003cbr\u003ecan get\u2026 France observes silence\u2026\u003cbr\u003eNotre Dame bells ring http://t.co/RbTC6Si5Hy\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:18:56 +0000 2015"}, {"group": 907, "id": 1, "label": "553148995632394241", "shape": "dot", "size": 10, "title": "553148995632394241\u003cbr\u003e@camanpour Viva la France.\u003cbr\u003eThu Jan 08 11:19:32 +0000 2015"}, {"group": 907, "id": 2, "label": "553149403834249218", "shape": "dot", "size": 10, "title": "553149403834249218\u003cbr\u003e@camanpour get CNN to show\u003cbr\u003ethe cartoons as a statement\u003cbr\u003efor free speech\u003cbr\u003eThu Jan 08 11:21:09 +0000 2015"}, {"group": 907, "id": 3, "label": "553149412776878080", "shape": "dot", "size": 10, "title": "553149412776878080\u003cbr\u003e@camanpour @fpleitgenCNN Bells toll, madam\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:21:11 +0000 2015"}, {"group": 907, "id": 4, "label": "553150566608957441", "shape": "dot", "size": 10, "title": "553150566608957441\u003cbr\u003e@camanpour complete lack of condemenation\u003cbr\u003eof mass murder from certain\u003cbr\u003eparts of humanity rings loud\u003cbr\u003ein my ears\u003cbr\u003eThu Jan 08 11:25:46 +0000 2015"}, {"group": 907, "id": 6, "label": "553152366464090114", "shape": "dot", "size": 10, "title": "553152366464090114\u003cbr\u003e@camanpour @cnni They are responsible\u003cbr\u003efor hurting emotions and feelings\u003cbr\u003eof large part of humanity\u003cbr\u003eand doing it continuously.\u003cbr\u003eThu Jan 08 11:32:55 +0000 2015"}, {"group": 907, "id": 7, "label": "553152478389493760", "shape": "dot", "size": 10, "title": "553152478389493760\u003cbr\u003e@camanpour bet those citizens wish\u003cbr\u003ethey had AMERICAN weapons http://t.co/DztLHB69B7\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:33:22 +0000 2015"}, {"group": 907, "id": 8, "label": "553153968864755712", "shape": "dot", "size": 10, "title": "553153968864755712\u003cbr\u003e@camanpour @CNN too bad they\u003cbr\u003ecan\u0027t protect themselves with a\u003cbr\u003egun. See what happens liberals?\ud83d\udc94\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:39:17 +0000 2015"}, {"group": 907, "id": 9, "label": "553155851716804608", "shape": "dot", "size": 10, "title": "553155851716804608\u003cbr\u003e@camanpour Christiane I followed many\u003cbr\u003eof your Stories but you\u003cbr\u003eseem to be pretty Racist\u003cbr\u003e\u0026amp; uneducated in History.\u003cbr\u003eThu Jan 08 11:46:46 +0000 2015"}, {"group": 907, "id": 10, "label": "553156159545159680", "shape": "dot", "size": 10, "title": "553156159545159680\u003cbr\u003e@camanpour @CNN RIP those killed\u003cbr\u003eat #CharlieHabdo. Assassins from the\u003cbr\u003e17th century strike again. Need\u003cbr\u003ea thicker skin. Let freedom\u003cbr\u003ering!\u003cbr\u003eThu Jan 08 11:48:00 +0000 2015"}, {"group": 907, "id": 11, "label": "553157679292882944", "shape": "dot", "size": 10, "title": "553157679292882944\u003cbr\u003e@camanpour @CNN amanpour it\u0027s yours,\u003cbr\u003ethe victims of Paris shooting,\u003cbr\u003eyou played with Islam terrorism,\u003cbr\u003ego to Pakistan, bitch !\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:54:02 +0000 2015"}, {"group": 907, "id": 12, "label": "553159512887418880", "shape": "dot", "size": 10, "title": "553159512887418880\u003cbr\u003e@camanpour @CNN Viva la France!\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:01:19 +0000 2015"}, {"group": 907, "id": 13, "label": "553162804505874432", "shape": "dot", "size": 10, "title": "553162804505874432\u003cbr\u003e@camanpour @CNN \nWhen 2 may\u003cbr\u003ein Odessa burned alive people,\u003cbr\u003enot one of your bell\u003cbr\u003edid not flinch.\nSincerely wish you\u003cbr\u003eall died.\u003cbr\u003eThu Jan 08 12:14:24 +0000 2015"}, {"group": 907, "id": 14, "label": "553162952355094528", "shape": "dot", "size": 10, "title": "553162952355094528\u003cbr\u003e@camanpour killing will not stop\u003cbr\u003ein as much as there\u0027s\u003cbr\u003epeople who don\u0027t have human\u003cbr\u003efeeling.\u003cbr\u003eThu Jan 08 12:14:59 +0000 2015"}, {"group": 907, "id": 15, "label": "553167411805835264", "shape": "dot", "size": 10, "title": "553167411805835264\u003cbr\u003e@camanpour The Paris tribute has\u003cbr\u003etouched my heart and made\u003cbr\u003ethe loss real, all the\u003cbr\u003eway to Texas. Thank you\u003cbr\u003efor your reports.\u003cbr\u003eThu Jan 08 12:32:42 +0000 2015"}, {"group": 907, "id": 16, "label": "553167532287590400", "shape": "dot", "size": 10, "title": "553167532287590400\u003cbr\u003e@camanpour @CNN where is Islam\u0027s\u003cbr\u003eofficial condemnation of the #CharlieHebdo\u003cbr\u003eevents?\u003cbr\u003eThu Jan 08 12:33:11 +0000 2015"}, {"group": 907, "id": 17, "label": "553168818764144640", "shape": "dot", "size": 10, "title": "553168818764144640\u003cbr\u003e@camanpour Repose en paix.\u003cbr\u003eThu Jan 08 12:38:18 +0000 2015"}, {"group": 907, "id": 18, "label": "553169064710139905", "shape": "dot", "size": 10, "title": "553169064710139905\u003cbr\u003e@camanpour Christiane  tx for\u003cbr\u003ementioning The NOTRE DAME DE\u003cbr\u003ePARIS x Caroline\u003cbr\u003eThu Jan 08 12:39:17 +0000 2015"}, {"group": 907, "id": 5, "label": "553152297724047360", "shape": "dot", "size": 10, "title": "553152297724047360\u003cbr\u003e@Mariodinava @camanpour  VIVA Islam\u003cbr\u003eVIVA Prophet Muhammed\u003cbr\u003eThu Jan 08 11:32:39 +0000 2015"}, {"group": 907, "id": 19, "label": "553169273384738819", "shape": "dot", "size": 10, "title": "553169273384738819\u003cbr\u003e@Vishwaaggarwal @camanpour Did I miss\u003cbr\u003esomething, Vishwa?  If opinions\u003cbr\u003ediffer, does that make us\u003cbr\u003eall racist and uneducated? \u003cbr\u003ePity on you.\u003cbr\u003eThu Jan 08 12:40:06 +0000 2015"}, {"group": 907, "id": 20, "label": "553270112535318528", "shape": "dot", "size": 10, "title": "553270112535318528\u003cbr\u003e@gaynorroberts6 @camanpour It is not\u003cbr\u003ethe matter of different opinion,\u003cbr\u003ethe fact is CNN journos\u003cbr\u003etwist/ lie \u0026amp; magnify to\u003cbr\u003epromote US\u0026amp; UK Agenda\u003cbr\u003eThu Jan 08 19:20:48 +0000 2015"}, {"group": 907, "id": 24, "label": "553278054508679168", "shape": "dot", "size": 10, "title": "553278054508679168\u003cbr\u003e@gaynorroberts6 @camanpour CNN Journos promote\u003cbr\u003e\u0026amp; magnify Terror based on\u003cbr\u003eLies\u003cbr\u003eThu Jan 08 19:52:22 +0000 2015"}, {"group": 907, "id": 21, "label": "553270600433561600", "shape": "dot", "size": 10, "title": "553270600433561600\u003cbr\u003e@Vishwaaggarwal @camanpour Which is why\u003cbr\u003ewe all have (\u0026amp; allowed)\u003cbr\u003edifferent opinions in my/our society.\u003cbr\u003e Again, pity for you.\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:22:45 +0000 2015"}, {"group": 907, "id": 22, "label": "553277306030927874", "shape": "dot", "size": 10, "title": "553277306030927874\u003cbr\u003e@gaynorroberts6 @camanpour US\u0026amp;UK MSM r\u003cbr\u003ein the fore front of\u003cbr\u003elying\u0026amp;magnifying small incidences 2Conflicts. Did\u003cbr\u003ethey amplify Fergusan\u0026amp;Scotland\u003cbr\u003eThu Jan 08 19:49:23 +0000 2015"}, {"group": 907, "id": 23, "label": "553277741265461248", "shape": "dot", "size": 10, "title": "553277741265461248\u003cbr\u003e@gaynorroberts6 @camanpour I very well\u003cbr\u003eunderstand the different approach to\u003cbr\u003eSolutions. Important to have Universal\u003cbr\u003eBrotherhood for peace\u003cbr\u003eThu Jan 08 19:51:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 9, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 24, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

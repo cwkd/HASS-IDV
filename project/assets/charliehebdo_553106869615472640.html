@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 760, "id": 0, "label": "553106869615472640", "shape": "dot", "size": 10, "title": "553106869615472640\u003cbr\u003eOh France.... my heart breaks\u003cbr\u003efor the horrible terrorist attack\u003cbr\u003eon my beloved Paris. \u003cbr\u003eJe t\u0027aime\u003cbr\u003eThu Jan 08 08:32:08 +0000 2015"}, {"group": 760, "id": 1, "label": "553108713695739905", "shape": "dot", "size": 10, "title": "553108713695739905\u003cbr\u003e@PauleyP I\u0027m as shocked as\u003cbr\u003eyou are.\u003cbr\u003eThu Jan 08 08:39:28 +0000 2015"}, {"group": 760, "id": 2, "label": "553108848371056640", "shape": "dot", "size": 10, "title": "553108848371056640\u003cbr\u003e@PauleyP Thank you so much!!:)\u003cbr\u003e\u003cbr\u003eThu Jan 08 08:40:00 +0000 2015"}, {"group": 760, "id": 3, "label": "553109144736395264", "shape": "dot", "size": 10, "title": "553109144736395264\u003cbr\u003e@PauleyP MERCI :) #JeSuisCharlie\u003cbr\u003eThu Jan 08 08:41:11 +0000 2015"}, {"group": 760, "id": 4, "label": "553109528963977216", "shape": "dot", "size": 10, "title": "553109528963977216\u003cbr\u003e@PauleyP merci pour votre soutien\u003cbr\u003e\u00e0 notre pays. #JeSuisCharlie #CharlieHebdo\u003cbr\u003e#PoliceNationale #Freedomofspeechwillneverbeshuttingdown\u003cbr\u003eThu Jan 08 08:42:42 +0000 2015"}, {"group": 760, "id": 5, "label": "553113661225857025", "shape": "dot", "size": 10, "title": "553113661225857025\u003cbr\u003e@PauleyP Thank you #JeSuisCharlie\u003cbr\u003eThu Jan 08 08:59:07 +0000 2015"}, {"group": 760, "id": 6, "label": "553118380224679937", "shape": "dot", "size": 10, "title": "553118380224679937\u003cbr\u003e@PauleyP #jesuischarlie\n#CharlieHebdo \n#Libertedelapresse http://t.co/dR95BxXMd9\u003cbr\u003eThu Jan 08 09:17:52 +0000 2015"}, {"group": 760, "id": 7, "label": "553118620260507648", "shape": "dot", "size": 10, "title": "553118620260507648\u003cbr\u003e@PauleyP MERCI Pauley\u003cbr\u003eThu Jan 08 09:18:50 +0000 2015"}, {"group": 760, "id": 8, "label": "553122001859379201", "shape": "dot", "size": 10, "title": "553122001859379201\u003cbr\u003e@PauleyP  @PauleyP oh merci\u003cbr\u003e! #ThanksTheWolrdFromFrance\u003cbr\u003eThu Jan 08 09:32:16 +0000 2015"}, {"group": 760, "id": 9, "label": "553215937613398017", "shape": "dot", "size": 10, "title": "553215937613398017\u003cbr\u003e@PauleyP Merci beaucoup Pauley pour\u003cbr\u003ele soutien ! \ud83d\ude2d \u2665\u003cbr\u003eOn t\u0027aime !!! \ud83d\udc95\ud83c\uddeb\ud83c\uddf7\u003cbr\u003eThu Jan 08 15:45:32 +0000 2015"}, {"group": 760, "id": 10, "label": "553301133796843520", "shape": "dot", "size": 10, "title": "553301133796843520\u003cbr\u003e@PauleyP omg je t\u0027aime toi.\u003cbr\u003eI love you.\u003cbr\u003eThu Jan 08 21:24:04 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

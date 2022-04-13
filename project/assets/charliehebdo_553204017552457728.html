@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1117, "id": 0, "label": "553204017552457728", "shape": "dot", "size": 10, "title": "553204017552457728\u003cbr\u003eProud ! When Youth of\u003cbr\u003eFrance stand up \u0026amp; say\u003cbr\u003e#JesuisCharlie in HighSchool #Lyc\u00e9eColomb #HauteSaone\u003cbr\u003e@MathildeGrillot http://t.co/yQKViuS31Z\u003cbr\u003eThu Jan 08 14:58:10 +0000 2015"}, {"group": 1117, "id": 1, "label": "553207764978524163", "shape": "dot", "size": 10, "title": "553207764978524163\u003cbr\u003e@domdelport @BHertogh @MathildeGrillot Where were\u003cbr\u003ethey on september 2012 when\u003cbr\u003e#CharlieHebdo was charged of offensing\u003cbr\u003eislam?\u003cbr\u003eThu Jan 08 15:13:03 +0000 2015"}, {"group": 1117, "id": 5, "label": "553212284357869569", "shape": "dot", "size": 10, "title": "553212284357869569\u003cbr\u003e@domdelport @MathildeGrillot @alxtoo actually, they\u003cbr\u003esat down...\u003cbr\u003eThu Jan 08 15:31:01 +0000 2015"}, {"group": 1117, "id": 8, "label": "553282014200463363", "shape": "dot", "size": 10, "title": "553282014200463363\u003cbr\u003e@domdelport je suis tellement fiere\u003cbr\u003ede mon lycee et de\u003cbr\u003emettre moi meme impliquee dans\u003cbr\u003ecette acte de soutient face\u003cbr\u003ea la douleur dz chacun\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:08:06 +0000 2015"}, {"group": 1117, "id": 2, "label": "553208425136795649", "shape": "dot", "size": 10, "title": "553208425136795649\u003cbr\u003e@cleamounette @domdelport @BHertogh @MathildeGrillot pas\u003cbr\u003el\u00e0!\u003cbr\u003eThu Jan 08 15:15:41 +0000 2015"}, {"group": 1117, "id": 3, "label": "553208620872384512", "shape": "dot", "size": 10, "title": "553208620872384512\u003cbr\u003e@cleamounette mtn on parle de\u003cbr\u003epersonnes tu\u00e9s, pas seulement un\u003cbr\u003eprocc\u00e9s\u003cbr\u003eThu Jan 08 15:16:27 +0000 2015"}, {"group": 1117, "id": 4, "label": "553209201758306304", "shape": "dot", "size": 10, "title": "553209201758306304\u003cbr\u003e@cleamounette @domdelport @BHertogh @MathildeGrillot In\u003cbr\u003eUranus?\u003cbr\u003eThu Jan 08 15:18:46 +0000 2015"}, {"group": 1117, "id": 6, "label": "553214396907130882", "shape": "dot", "size": 10, "title": "553214396907130882\u003cbr\u003e@JlsSdn @MathildeGrillot @alxtoo fair point\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:39:25 +0000 2015"}, {"group": 1117, "id": 7, "label": "553220497463607297", "shape": "dot", "size": 10, "title": "553220497463607297\u003cbr\u003e@domdelport @MathildeGrillot @alxtoo Still the\u003cbr\u003ebest sit-in I saw today\u003cbr\u003e;-)\u003cbr\u003eThu Jan 08 16:03:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1811, "id": 0, "label": "553139203320860672", "shape": "dot", "size": 10, "title": "553139203320860672\u003cbr\u003eFrench media reporting owner of\u003cbr\u003epetrol station saw 2 men\u003cbr\u003ewearing masks in car with\u003cbr\u003eguns \u0026amp; rocket launcher #CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:40:37 +0000 2015"}, {"group": 1811, "id": 1, "label": "553140129096036352", "shape": "dot", "size": 10, "title": "553140129096036352\u003cbr\u003e@bbclysedoucet So its easy for\u003cbr\u003eIslamists to turn any part\u003cbr\u003eof the world into a\u003cbr\u003ewar zone, why and where\u003cbr\u003efrom this rocket launcher?\u003cbr\u003eThu Jan 08 10:44:18 +0000 2015"}, {"group": 1811, "id": 3, "label": "553141662604472321", "shape": "dot", "size": 10, "title": "553141662604472321\u003cbr\u003e@bbclysedoucet Israel was loosing unjust\u003cbr\u003esupport from EU and NATO\u003cbr\u003ewas worried about US policies\u003cbr\u003eof sanctions and military ops\u003cbr\u003eso MOSAD activ\u003cbr\u003eThu Jan 08 10:50:23 +0000 2015"}, {"group": 1811, "id": 6, "label": "553142516099203072", "shape": "dot", "size": 10, "title": "553142516099203072\u003cbr\u003e@bbclysedoucet @BBCWorld Baby photo contest\u003cbr\u003eare involved, you voted offline\u003cbr\u003epublications Tweet\nthank you\nhttp://t.co/Cf3z3jOxyx\u003cbr\u003eThu Jan 08 10:53:47 +0000 2015"}, {"group": 1811, "id": 8, "label": "553142694915366912", "shape": "dot", "size": 10, "title": "553142694915366912\u003cbr\u003e@bbclysedoucet @BBCWorld shocked\u003cbr\u003eThu Jan 08 10:54:30 +0000 2015"}, {"group": 1811, "id": 10, "label": "553143636431761408", "shape": "dot", "size": 10, "title": "553143636431761408\u003cbr\u003e@bbclysedoucet  rocket launcher in\u003cbr\u003eFrance ?  wow this\u003cbr\u003ehas always been a war\u003cbr\u003enot just an attack @bbcworld\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:58:14 +0000 2015"}, {"group": 1811, "id": 11, "label": "553145152546828288", "shape": "dot", "size": 10, "title": "553145152546828288\u003cbr\u003e@bbclysedoucet @joshuapaulshow 2 men wearing\u003cbr\u003eski masks with guns and\u003cbr\u003erocket launchers ...could be Detroit.\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:04:15 +0000 2015"}, {"group": 1811, "id": 12, "label": "553146540257452033", "shape": "dot", "size": 10, "title": "553146540257452033\u003cbr\u003e@bbclysedoucet @BBCWorld Very conspicuous then...\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:09:46 +0000 2015"}, {"group": 1811, "id": 13, "label": "553146770197581824", "shape": "dot", "size": 10, "title": "553146770197581824\u003cbr\u003e@bbclysedoucet @BBCWorld Read Raul Castro\u00b4s\u003cbr\u003eMemo to Cuba\u00b4s first Military\u003cbr\u003eMission to Algeria, Oct. 20,\u003cbr\u003e1963. Doc. 10 http://t.co/o8uobDTGYj\u003cbr\u003eThu Jan 08 11:10:41 +0000 2015"}, {"group": 1811, "id": 14, "label": "553147412362305536", "shape": "dot", "size": 10, "title": "553147412362305536\u003cbr\u003e@bbclysedoucet @BBCWorld \nIs this the\u003cbr\u003enew government secret service uniform?\u003cbr\u003e\nNot very secret is it!\u003cbr\u003e\nCar had \"TERRORIST\" on the\u003cbr\u003esides too!\u003cbr\u003eThu Jan 08 11:13:14 +0000 2015"}, {"group": 1811, "id": 15, "label": "553152608517373953", "shape": "dot", "size": 10, "title": "553152608517373953\u003cbr\u003e@bbclysedoucet @BBCWorld @NBCNews @ABC\u003cbr\u003eThu Jan 08 11:33:53 +0000 2015"}, {"group": 1811, "id": 16, "label": "553191558208819200", "shape": "dot", "size": 10, "title": "553191558208819200\u003cbr\u003e@bbclysedoucet @BBCWorld unarmed police should\u003cbr\u003efair well against that fire\u003cbr\u003epower.\u003cbr\u003eThu Jan 08 14:08:39 +0000 2015"}, {"group": 1811, "id": 2, "label": "553140425176137729", "shape": "dot", "size": 10, "title": "553140425176137729\u003cbr\u003e@FKMM yes look at why\u003cbr\u003ethey did at Iraq innit\u003cbr\u003e@bbclysedoucet\u003cbr\u003eThu Jan 08 10:45:28 +0000 2015"}, {"group": 1811, "id": 4, "label": "553142076695511040", "shape": "dot", "size": 10, "title": "553142076695511040\u003cbr\u003e@FKMM @bbclysedoucet Islamists have not\u003cbr\u003ecapability even to attacks who\u003cbr\u003ekilling them in their homes,so\u003cbr\u003ehow can they do it.Think\u003cbr\u003eabout MOSAD\u003cbr\u003eThu Jan 08 10:52:02 +0000 2015"}, {"group": 1811, "id": 5, "label": "553142197592547329", "shape": "dot", "size": 10, "title": "553142197592547329\u003cbr\u003e@deathendless @bbclysedoucet there is a\u003cbr\u003ethin line between muslims and\u003cbr\u003eextremists and I don\u0027t want\u003cbr\u003eto be blinded that they\u003cbr\u003eare not the same!\u003cbr\u003eThu Jan 08 10:52:31 +0000 2015"}, {"group": 1811, "id": 7, "label": "553142648912216064", "shape": "dot", "size": 10, "title": "553142648912216064\u003cbr\u003e@FKMM don\u0027t be. but it\u003cbr\u003eis funny to say iraq\u0027s\u003cbr\u003einvasion didn\u0027t contribute to it\u003cbr\u003eat all. @bbclysedoucet\u003cbr\u003eThu Jan 08 10:54:19 +0000 2015"}, {"group": 1811, "id": 9, "label": "553143289051103232", "shape": "dot", "size": 10, "title": "553143289051103232\u003cbr\u003e@deathendless @bbclysedoucet It did contribute\u003cbr\u003eeven to the rise of\u003cbr\u003e#Isis now.\u003cbr\u003eThu Jan 08 10:56:51 +0000 2015"}, {"group": 1811, "id": 17, "label": "553198411068223489", "shape": "dot", "size": 10, "title": "553198411068223489\u003cbr\u003e@drtysouthFD the police here have\u003cbr\u003eguns\u2026\u003cbr\u003eThu Jan 08 14:35:53 +0000 2015"}, {"group": 1811, "id": 18, "label": "553214809123356672", "shape": "dot", "size": 10, "title": "553214809123356672\u003cbr\u003e@samingtonhays reports (here)said first 2\u003cbr\u003ecops to arrive were unarmed\u0026amp;\u003cbr\u003efled. All patrol officers have\u003cbr\u003eguns?\u003cbr\u003eThu Jan 08 15:41:03 +0000 2015"}, {"group": 1811, "id": 19, "label": "553215503582625794", "shape": "dot", "size": 10, "title": "553215503582625794\u003cbr\u003e@drtysouthFD the ones who are\u003cbr\u003enow searching this village do,\u003cbr\u003eyes. The French are definitely\u003cbr\u003enot stupid.\u003cbr\u003eThu Jan 08 15:43:48 +0000 2015"}, {"group": 1811, "id": 20, "label": "553216284444610561", "shape": "dot", "size": 10, "title": "553216284444610561\u003cbr\u003e@samingtonhays hope the ones searching\u003cbr\u003ehave more than guns. Do\u003cbr\u003ethe \"regular\" officers all carry\u003cbr\u003eguns?\u003cbr\u003eThu Jan 08 15:46:55 +0000 2015"}, {"group": 1811, "id": 21, "label": "553218776028958722", "shape": "dot", "size": 10, "title": "553218776028958722\u003cbr\u003e@drtysouthFD I don\u2019t think it\u2019s\u003cbr\u003epolicy to start a rocket\u003cbr\u003elauncher battle\u2026 But most of\u003cbr\u003ethem do, yes. Very similar\u003cbr\u003eto the U.S.\u003cbr\u003eThu Jan 08 15:56:49 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

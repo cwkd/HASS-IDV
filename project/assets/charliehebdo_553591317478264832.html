@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1602, "id": 0, "label": "553591317478264832", "shape": "dot", "size": 10, "title": "553591317478264832\u003cbr\u003eBREAKING NEWS: Paris massacre suspects\u003cbr\u003ekilled, hostages in two locations\u003cbr\u003efreed, reports say http://t.co/3pyj3Tc8fU\u003cbr\u003eFri Jan 09 16:37:09 +0000 2015"}, {"group": 1602, "id": 1, "label": "553591402278309888", "shape": "dot", "size": 10, "title": "553591402278309888\u003cbr\u003e\u201c@foxnewsalert: BREAKING NEWS: Paris massacre\u003cbr\u003esuspects killed, hostages in two\u003cbr\u003elocations freed, reports say http://t.co/4vhfRkVIjq\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:37:30 +0000 2015"}, {"group": 1602, "id": 2, "label": "553591591085305856", "shape": "dot", "size": 10, "title": "553591591085305856\u003cbr\u003e@foxnewsalert YES!!!\u003cbr\u003eFri Jan 09 16:38:15 +0000 2015"}, {"group": 1602, "id": 3, "label": "553591645447651328", "shape": "dot", "size": 10, "title": "553591645447651328\u003cbr\u003e@foxnewsalert look at France go\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:38:28 +0000 2015"}, {"group": 1602, "id": 4, "label": "553591935303053312", "shape": "dot", "size": 10, "title": "553591935303053312\u003cbr\u003e@foxnewsalert  killers are dead.\u003cbr\u003eFYI islamic terrorists NO 72\u003cbr\u003evirgins in waiting but theyre\u003cbr\u003eexpected to endure eternity being\u003cbr\u003esodomized\u003cbr\u003eFri Jan 09 16:39:37 +0000 2015"}, {"group": 1602, "id": 5, "label": "553592025195749376", "shape": "dot", "size": 10, "title": "553592025195749376\u003cbr\u003e@foxnewsalert @venicestar1912\u003cbr\u003eFri Jan 09 16:39:58 +0000 2015"}, {"group": 1602, "id": 6, "label": "553592463290400768", "shape": "dot", "size": 10, "title": "553592463290400768\u003cbr\u003eRT \u201c@foxnewsalert: BREAKING NEWS: Paris\u003cbr\u003emassacre suspects killed, hostages in\u003cbr\u003etwo locations freed, reports say\u003cbr\u003ehttp://t.co/y02EoPWWLR\u201d\u003cbr\u003eFri Jan 09 16:41:43 +0000 2015"}, {"group": 1602, "id": 7, "label": "553596318309179394", "shape": "dot", "size": 10, "title": "553596318309179394\u003cbr\u003e@foxnewsalert time for OBAMA to\u003cbr\u003eunleash us on Isis to\u003cbr\u003eshow mslm fkrs don\u0027t fk\u003cbr\u003ewith us!!!\u003cbr\u003eFri Jan 09 16:57:02 +0000 2015"}, {"group": 1602, "id": 8, "label": "553600803244888065", "shape": "dot", "size": 10, "title": "553600803244888065\u003cbr\u003e@foxnewsalert  EUREKA! Let\u0027s get\u003cbr\u003ethe entire Hornet\u0027s Nest in\u003cbr\u003eIraq , Iran, Syria, etc.\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:14:51 +0000 2015"}, {"group": 1602, "id": 9, "label": "553601311090823168", "shape": "dot", "size": 10, "title": "553601311090823168\u003cbr\u003e@foxnewsalert. Where\u0027s the woman and\u003cbr\u003ehow many hostages killed?\u003cbr\u003eFri Jan 09 17:16:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

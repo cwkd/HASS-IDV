@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1993, "id": 0, "label": "553551225560764416", "shape": "dot", "size": 10, "title": "553551225560764416\u003cbr\u003eBREAKING: Another shooting and hostage\u003cbr\u003esituation is reported in Paris,\u003cbr\u003eat least 2 dead http://t.co/Dysuh2lHH3\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:57:51 +0000 2015"}, {"group": 1993, "id": 1, "label": "553551490116497408", "shape": "dot", "size": 10, "title": "553551490116497408\u003cbr\u003e@peoplemag not true. We don\u0027t\u003cbr\u003eknow yet.\u003cbr\u003eFri Jan 09 13:58:54 +0000 2015"}, {"group": 1993, "id": 2, "label": "553551933198565376", "shape": "dot", "size": 10, "title": "553551933198565376\u003cbr\u003e@peoplemag Dam thats crazy\u003cbr\u003eFri Jan 09 14:00:40 +0000 2015"}, {"group": 1993, "id": 4, "label": "553552607948865536", "shape": "dot", "size": 10, "title": "553552607948865536\u003cbr\u003e@peoplemag What in blazes is\u003cbr\u003egoing on??? #Smh\u003cbr\u003eFri Jan 09 14:03:20 +0000 2015"}, {"group": 1993, "id": 5, "label": "553552715675365378", "shape": "dot", "size": 10, "title": "553552715675365378\u003cbr\u003e@peoplemag these extremist Muslims need\u003cbr\u003eto be terminated from the\u003cbr\u003eface of the earth, religion\u003cbr\u003eof peace my ass\u003cbr\u003eFri Jan 09 14:03:46 +0000 2015"}, {"group": 1993, "id": 6, "label": "553553204194324481", "shape": "dot", "size": 10, "title": "553553204194324481\u003cbr\u003e@peoplemag no confirmation for any\u003cbr\u003evictim, only injured people\u003cbr\u003eFri Jan 09 14:05:43 +0000 2015"}, {"group": 1993, "id": 7, "label": "553553509854220289", "shape": "dot", "size": 10, "title": "553553509854220289\u003cbr\u003e@peoplemag I\u0027m in front of\u003cbr\u003emy television, here in France.\u003cbr\u003eAlways be careful with info,\u003cbr\u003ethe \"two deads\" info hasn\u0027t\u003cbr\u003ebeen confirmed.\u003cbr\u003eFri Jan 09 14:06:55 +0000 2015"}, {"group": 1993, "id": 8, "label": "553555055211597824", "shape": "dot", "size": 10, "title": "553555055211597824\u003cbr\u003eAgain? :( \u201c@peoplemag: BREAKING: Another\u003cbr\u003eshooting and hostage situation is\u003cbr\u003ereported in Paris, at least\u003cbr\u003e2 dead http://t.co/j0tCGtyl2j\u201d\u003cbr\u003eFri Jan 09 14:13:04 +0000 2015"}, {"group": 1993, "id": 9, "label": "553555326109495297", "shape": "dot", "size": 10, "title": "553555326109495297\u003cbr\u003e@peoplemag HUSSEIN OBAMA, DEMOCRATS \u0026amp;\u003cbr\u003eTHEIR MEDIA SAY THEY HAVE\u003cbr\u003eNO CONNECTION TO ISLAM -\u003cbr\u003eTHEY SAY OTHERWISE!\u003cbr\u003eFri Jan 09 14:14:08 +0000 2015"}, {"group": 1993, "id": 10, "label": "553556412048367616", "shape": "dot", "size": 10, "title": "553556412048367616\u003cbr\u003ePrayers \u201c@peoplemag: BREAKING: Another shooting\u003cbr\u003eand hostage situation is reported\u003cbr\u003ein Paris, at least 2\u003cbr\u003edead http://t.co/xc0aUQ5Y2Y\u201d\u003cbr\u003eFri Jan 09 14:18:27 +0000 2015"}, {"group": 1993, "id": 11, "label": "553556571242774528", "shape": "dot", "size": 10, "title": "553556571242774528\u003cbr\u003e@peoplemag good\u003cbr\u003eFri Jan 09 14:19:05 +0000 2015"}, {"group": 1993, "id": 12, "label": "553558882979938305", "shape": "dot", "size": 10, "title": "553558882979938305\u003cbr\u003e@peoplemag God help them!\u003cbr\u003eFri Jan 09 14:28:16 +0000 2015"}, {"group": 1993, "id": 13, "label": "553559456102244353", "shape": "dot", "size": 10, "title": "553559456102244353\u003cbr\u003e@peoplemag oh God! help France!\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:30:33 +0000 2015"}, {"group": 1993, "id": 14, "label": "553564843698311169", "shape": "dot", "size": 10, "title": "553564843698311169\u003cbr\u003e@peoplemag i\u0027m from france ,\u003cbr\u003ethere are 4 terrorists in\u003cbr\u003eparis. We are praying for\u003cbr\u003evictims and hostage .thks for\u003cbr\u003eyour support !\u003cbr\u003eFri Jan 09 14:51:58 +0000 2015"}, {"group": 1993, "id": 15, "label": "553566819421024256", "shape": "dot", "size": 10, "title": "553566819421024256\u003cbr\u003e\u201c@peoplemag: BREAKING: Another shooting and\u003cbr\u003ehostage situation is reported in\u003cbr\u003eParis, at least 2 dead\u003cbr\u003ehttp://t.co/zX3T99kl4y\u201d pray for them \ud83d\ude4f\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:59:49 +0000 2015"}, {"group": 1993, "id": 16, "label": "553571446006763520", "shape": "dot", "size": 10, "title": "553571446006763520\u003cbr\u003e\u201c@peoplemag: BREAKING: Another shooting and\u003cbr\u003ehostage situation is reported in\u003cbr\u003eParis, at least 2 dead\u003cbr\u003ehttp://t.co/vG0TQcjTtZ\u201d\u003cbr\u003eFri Jan 09 15:18:12 +0000 2015"}, {"group": 1993, "id": 17, "label": "553575105171697664", "shape": "dot", "size": 10, "title": "553575105171697664\u003cbr\u003e@peoplemag More Manic, Malevolent, Muzzie\u003cbr\u003eMurder \u0026amp; Mayhem. That\u0027s your\u003cbr\u003eheadline. But keep profiling the\u003cbr\u003eTea Party  \u0026amp; not\u003cbr\u003eterrorists. lol\u003cbr\u003eFri Jan 09 15:32:44 +0000 2015"}, {"group": 1993, "id": 3, "label": "553552018997264384", "shape": "dot", "size": 10, "title": "553552018997264384\u003cbr\u003e@SabieBest @peoplemag Oh it\u0027s VERY\u003cbr\u003etrue....\u003cbr\u003eFri Jan 09 14:01:00 +0000 2015"}, {"group": 1993, "id": 18, "label": "553646253343387648", "shape": "dot", "size": 10, "title": "553646253343387648\u003cbr\u003e@Arii_Ak You don\u0027t get. don\u0027t\u003cbr\u003eworry\u003cbr\u003eFri Jan 09 20:15:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 18, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

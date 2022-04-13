@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1387, "id": 0, "label": "553542245966958592", "shape": "dot", "size": 10, "title": "553542245966958592\u003cbr\u003eParis Mayor Anne Hidalgo rushing\u003cbr\u003eto scene of hostage situation\u003cbr\u003ein Porte de Vincennes area\u003cbr\u003eof Paris: http://t.co/qB4b5cKvPg\u003cbr\u003eFri Jan 09 13:22:10 +0000 2015"}, {"group": 1387, "id": 1, "label": "553543370945986560", "shape": "dot", "size": 10, "title": "553543370945986560\u003cbr\u003e@cnni \u0938\u092c\u0948 \u092d\u0928\u094d\u091b\u0928 \u092e \u092e\u093e\u003cbr\u003e\u0939\u093f\u092e\u094d\u092e\u0924\n\nhttp://t.co/a6I60AssKZ\u003cbr\u003eFri Jan 09 13:26:38 +0000 2015"}, {"group": 1387, "id": 2, "label": "553543650316402688", "shape": "dot", "size": 10, "title": "553543650316402688\u003cbr\u003e@cnni where are the Arab\u003cbr\u003ecountries condemning these attacks and\u003cbr\u003efighting against terrorist?  Why\u003cbr\u003eis it only America doing\u003cbr\u003eeverything?? @CNN\u003cbr\u003eFri Jan 09 13:27:45 +0000 2015"}, {"group": 1387, "id": 3, "label": "553545017152004096", "shape": "dot", "size": 10, "title": "553545017152004096\u003cbr\u003e@cnni Do the police really\u003cbr\u003eneed politicians arriving on the\u003cbr\u003escene and meddling\u003cbr\u003eFri Jan 09 13:33:11 +0000 2015"}, {"group": 1387, "id": 4, "label": "553545375286448128", "shape": "dot", "size": 10, "title": "553545375286448128\u003cbr\u003e@cnni http://t.co/gB4ImNnfs7\n#JeSuisCharlie #CharlieHebdo #islamisnotterrorism #IslamIsNotTheProblem\u003cbr\u003ehttp://t.co/AWtcTrbc3P\u003cbr\u003eFri Jan 09 13:34:36 +0000 2015"}, {"group": 1387, "id": 5, "label": "553545686340608000", "shape": "dot", "size": 10, "title": "553545686340608000\u003cbr\u003e@cnni Muslims are terrorist ,\u003cbr\u003eIslam is a trash religion\u003cbr\u003e- its a sick cult\u003cbr\u003e..\u003cbr\u003eFri Jan 09 13:35:50 +0000 2015"}, {"group": 1387, "id": 6, "label": "553545955006771200", "shape": "dot", "size": 10, "title": "553545955006771200\u003cbr\u003e@cnni why would anyone convert\u003cbr\u003eto this trash religion who\u003cbr\u003ewas founded by a sick\u003cbr\u003eman Mohammed who had sex\u003cbr\u003ewith a child ??\u003cbr\u003eFri Jan 09 13:36:54 +0000 2015"}, {"group": 1387, "id": 7, "label": "553547317169885185", "shape": "dot", "size": 10, "title": "553547317169885185\u003cbr\u003e\u201c@cnni: Paris Mayor Anne Hidalgo\u003cbr\u003erushing to scene of hostage\u003cbr\u003esituation in Porte de Vincennes\u003cbr\u003earea of Paris: http://t.co/xh2g9JSXxj\u201d\u003cbr\u003eFri Jan 09 13:42:19 +0000 2015"}, {"group": 1387, "id": 8, "label": "553547518995611648", "shape": "dot", "size": 10, "title": "553547518995611648\u003cbr\u003e@cnni @cnnbrk who cares! bring\u003cbr\u003ein Massad they will end\u003cbr\u003ethis. Then as mayor sign\u003cbr\u003ethe decree to deport ALL\u003cbr\u003eislam (moooslims) to the arabdesert\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:43:07 +0000 2015"}, {"group": 1387, "id": 10, "label": "553552093202894848", "shape": "dot", "size": 10, "title": "553552093202894848\u003cbr\u003e@cnni @cnnbrk funny to see\u003cbr\u003eFrench on their knees by\u003cbr\u003esome muslims \ud83d\ude1d\ud83d\ude1d\u003cbr\u003eFri Jan 09 14:01:18 +0000 2015"}, {"group": 1387, "id": 11, "label": "553567657916895232", "shape": "dot", "size": 10, "title": "553567657916895232\u003cbr\u003e@cnni Not in my country.\u003cbr\u003eNo governor\u003cbr\u003eFri Jan 09 15:03:09 +0000 2015"}, {"group": 1387, "id": 12, "label": "553567684345221122", "shape": "dot", "size": 10, "title": "553567684345221122\u003cbr\u003e@cnni Not possible in my\u003cbr\u003ecountry Nigeria.\u003cbr\u003eFri Jan 09 15:03:15 +0000 2015"}, {"group": 1387, "id": 13, "label": "553575265125683200", "shape": "dot", "size": 10, "title": "553575265125683200\u003cbr\u003e@cnni @tolu_dr: And Jonathan sat\u003cbr\u003e\"holed-up\" in Abuja.\u003cbr\u003eFri Jan 09 15:33:22 +0000 2015"}, {"group": 1387, "id": 15, "label": "553582266153046016", "shape": "dot", "size": 10, "title": "553582266153046016\u003cbr\u003e@cnni @cnnbrk what the hell\u003cbr\u003eus gonna do there?\u003cbr\u003eFri Jan 09 16:01:11 +0000 2015"}, {"group": 1387, "id": 9, "label": "553547749208358912", "shape": "dot", "size": 10, "title": "553547749208358912\u003cbr\u003e@miami305fan @cnni @CNN Arabs r\u003cbr\u003ethe cause. U can bet\u003cbr\u003eMassad is working to end\u003cbr\u003ethis fast.\u003cbr\u003eFri Jan 09 13:44:02 +0000 2015"}, {"group": 1387, "id": 14, "label": "553578758918377472", "shape": "dot", "size": 10, "title": "553578758918377472\u003cbr\u003e@ajulu23 @cnni For once he\u003cbr\u003enever visited a trouble spot,\u003cbr\u003ejust like POTUS or Kerry\u003cbr\u003ewill into Iraq or Afghanistan.\u003cbr\u003eUtterly disappointed\u003cbr\u003eFri Jan 09 15:47:15 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 2, "to": 9, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

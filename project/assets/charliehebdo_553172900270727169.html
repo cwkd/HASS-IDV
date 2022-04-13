@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1002, "id": 0, "label": "553172900270727169", "shape": "dot", "size": 10, "title": "553172900270727169\u003cbr\u003eThe threat of violence should\u003cbr\u003enot become an excuse or\u003cbr\u003ejustification for restricting freedom of\u003cbr\u003espeech. #JeSuisCharlie http://t.co/kXp2qJzFUM\u003cbr\u003eThu Jan 08 12:54:31 +0000 2015"}, {"group": 1002, "id": 1, "label": "553173670496325634", "shape": "dot", "size": 10, "title": "553173670496325634\u003cbr\u003e@thenikhilkapur i was gonna show\u003cbr\u003ethem terrorists by making a\u003cbr\u003epunny pencil cartoon but then\u003cbr\u003ei realized there\u0027s just no\u003cbr\u003epoint #CharlieHebdo\u003cbr\u003eThu Jan 08 12:57:35 +0000 2015"}, {"group": 1002, "id": 2, "label": "553174654156668930", "shape": "dot", "size": 10, "title": "553174654156668930\u003cbr\u003e@thenikhilkapur saying that any holy\u003cbr\u003ebook is a piece of\u003cbr\u003ecrap , is disrespectful, even\u003cbr\u003etho killing them was wrong\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:01:29 +0000 2015"}, {"group": 1002, "id": 3, "label": "553177723934638081", "shape": "dot", "size": 10, "title": "553177723934638081\u003cbr\u003e@thenikhilkapur A complete GIF guide\u003cbr\u003eto Muslims Denouncing terrorism. http://t.co/s9rGMNFzda\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:13:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

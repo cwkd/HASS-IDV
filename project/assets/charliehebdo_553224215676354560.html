@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1195, "id": 0, "label": "553224215676354560", "shape": "dot", "size": 10, "title": "553224215676354560\u003cbr\u003eAttackers killed Charlie Hebdo\u0027s chief\u003cbr\u003ecartoonists where they sat before\u003cbr\u003emassacring nearly everyone else in\u003cbr\u003ethe room http://t.co/3wEBkmB2f6\u003cbr\u003eThu Jan 08 16:18:26 +0000 2015"}, {"group": 1195, "id": 1, "label": "553224602424324096", "shape": "dot", "size": 10, "title": "553224602424324096\u003cbr\u003e@nytimes #OpCharlieHebdo has been engaged.\u003cbr\u003ehttp://t.co/jtMvm4cpeY\nCensorship must not amount to\u003cbr\u003ecold blooded slaughter!\u003cbr\u003eThu Jan 08 16:19:58 +0000 2015"}, {"group": 1195, "id": 2, "label": "553224724176990210", "shape": "dot", "size": 10, "title": "553224724176990210\u003cbr\u003e@nytimes make sure you dont\u003cbr\u003ecriticize them you commie rag\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:20:27 +0000 2015"}, {"group": 1195, "id": 4, "label": "553224897926037504", "shape": "dot", "size": 10, "title": "553224897926037504\u003cbr\u003e@nytimes cowardly cunts\u003cbr\u003eThu Jan 08 16:21:08 +0000 2015"}, {"group": 1195, "id": 5, "label": "553226365827547136", "shape": "dot", "size": 10, "title": "553226365827547136\u003cbr\u003e@nytimes cowards\u003cbr\u003eThu Jan 08 16:26:58 +0000 2015"}, {"group": 1195, "id": 6, "label": "553226841054396416", "shape": "dot", "size": 10, "title": "553226841054396416\u003cbr\u003e@nytimes I feel for any\u003cbr\u003ewho witnessed this and survived.\u003cbr\u003eSUDDEN DEATH GRIEF AND TRAUMA\u003cbr\u003ebrochures: http://t.co/aT9cALJwjr\u003cbr\u003eThu Jan 08 16:28:52 +0000 2015"}, {"group": 1195, "id": 7, "label": "553227323416535042", "shape": "dot", "size": 10, "title": "553227323416535042\u003cbr\u003e@nytimes assasins cowards\u003cbr\u003eThu Jan 08 16:30:47 +0000 2015"}, {"group": 1195, "id": 8, "label": "553228040105254912", "shape": "dot", "size": 10, "title": "553228040105254912\u003cbr\u003e@nytimes it\u0027s a pity. My\u003cbr\u003econdolence to their families\u003cbr\u003eThu Jan 08 16:33:37 +0000 2015"}, {"group": 1195, "id": 9, "label": "553229357838118912", "shape": "dot", "size": 10, "title": "553229357838118912\u003cbr\u003e@nytimes - No Islamic Leader\u003cbr\u003eSpeaks Out #satansislamiccult\u003cbr\u003eThu Jan 08 16:38:52 +0000 2015"}, {"group": 1195, "id": 10, "label": "553229363710533633", "shape": "dot", "size": 10, "title": "553229363710533633\u003cbr\u003e@nytimes Freedom of Speech ...without\u003cbr\u003ethe lesson OF Virtue.....will become\u003cbr\u003ean abomination....\n\nhttp://t.co/L4WURw0G0e\u003cbr\u003eThu Jan 08 16:38:53 +0000 2015"}, {"group": 1195, "id": 11, "label": "553232334581809152", "shape": "dot", "size": 10, "title": "553232334581809152\u003cbr\u003e@nytimes Christians have moved away\u003cbr\u003efro Christianity are still the\u003cbr\u003emajority in the Western world,\u003cbr\u003emake it the State religion\u003cbr\u003eNOW or regret.\u003cbr\u003eThu Jan 08 16:50:41 +0000 2015"}, {"group": 1195, "id": 12, "label": "553261154550554624", "shape": "dot", "size": 10, "title": "553261154550554624\u003cbr\u003e@nytimes Sounds less prepared than\u003cbr\u003eyesterday\u0027s reports. They didn\u0027t really\u003cbr\u003eknow where they were going.\u003cbr\u003eMore like ones who would\u003cbr\u003eforget ID.\u003cbr\u003eThu Jan 08 18:45:12 +0000 2015"}, {"group": 1195, "id": 13, "label": "553267595206332416", "shape": "dot", "size": 10, "title": "553267595206332416\u003cbr\u003e@nytimes : They are blessed\u003cbr\u003e!\u003cbr\u003eThu Jan 08 19:10:48 +0000 2015"}, {"group": 1195, "id": 3, "label": "553224759115145217", "shape": "dot", "size": 10, "title": "553224759115145217\u003cbr\u003e@nytimes @OpChalieHebdo\u003cbr\u003eThu Jan 08 16:20:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 1, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 641, "id": 0, "label": "552848701312737280", "shape": "dot", "size": 10, "title": "552848701312737280\u003cbr\u003ePHOTO: Forensic experts examine the\u003cbr\u003ecar believed to have been\u003cbr\u003eused as the escape vehicle\u003cbr\u003ein the Charlie Hebdo attack:\u003cbr\u003ehttp://t.co/9hYrbOBo3w\u003cbr\u003eWed Jan 07 15:26:16 +0000 2015"}, {"group": 641, "id": 1, "label": "552848805100810241", "shape": "dot", "size": 10, "title": "552848805100810241\u003cbr\u003e@AP Take care #Denmark, \u003cbr\u003ehe says you will be\u003cbr\u003ethe next. http://t.co/MkBNzHqRhm #Isis v\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:26:41 +0000 2015"}, {"group": 641, "id": 3, "label": "552849958269759488", "shape": "dot", "size": 10, "title": "552849958269759488\u003cbr\u003e@AP Gee -- Where were\u003cbr\u003ethese Forensic Experts on 9/11?\u003cbr\u003eThe speed of them would\u003cbr\u003esuggest another #False #Flag to\u003cbr\u003eget media attention.\u003cbr\u003eWed Jan 07 15:31:16 +0000 2015"}, {"group": 641, "id": 4, "label": "552856172009914368", "shape": "dot", "size": 10, "title": "552856172009914368\u003cbr\u003e@AP Islamic ideology =ShariaLaw=Hamas=ISIS= Boko\u003cbr\u003eHaram=Hezbollah - not a relationship\u003cbr\u003ewith God http://t.co/iGruhR0p1K\u003cbr\u003eWed Jan 07 15:55:57 +0000 2015"}, {"group": 641, "id": 5, "label": "552898500015693824", "shape": "dot", "size": 10, "title": "552898500015693824\u003cbr\u003eMT .@AP: Forensic experts examine\u003cbr\u003ecar believed to have been\u003cbr\u003eused as the escape vehicle\u003cbr\u003ein the Charlie Hebdo attack\u003cbr\u003ehttp://t.co/hS85q5TWSQ\u003cbr\u003eWed Jan 07 18:44:09 +0000 2015"}, {"group": 641, "id": 2, "label": "552848989012631552", "shape": "dot", "size": 10, "title": "552848989012631552\u003cbr\u003e@AejKhalil @AP Who funded/armed/trained gunmen?\u003cbr\u003ehttps://t.co/iPBkLwhQk8 \u2026 Jeffrey Epstein also\u003cbr\u003ein CFR+Trilateral Commission #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:27:25 +0000 2015"}, {"group": 641, "id": 6, "label": "552899944538210305", "shape": "dot", "size": 10, "title": "552899944538210305\u003cbr\u003e@TheMadHessian @SwagsterDaddyO @AP all they\u003cbr\u003ewill find is camel hair\u003cbr\u003eand semen\u003cbr\u003eWed Jan 07 18:49:53 +0000 2015"}, {"group": 641, "id": 7, "label": "552900824339607552", "shape": "dot", "size": 10, "title": "552900824339607552\u003cbr\u003e.@uncarich854 @SwagsterDaddyO @AP I bet\u003cbr\u003eyou that car absolutely stinks\u003cbr\u003einside.  I mean an\u003cbr\u003eabsolute horrific odor.\u003cbr\u003eWed Jan 07 18:53:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

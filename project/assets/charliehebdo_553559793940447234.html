@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2018, "id": 0, "label": "553559793940447234", "shape": "dot", "size": 10, "title": "553559793940447234\u003cbr\u003eIsraeli news is carrying a\u003cbr\u003elive interview with a woman\u003cbr\u003ewhose niece is one of\u003cbr\u003ethe hostages in #Paris. Niece\u003cbr\u003eis inside with a 6-month-old\u003cbr\u003ebaby\u003cbr\u003eFri Jan 09 14:31:54 +0000 2015"}, {"group": 2018, "id": 1, "label": "553561666131337216", "shape": "dot", "size": 10, "title": "553561666131337216\u003cbr\u003eHorrid MT @debra_kamin Israeli news\u003cbr\u003ehas live interview with/woman whose\u003cbr\u003eniece is one of hostages\u003cbr\u003ein #Paris. Niece is inside\u003cbr\u003ew/6mo old baby\u003cbr\u003eFri Jan 09 14:39:20 +0000 2015"}, {"group": 2018, "id": 2, "label": "553561992712421376", "shape": "dot", "size": 10, "title": "553561992712421376\u003cbr\u003e@debra_kamin @southsalem Almost old enough\u003cbr\u003efor a jihadi bride!\u003cbr\u003eFri Jan 09 14:40:38 +0000 2015"}, {"group": 2018, "id": 3, "label": "553562519512416256", "shape": "dot", "size": 10, "title": "553562519512416256\u003cbr\u003e@debra_kamin @b_judah fuck your isreal!..that\u003cbr\u003eis our main target!..we want\u003cbr\u003eto finish that from th\u003cbr\u003emap of the world\u003cbr\u003eFri Jan 09 14:42:44 +0000 2015"}, {"group": 2018, "id": 4, "label": "553562899684151299", "shape": "dot", "size": 10, "title": "553562899684151299\u003cbr\u003e@debra_kamin @b_judah isreal bombs our\u003cbr\u003echildren and they want to\u003cbr\u003efind more excuses\u003cbr\u003eFri Jan 09 14:44:14 +0000 2015"}, {"group": 2018, "id": 6, "label": "553563874172358656", "shape": "dot", "size": 10, "title": "553563874172358656\u003cbr\u003e@debra_kamin @b_judah #Paris Would this\u003cbr\u003esituation in part be motivated\u003cbr\u003eby a recently destroyed #Gaza\u003cbr\u003estrip ? #justasking\u003cbr\u003eFri Jan 09 14:48:06 +0000 2015"}, {"group": 2018, "id": 18, "label": "553569274183176194", "shape": "dot", "size": 10, "title": "553569274183176194\u003cbr\u003e@debra_kamin Prayers!\u003cbr\u003eFri Jan 09 15:09:34 +0000 2015"}, {"group": 2018, "id": 5, "label": "553563061760831489", "shape": "dot", "size": 10, "title": "553563061760831489\u003cbr\u003e@Suhailk32788786 @debra_kamin @b_judah hey, I\u003cbr\u003elike your sunglasses. But, I\u003cbr\u003ethought you guys weren\u0027t allowed\u003cbr\u003eto be gay. Good for\u003cbr\u003eyou, man!\u003cbr\u003eFri Jan 09 14:44:53 +0000 2015"}, {"group": 2018, "id": 7, "label": "553564345792495616", "shape": "dot", "size": 10, "title": "553564345792495616\u003cbr\u003eI\u0027m not Jewish but support\u003cbr\u003eIsrael so this is what\u003cbr\u003ewe want: @Suhailk32788786 @debra_kamin @b_judah\u003cbr\u003ehttp://t.co/M0XHpTaveZ\u003cbr\u003eFri Jan 09 14:49:59 +0000 2015"}, {"group": 2018, "id": 10, "label": "553565611880505344", "shape": "dot", "size": 10, "title": "553565611880505344\u003cbr\u003e@Suhailk32788786 @b_judah damn blocking you\u003cbr\u003efeels good\u003cbr\u003eFri Jan 09 14:55:01 +0000 2015"}, {"group": 2018, "id": 9, "label": "553565526530609154", "shape": "dot", "size": 10, "title": "553565526530609154\u003cbr\u003e@Fluitetuit @b_judah #andyoureblocked\u003cbr\u003eFri Jan 09 14:54:40 +0000 2015"}, {"group": 2018, "id": 8, "label": "553564702161121281", "shape": "dot", "size": 10, "title": "553564702161121281\u003cbr\u003e@ParadiseCity26 @debra_kamin @b_judah dnt worry,\u003cbr\u003eif u kill and bomb\u003cbr\u003eor children dnt expect to\u003cbr\u003eget chochlates in return\u003cbr\u003eFri Jan 09 14:51:24 +0000 2015"}, {"group": 2018, "id": 11, "label": "553565814922960896", "shape": "dot", "size": 10, "title": "553565814922960896\u003cbr\u003eStop terrorizing Christians and you\u003cbr\u003ewon\u0027t get bombed. It\u0027s that\u003cbr\u003esimple. @Suhailk32788786 @debra_kamin @b_judah\u003cbr\u003eFri Jan 09 14:55:49 +0000 2015"}, {"group": 2018, "id": 14, "label": "553567337992183808", "shape": "dot", "size": 10, "title": "553567337992183808\u003cbr\u003e@debra_kamin @b_judah Block the entire\u003cbr\u003efree world while you are\u003cbr\u003eat it ! Denying the\u003cbr\u003eforces behind this is plain\u003cbr\u003e#stupid #paris\u003cbr\u003eFri Jan 09 15:01:52 +0000 2015"}, {"group": 2018, "id": 27, "label": "553575294775619584", "shape": "dot", "size": 10, "title": "553575294775619584\u003cbr\u003e@debra_kamin How many people do\u003cbr\u003eyou have on your block-list\u003cbr\u003e? Hundreds ? Thousands ?\u003cbr\u003eMillions ? And they all\u003cbr\u003ehave a different opinion ?\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:33:29 +0000 2015"}, {"group": 2018, "id": 28, "label": "553947841060962305", "shape": "dot", "size": 10, "title": "553947841060962305\u003cbr\u003e@debra_kamin You are blocked as\u003cbr\u003ewell. In your head, that\u003cbr\u003eis...\u003cbr\u003eSat Jan 10 16:13:51 +0000 2015"}, {"group": 2018, "id": 12, "label": "553566123258433538", "shape": "dot", "size": 10, "title": "553566123258433538\u003cbr\u003e@debra_kamin @b_judah donot worry! i\u003cbr\u003eagree because u r nt\u003cbr\u003ein th habit of listening\u003cbr\u003et reality! read @TheNobleQuran\u003cbr\u003eFri Jan 09 14:57:03 +0000 2015"}, {"group": 2018, "id": 13, "label": "553566453526319105", "shape": "dot", "size": 10, "title": "553566453526319105\u003cbr\u003e@ParadiseCity26 @debra_kamin @b_judah it is\u003cbr\u003eyour state which is meddling\u003cbr\u003eeverywhere from iraq to middleeast\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:58:21 +0000 2015"}, {"group": 2018, "id": 16, "label": "553568036641603586", "shape": "dot", "size": 10, "title": "553568036641603586\u003cbr\u003e@ParadiseCity26 @Suhailk32788786 @debra_kamin @b_judah Oh\u003cbr\u003ewow... You are such a\u003cbr\u003ebright light in the current\u003cbr\u003edarkness... #Paris #stupidity\u003cbr\u003eFri Jan 09 15:04:39 +0000 2015"}, {"group": 2018, "id": 21, "label": "553572316098363392", "shape": "dot", "size": 10, "title": "553572316098363392\u003cbr\u003e@ParadiseCity26 @Suhailk32788786 @debra_kamin @b_judah You\u003cbr\u003eare a real historian !\u003cbr\u003eBuy a history book first.\u003cbr\u003e#dumb #stupid\u003cbr\u003eFri Jan 09 15:21:39 +0000 2015"}, {"group": 2018, "id": 15, "label": "553567959156027393", "shape": "dot", "size": 10, "title": "553567959156027393\u003cbr\u003eYou call it meddling at\u003cbr\u003ethe moment. But when anything\u003cbr\u003ehappens, you come running to\u003cbr\u003ethe USA for help. @Suhailk32788786\u003cbr\u003e@debra_kamin @b_judah\u003cbr\u003eFri Jan 09 15:04:20 +0000 2015"}, {"group": 2018, "id": 17, "label": "553568251112726529", "shape": "dot", "size": 10, "title": "553568251112726529\u003cbr\u003e@ParadiseCity26 @debra_kamin @b_judah really, who\u003cbr\u003etold u so!..it is america\u003cbr\u003ewho comes after our oil\u003cbr\u003eand money!READ history\u003cbr\u003eFri Jan 09 15:05:30 +0000 2015"}, {"group": 2018, "id": 19, "label": "553570991956582400", "shape": "dot", "size": 10, "title": "553570991956582400\u003cbr\u003eWhat good is oil or\u003cbr\u003emoney when your head is\u003cbr\u003ebeing chopped off? @Suhailk32788786 @debra_kamin\u003cbr\u003e@b_judah\u003cbr\u003eFri Jan 09 15:16:23 +0000 2015"}, {"group": 2018, "id": 20, "label": "553571103486922753", "shape": "dot", "size": 10, "title": "553571103486922753\u003cbr\u003e@ParadiseCity26 @debra_kamin @b_judah we will\u003cbr\u003elet u know soon!\u003cbr\u003eFri Jan 09 15:16:50 +0000 2015"}, {"group": 2018, "id": 22, "label": "553572544834703361", "shape": "dot", "size": 10, "title": "553572544834703361\u003cbr\u003eYou will not succeed. \ud83c\uddfa\ud83c\uddf8\u003cbr\u003e@Suhailk32788786 @debra_kamin @b_judah\u003cbr\u003eFri Jan 09 15:22:34 +0000 2015"}, {"group": 2018, "id": 25, "label": "553573851448475649", "shape": "dot", "size": 10, "title": "553573851448475649\u003cbr\u003e@ParadiseCity26 @Suhailk32788786 @debra_kamin @b_judah But\u003cbr\u003eall 4 of you can\u003cbr\u003ealways blame me for everything.\u003cbr\u003eI am an infidel. Bring\u003cbr\u003eit on !\u003cbr\u003eFri Jan 09 15:27:45 +0000 2015"}, {"group": 2018, "id": 23, "label": "553572597749645312", "shape": "dot", "size": 10, "title": "553572597749645312\u003cbr\u003e@ParadiseCity26 @debra_kamin @b_judah we ll\u003cbr\u003esee\u003cbr\u003eFri Jan 09 15:22:46 +0000 2015"}, {"group": 2018, "id": 24, "label": "553573451827789825", "shape": "dot", "size": 10, "title": "553573451827789825\u003cbr\u003eIndeed. @Suhailk32788786 @debra_kamin @b_judah\u003cbr\u003eFri Jan 09 15:26:10 +0000 2015"}, {"group": 2018, "id": 26, "label": "553575079930785792", "shape": "dot", "size": 10, "title": "553575079930785792\u003cbr\u003eAlways a pleasure to meet\u003cbr\u003eanother Infidel, I\u0027m sure. :)\u003cbr\u003ewhere are you from? @Fluitetuit\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:32:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 7, "weight": 1}, {"from": 3, "to": 10, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 9, "to": 27, "weight": 1}, {"from": 9, "to": 28, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 16, "weight": 1}, {"from": 11, "to": 21, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 21, "to": 25, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 25, "to": 26, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

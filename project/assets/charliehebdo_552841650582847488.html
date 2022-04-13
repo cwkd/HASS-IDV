@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 567, "id": 0, "label": "552841650582847488", "shape": "dot", "size": 10, "title": "552841650582847488\u003cbr\u003e\"You can\u0027t kill satire. You\u003cbr\u003ecan only prove its point.\"\u003cbr\u003e-- @LOLGOP\n\n#CharlieHebdo #JeSuisCharlie http://t.co/T5APwBfX6m\u003cbr\u003eWed Jan 07 14:58:15 +0000 2015"}, {"group": 567, "id": 1, "label": "552841894225788929", "shape": "dot", "size": 10, "title": "552841894225788929\u003cbr\u003e@TheDailyEdge @LOLGOP screw them\u003cbr\u003eWed Jan 07 14:59:13 +0000 2015"}, {"group": 567, "id": 2, "label": "552859227501658112", "shape": "dot", "size": 10, "title": "552859227501658112\u003cbr\u003e@TheDailyEdge @kharyp @LOLGOP And you\u003cbr\u003ecannot kill ideas either, even\u003cbr\u003ethose you do not like!\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:08:06 +0000 2015"}, {"group": 567, "id": 3, "label": "552860646488829952", "shape": "dot", "size": 10, "title": "552860646488829952\u003cbr\u003eRT @TheDailyEdge: \"You can\u0027t kill\u003cbr\u003esatire. You can only prove\u003cbr\u003eits point.\" -- @LOLGOP\n\n#CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/Bcp7P3Blhi\u003cbr\u003eWed Jan 07 16:13:44 +0000 2015"}, {"group": 567, "id": 4, "label": "552872929411600384", "shape": "dot", "size": 10, "title": "552872929411600384\u003cbr\u003e\u201c@TheDailyEdge: \"You can\u0027t kill satire.\u003cbr\u003eYou can only prove its\u003cbr\u003epoint.\" -- @LOLGOP\n\n#CharlieHebdo #JeSuisCharlie http://t.co/yabaAwbo8Q\u201d\ud83d\ude4c\ud83d\ude4c\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:02:32 +0000 2015"}, {"group": 567, "id": 5, "label": "552881208699650048", "shape": "dot", "size": 10, "title": "552881208699650048\u003cbr\u003eRT @TheDailyEdge: \"You can\u0027t kill\u003cbr\u003esatire. You can only prove\u003cbr\u003eits point.\" -- @LOLGOP\n\n#CharlieHebdo #JeSuisCharlie\u003cbr\u003ehttp://t.co/UZMVXOaMeO\u003cbr\u003eWed Jan 07 17:35:26 +0000 2015"}, {"group": 567, "id": 6, "label": "552923320673640450", "shape": "dot", "size": 10, "title": "552923320673640450\u003cbr\u003e@TheDailyEdge @taiping2 @LOLGOP http://t.co/zjq2MjDLIN\u003cbr\u003eWed Jan 07 20:22:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

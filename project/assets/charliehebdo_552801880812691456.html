@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1689, "id": 0, "label": "552801880812691456", "shape": "dot", "size": 10, "title": "552801880812691456\u003cbr\u003eCartoonist Stephane Charbonnier was critically\u003cbr\u003einjured in the attack (LeFigaro)\u003cbr\u003e#CharlieHebdo http://t.co/fHMfUmQffo\u003cbr\u003eWed Jan 07 12:20:13 +0000 2015"}, {"group": 1689, "id": 1, "label": "552803577073111040", "shape": "dot", "size": 10, "title": "552803577073111040\u003cbr\u003e@AllawziSalim someone on my TL\u003cbr\u003esaid he died. Is it\u003cbr\u003etrue?\u003cbr\u003eWed Jan 07 12:26:58 +0000 2015"}, {"group": 1689, "id": 5, "label": "552806238140915713", "shape": "dot", "size": 10, "title": "552806238140915713\u003cbr\u003e@AllawziSalim @Dputamadre a critic didnt\u003cbr\u003elike his cartoon?\u003cbr\u003eWed Jan 07 12:37:32 +0000 2015"}, {"group": 1689, "id": 2, "label": "552804231183208449", "shape": "dot", "size": 10, "title": "552804231183208449\u003cbr\u003e@ZokLara \u0628\u0639\u062f \u0645\u0627 \u0637\u0644\u0639 \u0634\u064a\u003cbr\u003e!\u003cbr\u003eWed Jan 07 12:29:33 +0000 2015"}, {"group": 1689, "id": 3, "label": "552804327383769089", "shape": "dot", "size": 10, "title": "552804327383769089\u003cbr\u003e@AllawziSalim https://t.co/NSzKii8Mp2\u003cbr\u003eWed Jan 07 12:29:56 +0000 2015"}, {"group": 1689, "id": 4, "label": "552805625462157314", "shape": "dot", "size": 10, "title": "552805625462157314\u003cbr\u003e@ZokLara \u0635\u062d !\u0634\u0643\u0644\u0647 \u0647\u064a\u0643 !\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:35:06 +0000 2015"}, {"group": 1689, "id": 6, "label": "552816869938573312", "shape": "dot", "size": 10, "title": "552816869938573312\u003cbr\u003e@Dawdy\nThe death of a proud\u003cbr\u003ekaffir I think not\nEven abarahams\u003cbr\u003ewife laughed when the angels\u003cbr\u003etold them they were heading\u003cbr\u003efor Sodom \u0026amp; Gomorrah\u003cbr\u003eWed Jan 07 13:19:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 6, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

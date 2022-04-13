@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 184, "id": 0, "label": "552813223360352256", "shape": "dot", "size": 10, "title": "552813223360352256\u003cbr\u003eThird thought: defending the rights\u003cbr\u003ethat Charlie Hebdo defended means\u003cbr\u003edefending free speech, not attacking\u003cbr\u003eMuslims.\u003cbr\u003eWed Jan 07 13:05:17 +0000 2015"}, {"group": 184, "id": 1, "label": "552814580389662720", "shape": "dot", "size": 10, "title": "552814580389662720\u003cbr\u003e@kenanmalik 4th thought and it\u0027s\u003cbr\u003ethe elephant: these guys use\u003cbr\u003eRussian made weapons who supplying\u003cbr\u003eand what Putin doing to\u003cbr\u003estop it?\u003cbr\u003eWed Jan 07 13:10:41 +0000 2015"}, {"group": 184, "id": 2, "label": "552817195097796608", "shape": "dot", "size": 10, "title": "552817195097796608\u003cbr\u003eWord perfect \u201c@kenanmalik: defending the\u003cbr\u003erights that CharlieHebdo defended means\u003cbr\u003edefending free speech,not attacking Muslims.\u201d\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 13:21:04 +0000 2015"}, {"group": 184, "id": 3, "label": "552820733605588993", "shape": "dot", "size": 10, "title": "552820733605588993\u003cbr\u003e@kenanmalik Seriously, the only solution\u003cbr\u003eis to completely to ban\u003cbr\u003eislam in civilized countries (simmilarily\u003cbr\u003eto mazism).\u003cbr\u003eWed Jan 07 13:35:08 +0000 2015"}, {"group": 184, "id": 4, "label": "552826455982235648", "shape": "dot", "size": 10, "title": "552826455982235648\u003cbr\u003e@kenanmalik @ingridmajer who is the\u003cbr\u003ebeneficiary?\u003cbr\u003eWed Jan 07 13:57:52 +0000 2015"}, {"group": 184, "id": 5, "label": "552839410010849280", "shape": "dot", "size": 10, "title": "552839410010849280\u003cbr\u003e@kenanmalik @alomshaha disagree with that\u003cbr\u003eremark about muslims. We have\u003cbr\u003eschools here that preach death\u003cbr\u003eto the infidel\u003cbr\u003eWed Jan 07 14:49:21 +0000 2015"}, {"group": 184, "id": 6, "label": "552840210480775169", "shape": "dot", "size": 10, "title": "552840210480775169\u003cbr\u003efreedom of speech!!!! @kenanmalik @OmarWaraich\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:52:32 +0000 2015"}, {"group": 184, "id": 7, "label": "552879304338866176", "shape": "dot", "size": 10, "title": "552879304338866176\u003cbr\u003e@kenanmalik @CEMB_forum Perhaps they could\u003cbr\u003ereturn the favour? #justsaying\u003cbr\u003eWed Jan 07 17:27:52 +0000 2015"}, {"group": 184, "id": 8, "label": "552881815124705280", "shape": "dot", "size": 10, "title": "552881815124705280\u003cbr\u003eBy self-censoring, the MSM has\u003cbr\u003erepudiated the free expression that\u003cbr\u003ethe likes of @Charlie_Hebdo_ fought\u003cbr\u003efor. @kenanmalik @OpheliaBenson\u003cbr\u003eWed Jan 07 17:37:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 991, "id": 0, "label": "553170912129056770", "shape": "dot", "size": 10, "title": "553170912129056770\u003cbr\u003e24 of the most powerful\u003cbr\u003ecartoons related to the #CharlieHebdo\u003cbr\u003etragedy: http://t.co/I85pBNMKVj http://t.co/6YqHTA9REP\u003cbr\u003eThu Jan 08 12:46:37 +0000 2015"}, {"group": 991, "id": 1, "label": "553171229415596032", "shape": "dot", "size": 10, "title": "553171229415596032\u003cbr\u003e@cnni it\u0027s not sad to\u003cbr\u003edepict terrorist as powerful.\u003cbr\u003eThu Jan 08 12:47:53 +0000 2015"}, {"group": 991, "id": 2, "label": "553171740676091904", "shape": "dot", "size": 10, "title": "553171740676091904\u003cbr\u003e@cnni\u003cbr\u003eThu Jan 08 12:49:55 +0000 2015"}, {"group": 991, "id": 3, "label": "553171793934950402", "shape": "dot", "size": 10, "title": "553171793934950402\u003cbr\u003e@cnni drawing jesus naked and\u003cbr\u003egetting F**** is not acceptable\u003cbr\u003eand not freedom of speech\u003cbr\u003estop this thing stop spreading\u003cbr\u003ehate\u003cbr\u003eThu Jan 08 12:50:07 +0000 2015"}, {"group": 991, "id": 4, "label": "553172376155086849", "shape": "dot", "size": 10, "title": "553172376155086849\u003cbr\u003ehttps://t.co/Ook7EcNgLf @cnni\u003cbr\u003eThu Jan 08 12:52:26 +0000 2015"}, {"group": 991, "id": 5, "label": "553173239292518400", "shape": "dot", "size": 10, "title": "553173239292518400\u003cbr\u003e@cnni Cartoonist... http://t.co/bUqxz9VWZ3\u003cbr\u003eThu Jan 08 12:55:52 +0000 2015"}, {"group": 991, "id": 6, "label": "553174100966129664", "shape": "dot", "size": 10, "title": "553174100966129664\u003cbr\u003e@cnni So far so defiant,\u003cbr\u003ebut the jury is still\u003cbr\u003eout.\u003cbr\u003eThu Jan 08 12:59:17 +0000 2015"}, {"group": 991, "id": 8, "label": "553176309686624256", "shape": "dot", "size": 10, "title": "553176309686624256\u003cbr\u003e\u201c@cnni: 24 of the most\u003cbr\u003epowerful cartoons related to the\u003cbr\u003e#CharlieHebdo tragedy: http://t.co/eY2AMRyls6 http://t.co/WUTEQP3uI1\u201d\u003cbr\u003eThu Jan 08 13:08:04 +0000 2015"}, {"group": 991, "id": 9, "label": "553176706253467649", "shape": "dot", "size": 10, "title": "553176706253467649\u003cbr\u003e@cnni  ISREAL KILLED 17\u003cbr\u003eJOURNALIST S .WHERE ARE FREEDOM\u003cbr\u003eOF SPEECH FIGHTERS\u003cbr\u003eThu Jan 08 13:09:38 +0000 2015"}, {"group": 991, "id": 10, "label": "553176763430621184", "shape": "dot", "size": 10, "title": "553176763430621184\u003cbr\u003e\u201c@cnni: 24 of the most\u003cbr\u003epowerful cartoons related to the\u003cbr\u003e#CharlieHebdo tragedy: http://t.co/pRuOPZpyaC http://t.co/fyCPOm45SK\u201d\u003cbr\u003eThu Jan 08 13:09:52 +0000 2015"}, {"group": 991, "id": 11, "label": "553177894525337601", "shape": "dot", "size": 10, "title": "553177894525337601\u003cbr\u003e\u201c@cnni: 24 of the most\u003cbr\u003epowerful cartoons related to the\u003cbr\u003e#CharlieHebdo tragedy: http://t.co/oBCR3tdKtL http://t.co/CbRviP28CR\u201d#JeSuisCharlie\u003cbr\u003eThu Jan 08 13:14:22 +0000 2015"}, {"group": 991, "id": 12, "label": "553179958982361088", "shape": "dot", "size": 10, "title": "553179958982361088\u003cbr\u003e@cnni: 24 of the most\u003cbr\u003epowerful cartoons related to the\u003cbr\u003e#CharlieHebdo tragedy.\nhttp://t.co/2bZdynjARF http://t.co/lvDcnPxnZr\n#ParisShooting\u003cbr\u003eThu Jan 08 13:22:34 +0000 2015"}, {"group": 991, "id": 13, "label": "553182322905079808", "shape": "dot", "size": 10, "title": "553182322905079808\u003cbr\u003e@cnni #Florida #7thdayadventist allows #pastors\u003cbr\u003eto use #RickWarren #WillowCreek marketing\u003cbr\u003eto few pews. #religion http://t.co/ZXLqzoGRMx\u003cbr\u003e\u2026\u003cbr\u003eThu Jan 08 13:31:58 +0000 2015"}, {"group": 991, "id": 14, "label": "553182684496035840", "shape": "dot", "size": 10, "title": "553182684496035840\u003cbr\u003e@cnni\u003cbr\u003eThu Jan 08 13:33:24 +0000 2015"}, {"group": 991, "id": 16, "label": "553188071730999298", "shape": "dot", "size": 10, "title": "553188071730999298\u003cbr\u003e@cnni Holly Book been written\u003cbr\u003ein ink not blood\u003cbr\u003eThu Jan 08 13:54:48 +0000 2015"}, {"group": 991, "id": 18, "label": "553194266353479680", "shape": "dot", "size": 10, "title": "553194266353479680\u003cbr\u003e\u201c@cnni: 24 of the most\u003cbr\u003epowerful cartoons related to the\u003cbr\u003e#CharlieHebdo tragedy: http://t.co/ZLf9iKs5XW http://t.co/ROGagM5Sno\u201d\u003cbr\u003eThu Jan 08 14:19:25 +0000 2015"}, {"group": 991, "id": 19, "label": "553194314709598209", "shape": "dot", "size": 10, "title": "553194314709598209\u003cbr\u003eFreedom of speech @cnni: 24\u003cbr\u003eof the most powerful cartoons\u003cbr\u003erelated to the #CharlieHebdo tragedy:\u003cbr\u003ehttp://t.co/DuiJx4a5b3\u003cbr\u003eThu Jan 08 14:19:37 +0000 2015"}, {"group": 991, "id": 7, "label": "553174835707539457", "shape": "dot", "size": 10, "title": "553174835707539457\u003cbr\u003e@amjjed222 @cnni aren\u0027t they?\u003cbr\u003eThu Jan 08 13:02:12 +0000 2015"}, {"group": 991, "id": 15, "label": "553183017376960512", "shape": "dot", "size": 10, "title": "553183017376960512\u003cbr\u003e@Hammadiiii @cnni Being \u0027offended\u0027 does\u003cbr\u003enot give you any rights,\u003cbr\u003eSir.\u003cbr\u003eThu Jan 08 13:34:43 +0000 2015"}, {"group": 991, "id": 17, "label": "553193789821816832", "shape": "dot", "size": 10, "title": "553193789821816832\u003cbr\u003e@MarileKlaiss @cnni Not at all.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:17:31 +0000 2015"}, {"group": 991, "id": 20, "label": "553195197593817088", "shape": "dot", "size": 10, "title": "553195197593817088\u003cbr\u003e@amjjed222 @cnni making people fear\u003cbr\u003eyou, makes you powerful. You\u003cbr\u003ehave to review you criteria\u003cbr\u003emy friend.\u003cbr\u003eThu Jan 08 14:23:07 +0000 2015"}, {"group": 991, "id": 21, "label": "553208182529880064", "shape": "dot", "size": 10, "title": "553208182529880064\u003cbr\u003e@MarileKlaiss @cnni Violence is product\u003cbr\u003eof fear itself. And people\u003cbr\u003euse violence against innocents are\u003cbr\u003econfused and powerless.\u003cbr\u003eThu Jan 08 15:14:43 +0000 2015"}, {"group": 991, "id": 22, "label": "553209818128060416", "shape": "dot", "size": 10, "title": "553209818128060416\u003cbr\u003e@amjjed222 @cnni and of course\u003cbr\u003ethat is your personal point\u003cbr\u003eof view, and has nothing\u003cbr\u003eto do with how the\u003cbr\u003emayority of the world see\u003cbr\u003ethe facts.\u003cbr\u003eThu Jan 08 15:21:13 +0000 2015"}, {"group": 991, "id": 23, "label": "553222760445804544", "shape": "dot", "size": 10, "title": "553222760445804544\u003cbr\u003e@MarileKlaiss @cnni thanks\u003cbr\u003eThu Jan 08 16:12:39 +0000 2015"}, {"group": 991, "id": 24, "label": "553222924619227136", "shape": "dot", "size": 10, "title": "553222924619227136\u003cbr\u003e@amjjed222 @cnni you are welcome\u003cbr\u003e:)\u003cbr\u003eThu Jan 08 16:13:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 7, "weight": 1}, {"from": 3, "to": 15, "weight": 1}, {"from": 7, "to": 17, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

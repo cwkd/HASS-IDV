@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1893, "id": 0, "label": "553486796534054912", "shape": "dot", "size": 10, "title": "553486796534054912\u003cbr\u003eMeaux hospital sent medical team\u003cbr\u003eto reported hostage scene northeast\u003cbr\u003eof Paris, hospital communications director\u003cbr\u003esays. http://t.co/vncToPmhMX\u003cbr\u003eFri Jan 09 09:41:50 +0000 2015"}, {"group": 1893, "id": 1, "label": "553486883549114368", "shape": "dot", "size": 10, "title": "553486883549114368\u003cbr\u003e@cnnbrk \n\nIN UKRAINE HAVE GIVEN\u003cbr\u003eTHE NAZI COUP, SUPPORTED BY\u003cbr\u003eNATO AND MEDIA COMMUNICATION,AS SEE\u003cbr\u003ePHOTO.\nhttp://t.co/Kad2kgYQZa\u003cbr\u003eFri Jan 09 09:42:10 +0000 2015"}, {"group": 1893, "id": 2, "label": "553486933481897984", "shape": "dot", "size": 10, "title": "553486933481897984\u003cbr\u003e@cnnbrk \nIs it start of\u003cbr\u003eWorld War 3\u003cbr\u003eFri Jan 09 09:42:22 +0000 2015"}, {"group": 1893, "id": 3, "label": "553487004491841536", "shape": "dot", "size": 10, "title": "553487004491841536\u003cbr\u003e\u201c@cnnbrk: Meaux hospital sent medical\u003cbr\u003eteam to hostage scene northeast\u003cbr\u003eofParis,hospital communications director says. http://t.co/8xfGxipywd\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:42:39 +0000 2015"}, {"group": 1893, "id": 4, "label": "553487100684017664", "shape": "dot", "size": 10, "title": "553487100684017664\u003cbr\u003e@cnnbrk damn crazy\u003cbr\u003eFri Jan 09 09:43:02 +0000 2015"}, {"group": 1893, "id": 5, "label": "553487140496367616", "shape": "dot", "size": 10, "title": "553487140496367616\u003cbr\u003e@cnnbrk NOT AGAIN?!!\u003cbr\u003eFri Jan 09 09:43:12 +0000 2015"}, {"group": 1893, "id": 6, "label": "553487309078028288", "shape": "dot", "size": 10, "title": "553487309078028288\u003cbr\u003eRT @cnnbrk Meaux hospital sent\u003cbr\u003emedical team to reported hostage\u003cbr\u003escene northeast of Paris. http://t.co/BDjGHWkntH\u003cbr\u003e#Hostages #Paris @CNN\u003cbr\u003eFri Jan 09 09:43:52 +0000 2015"}, {"group": 1893, "id": 7, "label": "553487887983865856", "shape": "dot", "size": 10, "title": "553487887983865856\u003cbr\u003e@cnnbrk \n#StopKillingInnocentPeople\n#FreePalestine\n#freeBurma\n#FreeSyria http://t.co/ggBNiIa9fq\u003cbr\u003eFri Jan 09 09:46:10 +0000 2015"}, {"group": 1893, "id": 8, "label": "553488336850288641", "shape": "dot", "size": 10, "title": "553488336850288641\u003cbr\u003e@cnnbrk No confirmation any hostage\u003cbr\u003esituation according to Pierre-Henry Brandet\u003cbr\u003eporte parole French Minist\u00e8re de\u003cbr\u003el\u2019Int\u00e9rieur\u003cbr\u003eFri Jan 09 09:47:57 +0000 2015"}, {"group": 1893, "id": 9, "label": "553488568749133824", "shape": "dot", "size": 10, "title": "553488568749133824\u003cbr\u003e@cnnbrk oh lord! Reminds of\u003cbr\u003eSydney Terror!\u003cbr\u003eFri Jan 09 09:48:52 +0000 2015"}, {"group": 1893, "id": 10, "label": "553489937065336832", "shape": "dot", "size": 10, "title": "553489937065336832\u003cbr\u003e@cnnbrk st Denis they brothers\u003cbr\u003eterrorize they slut white french,they\u003cbr\u003emonopolize all they channel ,talk\u003cbr\u003eshit against everybody why they\u003cbr\u003edie\u003cbr\u003eFri Jan 09 09:54:18 +0000 2015"}, {"group": 1893, "id": 11, "label": "553493642422546432", "shape": "dot", "size": 10, "title": "553493642422546432\u003cbr\u003e@cnnbrk @CNN I pray for\u003cbr\u003ethe hostages\u003cbr\u003eFri Jan 09 10:09:02 +0000 2015"}, {"group": 1893, "id": 12, "label": "553500319192064001", "shape": "dot", "size": 10, "title": "553500319192064001\u003cbr\u003e@cnnbrk They better get some\u003cbr\u003edamn good snipers and act\u003cbr\u003equickly before these guys do.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:35:34 +0000 2015"}, {"group": 1893, "id": 13, "label": "553502170373312512", "shape": "dot", "size": 10, "title": "553502170373312512\u003cbr\u003e@cnnbrk RT.\n Urgent!\nSony hacker N.Korea\nPlease\u003cbr\u003eaccept free!\n In S.Korea, the\u003cbr\u003eUnited States,and freedom disappear\u003cbr\u003eFri Jan 09 10:42:55 +0000 2015"}, {"group": 1893, "id": 14, "label": "553650956123267074", "shape": "dot", "size": 10, "title": "553650956123267074\u003cbr\u003e@cnnbrk\u003cbr\u003eFri Jan 09 20:34:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 463, "id": 0, "label": "552834732325879809", "shape": "dot", "size": 10, "title": "552834732325879809\u003cbr\u003eWhite House @PressSec says shooting\u003cbr\u003eat #CharlieHebdo office seems to\u003cbr\u003ebe an attack on freedom\u003cbr\u003eof press. #ParisShooting http://t.co/zulRpKriuv\u003cbr\u003eWed Jan 07 14:30:46 +0000 2015"}, {"group": 463, "id": 1, "label": "552835267539632128", "shape": "dot", "size": 10, "title": "552835267539632128\u003cbr\u003e@FoxNews @PressSec Obama don\u0027t care.\u003cbr\u003eHe won\u0027t even acknowledge a\u003cbr\u003eterrorist attack at ft hood.\u003cbr\u003eHe is with the enemy!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:53 +0000 2015"}, {"group": 463, "id": 2, "label": "552835491297775616", "shape": "dot", "size": 10, "title": "552835491297775616\u003cbr\u003e@FoxNews @PressSec 12 people dead\u003cbr\u003e\"seems to be\" an attack\u003cbr\u003eon freedom\u003cbr\u003eWed Jan 07 14:33:46 +0000 2015"}, {"group": 463, "id": 3, "label": "552835552027103232", "shape": "dot", "size": 10, "title": "552835552027103232\u003cbr\u003e@FoxNews @PressSec It was an\u003cbr\u003eattack by Muslim Extremeists on\u003cbr\u003einnocent people and the killers\u003cbr\u003eare Masked Cowards of Allah\u003cbr\u003e!\u003cbr\u003eWed Jan 07 14:34:01 +0000 2015"}, {"group": 463, "id": 4, "label": "552835680758665217", "shape": "dot", "size": 10, "title": "552835680758665217\u003cbr\u003e@FoxNews @PressSec This coming from\u003cbr\u003ean administration where the Press\u003cbr\u003eis too chickens**t to call\u003cbr\u003eout the President.\u003cbr\u003eWed Jan 07 14:34:32 +0000 2015"}, {"group": 463, "id": 6, "label": "552835767387832320", "shape": "dot", "size": 10, "title": "552835767387832320\u003cbr\u003e@FoxNews @PressSec seems to be\u003cbr\u003e#wtf Don\u0027t let the control\u003cbr\u003ethe narrative\u003cbr\u003eWed Jan 07 14:34:52 +0000 2015"}, {"group": 463, "id": 7, "label": "552835866138144768", "shape": "dot", "size": 10, "title": "552835866138144768\u003cbr\u003e@FoxNews @PressSec y not mention\u003cbr\u003ethe true cause ISLAM!\u003cbr\u003eWed Jan 07 14:35:16 +0000 2015"}, {"group": 463, "id": 8, "label": "552836684275277824", "shape": "dot", "size": 10, "title": "552836684275277824\u003cbr\u003e@FoxNews @PressSec Another terror attack\u003cbr\u003eby the religion of peace.\u003cbr\u003e#pansies #wakeup\u003cbr\u003eWed Jan 07 14:38:31 +0000 2015"}, {"group": 463, "id": 9, "label": "552836686192054272", "shape": "dot", "size": 10, "title": "552836686192054272\u003cbr\u003e@FoxNews @PressSec \u0027freedom of the\u003cbr\u003ePress\u0027 REALLY?\n\n http://t.co/4QzVo0OArQ\u003cbr\u003eWed Jan 07 14:38:31 +0000 2015"}, {"group": 463, "id": 11, "label": "552837829374795776", "shape": "dot", "size": 10, "title": "552837829374795776\u003cbr\u003e@FoxNews @PressSec Seems?\u003cbr\u003eWed Jan 07 14:43:04 +0000 2015"}, {"group": 463, "id": 13, "label": "552838196401537025", "shape": "dot", "size": 10, "title": "552838196401537025\u003cbr\u003e@FoxNews @PressSec Anything to keep\u003cbr\u003efrom saying #IslamicTerrorism They will\u003cbr\u003econtinue to attack here \u0026amp;\u003cbr\u003ethere until #Obama, oh forget\u003cbr\u003eit!\u003cbr\u003eWed Jan 07 14:44:31 +0000 2015"}, {"group": 463, "id": 5, "label": "552835688748822531", "shape": "dot", "size": 10, "title": "552835688748822531\u003cbr\u003e@HEHF1 @FoxNews @PressSec that\u0027s why\u003cbr\u003ehe took out Bin Laden?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:34:34 +0000 2015"}, {"group": 463, "id": 10, "label": "552836715396997120", "shape": "dot", "size": 10, "title": "552836715396997120\u003cbr\u003e@DwbBill @HEHF1 @FoxNews @PressSec Obama\u003cbr\u003edidn\u0027t take out Bin Laden.\u003cbr\u003eSeal Team Six did. He\u003cbr\u003egave them the go-ahead to\u003cbr\u003esecure his re-election.\u003cbr\u003eWed Jan 07 14:38:38 +0000 2015"}, {"group": 463, "id": 14, "label": "552842247096393729", "shape": "dot", "size": 10, "title": "552842247096393729\u003cbr\u003e@DwbBill @FoxNews @PressSec Obama IS\u003cbr\u003eTHE ENEMY! HE IS WITH\u003cbr\u003eislam. HE IS muuslium HE\u003cbr\u003eIS THE GREATEST ENEMY WE\u003cbr\u003eHATE. HE DOES NOT SUPPORT\u003cbr\u003eUS\u003cbr\u003eWed Jan 07 15:00:37 +0000 2015"}, {"group": 463, "id": 12, "label": "552838007708200961", "shape": "dot", "size": 10, "title": "552838007708200961\u003cbr\u003e@Screeminmeeme @HEHF1 @FoxNews @PressSec Your\u003cbr\u003enuts. Even the shooter says\u003cbr\u003eObama deserves some credit for\u003cbr\u003egiving the go ahead.\u003cbr\u003eWed Jan 07 14:43:46 +0000 2015"}, {"group": 463, "id": 18, "label": "552850084262465536", "shape": "dot", "size": 10, "title": "552850084262465536\u003cbr\u003e@DwbBill @HEHF1 @FoxNews @PressSec My\u003cbr\u003eremarks stand. Obama waited until\u003cbr\u003ebefore the election to give\u003cbr\u003ethe OK. Had other chances\u003cbr\u003ebut declined.\u003cbr\u003eWed Jan 07 15:31:46 +0000 2015"}, {"group": 463, "id": 15, "label": "552844175515725826", "shape": "dot", "size": 10, "title": "552844175515725826\u003cbr\u003e@DwbBill  @PressSec he has\u003cbr\u003eused every chance he has\u003cbr\u003eto divide the US. He\u003cbr\u003eis garbage that\u0027s committing crime\u003cbr\u003eby allowing illegals in country\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:08:17 +0000 2015"}, {"group": 463, "id": 16, "label": "552844399051558912", "shape": "dot", "size": 10, "title": "552844399051558912\u003cbr\u003e@HEHF1 @PressSec Get a life.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:09:10 +0000 2015"}, {"group": 463, "id": 17, "label": "552847057044525059", "shape": "dot", "size": 10, "title": "552847057044525059\u003cbr\u003e@DwbBill @PressSec get off my\u003cbr\u003etimeline\u003cbr\u003eWed Jan 07 15:19:44 +0000 2015"}, {"group": 463, "id": 19, "label": "552850694961889281", "shape": "dot", "size": 10, "title": "552850694961889281\u003cbr\u003e@Screeminmeeme @HEHF1 @FoxNews @PressSec Ya\u003cbr\u003eright. As if you would\u003cbr\u003eknow. Listen to the Seal\u003cbr\u003eteam.\u003cbr\u003eWed Jan 07 15:34:11 +0000 2015"}, {"group": 463, "id": 20, "label": "552853855541526528", "shape": "dot", "size": 10, "title": "552853855541526528\u003cbr\u003e@DwbBill @Screeminmeeme @HEHF1 @FoxNews @PressSec\u003cbr\u003eWTF do YOU know about\u003cbr\u003eit? Have secret clearance or\u003cbr\u003eyour just spewing the bs\u003cbr\u003eyou hear?\u003cbr\u003eWed Jan 07 15:46:45 +0000 2015"}, {"group": 463, "id": 21, "label": "552854476135362561", "shape": "dot", "size": 10, "title": "552854476135362561\u003cbr\u003e@DogTrainingU No you idiot the\u003cbr\u003eguy who shot Bin Laden\u003cbr\u003esaid so on TV.\u003cbr\u003eWed Jan 07 15:49:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 5, "to": 10, "weight": 1}, {"from": 5, "to": 14, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 12, "to": 18, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

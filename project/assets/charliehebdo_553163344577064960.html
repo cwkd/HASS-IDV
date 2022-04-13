@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 971, "id": 0, "label": "553163344577064960", "shape": "dot", "size": 10, "title": "553163344577064960\u003cbr\u003eVoltaire\u0027s gift: Why the battle\u003cbr\u003efor free speech is so\u003cbr\u003eimportant #CharlieHebdo http://t.co/7ioa4EHkju http://t.co/f9rwRMDani\u003cbr\u003eThu Jan 08 12:16:33 +0000 2015"}, {"group": 971, "id": 1, "label": "553163575779667968", "shape": "dot", "size": 10, "title": "553163575779667968\u003cbr\u003e@BBCWorld Free speech is always\u003cbr\u003eimportant. If these terrorist idiots\u003cbr\u003ehad spoken rather than killed,\u003cbr\u003ethey would not be so\u003cbr\u003ehated right now.\u003cbr\u003eThu Jan 08 12:17:28 +0000 2015"}, {"group": 971, "id": 2, "label": "553163819103449088", "shape": "dot", "size": 10, "title": "553163819103449088\u003cbr\u003e\u201c@BBCWorld: Voltaire\u0027s gift: Why the\u003cbr\u003ebattle for free speech is\u003cbr\u003eso important #CharlieHebdo http://t.co/jRZEqVVNWF http://t.co/DlyEpooM1j\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:18:26 +0000 2015"}, {"group": 971, "id": 3, "label": "553163892491157505", "shape": "dot", "size": 10, "title": "553163892491157505\u003cbr\u003e@BBCWorld Free speech is fundamental\u003cbr\u003eto development. Whenever impeded, the\u003cbr\u003eoutcome will be destruction in\u003cbr\u003eone way or the other\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:18:43 +0000 2015"}, {"group": 971, "id": 4, "label": "553164009218666496", "shape": "dot", "size": 10, "title": "553164009218666496\u003cbr\u003e@BBCWorld And it wasn\u0027t hate\u003cbr\u003espeech hate but the views\u003cbr\u003eof a man of reason\u003cbr\u003emocking murderous excess\u2014Jew, Christian and\u003cbr\u003eMuslim..\u003cbr\u003eThu Jan 08 12:19:11 +0000 2015"}, {"group": 971, "id": 5, "label": "553166926097416192", "shape": "dot", "size": 10, "title": "553166926097416192\u003cbr\u003e\u201c@BBCWorld: Voltaire\u0027s gift: Why the\u003cbr\u003ebattle for free speech is\u003cbr\u003eso important #CharlieHebdo http://t.co/Mqoai8mfea http://t.co/2WKkqoObzO\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:30:47 +0000 2015"}, {"group": 971, "id": 6, "label": "553168514593591296", "shape": "dot", "size": 10, "title": "553168514593591296\u003cbr\u003e@BBCWorld - horror beyond words\u003cbr\u003ethat someone be so evil\u003cbr\u003eto raise a weapon; point\u003cbr\u003eit at completely innocent individuals\u003cbr\u003eand end their lives.\u003cbr\u003eThu Jan 08 12:37:05 +0000 2015"}, {"group": 971, "id": 7, "label": "553170633128153088", "shape": "dot", "size": 10, "title": "553170633128153088\u003cbr\u003e@BBCWorld @BBCNews Muslim extremists have\u003cbr\u003eturned the World\u0027s perception of\u003cbr\u003etheir God from a peace\u003cbr\u003eloving diety to a \u0027Bogeyman\u0027\u003cbr\u003eto be feared.\u003cbr\u003eThu Jan 08 12:45:31 +0000 2015"}, {"group": 971, "id": 8, "label": "553173714721050627", "shape": "dot", "size": 10, "title": "553173714721050627\u003cbr\u003e@BBCWorld I will never fully\u003cbr\u003eunderstand the obsessive need of\u003cbr\u003esome to control the thoughts\u003cbr\u003eof others.\u003cbr\u003eThu Jan 08 12:57:45 +0000 2015"}, {"group": 971, "id": 9, "label": "553179437324595200", "shape": "dot", "size": 10, "title": "553179437324595200\u003cbr\u003e@BBCWorld @BBCNews the real issue\u003cbr\u003ehere is not freedom of\u003cbr\u003espeech, but the consequences of\u003cbr\u003ehate-filled hearts!\u003cbr\u003eThu Jan 08 13:20:30 +0000 2015"}, {"group": 971, "id": 10, "label": "553182487128862720", "shape": "dot", "size": 10, "title": "553182487128862720\u003cbr\u003eRT @BBCWorld  Voltaire\u0027s gift:\u003cbr\u003eWhy the battle for free\u003cbr\u003espeech is so important #CharlieHebdo\u003cbr\u003ehttp://t.co/HAPcMl6sNE\u003cbr\u003eThu Jan 08 13:32:37 +0000 2015"}, {"group": 971, "id": 11, "label": "553188982473777152", "shape": "dot", "size": 10, "title": "553188982473777152\u003cbr\u003e@BBCWorld @mountainrunner You might be\u003cbr\u003esurprised to learn who else\u003cbr\u003eis offended by satire http://t.co/DqgwZpD0Rg\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:58:25 +0000 2015"}, {"group": 971, "id": 12, "label": "553194347148374016", "shape": "dot", "size": 10, "title": "553194347148374016\u003cbr\u003e\u201c@BBCWorld: Voltaire\u0027s gift: Why the\u003cbr\u003ebattle for free speech is\u003cbr\u003eso important #CharlieHebdo http://t.co/zRRcyzFUiK http://t.co/WJanjI0Rgl\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:19:44 +0000 2015"}, {"group": 971, "id": 13, "label": "553196602958286848", "shape": "dot", "size": 10, "title": "553196602958286848\u003cbr\u003e@BBCWorld Free Speach has nothing\u003cbr\u003eto do with Voltaire and\u003cbr\u003ehis crappy philosophy.\u003cbr\u003eThu Jan 08 14:28:42 +0000 2015"}, {"group": 971, "id": 14, "label": "553196840443969537", "shape": "dot", "size": 10, "title": "553196840443969537\u003cbr\u003e@teddyboylocsin @BBCWorld Neither the Jews\u003cbr\u003enor the Christians killed anyone\u003cbr\u003ehere. And most of the\u003cbr\u003eMuslims weren\u0027t involved either.\u003cbr\u003eThu Jan 08 14:29:39 +0000 2015"}, {"group": 971, "id": 15, "label": "553244707526959104", "shape": "dot", "size": 10, "title": "553244707526959104\u003cbr\u003e@Hadashi_Tora @BBCWorld Like the death\u003cbr\u003eof Jesus, no one is\u003cbr\u003eguilty again.\u003cbr\u003eThu Jan 08 17:39:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 4, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

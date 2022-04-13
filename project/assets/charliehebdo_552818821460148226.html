@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1739, "id": 0, "label": "552818821460148226", "shape": "dot", "size": 10, "title": "552818821460148226\u003cbr\u003eAccording to #CharlieHebdo\u2019s lawyer four\u003cbr\u003ewell-known French cartoonists were killed\u003cbr\u003eby the masked gunmen: Cabu,\u003cbr\u003eWolinski, Charb et Tignous.\u003cbr\u003eWed Jan 07 13:27:32 +0000 2015"}, {"group": 1739, "id": 1, "label": "552819015669006337", "shape": "dot", "size": 10, "title": "552819015669006337\u003cbr\u003e@France24_en I strongly condemn this\u003cbr\u003eterrorist attack as a Turkish\u003cbr\u003eMuslim.Terrorists Cannot represent Islam #notinmyname\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 13:28:18 +0000 2015"}, {"group": 1739, "id": 2, "label": "552821847666876416", "shape": "dot", "size": 10, "title": "552821847666876416\u003cbr\u003e@France24_en so sad. What\u0027s our\u003cbr\u003eworld coming to?\u003cbr\u003eWed Jan 07 13:39:34 +0000 2015"}, {"group": 1739, "id": 4, "label": "552824007595028480", "shape": "dot", "size": 10, "title": "552824007595028480\u003cbr\u003e#RIP RT @France24_en According to\u003cbr\u003e#CharlieHebdo\u2019s lawyer 4 well-known cartoonists\u003cbr\u003ekilled by masked gunmen: Cabu,\u003cbr\u003eWolinski, Charb + Tignous.\u003cbr\u003eWed Jan 07 13:48:09 +0000 2015"}, {"group": 1739, "id": 5, "label": "552828759145861120", "shape": "dot", "size": 10, "title": "552828759145861120\u003cbr\u003e@France24_en @yewkalaylee http://t.co/4mg45dDOoT\u003cbr\u003eWed Jan 07 14:07:01 +0000 2015"}, {"group": 1739, "id": 3, "label": "552822026730078208", "shape": "dot", "size": 10, "title": "552822026730078208\u003cbr\u003e@France24_en no more freedom of\u003cbr\u003espeech, no more journalists or\u003cbr\u003ejournalism. Just political correct crap\u003cbr\u003eoff the media because of\u003cbr\u003efear\u003cbr\u003eWed Jan 07 13:40:16 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 2, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

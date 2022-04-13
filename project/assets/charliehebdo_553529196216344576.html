@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1934, "id": 0, "label": "553529196216344576", "shape": "dot", "size": 10, "title": "553529196216344576\u003cbr\u003eUpdate - AFP reports an\u003cbr\u003earmed man has taken a\u003cbr\u003ehostage in a kosher grocery\u003cbr\u003ein #Paris\u003cbr\u003eFri Jan 09 12:30:19 +0000 2015"}, {"group": 1934, "id": 1, "label": "553529372012212224", "shape": "dot", "size": 10, "title": "553529372012212224\u003cbr\u003e\u201c@SkyNewsBreak: Update - AFP reports\u003cbr\u003ean armed man has taken\u003cbr\u003ea hostage in a kosher\u003cbr\u003egrocery in #Paris\u201d bloody hell\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:31:01 +0000 2015"}, {"group": 1934, "id": 2, "label": "553530037841174528", "shape": "dot", "size": 10, "title": "553530037841174528\u003cbr\u003e@SkyNewsBreak @JTSkyNews it will be\u003cbr\u003eBritain next, it\u0027s only a\u003cbr\u003ematter of time\u003cbr\u003eFri Jan 09 12:33:39 +0000 2015"}, {"group": 1934, "id": 3, "label": "553530063535501312", "shape": "dot", "size": 10, "title": "553530063535501312\u003cbr\u003e\u201c@SkyNewsBreak: Update - AFP reports\u003cbr\u003ean armed man has taken\u003cbr\u003ea hostage in a kosher\u003cbr\u003egrocery in #Paris\u201d could be\u003cbr\u003esomething to do with Palestine\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:33:45 +0000 2015"}, {"group": 1934, "id": 5, "label": "553531447852945408", "shape": "dot", "size": 10, "title": "553531447852945408\u003cbr\u003e@SkyNewsBreak @newsytweets mad all this!\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:39:15 +0000 2015"}, {"group": 1934, "id": 7, "label": "553532401444741120", "shape": "dot", "size": 10, "title": "553532401444741120\u003cbr\u003e\u201c@SkyNewsBreak: Update - AFP reports\u003cbr\u003ean armed man has taken\u003cbr\u003ea hostage in a kosher\u003cbr\u003egrocery in #Paris\u201d fully grim\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:43:03 +0000 2015"}, {"group": 1934, "id": 10, "label": "553533283481681920", "shape": "dot", "size": 10, "title": "553533283481681920\u003cbr\u003e\u201c@SkyNewsBreak: Update - AFP reports\u003cbr\u003ean armed man has taken\u003cbr\u003ea hostage in a kosher\u003cbr\u003egrocery in #Paris\u201d Fuck sake,\u003cbr\u003ewhen will it end !!!\u003cbr\u003e#Paris\u003cbr\u003eFri Jan 09 12:46:33 +0000 2015"}, {"group": 1934, "id": 11, "label": "553534594793082880", "shape": "dot", "size": 10, "title": "553534594793082880\u003cbr\u003e\u201c@SkyNewsBreak: Update - AFP reports\u003cbr\u003ean armed man has taken\u003cbr\u003ea hostage in a kosher\u003cbr\u003egrocery in #Paris\u201d\n\nJesu\u003cbr\u003eFri Jan 09 12:51:46 +0000 2015"}, {"group": 1934, "id": 12, "label": "553534707544375296", "shape": "dot", "size": 10, "title": "553534707544375296\u003cbr\u003e\u201c@SkyNewsBreak: Update - AFP reports\u003cbr\u003ean armed man has taken\u003cbr\u003ea hostage in a kosher\u003cbr\u003egrocery in #Paris\u201d eradicate the\u003cbr\u003escumbags\u003cbr\u003eFri Jan 09 12:52:13 +0000 2015"}, {"group": 1934, "id": 6, "label": "553531793958526976", "shape": "dot", "size": 10, "title": "553531793958526976\u003cbr\u003e@BillyLabrum @SkyNewsBreak so scary, just\u003cbr\u003ecan\u0027t believe what\u0027s going on!!\ud83d\ude15\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:40:38 +0000 2015"}, {"group": 1934, "id": 4, "label": "553531277337702400", "shape": "dot", "size": 10, "title": "553531277337702400\u003cbr\u003e@JakeTaylor12 @SkyNewsBreak what\u0027s a shop\u003cbr\u003egot to do with Palestine?\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:38:35 +0000 2015"}, {"group": 1934, "id": 14, "label": "553537065896648704", "shape": "dot", "size": 10, "title": "553537065896648704\u003cbr\u003e@JakeTaylor12 @SkyNewsBreak what relevance is\u003cbr\u003ethat? Does that justify it?\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:01:35 +0000 2015"}, {"group": 1934, "id": 18, "label": "553539462651977729", "shape": "dot", "size": 10, "title": "553539462651977729\u003cbr\u003e@JakeTaylor12 @SkyNewsBreak @sgeretz atrocities committed\u003cbr\u003eby Israel. What the fuck\u003cbr\u003eyou talking about.\u003cbr\u003eFri Jan 09 13:11:06 +0000 2015"}, {"group": 1934, "id": 8, "label": "553532461314244608", "shape": "dot", "size": 10, "title": "553532461314244608\u003cbr\u003e@lufc_AML @SkyNewsBreak they\u0027re muslim, the\u003cbr\u003eshop is kosher. Food friendly\u003cbr\u003efor jews specifically.\u003cbr\u003eFri Jan 09 12:43:17 +0000 2015"}, {"group": 1934, "id": 9, "label": "553532489156018176", "shape": "dot", "size": 10, "title": "553532489156018176\u003cbr\u003e@OfficialEmmaB it seems like these\u003cbr\u003eattacks are accelerating. Yes, very\u003cbr\u003escary.\u003cbr\u003eFri Jan 09 12:43:24 +0000 2015"}, {"group": 1934, "id": 32, "label": "553542966279942144", "shape": "dot", "size": 10, "title": "553542966279942144\u003cbr\u003e@OfficialEmmaB @BillyLabrum @SkyNewsBreak this will\u003cbr\u003enow not end well at\u003cbr\u003eall, one step to far.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:25:02 +0000 2015"}, {"group": 1934, "id": 13, "label": "553536034647334912", "shape": "dot", "size": 10, "title": "553536034647334912\u003cbr\u003e@RyanLoader1990 @SkyNewsBreak im scared, the\u003cbr\u003eUK threat level is now\u003cbr\u003eat severe, meaning \"an attack\u003cbr\u003eis HIGHLY LIKELY.\"\u003cbr\u003eFri Jan 09 12:57:29 +0000 2015"}, {"group": 1934, "id": 23, "label": "553542102391717888", "shape": "dot", "size": 10, "title": "553542102391717888\u003cbr\u003e@_SophieNewton_ @RyanLoader1990 @SkyNewsBreak stay away\u003cbr\u003efrom London and you\u0027ll most\u003cbr\u003elikely be fine..\u003cbr\u003eFri Jan 09 13:21:36 +0000 2015"}, {"group": 1934, "id": 15, "label": "553537794455646208", "shape": "dot", "size": 10, "title": "553537794455646208\u003cbr\u003e@Jay_Snowdenn @SkyNewsBreak where the fuck\u003cbr\u003edid i say that? Just\u003cbr\u003esaid it might have something\u003cbr\u003eto do with it.\u003cbr\u003eFri Jan 09 13:04:29 +0000 2015"}, {"group": 1934, "id": 16, "label": "553538000983183360", "shape": "dot", "size": 10, "title": "553538000983183360\u003cbr\u003e@JakeTaylor12 @SkyNewsBreak terror is terror\u003cbr\u003eregardless of context. We\u0027re all\u003cbr\u003eaware of the existence of\u003cbr\u003ethe Israel-Palestine situation\u003cbr\u003eFri Jan 09 13:05:18 +0000 2015"}, {"group": 1934, "id": 17, "label": "553538417846673408", "shape": "dot", "size": 10, "title": "553538417846673408\u003cbr\u003e@Jay_Snowdenn @SkyNewsBreak yes i\u0027m just\u003cbr\u003esaying that there may be\u003cbr\u003ea relevance. Atrocities committed by\u003cbr\u003eIsrael having a knock on\u003cbr\u003eeffect.\u003cbr\u003eFri Jan 09 13:06:57 +0000 2015"}, {"group": 1934, "id": 19, "label": "553539761613594624", "shape": "dot", "size": 10, "title": "553539761613594624\u003cbr\u003e@pgoldman16 @SkyNewsBreak @sgeretz fucking Palestine.\u003cbr\u003eIslamic community haven\u0027t taken it\u003cbr\u003ewell apparently.\u003cbr\u003eFri Jan 09 13:12:18 +0000 2015"}, {"group": 1934, "id": 20, "label": "553540779919310848", "shape": "dot", "size": 10, "title": "553540779919310848\u003cbr\u003e@JakeTaylor12 @SkyNewsBreak @sgeretz no such\u003cbr\u003ecountry. Must be referring to\u003cbr\u003ethe Hamas terrorists Israel are\u003cbr\u003efighting against.\u003cbr\u003eFri Jan 09 13:16:20 +0000 2015"}, {"group": 1934, "id": 21, "label": "553541346326491137", "shape": "dot", "size": 10, "title": "553541346326491137\u003cbr\u003e@pgoldman16 @SkyNewsBreak @sgeretz oh fuck\u003cbr\u003eoff you idiot.\u003cbr\u003eFri Jan 09 13:18:35 +0000 2015"}, {"group": 1934, "id": 22, "label": "553541501779988480", "shape": "dot", "size": 10, "title": "553541501779988480\u003cbr\u003e@pgoldman16 @SkyNewsBreak @sgeretz and where\u003cbr\u003edid i say country? Fucking\u003cbr\u003eidiot. Kill yourself.\u003cbr\u003eFri Jan 09 13:19:12 +0000 2015"}, {"group": 1934, "id": 24, "label": "553542225385492480", "shape": "dot", "size": 10, "title": "553542225385492480\u003cbr\u003e@JakeTaylor12 @sgeretz by typing Palestine\u003cbr\u003eshit for brains. Off to\u003cbr\u003ekill myself now\u003cbr\u003eFri Jan 09 13:22:05 +0000 2015"}, {"group": 1934, "id": 25, "label": "553542336329048064", "shape": "dot", "size": 10, "title": "553542336329048064\u003cbr\u003e@Adam_Budd @_SophieNewton_ I work on\u003cbr\u003ean army camp. I feel\u003cbr\u003epretty safe \ud83d\ude02\u003cbr\u003eFri Jan 09 13:22:31 +0000 2015"}, {"group": 1934, "id": 26, "label": "553542501676888064", "shape": "dot", "size": 10, "title": "553542501676888064\u003cbr\u003e@Adam_Budd @RyanLoader1990 @SkyNewsBreak thanks Adam\u003cbr\u003eI feel much reassured now\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:23:11 +0000 2015"}, {"group": 1934, "id": 30, "label": "553542911007412224", "shape": "dot", "size": 10, "title": "553542911007412224\u003cbr\u003e@pgoldman16 @sgeretz good. World would\u003cbr\u003ebe a better place.\u003cbr\u003eFri Jan 09 13:24:48 +0000 2015"}, {"group": 1934, "id": 31, "label": "553542958197510145", "shape": "dot", "size": 10, "title": "553542958197510145\u003cbr\u003e@pgoldman16 @JakeTaylor12 \nJake does your\u003cbr\u003emum know you are playing\u003cbr\u003eon her phone???\u003cbr\u003eFri Jan 09 13:25:00 +0000 2015"}, {"group": 1934, "id": 27, "label": "553542590457737216", "shape": "dot", "size": 10, "title": "553542590457737216\u003cbr\u003e@_SophieNewton_ @RyanLoader1990 @SkyNewsBreak I\u0027m so\u003cbr\u003eglad I could be of\u003cbr\u003esuch assistance \u263a\ufe0f\u003cbr\u003eFri Jan 09 13:23:32 +0000 2015"}, {"group": 1934, "id": 28, "label": "553542771165102080", "shape": "dot", "size": 10, "title": "553542771165102080\u003cbr\u003e@Adam_Budd @_SophieNewton_ Adam Budd, expert\u003cbr\u003ein counter terrorism and home\u003cbr\u003esecurity \ud83d\ude02\u003cbr\u003eFri Jan 09 13:24:15 +0000 2015"}, {"group": 1934, "id": 29, "label": "553542862433189889", "shape": "dot", "size": 10, "title": "553542862433189889\u003cbr\u003e@RyanLoader1990 @Adam_Budd ADAM BUDD FOR\u003cbr\u003ePM\u003cbr\u003eFri Jan 09 13:24:37 +0000 2015"}, {"group": 1934, "id": 33, "label": "553543026942173184", "shape": "dot", "size": 10, "title": "553543026942173184\u003cbr\u003e@RyanLoader1990 @_SophieNewton_ providing calm and\u003cbr\u003ereassurance at such traumatic times.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:25:16 +0000 2015"}, {"group": 1934, "id": 37, "label": "553544004462473216", "shape": "dot", "size": 10, "title": "553544004462473216\u003cbr\u003e@JakeTaylor12 @pgoldman16 @sgeretz ha, nice\u003cbr\u003econvo. I mean Jewish shop\u003cbr\u003eis nothing to do with\u003cbr\u003eIsrael. They Must just hate\u003cbr\u003eJews\u003cbr\u003eFri Jan 09 13:29:09 +0000 2015"}, {"group": 1934, "id": 35, "label": "553543746735058945", "shape": "dot", "size": 10, "title": "553543746735058945\u003cbr\u003e@sgeretz @pgoldman16 was that a\u003cbr\u003ejoke or what? If so\u003cbr\u003ei don\u0027t get it.\u003cbr\u003eFri Jan 09 13:28:08 +0000 2015"}, {"group": 1934, "id": 43, "label": "553545974548004865", "shape": "dot", "size": 10, "title": "553545974548004865\u003cbr\u003e@insportfoto @BillyLabrum @SkyNewsBreak there are\u003cbr\u003echildren in the supermarket hostage\u003cbr\u003escenario, FFS! \ud83d\ude15\u003cbr\u003eFri Jan 09 13:36:59 +0000 2015"}, {"group": 1934, "id": 34, "label": "553543600798453760", "shape": "dot", "size": 10, "title": "553543600798453760\u003cbr\u003e@Adam_Budd @RyanLoader1990 Ryan\u0027s just called\u003cbr\u003eme. He\u0027s feeling reassured now.\u003cbr\u003eThanks Adam we can count\u003cbr\u003eon you to fight them\u003cbr\u003esinglehandedly\u003cbr\u003eFri Jan 09 13:27:33 +0000 2015"}, {"group": 1934, "id": 36, "label": "553543917682319361", "shape": "dot", "size": 10, "title": "553543917682319361\u003cbr\u003e@_SophieNewton_ @RyanLoader1990 no worries Ry\u003cbr\u003eRy.. My pleasure.\u003cbr\u003eFri Jan 09 13:28:48 +0000 2015"}, {"group": 1934, "id": 41, "label": "553545331041128448", "shape": "dot", "size": 10, "title": "553545331041128448\u003cbr\u003e@JakeTaylor12 @sgeretz I think there\u0027s\u003cbr\u003ea lot of things your\u003cbr\u003esmall mind doesn\u0027t get\u003cbr\u003eFri Jan 09 13:34:25 +0000 2015"}, {"group": 1934, "id": 38, "label": "553544354720382977", "shape": "dot", "size": 10, "title": "553544354720382977\u003cbr\u003e@lufc_AML @pgoldman16 @sgeretz i know\u003cbr\u003e\ud83d\ude10 no i meant it\u003cbr\u003ecould be a reaction from\u003cbr\u003ethe situation over there.\u003cbr\u003eFri Jan 09 13:30:33 +0000 2015"}, {"group": 1934, "id": 39, "label": "553544793268453376", "shape": "dot", "size": 10, "title": "553544793268453376\u003cbr\u003e@JakeTaylor12 @pgoldman16 @sgeretz strong reaction!\u003cbr\u003eMaybe they should do that\u003cbr\u003ein gaza or Israel rather\u003cbr\u003ethan our countries!!\u003cbr\u003eFri Jan 09 13:32:17 +0000 2015"}, {"group": 1934, "id": 40, "label": "553545310111535106", "shape": "dot", "size": 10, "title": "553545310111535106\u003cbr\u003e@lufc_AML @pgoldman16 @sgeretz they do\u003cbr\u003eit all over the world.\u003cbr\u003eMainly because of the support\u003cbr\u003ea lot of the world\u003cbr\u003eshow towards Israel.\u003cbr\u003eFri Jan 09 13:34:20 +0000 2015"}, {"group": 1934, "id": 44, "label": "553546161576218625", "shape": "dot", "size": 10, "title": "553546161576218625\u003cbr\u003e@JakeTaylor12 @pgoldman16 @sgeretz Israel is\u003cbr\u003ejust an excuse. When people\u003cbr\u003ego to Israel they always\u003cbr\u003esay it\u0027s not how the\u003cbr\u003eimagined it!\u003cbr\u003eFri Jan 09 13:37:43 +0000 2015"}, {"group": 1934, "id": 45, "label": "553546310209798144", "shape": "dot", "size": 10, "title": "553546310209798144\u003cbr\u003e@JakeTaylor12 @pgoldman16 @sgeretz these people\u003cbr\u003eare evil and they want\u003cbr\u003ethe world to play by\u003cbr\u003etheir rules!\u003cbr\u003eFri Jan 09 13:38:19 +0000 2015"}, {"group": 1934, "id": 42, "label": "553545493234864129", "shape": "dot", "size": 10, "title": "553545493234864129\u003cbr\u003e@pgoldman16 @sgeretz and what do\u003cbr\u003eyou base that assumption on?\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:35:04 +0000 2015"}, {"group": 1934, "id": 46, "label": "553546808451170304", "shape": "dot", "size": 10, "title": "553546808451170304\u003cbr\u003e@JakeTaylor12 @pgoldman16 @sgeretz ps Sunderland\u003cbr\u003ewere lucky to beat Leeds\u003cbr\u003eat wkend. We went and\u003cbr\u003eyour fans were very poor\u003cbr\u003ecompared to the 90s\u003cbr\u003eFri Jan 09 13:40:18 +0000 2015"}, {"group": 1934, "id": 47, "label": "553547589547991040", "shape": "dot", "size": 10, "title": "553547589547991040\u003cbr\u003e@lufc_AML @pgoldman16 @sgeretz i agree\u003cbr\u003emind, not the same tie\u003cbr\u003ethat it was back then\u003cbr\u003ethough! Placement of away fans\u003cbr\u003eis poor too!\u003cbr\u003eFri Jan 09 13:43:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 14, "weight": 1}, {"from": 3, "to": 18, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 32, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 13, "to": 23, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 23, "to": 26, "weight": 1}, {"from": 24, "to": 30, "weight": 1}, {"from": 24, "to": 31, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 28, "to": 33, "weight": 1}, {"from": 30, "to": 37, "weight": 1}, {"from": 31, "to": 35, "weight": 1}, {"from": 32, "to": 43, "weight": 1}, {"from": 33, "to": 34, "weight": 1}, {"from": 34, "to": 36, "weight": 1}, {"from": 35, "to": 41, "weight": 1}, {"from": 37, "to": 38, "weight": 1}, {"from": 38, "to": 39, "weight": 1}, {"from": 39, "to": 40, "weight": 1}, {"from": 40, "to": 44, "weight": 1}, {"from": 40, "to": 45, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 45, "to": 46, "weight": 1}, {"from": 46, "to": 47, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

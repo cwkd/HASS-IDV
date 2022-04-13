@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1902, "id": 0, "label": "553493510306152448", "shape": "dot", "size": 10, "title": "553493510306152448\u003cbr\u003eIndustrial zone in Dammartin-en-Go\u00ebl, near\u003cbr\u003eParis, scene of hostage taking\u003cbr\u003eand manhunt. More: http://t.co/8zhiaZAshc http://t.co/zCpXy3EN1P\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:08:30 +0000 2015"}, {"group": 1902, "id": 1, "label": "553494095616696320", "shape": "dot", "size": 10, "title": "553494095616696320\u003cbr\u003e@WSJ those police know shit\u003cbr\u003eis about to get real\u003cbr\u003ebut they\u0027re still running TOWARDS\u003cbr\u003ethe fight.\u003cbr\u003eFri Jan 09 10:10:50 +0000 2015"}, {"group": 1902, "id": 2, "label": "553495707244834817", "shape": "dot", "size": 10, "title": "553495707244834817\u003cbr\u003e@WSJ please take them alive,\u003cbr\u003ewithin an inch of life.\u003cbr\u003eDisable them. But keep them\u003cbr\u003ealive!\u003cbr\u003eFri Jan 09 10:17:14 +0000 2015"}, {"group": 1902, "id": 3, "label": "553535175464742912", "shape": "dot", "size": 10, "title": "553535175464742912\u003cbr\u003e@WSJ Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet thank you http://t.co/Cf3z3jOxyx,,\u003cbr\u003eFri Jan 09 12:54:04 +0000 2015"}, {"group": 1902, "id": 4, "label": "553535582748811264", "shape": "dot", "size": 10, "title": "553535582748811264\u003cbr\u003e@WSJ @Ariachetira we do need\u003cbr\u003esome Blade Runners\u003cbr\u003eFri Jan 09 12:55:41 +0000 2015"}, {"group": 1902, "id": 5, "label": "553554826236145664", "shape": "dot", "size": 10, "title": "553554826236145664\u003cbr\u003e@WSJ Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet thank you http://t.co/Cf3z3jOxyx\u003cbr\u003eFri Jan 09 14:12:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

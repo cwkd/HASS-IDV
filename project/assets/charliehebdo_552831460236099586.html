@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 418, "id": 0, "label": "552831460236099586", "shape": "dot", "size": 10, "title": "552831460236099586\u003cbr\u003e\"I strongly condemn the horrific\u003cbr\u003eshooting\" at the offices of\u003cbr\u003e#CharlieHebdo, US President Obama says\u003cbr\u003ehttp://t.co/Z0Kp0ZjMGs\u003cbr\u003eWed Jan 07 14:17:45 +0000 2015"}, {"group": 418, "id": 1, "label": "552831566117085184", "shape": "dot", "size": 10, "title": "552831566117085184\u003cbr\u003e@BBCBreaking if you can show\u003cbr\u003esuch gruesome pictures of death,\u003cbr\u003ewhy aren\u0027t you showing the\u003cbr\u003ecartoons that caused it? Unbelievable\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 14:18:11 +0000 2015"}, {"group": 418, "id": 2, "label": "552831724384968704", "shape": "dot", "size": 10, "title": "552831724384968704\u003cbr\u003e\u201c@BBCBreaking: \"I strongly condemn the\u003cbr\u003ehorrific shooting\" at the offices\u003cbr\u003eof #CharlieHebdo, US President Obama\u003cbr\u003esays http://t.co/FbWjl9bNHE\u003cbr\u003eWed Jan 07 14:18:48 +0000 2015"}, {"group": 418, "id": 4, "label": "552831809948770305", "shape": "dot", "size": 10, "title": "552831809948770305\u003cbr\u003e@BBCBreaking says the muslim-est golf\u003cbr\u003eplayer  the WH ever\u003cbr\u003eharbored.\u003cbr\u003eWed Jan 07 14:19:09 +0000 2015"}, {"group": 418, "id": 5, "label": "552831816500281344", "shape": "dot", "size": 10, "title": "552831816500281344\u003cbr\u003e@BBCBreaking And this has nothing\u003cbr\u003ewhatsoever in any small teeny\u003cbr\u003eweeny way do do with\u003cbr\u003e#islam #CharlieHebdo #JeSuisCharlie\u003cbr\u003eWed Jan 07 14:19:10 +0000 2015"}, {"group": 418, "id": 6, "label": "552831865707855872", "shape": "dot", "size": 10, "title": "552831865707855872\u003cbr\u003e@BBCBreaking After the 1962 Cuban\u003cbr\u003eMissile Crisis, then came: http://t.co/sh5mFenFTK\u003cbr\u003e\u2026 \u2026 and http://t.co/K120Lr0lUN \u2026\u003cbr\u003e\u2026\u003cbr\u003eWed Jan 07 14:19:22 +0000 2015"}, {"group": 418, "id": 14, "label": "552833196262694912", "shape": "dot", "size": 10, "title": "552833196262694912\u003cbr\u003e@BBCBreaking he won\u0027t call it\u003cbr\u003ean act of terror though\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:24:39 +0000 2015"}, {"group": 418, "id": 3, "label": "552831752436457472", "shape": "dot", "size": 10, "title": "552831752436457472\u003cbr\u003e@PittacusPhi @BBCBreaking might upset some\u003cbr\u003epeople you know.\u003cbr\u003eWed Jan 07 14:18:55 +0000 2015"}, {"group": 418, "id": 8, "label": "552832040559980544", "shape": "dot", "size": 10, "title": "552832040559980544\u003cbr\u003e@PittacusPhi @BBCBreaking Cartoons caused it\u003cbr\u003e? Are you a fucking\u003cbr\u003eimbecile ?\u003cbr\u003eWed Jan 07 14:20:04 +0000 2015"}, {"group": 418, "id": 12, "label": "552832673270349824", "shape": "dot", "size": 10, "title": "552832673270349824\u003cbr\u003e@PittacusPhi @BBCBreaking because they are\u003cbr\u003ecowards\u003cbr\u003eWed Jan 07 14:22:35 +0000 2015"}, {"group": 418, "id": 7, "label": "552831934397972480", "shape": "dot", "size": 10, "title": "552831934397972480\u003cbr\u003e@trixywh @BBCBreaking After the 1962\u003cbr\u003eCuban Missile Crisis, then came:\u003cbr\u003ehttp://t.co/sh5mFenFTK \u2026 \u2026 and http://t.co/K120Lr0lUN\u003cbr\u003e\u2026 \u2026\u003cbr\u003eWed Jan 07 14:19:38 +0000 2015"}, {"group": 418, "id": 9, "label": "552832240506662912", "shape": "dot", "size": 10, "title": "552832240506662912\u003cbr\u003e@Themightydodgy_ @BBCBreaking When activists need\u003cbr\u003ea pretext to justify their\u003cbr\u003eviolence, they alwas find it\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:20:51 +0000 2015"}, {"group": 418, "id": 24, "label": "552847867959074816", "shape": "dot", "size": 10, "title": "552847867959074816\u003cbr\u003e@_Morning_ get a life.\u003cbr\u003eWed Jan 07 15:22:57 +0000 2015"}, {"group": 418, "id": 15, "label": "552833674329477121", "shape": "dot", "size": 10, "title": "552833674329477121\u003cbr\u003e@mycubanfriends @bbcbreaking I know my\u003cbr\u003eFrench is bad these days,\u003cbr\u003ebut I hardly believe it\u003cbr\u003ecan be mistaken for Spanish\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:26:33 +0000 2015"}, {"group": 418, "id": 10, "label": "552832490134835202", "shape": "dot", "size": 10, "title": "552832490134835202\u003cbr\u003e@fatclyde @BBCBreaking when activists need\u003cbr\u003ea pretext to justify their\u003cbr\u003eviolence, they always find it.\u003cbr\u003eabout FOS. Show the cartoons,\u003cbr\u003estand up!\u003cbr\u003eWed Jan 07 14:21:51 +0000 2015"}, {"group": 418, "id": 11, "label": "552832621508825088", "shape": "dot", "size": 10, "title": "552832621508825088\u003cbr\u003e@PittacusPhi @BBCBreaking well this one\u003cbr\u003ewas an attack on freedom\u003cbr\u003eof speech which i do\u003cbr\u003ehope the powers that be\u003cbr\u003ewill show no apathy towards.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:22:22 +0000 2015"}, {"group": 418, "id": 13, "label": "552832945044873216", "shape": "dot", "size": 10, "title": "552832945044873216\u003cbr\u003e@PsychicWaugh @BBCBreaking when journos don\u0027t\u003cbr\u003estand up for FOS, you\u003cbr\u003eknow we\u0027re in trouble. Agreed.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:23:39 +0000 2015"}, {"group": 418, "id": 16, "label": "552834768228741120", "shape": "dot", "size": 10, "title": "552834768228741120\u003cbr\u003e@PittacusPhi @fatclyde @BBCBreaking something to\u003cbr\u003edo that line was shouted.\u003cbr\u003eI was attempting to quote\u003cbr\u003ewhat was said. Mohammed isn\u0027t\u003cbr\u003emy\u003cbr\u003eWed Jan 07 14:30:54 +0000 2015"}, {"group": 418, "id": 18, "label": "552834949787561984", "shape": "dot", "size": 10, "title": "552834949787561984\u003cbr\u003e@PittacusPhi @fatclyde @BBCBreaking I respect\u003cbr\u003eyour freedom of speech to\u003cbr\u003ederide me :)\u003cbr\u003eWed Jan 07 14:31:37 +0000 2015"}, {"group": 418, "id": 17, "label": "552834815519518720", "shape": "dot", "size": 10, "title": "552834815519518720\u003cbr\u003e@PittacusPhi @fatclyde @BBCBreaking prophet.\u003cbr\u003eWed Jan 07 14:31:05 +0000 2015"}, {"group": 418, "id": 19, "label": "552835200686637056", "shape": "dot", "size": 10, "title": "552835200686637056\u003cbr\u003e@PittacusPhi @fatclyde @BBCBreaking sorry auto\u003cbr\u003ecorrect and fast typing. I\u003cbr\u003ewas intending to explain to\u003cbr\u003ethe other poster- that yes\u003cbr\u003eit was over\u003cbr\u003eWed Jan 07 14:32:37 +0000 2015"}, {"group": 418, "id": 20, "label": "552835251030859776", "shape": "dot", "size": 10, "title": "552835251030859776\u003cbr\u003e@PittacusPhi @fatclyde @BBCBreaking cartoons and\u003cbr\u003ewhat was said following it.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:49 +0000 2015"}, {"group": 418, "id": 21, "label": "552835617647001601", "shape": "dot", "size": 10, "title": "552835617647001601\u003cbr\u003e@PsychicWaugh @PittacusPhi @BBCBreaking Correct me\u003cbr\u003eif I\u0027m wrong but since\u003cbr\u003ewhen were cartoons a validation\u003cbr\u003efor brutal murder ?\u003cbr\u003eWed Jan 07 14:34:17 +0000 2015"}, {"group": 418, "id": 22, "label": "552835711565438977", "shape": "dot", "size": 10, "title": "552835711565438977\u003cbr\u003e@fatclyde @PittacusPhi @BBCBreaking it\u0027s not!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:34:39 +0000 2015"}, {"group": 418, "id": 23, "label": "552836332574478337", "shape": "dot", "size": 10, "title": "552836332574478337\u003cbr\u003e@fatclyde @PsychicWaugh @BBCBreaking Extremists will\u003cbr\u003euse any excuse, even cartoons,\u003cbr\u003eto carry out violence. Never\u003cbr\u003ea validation @fatclyde\u003cbr\u003eWed Jan 07 14:37:07 +0000 2015"}, {"group": 418, "id": 25, "label": "552849225760120834", "shape": "dot", "size": 10, "title": "552849225760120834\u003cbr\u003e@smray7 sure, fuck you too.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:28:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 8, "weight": 1}, {"from": 1, "to": 12, "weight": 1}, {"from": 2, "to": 7, "weight": 1}, {"from": 3, "to": 9, "weight": 1}, {"from": 4, "to": 24, "weight": 1}, {"from": 7, "to": 15, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 15, "to": 18, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 24, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

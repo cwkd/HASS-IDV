@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 844, "id": 0, "label": "553132534771744768", "shape": "dot", "size": 10, "title": "553132534771744768\u003cbr\u003eDonald Trump blames #CharlieHebdo massacre\u003cbr\u003eon France\u0027s strict gun laws\u003cbr\u003ehttp://t.co/gqzhHqeZbA http://t.co/ZkMY42uw7D\u003cbr\u003eThu Jan 08 10:14:07 +0000 2015"}, {"group": 844, "id": 1, "label": "553134227760623616", "shape": "dot", "size": 10, "title": "553134227760623616\u003cbr\u003e@DailyMail @MailOnline \n\nGun laws are\u003cbr\u003eirrelevant when you have no\u003cbr\u003eboarder control.\u003cbr\u003eThu Jan 08 10:20:51 +0000 2015"}, {"group": 844, "id": 2, "label": "553134704271306752", "shape": "dot", "size": 10, "title": "553134704271306752\u003cbr\u003e@DailyMail @henrirouen Lets arm the\u003cbr\u003eworld!!!! Armageddon!! I thought he\u003cbr\u003ewas intelligent?\u003cbr\u003eThu Jan 08 10:22:44 +0000 2015"}, {"group": 844, "id": 3, "label": "553135643971551232", "shape": "dot", "size": 10, "title": "553135643971551232\u003cbr\u003e@DailyMail @MailOnline Tell that to\u003cbr\u003ethe French Muslim policeman murdered\u003cbr\u003eat point blank range. Trump\u003cbr\u003eis a total chump.\u003cbr\u003eThu Jan 08 10:26:28 +0000 2015"}, {"group": 844, "id": 5, "label": "553136156251275264", "shape": "dot", "size": 10, "title": "553136156251275264\u003cbr\u003e@DailyMail @MailOnline what a dickhead\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:28:31 +0000 2015"}, {"group": 844, "id": 8, "label": "553144861520838656", "shape": "dot", "size": 10, "title": "553144861520838656\u003cbr\u003e@DailyMail @MailOnline dumb europeans. dont\u003cbr\u003eunderstand the concept of self\u003cbr\u003edefence.\u003cbr\u003eThu Jan 08 11:03:06 +0000 2015"}, {"group": 844, "id": 9, "label": "553149680486334464", "shape": "dot", "size": 10, "title": "553149680486334464\u003cbr\u003e.@DailyMail Stop the presses!!!\u003cbr\u003eThu Jan 08 11:22:15 +0000 2015"}, {"group": 844, "id": 4, "label": "553136057110528000", "shape": "dot", "size": 10, "title": "553136057110528000\u003cbr\u003e@MclarenStuart @DailyMail @MailOnline The Nazi\u0027s\u003cbr\u003ehad border controls. Did this\u003cbr\u003estop our SOE getting weapons\u003cbr\u003einto Nazi controlled Europe ?\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:28:07 +0000 2015"}, {"group": 844, "id": 10, "label": "553163052020166656", "shape": "dot", "size": 10, "title": "553163052020166656\u003cbr\u003e@m_danal27 @DailyMail @henrirouen oh no,\u003cbr\u003ehe and his hair just\u003cbr\u003eseem to get wackier with\u003cbr\u003eage.\u003cbr\u003eThu Jan 08 12:15:23 +0000 2015"}, {"group": 844, "id": 6, "label": "553137616154263552", "shape": "dot", "size": 10, "title": "553137616154263552\u003cbr\u003e@realcreativesgl @doctoreddie @DailyMail @MailOnline Wow!\u003cbr\u003ewhat a tool!\u003cbr\u003eThu Jan 08 10:34:19 +0000 2015"}, {"group": 844, "id": 7, "label": "553137775042891776", "shape": "dot", "size": 10, "title": "553137775042891776\u003cbr\u003e@yachtheodore @doctoreddie @DailyMail @MailOnline Yes\u003cbr\u003eI am blessed!\u003cbr\u003eThu Jan 08 10:34:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

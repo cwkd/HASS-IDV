@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 255, "id": 0, "label": "552818870281850881", "shape": "dot", "size": 10, "title": "552818870281850881\u003cbr\u003eThe Roots of Evil #CharlieHebdo\u003cbr\u003ehttp://t.co/xbteQ8kGK5\u003cbr\u003eWed Jan 07 13:27:44 +0000 2015"}, {"group": 255, "id": 1, "label": "552819089002217472", "shape": "dot", "size": 10, "title": "552819089002217472\u003cbr\u003e-----\u0026gt;@calestous: The Roots of Evil\u003cbr\u003e#CharlieHebdo http://t.co/yR5FeVg8IM\u201d\u003cbr\u003eWed Jan 07 13:28:36 +0000 2015"}, {"group": 255, "id": 2, "label": "552819309907832832", "shape": "dot", "size": 10, "title": "552819309907832832\u003cbr\u003e@calestous Its not even that;\u003cbr\u003eit\u0027s the same damn duck.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:29:29 +0000 2015"}, {"group": 255, "id": 3, "label": "552820459696566272", "shape": "dot", "size": 10, "title": "552820459696566272\u003cbr\u003eThere can be no peace\u003cbr\u003euntil they renounce their Rabbit\u003cbr\u003eGod RT @calestous: The Roots\u003cbr\u003eof Evil #CharlieHebdo http://t.co/h2vmOkghVY\u003cbr\u003eWed Jan 07 13:34:03 +0000 2015"}, {"group": 255, "id": 4, "label": "552821877035773953", "shape": "dot", "size": 10, "title": "552821877035773953\u003cbr\u003e@calestous Then as a infidel,\u003cbr\u003eyou have a choice, Islam\u003cbr\u003eor death. Your life \u0026amp;\u003cbr\u003eyour beliefs doesn\u0027t matter. Your\u003cbr\u003efamily will convert to Islam.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:39:41 +0000 2015"}, {"group": 255, "id": 5, "label": "552822003070414848", "shape": "dot", "size": 10, "title": "552822003070414848\u003cbr\u003eMuhammad saw the influence of\u003cbr\u003eChristianity and thought ,We\u0027d better\u003cbr\u003ehave some of that\u2026\u0027 @calestous\u003cbr\u003e@DemocracyIsYours http://t.co/dA681ZBHwf\u003cbr\u003eWed Jan 07 13:40:11 +0000 2015"}, {"group": 255, "id": 6, "label": "552824902860808192", "shape": "dot", "size": 10, "title": "552824902860808192\u003cbr\u003e@calestous this is misleading and\u003cbr\u003einsensitive. The young men targeted\u003cbr\u003ea very specific organisation for\u003cbr\u003every specific reasons. Please delete.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:51:42 +0000 2015"}, {"group": 255, "id": 7, "label": "552825526709010433", "shape": "dot", "size": 10, "title": "552825526709010433\u003cbr\u003e@calestous the attackers stated goal\u003cbr\u003eof the #CharlieHebdo attack was\u003cbr\u003eto \"avenge the prophet,\" -\u003cbr\u003enothing about forcing people to\u003cbr\u003eaccept gods\u003cbr\u003eWed Jan 07 13:54:11 +0000 2015"}, {"group": 255, "id": 9, "label": "552829446802374657", "shape": "dot", "size": 10, "title": "552829446802374657\u003cbr\u003e@calestous Sure, all religions are\u003cbr\u003ethe same... no difference whatsoever.\u003cbr\u003eCare to compare last year\u0027s\u003cbr\u003eBuddhist death toll to Islam\u0027s?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:09:45 +0000 2015"}, {"group": 255, "id": 11, "label": "552834880170496000", "shape": "dot", "size": 10, "title": "552834880170496000\u003cbr\u003eThe Roots of Evil #CharlieHebdo\u003cbr\u003ehttp://t.co/bJCzg25Soq v @calestous\u003cbr\u003eWed Jan 07 14:31:21 +0000 2015"}, {"group": 255, "id": 12, "label": "552902586370887680", "shape": "dot", "size": 10, "title": "552902586370887680\u003cbr\u003e@calestous funny if it wasn\u0027t\u003cbr\u003eso accurate.\u003cbr\u003eWed Jan 07 19:00:23 +0000 2015"}, {"group": 255, "id": 13, "label": "552988041862971392", "shape": "dot", "size": 10, "title": "552988041862971392\u003cbr\u003e@calestous @NeinQuarterly We stopped fighting\u003cbr\u003esome time ago, but they\u003cbr\u003ewant to keep fighting us,\u003cbr\u003efor fighting\u0027s sake\u003cbr\u003eThu Jan 08 00:39:57 +0000 2015"}, {"group": 255, "id": 14, "label": "552988274751709184", "shape": "dot", "size": 10, "title": "552988274751709184\u003cbr\u003e@calestous @NeinQuarterly plot twist: both\u003cbr\u003egods are actually the same\u003cbr\u003erabbit AND duck god.\u003cbr\u003eThu Jan 08 00:40:53 +0000 2015"}, {"group": 255, "id": 18, "label": "553060026982469632", "shape": "dot", "size": 10, "title": "553060026982469632\u003cbr\u003e@calestous Very simplistic and out\u003cbr\u003eof context for a professor.\u003cbr\u003eWhat of Hitler and Stalin?\u003cbr\u003eWhat of the genocide #Rwanda\u0026amp;similar\u003cbr\u003etribal hate?\u003cbr\u003eThu Jan 08 05:26:00 +0000 2015"}, {"group": 255, "id": 19, "label": "553099123185176576", "shape": "dot", "size": 10, "title": "553099123185176576\u003cbr\u003e@calestous @mattwridley Yep :)\u003cbr\u003eThu Jan 08 08:01:21 +0000 2015"}, {"group": 255, "id": 8, "label": "552826725441474560", "shape": "dot", "size": 10, "title": "552826725441474560\u003cbr\u003e@Abdallah_172 Sadly, you are right!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:58:57 +0000 2015"}, {"group": 255, "id": 10, "label": "552833008802467842", "shape": "dot", "size": 10, "title": "552833008802467842\u003cbr\u003e@Abdallah_172 @calestous same rabbit.\u003cbr\u003eWed Jan 07 14:23:55 +0000 2015"}, {"group": 255, "id": 15, "label": "552994047665897472", "shape": "dot", "size": 10, "title": "552994047665897472\u003cbr\u003e@BooBooBear4U2 @calestous that\u0027s not in\u003cbr\u003ethe Quran and is twisted\u003cbr\u003eby extremists to make its\u003cbr\u003esoldiers feel content in killing\u003cbr\u003epeople.\u003cbr\u003eThu Jan 08 01:03:49 +0000 2015"}, {"group": 255, "id": 16, "label": "553006721396776962", "shape": "dot", "size": 10, "title": "553006721396776962\u003cbr\u003e@BooBooBear4U2 @calestous So did Jim\u003cbr\u003eJones.Go figure.\u003cbr\u003eThu Jan 08 01:54:11 +0000 2015"}, {"group": 255, "id": 17, "label": "553009167527841794", "shape": "dot", "size": 10, "title": "553009167527841794\u003cbr\u003e@Jhensy2001 You\u0027ve obviously never heard\u003cbr\u003eof Myanmar. @calestous\u003cbr\u003eThu Jan 08 02:03:54 +0000 2015"}, {"group": 255, "id": 20, "label": "553346875416649728", "shape": "dot", "size": 10, "title": "553346875416649728\u003cbr\u003e@DubFaktion @calestous True, didn\u0027t know\u003cbr\u003eabout that situation. But then\u003cbr\u003eI immediately see 2,000(!?) dead\u003cbr\u003ein Nigeria (Boko Harum). Ugh...\u003cbr\u003e\u003cbr\u003eFri Jan 09 00:25:50 +0000 2015"}, {"group": 255, "id": 21, "label": "553347210738683905", "shape": "dot", "size": 10, "title": "553347210738683905\u003cbr\u003e@Jhensy2001 @calestous the Nigerian Security\u003cbr\u003eForces are just as bad\u003cbr\u003e(or worse even!!) than Boko\u003cbr\u003eHaram. Nobody has a monopoly\u003cbr\u003eon evil\u003cbr\u003eFri Jan 09 00:27:10 +0000 2015"}, {"group": 255, "id": 22, "label": "553357362359447552", "shape": "dot", "size": 10, "title": "553357362359447552\u003cbr\u003e@DubFaktion @Jhensy2001 @calestous don\u0027t be\u003cbr\u003ea motherfucking apologist for islam,\u003cbr\u003ethese bitches gotta die!\u003cbr\u003eFri Jan 09 01:07:30 +0000 2015"}, {"group": 255, "id": 23, "label": "553357582031937537", "shape": "dot", "size": 10, "title": "553357582031937537\u003cbr\u003e@Belky7 @Jhensy2001 @calestous Don\u0027t be\u003cbr\u003ea goof. We\u0027ll get to\u003cbr\u003eIslam right after we get\u003cbr\u003erid of America\u003cbr\u003eFri Jan 09 01:08:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 8, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 4, "to": 16, "weight": 1}, {"from": 9, "to": 17, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

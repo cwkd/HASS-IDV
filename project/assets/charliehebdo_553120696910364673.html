@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 802, "id": 0, "label": "553120696910364673", "shape": "dot", "size": 10, "title": "553120696910364673\u003cbr\u003e23 Heartbreaking Cartoons From Artists\u003cbr\u003eResponding To The #CharlieHebdo Shooting\u003cbr\u003ehttp://t.co/CpbDfrpLEY @dennis_kamoen http://t.co/2KeMKSGV64\u003cbr\u003eThu Jan 08 09:27:05 +0000 2015"}, {"group": 802, "id": 1, "label": "553130776091705344", "shape": "dot", "size": 10, "title": "553130776091705344\u003cbr\u003e@JohnnyJet @dennis_kamoen http://t.co/zJLc0Z1gJo\u003cbr\u003eThu Jan 08 10:07:08 +0000 2015"}, {"group": 802, "id": 2, "label": "553132771695403008", "shape": "dot", "size": 10, "title": "553132771695403008\u003cbr\u003e@JohnnyJet @dennis_kamoen mais uma vez\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:15:04 +0000 2015"}, {"group": 802, "id": 3, "label": "553133309069623297", "shape": "dot", "size": 10, "title": "553133309069623297\u003cbr\u003e@JohnnyJet @dennis_kamoen http://t.co/dDkmLenSnw\nhttp://t.co/Ptf1IdrIgV\nhttp://t.co/XNzjdu1BLP\nhttp://t.co/w4vy0oDboY\nhttp://t.co/qSEqQEyUoJ\u003cbr\u003eThu Jan 08 10:17:12 +0000 2015"}, {"group": 802, "id": 4, "label": "553133872511463424", "shape": "dot", "size": 10, "title": "553133872511463424\u003cbr\u003e@JohnnyJet @dennis_kamoen\u003cbr\u003eThu Jan 08 10:19:26 +0000 2015"}, {"group": 802, "id": 5, "label": "553134126434643968", "shape": "dot", "size": 10, "title": "553134126434643968\u003cbr\u003e@JohnnyJet @dennis_kamoen http://t.co/AbLa8tAzrh\nhttp://t.co/DHIpnZ8hgG\nhttp://t.co/zp4k1k8OHE\nhttp://t.co/QATotkz9pU\nhttp://t.co/UjEAg903z6\u003cbr\u003eThu Jan 08 10:20:27 +0000 2015"}, {"group": 802, "id": 6, "label": "553134322685730817", "shape": "dot", "size": 10, "title": "553134322685730817\u003cbr\u003e@JohnnyJet stop!\u003cbr\u003eThu Jan 08 10:21:13 +0000 2015"}, {"group": 802, "id": 7, "label": "553138141645651969", "shape": "dot", "size": 10, "title": "553138141645651969\u003cbr\u003e@JohnnyJet @dennis_kamoen\u003cbr\u003eThu Jan 08 10:36:24 +0000 2015"}, {"group": 802, "id": 8, "label": "553138440095539201", "shape": "dot", "size": 10, "title": "553138440095539201\u003cbr\u003e@JohnnyJet @dennis_kamoen  i shoot\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:37:35 +0000 2015"}, {"group": 802, "id": 9, "label": "553141783291760640", "shape": "dot", "size": 10, "title": "553141783291760640\u003cbr\u003e@JohnnyJet @dennis_kamoen c\u0027est triste\u003cbr\u003eThu Jan 08 10:50:52 +0000 2015"}, {"group": 802, "id": 10, "label": "553152599978172416", "shape": "dot", "size": 10, "title": "553152599978172416\u003cbr\u003e@JohnnyJet @dennis_kamoen think people need\u003cbr\u003eto think about What Freedom\u003cbr\u003eof Speech means to the\u003cbr\u003eSyrian Iraq Gazan refugee children.\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:33:51 +0000 2015"}, {"group": 802, "id": 11, "label": "553153887633674240", "shape": "dot", "size": 10, "title": "553153887633674240\u003cbr\u003e@JohnnyJet @dennis_kamoen lel xD humor\u003cbr\u003enegro o que xD\u003cbr\u003eThu Jan 08 11:38:58 +0000 2015"}, {"group": 802, "id": 12, "label": "553155982411309058", "shape": "dot", "size": 10, "title": "553155982411309058\u003cbr\u003e@JohnnyJet @dennis_kamoen Eleventh of September\u003cbr\u003e2001\nCurse of totalitarian regimes in\u003cbr\u003ethe Middle East and terrorist\u003cbr\u003efinancing ******\u003cbr\u003eThu Jan 08 11:47:18 +0000 2015"}, {"group": 802, "id": 13, "label": "553187776653320193", "shape": "dot", "size": 10, "title": "553187776653320193\u003cbr\u003e@JohnnyJet Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/2x7lv00u8I\u003cbr\u003eThu Jan 08 13:53:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

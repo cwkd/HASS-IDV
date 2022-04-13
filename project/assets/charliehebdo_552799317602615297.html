@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1683, "id": 0, "label": "552799317602615297", "shape": "dot", "size": 10, "title": "552799317602615297\u003cbr\u003eAwful. 11 shot dead in\u003cbr\u003ean assault on a Paris\u003cbr\u003emagazine. http://t.co/xxINS8etDB #CharlieHebdo http://t.co/as3YoLthcx\u003cbr\u003eWed Jan 07 12:10:02 +0000 2015"}, {"group": 1683, "id": 1, "label": "552799703155613696", "shape": "dot", "size": 10, "title": "552799703155613696\u003cbr\u003e@thedailybeast Will the Islamaphobia never\u003cbr\u003eend?  Blame Foreign policy?\u003cbr\u003eZionist Conspiracy? or wickedness \u0026amp;\u003cbr\u003esavagery of Islam?\u003cbr\u003eWed Jan 07 12:11:34 +0000 2015"}, {"group": 1683, "id": 2, "label": "552799970299240449", "shape": "dot", "size": 10, "title": "552799970299240449\u003cbr\u003e@thedailybeast yeah those covers are\u003cbr\u003eone way to get people\u003cbr\u003eworked up, sheesh. How could\u003cbr\u003ethey think that was ok\u003cbr\u003eto publish?\u003cbr\u003eWed Jan 07 12:12:38 +0000 2015"}, {"group": 1683, "id": 3, "label": "552799972840972288", "shape": "dot", "size": 10, "title": "552799972840972288\u003cbr\u003e@thedailybeast BREAKING NEWS: Deadly gun\u003cbr\u003eattack @ office of French\u003cbr\u003emagazine Charlie Hebdo !! http://t.co/UDPM6OZ9NZ\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:12:38 +0000 2015"}, {"group": 1683, "id": 4, "label": "552803170603520000", "shape": "dot", "size": 10, "title": "552803170603520000\u003cbr\u003e@thedailybeast the violent cult marches\u003cbr\u003eon. Somebody want to translate?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:25:21 +0000 2015"}, {"group": 1683, "id": 5, "label": "552807064486297600", "shape": "dot", "size": 10, "title": "552807064486297600\u003cbr\u003e@thedailybeast @TOdessaKane13 This is beyond\u003cbr\u003esad! But then people have\u003cbr\u003ealways feared freedom of speech.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:40:49 +0000 2015"}, {"group": 1683, "id": 6, "label": "552812647570481152", "shape": "dot", "size": 10, "title": "552812647570481152\u003cbr\u003eEuropeans AND THE REST OF\u003cbr\u003eTHE WESTERN WORLD SHOULD KNOW\u003cbr\u003eTHAT RACIST HUMOR SHOULD NOT\u003cbr\u003eBE OK. RACISM IS UGLY\u003cbr\u003e@thedailybeast\u003cbr\u003eWed Jan 07 13:03:00 +0000 2015"}, {"group": 1683, "id": 7, "label": "552813751129632769", "shape": "dot", "size": 10, "title": "552813751129632769\u003cbr\u003e\u201c@thedailybeast: Cartoons prompted worst terror\u003cbr\u003eattack in recent French history\u003cbr\u003ehttp://t.co/7HllnqfoQP #CharlieHebdo http://t.co/iwnPNGsGm7\u201d\u003cbr\u003eWed Jan 07 13:07:23 +0000 2015"}, {"group": 1683, "id": 9, "label": "552820035795030017", "shape": "dot", "size": 10, "title": "552820035795030017\u003cbr\u003e@thedailybeast @ebabahan http://t.co/pU9CgcMxUP\u003cbr\u003eWed Jan 07 13:32:22 +0000 2015"}, {"group": 1683, "id": 10, "label": "552955698074882050", "shape": "dot", "size": 10, "title": "552955698074882050\u003cbr\u003e@thedailybeast:Awful.11 shot dead in an\u003cbr\u003eassault on a Paris magazine.\u003cbr\u003ehttp://t.co/A3iKrauKcu #CharlieHebdo http://t.co/oD06Dvp15G Catch them!\u003cbr\u003e\u003cbr\u003eWed Jan 07 22:31:26 +0000 2015"}, {"group": 1683, "id": 11, "label": "552959887597371394", "shape": "dot", "size": 10, "title": "552959887597371394\u003cbr\u003e@thedailybeast #fuckterrorism Anyone who feels\u003cbr\u003ethat freedom of thought \u0026amp;\u003cbr\u003eexpression should be surrendered to\u003cbr\u003e fanatics is the real\u003cbr\u003eenemy.\u003cbr\u003eWed Jan 07 22:48:05 +0000 2015"}, {"group": 1683, "id": 8, "label": "552817873475751936", "shape": "dot", "size": 10, "title": "552817873475751936\u003cbr\u003e@spiritmefree1 @thedailybeast imho: if you\u003cbr\u003eare not trolling, then you\u003cbr\u003eare practically BEGGING to get\u003cbr\u003etrolled :/\u003cbr\u003eWed Jan 07 13:23:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 6, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

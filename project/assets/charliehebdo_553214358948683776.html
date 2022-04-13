@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1153, "id": 0, "label": "553214358948683776", "shape": "dot", "size": 10, "title": "553214358948683776\u003cbr\u003eWhy the killing of Charlie\u003cbr\u003eHebdo cartoonists will make art\u003cbr\u003estronger\nhttp://t.co/kePuer7hTe http://t.co/zDyDWhhPyU\u003cbr\u003eThu Jan 08 15:39:16 +0000 2015"}, {"group": 1153, "id": 1, "label": "553214620518072320", "shape": "dot", "size": 10, "title": "553214620518072320\u003cbr\u003e@artnet ce n\u0027est ni une\u003cbr\u003ereligion ni une politique.\u003cbr\u003eThu Jan 08 15:40:18 +0000 2015"}, {"group": 1153, "id": 2, "label": "553214875535962114", "shape": "dot", "size": 10, "title": "553214875535962114\u003cbr\u003e@artnet so true!\u003cbr\u003eThu Jan 08 15:41:19 +0000 2015"}, {"group": 1153, "id": 3, "label": "553215668611743744", "shape": "dot", "size": 10, "title": "553215668611743744\u003cbr\u003e@artnet great, show us all\u003cbr\u003eof them #JeSuisCharlie\u003cbr\u003eThu Jan 08 15:44:28 +0000 2015"}, {"group": 1153, "id": 4, "label": "553216222410858496", "shape": "dot", "size": 10, "title": "553216222410858496\u003cbr\u003e\"@artnet: Why the killing of\u003cbr\u003eCharlie Hebdo cartoonists will make\u003cbr\u003eart stronger\nhttp://t.co/T4HSZ8bmvN http://t.co/ipSAzUD74C\"\u003cbr\u003eThu Jan 08 15:46:40 +0000 2015"}, {"group": 1153, "id": 5, "label": "553224606971359232", "shape": "dot", "size": 10, "title": "553224606971359232\u003cbr\u003eI\u0027m a Big Fan of\u003cbr\u003eRen\u00e9 Magritte - smart Pic\u003cbr\u003e- #SmartArt  http://t.co/IhOmKtHPRX @artnet\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:19:59 +0000 2015"}, {"group": 1153, "id": 6, "label": "553230740239183872", "shape": "dot", "size": 10, "title": "553230740239183872\u003cbr\u003eRT \"@artnet: Why the killing\u003cbr\u003eof Charlie Hebdo cartoonists will\u003cbr\u003emake art stronger\nhttp://t.co/Fsfgd2ekXn http://t.co/RXUxanJHeH\u201d\u003cbr\u003eThu Jan 08 16:44:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

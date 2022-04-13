@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1279, "id": 0, "label": "553491005971132416", "shape": "dot", "size": 10, "title": "553491005971132416\u003cbr\u003eMore than 80,000 police officers\u003cbr\u003eare involved in search for\u003cbr\u003e#CharlieHebdo suspects Cherif and Said\u003cbr\u003eKouachi. http://t.co/qB4b5cKvPg\u003cbr\u003eFri Jan 09 09:58:33 +0000 2015"}, {"group": 1279, "id": 1, "label": "553491114301599746", "shape": "dot", "size": 10, "title": "553491114301599746\u003cbr\u003e@cnni \n\nIN UKRAINE HAVE GIVEN\u003cbr\u003eTHE NAZI COUP, SUPPORTED BY\u003cbr\u003eNATO AND MEDIA COMMUNICATION,AS SEE\u003cbr\u003ePHOTO.\nhttp://t.co/tYCudKSLwr\u003cbr\u003eFri Jan 09 09:58:59 +0000 2015"}, {"group": 1279, "id": 2, "label": "553491129220755456", "shape": "dot", "size": 10, "title": "553491129220755456\u003cbr\u003e@cnni JWF strongly condemns this\u003cbr\u003eterrorist attack on the Charlie\u003cbr\u003eHebdo\nhttp://t.co/0PzVPaworN\u003cbr\u003eFri Jan 09 09:59:03 +0000 2015"}, {"group": 1279, "id": 3, "label": "553491185281818624", "shape": "dot", "size": 10, "title": "553491185281818624\u003cbr\u003e@cnni \u201cReal Muslims Cannot be\u003cbr\u003eTerrorists\u201d\nhttp://t.co/bUS8fsIwi8\u003cbr\u003eFri Jan 09 09:59:16 +0000 2015"}, {"group": 1279, "id": 4, "label": "553491252168364032", "shape": "dot", "size": 10, "title": "553491252168364032\u003cbr\u003e@cnni \u201cG\u00fclen\u0027s Condemnation Message of\u003cbr\u003eTerrorism\u201d\nhttp://t.co/UgTjRAnYGT\nhttp://t.co/wbEQIDmNH1\nhttp://t.co/51XTa9uFR4\u003cbr\u003eFri Jan 09 09:59:32 +0000 2015"}, {"group": 1279, "id": 5, "label": "553491324306214914", "shape": "dot", "size": 10, "title": "553491324306214914\u003cbr\u003e@cnni \u0130srailli T\u00fcmgeneral Aviv Ko\u00e7avi:\u003cbr\u003eT\u00fcrkiye\u2019de \u00fc\u00e7 El Kaide \u00fcss\u00fc\u003cbr\u003evar!\nhttp://t.co/tbC091JefY\nhttp://t.co/Qkqkx8wNDe\u003cbr\u003eFri Jan 09 09:59:49 +0000 2015"}, {"group": 1279, "id": 6, "label": "553491388776861697", "shape": "dot", "size": 10, "title": "553491388776861697\u003cbr\u003e@cnni \nSipan Hemo, T\u00fcrkiye\u2019de I\u015e\u0130D\u003cbr\u003eter\u00f6ristlerini e\u011fiten \u00e7ok say\u0131da kamp\u003cbr\u003evar!\nhttp://t.co/6gQBnyHMt6\nhttp://t.co/A2GIkdkL3Q\u003cbr\u003eFri Jan 09 10:00:05 +0000 2015"}, {"group": 1279, "id": 7, "label": "553491472423858176", "shape": "dot", "size": 10, "title": "553491472423858176\u003cbr\u003e@cnni their wish to live\u003cbr\u003eseem to be strong. So\u003cbr\u003ethere is hope to save\u003cbr\u003elife. Unless.\u003cbr\u003eFri Jan 09 10:00:25 +0000 2015"}, {"group": 1279, "id": 8, "label": "553491624274042880", "shape": "dot", "size": 10, "title": "553491624274042880\u003cbr\u003e@cnni 80,000 police officers to\u003cbr\u003efind 2 men ? Wow,\u003cbr\u003elol.\u003cbr\u003eFri Jan 09 10:01:01 +0000 2015"}, {"group": 1279, "id": 9, "label": "553492157936730112", "shape": "dot", "size": 10, "title": "553492157936730112\u003cbr\u003e@cnni that quite a huge\u003cbr\u003enumber\u003cbr\u003eFri Jan 09 10:03:08 +0000 2015"}, {"group": 1279, "id": 10, "label": "553492613438124033", "shape": "dot", "size": 10, "title": "553492613438124033\u003cbr\u003e@cnni it is worth it.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:04:57 +0000 2015"}, {"group": 1279, "id": 11, "label": "553495842372718592", "shape": "dot", "size": 10, "title": "553495842372718592\u003cbr\u003e@cnni Can French citizens carry\u003cbr\u003epersonal weapons for protection? \u003cbr\u003eHow about home protection...\u003cbr\u003eFri Jan 09 10:17:46 +0000 2015"}, {"group": 1279, "id": 12, "label": "553501680122474498", "shape": "dot", "size": 10, "title": "553501680122474498\u003cbr\u003e@cnni Hope they catch him\u003cbr\u003esoon and get the justice\u003cbr\u003ehe deserves\u003cbr\u003eFri Jan 09 10:40:58 +0000 2015"}, {"group": 1279, "id": 13, "label": "553505502127075328", "shape": "dot", "size": 10, "title": "553505502127075328\u003cbr\u003e@cnni @SaundiD This is Again\u003cbr\u003ean Excuse for Apologists: Unequal\u003cbr\u003eDisproportionate Use of Brutal Force\u003cbr\u003e80K armedForce Against 2 misguidedYouths\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:56:09 +0000 2015"}, {"group": 1279, "id": 14, "label": "553556059961704448", "shape": "dot", "size": 10, "title": "553556059961704448\u003cbr\u003e@id2talk @cnni @SaundiD two misguided\u003cbr\u003eyouths that killed 15 people\u003cbr\u003ein total. About 9 people\u003cbr\u003eand about four police men.\u003cbr\u003eReally!!\u003cbr\u003eFri Jan 09 14:17:03 +0000 2015"}, {"group": 1279, "id": 15, "label": "553576021069271040", "shape": "dot", "size": 10, "title": "553576021069271040\u003cbr\u003e@akinbrot6 It is the excuse\u003cbr\u003eoffered by our Media. I\u003cbr\u003eam all for killing all\u003cbr\u003ethe terrorists including their friends\u003cbr\u003en relatives. @cnni\u003cbr\u003eFri Jan 09 15:36:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

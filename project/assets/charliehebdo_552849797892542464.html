@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 653, "id": 0, "label": "552849797892542464", "shape": "dot", "size": 10, "title": "552849797892542464\u003cbr\u003eIt\u0027s easy to condemn killings.\n\nIt\u0027s\u003cbr\u003eharder to say unequivocally that\u003cbr\u003ewe have the right to\u003cbr\u003edepict Mohammed. We can. Can\u003cbr\u003eyou?\n\n#JeSuisCharlie\u003cbr\u003eWed Jan 07 15:30:37 +0000 2015"}, {"group": 653, "id": 1, "label": "552850366870851586", "shape": "dot", "size": 10, "title": "552850366870851586\u003cbr\u003e.@LawSecSoc @NickCohen4 I\u0027m not Muslim,\u003cbr\u003eso yes, I have that\u003cbr\u003eright. Theological law can only\u003cbr\u003ebind those who choose to\u003cbr\u003ebe adherent.\u003cbr\u003eWed Jan 07 15:32:53 +0000 2015"}, {"group": 653, "id": 2, "label": "552850520415940608", "shape": "dot", "size": 10, "title": "552850520415940608\u003cbr\u003e@LawSecSoc @dhothersall The Koran doesn\u0027t\u003cbr\u003eexplicitly forbid images of the\u003cbr\u003eProphet, its yet more interpretation\u003cbr\u003eby those who profess faith\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:33:30 +0000 2015"}, {"group": 653, "id": 3, "label": "552851988472659968", "shape": "dot", "size": 10, "title": "552851988472659968\u003cbr\u003e.@LawSecSoc #BanIslam with full power\u003cbr\u003eof liberal humanist democratic laws,\u003cbr\u003eethics, policing and military #JeSuisCharlie\u003cbr\u003e.@Charlie_Hebdo_\u003cbr\u003eWed Jan 07 15:39:20 +0000 2015"}, {"group": 653, "id": 13, "label": "552856545202290688", "shape": "dot", "size": 10, "title": "552856545202290688\u003cbr\u003e@LawSecSoc Guzel tercume bilenler bunu\u003cbr\u003eozet olarak kullansinlar.\u003cbr\u003eWed Jan 07 15:57:26 +0000 2015"}, {"group": 653, "id": 19, "label": "552858343870849026", "shape": "dot", "size": 10, "title": "552858343870849026\u003cbr\u003e@LawSecSoc @NickCohen4 yes. We. Can.\u003cbr\u003eYes. We. Must. Or have\u003cbr\u003eanother 25 years of fear\u003cbr\u003eand self censorship. http://t.co/u7Ew596LXC\u003cbr\u003eWed Jan 07 16:04:35 +0000 2015"}, {"group": 653, "id": 4, "label": "552852834627383297", "shape": "dot", "size": 10, "title": "552852834627383297\u003cbr\u003eWhat is or is not\u003cbr\u003ein the Quran is irrelevant\u003cbr\u003eto the question of whether\u003cbr\u003epeople have the right to\u003cbr\u003edepict Mohammed @mark_rollason @dhothersall\u003cbr\u003eWed Jan 07 15:42:41 +0000 2015"}, {"group": 653, "id": 5, "label": "552853428247228416", "shape": "dot", "size": 10, "title": "552853428247228416\u003cbr\u003e@LawSecSoc @dhothersall Do you mean\u003cbr\u003ethat they have the right\u003cbr\u003eor not. I\u0027m pointing out\u003cbr\u003ethat this prohibition is not\u003cbr\u003ein their holy book.\u003cbr\u003eWed Jan 07 15:45:03 +0000 2015"}, {"group": 653, "id": 6, "label": "552853581452541952", "shape": "dot", "size": 10, "title": "552853581452541952\u003cbr\u003e@LawSecSoc @dhothersall that they choose\u003cbr\u003eto do this because they\u003cbr\u003echoose to be offended.\u003cbr\u003eWed Jan 07 15:45:39 +0000 2015"}, {"group": 653, "id": 7, "label": "552853732506234880", "shape": "dot", "size": 10, "title": "552853732506234880\u003cbr\u003e@LawSecSoc @dhothersall AND THEY CHOOSE\u003cbr\u003eTHIS IN ORDER TO GIVE\u003cbr\u003eTHEMSELVES THE PRETEXT\u003cbr\u003eWed Jan 07 15:46:16 +0000 2015"}, {"group": 653, "id": 9, "label": "552853891478736897", "shape": "dot", "size": 10, "title": "552853891478736897\u003cbr\u003e@LawSecSoc @dhothersall For the record\u003cbr\u003eIdispute their right to tell\u003cbr\u003eus what we have the\u003cbr\u003eright to do.\u003cbr\u003eWed Jan 07 15:46:53 +0000 2015"}, {"group": 653, "id": 21, "label": "552861559123243010", "shape": "dot", "size": 10, "title": "552861559123243010\u003cbr\u003e@LawSecSoc @mark_rollason @dhothersall if you\u003cbr\u003ehave nothing good to say\u003cbr\u003ethan shut up\u003cbr\u003eWed Jan 07 16:17:22 +0000 2015"}, {"group": 653, "id": 8, "label": "552853846519975936", "shape": "dot", "size": 10, "title": "552853846519975936\u003cbr\u003eWe\u0027re saying 1) people have\u003cbr\u003ethe right to depict Mohammed,\u003cbr\u003eand 2) we don\u0027t care\u003cbr\u003ewhat the Quran says on\u003cbr\u003ethis. @mark_rollason @dhothersall\u003cbr\u003eWed Jan 07 15:46:43 +0000 2015"}, {"group": 653, "id": 10, "label": "552855907755765760", "shape": "dot", "size": 10, "title": "552855907755765760\u003cbr\u003e@LawSecSoc @mark_rollason @dhothersall your attitude\u003cbr\u003eis a very reason of\u003cbr\u003eextremism growing.\u003cbr\u003eWed Jan 07 15:54:54 +0000 2015"}, {"group": 653, "id": 11, "label": "552856067240366080", "shape": "dot", "size": 10, "title": "552856067240366080\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall Do you\u003cbr\u003emean my attitude?\u003cbr\u003eWed Jan 07 15:55:32 +0000 2015"}, {"group": 653, "id": 12, "label": "552856451006595072", "shape": "dot", "size": 10, "title": "552856451006595072\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall My attitude\u003cbr\u003eis that this act is\u003cbr\u003edespicable, my curiosity leads me\u003cbr\u003eto ask why the images\u003cbr\u003eof the prophet\u003cbr\u003eWed Jan 07 15:57:04 +0000 2015"}, {"group": 653, "id": 14, "label": "552856624642424834", "shape": "dot", "size": 10, "title": "552856624642424834\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall are prohibited,\u003cbr\u003eIfind almost immediately that they\u003cbr\u003earen\u0027t wholly banned.\u003cbr\u003eWed Jan 07 15:57:45 +0000 2015"}, {"group": 653, "id": 15, "label": "552856790132867072", "shape": "dot", "size": 10, "title": "552856790132867072\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall So Ipoint\u003cbr\u003eout that this  appears\u003cbr\u003eto be being used as\u003cbr\u003ean excuse to murder\u003cbr\u003eWed Jan 07 15:58:25 +0000 2015"}, {"group": 653, "id": 16, "label": "552857178558988289", "shape": "dot", "size": 10, "title": "552857178558988289\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall I don\u0027t\u003cbr\u003ethink these people do these\u003cbr\u003ethings for any other reason\u003cbr\u003ethan they want to\u003cbr\u003eWed Jan 07 15:59:57 +0000 2015"}, {"group": 653, "id": 20, "label": "552859001676124160", "shape": "dot", "size": 10, "title": "552859001676124160\u003cbr\u003e@malik1919a Been up and down\u003cbr\u003eyour Timeline,can\u0027t dfind your views\u003cbr\u003eon Charli Hebdo\u003cbr\u003eWed Jan 07 16:07:12 +0000 2015"}, {"group": 653, "id": 36, "label": "552873747565510656", "shape": "dot", "size": 10, "title": "552873747565510656\u003cbr\u003e@malik1919a @LawSecSoc @mark_rollason @dhothersall No,\u003cbr\u003eanyone has the right to\u003cbr\u003eoffend me. I do not\u003cbr\u003ehave the right to respond\u003cbr\u003eviolently.\u003cbr\u003eWed Jan 07 17:05:47 +0000 2015"}, {"group": 653, "id": 37, "label": "552874357366988800", "shape": "dot", "size": 10, "title": "552874357366988800\u003cbr\u003e@malik1919a so terrorists shld be\u003cbr\u003eallowed set the boundaries for\u003cbr\u003efree speech? @LawSecSoc @mark_rollason @dhothersall\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:08:13 +0000 2015"}, {"group": 653, "id": 38, "label": "552874791347441665", "shape": "dot", "size": 10, "title": "552874791347441665\u003cbr\u003e@malik1919a this is Europe. We\u003cbr\u003ewill say what we like.\u003cbr\u003eYou can make the rules\u003cbr\u003ein Pakistan. Not here. @LawSecSoc\u003cbr\u003e@mark_rollason @dhothersall\u003cbr\u003eWed Jan 07 17:09:56 +0000 2015"}, {"group": 653, "id": 17, "label": "552857701781602304", "shape": "dot", "size": 10, "title": "552857701781602304\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall My attitude\u003cbr\u003eis to respect the beliefs\u003cbr\u003eof others but not to\u003cbr\u003eaccept their dogma .\u003cbr\u003eWed Jan 07 16:02:02 +0000 2015"}, {"group": 653, "id": 18, "label": "552857871449600002", "shape": "dot", "size": 10, "title": "552857871449600002\u003cbr\u003e@malik1919a @LawSecSoc @dhothersall just because\u003cbr\u003ethey say we should\u003cbr\u003eWed Jan 07 16:02:42 +0000 2015"}, {"group": 653, "id": 22, "label": "552861673464532992", "shape": "dot", "size": 10, "title": "552861673464532992\u003cbr\u003e@malik1919a Physician heal thyself. @LawSecSoc\u003cbr\u003e@mark_rollason\u003cbr\u003eWed Jan 07 16:17:49 +0000 2015"}, {"group": 653, "id": 23, "label": "552861928398548992", "shape": "dot", "size": 10, "title": "552861928398548992\u003cbr\u003eNo. If you don\u0027t like\u003cbr\u003ewhat we tweet then unfollow\u003cbr\u003eus. @malik1919a @mark_rollason @dhothersall\u003cbr\u003eWed Jan 07 16:18:50 +0000 2015"}, {"group": 653, "id": 24, "label": "552862024792018944", "shape": "dot", "size": 10, "title": "552862024792018944\u003cbr\u003e@dhothersall @malik1919a @LawSecSoc Lol. I\u0027m\u003cbr\u003eblocking one for hypocrysy the\u003cbr\u003eother for pomposity\u003cbr\u003eWed Jan 07 16:19:13 +0000 2015"}, {"group": 653, "id": 25, "label": "552862530142752768", "shape": "dot", "size": 10, "title": "552862530142752768\u003cbr\u003e@LawSecSoc So few get that\u003cbr\u003ehere, like those who tell\u003cbr\u003eyou you are going to\u003cbr\u003ebe unfollowed or blocked ?@malik1919a\u003cbr\u003e@mark_rollason @dhothersall\u003cbr\u003eWed Jan 07 16:21:13 +0000 2015"}, {"group": 653, "id": 27, "label": "552863096251744256", "shape": "dot", "size": 10, "title": "552863096251744256\u003cbr\u003e@LawSecSoc @mark_rollason @dhothersall why unfollow\u003cbr\u003ediscussion should not end\u003cbr\u003eWed Jan 07 16:23:28 +0000 2015"}, {"group": 653, "id": 26, "label": "552862829242376192", "shape": "dot", "size": 10, "title": "552862829242376192\u003cbr\u003e@Svenvelope @LawSecSoc @mark_rollason @dhothersall discussions\u003cbr\u003eshould not end\u003cbr\u003eWed Jan 07 16:22:24 +0000 2015"}, {"group": 653, "id": 28, "label": "552863130561548288", "shape": "dot", "size": 10, "title": "552863130561548288\u003cbr\u003e@malik1919a telling those with whom\u003cbr\u003eyou disagree to shut up\u003cbr\u003eis the epitome of ending\u003cbr\u003ediscussions @LawSecSoc @mark_rollason @dhothersall\u003cbr\u003eWed Jan 07 16:23:36 +0000 2015"}, {"group": 653, "id": 29, "label": "552863514939777024", "shape": "dot", "size": 10, "title": "552863514939777024\u003cbr\u003e@Svenvelope @LawSecSoc @mark_rollason @dhothersall i\u003cbr\u003etold them to stop spreading\u003cbr\u003ehaterred on social media ,\u003cbr\u003ewith me i am here\u003cbr\u003efor discussion\u003cbr\u003eWed Jan 07 16:25:08 +0000 2015"}, {"group": 653, "id": 30, "label": "552863600239730690", "shape": "dot", "size": 10, "title": "552863600239730690\u003cbr\u003e@Svenvelope @malik1919a @LawSecSoc @dhothersall You\u003cbr\u003ecould well be right but\u003cbr\u003eIdon\u0027t need to listen to\u003cbr\u003ethem\u003cbr\u003eWed Jan 07 16:25:28 +0000 2015"}, {"group": 653, "id": 31, "label": "552863817227841536", "shape": "dot", "size": 10, "title": "552863817227841536\u003cbr\u003e@malik1919a @Svenvelope @LawSecSoc @mark_rollason No\u003cbr\u003eyou didn\u0027t, you told them\u003cbr\u003eto shut up.\u003cbr\u003eWed Jan 07 16:26:20 +0000 2015"}, {"group": 653, "id": 32, "label": "552863865038725121", "shape": "dot", "size": 10, "title": "552863865038725121\u003cbr\u003e@Svenvelope @malik1919a @LawSecSoc @dhothersall I\u003cbr\u003edidn\u0027t tell them to shut\u003cbr\u003eup either\u003cbr\u003eWed Jan 07 16:26:31 +0000 2015"}, {"group": 653, "id": 33, "label": "552863966708641793", "shape": "dot", "size": 10, "title": "552863966708641793\u003cbr\u003e@mark_rollason to which I would\u003cbr\u003esuggest you unfollow them if\u003cbr\u003eu don\u0027t want to listen\u003cbr\u003eto them #yourchoice @malik1919a @LawSecSoc\u003cbr\u003e@dhothersall\u003cbr\u003eWed Jan 07 16:26:56 +0000 2015"}, {"group": 653, "id": 34, "label": "552864302764687360", "shape": "dot", "size": 10, "title": "552864302764687360\u003cbr\u003e@Svenvelope @malik1919a @LawSecSoc @dhothersall I\u003cbr\u003ewasn\u0027t following them\u003cbr\u003eWed Jan 07 16:28:16 +0000 2015"}, {"group": 653, "id": 35, "label": "552864419781550080", "shape": "dot", "size": 10, "title": "552864419781550080\u003cbr\u003e@mark_rollason ok, the discussion @malik1919a\u003cbr\u003e@LawSecSoc @dhothersall\u003cbr\u003eWed Jan 07 16:28:44 +0000 2015"}, {"group": 653, "id": 40, "label": "552882528118259712", "shape": "dot", "size": 10, "title": "552882528118259712\u003cbr\u003e@vermiciouskid @LawSecSoc @mark_rollason @dhothersall thats\u003cbr\u003ewhy leaders should play role\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:40:41 +0000 2015"}, {"group": 653, "id": 39, "label": "552882328712667136", "shape": "dot", "size": 10, "title": "552882328712667136\u003cbr\u003e@vermiciouskid @LawSecSoc @mark_rollason @dhothersall your\u003cbr\u003erules are hurting whole world\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:39:53 +0000 2015"}, {"group": 653, "id": 41, "label": "552883947282378752", "shape": "dot", "size": 10, "title": "552883947282378752\u003cbr\u003e@malik1919a really. So u do\u003cbr\u003efeel that terrorists shld be\u003cbr\u003eallowed set the limits for\u003cbr\u003efree speech @LawSecSoc @mark_rollason @dhothersall\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:46:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 4, "to": 21, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 10, "to": 14, "weight": 1}, {"from": 10, "to": 15, "weight": 1}, {"from": 10, "to": 16, "weight": 1}, {"from": 10, "to": 20, "weight": 1}, {"from": 10, "to": 36, "weight": 1}, {"from": 10, "to": 37, "weight": 1}, {"from": 10, "to": 38, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 23, "to": 27, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 30, "to": 33, "weight": 1}, {"from": 33, "to": 34, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 37, "to": 40, "weight": 1}, {"from": 38, "to": 39, "weight": 1}, {"from": 39, "to": 41, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

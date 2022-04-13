@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 160, "id": 0, "label": "552811408094945280", "shape": "dot", "size": 10, "title": "552811408094945280\u003cbr\u003eWorld leaders condemn the #CharlieHebdo\u003cbr\u003eattack as \"barbaric\", \"sickening\" and\u003cbr\u003e\"intolerable\". http://t.co/c05qiB7eIu http://t.co/HaijRrbwlz\u003cbr\u003eWed Jan 07 12:58:05 +0000 2015"}, {"group": 160, "id": 1, "label": "552811580480847872", "shape": "dot", "size": 10, "title": "552811580480847872\u003cbr\u003e\"@SkyNews: World leaders condemn the\u003cbr\u003e#CharlieHebdo attack as \"barbaric\", \"sickening\"\u003cbr\u003eand \"intolerable\". http://t.co/jEQbkJ4qZx\u003cbr\u003eWed Jan 07 12:58:46 +0000 2015"}, {"group": 160, "id": 2, "label": "552811921087283201", "shape": "dot", "size": 10, "title": "552811921087283201\u003cbr\u003e@SkyNews All Secular Journalist attacking\u003cbr\u003e#CharlieHebdo for provoking Secular Terrorists\u003cbr\u003e..Shame on Cowards Media can\u0027t\u003cbr\u003eeven take Terrorists\u003cbr\u003eWed Jan 07 13:00:07 +0000 2015"}, {"group": 160, "id": 3, "label": "552811972421767168", "shape": "dot", "size": 10, "title": "552811972421767168\u003cbr\u003e@SkyNews AGAIN!  Talk is\u003cbr\u003echeap - What are they\u003cbr\u003efinally going to do about\u003cbr\u003eit?\u003cbr\u003eWed Jan 07 13:00:19 +0000 2015"}, {"group": 160, "id": 4, "label": "552812087115005953", "shape": "dot", "size": 10, "title": "552812087115005953\u003cbr\u003e@SkyNews fuck the words,take action.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:00:46 +0000 2015"}, {"group": 160, "id": 5, "label": "552812254203498496", "shape": "dot", "size": 10, "title": "552812254203498496\u003cbr\u003e\u201c@SkyNews: World leaders condemn the\u003cbr\u003e#CharlieHebdo attack as \"barbaric\", \"sickening\"\u003cbr\u003eand \"intolerable\". But all will\u003cbr\u003edo nothing to stop them\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:01:26 +0000 2015"}, {"group": 160, "id": 6, "label": "552812286427938817", "shape": "dot", "size": 10, "title": "552812286427938817\u003cbr\u003e@SkyNews did you seriously just\u003cbr\u003eshow a guy being executed?\u003cbr\u003eFFS no need for it.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:01:34 +0000 2015"}, {"group": 160, "id": 7, "label": "552812534970200067", "shape": "dot", "size": 10, "title": "552812534970200067\u003cbr\u003e@SkyNews just waiting for Obama,\u003cbr\u003eCamoron, et al to say\u0027\u003cbr\u003ethis was nothing to do\u003cbr\u003ewith islam, this was a\u003cbr\u003eline wolf type attack\u0027 #enemywithin\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:02:33 +0000 2015"}, {"group": 160, "id": 8, "label": "552812880954159105", "shape": "dot", "size": 10, "title": "552812880954159105\u003cbr\u003e@SkyNews I wish they wouldn\u0027t\u003cbr\u003euse the word \"intolerable\" because\u003cbr\u003ethey will, they will bluster\u003cbr\u003esomewhat and wring hands but\u003cbr\u003ein the end, zero\u003cbr\u003eWed Jan 07 13:03:56 +0000 2015"}, {"group": 160, "id": 9, "label": "552812930933460992", "shape": "dot", "size": 10, "title": "552812930933460992\u003cbr\u003e@SkyNews @DanRiehl I\u0027ll believe it\u003cbr\u003ewhen their actions match their\u003cbr\u003ewords.  Many politicians depend\u003cbr\u003eon the Islamist vote.\u003cbr\u003eWed Jan 07 13:04:08 +0000 2015"}, {"group": 160, "id": 10, "label": "552813361801342976", "shape": "dot", "size": 10, "title": "552813361801342976\u003cbr\u003e@SkyNews @DanRiehl yet Obama hasn\u0027t\u003cbr\u003edecide if he will speak\u003cbr\u003eon it yet.\u003cbr\u003eWed Jan 07 13:05:50 +0000 2015"}, {"group": 160, "id": 11, "label": "552813599157415936", "shape": "dot", "size": 10, "title": "552813599157415936\u003cbr\u003e@SkyNews @londil what about people\u003cbr\u003ekilled every day in #Donbass,\u003cbr\u003e#Palestine , #Libiya etc..?\u003cbr\u003eWed Jan 07 13:06:47 +0000 2015"}, {"group": 160, "id": 12, "label": "552814584562995200", "shape": "dot", "size": 10, "title": "552814584562995200\u003cbr\u003e@SkyNews a good number of\u003cbr\u003ethose world leaders are also\u003cbr\u003eguilty of barbaric, sickening and\u003cbr\u003eintolerable attacks.\u003cbr\u003eWed Jan 07 13:10:42 +0000 2015"}, {"group": 160, "id": 13, "label": "552814813374844930", "shape": "dot", "size": 10, "title": "552814813374844930\u003cbr\u003e@skynews @jameskemlo -world leaders should\u003cbr\u003estop CAPITULATING to #muslim scum\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:11:36 +0000 2015"}, {"group": 160, "id": 15, "label": "552817145441423360", "shape": "dot", "size": 10, "title": "552817145441423360\u003cbr\u003e@SkyNews Yes, the #CharlieHebdo attack\u003cbr\u003eis truly barbaric, sickening and\u003cbr\u003eintolerable. I condemn it \u003cbr\u003e#Paris @Karachi_Post #MQM #Pakistan\u003cbr\u003eWed Jan 07 13:20:52 +0000 2015"}, {"group": 160, "id": 16, "label": "552818245422833664", "shape": "dot", "size": 10, "title": "552818245422833664\u003cbr\u003eIf Pakistan wants to save\u003cbr\u003ethe country from terrorism, it\u003cbr\u003eneeds to follow the vision\u003cbr\u003eof #MQM \u0026amp; #AltafHussain @SkyNews\u003cbr\u003e @Karachi_Post\u003cbr\u003eWed Jan 07 13:25:15 +0000 2015"}, {"group": 160, "id": 17, "label": "552818592622710784", "shape": "dot", "size": 10, "title": "552818592622710784\u003cbr\u003e@SkyNews ... UNCIVILISED world leaders\u003cbr\u003enever condemn those who insult\u003cbr\u003eprophet muhammd? Biased policy is\u003cbr\u003ealways dangerous to society.\u003cbr\u003eWed Jan 07 13:26:38 +0000 2015"}, {"group": 160, "id": 18, "label": "552819548554924032", "shape": "dot", "size": 10, "title": "552819548554924032\u003cbr\u003e@SkyNews .. Crusaders and zionist\u003cbr\u003eworld leaders allowed awarding thier\u003cbr\u003epeoples to insult prophet.. now\u003cbr\u003ewhy they are screaming?\u003cbr\u003eWed Jan 07 13:30:25 +0000 2015"}, {"group": 160, "id": 19, "label": "552819613617356802", "shape": "dot", "size": 10, "title": "552819613617356802\u003cbr\u003e@SkyNews @travelervt \n\nWell those wacky\u003cbr\u003emuzzies are at it again\u003cbr\u003e\nPoor misunderstood peace-lovers that they\u003cbr\u003eare \nWe musta hurt their\u003cbr\u003efeelings\u003cbr\u003eWed Jan 07 13:30:41 +0000 2015"}, {"group": 160, "id": 20, "label": "552821120869867520", "shape": "dot", "size": 10, "title": "552821120869867520\u003cbr\u003e@FatherCrowe @SkyNews so that makes\u003cbr\u003ethis ok then #dickhead\u003cbr\u003eWed Jan 07 13:36:40 +0000 2015"}, {"group": 160, "id": 14, "label": "552814892793618434", "shape": "dot", "size": 10, "title": "552814892793618434\u003cbr\u003e@ozydave @SkyNews Spot on!\u003cbr\u003eWed Jan 07 13:11:55 +0000 2015"}, {"group": 160, "id": 21, "label": "552823007891439616", "shape": "dot", "size": 10, "title": "552823007891439616\u003cbr\u003e@Bucketyed @SkyNews I don\u0027t know\u003cbr\u003ewhere you got that from,\u003cbr\u003ebut just to clarify. No,\u003cbr\u003eit doesn\u0027t.  Dickhead\u003cbr\u003eWed Jan 07 13:44:10 +0000 2015"}, {"group": 160, "id": 22, "label": "552839629985288192", "shape": "dot", "size": 10, "title": "552839629985288192\u003cbr\u003e@FatherCrowe @SkyNews happy about that.\u003cbr\u003eDidn\u0027t understand why you brought\u003cbr\u003eit up in the first\u003cbr\u003eplace. Connard\u003cbr\u003eWed Jan 07 14:50:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 12, "to": 20, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

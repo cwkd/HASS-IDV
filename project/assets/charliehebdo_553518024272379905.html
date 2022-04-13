@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1926, "id": 0, "label": "553518024272379905", "shape": "dot", "size": 10, "title": "553518024272379905\u003cbr\u003eMilitary helicopters seen dropping special\u003cbr\u003eforces in fields around Dammartin-en-Goele\u003cbr\u003e- @SkyNews http://t.co/tap0ntW3Rg\u003cbr\u003eFri Jan 09 11:45:55 +0000 2015"}, {"group": 1926, "id": 1, "label": "553519875256483840", "shape": "dot", "size": 10, "title": "553519875256483840\u003cbr\u003e@NewsOnTheMin @itele @SkyNews\u003cbr\u003eFri Jan 09 11:53:16 +0000 2015"}, {"group": 1926, "id": 2, "label": "553519997927309312", "shape": "dot", "size": 10, "title": "553519997927309312\u003cbr\u003e@NewsOnTheMin @itele @SkyNews vous craignez\u003cbr\u003epas de donn\u00e9es des informations\u003cbr\u003e\u00e0 des gens qui ne\u003cbr\u003edevrait pas les avoir?\u003cbr\u003eFri Jan 09 11:53:46 +0000 2015"}, {"group": 1926, "id": 3, "label": "553519997986037760", "shape": "dot", "size": 10, "title": "553519997986037760\u003cbr\u003e@NewsOnTheMin @itele @SkyNews gendarmerie =\u003cbr\u003emilitaires = treillis ! not\u003cbr\u003especial forces just french gendarmerie\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:53:46 +0000 2015"}, {"group": 1926, "id": 4, "label": "553520068974620673", "shape": "dot", "size": 10, "title": "553520068974620673\u003cbr\u003e@NewsOnTheMin @itele @SkyNews it\u0027s not\u003cbr\u003ea Sp\u00e9cial Force , it\u0027s\u003cbr\u003eGIGN\u003cbr\u003eFri Jan 09 11:54:03 +0000 2015"}, {"group": 1926, "id": 6, "label": "553520303054544897", "shape": "dot", "size": 10, "title": "553520303054544897\u003cbr\u003e@NewsOnTheMin @itele @SkyNews stop giving\u003cbr\u003einformations to the killers .\u003cbr\u003eAre you stupid ?\u003cbr\u003eFri Jan 09 11:54:58 +0000 2015"}, {"group": 1926, "id": 5, "label": "553520295378952192", "shape": "dot", "size": 10, "title": "553520295378952192\u003cbr\u003e@FKokoszanek @NewsOnTheMin @itele @SkyNews Ce\u003cbr\u003esont des forces sp\u00e9ciales hein\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:54:56 +0000 2015"}, {"group": 1926, "id": 8, "label": "553521405267288064", "shape": "dot", "size": 10, "title": "553521405267288064\u003cbr\u003e@FKokoszanek @NewsOnTheMin @itele @SkyNews les\u003cbr\u003eforces sp\u00e9ciales regroupe le raid\u003cbr\u003eet Gign ;)\u003cbr\u003eFri Jan 09 11:59:21 +0000 2015"}, {"group": 1926, "id": 7, "label": "553521156264046592", "shape": "dot", "size": 10, "title": "553521156264046592\u003cbr\u003e@wirKO_ @NewsOnTheMin @itele @SkyNews EXact\u003cbr\u003e, ont sait compris je\u003cbr\u003ecrois, mais l\u0027emploi des FS\u003cbr\u003eet d\u0027une unit\u00e9 d\u0027\u00e9lite est\u003cbr\u003ediff\u00e9rente.\u003cbr\u003eFri Jan 09 11:58:22 +0000 2015"}, {"group": 1926, "id": 9, "label": "553526292629692416", "shape": "dot", "size": 10, "title": "553526292629692416\u003cbr\u003e@JustinPST @NewsOnTheMin @itele @SkyNews les\u003cbr\u003eFS sont les unit\u00e9s du\u003cbr\u003eCOS , le RAID et\u003cbr\u003ele GIGN n\u0027en font pas\u003cbr\u003epartis .\u003cbr\u003eFri Jan 09 12:18:46 +0000 2015"}, {"group": 1926, "id": 10, "label": "553526670737801217", "shape": "dot", "size": 10, "title": "553526670737801217\u003cbr\u003e@JustinPST @NewsOnTheMin @itele @SkyNews pourtant\u003cbr\u003eil le m\u00e9riterait\u003cbr\u003eFri Jan 09 12:20:16 +0000 2015"}, {"group": 1926, "id": 11, "label": "553528238484770817", "shape": "dot", "size": 10, "title": "553528238484770817\u003cbr\u003e@FKokoszanek @NewsOnTheMin  En 2007\u003cbr\u003eune r\u00e9forme a regroup\u00e9 le\u003cbr\u003eGIGN et d\u2019autres unit\u00e9s d\u2019interventions.\u003cbr\u003eLes forces sp\u00e9ciales ..\u003cbr\u003eFri Jan 09 12:26:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

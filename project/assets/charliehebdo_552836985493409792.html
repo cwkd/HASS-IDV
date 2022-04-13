@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 495, "id": 0, "label": "552836985493409792", "shape": "dot", "size": 10, "title": "552836985493409792\u003cbr\u003eMan compares the Prophet to\u003cbr\u003ea dog! He prays for\u003cbr\u003ehis forgiveness; has him buried\u003cbr\u003ein his own cloak, and\u003cbr\u003eprays upon his funeral. #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:39:43 +0000 2015"}, {"group": 495, "id": 1, "label": "552837358929072128", "shape": "dot", "size": 10, "title": "552837358929072128\u003cbr\u003e@iyad_elbaghdadi Man draws a picture\u003cbr\u003eof the Phophet. 12 people\u003cbr\u003edies in his name.\n\n#svpol\u003cbr\u003eWed Jan 07 14:41:12 +0000 2015"}, {"group": 495, "id": 2, "label": "552837752228958208", "shape": "dot", "size": 10, "title": "552837752228958208\u003cbr\u003e@iyad_elbaghdadi Burn in hell you\u003cbr\u003escumbag...\u003cbr\u003eWed Jan 07 14:42:46 +0000 2015"}, {"group": 495, "id": 3, "label": "552837991002279937", "shape": "dot", "size": 10, "title": "552837991002279937\u003cbr\u003e@iyad_elbaghdadi Seeking asylum in Norway\u003cbr\u003e\u0026lt;\u0026lt;\u0026lt; Well i hope their\u003cbr\u003eread your twitter and sent\u003cbr\u003eyou straight to jail\u003cbr\u003eWed Jan 07 14:43:42 +0000 2015"}, {"group": 495, "id": 4, "label": "552838542419034112", "shape": "dot", "size": 10, "title": "552838542419034112\u003cbr\u003e@iyad_elbaghdadi #Jesus wasn\u0027t a bad\u003cbr\u003eguy either - #butbewareofhisfollowers #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:45:54 +0000 2015"}, {"group": 495, "id": 5, "label": "552840055426125824", "shape": "dot", "size": 10, "title": "552840055426125824\u003cbr\u003e@iyad_elbaghdadi @ShariahisComing kkkkkkkkkkkkkkkkkkkk dude you\u003cbr\u003emade me laugh\u003cbr\u003eWed Jan 07 14:51:55 +0000 2015"}, {"group": 495, "id": 6, "label": "552840110622781440", "shape": "dot", "size": 10, "title": "552840110622781440\u003cbr\u003e@iyad_elbaghdadi Woman cursed the Prophet!Her\u003cbr\u003eblind husband asked her to\u003cbr\u003estop;she didn\u0027t.The husband killed her.The\u003cbr\u003eProphet welcomed the act\u003cbr\u003eWed Jan 07 14:52:08 +0000 2015"}, {"group": 495, "id": 7, "label": "552840661792464897", "shape": "dot", "size": 10, "title": "552840661792464897\u003cbr\u003e@iyad_elbaghdadi \"Libertarian\"? @EvaCharlotta\u003cbr\u003eWed Jan 07 14:54:19 +0000 2015"}, {"group": 495, "id": 8, "label": "552840813483683841", "shape": "dot", "size": 10, "title": "552840813483683841\u003cbr\u003e@iyad_elbaghdadi If what you\u0027re saying\u003cbr\u003eis Muhamed would never kill\u003cbr\u003esomebody for insulting him, this\u003cbr\u003eone\u0027s too confusing. :-)\u003cbr\u003eWed Jan 07 14:54:55 +0000 2015"}, {"group": 495, "id": 9, "label": "552844466655350786", "shape": "dot", "size": 10, "title": "552844466655350786\u003cbr\u003e@iyad_elbaghdadi allah said not to\u003cbr\u003epray for forgiveness for unbelievers.Abu\u003cbr\u003etalib protected muhummad,but allah said\u003cbr\u003edont pray for him(9.113)\u003cbr\u003eWed Jan 07 15:09:26 +0000 2015"}, {"group": 495, "id": 10, "label": "552850259186315264", "shape": "dot", "size": 10, "title": "552850259186315264\u003cbr\u003e@iyad_elbaghdadi @OyeMaria Prophet(Godman) insulted by\u003cbr\u003epoet. He orders poet killed.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:32:27 +0000 2015"}, {"group": 495, "id": 11, "label": "552861296568188928", "shape": "dot", "size": 10, "title": "552861296568188928\u003cbr\u003e@iyad_elbaghdadi @atiyaz Insult shud be\u003cbr\u003echarged with insult\n\nOne who can\u003cbr\u003egive lives, doesnt hv the\u003cbr\u003eright to take lives\n\n#CondemnKilling\u003cbr\u003eWed Jan 07 16:16:19 +0000 2015"}, {"group": 495, "id": 12, "label": "552886331634761728", "shape": "dot", "size": 10, "title": "552886331634761728\u003cbr\u003e@iyad_elbaghdadi @atiyaz Woman criticizes \u0027Nabi\u0027\u003cbr\u003ewho has her butchered in\u003cbr\u003esleep whilst suckling her kids\u003cbr\u003ehttp://t.co/ZnT3tiBAlC\u003cbr\u003eWed Jan 07 17:55:48 +0000 2015"}, {"group": 495, "id": 13, "label": "552892170496004096", "shape": "dot", "size": 10, "title": "552892170496004096\u003cbr\u003e@iyad_elbaghdadi @FizzaRahman Mere NABI(SAW) SUBHANALLAH\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:19:00 +0000 2015"}, {"group": 495, "id": 14, "label": "552956345109192704", "shape": "dot", "size": 10, "title": "552956345109192704\u003cbr\u003e@iyad_elbaghdadi \nprove it with an\u003cbr\u003eauthentic hadith if your truthful.\nthe\u003cbr\u003ecartoonists reaped what they sowed\u003cbr\u003ethat\u0027s my freedom of expression\u003cbr\u003e\u003cbr\u003eWed Jan 07 22:34:00 +0000 2015"}, {"group": 495, "id": 15, "label": "553069732882960384", "shape": "dot", "size": 10, "title": "553069732882960384\u003cbr\u003e@iyad_elbaghdadi Fake stories with no\u003cbr\u003esourcing to mislead gullible and\u003cbr\u003ewhitewash Islam.......lying is only defense\u003cbr\u003efor Islamists\u003cbr\u003eThu Jan 08 06:04:34 +0000 2015"}, {"group": 495, "id": 16, "label": "553070190368280576", "shape": "dot", "size": 10, "title": "553070190368280576\u003cbr\u003e@mdamboa @iyad_elbaghdadi Islamists don\u0027t fall\u003cbr\u003efor your lies with fake\u003cbr\u003estories.....only idiots would be taken\u003cbr\u003ein by this snake oil\u003cbr\u003esalesman\u003cbr\u003eThu Jan 08 06:06:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 14, "to": 16, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

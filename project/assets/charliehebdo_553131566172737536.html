@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 839, "id": 0, "label": "553131566172737536", "shape": "dot", "size": 10, "title": "553131566172737536\u003cbr\u003eCharlie Hebdo shooting: reports of\u003cbr\u003eattacks on Mosques in France\u003cbr\u003e\u2013 live updates http://t.co/MhzOEjovPg\u003cbr\u003eThu Jan 08 10:10:16 +0000 2015"}, {"group": 839, "id": 1, "label": "553132112220401664", "shape": "dot", "size": 10, "title": "553132112220401664\u003cbr\u003e@guardian very disappointing. Now is\u003cbr\u003ethe time to stick it\u003cbr\u003eto them by being the\u003cbr\u003ebigger people. Revenge is an\u003cbr\u003eimmature steam let off.\u003cbr\u003eThu Jan 08 10:12:26 +0000 2015"}, {"group": 839, "id": 2, "label": "553132364004872192", "shape": "dot", "size": 10, "title": "553132364004872192\u003cbr\u003e@guardian Christianisist terrorists to add\u003cbr\u003efuel to the fire\u003cbr\u003eThu Jan 08 10:13:26 +0000 2015"}, {"group": 839, "id": 3, "label": "553132733703389184", "shape": "dot", "size": 10, "title": "553132733703389184\u003cbr\u003e@guardian @MinimumCover \u0027TO hurt\u0027 That\u0027s\u003cbr\u003eGuardian spelling ! No wonder\u003cbr\u003eall our teachers are thick.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:14:55 +0000 2015"}, {"group": 839, "id": 4, "label": "553132830621204481", "shape": "dot", "size": 10, "title": "553132830621204481\u003cbr\u003e@guardian pathetic. This is EXACTLY\u003cbr\u003ewhat the extremists want. They\u003cbr\u003ewant holy war. Don\u0027t give\u003cbr\u003eit to them.\u003cbr\u003eThu Jan 08 10:15:18 +0000 2015"}, {"group": 839, "id": 5, "label": "553132984283697152", "shape": "dot", "size": 10, "title": "553132984283697152\u003cbr\u003e@guardian Reminiscent of the troubles\u003cbr\u003ein Northern Ireland- tit for\u003cbr\u003etat. Regular muslims are not\u003cbr\u003eterrorists: they\u0027re just ppl like\u003cbr\u003eyou \u0026amp; I.\u003cbr\u003eThu Jan 08 10:15:54 +0000 2015"}, {"group": 839, "id": 7, "label": "553133427151474688", "shape": "dot", "size": 10, "title": "553133427151474688\u003cbr\u003e\u201c@guardian: Charlie Hebdo shooting: reports\u003cbr\u003eof attacks on Mosques in\u003cbr\u003eFrance \u2013 live updates http://t.co/AxKqtl6yxa\u201d\u003cbr\u003enot good news.\u003cbr\u003eThu Jan 08 10:17:40 +0000 2015"}, {"group": 839, "id": 10, "label": "553134055836094464", "shape": "dot", "size": 10, "title": "553134055836094464\u003cbr\u003e@guardian this is terrific. I\u0027m\u003cbr\u003eliving in Paris and the\u003cbr\u003etension is palpable. Extremists -\u003cbr\u003e\u0026amp; idiots - are going\u003cbr\u003eto attack innocents...\u003cbr\u003eThu Jan 08 10:20:10 +0000 2015"}, {"group": 839, "id": 11, "label": "553134738181849088", "shape": "dot", "size": 10, "title": "553134738181849088\u003cbr\u003e@guardian you are free to\u003cbr\u003edo what you want. Be\u003cbr\u003eprepared for the consequences.\u003cbr\u003eThu Jan 08 10:22:52 +0000 2015"}, {"group": 839, "id": 13, "label": "553146269435043840", "shape": "dot", "size": 10, "title": "553146269435043840\u003cbr\u003e@guardian Nothing new(s),Muslim countries been\u003cbr\u003eunder attack since Israel creation\u0026amp;Soviet\u003cbr\u003eexpulsion fm Afghanistan-Fallacy is w/out\u003cbr\u003ehistory.\u003cbr\u003eThu Jan 08 11:08:42 +0000 2015"}, {"group": 839, "id": 14, "label": "553163744977911808", "shape": "dot", "size": 10, "title": "553163744977911808\u003cbr\u003e@guardian @FrenchRadioLdn Please don\u0027t do\u003cbr\u003ethat!\u003cbr\u003eThu Jan 08 12:18:08 +0000 2015"}, {"group": 839, "id": 6, "label": "553133350131478528", "shape": "dot", "size": 10, "title": "553133350131478528\u003cbr\u003e@csbarielle1976 @guardian which side do\u003cbr\u003eyou think is holy?\u003cbr\u003eThu Jan 08 10:17:22 +0000 2015"}, {"group": 839, "id": 8, "label": "553133674900631552", "shape": "dot", "size": 10, "title": "553133674900631552\u003cbr\u003e@BrassChihuahua @guardian   We\u003cbr\u003eawait the millions of non\u003cbr\u003eviolent muslims to oppose barbaric\u003cbr\u003emurders but of course silence\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:18:39 +0000 2015"}, {"group": 839, "id": 9, "label": "553134001259806720", "shape": "dot", "size": 10, "title": "553134001259806720\u003cbr\u003e@stp_han @guardian neither, they are\u003cbr\u003eboth pathetic.\u003cbr\u003eThu Jan 08 10:19:57 +0000 2015"}, {"group": 839, "id": 12, "label": "553138063493562368", "shape": "dot", "size": 10, "title": "553138063493562368\u003cbr\u003e@WinPropP @guardian There hasn\u0027t been\u003cbr\u003esilence: BBC interviewed a muslim\u003cbr\u003espokesperson yday on news I\u0027d\u003cbr\u003ealso like 2hear more frm\u003cbr\u003ethe community\u003cbr\u003eThu Jan 08 10:36:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 8, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

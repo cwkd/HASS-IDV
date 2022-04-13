@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1092, "id": 0, "label": "553196571194851328", "shape": "dot", "size": 10, "title": "553196571194851328\u003cbr\u003eDepressing that ppl don\u0027t realise\u003cbr\u003emost victims of Islamic extremists\u003cbr\u003eare Muslims\u2026 but I\u0027m relieved\u003cbr\u003e@OwenJones84 does\nhttp://t.co/rv2VVTrVWl\u003cbr\u003eThu Jan 08 14:28:35 +0000 2015"}, {"group": 1092, "id": 1, "label": "553197495359373313", "shape": "dot", "size": 10, "title": "553197495359373313\u003cbr\u003e@MonaChalabi @OwenJones84 http://t.co/9yREhwhSQm\u003cbr\u003eThu Jan 08 14:32:15 +0000 2015"}, {"group": 1092, "id": 2, "label": "553197896573943808", "shape": "dot", "size": 10, "title": "553197896573943808\u003cbr\u003e@MonaChalabi @OwenJones84 I feel sorry\u003cbr\u003efor French muslims. Those gunmen\u003cbr\u003ehave only gone and made\u003cbr\u003elife tougher for them!\u003cbr\u003eThu Jan 08 14:33:51 +0000 2015"}, {"group": 1092, "id": 3, "label": "553198364003930112", "shape": "dot", "size": 10, "title": "553198364003930112\u003cbr\u003e@MonaChalabi @OwenJones84 Depends how you\u003cbr\u003edefine Islamophobia doesn\u0027t it? The\u003cbr\u003ederision of Islam or the\u003cbr\u003ederision of Muslims? 1 right\u003cbr\u003e1 wrong\u003cbr\u003eThu Jan 08 14:35:42 +0000 2015"}, {"group": 1092, "id": 4, "label": "553198992386183168", "shape": "dot", "size": 10, "title": "553198992386183168\u003cbr\u003e@MonaChalabi @OwenJones84 France doesn\u0027t need\u003cbr\u003ea model. It is its\u003cbr\u003eown model: republican fraternity.\u003cbr\u003eThu Jan 08 14:38:12 +0000 2015"}, {"group": 1092, "id": 5, "label": "553199738171183104", "shape": "dot", "size": 10, "title": "553199738171183104\u003cbr\u003e@MonaChalabi @OwenJones84 Islam is incompatible\u003cbr\u003ewith the West !\u003cbr\u003eThu Jan 08 14:41:10 +0000 2015"}, {"group": 1092, "id": 6, "label": "553199757334949889", "shape": "dot", "size": 10, "title": "553199757334949889\u003cbr\u003e@MonaChalabi so that begs the\u003cbr\u003equestion of why doesn\u0027t the\u003cbr\u003eMuslim community do more to\u003cbr\u003estop it?\u003cbr\u003eThu Jan 08 14:41:14 +0000 2015"}, {"group": 1092, "id": 7, "label": "553204459598520320", "shape": "dot", "size": 10, "title": "553204459598520320\u003cbr\u003e@MonaChalabi @GinnySanderson @OwenJones84 I\u0027ve figured\u003cbr\u003ethat out. But, for today,\u003cbr\u003ethe fact the victims are\u003cbr\u003emainly secular French matters.\u003cbr\u003eThu Jan 08 14:59:55 +0000 2015"}, {"group": 1092, "id": 8, "label": "553207070913486848", "shape": "dot", "size": 10, "title": "553207070913486848\u003cbr\u003e@monachalabi there is no such\u003cbr\u003ething as extreme muslims unless\u003cbr\u003eu agree with the media\u003cbr\u003emuslims know to kill they\u003cbr\u003ewill answer to Allah\u003cbr\u003eThu Jan 08 15:10:18 +0000 2015"}, {"group": 1092, "id": 9, "label": "553220894911643648", "shape": "dot", "size": 10, "title": "553220894911643648\u003cbr\u003e@MonaChalabi @OwenJones84 People prefer to\u003cbr\u003eblame Blair \u0026amp; Bush for\u003cbr\u003ekillings in Iraq rather than\u003cbr\u003ethe (Muslim) thugs who are\u003cbr\u003eactually doing it.\u003cbr\u003eThu Jan 08 16:05:14 +0000 2015"}, {"group": 1092, "id": 10, "label": "553221053443768320", "shape": "dot", "size": 10, "title": "553221053443768320\u003cbr\u003e@MonaChalabi @OwenJones84 I am sure\u003cbr\u003emost people recognize the attack\u003cbr\u003edoes not represent the vast\u003cbr\u003emajority of muslims\u003cbr\u003eThu Jan 08 16:05:52 +0000 2015"}, {"group": 1092, "id": 11, "label": "553233760779792384", "shape": "dot", "size": 10, "title": "553233760779792384\u003cbr\u003e@MonaChalabi @OwenJones84 Yeah the only\u003cbr\u003ething they hate more than\u003cbr\u003eus is each other. Remind\u003cbr\u003eme again what\u0027s so peaceful\u003cbr\u003eabout Islam?\u003cbr\u003eThu Jan 08 16:56:21 +0000 2015"}, {"group": 1092, "id": 12, "label": "553267731978805248", "shape": "dot", "size": 10, "title": "553267731978805248\u003cbr\u003e@MonaChalabi @OwenJones84  well said..Not\u003cbr\u003eenough ppl see it.Too caught\u003cbr\u003eup in their own bubble\u003cbr\u003eof state fed bullshit.\u003cbr\u003eThu Jan 08 19:11:21 +0000 2015"}, {"group": 1092, "id": 13, "label": "553324148710465536", "shape": "dot", "size": 10, "title": "553324148710465536\u003cbr\u003e@MonaChalabi @OwenJones84 tell that to\u003cbr\u003ethe children of the deceased.\u003cbr\u003eI\u0027m sure they will feel\u003cbr\u003esincere empathy for their plight.\u003cbr\u003e\u003cbr\u003eThu Jan 08 22:55:31 +0000 2015"}, {"group": 1092, "id": 16, "label": "554805161382924288", "shape": "dot", "size": 10, "title": "554805161382924288\u003cbr\u003e@MonaChalabi @OwenJones84 typical weak left\u003cbr\u003ewing apologist who can\u0027t decide\u003cbr\u003eif he believes in sexual\u003cbr\u003eequality or religious freedom\u003cbr\u003eTue Jan 13 01:00:32 +0000 2015"}, {"group": 1092, "id": 15, "label": "553500975315836930", "shape": "dot", "size": 10, "title": "553500975315836930\u003cbr\u003e@RPaulBucknall @MonaChalabi same reason we\u003cbr\u003edont do more 2 stop\u003cbr\u003ebnp n ukip n d\u003cbr\u003eUK,der always going 2 be\u003cbr\u003eeasily manipulated sheep of any\u003cbr\u003ecreed\u003cbr\u003eFri Jan 09 10:38:10 +0000 2015"}, {"group": 1092, "id": 14, "label": "553333536556875776", "shape": "dot", "size": 10, "title": "553333536556875776\u003cbr\u003e@KingSulai786 @MonaChalabi ball bag\u003cbr\u003eThu Jan 08 23:32:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 6, "to": 15, "weight": 1}, {"from": 8, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

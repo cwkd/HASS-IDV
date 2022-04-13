@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 704, "id": 0, "label": "552981694979248128", "shape": "dot", "size": 10, "title": "552981694979248128\u003cbr\u003eWe are monitoring police operation\u003cbr\u003egoing on right now in\u003cbr\u003e#Reims, France. Latest on #CharlieHebdo\u003cbr\u003eattack on #AC360 8p http://t.co/niJKHosLpm\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:14:44 +0000 2015"}, {"group": 704, "id": 1, "label": "552982445503442945", "shape": "dot", "size": 10, "title": "552982445503442945\u003cbr\u003e@AC360 The French don\u0027t mess\u003cbr\u003earound. These 3 will be\u003cbr\u003ehistory in a day or\u003cbr\u003eso.\u003cbr\u003eThu Jan 08 00:17:43 +0000 2015"}, {"group": 704, "id": 2, "label": "552982879546789888", "shape": "dot", "size": 10, "title": "552982879546789888\u003cbr\u003e@AC360 journalists are our voices.\u003cbr\u003eYou will never silence us\u003cbr\u003ewith a bullet.\u003cbr\u003eThu Jan 08 00:19:27 +0000 2015"}, {"group": 704, "id": 3, "label": "552983908749676545", "shape": "dot", "size": 10, "title": "552983908749676545\u003cbr\u003e@AC360 take them alive\u003cbr\u003eThu Jan 08 00:23:32 +0000 2015"}, {"group": 704, "id": 4, "label": "552983972721197056", "shape": "dot", "size": 10, "title": "552983972721197056\u003cbr\u003e@AC360   hi @MaryFrancesFlem\u003cbr\u003ehere is one report.\u003cbr\u003eThu Jan 08 00:23:47 +0000 2015"}, {"group": 704, "id": 5, "label": "552989351140143104", "shape": "dot", "size": 10, "title": "552989351140143104\u003cbr\u003e@AC360 I hope they catch,\u003cbr\u003etie them up, put them\u003cbr\u003eup against the wall and\u003cbr\u003eFIRE! DONE!\u003cbr\u003eThu Jan 08 00:45:10 +0000 2015"}, {"group": 704, "id": 6, "label": "552993313075523584", "shape": "dot", "size": 10, "title": "552993313075523584\u003cbr\u003e@AC360 @andersoncooper why won\u0027t @cnn\u003cbr\u003eshow the cartoons pictures? Blurring\u003cbr\u003eit out is so cowardly!\u003cbr\u003e#JeSuisCharlie\u003cbr\u003eThu Jan 08 01:00:54 +0000 2015"}, {"group": 704, "id": 7, "label": "552993481518743554", "shape": "dot", "size": 10, "title": "552993481518743554\u003cbr\u003e@AC360 @andersoncooper / Yeah, did\u003cbr\u003eyou take some protesters with\u003cbr\u003eYou.? #CNN , Y\u0027all make\u003cbr\u003esure they treat the Terrorists\u003cbr\u003enice and all.\u003cbr\u003eThu Jan 08 01:01:34 +0000 2015"}, {"group": 704, "id": 10, "label": "552994253744246784", "shape": "dot", "size": 10, "title": "552994253744246784\u003cbr\u003e@AC360 @andersoncooper   Once\u003cbr\u003ein custody, water board them\u003cbr\u003efor info.  Even if\u003cbr\u003eit kills them.\u003cbr\u003eThu Jan 08 01:04:38 +0000 2015"}, {"group": 704, "id": 11, "label": "552994271050346496", "shape": "dot", "size": 10, "title": "552994271050346496\u003cbr\u003e@AC360 : are you superman\u003cbr\u003e#CharlieHebdo\u003cbr\u003eThu Jan 08 01:04:43 +0000 2015"}, {"group": 704, "id": 13, "label": "552995038586601473", "shape": "dot", "size": 10, "title": "552995038586601473\u003cbr\u003e@AC360 @andersoncooper what about the\u003cbr\u003eNAACP bombing in Colorado Springs.\u003cbr\u003eNot newsworthy for CNN #sorrynewscoverage\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:07:46 +0000 2015"}, {"group": 704, "id": 14, "label": "552995039811747840", "shape": "dot", "size": 10, "title": "552995039811747840\u003cbr\u003e@AC360 @andersoncooper yeah monitor the\u003cbr\u003e#police so you can blame\u003cbr\u003ethem for #racism or #brutality\u003cbr\u003eif anything happens they are\u003cbr\u003ethere to protec\u003cbr\u003eThu Jan 08 01:07:46 +0000 2015"}, {"group": 704, "id": 15, "label": "552995096736432129", "shape": "dot", "size": 10, "title": "552995096736432129\u003cbr\u003e@AC360 @andersoncooper I could of\u003cbr\u003esworn I just read one\u003cbr\u003ewas killed and the other\u003cbr\u003e2 were captured\u003cbr\u003eThu Jan 08 01:07:59 +0000 2015"}, {"group": 704, "id": 16, "label": "552999480044560384", "shape": "dot", "size": 10, "title": "552999480044560384\u003cbr\u003e@AC360 @andersoncooper Find them, \u003cbr\u003etrap them, kill them and\u003cbr\u003esend them to hell!!!\u003cbr\u003eThu Jan 08 01:25:24 +0000 2015"}, {"group": 704, "id": 17, "label": "553002752624709632", "shape": "dot", "size": 10, "title": "553002752624709632\u003cbr\u003e@AC360 @andersoncooper Viva La France\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:38:25 +0000 2015"}, {"group": 704, "id": 18, "label": "553003327659982851", "shape": "dot", "size": 10, "title": "553003327659982851\u003cbr\u003e@AC360 abc news saying youngest\u003cbr\u003esuspect surrendered.\u003cbr\u003eThu Jan 08 01:40:42 +0000 2015"}, {"group": 704, "id": 8, "label": "552994058172641282", "shape": "dot", "size": 10, "title": "552994058172641282\u003cbr\u003e@berrie_blu @AC360 @andersoncooper @CNN probably\u003cbr\u003edon\u0027t want america to get\u003cbr\u003eshot up\u003cbr\u003eThu Jan 08 01:03:52 +0000 2015"}, {"group": 704, "id": 9, "label": "552994153874067458", "shape": "dot", "size": 10, "title": "552994153874067458\u003cbr\u003e@berrie_blu @AC360 @andersoncooper @CNN on\u003cbr\u003etop of that. It\u0027s offensive\u003cbr\u003eand didn\u0027t cenfrom america\u003cbr\u003eThu Jan 08 01:04:15 +0000 2015"}, {"group": 704, "id": 12, "label": "552994687816957952", "shape": "dot", "size": 10, "title": "552994687816957952\u003cbr\u003e@berrie_blu @AC360 @andersoncooper @CNN let\u003cbr\u003eit simmer, now pull your\u003cbr\u003ehead out of the sand\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:06:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

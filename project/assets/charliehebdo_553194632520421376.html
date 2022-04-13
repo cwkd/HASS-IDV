@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1082, "id": 0, "label": "553194632520421376", "shape": "dot", "size": 10, "title": "553194632520421376\u003cbr\u003eSo now let\u0027s talk seriously\u003cbr\u003eabout #CharlieHebdo and Western double\u003cbr\u003estandard on freedom of speech.\n#JenesuisPAScharlie\u003cbr\u003ehttp://t.co/XzsJQF12Uv\u003cbr\u003eThu Jan 08 14:20:52 +0000 2015"}, {"group": 1082, "id": 1, "label": "553197774154387456", "shape": "dot", "size": 10, "title": "553197774154387456\u003cbr\u003e@Pray4Pal It is this hypocrisy\u003cbr\u003eand double standard\u003cbr\u003eThu Jan 08 14:33:21 +0000 2015"}, {"group": 1082, "id": 2, "label": "553199122149548033", "shape": "dot", "size": 10, "title": "553199122149548033\u003cbr\u003e@Pray4Pal @Slippery_Richie thank you best\u003cbr\u003etweet of the day salaam\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:38:43 +0000 2015"}, {"group": 1082, "id": 3, "label": "553202475361001472", "shape": "dot", "size": 10, "title": "553202475361001472\u003cbr\u003e@Pray4Pal the killers were non\u003cbr\u003emuslims cause that was not\u003cbr\u003eIslam \ud83d\udc94\u003cbr\u003eThu Jan 08 14:52:02 +0000 2015"}, {"group": 1082, "id": 4, "label": "553205570694819841", "shape": "dot", "size": 10, "title": "553205570694819841\u003cbr\u003e@Pray4Pal @arqueoleg you mean #CharlieHebdo\u003cbr\u003edidn\u0027t draw about Jews or\u003cbr\u003eChristians?\u003cbr\u003eThu Jan 08 15:04:20 +0000 2015"}, {"group": 1082, "id": 5, "label": "553207724079448065", "shape": "dot", "size": 10, "title": "553207724079448065\u003cbr\u003e@Pray4Pal  trur\u003cbr\u003eThu Jan 08 15:12:54 +0000 2015"}, {"group": 1082, "id": 6, "label": "553207765229772801", "shape": "dot", "size": 10, "title": "553207765229772801\u003cbr\u003e@Pray4Pal true\u003cbr\u003eThu Jan 08 15:13:03 +0000 2015"}, {"group": 1082, "id": 7, "label": "553219817646612480", "shape": "dot", "size": 10, "title": "553219817646612480\u003cbr\u003e@Pray4Pal \u0026lt;Yes lets! Note how\u003cbr\u003eMuslims murdering Jews isn\u0027t a\u003cbr\u003egame changer, but murder of\u003cbr\u003eFrench journos is. @Hongosenlospies\u003cbr\u003eThu Jan 08 16:00:57 +0000 2015"}, {"group": 1082, "id": 8, "label": "553220069946580992", "shape": "dot", "size": 10, "title": "553220069946580992\u003cbr\u003e@Pray4Pal @yorkstig They had many\u003cbr\u003edrawings of hook nosed Jews\u003cbr\u003ethough!\u003cbr\u003eThu Jan 08 16:01:57 +0000 2015"}, {"group": 1082, "id": 9, "label": "553220335034961922", "shape": "dot", "size": 10, "title": "553220335034961922\u003cbr\u003e@Pray4Pal \u0026lt;Here on Earth, ppl\u003cbr\u003ehave gone out of their\u003cbr\u003eway not to offend oversensitive\u003cbr\u003eMuslims. Why? they still complain.\u003cbr\u003eIngrates!\u003cbr\u003eThu Jan 08 16:03:00 +0000 2015"}, {"group": 1082, "id": 10, "label": "553220824237637632", "shape": "dot", "size": 10, "title": "553220824237637632\u003cbr\u003e@Pray4Pal Muslims: so delicate, and\u003cbr\u003etender, like fluffy bunnies with\u003cbr\u003eAKs. So picked on. So,\u003cbr\u003elets give them something to\u003cbr\u003ereally cry about!\u003cbr\u003eThu Jan 08 16:04:57 +0000 2015"}, {"group": 1082, "id": 11, "label": "553221563462742017", "shape": "dot", "size": 10, "title": "553221563462742017\u003cbr\u003e@Pray4Pal \nThis is your god:\u003cbr\u003e\ud83d\udca9!\nHere is your prophet: \ud83d\udc16!\nYou\u003cbr\u003egot a problem w that?\u003cbr\u003eThat\u0027s YOUR PROBLEM!\u003cbr\u003eThu Jan 08 16:07:53 +0000 2015"}, {"group": 1082, "id": 12, "label": "553240947887472640", "shape": "dot", "size": 10, "title": "553240947887472640\u003cbr\u003e@Pray4Pal not true. That paper\u003cbr\u003epoked fun at Jews too\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:24:55 +0000 2015"}, {"group": 1082, "id": 13, "label": "553255493800431616", "shape": "dot", "size": 10, "title": "553255493800431616\u003cbr\u003e@Pray4Pal @TheDudeInSF The cartoon forgets\u003cbr\u003eone important thing: No one\u003cbr\u003emurdered them for anti semitism.\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:22:43 +0000 2015"}, {"group": 1082, "id": 14, "label": "553255855815028736", "shape": "dot", "size": 10, "title": "553255855815028736\u003cbr\u003e@Pray4Pal @TheDudeInSF Free speech doesn\u0027t\u003cbr\u003emean we have to agree\u003cbr\u003ewith them. Just that they\u003cbr\u003eshouldn\u0027t be murdered for it.\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:24:09 +0000 2015"}, {"group": 1082, "id": 15, "label": "553256233772138496", "shape": "dot", "size": 10, "title": "553256233772138496\u003cbr\u003e@Pray4Pal @TheDudeInSF So it isn\u0027t\u003cbr\u003ea double standard to defend\u003cbr\u003espeech (even abhorrent speech) from\u003cbr\u003emurderous lunatics.\u003cbr\u003eThu Jan 08 18:25:39 +0000 2015"}, {"group": 1082, "id": 16, "label": "553257275566338048", "shape": "dot", "size": 10, "title": "553257275566338048\u003cbr\u003eSo you only object when\u003cbr\u003e#CharlieHebdo lampoons Christianity, Buddhism, Hinduism\u003cbr\u003eor Judaism? @Pray4Pal @lousycanuck\u003cbr\u003eThu Jan 08 18:29:48 +0000 2015"}, {"group": 1082, "id": 17, "label": "553257530084687872", "shape": "dot", "size": 10, "title": "553257530084687872\u003cbr\u003e@Pray4Pal @anarchic_teapot \nWhat fucking bullshit.\nThat\u003cbr\u003enewppaper had anti Semitic cartoons\u003cbr\u003etoo.\nDid Jews murder the journalists?\u003cbr\u003e \nNO\u003cbr\u003eThu Jan 08 18:30:48 +0000 2015"}, {"group": 1082, "id": 18, "label": "553257612293070848", "shape": "dot", "size": 10, "title": "553257612293070848\u003cbr\u003e@Pray4Pal Take Westborough Baptist Church\u003cbr\u003efor example. Few people agree\u003cbr\u003ewith them, but not many\u003cbr\u003ewould advocate their murder.\u003cbr\u003eThu Jan 08 18:31:08 +0000 2015"}, {"group": 1082, "id": 19, "label": "553257834444386304", "shape": "dot", "size": 10, "title": "553257834444386304\u003cbr\u003e@anarchic_teapot @Pray4Pal I think the\u003cbr\u003epoint is that it\u0027s all\u003cbr\u003eobjectionable, but the West doesn\u0027t\u003cbr\u003egenerally object to islamophobic nonsense\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:32:01 +0000 2015"}, {"group": 1082, "id": 21, "label": "553258399992147968", "shape": "dot", "size": 10, "title": "553258399992147968\u003cbr\u003e@ISIS_CRIMES @Pray4Pal They were murdered\u003cbr\u003eby fanatics. The religion is\u003cbr\u003eof little import.\u003cbr\u003eThu Jan 08 18:34:16 +0000 2015"}, {"group": 1082, "id": 20, "label": "553258042213793792", "shape": "dot", "size": 10, "title": "553258042213793792\u003cbr\u003e@lousycanuck @Pray4Pal Fair enough. Trouble\u003cbr\u003eis, I\u0027ve getting a lot\u003cbr\u003eof the other sort of\u003cbr\u003eidiot today.\u003cbr\u003eThu Jan 08 18:32:50 +0000 2015"}, {"group": 1082, "id": 22, "label": "553259155402657792", "shape": "dot", "size": 10, "title": "553259155402657792\u003cbr\u003e@anarchic_teapot @Pray4Pal \nEh?  Little\u003cbr\u003eimportance? ?\nThey shouted \"in Allah\u0027s\u003cbr\u003ename\" \nThe whole motive was\u003cbr\u003ereligious ffs!\u003cbr\u003eThu Jan 08 18:37:16 +0000 2015"}, {"group": 1082, "id": 23, "label": "553260829840510976", "shape": "dot", "size": 10, "title": "553260829840510976\u003cbr\u003e@ISIS_CRIMES @Pray4Pal It just happened\u003cbr\u003eto be Islamists. Could also\u003cbr\u003ehave been any extreme right\u003cbr\u003ewing political group.\u003cbr\u003eThu Jan 08 18:43:55 +0000 2015"}, {"group": 1082, "id": 24, "label": "553265025997996032", "shape": "dot", "size": 10, "title": "553265025997996032\u003cbr\u003e@anarchic_teapot @Pray4Pal \nFfs come one.\u003cbr\u003eDon\u0027t u read the news?\u003cbr\u003ethere is a v strong\u003cbr\u003etrend of terrorist offences\nIts not\u003cbr\u003eright wing loonies\u003cbr\u003eThu Jan 08 19:00:36 +0000 2015"}, {"group": 1082, "id": 25, "label": "553267933708038145", "shape": "dot", "size": 10, "title": "553267933708038145\u003cbr\u003e@ISIS_CRIMES @Pray4Pal Ah, so it\u003cbr\u003ewasn\u0027t RW loonies that have\u003cbr\u003etwice attacked our LGBT centre\u003cbr\u003eand left neonazi scrawls on\u003cbr\u003ethe walls. Gotcha.\u003cbr\u003eThu Jan 08 19:12:09 +0000 2015"}, {"group": 1082, "id": 26, "label": "553268580263788544", "shape": "dot", "size": 10, "title": "553268580263788544\u003cbr\u003e@anarchic_teapot @Pray4Pal \nUr comparing nazi\u003cbr\u003ememorabilia on walls to cold\u003cbr\u003eblooded murders in Paris sydney\u003cbr\u003eNigeria Iraq Syria?R u retarded?\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:14:43 +0000 2015"}, {"group": 1082, "id": 27, "label": "553274850744471552", "shape": "dot", "size": 10, "title": "553274850744471552\u003cbr\u003eNo, but I\u0027ve suspected you\u003cbr\u003eare for some time. This\u003cbr\u003eclinches it. @ISIS_CRIMES @Pray4Pal\u003cbr\u003eThu Jan 08 19:39:38 +0000 2015"}, {"group": 1082, "id": 28, "label": "553395139997990913", "shape": "dot", "size": 10, "title": "553395139997990913\u003cbr\u003e@anarchic_teapot @Pray4Pal \nIt clinches ur\u003cbr\u003ean idiot. The comparison is\u003cbr\u003epathetic\u003cbr\u003eFri Jan 09 03:37:37 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 17, "to": 21, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

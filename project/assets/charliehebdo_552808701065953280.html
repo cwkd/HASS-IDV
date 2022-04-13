@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 138, "id": 0, "label": "552808701065953280", "shape": "dot", "size": 10, "title": "552808701065953280\u003cbr\u003e\"Terror\" in France: Gunmen in\u003cbr\u003e#CharlieHebdo attack still at large.\u003cbr\u003eWhat we know so far\u003cbr\u003ehttp://t.co/Jfqmha1GdV (Getty) http://t.co/2QyDcbE7P6\u003cbr\u003eWed Jan 07 12:47:19 +0000 2015"}, {"group": 138, "id": 1, "label": "552809992211165185", "shape": "dot", "size": 10, "title": "552809992211165185\u003cbr\u003e@USATODAY same magazine had been\u003cbr\u003eWIDELY criticize for being pro\u003cbr\u003eIslam and anti israel http://t.co/Bi47C7UON0\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:52:27 +0000 2015"}, {"group": 138, "id": 2, "label": "552810118698782720", "shape": "dot", "size": 10, "title": "552810118698782720\u003cbr\u003e@USATODAY\u003cbr\u003eWed Jan 07 12:52:57 +0000 2015"}, {"group": 138, "id": 3, "label": "552811311407853568", "shape": "dot", "size": 10, "title": "552811311407853568\u003cbr\u003e@USATODAY It\u0027s not \"terror\", it\u0027s\u003cbr\u003epure terror.\u003cbr\u003eWed Jan 07 12:57:42 +0000 2015"}, {"group": 138, "id": 4, "label": "552812172007735296", "shape": "dot", "size": 10, "title": "552812172007735296\u003cbr\u003e@USATODAY And this is why\u003cbr\u003eno media outlets, Atheist orgs,\u003cbr\u003eetc screw w Islam, but\u003cbr\u003ewill disparage Christianity.\u003cbr\u003eWed Jan 07 13:01:07 +0000 2015"}, {"group": 138, "id": 5, "label": "552813063200837632", "shape": "dot", "size": 10, "title": "552813063200837632\u003cbr\u003e@USATODAY How come @GettyImages owned\u003cbr\u003ethat image so quickly. Sickening.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:04:39 +0000 2015"}, {"group": 138, "id": 6, "label": "552813378121392128", "shape": "dot", "size": 10, "title": "552813378121392128\u003cbr\u003e@USATODAY mosad agents??\u003cbr\u003eWed Jan 07 13:05:54 +0000 2015"}, {"group": 138, "id": 7, "label": "552829584081559553", "shape": "dot", "size": 10, "title": "552829584081559553\u003cbr\u003eWhy is TERROR in quotes?\u003cbr\u003e@USATODAY\u003cbr\u003eWed Jan 07 14:10:18 +0000 2015"}, {"group": 138, "id": 8, "label": "552829888067952640", "shape": "dot", "size": 10, "title": "552829888067952640\u003cbr\u003e@RyanBLeslie @USATODAY Because .... Today\u0027s\u003cbr\u003eliberal \" journalists.\"\u003cbr\u003eWed Jan 07 14:11:31 +0000 2015"}, {"group": 138, "id": 9, "label": "552833235521007616", "shape": "dot", "size": 10, "title": "552833235521007616\u003cbr\u003e@RyanBLeslie @USATODAY ..2 reasons: must\u003cbr\u003eremain PC and it may\u003cbr\u003ejust end up being \u0027workplace\u0027\u003cbr\u003eviolence ! After all, must\u003cbr\u003enot \u0027offend\u0027 anyone!!\u003cbr\u003eWed Jan 07 14:24:49 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

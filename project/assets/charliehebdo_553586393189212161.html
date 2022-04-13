@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1554, "id": 0, "label": "553586393189212161", "shape": "dot", "size": 10, "title": "553586393189212161\u003cbr\u003eExplosions and gunfire heard at\u003cbr\u003escene of hostage-taking at kosher\u003cbr\u003esupermarket in eastern Paris http://t.co/sBYFi4Ck2u\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:17:35 +0000 2015"}, {"group": 1554, "id": 1, "label": "553586806793711617", "shape": "dot", "size": 10, "title": "553586806793711617\u003cbr\u003e@BBCBreaking good tactics live streaming\u003cbr\u003ethe police movements outside the\u003cbr\u003ebuildings\u003cbr\u003eFri Jan 09 16:19:14 +0000 2015"}, {"group": 1554, "id": 2, "label": "553587038105391104", "shape": "dot", "size": 10, "title": "553587038105391104\u003cbr\u003e\u201c@BBCBreaking: Explosions and gunfire heard\u003cbr\u003eat scene of hostage-taking at\u003cbr\u003ekosher supermarket in eastern Paris\u003cbr\u003ehttp://t.co/HhlurLE3kJ\u201d\u003cbr\u003eFri Jan 09 16:20:09 +0000 2015"}, {"group": 1554, "id": 3, "label": "553587687203278850", "shape": "dot", "size": 10, "title": "553587687203278850\u003cbr\u003e. @BBCBreaking \"AFP reporting a\u003cbr\u003esource says the Charlie Hebdo\u003cbr\u003esuspects, the Kouachi brothers, have\u003cbr\u003ebeen killed\" http://t.co/VuP0JUDZ7s\u003cbr\u003eFri Jan 09 16:22:44 +0000 2015"}, {"group": 1554, "id": 4, "label": "553587724288946176", "shape": "dot", "size": 10, "title": "553587724288946176\u003cbr\u003e\u201c@BBCBreaking: Explosions and gunfire heard\u003cbr\u003eat scene at kosher supermarket\u003cbr\u003ein eastern Paris http://t.co/acl2bM5HHs\u201d @10_saira_10\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:22:53 +0000 2015"}, {"group": 1554, "id": 5, "label": "553589018613780481", "shape": "dot", "size": 10, "title": "553589018613780481\u003cbr\u003e@BBCBreaking Bon chance et securite\u003cbr\u003epour les gendarmes et le\u003cbr\u003epublique #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:28:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

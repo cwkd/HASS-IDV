@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1997, "id": 0, "label": "553552825431883776", "shape": "dot", "size": 10, "title": "553552825431883776\u003cbr\u003eBreaking: Unconfirmed reports of a\u003cbr\u003egunman at the Trocadero near\u003cbr\u003ethe Eiffel Tower in #Paris.\u003cbr\u003eMore info when available.\u003cbr\u003eFri Jan 09 14:04:12 +0000 2015"}, {"group": 1997, "id": 1, "label": "553553287656374272", "shape": "dot", "size": 10, "title": "553553287656374272\u003cbr\u003e@rConflictNews omg!\u003cbr\u003eFri Jan 09 14:06:02 +0000 2015"}, {"group": 1997, "id": 2, "label": "553553462097879040", "shape": "dot", "size": 10, "title": "553553462097879040\u003cbr\u003e@rConflictNews @Steiner1776 sources please?\u003cbr\u003eFri Jan 09 14:06:44 +0000 2015"}, {"group": 1997, "id": 3, "label": "553553541659656192", "shape": "dot", "size": 10, "title": "553553541659656192\u003cbr\u003e@rConflictNews Got it.\u003cbr\u003eFri Jan 09 14:07:03 +0000 2015"}, {"group": 1997, "id": 4, "label": "553553590800117760", "shape": "dot", "size": 10, "title": "553553590800117760\u003cbr\u003e@rConflictNews @Steiner1776 the main word\u003cbr\u003eis UNconfirmed\u003cbr\u003eFri Jan 09 14:07:15 +0000 2015"}, {"group": 1997, "id": 5, "label": "553554927273136128", "shape": "dot", "size": 10, "title": "553554927273136128\u003cbr\u003e@rConflictNews sky news has reported\u003cbr\u003eit \ud83d\ude14\u003cbr\u003eFri Jan 09 14:12:33 +0000 2015"}, {"group": 1997, "id": 6, "label": "553556164064313345", "shape": "dot", "size": 10, "title": "553556164064313345\u003cbr\u003e@rConflictNews \nAnd so it begins...\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:17:28 +0000 2015"}, {"group": 1997, "id": 7, "label": "553559297234595840", "shape": "dot", "size": 10, "title": "553559297234595840\u003cbr\u003e@rConflictNews @rubin false news take\u003cbr\u003etour informations  from \u003cbr\u003eofficial  authorities\u003cbr\u003eFri Jan 09 14:29:55 +0000 2015"}, {"group": 1997, "id": 8, "label": "553569382182711296", "shape": "dot", "size": 10, "title": "553569382182711296\u003cbr\u003e@rConflictNews @asterfr \nJ\u0027y \u00e9tais \u00e0\u003cbr\u003e14h30 et il n\u0027y avait\u003cbr\u003erien de particulier.\u003cbr\u003eFri Jan 09 15:10:00 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

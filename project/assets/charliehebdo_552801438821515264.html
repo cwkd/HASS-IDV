@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1687, "id": 0, "label": "552801438821515264", "shape": "dot", "size": 10, "title": "552801438821515264\u003cbr\u003eCharlie Hebdo journalist Wandrille Lanos\u003cbr\u003etells France 2 that men\u003cbr\u003ewith kalashnikovs entered the office,\u003cbr\u003ecalls it a \"scene of\u003cbr\u003ecarnage.\"\u003cbr\u003eWed Jan 07 12:18:28 +0000 2015"}, {"group": 1687, "id": 1, "label": "552804261927456769", "shape": "dot", "size": 10, "title": "552804261927456769\u003cbr\u003e@RachelDonadio @nytimes NWO is trying\u003cbr\u003eto make it look like\u003cbr\u003eRussia because Russia is once\u003cbr\u003eagain stopping their plans for\u003cbr\u003eworld domination.\u003cbr\u003eWed Jan 07 12:29:41 +0000 2015"}, {"group": 1687, "id": 2, "label": "552805596240830464", "shape": "dot", "size": 10, "title": "552805596240830464\u003cbr\u003e@RachelDonadio @nytimes\u003cbr\u003eWed Jan 07 12:34:59 +0000 2015"}, {"group": 1687, "id": 3, "label": "552806202942713857", "shape": "dot", "size": 10, "title": "552806202942713857\u003cbr\u003e@RachelDonadio was it men, or\u003cbr\u003ewas it MUSLIM men. \u003cbr\u003ePlease be more specific. \"Men\"\u003cbr\u003ecld mean blonde-haired Swedish rugby\u003cbr\u003eplayers.\u003cbr\u003eWed Jan 07 12:37:24 +0000 2015"}, {"group": 1687, "id": 4, "label": "552806252498386946", "shape": "dot", "size": 10, "title": "552806252498386946\u003cbr\u003e\u201c@RachelDonadio: Charlie Hebdo journalist tells\u003cbr\u003ethat men with kalashnikovs entered\u003cbr\u003ethe office, calls it a\u003cbr\u003e\"scene of carnage.\"  \u003cbr\u003e  12 deads !\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:37:35 +0000 2015"}, {"group": 1687, "id": 5, "label": "552808461495730177", "shape": "dot", "size": 10, "title": "552808461495730177\u003cbr\u003e@RachelDonadio I send love to\u003cbr\u003eall of you how are\u003cbr\u003eyou friends and I\u0027m very\u003cbr\u003epleased that you are acquainted\u003cbr\u003ewith the sultry and slipped\u003cbr\u003ea litt\u003cbr\u003eWed Jan 07 12:46:22 +0000 2015"}, {"group": 1687, "id": 6, "label": "552809047603560448", "shape": "dot", "size": 10, "title": "552809047603560448\u003cbr\u003e@RachelDonadio @nytimes I would check\u003cbr\u003ethe contacts with russian secret\u003cbr\u003eservices.\u003cbr\u003eWed Jan 07 12:48:42 +0000 2015"}, {"group": 1687, "id": 7, "label": "552811265182420992", "shape": "dot", "size": 10, "title": "552811265182420992\u003cbr\u003e@RachelDonadio @nytimes 12 deads actually\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:57:31 +0000 2015"}, {"group": 1687, "id": 8, "label": "552818020083453953", "shape": "dot", "size": 10, "title": "552818020083453953\u003cbr\u003e@RachelDonadio @nytimes it\u0027s the proud,\u003cbr\u003eIslamic way.\u003cbr\u003eWed Jan 07 13:24:21 +0000 2015"}, {"group": 1687, "id": 9, "label": "552854449920565248", "shape": "dot", "size": 10, "title": "552854449920565248\u003cbr\u003e@RachelDonadio\u003cbr\u003eWed Jan 07 15:49:07 +0000 2015"}, {"group": 1687, "id": 10, "label": "552931756735598592", "shape": "dot", "size": 10, "title": "552931756735598592\u003cbr\u003e@RachelDonadio @nytimes Terrorist easily come\u003cbr\u003e\u0026amp; easily escaped.cameramans were already\u003cbr\u003estand on top at many\u003cbr\u003edirections \u0026amp; shooting frm start.\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:56:18 +0000 2015"}, {"group": 1687, "id": 11, "label": "552931878542389249", "shape": "dot", "size": 10, "title": "552931878542389249\u003cbr\u003e@RachelDonadio @nytimes Camera Role Action\u003cbr\u003eCut ..!!\u003cbr\u003eWed Jan 07 20:56:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

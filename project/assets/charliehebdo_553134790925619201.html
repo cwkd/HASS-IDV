@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 849, "id": 0, "label": "553134790925619201", "shape": "dot", "size": 10, "title": "553134790925619201\u003cbr\u003eWhy we must not let\u003cbr\u003ethe Isis propoganda machine win\u003cbr\u003e#CharlieHebdo #JeSuisCharlie http://t.co/gkyX9b7DD2 http://t.co/e5wMYWnTSG\u003cbr\u003eThu Jan 08 10:23:05 +0000 2015"}, {"group": 849, "id": 1, "label": "553135045826056192", "shape": "dot", "size": 10, "title": "553135045826056192\u003cbr\u003e@Independent http://t.co/ik4kl2heQC\u003cbr\u003eThu Jan 08 10:24:06 +0000 2015"}, {"group": 849, "id": 2, "label": "553135688192106496", "shape": "dot", "size": 10, "title": "553135688192106496\u003cbr\u003e@Independent #CharlieHebdo you created this\u003cbr\u003emonster http://t.co/6jl6LjagGa\u003cbr\u003eThu Jan 08 10:26:39 +0000 2015"}, {"group": 849, "id": 3, "label": "553136082465091584", "shape": "dot", "size": 10, "title": "553136082465091584\u003cbr\u003e@Independent Isn\u0027t the issue not\u003cbr\u003epropaganda but the fucking murderous\u003cbr\u003eterrorists?\u003cbr\u003eThu Jan 08 10:28:13 +0000 2015"}, {"group": 849, "id": 4, "label": "553136919740444672", "shape": "dot", "size": 10, "title": "553136919740444672\u003cbr\u003e@Independent you already  have\u003cbr\u003eby not instantly printing \u003cbr\u003ethe supposedly offencive #CharlieHebdo cartoons\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:31:33 +0000 2015"}, {"group": 849, "id": 5, "label": "553137616380768256", "shape": "dot", "size": 10, "title": "553137616380768256\u003cbr\u003e@Independent We must let this\u003cbr\u003eZionist propoganda machine win #CharlieHebdo\u003cbr\u003e#JeSuisCharlie : BBC Israeli head\u003cbr\u003eof news http://t.co/y5Ejhx1CIf\u003cbr\u003eThu Jan 08 10:34:19 +0000 2015"}, {"group": 849, "id": 6, "label": "553138286101680128", "shape": "dot", "size": 10, "title": "553138286101680128\u003cbr\u003e@Independent i win\u003cbr\u003eThu Jan 08 10:36:58 +0000 2015"}, {"group": 849, "id": 7, "label": "553139399928848385", "shape": "dot", "size": 10, "title": "553139399928848385\u003cbr\u003e@Independent Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 10:41:24 +0000 2015"}, {"group": 849, "id": 8, "label": "553141023669760000", "shape": "dot", "size": 10, "title": "553141023669760000\u003cbr\u003e@Independent War profiteers x\u0027d #PrincessDiana\u003cbr\u003eand #DodiFayed in #Paris. Pushing\u003cbr\u003e#France to join war on\u003cbr\u003eterror VIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003eThu Jan 08 10:47:51 +0000 2015"}, {"group": 849, "id": 9, "label": "553146843664629760", "shape": "dot", "size": 10, "title": "553146843664629760\u003cbr\u003e@Independent CC to @Jakhar_N .\u003cbr\u003ePlease see, how quickly they\u003cbr\u003econnected French attack to ISIS.\u003cbr\u003eAnything fishy? May be or\u003cbr\u003emay be not.\u003cbr\u003eThu Jan 08 11:10:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

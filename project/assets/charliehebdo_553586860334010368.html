@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2038, "id": 0, "label": "553586860334010368", "shape": "dot", "size": 10, "title": "553586860334010368\u003cbr\u003e#CharlieHebdo killers shot dead by\u003cbr\u003epolice\u003cbr\u003eFri Jan 09 16:19:27 +0000 2015"}, {"group": 2038, "id": 1, "label": "553586932727693312", "shape": "dot", "size": 10, "title": "553586932727693312\u003cbr\u003e@KayBurley Great news! \ud83d\ude04\u003cbr\u003eFri Jan 09 16:19:44 +0000 2015"}, {"group": 2038, "id": 2, "label": "553586964805713920", "shape": "dot", "size": 10, "title": "553586964805713920\u003cbr\u003e@KayBurley best news for days.\u003cbr\u003eGoodbye scumbags.\u003cbr\u003eFri Jan 09 16:19:52 +0000 2015"}, {"group": 2038, "id": 3, "label": "553586988419649536", "shape": "dot", "size": 10, "title": "553586988419649536\u003cbr\u003e@KayBurley they got what they\u003cbr\u003ewanted :( but perhaps for\u003cbr\u003ethe best\u003cbr\u003eFri Jan 09 16:19:57 +0000 2015"}, {"group": 2038, "id": 4, "label": "553587000578932737", "shape": "dot", "size": 10, "title": "553587000578932737\u003cbr\u003e@KayBurley rot in hell.....\u003cbr\u003eFri Jan 09 16:20:00 +0000 2015"}, {"group": 2038, "id": 5, "label": "553587034762534913", "shape": "dot", "size": 10, "title": "553587034762534913\u003cbr\u003e@KayBurley hurrah, hell awaits \ud83d\udc79\ud83d\udc7a\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:20:08 +0000 2015"}, {"group": 2038, "id": 6, "label": "553587039598571523", "shape": "dot", "size": 10, "title": "553587039598571523\u003cbr\u003e@KayBurley best news I have\u003cbr\u003eheard, Kay you are doing\u003cbr\u003ean amazing job thank you\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:20:10 +0000 2015"}, {"group": 2038, "id": 7, "label": "553587040886206466", "shape": "dot", "size": 10, "title": "553587040886206466\u003cbr\u003e@KayBurley No confirmation yet, but\u003cbr\u003ehopefully good news\u003cbr\u003eFri Jan 09 16:20:10 +0000 2015"}, {"group": 2038, "id": 8, "label": "553587067712995328", "shape": "dot", "size": 10, "title": "553587067712995328\u003cbr\u003e@KayBurley best News possible all\u003cbr\u003ethings considered\u003cbr\u003eFri Jan 09 16:20:16 +0000 2015"}, {"group": 2038, "id": 9, "label": "553587132045213696", "shape": "dot", "size": 10, "title": "553587132045213696\u003cbr\u003e@KayBurley Good - 2 less\u003cbr\u003eto worry about. Hope the\u003cbr\u003eHostages are all OK!\u003cbr\u003eFri Jan 09 16:20:32 +0000 2015"}, {"group": 2038, "id": 10, "label": "553587150428856320", "shape": "dot", "size": 10, "title": "553587150428856320\u003cbr\u003e@KayBurley @PaulineMBarten Killers? No trial?\u003cbr\u003eCan you please provide the\u003cbr\u003eevidence that these people were\u003cbr\u003einvolved in #CharlieHebdo\u003cbr\u003eFri Jan 09 16:20:36 +0000 2015"}, {"group": 2038, "id": 11, "label": "553587188500529152", "shape": "dot", "size": 10, "title": "553587188500529152\u003cbr\u003e@KayBurley @dublinrecruiter great work gsg9\u003cbr\u003eand s/ forces teams.\u003cbr\u003eFri Jan 09 16:20:45 +0000 2015"}, {"group": 2038, "id": 12, "label": "553587214987558912", "shape": "dot", "size": 10, "title": "553587214987558912\u003cbr\u003e@KayBurley you the fastest for\u003cbr\u003ebreaking news...\u003cbr\u003eFri Jan 09 16:20:51 +0000 2015"}, {"group": 2038, "id": 13, "label": "553587298215133185", "shape": "dot", "size": 10, "title": "553587298215133185\u003cbr\u003e@KayBurley what about the hostage\u003cbr\u003ehopefully still alive.\u003cbr\u003eFri Jan 09 16:21:11 +0000 2015"}, {"group": 2038, "id": 14, "label": "553587361398132736", "shape": "dot", "size": 10, "title": "553587361398132736\u003cbr\u003e@KayBurley Thinking of the hostages.\u003cbr\u003eTo hell with the terrorists,\u003cbr\u003ethey should burn on the\u003cbr\u003estreet, absolute scum.\u003cbr\u003eFri Jan 09 16:21:26 +0000 2015"}, {"group": 2038, "id": 15, "label": "553587398169591809", "shape": "dot", "size": 10, "title": "553587398169591809\u003cbr\u003e@KayBurley Good News at last\u003cbr\u003eEvil Pigs !!!!\u003cbr\u003eFri Jan 09 16:21:35 +0000 2015"}, {"group": 2038, "id": 16, "label": "553587407980077057", "shape": "dot", "size": 10, "title": "553587407980077057\u003cbr\u003e@KayBurley Just practice for what\u003cbr\u003ecoming Im afraid Europe is\u003cbr\u003eheading for a war\u003cbr\u003eFri Jan 09 16:21:37 +0000 2015"}, {"group": 2038, "id": 17, "label": "553587445921759232", "shape": "dot", "size": 10, "title": "553587445921759232\u003cbr\u003e@KayBurley great news\u003cbr\u003eFri Jan 09 16:21:46 +0000 2015"}, {"group": 2038, "id": 18, "label": "553587467409162240", "shape": "dot", "size": 10, "title": "553587467409162240\u003cbr\u003e@KayBurley great news great reporting\u003cbr\u003eKay one of the best\u003cbr\u003ein the business\u003cbr\u003eFri Jan 09 16:21:52 +0000 2015"}, {"group": 2038, "id": 19, "label": "553587620006346752", "shape": "dot", "size": 10, "title": "553587620006346752\u003cbr\u003e@KayBurley Allegedly?\u003cbr\u003eFri Jan 09 16:22:28 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

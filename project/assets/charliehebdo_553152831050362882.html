@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 932, "id": 0, "label": "553152831050362882", "shape": "dot", "size": 10, "title": "553152831050362882\u003cbr\u003e.@camanpour on what we know\u003cbr\u003eabout the suspects in the\u003cbr\u003e#CharlieHebdo attack. http://t.co/pzMEbXnviP http://t.co/gx29pqiQiZ\u003cbr\u003eThu Jan 08 11:34:46 +0000 2015"}, {"group": 932, "id": 1, "label": "553153125943869440", "shape": "dot", "size": 10, "title": "553153125943869440\u003cbr\u003e@NewDay @cnnbrk @camanpour \u0645\u0642\u0644\u0628 \u062d\u0631\u0627\u0645\u064a\u003cbr\u003e\u0627\u0644\u0633\u064a\u0627\u0631\u0627\u062a - Grand Theft Auto\u003cbr\u003eV Prank\n\n http://t.co/jRQXSJbuFI\u003cbr\u003eThu Jan 08 11:35:56 +0000 2015"}, {"group": 932, "id": 2, "label": "553166501872545792", "shape": "dot", "size": 10, "title": "553166501872545792\u003cbr\u003e@NewDay @CNN @camanpour one of\u003cbr\u003ethe brothers was in prison\u003cbr\u003efor terrorism in 2008. And\u003cbr\u003ehe\u0027s not there still why?\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:29:06 +0000 2015"}, {"group": 932, "id": 3, "label": "553166502397231104", "shape": "dot", "size": 10, "title": "553166502397231104\u003cbr\u003e@NewDay @CNN @camanpour one of\u003cbr\u003ethe brothers was in prison\u003cbr\u003efor terrorism in 2008. And\u003cbr\u003ehe\u0027s not there still why?\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:29:06 +0000 2015"}, {"group": 932, "id": 4, "label": "553170197532909568", "shape": "dot", "size": 10, "title": "553170197532909568\u003cbr\u003e@NewDay @CNN @camanpour When captured,\u003cbr\u003eperps will hire same Lawyer\u003cbr\u003eas for Treyvon  \u0026amp;\u003cbr\u003eBrown families. Jack Ruby will\u003cbr\u003efinally tell all-- HOAX!\u003cbr\u003eThu Jan 08 12:43:47 +0000 2015"}, {"group": 932, "id": 10, "label": "553204243453452288", "shape": "dot", "size": 10, "title": "553204243453452288\u003cbr\u003e@NewDay Your tweet makes my\u003cbr\u003epage better: http://t.co/I8UFQP9LpK\u003cbr\u003eThu Jan 08 14:59:04 +0000 2015"}, {"group": 932, "id": 5, "label": "553177875269316608", "shape": "dot", "size": 10, "title": "553177875269316608\u003cbr\u003e@DareToReadIt @NewDay @CNN @camanpour I\u003cbr\u003eknow, I\u0027m so sick of\u003cbr\u003ethis fake CNN news.. The\u003cbr\u003eworld is waking up!\u003cbr\u003eThu Jan 08 13:14:17 +0000 2015"}, {"group": 932, "id": 6, "label": "553177928461479937", "shape": "dot", "size": 10, "title": "553177928461479937\u003cbr\u003e@DareToReadIt @NewDay @CNN @camanpour hoax!\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:14:30 +0000 2015"}, {"group": 932, "id": 7, "label": "553187474785447936", "shape": "dot", "size": 10, "title": "553187474785447936\u003cbr\u003e@StarseedT @DareToReadIt @NewDay @CNN @camanpour\u003cbr\u003ehoax?\u003cbr\u003eThu Jan 08 13:52:26 +0000 2015"}, {"group": 932, "id": 8, "label": "553188021567496192", "shape": "dot", "size": 10, "title": "553188021567496192\u003cbr\u003e@JaegerBurke @StarseedT @NewDay @CNN @camanpour\u003cbr\u003e--ABSOLUTELY a haoax--see proof here\u003cbr\u003e- http://t.co/FqoqwHEWVP\u003cbr\u003eThu Jan 08 13:54:36 +0000 2015"}, {"group": 932, "id": 9, "label": "553188353504722944", "shape": "dot", "size": 10, "title": "553188353504722944\u003cbr\u003e@DareToReadIt @StarseedT @NewDay @CNN @camanpour\u003cbr\u003eno what? Not clicking a\u003cbr\u003elink you suggest. What\u0027s a\u003cbr\u003ehoax?\u003cbr\u003eThu Jan 08 13:55:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

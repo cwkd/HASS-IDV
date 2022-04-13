@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1985, "id": 0, "label": "553546029212389376", "shape": "dot", "size": 10, "title": "553546029212389376\u003cbr\u003e#BREAKING Reports: 2 dead in\u003cbr\u003eParis kosher supermarket hostage situation\u003cbr\u003ehttp://t.co/VsvZVWiQ19\u003cbr\u003eFri Jan 09 13:37:12 +0000 2015"}, {"group": 1985, "id": 1, "label": "553546283298746369", "shape": "dot", "size": 10, "title": "553546283298746369\u003cbr\u003e@USATODAY is this different to\u003cbr\u003ethe manhunt?\u003cbr\u003eFri Jan 09 13:38:12 +0000 2015"}, {"group": 1985, "id": 2, "label": "553546326513025024", "shape": "dot", "size": 10, "title": "553546326513025024\u003cbr\u003e@USATODAY @sandybodnar @Breaking3zero\u003cbr\u003eFri Jan 09 13:38:23 +0000 2015"}, {"group": 1985, "id": 3, "label": "553546390438432768", "shape": "dot", "size": 10, "title": "553546390438432768\u003cbr\u003eFuck\ud83d\ude1e @usatoday\u003cbr\u003eFri Jan 09 13:38:38 +0000 2015"}, {"group": 1985, "id": 4, "label": "553546414954123264", "shape": "dot", "size": 10, "title": "553546414954123264\u003cbr\u003e@USATODAY RT @dwcubas #ULTIMAHORA Fuentes\u003cbr\u003edel Min. Interior franc\u00e9s desmienten\u003cbr\u003eque haya v\u00edctimas mortales en\u003cbr\u003esecuestro de tienda jud\u00eda!\u003cbr\u003eFri Jan 09 13:38:44 +0000 2015"}, {"group": 1985, "id": 5, "label": "553546470562230272", "shape": "dot", "size": 10, "title": "553546470562230272\u003cbr\u003e@USATODAY @slone Dear G-d.\u003cbr\u003eFri Jan 09 13:38:57 +0000 2015"}, {"group": 1985, "id": 8, "label": "553548513192452098", "shape": "dot", "size": 10, "title": "553548513192452098\u003cbr\u003e\u201c@USATODAY: #BREAKING Reports: 2 dead\u003cbr\u003ein Paris kosher supermarket hostage\u003cbr\u003esituation http://t.co/XpdYe5GlMY\u201d STOP THE VIOLENCE\u003cbr\u003ePLEASE\ud83d\udc94\u003cbr\u003eFri Jan 09 13:47:04 +0000 2015"}, {"group": 1985, "id": 9, "label": "553549193525362688", "shape": "dot", "size": 10, "title": "553549193525362688\u003cbr\u003e@USATODAY v\u00eda @dwcubas \"Un herido\"\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:49:46 +0000 2015"}, {"group": 1985, "id": 10, "label": "553552912409182208", "shape": "dot", "size": 10, "title": "553552912409182208\u003cbr\u003e@USATODAY @PsychicNikki prayers to all\u003cbr\u003ethe #families, #county, the #world.\u003cbr\u003eThis is breaking my heart.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:04:33 +0000 2015"}, {"group": 1985, "id": 11, "label": "553688790230118400", "shape": "dot", "size": 10, "title": "553688790230118400\u003cbr\u003eI knew the the French\u003cbr\u003ewould do everything poss to\u003cbr\u003eput end to terrorist assaults\u003cbr\u003ein Paris They won\u0027t rest\u003cbr\u003euntil all r dealt with!\u003cbr\u003e@USATODAY\u003cbr\u003eFri Jan 09 23:04:29 +0000 2015"}, {"group": 1985, "id": 6, "label": "553546514447237121", "shape": "dot", "size": 10, "title": "553546514447237121\u003cbr\u003e@swagd0ctor @USATODAY Yes!  2\u003cbr\u003edifferent events:  one in\u003cbr\u003eParis and the other one,\u003cbr\u003ein the North.  But,\u003cbr\u003ethe Paris\u0027 one is related\u003cbr\u003eto the others\u003cbr\u003eFri Jan 09 13:39:08 +0000 2015"}, {"group": 1985, "id": 7, "label": "553546789219860480", "shape": "dot", "size": 10, "title": "553546789219860480\u003cbr\u003e@7PinkPanther7 @USATODAY thanks this is\u003cbr\u003ecrazy hope for the best\u003cbr\u003eoutcome\u003cbr\u003eFri Jan 09 13:40:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

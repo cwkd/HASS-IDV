@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 128, "id": 0, "label": "552807832257835008", "shape": "dot", "size": 10, "title": "552807832257835008\u003cbr\u003eVideo: #CharlieHebdo\u0027s editor tells Al\u003cbr\u003eJazeera why they are a\u003cbr\u003etarget [2012] http://t.co/EJK2Em0M8R http://t.co/UK970UDPPz\u003cbr\u003eWed Jan 07 12:43:52 +0000 2015"}, {"group": 128, "id": 1, "label": "552808901348163584", "shape": "dot", "size": 10, "title": "552808901348163584\u003cbr\u003e@AJEnglish Apparently that video can\u2019t\u003cbr\u003ebe viewed in the US.\u003cbr\u003eIt\u2019s giving me an error\u003cbr\u003emessage saying that.\u003cbr\u003eWed Jan 07 12:48:07 +0000 2015"}, {"group": 128, "id": 2, "label": "552809361639477248", "shape": "dot", "size": 10, "title": "552809361639477248\u003cbr\u003e\u201c@AJEnglish: Video: #CharlieHebdo\u0027s editor tells\u003cbr\u003eAl Jazeera why they are\u003cbr\u003ea target [2012] http://t.co/V8Yyr1wEgn http://t.co/V5lAOd8V1h\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:49:57 +0000 2015"}, {"group": 128, "id": 3, "label": "552809953027981312", "shape": "dot", "size": 10, "title": "552809953027981312\u003cbr\u003e\u201c@AJEnglish: Video: #CharlieHebdo\u0027s tells why\u003cbr\u003ethey are a target [2012]\u003cbr\u003ehttp://t.co/nAujbxI079 http://t.co/cdM9KD9ite\u201d @LBC @BBCLondon949\u003cbr\u003eWed Jan 07 12:52:18 +0000 2015"}, {"group": 128, "id": 4, "label": "552810315080282112", "shape": "dot", "size": 10, "title": "552810315080282112\u003cbr\u003e\u201c@AJEnglish: Video: #CharlieHebdo\u0027s editor tells\u003cbr\u003eAl Jazeera why they are\u003cbr\u003ea target [2012] http://t.co/cwM3ksDSsd http://t.co/OWqu5azgyM\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:53:44 +0000 2015"}, {"group": 128, "id": 5, "label": "552810334663090177", "shape": "dot", "size": 10, "title": "552810334663090177\u003cbr\u003e@AJEnglish Focus of your reporting\u003cbr\u003eis  \u0027Why Charlie Hebdo\u003cbr\u003ewas the target and did\u003cbr\u003emagazine misuse freedom of expression?\"\u003cbr\u003eJustifying attack?\u003cbr\u003eWed Jan 07 12:53:49 +0000 2015"}, {"group": 128, "id": 6, "label": "552810787496947716", "shape": "dot", "size": 10, "title": "552810787496947716\u003cbr\u003e@AJEnglish I quote from AJ\u003cbr\u003earticle\"how damaging can cartoon be?\"\u003cbr\u003eIsnt #Charli Hebo near same\u003cbr\u003eofficial Story given 4 Benghazi?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:55:37 +0000 2015"}, {"group": 128, "id": 8, "label": "552811414708948993", "shape": "dot", "size": 10, "title": "552811414708948993\u003cbr\u003e@AJEnglish Whether time has not\u003cbr\u003earrived, the world think about\u003cbr\u003efreedom of speech \u0026amp; publication\u003cbr\u003ethat must not annoy any\u003cbr\u003ecommunity?? Think pls\u003cbr\u003eWed Jan 07 12:58:06 +0000 2015"}, {"group": 128, "id": 9, "label": "552812183554244610", "shape": "dot", "size": 10, "title": "552812183554244610\u003cbr\u003e@AJEnglish Is asking editor at\u003cbr\u003e#CharlieHebdo if \"more cultural sensitivity\"\u003cbr\u003eis appropriate. Shameful of AJ\u003cbr\u003eto even ask this. AJ\u003cbr\u003ein Egypt?\u003cbr\u003eWed Jan 07 13:01:09 +0000 2015"}, {"group": 128, "id": 10, "label": "552814372603854848", "shape": "dot", "size": 10, "title": "552814372603854848\u003cbr\u003e@AJEnglish Shame on you #AlJazeera\u003cbr\u003e, you also still need\u003cbr\u003eto learn what freedom of\u003cbr\u003espeech and satire is!\n#CharlieHebdo\u003cbr\u003eWed Jan 07 13:09:51 +0000 2015"}, {"group": 128, "id": 11, "label": "552819709641781249", "shape": "dot", "size": 10, "title": "552819709641781249\u003cbr\u003eRT @AJEnglish: Video: #CharlieHebdo\u0027s editor\u003cbr\u003etells Al Jazeera why they\u003cbr\u003eare a target [2012] http://t.co/rLjuGX5tnZ\u003cbr\u003ehttp://t.co/f9pJUmEv3m\u003cbr\u003eWed Jan 07 13:31:04 +0000 2015"}, {"group": 128, "id": 12, "label": "552820281140862976", "shape": "dot", "size": 10, "title": "552820281140862976\u003cbr\u003e@AJEnglish eat shit muzzie scum\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:33:20 +0000 2015"}, {"group": 128, "id": 7, "label": "552811131681898496", "shape": "dot", "size": 10, "title": "552811131681898496\u003cbr\u003e@colvks @AJEnglish it=a satirical magazine\u003cbr\u003ewhich pokes fun at everyone,\u003cbr\u003epart of humorous tradition, part\u003cbr\u003eof world family, don\u0027t have2read\u003cbr\u003eit\u003cbr\u003eWed Jan 07 12:56:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 5, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

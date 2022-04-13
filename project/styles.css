@@ -1,0 +1,13 @@
+.main-container {
+    margin: auto;
+    max-width: 800px;
+}
+.reference-container {
+    margin: auto;
+    text-align: center;
+}
+.reference-content {
+    margin: auto;
+    width: 100%;
+    aspect-ratio: 3/2;
+}

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1592, "id": 0, "label": "553590880352088064", "shape": "dot", "size": 10, "title": "553590880352088064\u003cbr\u003eCharlie Hebdo: Fox news anchor\u003cbr\u003esuggests skin colour helps identify\u003cbr\u003e\u0027typical bad guys\u0027 http://t.co/XvkeSMMXC4 http://t.co/zcQjFbUY6P\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:35:25 +0000 2015"}, {"group": 1592, "id": 1, "label": "553591166776905728", "shape": "dot", "size": 10, "title": "553591166776905728\u003cbr\u003e@HuffPostUK #whenwilltheylearn\u003cbr\u003eFri Jan 09 16:36:34 +0000 2015"}, {"group": 1592, "id": 2, "label": "553591654020808704", "shape": "dot", "size": 10, "title": "553591654020808704\u003cbr\u003e@HuffPostUK @ashrouen Christ almighty\u003cbr\u003eFri Jan 09 16:38:30 +0000 2015"}, {"group": 1592, "id": 3, "label": "553591870954438657", "shape": "dot", "size": 10, "title": "553591870954438657\u003cbr\u003e@HuffPostUK unbelievable! Even if skin\u003cbr\u003ecolour mattered aren\u0027t all US\u003cbr\u003eschool shooters white \u0027bad guys\u0027\u003cbr\u003eFFS she should be sacked!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:39:21 +0000 2015"}, {"group": 1592, "id": 4, "label": "553592996730798081", "shape": "dot", "size": 10, "title": "553592996730798081\u003cbr\u003e@HuffPostUK @PatrickECooley \nMcVey was pearly\u003cbr\u003ewhite.\u003cbr\u003eFri Jan 09 16:43:50 +0000 2015"}, {"group": 1592, "id": 5, "label": "553593451682725888", "shape": "dot", "size": 10, "title": "553593451682725888\u003cbr\u003e\u201c@HuffPostUK: Fox news anchor suggests\u003cbr\u003eskin colour helps identify \u0027typical\u003cbr\u003ebad guys\u0027 http://t.co/NbnJYWEWe8 wow\u003cbr\u003eFri Jan 09 16:45:38 +0000 2015"}, {"group": 1592, "id": 6, "label": "553593540966899712", "shape": "dot", "size": 10, "title": "553593540966899712\u003cbr\u003e@HuffPostUK Promotion awaits!\u003cbr\u003eFri Jan 09 16:46:00 +0000 2015"}, {"group": 1592, "id": 7, "label": "553593927996289024", "shape": "dot", "size": 10, "title": "553593927996289024\u003cbr\u003e@HuffPostUK @Juanarivers pero es fox\u003cbr\u003enews,media novedad.\u003cbr\u003eFri Jan 09 16:47:32 +0000 2015"}, {"group": 1592, "id": 10, "label": "553596271756607490", "shape": "dot", "size": 10, "title": "553596271756607490\u003cbr\u003e@HuffPostUK @CoombesMostyn Good grief. You\u003cbr\u003ehave to watch it again\u003cbr\u003eto be sure she really\u003cbr\u003edoes say it. Barking, totally\u003cbr\u003ebarking.\u003cbr\u003eFri Jan 09 16:56:51 +0000 2015"}, {"group": 1592, "id": 11, "label": "553596879725154305", "shape": "dot", "size": 10, "title": "553596879725154305\u003cbr\u003e@HuffPostUK http://t.co/WCd0szxSr6\u003cbr\u003eFri Jan 09 16:59:16 +0000 2015"}, {"group": 1592, "id": 13, "label": "553599656182444032", "shape": "dot", "size": 10, "title": "553599656182444032\u003cbr\u003e@HuffPostUK and that becomes a\u003cbr\u003ecompletely circular  algorithm...\u003cbr\u003eFri Jan 09 17:10:18 +0000 2015"}, {"group": 1592, "id": 14, "label": "553600872962592768", "shape": "dot", "size": 10, "title": "553600872962592768\u003cbr\u003e@HuffPostUK @DiegoUK Spray tan orange\u003cbr\u003eskin color is a dead\u003cbr\u003egive away. The kind most\u003cbr\u003eFox news \u0027journalists\u0027 seem to\u003cbr\u003euse\u003cbr\u003eFri Jan 09 17:15:08 +0000 2015"}, {"group": 1592, "id": 15, "label": "553604252506259456", "shape": "dot", "size": 10, "title": "553604252506259456\u003cbr\u003e@HuffPostUK so im genuinely interested,\u003cbr\u003edoes Shannon Bream think President\u003cbr\u003eObama is one of the\u003cbr\u003e\u0027bad guys\u0027 too?!! smh\u003cbr\u003eFri Jan 09 17:28:33 +0000 2015"}, {"group": 1592, "id": 16, "label": "553610639172591616", "shape": "dot", "size": 10, "title": "553610639172591616\u003cbr\u003e\u201c@HuffPostUK: Charlie Hebdo: Fox news\u003cbr\u003eanchor suggests skin colour helps\u003cbr\u003eidentify \u0027typical bad guys\u0027 http://t.co/F3qdXGRX7E\u003cbr\u003e\u201d wow ://\u003cbr\u003eFri Jan 09 17:53:56 +0000 2015"}, {"group": 1592, "id": 17, "label": "553613934209814528", "shape": "dot", "size": 10, "title": "553613934209814528\u003cbr\u003e@HuffPostUK Oh SO NASTY, YOU\u003cbr\u003eSHOULD FEEL SHAME. I\u0027ts no\u003cbr\u003ewonder we have diff. Races\u003cbr\u003efighting each other, with people\u003cbr\u003elike you, so racist!\u003cbr\u003eFri Jan 09 18:07:02 +0000 2015"}, {"group": 1592, "id": 18, "label": "553617935634534400", "shape": "dot", "size": 10, "title": "553617935634534400\u003cbr\u003e@HuffPostUK racial insult if ever\u003cbr\u003ethere was 1\u003cbr\u003eFri Jan 09 18:22:56 +0000 2015"}, {"group": 1592, "id": 19, "label": "553622411644370944", "shape": "dot", "size": 10, "title": "553622411644370944\u003cbr\u003e@HuffPostUK Simply absurd and brainless!\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:40:43 +0000 2015"}, {"group": 1592, "id": 8, "label": "553594500690366465", "shape": "dot", "size": 10, "title": "553594500690366465\u003cbr\u003e@measieee @HuffPostUK I think Maria\u003cbr\u003esaid it best. Fox news\u003cbr\u003eis like scrabble news!\u003cbr\u003eFri Jan 09 16:49:48 +0000 2015"}, {"group": 1592, "id": 9, "label": "553595366961324032", "shape": "dot", "size": 10, "title": "553595366961324032\u003cbr\u003e@TXShellyBee @HuffPostUK ...I can\u0027t believe\u003cbr\u003epeople still think like that\u003cbr\u003elet alone say it aloud...\u003cbr\u003e\u0026amp; on international TV! smh\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:53:15 +0000 2015"}, {"group": 1592, "id": 12, "label": "553598683187793920", "shape": "dot", "size": 10, "title": "553598683187793920\u003cbr\u003e@FordingtonField @HuffPostUK @CoombesMostyn Why didn\u0027t\u003cbr\u003eshe call the cops on\u003cbr\u003eher colleague? She has the\u003cbr\u003eright colour skin for a\u003cbr\u003ebad guy.\u003cbr\u003eFri Jan 09 17:06:26 +0000 2015"}, {"group": 1592, "id": 20, "label": "553672032525627392", "shape": "dot", "size": 10, "title": "553672032525627392\u003cbr\u003e@measieee @HuffPostUK Of course Obama\u003cbr\u003eis a bad guy, and\u003cbr\u003ebesides as Seth Mayer said\u003cbr\u003eObama is not American, \u003cbr\u003e you know he is.........\u003cbr\u003e\"thin\"\u003cbr\u003eFri Jan 09 21:57:53 +0000 2015"}, {"group": 1592, "id": 21, "label": "553673924404580352", "shape": "dot", "size": 10, "title": "553673924404580352\u003cbr\u003e@Badar1 @HuffPostUK haha love it!\u003cbr\u003e\u003cbr\u003eFri Jan 09 22:05:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

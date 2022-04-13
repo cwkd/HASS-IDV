@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1990, "id": 0, "label": "553549686129561600", "shape": "dot", "size": 10, "title": "553549686129561600\u003cbr\u003eUPDATE: Gunman in kosher grocery\u003cbr\u003estore is demanding the release\u003cbr\u003eof the suspects in #CharlieHebdo\u003cbr\u003eshooting - Reports http://t.co/1Y123fisl2\u003cbr\u003eFri Jan 09 13:51:44 +0000 2015"}, {"group": 1990, "id": 1, "label": "553549946725875712", "shape": "dot", "size": 10, "title": "553549946725875712\u003cbr\u003e@RT_com Well done. This kind\u003cbr\u003eof information is important to\u003cbr\u003eremain secret for the sake\u003cbr\u003eof the safety of the\u003cbr\u003ehostages!\u003cbr\u003eFri Jan 09 13:52:46 +0000 2015"}, {"group": 1990, "id": 2, "label": "553550000584540160", "shape": "dot", "size": 10, "title": "553550000584540160\u003cbr\u003e@RT_com \n#StopKillingInnocentPeople\n#FreePalestine\n#freeBurma\n#FreeSyria \n#FreeKashmir\nhttp://t.co/ggBNiIa9fq\u003cbr\u003eFri Jan 09 13:52:59 +0000 2015"}, {"group": 1990, "id": 3, "label": "553550346195574784", "shape": "dot", "size": 10, "title": "553550346195574784\u003cbr\u003e@RT_com What a fucking nightmare\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:54:21 +0000 2015"}, {"group": 1990, "id": 5, "label": "553550767034875904", "shape": "dot", "size": 10, "title": "553550767034875904\u003cbr\u003e@RT_com kosher means false flag.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:56:01 +0000 2015"}, {"group": 1990, "id": 9, "label": "553551562732470272", "shape": "dot", "size": 10, "title": "553551562732470272\u003cbr\u003e\u201c@RT_com: UPDATE: Gunman in kosher\u003cbr\u003egrocery store is demanding the\u003cbr\u003erelease of the suspects in\u003cbr\u003e#CharlieHebdo shooting\" \u0026lt;-- :(\u003cbr\u003eFri Jan 09 13:59:11 +0000 2015"}, {"group": 1990, "id": 13, "label": "553555102423089152", "shape": "dot", "size": 10, "title": "553555102423089152\u003cbr\u003eYeah, that\u0027s going to happen!\u003cbr\u003eMT @RT_com: Gunman in kosher\u003cbr\u003egrocery store is demanding the\u003cbr\u003erelease of the suspects in\u003cbr\u003e#CharlieHebdo shooting\u003cbr\u003eFri Jan 09 14:13:15 +0000 2015"}, {"group": 1990, "id": 14, "label": "553555141731700737", "shape": "dot", "size": 10, "title": "553555141731700737\u003cbr\u003e@RT_com @Furiousnurse When will countries\u003cbr\u003e\u0026amp; the decent Ppl w/in\u003cbr\u003erealize MOSLEMS all follow Koran.\u003cbr\u003eWhich means our death. Deport\u003cbr\u003ethe bastards\u003cbr\u003eFri Jan 09 14:13:25 +0000 2015"}, {"group": 1990, "id": 16, "label": "553573995858382849", "shape": "dot", "size": 10, "title": "553573995858382849\u003cbr\u003eBREAKING: Gunman at kosher grocery\u003cbr\u003estore threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers\u003cbr\u003ehttp://t.co/cI8cztQjE6\u003cbr\u003eFri Jan 09 15:28:20 +0000 2015"}, {"group": 1990, "id": 18, "label": "553574899302670337", "shape": "dot", "size": 10, "title": "553574899302670337\u003cbr\u003e@RT_com huh he doesn\u0027t even\u003cbr\u003eknow who killed the journalists\u003cbr\u003ehe\u0027s trying to get media\u003cbr\u003ecoverage just kill him\u003cbr\u003eFri Jan 09 15:31:55 +0000 2015"}, {"group": 1990, "id": 4, "label": "553550482925715458", "shape": "dot", "size": 10, "title": "553550482925715458\u003cbr\u003e@genlady9 @RT_com Right a tradgedy\u003cbr\u003ehappening in France and you\u003cbr\u003epost this. This is the\u003cbr\u003ereason the world hates Islam.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:54:54 +0000 2015"}, {"group": 1990, "id": 6, "label": "553550998497918976", "shape": "dot", "size": 10, "title": "553550998497918976\u003cbr\u003e@genlady9 @RT_com fuck you sarracen\u003cbr\u003eand stop islamization\u003cbr\u003eFri Jan 09 13:56:57 +0000 2015"}, {"group": 1990, "id": 8, "label": "553551171802382336", "shape": "dot", "size": 10, "title": "553551171802382336\u003cbr\u003e@genlady9 @RT_com Two wrongs won\u0027t\u003cbr\u003esuddenly become right and two\u003cbr\u003etragedies can never be compared\u003cbr\u003e- neither by quantity nor\u003cbr\u003eby quality.\u003cbr\u003eFri Jan 09 13:57:38 +0000 2015"}, {"group": 1990, "id": 7, "label": "553551156081745920", "shape": "dot", "size": 10, "title": "553551156081745920\u003cbr\u003e@LiiamPrice @RT_com if u can\u003cbr\u003esee well the first picture\u003cbr\u003eis about Paris attack and\u003cbr\u003eit\u0027s hash tag is the\u003cbr\u003eone stop killing innocent ppl\ud83d\ude0f\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:57:34 +0000 2015"}, {"group": 1990, "id": 15, "label": "553567997835882496", "shape": "dot", "size": 10, "title": "553567997835882496\u003cbr\u003e@LiiamPrice @genlady9 @RT_com dont waste\u003cbr\u003etime with A Hindu laim\u003cbr\u003eprice ...they eat shit and\u003cbr\u003eurine of animals and spread\u003cbr\u003eHates in world\u003cbr\u003eFri Jan 09 15:04:30 +0000 2015"}, {"group": 1990, "id": 10, "label": "553552662088937472", "shape": "dot", "size": 10, "title": "553552662088937472\u003cbr\u003e@Twigolet @RT_com On the face\u003cbr\u003eof it that\u0027s unusual because\u003cbr\u003eIslamic terrorists are usually suicidal.\u003cbr\u003eSo I suspect it\u0027s a\u003cbr\u003edeliberately 1/2\u003cbr\u003eFri Jan 09 14:03:33 +0000 2015"}, {"group": 1990, "id": 11, "label": "553552734935601152", "shape": "dot", "size": 10, "title": "553552734935601152\u003cbr\u003e@Twigolet @RT_com 2/2 impossible demand\u003cbr\u003eto \"justify\" a massacre when\u003cbr\u003eit\u0027s refused.\u003cbr\u003eFri Jan 09 14:03:51 +0000 2015"}, {"group": 1990, "id": 12, "label": "553555095317929985", "shape": "dot", "size": 10, "title": "553555095317929985\u003cbr\u003e@FergusMason1 @RT_com yes, it\u0027s certainly\u003cbr\u003ean indicator of how that\u003cbr\u003eones going to pan out.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:13:13 +0000 2015"}, {"group": 1990, "id": 17, "label": "553574442014875648", "shape": "dot", "size": 10, "title": "553574442014875648\u003cbr\u003e@RT_com We all heard of\u003cbr\u003eMexican standoff. This is French\u003cbr\u003eversion of it\u003cbr\u003eFri Jan 09 15:30:06 +0000 2015"}, {"group": 1990, "id": 19, "label": "553574968563625985", "shape": "dot", "size": 10, "title": "553574968563625985\u003cbr\u003eWho buys Kosher? MT @RT_com:\u003cbr\u003eBREAKING: Gunman at kosher grocery\u003cbr\u003estore threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:32:12 +0000 2015"}, {"group": 1990, "id": 20, "label": "553575543757471744", "shape": "dot", "size": 10, "title": "553575543757471744\u003cbr\u003e@RT_com Mohammed is that Guy\u003cbr\u003ewho promotes murdering women+children in\u003cbr\u003ethe name of Peace....\u003cbr\u003eFri Jan 09 15:34:29 +0000 2015"}, {"group": 1990, "id": 21, "label": "553577555966836737", "shape": "dot", "size": 10, "title": "553577555966836737\u003cbr\u003e@RT_com Gegenseitige Deckung .. eine\u003cbr\u003eArt Feuerschutz. Wird schwierig f.\u003cbr\u003edie Blauen.\u003cbr\u003eFri Jan 09 15:42:28 +0000 2015"}, {"group": 1990, "id": 22, "label": "553581318630821888", "shape": "dot", "size": 10, "title": "553581318630821888\u003cbr\u003e@RT_com Nothing excuses the murder\u003cbr\u003eof innocent people, whether it\u003cbr\u003eis these poor hostages in\u003cbr\u003eFrance or civilians in Gaza.\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:57:26 +0000 2015"}, {"group": 1990, "id": 23, "label": "553584470264410113", "shape": "dot", "size": 10, "title": "553584470264410113\u003cbr\u003e@RT_com where\u0027s Eddy Caplan when\u003cbr\u003eyou need him\u003cbr\u003eFri Jan 09 16:09:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 2, "to": 8, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 15, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 16, "to": 21, "weight": 1}, {"from": 16, "to": 22, "weight": 1}, {"from": 16, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

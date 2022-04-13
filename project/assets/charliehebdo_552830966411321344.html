@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 411, "id": 0, "label": "552830966411321344", "shape": "dot", "size": 10, "title": "552830966411321344\u003cbr\u003eRushdie: \"Religion, a mediaeval form\u003cbr\u003eof unreason, when combined with\u003cbr\u003emodern weaponry becomes a real\u003cbr\u003ethreat to our freedoms\" #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:15:48 +0000 2015"}, {"group": 411, "id": 1, "label": "552838864738717696", "shape": "dot", "size": 10, "title": "552838864738717696\u003cbr\u003e@joshglancy @NTenzer Add #Russia\u003cbr\u003eWed Jan 07 14:47:11 +0000 2015"}, {"group": 411, "id": 2, "label": "552838947165188097", "shape": "dot", "size": 10, "title": "552838947165188097\u003cbr\u003e@joshglancy 24s\nRushdie: \"Religion, a mediaeval\u003cbr\u003eform\nof unreason, ... exactly so\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:47:30 +0000 2015"}, {"group": 411, "id": 3, "label": "552841903612239872", "shape": "dot", "size": 10, "title": "552841903612239872\u003cbr\u003e+1 MT @joshglancy: Rushdie: \"Religion\u003cbr\u003eis a mediaeval form of\u003cbr\u003eunreason\" #CharlieHebdo\u003cbr\u003eWed Jan 07 14:59:15 +0000 2015"}, {"group": 411, "id": 4, "label": "552850069637328897", "shape": "dot", "size": 10, "title": "552850069637328897\u003cbr\u003e@joshglancy @SalmanRushdie \nVery true\u003cbr\u003eWed Jan 07 15:31:42 +0000 2015"}, {"group": 411, "id": 5, "label": "552854457541599233", "shape": "dot", "size": 10, "title": "552854457541599233\u003cbr\u003e@joshglancy @ABsTweetDiary What about Ancient\u003cbr\u003eReligions wd semi-reason combined with\u003cbr\u003ethe same? Wonder. @SalmanRushdie\u003cbr\u003eWed Jan 07 15:49:08 +0000 2015"}, {"group": 411, "id": 6, "label": "552907640401952769", "shape": "dot", "size": 10, "title": "552907640401952769\u003cbr\u003e@joshglancy @SalmanRushdie Free Speech http://t.co/eDNDlLQ8wz\u003cbr\u003e\u003cbr\u003eWed Jan 07 19:20:28 +0000 2015"}, {"group": 411, "id": 7, "label": "552913089109037056", "shape": "dot", "size": 10, "title": "552913089109037056\u003cbr\u003e@joshglancy @waglenikhil a killer has\u003cbr\u003eno religion. a killer is\u003cbr\u003ejust a killer!\u003cbr\u003eWed Jan 07 19:42:07 +0000 2015"}, {"group": 411, "id": 8, "label": "553555579625406464", "shape": "dot", "size": 10, "title": "553555579625406464\u003cbr\u003e@joshglancy  he dont say?\u003cbr\u003e understatement of the century?\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:15:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

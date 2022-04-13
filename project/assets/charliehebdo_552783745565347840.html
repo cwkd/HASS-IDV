@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1623, "id": 0, "label": "552783745565347840", "shape": "dot", "size": 10, "title": "552783745565347840\u003cbr\u003eTen killed in shooting at\u003cbr\u003eheadquarters of French satirical weekly\u003cbr\u003eCharlie Hebdo, says French media\u003cbr\u003eciting witnesses #c4news\u003cbr\u003eWed Jan 07 11:08:09 +0000 2015"}, {"group": 1623, "id": 1, "label": "552785157959479296", "shape": "dot", "size": 10, "title": "552785157959479296\u003cbr\u003e@Channel4News @GidonShaviv must be that\u003cbr\u003epeace loving religion again\u003cbr\u003eWed Jan 07 11:13:46 +0000 2015"}, {"group": 1623, "id": 2, "label": "552786194447482880", "shape": "dot", "size": 10, "title": "552786194447482880\u003cbr\u003e@Channel4News my god what is\u003cbr\u003egoing on,no doubt as it\u003cbr\u003eseems to be satirical mag,members\u003cbr\u003eof a certain religion have\u003cbr\u003ebeen offended they kill.\u003cbr\u003eWed Jan 07 11:17:53 +0000 2015"}, {"group": 1623, "id": 3, "label": "552789654756679680", "shape": "dot", "size": 10, "title": "552789654756679680\u003cbr\u003e@Channel4News @theresacfc ffs what\u0027s going\u003cbr\u003eon??\u003cbr\u003eWed Jan 07 11:31:38 +0000 2015"}, {"group": 1623, "id": 4, "label": "552791332004327424", "shape": "dot", "size": 10, "title": "552791332004327424\u003cbr\u003e@Channel4News I think the majority\u003cbr\u003eof people ( including you\u003cbr\u003eguys) are sick and tired\u003cbr\u003eof Islamic immigration and all\u003cbr\u003ethe problems it brings\u003cbr\u003eWed Jan 07 11:38:18 +0000 2015"}, {"group": 1623, "id": 5, "label": "552804956630433792", "shape": "dot", "size": 10, "title": "552804956630433792\u003cbr\u003e@Channel4News 1 cleric for each\u003cbr\u003evictim, this will stop the\u003cbr\u003ehate speech from mosques. the\u003cbr\u003estreets will echo with silence\u003cbr\u003eby outraged muslims\u003cbr\u003eWed Jan 07 12:32:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

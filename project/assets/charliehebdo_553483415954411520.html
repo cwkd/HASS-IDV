@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1886, "id": 0, "label": "553483415954411520", "shape": "dot", "size": 10, "title": "553483415954411520\u003cbr\u003eWhat we know so far\u003cbr\u003eabout the major operation northeast\u003cbr\u003eof Paris #CharlieHebdo http://t.co/GWpwcdfIJA http://t.co/UpeKOm4WCN\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:28:24 +0000 2015"}, {"group": 1886, "id": 1, "label": "553483624268308480", "shape": "dot", "size": 10, "title": "553483624268308480\u003cbr\u003e\u201c@guardiannews: What we know so\u003cbr\u003efar about the major operation\u003cbr\u003enortheast of Paris #CharlieHebdo http://t.co/qf1BEKdcZz\u003cbr\u003ehttp://t.co/Cm2Sbtepww\u003cbr\u003eFri Jan 09 09:29:13 +0000 2015"}, {"group": 1886, "id": 2, "label": "553485693583118336", "shape": "dot", "size": 10, "title": "553485693583118336\u003cbr\u003e\u201c@guardiannews: What we know so\u003cbr\u003efar about the major operation\u003cbr\u003enortheast of Paris #CharlieHebdo http://t.co/LST6wA3Zgj\u003cbr\u003ehttp://t.co/pujVV1jwoT\u003cbr\u003eFri Jan 09 09:37:27 +0000 2015"}, {"group": 1886, "id": 3, "label": "553502123598835712", "shape": "dot", "size": 10, "title": "553502123598835712\u003cbr\u003e@guardiannews Don\u2019t let them die\u003cbr\u003eas martyrs!!\u003cbr\u003eFri Jan 09 10:42:44 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1601, "id": 0, "label": "553591315515310081", "shape": "dot", "size": 10, "title": "553591315515310081\u003cbr\u003eBREAKING: Suspects in the #CharlieHebdo\u003cbr\u003eattack are dead, local mayor\u003cbr\u003esays. Watch updates live: http://t.co/UYpqI3NFaP\u003cbr\u003ehttp://t.co/JmeFCzuP8K\u003cbr\u003eFri Jan 09 16:37:09 +0000 2015"}, {"group": 1601, "id": 1, "label": "553591400215113728", "shape": "dot", "size": 10, "title": "553591400215113728\u003cbr\u003e\u201c@CNN: Suspects in the #CharlieHebdo\u003cbr\u003eattack are dead, local mayor\u003cbr\u003esays. Watch updates live: http://t.co/PiD7QooOaC\u003cbr\u003ehttp://t.co/WIV1vSay5k\u201d\u003cbr\u003eFri Jan 09 16:37:29 +0000 2015"}, {"group": 1601, "id": 2, "label": "553591528539820032", "shape": "dot", "size": 10, "title": "553591528539820032\u003cbr\u003e@CNN #VivelaFrance #JeSuisCharlie, #JeSuisAhmed ET\u003cbr\u003e#JeNaiPasPeur !\u003cbr\u003eFri Jan 09 16:38:00 +0000 2015"}, {"group": 1601, "id": 3, "label": "553591713735118848", "shape": "dot", "size": 10, "title": "553591713735118848\u003cbr\u003eWas hoping they would bring\u003cbr\u003ethese guys in. Cowards. \u201c@CNN:\u003cbr\u003eBREAKING: Suspects in the #CharlieHebdo\u003cbr\u003eattack are dead, local mayor\u003cbr\u003esays\u201d\u003cbr\u003eFri Jan 09 16:38:44 +0000 2015"}, {"group": 1601, "id": 4, "label": "553592292641361921", "shape": "dot", "size": 10, "title": "553592292641361921\u003cbr\u003e@CNN.  #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:41:02 +0000 2015"}, {"group": 1601, "id": 5, "label": "553592449424433152", "shape": "dot", "size": 10, "title": "553592449424433152\u003cbr\u003e@CNN En Francia matan a\u003cbr\u003e13 y se declara emergencia\u003cbr\u003enacional y acto de terror.\u003cbr\u003eEn Mexico matan 43 y\u003cbr\u003eel gobierno actua como si\u003cbr\u003eno passara nada\u003cbr\u003eFri Jan 09 16:41:39 +0000 2015"}, {"group": 1601, "id": 7, "label": "553592604420751361", "shape": "dot", "size": 10, "title": "553592604420751361\u003cbr\u003eWe needed them alive @CNN:\u003cbr\u003eBREAKING: Suspects in the #CharlieHebdo\u003cbr\u003eattack are dead says mayor\u003cbr\u003ehttp://t.co/iMILZj1gcO http://t.co/8Q5c4qpXwI\u003cbr\u003eFri Jan 09 16:42:16 +0000 2015"}, {"group": 1601, "id": 9, "label": "553593085385777152", "shape": "dot", "size": 10, "title": "553593085385777152\u003cbr\u003e\u201c@CNN: Suspects in the #CharlieHebdo\u003cbr\u003eattack are dead, local mayor\u003cbr\u003esays. Watch updates live: http://t.co/nzGwfeci2s\u003cbr\u003ehttp://t.co/ouAK3Zpt2Z\u201d\u003cbr\u003eFri Jan 09 16:44:11 +0000 2015"}, {"group": 1601, "id": 10, "label": "553593276453109760", "shape": "dot", "size": 10, "title": "553593276453109760\u003cbr\u003eRT @CNN: BREAKING: Suspects in\u003cbr\u003ethe #CharlieHebdo attack are dead,\u003cbr\u003elocal mayor says. Watch updates\u003cbr\u003elive: http://t.co/dYn1dtZZ1U\u003cbr\u003eFri Jan 09 16:44:57 +0000 2015"}, {"group": 1601, "id": 11, "label": "553593498826727425", "shape": "dot", "size": 10, "title": "553593498826727425\u003cbr\u003e@CNN EVIL WILL BE OVERCOME!\u003cbr\u003eWE ARE NOT AFRAID..\u003cbr\u003eFri Jan 09 16:45:50 +0000 2015"}, {"group": 1601, "id": 12, "label": "553593658943889409", "shape": "dot", "size": 10, "title": "553593658943889409\u003cbr\u003e\u201c@CNN: BREAKING: Suspects in the\u003cbr\u003e#CharlieHebdo attack are dead, local\u003cbr\u003emayor says. http://t.co/PQrVm2nxJz http://t.co/ekXsJ16kn9\u201d\u003cbr\u003eFri Jan 09 16:46:28 +0000 2015"}, {"group": 1601, "id": 13, "label": "553613887044861952", "shape": "dot", "size": 10, "title": "553613887044861952\u003cbr\u003e@CNN why would you post\u003cbr\u003ethe pics of these evil\u003cbr\u003ecowards.  Appalling !\u003cbr\u003eFri Jan 09 18:06:50 +0000 2015"}, {"group": 1601, "id": 14, "label": "553637922080313344", "shape": "dot", "size": 10, "title": "553637922080313344\u003cbr\u003eSO sus RT @CNN: BREAKING:\u003cbr\u003eSuspects in the #CharlieHebdo attack\u003cbr\u003eare dead, local mayor says.\u003cbr\u003eWatch updates live: http://t.co/Sa6UcC0f67\u003cbr\u003eFri Jan 09 19:42:21 +0000 2015"}, {"group": 1601, "id": 6, "label": "553592573504536577", "shape": "dot", "size": 10, "title": "553592573504536577\u003cbr\u003e@Azarates2 @CNN Ps no que\u003cbr\u003efue el gobierno?\u003cbr\u003eFri Jan 09 16:42:09 +0000 2015"}, {"group": 1601, "id": 16, "label": "553640552412233728", "shape": "dot", "size": 10, "title": "553640552412233728\u003cbr\u003e@Azarates2 @CNN wow, impactante comparaci\u00f2n.\u003cbr\u003eQue Triste todo esto.\u003cbr\u003eFri Jan 09 19:52:48 +0000 2015"}, {"group": 1601, "id": 8, "label": "553593042377392129", "shape": "dot", "size": 10, "title": "553593042377392129\u003cbr\u003e@VictorZapat1 @CNN si el gobierno\u003cbr\u003eFederal realmente no sabia nada\u003cbr\u003e(como aseguran), es una verg\u00fcenza\u003cbr\u003epara Mexico la manera como\u003cbr\u003ereacciono.\u003cbr\u003eFri Jan 09 16:44:01 +0000 2015"}, {"group": 1601, "id": 15, "label": "553638478362472449", "shape": "dot", "size": 10, "title": "553638478362472449\u003cbr\u003e@christymaccc they wanted to die\u003cbr\u003efor their cause.\u003cbr\u003eFri Jan 09 19:44:34 +0000 2015"}, {"group": 1601, "id": 17, "label": "553640981556649984", "shape": "dot", "size": 10, "title": "553640981556649984\u003cbr\u003e@ToAREaLLeo you think so? or\u003cbr\u003ewere they killed?\u003cbr\u003eFri Jan 09 19:54:30 +0000 2015"}, {"group": 1601, "id": 19, "label": "553652768536555522", "shape": "dot", "size": 10, "title": "553652768536555522\u003cbr\u003e@Belriver32 gracias por tu aportaci\u00f3n.\u003cbr\u003e@CNN\u003cbr\u003eFri Jan 09 20:41:21 +0000 2015"}, {"group": 1601, "id": 18, "label": "553641803132706820", "shape": "dot", "size": 10, "title": "553641803132706820\u003cbr\u003e@christymaccc both. They were self\u003cbr\u003eproclaimed martyrs. They should\u0027ve kept\u003cbr\u003ethem alive to answer for\u003cbr\u003ethe killings.\u003cbr\u003eFri Jan 09 19:57:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 16, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 17, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

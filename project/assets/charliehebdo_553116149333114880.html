@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 790, "id": 0, "label": "553116149333114880", "shape": "dot", "size": 10, "title": "553116149333114880\u003cbr\u003e#CharlieHebdo will survive. \nhttp://t.co/vNV63zuCIR http://t.co/ig50JBcTnY\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:09:01 +0000 2015"}, {"group": 790, "id": 1, "label": "553120364675735554", "shape": "dot", "size": 10, "title": "553120364675735554\u003cbr\u003e\u201c@car0lverde: #CharlieHebdo will survive. \nhttp://t.co/7NNHJZMHEc\u003cbr\u003ehttp://t.co/dZiFsBNGEG\u201d Brave. Long live all\u003cbr\u003ehumour in truth.\u003cbr\u003eThu Jan 08 09:25:46 +0000 2015"}, {"group": 790, "id": 2, "label": "553126559889260544", "shape": "dot", "size": 10, "title": "553126559889260544\u003cbr\u003e@car0lverde @MalikAshok Sheer bravery!!Salute..only way\u003cbr\u003eto defeat terrorism is this.May\u003cbr\u003ebe dangerous..but there is no\u003cbr\u003eother way..\u003cbr\u003eThu Jan 08 09:50:23 +0000 2015"}, {"group": 790, "id": 3, "label": "553127011821301760", "shape": "dot", "size": 10, "title": "553127011821301760\u003cbr\u003e@car0lverde @MalikAshok go for it.\u003cbr\u003eProve Pen is mightier than\u003cbr\u003ethe sword.\u003cbr\u003eThu Jan 08 09:52:10 +0000 2015"}, {"group": 790, "id": 4, "label": "553129034272346112", "shape": "dot", "size": 10, "title": "553129034272346112\u003cbr\u003e@car0lverde @MalikAshok Kudos.  All\u003cbr\u003epower to you all\u003cbr\u003eThu Jan 08 10:00:13 +0000 2015"}, {"group": 790, "id": 5, "label": "553130338260484097", "shape": "dot", "size": 10, "title": "553130338260484097\u003cbr\u003e@car0lverde @TheJaggi hats off for\u003cbr\u003ethe spirit.\u003cbr\u003eThu Jan 08 10:05:23 +0000 2015"}, {"group": 790, "id": 6, "label": "553131964664786944", "shape": "dot", "size": 10, "title": "553131964664786944\u003cbr\u003e@car0lverde @sudhirtailang welldone Let Freedom\u003cbr\u003eof Expression (FOE) light 4ever\u003cbr\u003ebut V must remember FOE\u003cbr\u003edoes not mean insulting other\u003cbr\u003erelgn\u003cbr\u003eThu Jan 08 10:11:51 +0000 2015"}, {"group": 790, "id": 7, "label": "553135904970539008", "shape": "dot", "size": 10, "title": "553135904970539008\u003cbr\u003e\u201c@car0lverde: #CharlieHebdo will survive. \nhttp://t.co/nn1zCrxIAN\u003cbr\u003ehttp://t.co/gVKtHUrVEk\u201d\u003cbr\u003eThu Jan 08 10:27:31 +0000 2015"}, {"group": 790, "id": 8, "label": "553136718560653312", "shape": "dot", "size": 10, "title": "553136718560653312\u003cbr\u003e@car0lverde @SNetibutr Write an English\u003cbr\u003eversion and I\u0027ll subscribe.\u003cbr\u003eThu Jan 08 10:30:45 +0000 2015"}, {"group": 790, "id": 9, "label": "553137605852684289", "shape": "dot", "size": 10, "title": "553137605852684289\u003cbr\u003e\"@car0lverde: #CharlieHebdo will survive. \nhttp://t.co/EmRnhb1FlP\u003cbr\u003ehttp://t.co/aG07vy0EC7\"\u003cbr\u003eThu Jan 08 10:34:16 +0000 2015"}, {"group": 790, "id": 10, "label": "553138170620313600", "shape": "dot", "size": 10, "title": "553138170620313600\u003cbr\u003e@car0lverde Power to the peaceful\u003cbr\u003e! \u263c\u263c\u263c\u003cbr\u003eThu Jan 08 10:36:31 +0000 2015"}, {"group": 790, "id": 11, "label": "553138977629552640", "shape": "dot", "size": 10, "title": "553138977629552640\u003cbr\u003e@car0lverde This is brilliant. @garvangrant\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:39:43 +0000 2015"}, {"group": 790, "id": 13, "label": "553146003843723265", "shape": "dot", "size": 10, "title": "553146003843723265\u003cbr\u003e@car0lverde @AlecMuffett The question is\u003cbr\u003ewhether they have the capability\u003cbr\u003eto produce 20x their normal\u003cbr\u003eprint run...\u003cbr\u003eThu Jan 08 11:07:38 +0000 2015"}, {"group": 790, "id": 14, "label": "553152475822563328", "shape": "dot", "size": 10, "title": "553152475822563328\u003cbr\u003e@car0lverde @VisVp That\u0027s the spirit...\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:33:21 +0000 2015"}, {"group": 790, "id": 15, "label": "553153009568735232", "shape": "dot", "size": 10, "title": "553153009568735232\u003cbr\u003e@car0lverde \nMagnifique.\nSalute Charlie Hedbo.\u003cbr\u003eThu Jan 08 11:35:29 +0000 2015"}, {"group": 790, "id": 16, "label": "553153099154866177", "shape": "dot", "size": 10, "title": "553153099154866177\u003cbr\u003e@car0lverde @glynmoody Wonderful .. :)\u003cbr\u003e! .. best news ever\u003cbr\u003e.. :) x\u003cbr\u003eThu Jan 08 11:35:50 +0000 2015"}, {"group": 790, "id": 17, "label": "553156002770460672", "shape": "dot", "size": 10, "title": "553156002770460672\u003cbr\u003e@car0lverde @sudhirtailang they r daring\u003cbr\u003ecoz of being unscrupulous. we\u003cbr\u003er daring coz of being\u003cbr\u003eeducative.\u003cbr\u003eThu Jan 08 11:47:22 +0000 2015"}, {"group": 790, "id": 18, "label": "553156115710894080", "shape": "dot", "size": 10, "title": "553156115710894080\u003cbr\u003e@car0lverde @Cerebrawl80 I salute your\u003cbr\u003ebravery and determination.\u003cbr\u003eThu Jan 08 11:47:49 +0000 2015"}, {"group": 790, "id": 19, "label": "553157831609028608", "shape": "dot", "size": 10, "title": "553157831609028608\u003cbr\u003e@car0lverde @longsight9a Vive la France\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:54:38 +0000 2015"}, {"group": 790, "id": 20, "label": "553173612623302657", "shape": "dot", "size": 10, "title": "553173612623302657\u003cbr\u003e@samba_subra @car0lverde @MalikAshok  who\u003cbr\u003eare the terrorists? IDF killed\u003cbr\u003e2,500 in Gaza last summer.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:57:21 +0000 2015"}, {"group": 790, "id": 12, "label": "553144800715997184", "shape": "dot", "size": 10, "title": "553144800715997184\u003cbr\u003e@Voice_4_India Why not?\u003cbr\u003eThu Jan 08 11:02:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 20, "weight": 1}, {"from": 6, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

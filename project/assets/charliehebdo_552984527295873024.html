@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 722, "id": 0, "label": "552984527295873024", "shape": "dot", "size": 10, "title": "552984527295873024\u003cbr\u003eCartoonists are reacting to the\u003cbr\u003eattack on #CharlieHebdo. Freelancer Lindsay\u003cbr\u003eFoyle joins us in 10mins.\u003cbr\u003ePic @davpope http://t.co/jrlzqB4B2O\u003cbr\u003eThu Jan 08 00:25:59 +0000 2015"}, {"group": 722, "id": 1, "label": "552985835058900995", "shape": "dot", "size": 10, "title": "552985835058900995\u003cbr\u003e@ABCNews24 @davpope That cartoon could\u003cbr\u003ego down in history.\u003cbr\u003eThu Jan 08 00:31:11 +0000 2015"}, {"group": 722, "id": 2, "label": "552990287715237888", "shape": "dot", "size": 10, "title": "552990287715237888\u003cbr\u003e@ABCNews24 @davpope\u003cbr\u003eThu Jan 08 00:48:53 +0000 2015"}, {"group": 722, "id": 3, "label": "552996616924180480", "shape": "dot", "size": 10, "title": "552996616924180480\u003cbr\u003e@ABCNews24 @davpope To protect free\u003cbr\u003espeech all media, TV, papers,\u003cbr\u003emagazines should print \u0026amp; show\u003cbr\u003eall the cartoons!!!!!!NOW!!!!\u003cbr\u003eThu Jan 08 01:14:02 +0000 2015"}, {"group": 722, "id": 4, "label": "553026148222115840", "shape": "dot", "size": 10, "title": "553026148222115840\u003cbr\u003e@ABCNews24 @TonyTodd54 @davpope religion should\u003cbr\u003ebe off topic cause you\u0027ll\u003cbr\u003eget crazy people killing.\u003cbr\u003eThu Jan 08 03:11:23 +0000 2015"}, {"group": 722, "id": 5, "label": "553076201170804736", "shape": "dot", "size": 10, "title": "553076201170804736\u003cbr\u003e@ABCNews24 @davpope don\u0027t let a\u003cbr\u003efew nutcases intimidate the way\u003cbr\u003ewe do things or dampen\u003cbr\u003eour ability to have a\u003cbr\u003esense of humor\u003cbr\u003eThu Jan 08 06:30:16 +0000 2015"}, {"group": 722, "id": 6, "label": "553076608676790273", "shape": "dot", "size": 10, "title": "553076608676790273\u003cbr\u003e@ABCNews24 @davpope south park managed\u003cbr\u003e2 include images\u0026amp; humor about\u003cbr\u003eMuhammad in the early episodes.\u003cbr\u003eHumor is gud 4 the\u003cbr\u003esoul.\u003cbr\u003eThu Jan 08 06:31:53 +0000 2015"}, {"group": 722, "id": 7, "label": "553275832613875715", "shape": "dot", "size": 10, "title": "553275832613875715\u003cbr\u003e@ABCNews24 @davpope \nTERRORIST IS ISLAM\u003cbr\u003eNO. PHYSCO YES...\u003cbr\u003eThu Jan 08 19:43:32 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 94, "id": 0, "label": "552804784819154944", "shape": "dot", "size": 10, "title": "552804784819154944\u003cbr\u003eI support #CharlieHebdo and a\u003cbr\u003efree press. Please RT these\u003cbr\u003ecartoons to show a united\u003cbr\u003eand dignified defiance. http://t.co/Mc2aOwSHYA\u003cbr\u003eWed Jan 07 12:31:45 +0000 2015"}, {"group": 94, "id": 1, "label": "552805157478891520", "shape": "dot", "size": 10, "title": "552805157478891520\u003cbr\u003e@MartinDaubney isn\u0027t it shocking, SHOCKING?\u003cbr\u003eAnd Hollande has reacted w\u003cbr\u003eall the enthusiasm of like\u003cbr\u003ea limp wet rag.\u003cbr\u003eWed Jan 07 12:33:14 +0000 2015"}, {"group": 94, "id": 2, "label": "552805168350494720", "shape": "dot", "size": 10, "title": "552805168350494720\u003cbr\u003e@MartinDaubney @SamanthaBrick \nAngry demonstrations on\u003cbr\u003ethe strength of those cartoons\u003cbr\u003emaybe, but murder?\u003cbr\u003eWed Jan 07 12:33:17 +0000 2015"}, {"group": 94, "id": 7, "label": "552823897062514689", "shape": "dot", "size": 10, "title": "552823897062514689\u003cbr\u003e@MartinDaubney Today\u0027s  #PARIS \nP-Prevent\nA-Any\nR-Rise\u003cbr\u003eof\nI -Islamic\nS- Sanctimony\u003cbr\u003eWed Jan 07 13:47:42 +0000 2015"}, {"group": 94, "id": 9, "label": "552829891129782272", "shape": "dot", "size": 10, "title": "552829891129782272\u003cbr\u003e@MartinDaubney @duongdustin what is the\u003cbr\u003eEnglish translation?\u003cbr\u003eWed Jan 07 14:11:31 +0000 2015"}, {"group": 94, "id": 3, "label": "552806530421379072", "shape": "dot", "size": 10, "title": "552806530421379072\u003cbr\u003e@SamanthaBrick How these guys can\u003cbr\u003ejust drive out of Paris\u003cbr\u003ewill shame France if they\u003cbr\u003eare not apprehended, pronto\u003cbr\u003eWed Jan 07 12:38:42 +0000 2015"}, {"group": 94, "id": 8, "label": "552824029225054208", "shape": "dot", "size": 10, "title": "552824029225054208\u003cbr\u003e@SamanthaBrick Today\u0027s  #PARIS \nP-Prevent\nA-Any\nR-Rise\u003cbr\u003eof\nI -Islamic\nS- Sanctimony #CharlieHebdo #ParisShooting\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:48:14 +0000 2015"}, {"group": 94, "id": 4, "label": "552807598769332225", "shape": "dot", "size": 10, "title": "552807598769332225\u003cbr\u003e@MartinDaubney Fortunately they won\u0027t. the\u003cbr\u003eFrench equivalent of SAS are\u003cbr\u003ehardcore.\u003cbr\u003eWed Jan 07 12:42:56 +0000 2015"}, {"group": 94, "id": 5, "label": "552808537215479809", "shape": "dot", "size": 10, "title": "552808537215479809\u003cbr\u003e@SamanthaBrick @MartinDaubney  They are\u003cbr\u003equite fierce-interestingly French military have\u003cbr\u003erecently savaged Hollande-not like UK\u003cbr\u003epussy Generals\u003cbr\u003eWed Jan 07 12:46:40 +0000 2015"}, {"group": 94, "id": 6, "label": "552814308917530624", "shape": "dot", "size": 10, "title": "552814308917530624\u003cbr\u003e@SherrinThePain @SamanthaBrick @MartinDaubney The British\u003cbr\u003emilitary should question Dave: https://t.co/Tl8Bi5aOnR\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:09:36 +0000 2015"}, {"group": 94, "id": 10, "label": "552830268558417921", "shape": "dot", "size": 10, "title": "552830268558417921\u003cbr\u003e@carolmckayau @MartinDaubney 100 lashes, if\u003cbr\u003eyou are not dead by\u003cbr\u003elaughter. Love is stronger than\u003cbr\u003ehate.\u003cbr\u003eWed Jan 07 14:13:01 +0000 2015"}, {"group": 94, "id": 11, "label": "552830942184615936", "shape": "dot", "size": 10, "title": "552830942184615936\u003cbr\u003e@duongdustin @MartinDaubney thank you! :-)\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:15:42 +0000 2015"}, {"group": 94, "id": 13, "label": "552831160280440832", "shape": "dot", "size": 10, "title": "552831160280440832\u003cbr\u003e@duongdustin @carolmckayau \"Love is stronger\u003cbr\u003ethan hate\" - a fitting,\u003cbr\u003eif tragic, epitaph\u003cbr\u003eWed Jan 07 14:16:34 +0000 2015"}, {"group": 94, "id": 12, "label": "552831069943115778", "shape": "dot", "size": 10, "title": "552831069943115778\u003cbr\u003e@carolmckayau @MartinDaubney de rien\u003cbr\u003eWed Jan 07 14:16:12 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 8, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 11, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

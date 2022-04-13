@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1200, "id": 0, "label": "553225701701066752", "shape": "dot", "size": 10, "title": "553225701701066752\u003cbr\u003ePolitical cartoonists are mourning #CharlieHebdo\u003cbr\u003eby retaliating the only way\u003cbr\u003ethey know how. On pen\u003cbr\u003eand paper. http://t.co/0GLdlkk5ja\u003cbr\u003eThu Jan 08 16:24:20 +0000 2015"}, {"group": 1200, "id": 1, "label": "553226251193044992", "shape": "dot", "size": 10, "title": "553226251193044992\u003cbr\u003e@Bipartisanism Cartoonists know other ways\u003cbr\u003eto retaliate. They choose pen\u003cbr\u003eand paper.\u003cbr\u003eThu Jan 08 16:26:31 +0000 2015"}, {"group": 1200, "id": 2, "label": "553226443552206849", "shape": "dot", "size": 10, "title": "553226443552206849\u003cbr\u003e@Bipartisanism\u003cbr\u003eThu Jan 08 16:27:17 +0000 2015"}, {"group": 1200, "id": 3, "label": "553289704498798592", "shape": "dot", "size": 10, "title": "553289704498798592\u003cbr\u003e@Bipartisanism @robertwood2005 the pen really\u003cbr\u003eis mightier than the sword\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:38:39 +0000 2015"}, {"group": 1200, "id": 5, "label": "554358581424705536", "shape": "dot", "size": 10, "title": "554358581424705536\u003cbr\u003e@Bipartisanism @superhumayne\u003cbr\u003eSun Jan 11 19:25:59 +0000 2015"}, {"group": 1200, "id": 4, "label": "553293350120349697", "shape": "dot", "size": 10, "title": "553293350120349697\u003cbr\u003e@30daysbrighter I firmly believe that.\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:53:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 3, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

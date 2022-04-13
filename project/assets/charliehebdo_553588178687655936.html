@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2055, "id": 0, "label": "553588178687655936", "shape": "dot", "size": 10, "title": "553588178687655936\u003cbr\u003eReports: #CharlieHebdo suspects killed http://t.co/rsl4203bcQ\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:24:41 +0000 2015"}, {"group": 2055, "id": 1, "label": "553588358044483584", "shape": "dot", "size": 10, "title": "553588358044483584\u003cbr\u003eDamn, this is like a\u003cbr\u003emovie RT @HuffingtonPost Reports: #CharlieHebdo\u003cbr\u003esuspects killed http://t.co/zCuZD1cure\u003cbr\u003eFri Jan 09 16:25:24 +0000 2015"}, {"group": 2055, "id": 2, "label": "553588472330452992", "shape": "dot", "size": 10, "title": "553588472330452992\u003cbr\u003e\u201c@HuffingtonPost: Reports: #CharlieHebdo suspects killed\u003cbr\u003ehttp://t.co/mWCSjh3CkH\u201d superb simultaneous response by\u003cbr\u003ethe French tactics unit.\u003cbr\u003eFri Jan 09 16:25:51 +0000 2015"}, {"group": 2055, "id": 3, "label": "553588570368532480", "shape": "dot", "size": 10, "title": "553588570368532480\u003cbr\u003e@HuffingtonPost great news! No trial,\u003cbr\u003eno taxpayer money spent to\u003cbr\u003esupport them.\u003cbr\u003eFri Jan 09 16:26:15 +0000 2015"}, {"group": 2055, "id": 4, "label": "553588750207680512", "shape": "dot", "size": 10, "title": "553588750207680512\u003cbr\u003e@HuffingtonPost Good news !!! Alah\u003cbr\u003eAkbar !!\u003cbr\u003eFri Jan 09 16:26:57 +0000 2015"}, {"group": 2055, "id": 5, "label": "553588869409832960", "shape": "dot", "size": 10, "title": "553588869409832960\u003cbr\u003e@HuffingtonPost damnit!!! That\u0027s what those\u003cbr\u003efuckers wanted!! Now they will\u003cbr\u003ebe hailed as martyrs....\u003cbr\u003eFri Jan 09 16:27:26 +0000 2015"}, {"group": 2055, "id": 6, "label": "553589038196981760", "shape": "dot", "size": 10, "title": "553589038196981760\u003cbr\u003e@HuffingtonPost Can you confirm the\u003cbr\u003ereports that those suspects were\u003cbr\u003ekilled by French police?\u003cbr\u003eFri Jan 09 16:28:06 +0000 2015"}, {"group": 2055, "id": 7, "label": "553589124125323264", "shape": "dot", "size": 10, "title": "553589124125323264\u003cbr\u003e@HuffingtonPost good.\u003cbr\u003eFri Jan 09 16:28:27 +0000 2015"}, {"group": 2055, "id": 8, "label": "553589955029512192", "shape": "dot", "size": 10, "title": "553589955029512192\u003cbr\u003e@HuffingtonPost That\u0027s a good start\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:31:45 +0000 2015"}, {"group": 2055, "id": 9, "label": "553590627343302657", "shape": "dot", "size": 10, "title": "553590627343302657\u003cbr\u003e@HuffingtonPost They got Netanyahu\u0027s Mossad\u003cbr\u003eagents? GOOD. Don\u0027t fuck with\u003cbr\u003ethe French -- they invented\u003cbr\u003ethe guillotine!\u003cbr\u003eFri Jan 09 16:34:25 +0000 2015"}, {"group": 2055, "id": 10, "label": "553591897458237440", "shape": "dot", "size": 10, "title": "553591897458237440\u003cbr\u003e@HuffingtonPost Chance lost to bring\u003cbr\u003ethem to big trial and\u003cbr\u003eexposure to the world. A\u003cbr\u003epitty they were not caught\u003cbr\u003ealive! Now they are martirs!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:39:28 +0000 2015"}, {"group": 2055, "id": 11, "label": "553593015416008704", "shape": "dot", "size": 10, "title": "553593015416008704\u003cbr\u003e@HuffingtonPost Some good news!\u003cbr\u003eFri Jan 09 16:43:54 +0000 2015"}, {"group": 2055, "id": 12, "label": "553593923659382784", "shape": "dot", "size": 10, "title": "553593923659382784\u003cbr\u003e@HuffingtonPost  http://t.co/SiJ5OGTxir un art\u00edculo\u003cbr\u003eobjetivo que entiende y explica\u003cbr\u003elas causas y consecuencias del\u003cbr\u003edoloroso ataque en Par\u00eds\u003cbr\u003eFri Jan 09 16:47:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

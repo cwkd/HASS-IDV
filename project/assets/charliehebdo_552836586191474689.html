@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 485, "id": 0, "label": "552836586191474689", "shape": "dot", "size": 10, "title": "552836586191474689\u003cbr\u003eCalls for \"every newspaper in\u003cbr\u003eEurope\" to print Charlie Hebdo\u003cbr\u003ecartoons http://t.co/2tT7BnOx1u http://t.co/oMTsEqXs1h #JeSuisCharlie\u003cbr\u003eWed Jan 07 14:38:08 +0000 2015"}, {"group": 485, "id": 1, "label": "552837244336500736", "shape": "dot", "size": 10, "title": "552837244336500736\u003cbr\u003e@HuffPostUK Done!\u003cbr\u003eWed Jan 07 14:40:44 +0000 2015"}, {"group": 485, "id": 2, "label": "552838046119636992", "shape": "dot", "size": 10, "title": "552838046119636992\u003cbr\u003e@HuffPostUK they should indeed.\u003cbr\u003eWed Jan 07 14:43:56 +0000 2015"}, {"group": 485, "id": 3, "label": "552839065553207296", "shape": "dot", "size": 10, "title": "552839065553207296\u003cbr\u003e@HuffPostUK YES!!!\u003cbr\u003eWed Jan 07 14:47:59 +0000 2015"}, {"group": 485, "id": 4, "label": "552840716762611713", "shape": "dot", "size": 10, "title": "552840716762611713\u003cbr\u003e@HuffPostUK @JasonSilva They absolutely should!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:54:32 +0000 2015"}, {"group": 485, "id": 5, "label": "552841509058252800", "shape": "dot", "size": 10, "title": "552841509058252800\u003cbr\u003e@HuffPostUK start with yours http://t.co/plWrZU1FMN\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:57:41 +0000 2015"}, {"group": 485, "id": 6, "label": "552842228977381376", "shape": "dot", "size": 10, "title": "552842228977381376\u003cbr\u003e@HuffPostUK @worldwidewade Won\u0027t hold my\u003cbr\u003ebreath on that one. #Telegraph\u003cbr\u003ealready blurred out a depiction\u003cbr\u003eon cover of #CharlieHebdo.\u003cbr\u003eWed Jan 07 15:00:33 +0000 2015"}, {"group": 485, "id": 7, "label": "552842911340318721", "shape": "dot", "size": 10, "title": "552842911340318721\u003cbr\u003e@HuffPostUK @CEMB_forum that\u0027s a very\u003cbr\u003egood idea.\u003cbr\u003eWed Jan 07 15:03:16 +0000 2015"}, {"group": 485, "id": 8, "label": "552845212339290112", "shape": "dot", "size": 10, "title": "552845212339290112\u003cbr\u003e@HuffPostUK Not just France. Every\u003cbr\u003enewspaper on earth. Post them\u003cbr\u003eon Twitter. I\u0027ll RT.\u003cbr\u003eWed Jan 07 15:12:24 +0000 2015"}, {"group": 485, "id": 9, "label": "552845856920326144", "shape": "dot", "size": 10, "title": "552845856920326144\u003cbr\u003e@HuffPostUK @CEMB_forum And so they\u003cbr\u003eshould!\u003cbr\u003eWed Jan 07 15:14:58 +0000 2015"}, {"group": 485, "id": 10, "label": "552846578822971392", "shape": "dot", "size": 10, "title": "552846578822971392\u003cbr\u003e@HuffPostUK @gepa_aix r\nWe are CHARLIE\u003cbr\u003e!!!!!\nRIP for all this KIA\u003cbr\u003e!!!!!\nDidier ( little Britain /\u003cbr\u003eFrance)\u003cbr\u003eWed Jan 07 15:17:50 +0000 2015"}, {"group": 485, "id": 11, "label": "552847225316196353", "shape": "dot", "size": 10, "title": "552847225316196353\u003cbr\u003e@HuffPostUK @GussyJackson yes they should,\u003cbr\u003eand in their respective languages\u003cbr\u003etoo\u003cbr\u003eWed Jan 07 15:20:24 +0000 2015"}, {"group": 485, "id": 12, "label": "552848743968833537", "shape": "dot", "size": 10, "title": "552848743968833537\u003cbr\u003e@HuffPostUK @CEMB_forum Mehdi won\u0027t like\u003cbr\u003ethat at all\u003cbr\u003eWed Jan 07 15:26:26 +0000 2015"}, {"group": 485, "id": 13, "label": "552849469872427008", "shape": "dot", "size": 10, "title": "552849469872427008\u003cbr\u003e@HuffPostUK @Rich_893 This must be\u003cbr\u003edone. \u0026amp; reprint not only\u003cbr\u003eones taunting Islam but also\u003cbr\u003ethose mocking Vladimir Putin\u003cbr\u003eWed Jan 07 15:29:19 +0000 2015"}, {"group": 485, "id": 16, "label": "552851512784080896", "shape": "dot", "size": 10, "title": "552851512784080896\u003cbr\u003e\u201c@HuffPostUK: Calls for \"every newspaper\u003cbr\u003ein Europe\" to print Charlie\u003cbr\u003eHebdo cartoons\" senseless provocation tbh.\u003cbr\u003eRidic\u003cbr\u003eWed Jan 07 15:37:26 +0000 2015"}, {"group": 485, "id": 14, "label": "552850159550595072", "shape": "dot", "size": 10, "title": "552850159550595072\u003cbr\u003e@tsnowbird5000 @HuffPostUK @Rich_893 why not\u003cbr\u003ethose targeting Christians and Jesus?\u003cbr\u003eWould be ok for you?\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:32:04 +0000 2015"}, {"group": 485, "id": 15, "label": "552851349071601666", "shape": "dot", "size": 10, "title": "552851349071601666\u003cbr\u003e@kbabotschka @HuffPostUK @Rich_893 Freedom of\u003cbr\u003espeech...all to be reprinted. As\u003cbr\u003ea Christian I wont ever\u003cbr\u003ekill anyone for drawing a\u003cbr\u003ecartoon\u003cbr\u003eWed Jan 07 15:36:47 +0000 2015"}, {"group": 485, "id": 18, "label": "552852425736847360", "shape": "dot", "size": 10, "title": "552852425736847360\u003cbr\u003e@kbabotschka -no one pays attention\u003cbr\u003eto cartoons satirizing the Pope,\u003cbr\u003efor example, or other Christian\u003cbr\u003eleaders or even Jesus, for\u003cbr\u003ethat matter.\u003cbr\u003eWed Jan 07 15:41:04 +0000 2015"}, {"group": 485, "id": 19, "label": "552852968794361856", "shape": "dot", "size": 10, "title": "552852968794361856\u003cbr\u003e@kbabotschka -Christians may consider such\u003cbr\u003ecartoons as being in poor\u003cbr\u003etaste, but wouldn\u0027t launch terrorist\u003cbr\u003eattacks against the cartoonists.\u003cbr\u003eWed Jan 07 15:43:13 +0000 2015"}, {"group": 485, "id": 17, "label": "552852162007797760", "shape": "dot", "size": 10, "title": "552852162007797760\u003cbr\u003e@tsnowbird5000 @HuffPostUK @Rich_893 i wouldn\u0027t\u003cbr\u003eeather, but it doesn\u0027t mean\u003cbr\u003eit\u0027s ok to make stupid\u003cbr\u003ecartoons about people\u0027s religion/faith\u003cbr\u003eWed Jan 07 15:40:01 +0000 2015"}, {"group": 485, "id": 21, "label": "552853558492545024", "shape": "dot", "size": 10, "title": "552853558492545024\u003cbr\u003e@kbabotschka @tsnowbird5000 @HuffPostUK -it\u0027s ok\u003cbr\u003eto make \"stupid cartoons\" about\u003cbr\u003eany subject. That\u0027s what cartoons\u003cbr\u003eare all about.\u003cbr\u003eWed Jan 07 15:45:34 +0000 2015"}, {"group": 485, "id": 25, "label": "552855299476836353", "shape": "dot", "size": 10, "title": "552855299476836353\u003cbr\u003e@kbabotschka @HuffPostUK @Rich_893 its not\u003cbr\u003enice but stopping it via\u003cbr\u003eviolent force of any kind\u003cbr\u003eis not the way to\u003cbr\u003ego\u003cbr\u003eWed Jan 07 15:52:29 +0000 2015"}, {"group": 485, "id": 31, "label": "552875798991220736", "shape": "dot", "size": 10, "title": "552875798991220736\u003cbr\u003e@kbabotschka @Rich_893 @tsnowbird5000 @HuffPostUK it\u003cbr\u003eis obvious you have no\u003cbr\u003eidea what freedom of speech\u003cbr\u003e\u0026amp; press means ! Troll\u003cbr\u003e!\u003cbr\u003eWed Jan 07 17:13:57 +0000 2015"}, {"group": 485, "id": 20, "label": "552853157139988480", "shape": "dot", "size": 10, "title": "552853157139988480\u003cbr\u003e@Rich_893 ignore is the best\u003cbr\u003eway in such cases.Unfortunately our\u003cbr\u003eworld isnt perfect \u0026amp;full of\u003cbr\u003eidiots,some use this fact for\u003cbr\u003etheir dirty games\u003cbr\u003eWed Jan 07 15:43:58 +0000 2015"}, {"group": 485, "id": 22, "label": "552854154473771009", "shape": "dot", "size": 10, "title": "552854154473771009\u003cbr\u003e@kbabotschka -that much is true.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:47:56 +0000 2015"}, {"group": 485, "id": 23, "label": "552854232215207936", "shape": "dot", "size": 10, "title": "552854232215207936\u003cbr\u003e@Rich_893 @kbabotschka @HuffPostUK exactly....you may\u003cbr\u003esay you dont agree with\u003cbr\u003ethem \u0026amp; they are offensive,\u003cbr\u003ebut you cant kill people\u003cbr\u003efor speech\u003cbr\u003eWed Jan 07 15:48:15 +0000 2015"}, {"group": 485, "id": 24, "label": "552854989719105537", "shape": "dot", "size": 10, "title": "552854989719105537\u003cbr\u003e@tsnowbird5000 -to use religious cartoons\u003cbr\u003eas and excuse to physically\u003cbr\u003eattack, even kill people, displays\u003cbr\u003ea certain lack of confidence.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:51:15 +0000 2015"}, {"group": 485, "id": 26, "label": "552856138430316544", "shape": "dot", "size": 10, "title": "552856138430316544\u003cbr\u003e@Rich_893 @tsnowbird5000 Exactly - Charlie\u003cbr\u003eHebdo also parodied Christianity,Judaism etc\u003cbr\u003e(inc cover of gay God\u003cbr\u003e\u0026amp; Jesus) w/no violent reaction\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:55:49 +0000 2015"}, {"group": 485, "id": 27, "label": "552856214066180096", "shape": "dot", "size": 10, "title": "552856214066180096\u003cbr\u003e@Rich_893 @tsnowbird5000 Sooner or later,\u003cbr\u003ewe will all respond to\u003cbr\u003ethese attacks.\u003cbr\u003eWed Jan 07 15:56:07 +0000 2015"}, {"group": 485, "id": 28, "label": "552856467024252929", "shape": "dot", "size": 10, "title": "552856467024252929\u003cbr\u003e@tsnowbird5000 -I do think that\u003cbr\u003ecartoons can sometimes be considered\u003cbr\u003e\"cheap shots\". But live bullets\u003cbr\u003eare not the answer!\u003cbr\u003eWed Jan 07 15:57:07 +0000 2015"}, {"group": 485, "id": 29, "label": "552857434226569216", "shape": "dot", "size": 10, "title": "552857434226569216\u003cbr\u003e@Scott31459 @tsnowbird5000 -the people who\u003cbr\u003econduct such attacks must be\u003cbr\u003eshown for what they are.\u003cbr\u003eThey are hijackers of religion.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:00:58 +0000 2015"}, {"group": 485, "id": 30, "label": "552857566133252097", "shape": "dot", "size": 10, "title": "552857566133252097\u003cbr\u003e@Rich_893 absolutely never!\u003cbr\u003eWed Jan 07 16:01:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 14, "to": 18, "weight": 1}, {"from": 14, "to": 19, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 17, "to": 21, "weight": 1}, {"from": 17, "to": 25, "weight": 1}, {"from": 17, "to": 31, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 24, "to": 27, "weight": 1}, {"from": 25, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

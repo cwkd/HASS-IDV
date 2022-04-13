@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 428, "id": 0, "label": "552832019940376576", "shape": "dot", "size": 10, "title": "552832019940376576\u003cbr\u003eBob Mankoff, New Yorker cartoon\u003cbr\u003eeditor #JeSuisCharlie http://t.co/dK40qynqvu\u003cbr\u003eWed Jan 07 14:19:59 +0000 2015"}, {"group": 428, "id": 1, "label": "552832876304007168", "shape": "dot", "size": 10, "title": "552832876304007168\u003cbr\u003eBrilliant! \u201c@dhamini: Bob Mankoff, New\u003cbr\u003eYorker cartoon editor #JeSuisCharlie http://t.co/5oJPDL1VDQ\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:23:23 +0000 2015"}, {"group": 428, "id": 2, "label": "552834585089019904", "shape": "dot", "size": 10, "title": "552834585089019904\u003cbr\u003e@dhamini This we must never\u003cbr\u003eever have.... despite everything been\u003cbr\u003edone to control our minds\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:30:10 +0000 2015"}, {"group": 428, "id": 3, "label": "552841926169600000", "shape": "dot", "size": 10, "title": "552841926169600000\u003cbr\u003e@dhamini @kathleenogrady It may be\u003cbr\u003etopical at the moment, but\u003cbr\u003eit\u0027s a Yom Kippur cartoon\u003cbr\u003efrom September 2012. http://t.co/irgpzS1StK\u003cbr\u003eWed Jan 07 14:59:21 +0000 2015"}, {"group": 428, "id": 5, "label": "552848742651817984", "shape": "dot", "size": 10, "title": "552848742651817984\u003cbr\u003e@dhamini @DamidotValerie http://t.co/Tg22FnIJl8\u003cbr\u003eWed Jan 07 15:26:26 +0000 2015"}, {"group": 428, "id": 6, "label": "552850284851249152", "shape": "dot", "size": 10, "title": "552850284851249152\u003cbr\u003e\u201c@dhamini: Bob Mankoff, New Yorker\u003cbr\u003ecartooneditor #JeSuisCharlie http://t.co/jIBOA2R5yp @davidchang @dannybowien\u003cbr\u003e@alexatala @VirgilioCentral\u003cbr\u003eWed Jan 07 15:32:34 +0000 2015"}, {"group": 428, "id": 7, "label": "552875132688302081", "shape": "dot", "size": 10, "title": "552875132688302081\u003cbr\u003e\u201c@dhamini: Bob Mankoff, New Yorker\u003cbr\u003ecartoon editor #JeSuisCharlie http://t.co/etVii4XfU3\u201d\u003cbr\u003eWed Jan 07 17:11:18 +0000 2015"}, {"group": 428, "id": 8, "label": "552882200467619840", "shape": "dot", "size": 10, "title": "552882200467619840\u003cbr\u003e@dhamini. i guess, very enjoyable\u003cbr\u003eindeed. see nothing, read nothing,\u003cbr\u003esay nothing. for peace.\u003cbr\u003eWed Jan 07 17:39:23 +0000 2015"}, {"group": 428, "id": 4, "label": "552844187129753601", "shape": "dot", "size": 10, "title": "552844187129753601\u003cbr\u003e@denis_babin @kathleenogrady That\u0027s right. True\u003cbr\u003efor all times, really.\u003cbr\u003eWed Jan 07 15:08:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 3, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

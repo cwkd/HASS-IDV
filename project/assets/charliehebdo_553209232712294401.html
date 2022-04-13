@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1135, "id": 0, "label": "553209232712294401", "shape": "dot", "size": 10, "title": "553209232712294401\u003cbr\u003eWrote and drew this on\u003cbr\u003e#CharlieHebdo and the history of\u003cbr\u003ecartoonists killed for their work\u003cbr\u003ehttp://t.co/uVX99m0lJJ http://t.co/CuO6799Prp\u003cbr\u003eThu Jan 08 15:18:53 +0000 2015"}, {"group": 1135, "id": 1, "label": "553209967600472065", "shape": "dot", "size": 10, "title": "553209967600472065\u003cbr\u003eThank you @mollycrabapple #JeSuisCharlie http://t.co/CiKvLu2uSg\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:21:49 +0000 2015"}, {"group": 1135, "id": 2, "label": "553210095707107329", "shape": "dot", "size": 10, "title": "553210095707107329\u003cbr\u003e@mollycrabapple That is a very\u003cbr\u003ebeautiful picture. Peace\u003cbr\u003eThu Jan 08 15:22:19 +0000 2015"}, {"group": 1135, "id": 3, "label": "553210646377275392", "shape": "dot", "size": 10, "title": "553210646377275392\u003cbr\u003e@mollycrabapple that\u0027s very nice of\u003cbr\u003eyou! Thanks.\u003cbr\u003eThu Jan 08 15:24:30 +0000 2015"}, {"group": 1135, "id": 4, "label": "553210841311354880", "shape": "dot", "size": 10, "title": "553210841311354880\u003cbr\u003e@mollycrabapple  Essential as it\u003cbr\u003eencompasses the rage amidst the\u003cbr\u003ehorror and sadness too often\u003cbr\u003eexperienced by those exposing the\u003cbr\u003edarker side\u003cbr\u003eThu Jan 08 15:25:17 +0000 2015"}, {"group": 1135, "id": 5, "label": "553211075701657600", "shape": "dot", "size": 10, "title": "553211075701657600\u003cbr\u003e@mollycrabapple of the human experience.\u003cbr\u003eThank you for your passion,\u003cbr\u003eskill and love of life\u003cbr\u003ewhich allows the rest to\u003cbr\u003eexperience your eye.\u003cbr\u003eThu Jan 08 15:26:13 +0000 2015"}, {"group": 1135, "id": 6, "label": "553214357396402176", "shape": "dot", "size": 10, "title": "553214357396402176\u003cbr\u003e@mollycrabapple \n\u0639\u0627\u062f \u0643\u0627\u0646\u0647\u0645 \u0645\u0633\u064a\u064a\u0646 \u0644\u0644\u0646\u0628\u064a\u003cbr\u003e\u062d\u0642\u0647\u0645 \u0648\u0645\u0627\u062c\u0627\u0647\u0645 \u064a\u0633\u062a\u0627\u0647\u0644\u0648\u0646 \u0647\u0627\u0644\u062a\u0633\u0644\u0627\u0628\n\u0648\u062a\u0631\u0627\u0646\u0627 \u0645\u0627\u0646\u0633\u064a\u0646\u0627\u003cbr\u003e\u0628\u0648\u0631\u0645\u0627\u003cbr\u003eThu Jan 08 15:39:15 +0000 2015"}, {"group": 1135, "id": 7, "label": "553227142222606336", "shape": "dot", "size": 10, "title": "553227142222606336\u003cbr\u003e@mollycrabapple @TraceBeaulieu Regarding Cabu, my\u003cbr\u003eg\u00e9n\u00e9ration knew him too as\u003cbr\u003ethe cartoonist of the RecreA2\u003cbr\u003eyouth tv show late 70/early\u003cbr\u003e80s\u003cbr\u003eThu Jan 08 16:30:03 +0000 2015"}, {"group": 1135, "id": 8, "label": "553227875810164736", "shape": "dot", "size": 10, "title": "553227875810164736\u003cbr\u003e\u201cThey were killed during a\u003cbr\u003emeeting discussing a conference on\u003cbr\u003ethe fight against racism. Voila.\"\u003cbr\u003ehttp://t.co/GhDW7XPOmT  @mollycrabapple\u003cbr\u003eThu Jan 08 16:32:58 +0000 2015"}, {"group": 1135, "id": 9, "label": "553431128258793473", "shape": "dot", "size": 10, "title": "553431128258793473\u003cbr\u003e@mollycrabapple @KimCattrall A horrible tragedy..BUT!\u003cbr\u003eTheir collective works live on!\u003cbr\u003eThrough their art, they shall\u003cbr\u003elive forever!\u003cbr\u003eFri Jan 09 06:00:37 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

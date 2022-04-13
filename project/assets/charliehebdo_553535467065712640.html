@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1959, "id": 0, "label": "553535467065712640", "shape": "dot", "size": 10, "title": "553535467065712640\u003cbr\u003eBREAKING: Paris prosecutor: Gunman with\u003cbr\u003ehostages in kosher market in\u003cbr\u003eeastern Paris; police SWAT on\u003cbr\u003escene.\u003cbr\u003eFri Jan 09 12:55:14 +0000 2015"}, {"group": 1959, "id": 1, "label": "553535636343640065", "shape": "dot", "size": 10, "title": "553535636343640065\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u201d\u003cbr\u003eFri Jan 09 12:55:54 +0000 2015"}, {"group": 1959, "id": 2, "label": "553535690382663680", "shape": "dot", "size": 10, "title": "553535690382663680\u003cbr\u003e@AP\u003cbr\u003eFri Jan 09 12:56:07 +0000 2015"}, {"group": 1959, "id": 3, "label": "553535717633433600", "shape": "dot", "size": 10, "title": "553535717633433600\u003cbr\u003eGoodness man ! RT \"@AP:\u003cbr\u003eBREAKING: Paris prosecutor: Gunman with\u003cbr\u003ehostages in kosher market in\u003cbr\u003eeastern Paris; police SWAT on\u003cbr\u003escene.\u201d\u003cbr\u003eFri Jan 09 12:56:13 +0000 2015"}, {"group": 1959, "id": 4, "label": "553535804526837760", "shape": "dot", "size": 10, "title": "553535804526837760\u003cbr\u003eANOTHER HOSTAGE SITUATION?! \"@AP: BREAKING:\u003cbr\u003eParis prosecutor: Gunman with hostages\u003cbr\u003ein kosher market in eastern\u003cbr\u003eParis; police SWAT on scene.\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:56:34 +0000 2015"}, {"group": 1959, "id": 5, "label": "553535868108304384", "shape": "dot", "size": 10, "title": "553535868108304384\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eteam on scene.\u201d\u003cbr\u003eFri Jan 09 12:56:49 +0000 2015"}, {"group": 1959, "id": 6, "label": "553536012186828800", "shape": "dot", "size": 10, "title": "553536012186828800\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u201d \u00a1De mal en\u003cbr\u003epeor!\u003cbr\u003eFri Jan 09 12:57:24 +0000 2015"}, {"group": 1959, "id": 7, "label": "553536138548625408", "shape": "dot", "size": 10, "title": "553536138548625408\u003cbr\u003e@AP Good quality pictures: http://t.co/Xh5bm7I3Su\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:57:54 +0000 2015"}, {"group": 1959, "id": 8, "label": "553536165111160832", "shape": "dot", "size": 10, "title": "553536165111160832\u003cbr\u003e@AP 500 m from my\u003cbr\u003edaughter s school and we\u003cbr\u003ecant pick up the kids\u003cbr\u003e!!!\u003cbr\u003eFri Jan 09 12:58:00 +0000 2015"}, {"group": 1959, "id": 9, "label": "553536257805279232", "shape": "dot", "size": 10, "title": "553536257805279232\u003cbr\u003e\u201cAnother one?! @AP: BREAKING: Paris\u003cbr\u003eprosecutor: Gunman with hostages in\u003cbr\u003ekosher market in eastern Paris;\u003cbr\u003epolice SWAT on scene.\u201d\u003cbr\u003eFri Jan 09 12:58:22 +0000 2015"}, {"group": 1959, "id": 10, "label": "553536329154572288", "shape": "dot", "size": 10, "title": "553536329154572288\u003cbr\u003elawd, what\u0027s going on? RT\u003cbr\u003e@AP BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u003cbr\u003eFri Jan 09 12:58:39 +0000 2015"}, {"group": 1959, "id": 11, "label": "553536383693103104", "shape": "dot", "size": 10, "title": "553536383693103104\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u201d Not again. Stop!\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:58:52 +0000 2015"}, {"group": 1959, "id": 12, "label": "553536386759151616", "shape": "dot", "size": 10, "title": "553536386759151616\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u201d Ugh.\u003cbr\u003eFri Jan 09 12:58:53 +0000 2015"}, {"group": 1959, "id": 14, "label": "553536489284325377", "shape": "dot", "size": 10, "title": "553536489284325377\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u201d\u003cbr\u003eFri Jan 09 12:59:17 +0000 2015"}, {"group": 1959, "id": 15, "label": "553536493856489472", "shape": "dot", "size": 10, "title": "553536493856489472\u003cbr\u003eNow TWO hostage situations RT\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ew/ hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\"\u003cbr\u003eFri Jan 09 12:59:19 +0000 2015"}, {"group": 1959, "id": 17, "label": "553536622218985472", "shape": "dot", "size": 10, "title": "553536622218985472\u003cbr\u003eJUST IN: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene (via @AP)\u003cbr\u003eFri Jan 09 12:59:49 +0000 2015"}, {"group": 1959, "id": 18, "label": "553537169957335040", "shape": "dot", "size": 10, "title": "553537169957335040\u003cbr\u003e@AP That\u0027s so not kosher.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:02:00 +0000 2015"}, {"group": 1959, "id": 19, "label": "553537396890157056", "shape": "dot", "size": 10, "title": "553537396890157056\u003cbr\u003e\u201c@AP: BREAKING: Paris prosecutor: Gunman\u003cbr\u003ewith hostages in kosher market\u003cbr\u003ein eastern Paris; police SWAT\u003cbr\u003eon scene.\u201d Pray for Paris!\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:02:54 +0000 2015"}, {"group": 1959, "id": 20, "label": "553537525936320513", "shape": "dot", "size": 10, "title": "553537525936320513\u003cbr\u003e@APDiploWriter @AP Kosher meal to\u003cbr\u003ebe Halal\u003cbr\u003eFri Jan 09 13:03:25 +0000 2015"}, {"group": 1959, "id": 13, "label": "553536389225398273", "shape": "dot", "size": 10, "title": "553536389225398273\u003cbr\u003e@LP_Angels @AP Viens vite tenter\u003cbr\u003ede gagner 500\u20ac, un iPhone,\u003cbr\u003eun Macbook... sur http://t.co/RCCYMrB6AL #BonPlan\u003cbr\u003e#Jeu\u003cbr\u003eFri Jan 09 12:58:54 +0000 2015"}, {"group": 1959, "id": 16, "label": "553536567323947010", "shape": "dot", "size": 10, "title": "553536567323947010\u003cbr\u003e@LP_Angels @AP so sorry for\u003cbr\u003ethis. I hope they are\u003cbr\u003eall safe and sound soon\u003cbr\u003e:(\u003cbr\u003eFri Jan 09 12:59:36 +0000 2015"}, {"group": 1959, "id": 21, "label": "553541663009046528", "shape": "dot", "size": 10, "title": "553541663009046528\u003cbr\u003e@LP_Angels been thru a lockdown\u003cbr\u003ehere with my kids. Stay\u003cbr\u003estrong ...am praying for all\u003cbr\u003eof you\u003cbr\u003eFri Jan 09 13:19:51 +0000 2015"}, {"group": 1959, "id": 22, "label": "553543818814164992", "shape": "dot", "size": 10, "title": "553543818814164992\u003cbr\u003e@LP_Angels @AP praying for you\u003cbr\u003e\ud83d\ude4f\u2764\ufe0f\u003cbr\u003eFri Jan 09 13:28:25 +0000 2015"}, {"group": 1959, "id": 24, "label": "553646617661026304", "shape": "dot", "size": 10, "title": "553646617661026304\u003cbr\u003e@JeffAbramo @AP they re all\u003cbr\u003esafe . Prayers for the\u003cbr\u003evictimes and their families\u003cbr\u003eFri Jan 09 20:16:54 +0000 2015"}, {"group": 1959, "id": 23, "label": "553645014996508672", "shape": "dot", "size": 10, "title": "553645014996508672\u003cbr\u003e@angelique_cav @AP kids are fine.\u003cbr\u003escared about what happened and\u003cbr\u003easking thousands of questions. God\u003cbr\u003ebless the victimes and their\u003cbr\u003efamilies\u003cbr\u003eFri Jan 09 20:10:32 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 20, "weight": 1}, {"from": 8, "to": 13, "weight": 1}, {"from": 8, "to": 16, "weight": 1}, {"from": 8, "to": 21, "weight": 1}, {"from": 8, "to": 22, "weight": 1}, {"from": 16, "to": 24, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

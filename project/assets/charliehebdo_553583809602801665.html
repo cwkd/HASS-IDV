@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1536, "id": 0, "label": "553583809602801665", "shape": "dot", "size": 10, "title": "553583809602801665\u003cbr\u003eFRENCH POLICE START RAID ON\u003cbr\u003eCHARLIE HEBDO SUSPECTS\u0027 HIDEOUT.\u003cbr\u003eFri Jan 09 16:07:19 +0000 2015"}, {"group": 1536, "id": 1, "label": "553583915542536192", "shape": "dot", "size": 10, "title": "553583915542536192\u003cbr\u003e@PzFeed Yes! This gon be\u003cbr\u003egood!\u003cbr\u003eFri Jan 09 16:07:45 +0000 2015"}, {"group": 1536, "id": 2, "label": "553583920042606593", "shape": "dot", "size": 10, "title": "553583920042606593\u003cbr\u003e@PzFeed Crota?\u003cbr\u003eFri Jan 09 16:07:46 +0000 2015"}, {"group": 1536, "id": 3, "label": "553584019925774338", "shape": "dot", "size": 10, "title": "553584019925774338\u003cbr\u003e@PzFeed Send those ASSHOLES TO\u003cbr\u003eHELL!\u003cbr\u003eFri Jan 09 16:08:10 +0000 2015"}, {"group": 1536, "id": 4, "label": "553584127362879489", "shape": "dot", "size": 10, "title": "553584127362879489\u003cbr\u003e@PzFeed Vault of Glass?\u003cbr\u003eFri Jan 09 16:08:35 +0000 2015"}, {"group": 1536, "id": 5, "label": "553584141560975360", "shape": "dot", "size": 10, "title": "553584141560975360\u003cbr\u003e\u201c@PzFeed: FRENCH POLICE START RAID\u003cbr\u003eON CHARLIE HEBDO SUSPECTS\u0027 HIDEOUT.\u201d\n\nFast\u003cbr\u003eyou\u003cbr\u003eFri Jan 09 16:08:39 +0000 2015"}, {"group": 1536, "id": 6, "label": "553584365197074432", "shape": "dot", "size": 10, "title": "553584365197074432\u003cbr\u003e@PzFeed @hrvsz hopefully they only\u003cbr\u003eget energy and shards\u003cbr\u003eFri Jan 09 16:09:32 +0000 2015"}, {"group": 1536, "id": 7, "label": "553636415268208641", "shape": "dot", "size": 10, "title": "553636415268208641\u003cbr\u003e@cassie_robson05 @pzfeed Expressions of sorrow\u003cbr\u003eand anger after Charlie Hebdo\u003cbr\u003eattack http://t.co/LQdgn799Vz\u003cbr\u003eFri Jan 09 19:36:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

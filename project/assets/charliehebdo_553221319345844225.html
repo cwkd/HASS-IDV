@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1187, "id": 0, "label": "553221319345844225", "shape": "dot", "size": 10, "title": "553221319345844225\u003cbr\u003eWe mourn WWF friend and\u003cbr\u003esupporter Tignous, killed in yesterday\u0027s\u003cbr\u003eCharlie Hebdo attack in Paris.\u003cbr\u003e#JeSuisCharlie http://t.co/uTy1NbGHF7\u003cbr\u003eThu Jan 08 16:06:55 +0000 2015"}, {"group": 1187, "id": 1, "label": "553237520088330241", "shape": "dot", "size": 10, "title": "553237520088330241\u003cbr\u003e@World_Wildlife sending prayers\u003cbr\u003eThu Jan 08 17:11:18 +0000 2015"}, {"group": 1187, "id": 2, "label": "553276659726819328", "shape": "dot", "size": 10, "title": "553276659726819328\u003cbr\u003eOne of your Communications Officers\u003cbr\u003eis positively happy about it\u003cbr\u003e@World_Wildlife http://t.co/JSBRcN1qKm\u003cbr\u003eThu Jan 08 19:46:49 +0000 2015"}, {"group": 1187, "id": 3, "label": "554210399898583040", "shape": "dot", "size": 10, "title": "554210399898583040\u003cbr\u003e@World_Wildlife Sad :\u0027(\u003cbr\u003eSun Jan 11 09:37:10 +0000 2015"}, {"group": 1187, "id": 4, "label": "554676053785202688", "shape": "dot", "size": 10, "title": "554676053785202688\u003cbr\u003eRT @World_Wildlife We mourn WWF\u003cbr\u003efriend and supporter Tignous, killed\u003cbr\u003ein #CharlieHebdo attack in Paris.\u003cbr\u003e#JeSuisCharlie http://t.co/9GPWlT2rvU\u003cbr\u003eMon Jan 12 16:27:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

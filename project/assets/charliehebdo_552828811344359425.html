@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 381, "id": 0, "label": "552828811344359425", "shape": "dot", "size": 10, "title": "552828811344359425\u003cbr\u003eShould our media show Charlie\u003cbr\u003eHedbo cartoons like this? Absolutely.\u003cbr\u003e#JeSuisCharlie http://t.co/E8HHT3CcSA\u201d\u003cbr\u003eWed Jan 07 14:07:14 +0000 2015"}, {"group": 381, "id": 1, "label": "552830581147721728", "shape": "dot", "size": 10, "title": "552830581147721728\u003cbr\u003e@brianmoore666 And more of them\u003cbr\u003etoo\u003cbr\u003eWed Jan 07 14:14:16 +0000 2015"}, {"group": 381, "id": 2, "label": "552830869728423936", "shape": "dot", "size": 10, "title": "552830869728423936\u003cbr\u003e@brianmoore666 damn straight Brian. Well\u003cbr\u003edone for having the balls\u003cbr\u003eto tweet that.\u003cbr\u003eWed Jan 07 14:15:25 +0000 2015"}, {"group": 381, "id": 3, "label": "552830982500675584", "shape": "dot", "size": 10, "title": "552830982500675584\u003cbr\u003e@brianmoore666 well done brian :)\u003cbr\u003egood to see someone has\u003cbr\u003eballs, still.\u003cbr\u003eWed Jan 07 14:15:51 +0000 2015"}, {"group": 381, "id": 4, "label": "552832937880985600", "shape": "dot", "size": 10, "title": "552832937880985600\u003cbr\u003e@brianmoore666 Careless tweet...For the sake\u003cbr\u003eof a few crazy nutters\u003cbr\u003eyou have offended the millions\u003cbr\u003eof peaceful Muslim\u0027s @MoAnsar @mshafiquk\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:23:38 +0000 2015"}, {"group": 381, "id": 5, "label": "552834104614723584", "shape": "dot", "size": 10, "title": "552834104614723584\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk What\u003cbr\u003epeaceful Muslims ?\u003cbr\u003eWed Jan 07 14:28:16 +0000 2015"}, {"group": 381, "id": 6, "label": "552834126488014849", "shape": "dot", "size": 10, "title": "552834126488014849\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk Brian\u003cbr\u003ewas right. Where are the\u003cbr\u003e\"moderates\" crying out agaibst these\u003cbr\u003emurders?? Usual silence.\u003cbr\u003eWed Jan 07 14:28:21 +0000 2015"}, {"group": 381, "id": 7, "label": "552834147816058881", "shape": "dot", "size": 10, "title": "552834147816058881\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk let\u003cbr\u003eme guess, you didn\u0027t understand\u003cbr\u003ethat cartoon\u003cbr\u003eWed Jan 07 14:28:26 +0000 2015"}, {"group": 381, "id": 8, "label": "552834195639500800", "shape": "dot", "size": 10, "title": "552834195639500800\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk if\u003cbr\u003eyour faith cannot stand up\u003cbr\u003eto pen and ink, I\u0027d\u003cbr\u003elook for another one\u003cbr\u003eWed Jan 07 14:28:38 +0000 2015"}, {"group": 381, "id": 9, "label": "552835335097704449", "shape": "dot", "size": 10, "title": "552835335097704449\u003cbr\u003e@Naz1o @brianmoore666 \u0026gt;\u0026gt; You don\u0027t\u003cbr\u003ehave a right not to\u003cbr\u003ebe offended, taking offence is\u003cbr\u003esomething you choose.\u003cbr\u003eWed Jan 07 14:33:09 +0000 2015"}, {"group": 381, "id": 10, "label": "552837271884668930", "shape": "dot", "size": 10, "title": "552837271884668930\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk Its\u003cbr\u003enot careless \u0026amp; wouldn\u0027t offend\u003cbr\u003ethe majority. Ask @MaajidNawaz instead\u003cbr\u003eof known sabre rattlers.\u003cbr\u003eWed Jan 07 14:40:51 +0000 2015"}, {"group": 381, "id": 11, "label": "552837465590202368", "shape": "dot", "size": 10, "title": "552837465590202368\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk Shut\u003cbr\u003eda f**k up. http://t.co/4TMRPAQujL\u003cbr\u003eWed Jan 07 14:41:37 +0000 2015"}, {"group": 381, "id": 16, "label": "552838990043549696", "shape": "dot", "size": 10, "title": "552838990043549696\u003cbr\u003e@Naz1o @brianmoore666 @MoAnsar @mshafiquk Oh\u003cbr\u003eFUCK OFF!\u003cbr\u003eWed Jan 07 14:47:41 +0000 2015"}, {"group": 381, "id": 19, "label": "552839797614854145", "shape": "dot", "size": 10, "title": "552839797614854145\u003cbr\u003e.@Naz1o @brianmoore666 @MoAnsar @mshafiquk getting\u003cbr\u003eoffended by cartoons? Ive been\u003cbr\u003egetting offended by Islamist barbarity\u003cbr\u003e\u0026amp; killing for years\u003cbr\u003eWed Jan 07 14:50:53 +0000 2015"}, {"group": 381, "id": 13, "label": "552837678082035712", "shape": "dot", "size": 10, "title": "552837678082035712\u003cbr\u003e@SteveJRussell @Naz1o @brianmoore666 @MoAnsar @mshafiquk\u003cbr\u003eThe vast majority are peaceful?\u003cbr\u003eAnd majority won\u0027t be offended\u003cbr\u003eby that tweet.\u003cbr\u003eWed Jan 07 14:42:28 +0000 2015"}, {"group": 381, "id": 12, "label": "552837491695566848", "shape": "dot", "size": 10, "title": "552837491695566848\u003cbr\u003e@paddygwant @Naz1o @brianmoore666 @MoAnsar @mshafiquk\u003cbr\u003ethere are countless moderates on\u003cbr\u003eTwitter, on the news, on\u003cbr\u003eFacebook, all condemning it.\u003cbr\u003eWed Jan 07 14:41:43 +0000 2015"}, {"group": 381, "id": 14, "label": "552837804611620864", "shape": "dot", "size": 10, "title": "552837804611620864\u003cbr\u003e@paddygwant @Naz1o @brianmoore666 @MoAnsar @mshafiquk\u003cbr\u003ehuh? my timeline is awash\u003cbr\u003ewith Muslims condemning this. Don\u0027t\u003cbr\u003estir.\u003cbr\u003eWed Jan 07 14:42:58 +0000 2015"}, {"group": 381, "id": 17, "label": "552839335238979584", "shape": "dot", "size": 10, "title": "552839335238979584\u003cbr\u003e@paddygwant they\u0027re all here, for\u003cbr\u003eexample: http://t.co/M0V0bIqcGP\u003cbr\u003eWed Jan 07 14:49:03 +0000 2015"}, {"group": 381, "id": 15, "label": "552838463893291009", "shape": "dot", "size": 10, "title": "552838463893291009\u003cbr\u003e\u201c@ianmakgill: @Naz1o @brianmoore666 \u0026gt;\u0026gt; You\u003cbr\u003edon\u0027t have a right not\u003cbr\u003eto be offended, taking offence\u003cbr\u003eis something you choose.\u201d\u003cbr\u003eWed Jan 07 14:45:35 +0000 2015"}, {"group": 381, "id": 18, "label": "552839604215500802", "shape": "dot", "size": 10, "title": "552839604215500802\u003cbr\u003e@GreggCarter @SteveJRussell @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk alot of Muslims are\u003cbr\u003epeaceful i hate extremist Muslims\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:50:07 +0000 2015"}, {"group": 381, "id": 24, "label": "552841658157776896", "shape": "dot", "size": 10, "title": "552841658157776896\u003cbr\u003e@Busty1956 @Naz1o @brianmoore666 @MoAnsar @mshafiquk\u003cbr\u003emine isn\u0027t. And neither is\u003cbr\u003ethe press. Issue = muslims\u003cbr\u003ehave gone too far (again)!\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:58:17 +0000 2015"}, {"group": 381, "id": 20, "label": "552840076498333697", "shape": "dot", "size": 10, "title": "552840076498333697\u003cbr\u003e@brianmoore666 @ianmakgill In principle, of\u003cbr\u003ecourse. However, do those attacking\u003cbr\u003eChed Evans\u0027 victim online have\u003cbr\u003ethe right to do so?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:52:00 +0000 2015"}, {"group": 381, "id": 36, "label": "552845578368200706", "shape": "dot", "size": 10, "title": "552845578368200706\u003cbr\u003eAt best only partly true.\u003cbr\u003eThe power of the cartoon\u003cbr\u003e(genre) is knowledge that it\u003cbr\u003ewill offend. #Intent @brianmoore666 @ianmakgill\u003cbr\u003e@Naz1o\u003cbr\u003eWed Jan 07 15:13:51 +0000 2015"}, {"group": 381, "id": 23, "label": "552841351529000962", "shape": "dot", "size": 10, "title": "552841351529000962\u003cbr\u003e@leedonut tick the box condemnation.\u003cbr\u003eThey need to be as\u003cbr\u003epublic as those committing these\u003cbr\u003eattrocities, not saying it in\u003cbr\u003ea darkened room!!\u003cbr\u003eWed Jan 07 14:57:04 +0000 2015"}, {"group": 381, "id": 21, "label": "552840402932596737", "shape": "dot", "size": 10, "title": "552840402932596737\u003cbr\u003e@xforgottenherox @SteveJRussell @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk exactly! These people don\u0027t\u003cbr\u003erepresent the majority.\u003cbr\u003eWed Jan 07 14:53:17 +0000 2015"}, {"group": 381, "id": 37, "label": "552898160969146369", "shape": "dot", "size": 10, "title": "552898160969146369\u003cbr\u003e@AndyBarrick @brianmoore666 sadly, yes. We\u003cbr\u003ecannot silence someone for being\u003cbr\u003eodious. Rightly, we have laws\u003cbr\u003efor threats and harassment.\u003cbr\u003eWed Jan 07 18:42:48 +0000 2015"}, {"group": 381, "id": 22, "label": "552840930685091840", "shape": "dot", "size": 10, "title": "552840930685091840\u003cbr\u003e@GreggCarter @xforgottenherox @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk How do we deal\u003cbr\u003ewith this extremism ? Strikes\u003cbr\u003eme its unresolvable\u003cbr\u003eWed Jan 07 14:55:23 +0000 2015"}, {"group": 381, "id": 25, "label": "552841754408648704", "shape": "dot", "size": 10, "title": "552841754408648704\u003cbr\u003e@SteveJRussell @GreggCarter @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk when you have people\u003cbr\u003elike anjemchoudary still in the\u003cbr\u003euk\u003cbr\u003eWed Jan 07 14:58:40 +0000 2015"}, {"group": 381, "id": 26, "label": "552841805394624512", "shape": "dot", "size": 10, "title": "552841805394624512\u003cbr\u003e@SteveJRussell @GreggCarter @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk he is a threat\u003cbr\u003eto the peace of this\u003cbr\u003ecountry along with his friends\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:58:52 +0000 2015"}, {"group": 381, "id": 27, "label": "552841839922151424", "shape": "dot", "size": 10, "title": "552841839922151424\u003cbr\u003e@SteveJRussell @GreggCarter @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk id remove and ban\u003cbr\u003ethem from the UK\u003cbr\u003eWed Jan 07 14:59:00 +0000 2015"}, {"group": 381, "id": 31, "label": "552842724601520128", "shape": "dot", "size": 10, "title": "552842724601520128\u003cbr\u003e@SteveJRussell @xforgottenherox @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk Condemn extremists while standing\u003cbr\u003eside by side with decent\u003cbr\u003eMuslims\u003cbr\u003eWed Jan 07 15:02:31 +0000 2015"}, {"group": 381, "id": 29, "label": "552842184639389696", "shape": "dot", "size": 10, "title": "552842184639389696\u003cbr\u003e@paddygwant Ummm, OK mate.\u003cbr\u003eWed Jan 07 15:00:22 +0000 2015"}, {"group": 381, "id": 28, "label": "552841960806174721", "shape": "dot", "size": 10, "title": "552841960806174721\u003cbr\u003e@paddygwant @Naz1o @brianmoore666 @MoAnsar @mshafiquk\u003cbr\u003emaybe you\u0027re following the wrong\u003cbr\u003epeople then Paddy.\u003cbr\u003eWed Jan 07 14:59:29 +0000 2015"}, {"group": 381, "id": 30, "label": "552842403955376128", "shape": "dot", "size": 10, "title": "552842403955376128\u003cbr\u003e@paddygwant @Naz1o @brianmoore666 distinguish between\u003cbr\u003eIslamists and Muslims. The latter\u003cbr\u003eare by far the biggest\u003cbr\u003evictims of the former.\u003cbr\u003eWed Jan 07 15:01:15 +0000 2015"}, {"group": 381, "id": 34, "label": "552843001144569856", "shape": "dot", "size": 10, "title": "552843001144569856\u003cbr\u003e@paddygwant @brianmoore666 Here you go.\u003cbr\u003eFrench Muslim groups condemn Paris\u003cbr\u003ekillings and offer condolences to\u003cbr\u003efamilies http://t.co/jTYqofUuSW\u003cbr\u003eWed Jan 07 15:03:37 +0000 2015"}, {"group": 381, "id": 32, "label": "552842900791631872", "shape": "dot", "size": 10, "title": "552842900791631872\u003cbr\u003e@GreggCarter @SteveJRussell @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk alot of muslims hate\u003cbr\u003ethem as well\u003cbr\u003eWed Jan 07 15:03:13 +0000 2015"}, {"group": 381, "id": 33, "label": "552842949676253186", "shape": "dot", "size": 10, "title": "552842949676253186\u003cbr\u003e@GreggCarter @SteveJRussell @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk its totally ignorant and\u003cbr\u003estupid to act like all\u003cbr\u003emuslims are bad\u003cbr\u003eWed Jan 07 15:03:25 +0000 2015"}, {"group": 381, "id": 35, "label": "552843002834857986", "shape": "dot", "size": 10, "title": "552843002834857986\u003cbr\u003e@GreggCarter @SteveJRussell @Naz1o @brianmoore666 @MoAnsar\u003cbr\u003e@mshafiquk lets also not act\u003cbr\u003elike non muslims are saints\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:03:37 +0000 2015"}, {"group": 381, "id": 38, "label": "552911222694498305", "shape": "dot", "size": 10, "title": "552911222694498305\u003cbr\u003e@Busty1956 @brianmoore666 can\u0027t see anything\u003cbr\u003eon that link...does it refresh/\u003cbr\u003eupdate?\u003cbr\u003eWed Jan 07 19:34:42 +0000 2015"}, {"group": 381, "id": 39, "label": "552946255333429248", "shape": "dot", "size": 10, "title": "552946255333429248\u003cbr\u003e@paddygwant @brianmoore666 Here. Muslims demonstrate:\u003cbr\u003e\"I am Muslim. I am\u003cbr\u003eCharlie\" https://t.co/g9ytHYyeMH\u003cbr\u003eWed Jan 07 21:53:55 +0000 2015"}, {"group": 381, "id": 40, "label": "553099962125668352", "shape": "dot", "size": 10, "title": "553099962125668352\u003cbr\u003e@Busty1956 @brianmoore666 i really, really\u003cbr\u003ehope this will start true\u003cbr\u003eintegration and not segregation...but i\u003cbr\u003eremain sceptical\u003cbr\u003eThu Jan 08 08:04:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 8, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 4, "to": 10, "weight": 1}, {"from": 4, "to": 11, "weight": 1}, {"from": 4, "to": 16, "weight": 1}, {"from": 4, "to": 19, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 6, "to": 12, "weight": 1}, {"from": 6, "to": 14, "weight": 1}, {"from": 6, "to": 17, "weight": 1}, {"from": 9, "to": 15, "weight": 1}, {"from": 13, "to": 18, "weight": 1}, {"from": 14, "to": 24, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 15, "to": 36, "weight": 1}, {"from": 17, "to": 23, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 20, "to": 37, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 22, "to": 26, "weight": 1}, {"from": 22, "to": 27, "weight": 1}, {"from": 22, "to": 31, "weight": 1}, {"from": 23, "to": 29, "weight": 1}, {"from": 24, "to": 28, "weight": 1}, {"from": 24, "to": 30, "weight": 1}, {"from": 24, "to": 34, "weight": 1}, {"from": 31, "to": 32, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 31, "to": 35, "weight": 1}, {"from": 34, "to": 38, "weight": 1}, {"from": 38, "to": 39, "weight": 1}, {"from": 39, "to": 40, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

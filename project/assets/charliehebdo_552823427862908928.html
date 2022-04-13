@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 318, "id": 0, "label": "552823427862908928", "shape": "dot", "size": 10, "title": "552823427862908928\u003cbr\u003ePublic schools are closed, France\u003cbr\u003eraises terror alert to highest\u003cbr\u003elevel after attack at #CharlieHebdo\u003cbr\u003ehttp://t.co/L98elfVNsf\u003cbr\u003eWed Jan 07 13:45:50 +0000 2015"}, {"group": 318, "id": 1, "label": "552824222138257408", "shape": "dot", "size": 10, "title": "552824222138257408\u003cbr\u003e@nytimesworld Wise move given the\u003cbr\u003etypes of atrocity these bastards\u003cbr\u003eare capable of perpetrating against\u003cbr\u003edefenceless little children.\u003cbr\u003eWed Jan 07 13:49:00 +0000 2015"}, {"group": 318, "id": 2, "label": "552824845189140481", "shape": "dot", "size": 10, "title": "552824845189140481\u003cbr\u003e\u201c@nytimesworld: Public schools are closed,\u003cbr\u003eFrance raises terror alert to\u003cbr\u003ehighest level after attack at\u003cbr\u003e#CharlieHebdo http://t.co/jKJTM2YKNL\u201d\u003cbr\u003eWed Jan 07 13:51:28 +0000 2015"}, {"group": 318, "id": 3, "label": "552825021736161280", "shape": "dot", "size": 10, "title": "552825021736161280\u003cbr\u003e@nytimesworld Please : there is\u003cbr\u003eNO school on Wednesday afternoons\u003cbr\u003ein France. Schools are not\u003cbr\u003eclosed. But field trips are\u003cbr\u003eforbidden\u003cbr\u003eWed Jan 07 13:52:10 +0000 2015"}, {"group": 318, "id": 5, "label": "552825254243209216", "shape": "dot", "size": 10, "title": "552825254243209216\u003cbr\u003e@nytimesworld\nPlz #RT\nWe stand w/ the\u003cbr\u003evalue of\nfreedom of expression\u0026amp; free\u003cbr\u003espeech\n#ParisShooting Viva #CharlieHebdo \nhttp://t.co/tTdF2IUgIM\u003cbr\u003eWed Jan 07 13:53:06 +0000 2015"}, {"group": 318, "id": 6, "label": "552825323747041281", "shape": "dot", "size": 10, "title": "552825323747041281\u003cbr\u003e@nytimesworld @mandyldewaal Stable door, horse\u003cbr\u003ebolted.\u003cbr\u003eWed Jan 07 13:53:22 +0000 2015"}, {"group": 318, "id": 7, "label": "552825740669255681", "shape": "dot", "size": 10, "title": "552825740669255681\u003cbr\u003e\u201c@nytimesworld: 12 dead, schools R\u003cbr\u003eclosed, #France raises terror alert\u003cbr\u003e2 highest level after attack\u003cbr\u003eat #CharlieHebdo http://t.co/TDpHoFSTLE\u201d\u003cbr\u003eWed Jan 07 13:55:02 +0000 2015"}, {"group": 318, "id": 9, "label": "552826187157086208", "shape": "dot", "size": 10, "title": "552826187157086208\u003cbr\u003e@nytimesworld #Sure 63 Drills Since\u003cbr\u003e93 Where #Drill = Actual\u003cbr\u003eTerrorist #Attack #Waco Explosion \u003cbr\u003ehttps://t.co/jDraBaijhj\u003cbr\u003eWed Jan 07 13:56:48 +0000 2015"}, {"group": 318, "id": 13, "label": "552831063303917568", "shape": "dot", "size": 10, "title": "552831063303917568\u003cbr\u003e@nytimesworld At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:16:11 +0000 2015"}, {"group": 318, "id": 15, "label": "552836788411043840", "shape": "dot", "size": 10, "title": "552836788411043840\u003cbr\u003e.@nytimesworld: Public schools are closed,France\u003cbr\u003eraises terror alert to highest\u003cbr\u003elevel after attack at #CharlieHebdo\u003cbr\u003ehttp://t.co/gnxeYkuj16\u003cbr\u003eWed Jan 07 14:38:56 +0000 2015"}, {"group": 318, "id": 16, "label": "552836902588776448", "shape": "dot", "size": 10, "title": "552836902588776448\u003cbr\u003eFrance closes schools, raises terror\u003cbr\u003ealert after deadly attack at\u003cbr\u003e#CharlieHebdo newspaper: http://t.co/xQSzdQkTGK @nytimesworld\u003cbr\u003eWed Jan 07 14:39:23 +0000 2015"}, {"group": 318, "id": 17, "label": "552847096836284416", "shape": "dot", "size": 10, "title": "552847096836284416\u003cbr\u003e@nytimesworld You let them go\u003cbr\u003eand fight to Syria, killing\u003cbr\u003eSyrians there, now it payback\u003cbr\u003etime I guest. That my\u003cbr\u003eopinion.\u003cbr\u003eWed Jan 07 15:19:53 +0000 2015"}, {"group": 318, "id": 4, "label": "552825132100890625", "shape": "dot", "size": 10, "title": "552825132100890625\u003cbr\u003e@SayMwah @nytimesworld it\u0027s Wednesday :\u003cbr\u003ethere is no school on\u003cbr\u003eWednesdays.\u003cbr\u003eWed Jan 07 13:52:37 +0000 2015"}, {"group": 318, "id": 8, "label": "552826099567448064", "shape": "dot", "size": 10, "title": "552826099567448064\u003cbr\u003e@FabienneCASSAGN @nytimesworld university and two\u003cbr\u003eyears technical degrees have school\u003cbr\u003eon wednesday afternoon\u003cbr\u003eWed Jan 07 13:56:27 +0000 2015"}, {"group": 318, "id": 10, "label": "552826958770626561", "shape": "dot", "size": 10, "title": "552826958770626561\u003cbr\u003e@FabienneCASSAGN @nytimesworld jeudi, vendredi? Le\u003cbr\u003ejour n\u0027est pas important. Mais\u003cbr\u003eles enfants sont!\u003cbr\u003eWed Jan 07 13:59:52 +0000 2015"}, {"group": 318, "id": 12, "label": "552828639285637120", "shape": "dot", "size": 10, "title": "552828639285637120\u003cbr\u003e@5sos_jennah Universities are not closed.\u003cbr\u003eNO schools are closed today.\u003cbr\u003eFor heaven\u0027s sake!  @nytimesworld\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:06:33 +0000 2015"}, {"group": 318, "id": 14, "label": "552831376157061120", "shape": "dot", "size": 10, "title": "552831376157061120\u003cbr\u003e@AdamLotfy2004 @nytimesworld Thank you for\u003cbr\u003eyour efforts to expose facts\u003cbr\u003eBest #DrEd\u003cbr\u003eWed Jan 07 14:17:25 +0000 2015"}, {"group": 318, "id": 11, "label": "552828333042724864", "shape": "dot", "size": 10, "title": "552828333042724864\u003cbr\u003e@SayMwah @nytimesworld there is NO\u003cbr\u003einformation about schools being closed\u003cbr\u003eeither today, or tomorrow.\u003cbr\u003eWed Jan 07 14:05:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 4, "to": 10, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 10, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

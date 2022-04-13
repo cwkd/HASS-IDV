@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 108, "id": 0, "label": "552805970536333314", "shape": "dot", "size": 10, "title": "552805970536333314\u003cbr\u003eAttempts to extend blame for\u003cbr\u003ethis to all Muslims should\u003cbr\u003ebe treated with the same\u003cbr\u003edisgust as attempts to justify\u003cbr\u003ethe attacks. #CharlieHebdo\u003cbr\u003eWed Jan 07 12:36:28 +0000 2015"}, {"group": 108, "id": 1, "label": "552806345385443330", "shape": "dot", "size": 10, "title": "552806345385443330\u003cbr\u003e@iyad_elbaghdadi it is crazy. Video\u003cbr\u003efootage will back such claims...\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:37:58 +0000 2015"}, {"group": 108, "id": 2, "label": "552808230527565824", "shape": "dot", "size": 10, "title": "552808230527565824\u003cbr\u003e@iyad_elbaghdadi Amen.\u003cbr\u003eWed Jan 07 12:45:27 +0000 2015"}, {"group": 108, "id": 3, "label": "552808287834738688", "shape": "dot", "size": 10, "title": "552808287834738688\u003cbr\u003e@iyad_elbaghdadi Not sure about that\u003cbr\u003eanymore...there is something about the\u003cbr\u003ereligion that is driving people\u003cbr\u003etowards terrorism\u003cbr\u003eWed Jan 07 12:45:41 +0000 2015"}, {"group": 108, "id": 4, "label": "552808467569053696", "shape": "dot", "size": 10, "title": "552808467569053696\u003cbr\u003e.@iyad_elbaghdadi you are not serious?\u003cbr\u003eWho else to blame? so\u003cbr\u003ecalled Islamic renewal on the\u003cbr\u003ehand of \"moderates\" radicalized \u003cbr\u003ethe masses!\u003cbr\u003eWed Jan 07 12:46:24 +0000 2015"}, {"group": 108, "id": 5, "label": "552810568537870336", "shape": "dot", "size": 10, "title": "552810568537870336\u003cbr\u003e@iyad_elbaghdadi Without your own mechanism\u003cbr\u003eto control this, you will\u003cbr\u003ebe seen as complicit. No\u003cbr\u003eone cares what a nice\u003cbr\u003eguy you are.\u003cbr\u003eWed Jan 07 12:54:44 +0000 2015"}, {"group": 108, "id": 6, "label": "552812568041897984", "shape": "dot", "size": 10, "title": "552812568041897984\u003cbr\u003e@iyad_elbaghdadi @Axxeen when will we\u003cbr\u003esee mass protests from \u0027moderate\u0027\u003cbr\u003eMuslims against these killings? I\u003cbr\u003ethink highly unlikely\u003cbr\u003eWed Jan 07 13:02:41 +0000 2015"}, {"group": 108, "id": 7, "label": "552814990106038272", "shape": "dot", "size": 10, "title": "552814990106038272\u003cbr\u003e@iyad_elbaghdadi There must be muslims\u003cbr\u003eknowing these criminals. Will they\u003cbr\u003etalk?\u003cbr\u003eWed Jan 07 13:12:19 +0000 2015"}, {"group": 108, "id": 8, "label": "552817205088251904", "shape": "dot", "size": 10, "title": "552817205088251904\u003cbr\u003e@iyad_elbaghdadi @MattGoldstein26 Can we at\u003cbr\u003eleast assume that these murderers\u003cbr\u003edemand and expect the support\u003cbr\u003eof all Muslims?\u003cbr\u003eWed Jan 07 13:21:07 +0000 2015"}, {"group": 108, "id": 9, "label": "552823759611383808", "shape": "dot", "size": 10, "title": "552823759611383808\u003cbr\u003e@iyad_elbaghdadi @acarvin It\u0027s a good\u003cbr\u003epoint. But I\u0027m not sure\u003cbr\u003eI would TOTALLY equate hatred\u003cbr\u003ewith actual physical violence.\u003cbr\u003eWed Jan 07 13:47:09 +0000 2015"}, {"group": 108, "id": 10, "label": "552823777189322752", "shape": "dot", "size": 10, "title": "552823777189322752\u003cbr\u003e@iyad_elbaghdadi @jgriffiths Of course. But\u003cbr\u003ethe solution of doing nothing\u003cbr\u003eisn\u0027t working.\u003cbr\u003eWed Jan 07 13:47:14 +0000 2015"}, {"group": 108, "id": 11, "label": "552828118118182912", "shape": "dot", "size": 10, "title": "552828118118182912\u003cbr\u003e@iyad_elbaghdadi @ParidePalumbo Muslims are good\u003cbr\u003epeople and they should find,\u003cbr\u003efight and condemn killers.\u003cbr\u003eWed Jan 07 14:04:29 +0000 2015"}, {"group": 108, "id": 12, "label": "552831674695045123", "shape": "dot", "size": 10, "title": "552831674695045123\u003cbr\u003e@iyad_elbaghdadi @chris15474 Most people are\u003cbr\u003eblaming mad extremists\u003cbr\u003eWed Jan 07 14:18:37 +0000 2015"}, {"group": 108, "id": 13, "label": "552831841095651328", "shape": "dot", "size": 10, "title": "552831841095651328\u003cbr\u003e@iyad_elbaghdadi @rickardc87 My religion was\u003cbr\u003eno different  in 11\u003cbr\u003ecentury  but its evolved\u003cbr\u003e in the 21 Century\u003cbr\u003eIRA relised dialogue wins peace\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:19:16 +0000 2015"}, {"group": 108, "id": 14, "label": "552842676672802816", "shape": "dot", "size": 10, "title": "552842676672802816\u003cbr\u003e@iyad_elbaghdadi Then I can only\u003cbr\u003esuggest that condemnation comes from\u003cbr\u003ewithin your religion and is\u003cbr\u003edenounced more loudly than current\u003cbr\u003eefforts\u003cbr\u003eWed Jan 07 15:02:20 +0000 2015"}, {"group": 108, "id": 15, "label": "552860410203099139", "shape": "dot", "size": 10, "title": "552860410203099139\u003cbr\u003e@iyad_elbaghdadi @edzsplace then every muslim\u003cbr\u003eneeds to stand up and\u003cbr\u003esay that and stop being\u003cbr\u003esilent #nonmuslimlivesmatter\u003cbr\u003eWed Jan 07 16:12:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

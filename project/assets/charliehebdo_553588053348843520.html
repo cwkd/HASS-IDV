@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2052, "id": 0, "label": "553588053348843520", "shape": "dot", "size": 10, "title": "553588053348843520\u003cbr\u003eCharlie Hebdo killers are dead.\u003cbr\u003eSources say they are not\u003cbr\u003ein Paradise.\u003cbr\u003eFri Jan 09 16:24:11 +0000 2015"}, {"group": 2052, "id": 1, "label": "553588620888915968", "shape": "dot", "size": 10, "title": "553588620888915968\u003cbr\u003eGh\u00e8 :-) \u201c@cjwerleman: Charlie Hebdo\u003cbr\u003ekillers are dead. Sources say\u003cbr\u003ethey are not in Paradise.\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:26:27 +0000 2015"}, {"group": 2052, "id": 2, "label": "553588793094455296", "shape": "dot", "size": 10, "title": "553588793094455296\u003cbr\u003e@cjwerleman Any casualties in the\u003cbr\u003emarket?\u003cbr\u003eFri Jan 09 16:27:08 +0000 2015"}, {"group": 2052, "id": 3, "label": "553589039811796993", "shape": "dot", "size": 10, "title": "553589039811796993\u003cbr\u003e@cjwerleman @LibyaLiberty good silly cunts\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:28:06 +0000 2015"}, {"group": 2052, "id": 4, "label": "553589084481155072", "shape": "dot", "size": 10, "title": "553589084481155072\u003cbr\u003eTrue story \u201c@cjwerleman: Charlie Hebdo\u003cbr\u003ekillers are dead. Sources say\u003cbr\u003ethey are not in Paradise.\u201d\u003cbr\u003e#fb\u003cbr\u003eFri Jan 09 16:28:17 +0000 2015"}, {"group": 2052, "id": 6, "label": "553590991895429120", "shape": "dot", "size": 10, "title": "553590991895429120\u003cbr\u003e@cjwerleman @alexsandels Even if they\u003cbr\u003ewere, must be such a\u003cbr\u003eboring paradise, I don\u0027t want\u003cbr\u003eit !\u003cbr\u003eFri Jan 09 16:35:52 +0000 2015"}, {"group": 2052, "id": 7, "label": "553591525024616448", "shape": "dot", "size": 10, "title": "553591525024616448\u003cbr\u003e@cjwerleman too bad... Wanted to\u003cbr\u003elearn more about their motivators\u003cbr\u003eand influencers.\u003cbr\u003eFri Jan 09 16:37:59 +0000 2015"}, {"group": 2052, "id": 8, "label": "553591979842363392", "shape": "dot", "size": 10, "title": "553591979842363392\u003cbr\u003e\"@cjwerleman: Charlie Hebdo KILLERS DEAD\u003cbr\u003eSources say they are not\u003cbr\u003ein Paradise.\r\rNOOOOO\rTHEY R IN PARADISE\r\rFUCKKIN\r\r72\r\rVIRGIN\u003cbr\u003eHOORS\u003cbr\u003eFri Jan 09 16:39:47 +0000 2015"}, {"group": 2052, "id": 5, "label": "553589957533904899", "shape": "dot", "size": 10, "title": "553589957533904899\u003cbr\u003e@cjwerleman @LibyaLiberty plus there ain\u0027t\u003cbr\u003ea paradise\u003cbr\u003eFri Jan 09 16:31:45 +0000 2015"}, {"group": 2052, "id": 9, "label": "553593648315891713", "shape": "dot", "size": 10, "title": "553593648315891713\u003cbr\u003e@raja33m @cjwerleman no virgins, only\u003cbr\u003egoats\u003cbr\u003eFri Jan 09 16:46:25 +0000 2015"}, {"group": 2052, "id": 13, "label": "553607573920706560", "shape": "dot", "size": 10, "title": "553607573920706560\u003cbr\u003e@raja33m @cjwerleman http://t.co/J2Z3Kmg3Dc\u003cbr\u003eFri Jan 09 17:41:45 +0000 2015"}, {"group": 2052, "id": 10, "label": "553594886130135040", "shape": "dot", "size": 10, "title": "553594886130135040\u003cbr\u003e\"@EvelineMemaj: @raja33m @cjwerleman \r\rno virgins,\u003cbr\u003eonly goats\"\r\r\rOk \rOk\rOk\r\rVIRGIN GOATS\r\rTHAT\u0027S IT.\r\rALLAH\u003cbr\u003eHU BAKHAAD\u003cbr\u003eFri Jan 09 16:51:20 +0000 2015"}, {"group": 2052, "id": 11, "label": "553595086949593089", "shape": "dot", "size": 10, "title": "553595086949593089\u003cbr\u003e@raja33m @cjwerleman hahaha :-D\u003cbr\u003eFri Jan 09 16:52:08 +0000 2015"}, {"group": 2052, "id": 12, "label": "553602764484644864", "shape": "dot", "size": 10, "title": "553602764484644864\u003cbr\u003e@Mikeoflondon @cjwerleman Sorry if I\u003cbr\u003edon\u0027t shed a tear. Ordering\u003cbr\u003ethe jumping castle as we\u003cbr\u003espeak. \ud83d\ude0a\ud83d\ude0a\u003cbr\u003eFri Jan 09 17:22:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 13, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 12, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

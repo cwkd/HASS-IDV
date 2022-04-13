@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1887, "id": 0, "label": "553484365012148225", "shape": "dot", "size": 10, "title": "553484365012148225\u003cbr\u003eOperation underway in the Dammartin-en-Goele\u003cbr\u003earea, as police hunt Paris\u003cbr\u003eshooting suspects, French interior minister\u003cbr\u003etells CNN affiliate.\u003cbr\u003eFri Jan 09 09:32:10 +0000 2015"}, {"group": 1887, "id": 1, "label": "553484501222187009", "shape": "dot", "size": 10, "title": "553484501222187009\u003cbr\u003e@cnnbrk \n\nIN UKRAINE HAVE GIVEN\u003cbr\u003eTHE NAZI COUP, SUPPORTED BY\u003cbr\u003eNATO AND MEDIA COMMUNICATION,AS SEE\u003cbr\u003ePHOTO.\nhttp://t.co/36JesRQmMb\u003cbr\u003eFri Jan 09 09:32:42 +0000 2015"}, {"group": 1887, "id": 2, "label": "553484687671586816", "shape": "dot", "size": 10, "title": "553484687671586816\u003cbr\u003e@cnnbrk The US Army from\u003cbr\u003eAfghanistan will go to Ukraine,\u003cbr\u003esaid Obama http://t.co/HPdl35hwGc\u003cbr\u003eFri Jan 09 09:33:27 +0000 2015"}, {"group": 1887, "id": 3, "label": "553484690183553024", "shape": "dot", "size": 10, "title": "553484690183553024\u003cbr\u003e@cnnbrk #no\u003cbr\u003eFri Jan 09 09:33:28 +0000 2015"}, {"group": 1887, "id": 4, "label": "553485018006556673", "shape": "dot", "size": 10, "title": "553485018006556673\u003cbr\u003e@cnnbrk CONFINEMENT GENERAL\n09/01/2015 - 10:13\nOp\u00e9ration\u003cbr\u003epolici\u00e8re en cours.\nTous les habitants\u003cbr\u003esont appel\u00e9s \u00e0 rester \u00e0\u003cbr\u003edomicile.\u003cbr\u003eFri Jan 09 09:34:46 +0000 2015"}, {"group": 1887, "id": 5, "label": "553485155508436992", "shape": "dot", "size": 10, "title": "553485155508436992\u003cbr\u003e@cnnbrk http://t.co/HcXs0KzHms\u003cbr\u003eFri Jan 09 09:35:18 +0000 2015"}, {"group": 1887, "id": 6, "label": "553486203497246720", "shape": "dot", "size": 10, "title": "553486203497246720\u003cbr\u003e\u201c@cnnbrk: ... Paris shooting suspects,\u003cbr\u003eFrench interior minister tells CNN\u003cbr\u003eaffiliate.\u201d C\u0027EST SERIEUX ? BFMTV\u003cbr\u003ecomme CNN affiliate ? Okaayyy\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:39:28 +0000 2015"}, {"group": 1887, "id": 7, "label": "553490859120160769", "shape": "dot", "size": 10, "title": "553490859120160769\u003cbr\u003e@cnnbrk Curious to see if\u003cbr\u003efrench swat equivalent is any\u003cbr\u003egood. Does anyone know what\u003cbr\u003ethey call themselves?\u003cbr\u003eFri Jan 09 09:57:58 +0000 2015"}, {"group": 1887, "id": 8, "label": "553491385496924161", "shape": "dot", "size": 10, "title": "553491385496924161\u003cbr\u003e@cnnbrk @CNN Tell newsreaders and\u003cbr\u003ejournalists that Dammartin-en-Go\u00eble is pronounced\u003cbr\u003eDammartin en \"Gowell\" #frenchpronunciation\u003cbr\u003eFri Jan 09 10:00:04 +0000 2015"}, {"group": 1887, "id": 10, "label": "553491587133882368", "shape": "dot", "size": 10, "title": "553491587133882368\u003cbr\u003e@cnnbrk. we need alot of\u003cbr\u003eprayers\u003cbr\u003eFri Jan 09 10:00:52 +0000 2015"}, {"group": 1887, "id": 11, "label": "553491678426722305", "shape": "dot", "size": 10, "title": "553491678426722305\u003cbr\u003e@cnnbrk they should be captured\u003cbr\u003ealive for future purposes...\u003cbr\u003eFri Jan 09 10:01:14 +0000 2015"}, {"group": 1887, "id": 13, "label": "553494658559381506", "shape": "dot", "size": 10, "title": "553494658559381506\u003cbr\u003e@cnnbrk @CNN GREAT WORK BY\u003cbr\u003eFRANCE\u0027S SECURITY AGENCIES COMPARE WITH\u003cbr\u003eINDIAN SECURITY AGENCIES STRUGGLING YEAR\u003cbr\u003eBY YEAR\u003cbr\u003eFri Jan 09 10:13:04 +0000 2015"}, {"group": 1887, "id": 14, "label": "553494668881960961", "shape": "dot", "size": 10, "title": "553494668881960961\u003cbr\u003e@cnnbrk we don\u0027t care where\u003cbr\u003ethey do training you white\u003cbr\u003eman you are a fils\u003cbr\u003ede puts,why you perish ,they\u003cbr\u003ebrothers do not negociate fuck\u003cbr\u003ethem\u003cbr\u003eFri Jan 09 10:13:07 +0000 2015"}, {"group": 1887, "id": 15, "label": "553495983104200704", "shape": "dot", "size": 10, "title": "553495983104200704\u003cbr\u003e@cnnbrk Martyrs? I want to\u003cbr\u003esee their faces when they\u003cbr\u003ego strait to hell. Do\u003cbr\u003enot pass go, do not\u003cbr\u003ecollect 72 virgins. #ignorantmuslims\u003cbr\u003eFri Jan 09 10:18:20 +0000 2015"}, {"group": 1887, "id": 16, "label": "553497595784736769", "shape": "dot", "size": 10, "title": "553497595784736769\u003cbr\u003eYea @chriscuomo! Your one of\u003cbr\u003ethe reasons I watch @cnnbrk.\u003cbr\u003eTell it like it is.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:24:44 +0000 2015"}, {"group": 1887, "id": 18, "label": "553501426781937664", "shape": "dot", "size": 10, "title": "553501426781937664\u003cbr\u003e@cnnbrk @CNN \nWe should be\u003cbr\u003eexpecting Don Trump .\nTo be\u003cbr\u003ein the White House 2016\u003cbr\u003e.\u003cbr\u003eFri Jan 09 10:39:58 +0000 2015"}, {"group": 1887, "id": 9, "label": "553491448415666177", "shape": "dot", "size": 10, "title": "553491448415666177\u003cbr\u003e@uvlecheniehobby @cnnbrk someone needs to\u003cbr\u003eshove a perogie up putins\u003cbr\u003eass. I think the us\u003cbr\u003earmy can manage that\u003cbr\u003eFri Jan 09 10:00:19 +0000 2015"}, {"group": 1887, "id": 12, "label": "553491832425185280", "shape": "dot", "size": 10, "title": "553491832425185280\u003cbr\u003e@halfnelson1973 @cnnbrk Hitler thought so\u003cbr\u003etoo))\u003cbr\u003eFri Jan 09 10:01:50 +0000 2015"}, {"group": 1887, "id": 17, "label": "553501345282813952", "shape": "dot", "size": 10, "title": "553501345282813952\u003cbr\u003e@uvlecheniehobby @cnnbrk So? The u.s.\u003cbr\u003earmy whupped hitler. Just like\u003cbr\u003ethey will whup Putin.\u003cbr\u003eFri Jan 09 10:39:38 +0000 2015"}, {"group": 1887, "id": 26, "label": "553540496560513024", "shape": "dot", "size": 10, "title": "553540496560513024\u003cbr\u003e@halfnelson1973 @cnnbrk French Police should\u003cbr\u003esmear pork gat onto their\u003cbr\u003ebullets\u003cbr\u003eFri Jan 09 13:15:13 +0000 2015"}, {"group": 1887, "id": 19, "label": "553502066891816960", "shape": "dot", "size": 10, "title": "553502066891816960\u003cbr\u003e@halfnelson1973 @cnnbrk As in Vietnam?\u003cbr\u003eDo you know how many\u003cbr\u003eand for what\u0027s killing ordinary\u003cbr\u003eAmerican boys?\u003cbr\u003eFri Jan 09 10:42:30 +0000 2015"}, {"group": 1887, "id": 20, "label": "553503431164698625", "shape": "dot", "size": 10, "title": "553503431164698625\u003cbr\u003e@uvlecheniehobby @cnnbrk no. As in\u003cbr\u003eAfghanistan.  Arm tribesmen with\u003cbr\u003eone modern  us weapon\u003cbr\u003esystem. Drive russian army out.\u003cbr\u003eEasypeasyjapanesey\u003cbr\u003eFri Jan 09 10:47:56 +0000 2015"}, {"group": 1887, "id": 21, "label": "553504256280776704", "shape": "dot", "size": 10, "title": "553504256280776704\u003cbr\u003e@halfnelson1973 @cnnbrk Satan get you\u003cbr\u003ewith nuclear warheads and that\u0027s\u003cbr\u003ethe end of your\u003cbr\u003eFri Jan 09 10:51:12 +0000 2015"}, {"group": 1887, "id": 22, "label": "553506431589425152", "shape": "dot", "size": 10, "title": "553506431589425152\u003cbr\u003e@uvlecheniehobby @cnnbrk Guess u ran\u003cbr\u003eout of intelligent things to\u003cbr\u003esay. Hows Putin economy working\u003cbr\u003efor u? Change your rubles\u003cbr\u003efor dollars yet?\u003cbr\u003eFri Jan 09 10:59:51 +0000 2015"}, {"group": 1887, "id": 23, "label": "553507050479943680", "shape": "dot", "size": 10, "title": "553507050479943680\u003cbr\u003e@halfnelson1973 @cnnbrk US will soon\u003cbr\u003ehave to buy oil for\u003cbr\u003ethe gold, and the dollar\u003cbr\u003eis the candy wrapper, as\u003cbr\u003ebeads for the Indians.\u003cbr\u003eFri Jan 09 11:02:19 +0000 2015"}, {"group": 1887, "id": 24, "label": "553509367639969793", "shape": "dot", "size": 10, "title": "553509367639969793\u003cbr\u003e@uvlecheniehobby @cnnbrk Have to go\u003cbr\u003eto work now. I can\u003cbr\u003edo that cuz mine is\u003cbr\u003ea valid economy. Good thing\u003cbr\u003eI can afford your oil\u003cbr\u003eor u be fucked.\u003cbr\u003eFri Jan 09 11:11:31 +0000 2015"}, {"group": 1887, "id": 25, "label": "553509977026207744", "shape": "dot", "size": 10, "title": "553509977026207744\u003cbr\u003e@halfnelson1973 @cnnbrk cool\u003cbr\u003eFri Jan 09 11:13:56 +0000 2015"}, {"group": 1887, "id": 27, "label": "553557876338593792", "shape": "dot", "size": 10, "title": "553557876338593792\u003cbr\u003e@DavidRe93503838 @cnnbrk Pork fat? Explain\u003cbr\u003eplease\u003cbr\u003eFri Jan 09 14:24:16 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 2, "to": 9, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 12, "to": 17, "weight": 1}, {"from": 15, "to": 26, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 26, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1868, "id": 0, "label": "553476073703620609", "shape": "dot", "size": 10, "title": "553476073703620609\u003cbr\u003eBREAKING: French police convoy, helicopters\u003cbr\u003erush to scene of operation\u003cbr\u003eto detain #CharlieHebdo shooting suspects,\u003cbr\u003eAP says\u003cbr\u003eFri Jan 09 08:59:13 +0000 2015"}, {"group": 1868, "id": 1, "label": "553476285906055168", "shape": "dot", "size": 10, "title": "553476285906055168\u003cbr\u003e@foxnews  Tal el tiempo,\u003cbr\u003etal el tiento.\u003cbr\u003eFri Jan 09 09:00:04 +0000 2015"}, {"group": 1868, "id": 2, "label": "553476367422328832", "shape": "dot", "size": 10, "title": "553476367422328832\u003cbr\u003e\u201c@FoxNews: BREAKING: French police convoy,\u003cbr\u003ehelicopters rush to scene of\u003cbr\u003eoperation to detain #CharlieHebdo shooting\u003cbr\u003esuspects, AP says\u201d\u003cbr\u003eFri Jan 09 09:00:23 +0000 2015"}, {"group": 1868, "id": 3, "label": "553478938941718528", "shape": "dot", "size": 10, "title": "553478938941718528\u003cbr\u003e@FoxNews http://t.co/PjdkrHbUhq\u003cbr\u003eFri Jan 09 09:10:36 +0000 2015"}, {"group": 1868, "id": 4, "label": "553482107247669248", "shape": "dot", "size": 10, "title": "553482107247669248\u003cbr\u003e@FoxNews don\u0027t bring them in\u003cbr\u003ealive shoot to kill ,kill\u003cbr\u003ethe bastards\u003cbr\u003eFri Jan 09 09:23:12 +0000 2015"}, {"group": 1868, "id": 5, "label": "553482551541899264", "shape": "dot", "size": 10, "title": "553482551541899264\u003cbr\u003e@FoxNews @ainsleyearhardt A live suspect\u003cbr\u003eis of more value than\u003cbr\u003ea dead terrorist.\u003cbr\u003eFri Jan 09 09:24:58 +0000 2015"}, {"group": 1868, "id": 6, "label": "553518211644522496", "shape": "dot", "size": 10, "title": "553518211644522496\u003cbr\u003e@FoxNews more reasons to remove\u003cbr\u003eall muslims from all western\u003cbr\u003enations\u003cbr\u003eFri Jan 09 11:46:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

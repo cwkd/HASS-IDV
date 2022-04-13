@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 142, "id": 0, "label": "552809336360419329", "shape": "dot", "size": 10, "title": "552809336360419329\u003cbr\u003eJournalists and others using #JeSuisCharlie\u003cbr\u003eto express support for freedom\u003cbr\u003eof speech after Paris attack\u003cbr\u003ehttp://t.co/OSzSvL3pKy\u003cbr\u003eWed Jan 07 12:49:51 +0000 2015"}, {"group": 142, "id": 1, "label": "552812867716542465", "shape": "dot", "size": 10, "title": "552812867716542465\u003cbr\u003e@PzFeed @sonaliranade #JeSuisCharlie eh? Print\u003cbr\u003ethe cartoons too?\u003cbr\u003eWed Jan 07 13:03:53 +0000 2015"}, {"group": 142, "id": 2, "label": "552814382741069825", "shape": "dot", "size": 10, "title": "552814382741069825\u003cbr\u003e@PzFeed @BDUTT Even I am\u003cbr\u003ejournalist and it\u0027s a shame.\u003cbr\u003eAnd we talk about \u0027Freedom\u003cbr\u003eof press\u0027.\u003cbr\u003eWed Jan 07 13:09:54 +0000 2015"}, {"group": 142, "id": 3, "label": "552816249646768128", "shape": "dot", "size": 10, "title": "552816249646768128\u003cbr\u003e\u201c@PzFeed: @BinduW1 @blues_control @DhanashreeSowan #JeSuisCharlie\u003cbr\u003eto support freedom of speech\u003cbr\u003eafter Paris attack http://t.co/BjP3jA9Xo7\u201d\u003cbr\u003eWed Jan 07 13:17:19 +0000 2015"}, {"group": 142, "id": 4, "label": "552816582217322497", "shape": "dot", "size": 10, "title": "552816582217322497\u003cbr\u003e@PzFeed @BDUTT Does not matter\u003cbr\u003euntill they keep a blind\u003cbr\u003eeye to Jihadi to fulfill\u003cbr\u003ethere desire of becoming liberal.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:18:38 +0000 2015"}, {"group": 142, "id": 5, "label": "552818499093950465", "shape": "dot", "size": 10, "title": "552818499093950465\u003cbr\u003e@PzFeed @BDUTT you should be\u003cbr\u003eclear about whom you are\u003cbr\u003easking ! You r begging\u003cbr\u003eto Islam for Freedom of\u003cbr\u003eSpeech ! Right !\u003cbr\u003eWed Jan 07 13:26:15 +0000 2015"}, {"group": 142, "id": 6, "label": "552836188588228608", "shape": "dot", "size": 10, "title": "552836188588228608\u003cbr\u003e@PzFeed\u003cbr\u003eWed Jan 07 14:36:33 +0000 2015"}, {"group": 142, "id": 7, "label": "552837043957813248", "shape": "dot", "size": 10, "title": "552837043957813248\u003cbr\u003e@PzFeed scrolled by quickly, read\u003cbr\u003e\"Jesus is Charlie\" thought it\u003cbr\u003ewas a Vietnam post, kept\u003cbr\u003escrolling.\u003cbr\u003eWed Jan 07 14:39:57 +0000 2015"}, {"group": 142, "id": 8, "label": "552860861673402368", "shape": "dot", "size": 10, "title": "552860861673402368\u003cbr\u003e@PzFeed @BDUTT\u003cbr\u003eWed Jan 07 16:14:35 +0000 2015"}, {"group": 142, "id": 9, "label": "552886357706555392", "shape": "dot", "size": 10, "title": "552886357706555392\u003cbr\u003e@PzFeed @BDUTT courageous journalism. ..great.\u003cbr\u003ethank you. .\u003cbr\u003eWed Jan 07 17:55:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

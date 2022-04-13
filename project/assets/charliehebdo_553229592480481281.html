@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1219, "id": 0, "label": "553229592480481281", "shape": "dot", "size": 10, "title": "553229592480481281\u003cbr\u003eCharlie Hebdo will publish one\u003cbr\u003emillion copies next week with\u003cbr\u003ehelp from Google http://t.co/e1TKBbVpwl http://t.co/1ThluwbhVq\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:39:48 +0000 2015"}, {"group": 1219, "id": 1, "label": "553229857501765632", "shape": "dot", "size": 10, "title": "553229857501765632\u003cbr\u003eCharlie Hebdo will publish one\u003cbr\u003emillion copies next week with\u003cbr\u003ehelp from Google \nhttp://t.co/pNgUJTeKBR http://t.co/LNxJ4nDbpZ\n@verge\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:40:51 +0000 2015"}, {"group": 1219, "id": 2, "label": "553230344846336000", "shape": "dot", "size": 10, "title": "553230344846336000\u003cbr\u003e.@verge long live #charliehebdo. #jesuischarlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:42:47 +0000 2015"}, {"group": 1219, "id": 3, "label": "553230446151356416", "shape": "dot", "size": 10, "title": "553230446151356416\u003cbr\u003e@verge \u041e\u0431\u043e\u0436\u0430\u044e \u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0439 \u0434\u0438\u0432\u043d\u044b\u0439 \u043c\u0438\u0440\u003cbr\u003e:)) \u041a\u043e\u043c\u0443-\u0442\u043e \u0442\u0440\u0430\u0433\u0435\u0434\u0438\u044f, \u043a\u043e\u043c\u0443-\u0442\u043e \u043e\u0442\u043b\u0438\u0447\u043d\u044b\u0439\u003cbr\u003e\u0441\u043f\u043e\u0441\u043e\u0431 \u0437\u0430\u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u043a\u0443\u0447\u0443 \u0434\u0435\u043d\u0435\u0433 :))\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:43:11 +0000 2015"}, {"group": 1219, "id": 4, "label": "553230572689317888", "shape": "dot", "size": 10, "title": "553230572689317888\u003cbr\u003e@verge It\u0027s amazing how extremists\u003cbr\u003edon\u0027t understand the concept of\u003cbr\u003eViral Marketing.\u003cbr\u003eThu Jan 08 16:43:41 +0000 2015"}, {"group": 1219, "id": 5, "label": "553230737722576896", "shape": "dot", "size": 10, "title": "553230737722576896\u003cbr\u003e\u201c@verge: Charlie Hebdo will publish\u003cbr\u003eone million copies next week\u003cbr\u003ewith help from Google http://t.co/r9cQeFwv92\u003cbr\u003ehttp://t.co/jamuQdSD3R\u201d\u003cbr\u003eThu Jan 08 16:44:21 +0000 2015"}, {"group": 1219, "id": 6, "label": "553230999274799104", "shape": "dot", "size": 10, "title": "553230999274799104\u003cbr\u003e@verge Hey wait a minute,\u003cbr\u003ethat is exactly what the\u003cbr\u003eterrorists didn\u0027t want. :)\u003cbr\u003eThu Jan 08 16:45:23 +0000 2015"}, {"group": 1219, "id": 7, "label": "553231764815351808", "shape": "dot", "size": 10, "title": "553231764815351808\u003cbr\u003e@verge @DaveLeeBBC Brilliant will private\u003cbr\u003eeye do something as well?\u003cbr\u003e@PrivateEyeNews #CharlieHebdo\u003cbr\u003eThu Jan 08 16:48:25 +0000 2015"}, {"group": 1219, "id": 8, "label": "553233029733556225", "shape": "dot", "size": 10, "title": "553233029733556225\u003cbr\u003e@verge \n#JeSuisCharlie\u003cbr\u003eThu Jan 08 16:53:27 +0000 2015"}, {"group": 1219, "id": 9, "label": "553233516784533505", "shape": "dot", "size": 10, "title": "553233516784533505\u003cbr\u003e@verge @FiveRights Google? I\u0027m shocked,\u003cbr\u003eare they pissed at Obama\u003cbr\u003elately?\u003cbr\u003eThu Jan 08 16:55:23 +0000 2015"}, {"group": 1219, "id": 10, "label": "553233536472612865", "shape": "dot", "size": 10, "title": "553233536472612865\u003cbr\u003e@verge @FiveRights Hope they sell\u003cbr\u003e1.6 BILLION  1~4 every\u003cbr\u003eMoslem on earth.\nQ: Why did\u003cbr\u003eMohammed cross the road?\nA: To\u003cbr\u003eget to the other goat.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:55:28 +0000 2015"}, {"group": 1219, "id": 13, "label": "553235771226738688", "shape": "dot", "size": 10, "title": "553235771226738688\u003cbr\u003e@verge Pls tell them to\u003cbr\u003epublish in English version too..\u003cbr\u003eThe whole world will love\u003cbr\u003eit..except sickular khangress \u0026amp; Islamic\u003cbr\u003emoron..!!!\u003cbr\u003eThu Jan 08 17:04:21 +0000 2015"}, {"group": 1219, "id": 14, "label": "553235903079264256", "shape": "dot", "size": 10, "title": "553235903079264256\u003cbr\u003e@verge so they are going\u003cbr\u003eto publish images of blacks\u003cbr\u003eas monkeys \u0026amp; slaves.. YAY\u003cbr\u003efor Racism... GOOD JOB #GOOGLE\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:04:52 +0000 2015"}, {"group": 1219, "id": 15, "label": "553235935018496000", "shape": "dot", "size": 10, "title": "553235935018496000\u003cbr\u003e#CharlieHebdo will publish one million\u003cbr\u003ecopies next week with help\u003cbr\u003efrom #Google http://t.co/zEAka2Cyu4 http://t.co/Hr7A1qkKSk via\u003cbr\u003e@verge\u003cbr\u003eThu Jan 08 17:05:00 +0000 2015"}, {"group": 1219, "id": 16, "label": "553236195304407041", "shape": "dot", "size": 10, "title": "553236195304407041\u003cbr\u003e@verge Pls tell them2 publish\u003cbr\u003ein English version too..The whole\u003cbr\u003ewrld will love it xcept\u003cbr\u003esickular khangress \u0026amp; Islamic moron\u003cbr\u003e#AiyarTerrorLogic\u003cbr\u003eThu Jan 08 17:06:02 +0000 2015"}, {"group": 1219, "id": 17, "label": "553238408047628288", "shape": "dot", "size": 10, "title": "553238408047628288\u003cbr\u003eGood work all \"@verge: Charlie\u003cbr\u003eHebdo will publish 1m copies\u003cbr\u003enext week with help from\u003cbr\u003eGoogle http://t.co/1rsxGmGvyI http://t.co/pIrhQAg160\"\u003cbr\u003eThu Jan 08 17:14:49 +0000 2015"}, {"group": 1219, "id": 18, "label": "553243991638953984", "shape": "dot", "size": 10, "title": "553243991638953984\u003cbr\u003e@verge @SreedharanKs Guess Google better\u003cbr\u003eramp up security at their\u003cbr\u003ecampus now - just a\u003cbr\u003eword of caution\u003cbr\u003eThu Jan 08 17:37:01 +0000 2015"}, {"group": 1219, "id": 19, "label": "553252079792185344", "shape": "dot", "size": 10, "title": "553252079792185344\u003cbr\u003e\u201c@verge: Charlie Hebdo will publish\u003cbr\u003eone million copies next week\u003cbr\u003ewith help from Google http://t.co/WBndkOpeUt\u003cbr\u003ehttp://t.co/5yvrdXtYIO\u201d\u003cbr\u003eThu Jan 08 18:09:09 +0000 2015"}, {"group": 1219, "id": 20, "label": "553272585585430528", "shape": "dot", "size": 10, "title": "553272585585430528\u003cbr\u003e\ud83d\udc4f\u201c@doorslaer: Charlie Hebdo will publish\u003cbr\u003e1 million copies next week\u003cbr\u003ewith help from Google \nhttp://t.co/8dKcUgcA9p\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:30:38 +0000 2015"}, {"group": 1219, "id": 11, "label": "553234503527702528", "shape": "dot", "size": 10, "title": "553234503527702528\u003cbr\u003e@Kevin3505 @verge @FiveRights What does\u003cbr\u003eObama have to do with\u003cbr\u003eit?\u003cbr\u003eThu Jan 08 16:59:18 +0000 2015"}, {"group": 1219, "id": 12, "label": "553234844159733761", "shape": "dot", "size": 10, "title": "553234844159733761\u003cbr\u003e@BlueGood2 @verge @FiveRights Hilarious joke!\u003cbr\u003eSo funny. And quite brave\u003cbr\u003eof you to say it.\u003cbr\u003eKeep fighting the good fight!\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:00:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 20, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

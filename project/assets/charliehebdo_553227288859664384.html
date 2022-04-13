@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1210, "id": 0, "label": "553227288859664384", "shape": "dot", "size": 10, "title": "553227288859664384\u003cbr\u003e#JeSuisCharlie in numbers http://t.co/FTkljHIEpw\u003cbr\u003eThu Jan 08 16:30:38 +0000 2015"}, {"group": 1210, "id": 1, "label": "553228125950066688", "shape": "dot", "size": 10, "title": "553228125950066688\u003cbr\u003e@BBCWorld @BBCtrending , http://t.co/zDRLeKv4Zh\u003cbr\u003eThu Jan 08 16:33:58 +0000 2015"}, {"group": 1210, "id": 2, "label": "553228164328329218", "shape": "dot", "size": 10, "title": "553228164328329218\u003cbr\u003e@BBCtrending \nA sad day. Vive\u003cbr\u003ela France!\nhttps://t.co/L2mlH3XjdE\n#CharlieHebdo #JeSuisCharlie\u003cbr\u003eThu Jan 08 16:34:07 +0000 2015"}, {"group": 1210, "id": 3, "label": "553228172473692160", "shape": "dot", "size": 10, "title": "553228172473692160\u003cbr\u003e\u201c@BBCtrending: #JeSuisCharlie in numbers http://t.co/mk7PtNypjG\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:34:09 +0000 2015"}, {"group": 1210, "id": 4, "label": "553228189242507265", "shape": "dot", "size": 10, "title": "553228189242507265\u003cbr\u003e@BBCtrending @BBCWorld compare that to\u003cbr\u003e#\u0627\u0646\u062a\u062e\u0628\u0648_\u0627\u0644\u0639\u0631\u0635 #bbc and let us\u003cbr\u003eknow, will you?\u003cbr\u003eThu Jan 08 16:34:13 +0000 2015"}, {"group": 1210, "id": 5, "label": "553228329302888448", "shape": "dot", "size": 10, "title": "553228329302888448\u003cbr\u003e@BBCtrending @BBCWorld : My solidarity\u003cbr\u003ew/ journos \u0026amp; cartoonists that\u003cbr\u003eI creatd \u0026amp; postd to\u003cbr\u003e1 my blogs: https://t.co/0GVBZ50aMp; #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:34:46 +0000 2015"}, {"group": 1210, "id": 7, "label": "553229042393284608", "shape": "dot", "size": 10, "title": "553229042393284608\u003cbr\u003e@BBCtrending @BBCWorld - No Islamic\u003cbr\u003eLeader Speaks Out #satansislamiccult\u003cbr\u003eThu Jan 08 16:37:36 +0000 2015"}, {"group": 1210, "id": 8, "label": "553229580253659139", "shape": "dot", "size": 10, "title": "553229580253659139\u003cbr\u003e@BBCtrending @BBCWorld http://t.co/J1vbn5QOmV\u003cbr\u003eThu Jan 08 16:39:45 +0000 2015"}, {"group": 1210, "id": 9, "label": "553230596215144448", "shape": "dot", "size": 10, "title": "553230596215144448\u003cbr\u003e@BBCtrending in picture: http://t.co/jRMT0lwXC3\u003cbr\u003eThu Jan 08 16:43:47 +0000 2015"}, {"group": 1210, "id": 10, "label": "553230848364142593", "shape": "dot", "size": 10, "title": "553230848364142593\u003cbr\u003e@BBCtrending @BBCWorld FREE to access\u003cbr\u003eFreddom ofinformation about UK Royal\u003cbr\u003eFamily???? or about Rothchild1s control\u003cbr\u003eof the City of London????\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:44:47 +0000 2015"}, {"group": 1210, "id": 11, "label": "553231244490981376", "shape": "dot", "size": 10, "title": "553231244490981376\u003cbr\u003e@BBCtrending @BBCWorld Who talked about\u003cbr\u003epeople who were burned in\u003cbr\u003eOdessa? 280-300 people was burned.\u003cbr\u003eNobody! There is European news.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:46:21 +0000 2015"}, {"group": 1210, "id": 12, "label": "553231434526507009", "shape": "dot", "size": 10, "title": "553231434526507009\u003cbr\u003e@BBCtrending Draw Mohammad or stop\u003cbr\u003epretending you\u0027re protesting. Or even\u003cbr\u003eunderstanding the proceedings.\u003cbr\u003eThu Jan 08 16:47:07 +0000 2015"}, {"group": 1210, "id": 13, "label": "553231460430532608", "shape": "dot", "size": 10, "title": "553231460430532608\u003cbr\u003e@BBCtrending @BBCWorld there r European\u003cbr\u003enews, there is the European\u003cbr\u003evalue.\u003cbr\u003eThu Jan 08 16:47:13 +0000 2015"}, {"group": 1210, "id": 14, "label": "553231963424034816", "shape": "dot", "size": 10, "title": "553231963424034816\u003cbr\u003e\u201c@BBCtrending: #JeSuisCharlie in numbers http://t.co/J8QKD5fy94\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:49:13 +0000 2015"}, {"group": 1210, "id": 16, "label": "553232012362776576", "shape": "dot", "size": 10, "title": "553232012362776576\u003cbr\u003e@BBCtrending @eceyorenc je ne suis\u003cbr\u003epas charlie et je ne\u003cbr\u003esuis pas terroriste \nI\u0027m not\u003cbr\u003echarlie and i\u0027m not terrorist\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:49:24 +0000 2015"}, {"group": 1210, "id": 18, "label": "553232679571685377", "shape": "dot", "size": 10, "title": "553232679571685377\u003cbr\u003e@BBCtrending IF frdm of speech\u003cbr\u003erestraind by klling n it\u0027s\u003cbr\u003eok,can we do d same\u003cbr\u003ew/ protester who constanly say\u003cbr\u003ekill d infidel too?\u003cbr\u003eThu Jan 08 16:52:04 +0000 2015"}, {"group": 1210, "id": 19, "label": "553232710270205955", "shape": "dot", "size": 10, "title": "553232710270205955\u003cbr\u003e@BBCtrending #JeSuisCharlie http://t.co/0nkP6stA1x\u003cbr\u003eThu Jan 08 16:52:11 +0000 2015"}, {"group": 1210, "id": 6, "label": "553228890605633536", "shape": "dot", "size": 10, "title": "553228890605633536\u003cbr\u003e@dcelectricband @BBCtrending L\u0027Am\u00e9rique se tient\u003cbr\u003eavec la France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 16:37:00 +0000 2015"}, {"group": 1210, "id": 15, "label": "553231978116710400", "shape": "dot", "size": 10, "title": "553231978116710400\u003cbr\u003e@WaywordKnight @BBCtrending @BBCWorld bcz they\u0027re\u003cbr\u003ecompelled to take law in\u003cbr\u003ehands. Punishment for blasphemy is\u003cbr\u003edeath\u003cbr\u003eThu Jan 08 16:49:16 +0000 2015"}, {"group": 1210, "id": 17, "label": "553232323412381696", "shape": "dot", "size": 10, "title": "553232323412381696\u003cbr\u003e@Chilingaroff @BBCtrending @BBCWorld Just curious\u003cbr\u003ewhat is European Value?\u003cbr\u003eThu Jan 08 16:50:39 +0000 2015"}, {"group": 1210, "id": 33, "label": "553659393146122243", "shape": "dot", "size": 10, "title": "553659393146122243\u003cbr\u003e@usmanka @BBCtrending @BBCWorld #satansislamiccult\u003cbr\u003eFri Jan 09 21:07:40 +0000 2015"}, {"group": 1210, "id": 20, "label": "553234930734743552", "shape": "dot", "size": 10, "title": "553234930734743552\u003cbr\u003e@BubbleBeeBath @BBCWorld people died in\u003cbr\u003eFrance for their mistakes and\u003cbr\u003etheir pity. but in Ukraine\u003cbr\u003epeople are dying every day.\u003cbr\u003eWhere is true?\u003cbr\u003eThu Jan 08 17:01:00 +0000 2015"}, {"group": 1210, "id": 21, "label": "553235025487876098", "shape": "dot", "size": 10, "title": "553235025487876098\u003cbr\u003e@Chilingaroff @BBCWorld Oh I see\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:01:23 +0000 2015"}, {"group": 1210, "id": 24, "label": "553236021911891968", "shape": "dot", "size": 10, "title": "553236021911891968\u003cbr\u003e@Chilingaroff @BBCWorld  Well I\u003cbr\u003ehope Russia can just leave\u003cbr\u003ethe Ukraine alone..\u003cbr\u003eThu Jan 08 17:05:20 +0000 2015"}, {"group": 1210, "id": 22, "label": "553235732484354048", "shape": "dot", "size": 10, "title": "553235732484354048\u003cbr\u003e@BubbleBeeBath @BBCWorld When people burned\u003cbr\u003ealive in Odessa? Who talked\u003cbr\u003eabout it?! 300 people were\u003cbr\u003eburned alive.\u003cbr\u003eThu Jan 08 17:04:11 +0000 2015"}, {"group": 1210, "id": 25, "label": "553236286883258368", "shape": "dot", "size": 10, "title": "553236286883258368\u003cbr\u003e@BubbleBeeBath @BBCWorld As for russians\u003cbr\u003eopinion European Media licking American\u003cbr\u003eass and wants to show\u003cbr\u003ethat Putin is so bad\u003cbr\u003edude, aggressor.\u003cbr\u003eThu Jan 08 17:06:24 +0000 2015"}, {"group": 1210, "id": 23, "label": "553235937614770176", "shape": "dot", "size": 10, "title": "553235937614770176\u003cbr\u003e@Chilingaroff @BBCWorld I know about\u003cbr\u003eOdessa ..\u003cbr\u003eThu Jan 08 17:05:00 +0000 2015"}, {"group": 1210, "id": 26, "label": "553236754896273408", "shape": "dot", "size": 10, "title": "553236754896273408\u003cbr\u003e@BubbleBeeBath @BBCWorld USA MUST LEAVE\u003cbr\u003eFROM UKRAINE AND WILL BE\u003cbr\u003ePEACE OF THE WORLD.\u003cbr\u003eThu Jan 08 17:08:15 +0000 2015"}, {"group": 1210, "id": 27, "label": "553236793655455745", "shape": "dot", "size": 10, "title": "553236793655455745\u003cbr\u003e@Chilingaroff @BBCWorld Putin is an\u003cbr\u003eaggressor lolol\u003cbr\u003eThu Jan 08 17:08:24 +0000 2015"}, {"group": 1210, "id": 29, "label": "553237107867525120", "shape": "dot", "size": 10, "title": "553237107867525120\u003cbr\u003e@Chilingaroff @BBCWorld Thought the Ukraine\u003cbr\u003easked for help because of\u003cbr\u003eRussia.\u003cbr\u003eThu Jan 08 17:09:39 +0000 2015"}, {"group": 1210, "id": 28, "label": "553237106437664768", "shape": "dot", "size": 10, "title": "553237106437664768\u003cbr\u003e@BubbleBeeBath @BBCWorld I don\u0027t care\u003cbr\u003eabout ur point of view.\u003cbr\u003eDon\u0027t write me cuz u\u003cbr\u003er stupid girl. Philippines is\u003cbr\u003eUS COLONIC.\u003cbr\u003eThu Jan 08 17:09:39 +0000 2015"}, {"group": 1210, "id": 30, "label": "553237230169624576", "shape": "dot", "size": 10, "title": "553237230169624576\u003cbr\u003e@BubbleBeeBath @BBCWorld Fuck off Therrie.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:10:08 +0000 2015"}, {"group": 1210, "id": 31, "label": "553237575343693824", "shape": "dot", "size": 10, "title": "553237575343693824\u003cbr\u003e@Chilingaroff @BBCWorld Stupid girl? how\u003cbr\u003ed u know I am\u003cbr\u003ea stupid girl, if I\u003cbr\u003eam stupid, u r stupid\u003cbr\u003eenough to reply me right?better\u003cbr\u003eb quiet LOL\u003cbr\u003eThu Jan 08 17:11:31 +0000 2015"}, {"group": 1210, "id": 32, "label": "553237730155429888", "shape": "dot", "size": 10, "title": "553237730155429888\u003cbr\u003e@Chilingaroff @BBCWorld No thank you\u003cbr\u003every much.. I am picky\u003cbr\u003elol\u003cbr\u003eThu Jan 08 17:12:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 7, "to": 15, "weight": 1}, {"from": 13, "to": 17, "weight": 1}, {"from": 15, "to": 33, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 24, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 21, "to": 25, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 26, "to": 29, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 27, "to": 30, "weight": 1}, {"from": 28, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

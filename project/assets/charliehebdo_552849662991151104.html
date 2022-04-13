@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 652, "id": 0, "label": "552849662991151104", "shape": "dot", "size": 10, "title": "552849662991151104\u003cbr\u003eBREAKING NEWS: The 4 French\u003cbr\u003ecartoonists killed in #CharlieHebdo \u003cbr\u003eterror attack today. RIP http://t.co/CjmNTDWgzP\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:30:05 +0000 2015"}, {"group": 652, "id": 1, "label": "552850292383825920", "shape": "dot", "size": 10, "title": "552850292383825920\u003cbr\u003e@PzFeed Such bullshit. Pray for\u003cbr\u003etheir families\u003cbr\u003eWed Jan 07 15:32:35 +0000 2015"}, {"group": 652, "id": 2, "label": "552850293138800640", "shape": "dot", "size": 10, "title": "552850293138800640\u003cbr\u003e@PzFeed RIP \ud83d\ude14\u003cbr\u003eWed Jan 07 15:32:36 +0000 2015"}, {"group": 652, "id": 3, "label": "552850327800922112", "shape": "dot", "size": 10, "title": "552850327800922112\u003cbr\u003e@PzFeed RIP\u003cbr\u003eWed Jan 07 15:32:44 +0000 2015"}, {"group": 652, "id": 4, "label": "552850568478478336", "shape": "dot", "size": 10, "title": "552850568478478336\u003cbr\u003eRT @PzFeed: BREAKING NEWS: The\u003cbr\u003e4 French cartoonists killed in\u003cbr\u003e#CharlieHebdo  terror attack today.\u003cbr\u003eRIP http://t.co/wgngSPFj0J\u003cbr\u003eWed Jan 07 15:33:41 +0000 2015"}, {"group": 652, "id": 5, "label": "552850931499683840", "shape": "dot", "size": 10, "title": "552850931499683840\u003cbr\u003e@PzFeed Did the third gun\u003cbr\u003eman get into a building\u003cbr\u003ewith these cartoonists?\u003cbr\u003eWed Jan 07 15:35:08 +0000 2015"}, {"group": 652, "id": 6, "label": "552851469863366657", "shape": "dot", "size": 10, "title": "552851469863366657\u003cbr\u003e@pzfeed I loved their work.\nmay\u003cbr\u003ethey rest in eternal peace.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:37:16 +0000 2015"}, {"group": 652, "id": 7, "label": "552852158433861636", "shape": "dot", "size": 10, "title": "552852158433861636\u003cbr\u003e@PzFeed Is that Harry Potter?\u003cbr\u003e\ud83d\ude02\u003cbr\u003eWed Jan 07 15:40:00 +0000 2015"}, {"group": 652, "id": 8, "label": "552852395273621504", "shape": "dot", "size": 10, "title": "552852395273621504\u003cbr\u003e@PzFeed @f_pepin When the pen\u003cbr\u003eis considered a weapon to\u003cbr\u003ethose who are offended humanity\u003cbr\u003ehas become very thin skinned.\u003cbr\u003eBeautiful faces, gone.\u003cbr\u003eWed Jan 07 15:40:57 +0000 2015"}, {"group": 652, "id": 9, "label": "552853012256129024", "shape": "dot", "size": 10, "title": "552853012256129024\u003cbr\u003e@PzFeed omg rip\u003cbr\u003eWed Jan 07 15:43:24 +0000 2015"}, {"group": 652, "id": 12, "label": "552855042244759553", "shape": "dot", "size": 10, "title": "552855042244759553\u003cbr\u003e@PzFeed @JedediahBila  Such BRAVE\u003cbr\u003eSOULS!  My soul cries\u003cbr\u003eout for them!\u003cbr\u003eWed Jan 07 15:51:28 +0000 2015"}, {"group": 652, "id": 13, "label": "552855207361523713", "shape": "dot", "size": 10, "title": "552855207361523713\u003cbr\u003e@PzFeed @JedediahBila when is the\u003cbr\u003eworld going to wake up?\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:52:07 +0000 2015"}, {"group": 652, "id": 14, "label": "552855454372880386", "shape": "dot", "size": 10, "title": "552855454372880386\u003cbr\u003e@PzFeed @JedediahBila When are people\u003cbr\u003egoing to get to a\u003cbr\u003epoint where enough of this\u003cbr\u003eis enough?\u003cbr\u003eWed Jan 07 15:53:06 +0000 2015"}, {"group": 652, "id": 15, "label": "552855466301460480", "shape": "dot", "size": 10, "title": "552855466301460480\u003cbr\u003e\u201c@PzFeed: BREAKING NEWS: The 4\u003cbr\u003eFrench cartoonists killed in #CharlieHebdo\u003cbr\u003e terror attack today. RIP\u003cbr\u003ehttp://t.co/mpRKv0JF9Z\u201d So sad!\u003cbr\u003eWed Jan 07 15:53:09 +0000 2015"}, {"group": 652, "id": 16, "label": "552856732536680448", "shape": "dot", "size": 10, "title": "552856732536680448\u003cbr\u003e\ud83d\ude4f#WeAreCharlie #RIP! \u201c@PzFeed: BREAKING NEWS:\u003cbr\u003eThe 4 #French cartoonists killed\u003cbr\u003ein #CharlieHebdo terror attack today.\u003cbr\u003ehttp://t.co/IS0Tm2RsGu\u201d\u003cbr\u003eWed Jan 07 15:58:11 +0000 2015"}, {"group": 652, "id": 19, "label": "552862544470093825", "shape": "dot", "size": 10, "title": "552862544470093825\u003cbr\u003e@PzFeed @JedediahBila Time to call\u003cbr\u003ethis what it is -\u003cbr\u003eslaughter by Islamic religious fanatics.\u003cbr\u003eI don\u0027t want to hear\u003cbr\u003efrom any more apologists.\u003cbr\u003eWed Jan 07 16:21:16 +0000 2015"}, {"group": 652, "id": 10, "label": "552853219295395842", "shape": "dot", "size": 10, "title": "552853219295395842\u003cbr\u003e@iMoreTreats @PzFeed kys\u003cbr\u003eWed Jan 07 15:44:13 +0000 2015"}, {"group": 652, "id": 11, "label": "552854651062984704", "shape": "dot", "size": 10, "title": "552854651062984704\u003cbr\u003e@iMoreTreats @PzFeed Wow...\u003cbr\u003eWed Jan 07 15:49:55 +0000 2015"}, {"group": 652, "id": 17, "label": "552857411078606848", "shape": "dot", "size": 10, "title": "552857411078606848\u003cbr\u003e@QuinteALIVE Triste journ\u00e9e pour tous\u003cbr\u003eles journalistes du monde... Reporters\u003cbr\u003eall around the world can\u003cbr\u003efeel the pain of this\u003cbr\u003eattack.\u003cbr\u003eWed Jan 07 16:00:53 +0000 2015"}, {"group": 652, "id": 18, "label": "552858254288515072", "shape": "dot", "size": 10, "title": "552858254288515072\u003cbr\u003e@f_pepin Just one more notch\u003cbr\u003ein their aim to spread\u003cbr\u003efear and hence control, dominance.\u003cbr\u003eLeaders worldwide need to address\u003cbr\u003ethis NOW.\u003cbr\u003eWed Jan 07 16:04:14 +0000 2015"}, {"group": 652, "id": 20, "label": "553705388705865729", "shape": "dot", "size": 10, "title": "553705388705865729\u003cbr\u003e@FredReitman @PzFeed @JedediahBila  Not\u003cbr\u003ereligious fanatics, just Muslims who\u003cbr\u003ebelieve in Islam. Radical Islam\u003cbr\u003e= Islam. http://t.co/hNFdHrzSk5\u003cbr\u003eSat Jan 10 00:10:26 +0000 2015"}, {"group": 652, "id": 21, "label": "553707166658736130", "shape": "dot", "size": 10, "title": "553707166658736130\u003cbr\u003e@arrowsmithwoman @FredReitman @PzFeed @JedediahBila Check\u003cbr\u003eyour canoe for leaks.\u003cbr\u003eSat Jan 10 00:17:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 7, "to": 11, "weight": 1}, {"from": 8, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

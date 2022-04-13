@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1803, "id": 0, "label": "553129559173115904", "shape": "dot", "size": 10, "title": "553129559173115904\u003cbr\u003eUPDATE: Police officer shot outside\u003cbr\u003eParis this morning dies http://t.co/OoALEHIyC4\u003cbr\u003e#Montrouge http://t.co/OgAwuVq0rM\u003cbr\u003eThu Jan 08 10:02:18 +0000 2015"}, {"group": 1803, "id": 1, "label": "553131155906891776", "shape": "dot", "size": 10, "title": "553131155906891776\u003cbr\u003eAnother extortion thug bites the\u003cbr\u003edust.\n#FTP #MakeBacon #StandWithCantwell \nhttps://t.co/DxtqFBdGho\n@RT_com\u003cbr\u003eThu Jan 08 10:08:38 +0000 2015"}, {"group": 1803, "id": 2, "label": "553133864693284864", "shape": "dot", "size": 10, "title": "553133864693284864\u003cbr\u003e@RT_com PARIS MURDERS BREAKING VIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003e#ParisShooting\u003cbr\u003eThu Jan 08 10:19:24 +0000 2015"}, {"group": 1803, "id": 4, "label": "553137740271734784", "shape": "dot", "size": 10, "title": "553137740271734784\u003cbr\u003e@RT_com F\u00e9licitation Elys\u00e9e sur le\u003cbr\u003ed\u00e9but de # Printempsfran\u00e7ais la\u003cbr\u003elibert\u00e9 et la d\u00e9mocratie en\u003cbr\u003eSyrie finalement commenc\u00e9 \u00e0 #ParisShooting\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:34:48 +0000 2015"}, {"group": 1803, "id": 8, "label": "553142327888605185", "shape": "dot", "size": 10, "title": "553142327888605185\u003cbr\u003e@RT_com War profiteers x\u0027d #PrincessDiana\u003cbr\u003eand #DodiFayed in #Paris. Pushing\u003cbr\u003e#France to join war on\u003cbr\u003eterror VIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003eThu Jan 08 10:53:02 +0000 2015"}, {"group": 1803, "id": 9, "label": "553149556008173568", "shape": "dot", "size": 10, "title": "553149556008173568\u003cbr\u003e@RT_com CBS News would like\u003cbr\u003eto use these images -\u003cbr\u003ewould we be able to\u003cbr\u003edo so?\u003cbr\u003eThu Jan 08 11:21:45 +0000 2015"}, {"group": 1803, "id": 10, "label": "553176489961988096", "shape": "dot", "size": 10, "title": "553176489961988096\u003cbr\u003e@rt_com Islam has 2 faces.one\u003cbr\u003eos innocent second is brutel.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:08:47 +0000 2015"}, {"group": 1803, "id": 11, "label": "553241250778738688", "shape": "dot", "size": 10, "title": "553241250778738688\u003cbr\u003e\u201c@RT_com: UPDATE: Police officer shot\u003cbr\u003eoutside Paris this morning dies\u003cbr\u003ehttp://t.co/MZN3R9vhOO #Montrouge http://t.co/P7QiR7JIYb\u201d\u003cbr\u003eThu Jan 08 17:26:07 +0000 2015"}, {"group": 1803, "id": 3, "label": "553135565231898624", "shape": "dot", "size": 10, "title": "553135565231898624\u003cbr\u003e@PolymathPoet @RT_com #iStandWithCharlie .. Do\u003cbr\u003eyou? Join my hand :\u003cbr\u003ehttp://t.co/U9yhPR6bAa\u003cbr\u003eThu Jan 08 10:26:10 +0000 2015"}, {"group": 1803, "id": 5, "label": "553137869523779584", "shape": "dot", "size": 10, "title": "553137869523779584\u003cbr\u003e@istand_with @RT_com #FalseFlag #ParisShooting #ParisAttack\u003cbr\u003epush by war profiteers for\u003cbr\u003e#France to join fake war\u003cbr\u003eon terror.   #September11\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:35:19 +0000 2015"}, {"group": 1803, "id": 6, "label": "553138200441810944", "shape": "dot", "size": 10, "title": "553138200441810944\u003cbr\u003e@PolymathPoet @RT_com Be here :\u003cbr\u003ehttp://t.co/U9yhPR6bAa\u003cbr\u003eThu Jan 08 10:36:38 +0000 2015"}, {"group": 1803, "id": 7, "label": "553138752277991425", "shape": "dot", "size": 10, "title": "553138752277991425\u003cbr\u003e@istand_with #PrincessDiana \u0026amp; #DodiFayed murdered\u003cbr\u003ein #Paris. #Monarchy pushing #France\u003cbr\u003eto join war on terror.\u003cbr\u003eVIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003eThu Jan 08 10:38:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

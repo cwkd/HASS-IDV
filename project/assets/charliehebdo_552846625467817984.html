@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 615, "id": 0, "label": "552846625467817984", "shape": "dot", "size": 10, "title": "552846625467817984\u003cbr\u003e. @USEmbassyFrance changes Twitter pic\u003cbr\u003eto #JeSuisCharlie #CharlieHebdo http://t.co/nCO0bEygIx\u003cbr\u003eWed Jan 07 15:18:01 +0000 2015"}, {"group": 615, "id": 1, "label": "552846714508705792", "shape": "dot", "size": 10, "title": "552846714508705792\u003cbr\u003eh/t @elenacresci for that\u003cbr\u003eWed Jan 07 15:18:22 +0000 2015"}, {"group": 615, "id": 2, "label": "552850432872419330", "shape": "dot", "size": 10, "title": "552850432872419330\u003cbr\u003e.@Claire_Phipps @emilybell \"Misleading press reports\"\u003cbr\u003e-- mon dieu! Shocked, shocked\u003cbr\u003ethat such a thing occurs.\u003cbr\u003eA foundation of belief shakes.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:33:09 +0000 2015"}, {"group": 615, "id": 3, "label": "552852376399675393", "shape": "dot", "size": 10, "title": "552852376399675393\u003cbr\u003e@Claire_Phipps @USEmbassyFrance their loss\u003cbr\u003eWed Jan 07 15:40:52 +0000 2015"}, {"group": 615, "id": 4, "label": "552853032883347456", "shape": "dot", "size": 10, "title": "552853032883347456\u003cbr\u003e@Claire_Phipps @kady @USEmbassyFrance C\u0027est la\u003cbr\u003eFrance! C\u0027est le temps de\u003cbr\u003emontrer la porte a ceux\u003cbr\u003equi veulent changer votre mode\u003cbr\u003ede vie.\u003cbr\u003eWed Jan 07 15:43:29 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

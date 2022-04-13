@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 677, "id": 0, "label": "552851772658561028", "shape": "dot", "size": 10, "title": "552851772658561028\u003cbr\u003eHypocrites like @faiezakhan in one\u003cbr\u003escreen shot. #CharlieHebdo #PK http://t.co/habzM640DJ\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:38:28 +0000 2015"}, {"group": 677, "id": 1, "label": "552852182006255616", "shape": "dot", "size": 10, "title": "552852182006255616\u003cbr\u003e@sankrant lol. and you are\u003cbr\u003esurprised, why? @faiezakhan\u003cbr\u003eWed Jan 07 15:40:06 +0000 2015"}, {"group": 677, "id": 2, "label": "552852918722781186", "shape": "dot", "size": 10, "title": "552852918722781186\u003cbr\u003e@sankrant can\u0027t hide their true\u003cbr\u003ecolors for too long @faiezakhan\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:43:01 +0000 2015"}, {"group": 677, "id": 3, "label": "552853406407467008", "shape": "dot", "size": 10, "title": "552853406407467008\u003cbr\u003e@sankrant @faiezakhan As an Ahmadi\u003cbr\u003eMuslim I condemn the #ParisShooting\u003cbr\u003e#ChalieHebdo  #LoveForAllHatredForNone #StopExtremism\u003cbr\u003eWed Jan 07 15:44:58 +0000 2015"}, {"group": 677, "id": 4, "label": "552853603598479360", "shape": "dot", "size": 10, "title": "552853603598479360\u003cbr\u003e@sankrant @MsWeera  Dont try\u003cbr\u003etoo Hard Ms. @Faiezakhan I\u003cbr\u003eknow its very tough for\u003cbr\u003eyou to condemn this attack\u003cbr\u003edirectly.\u003cbr\u003eWed Jan 07 15:45:45 +0000 2015"}, {"group": 677, "id": 5, "label": "552854028343070722", "shape": "dot", "size": 10, "title": "552854028343070722\u003cbr\u003eMust have millions RTs Well\u003cbr\u003eexposed @sankrant @neha_aks @faiezakhan\u003cbr\u003eWed Jan 07 15:47:26 +0000 2015"}, {"group": 677, "id": 6, "label": "552854431310422018", "shape": "dot", "size": 10, "title": "552854431310422018\u003cbr\u003e@sankrant Sir, people like @faiezakhan\u003cbr\u003e are just attention seeking\u003cbr\u003ewhores! @sahoo_pratik\u003cbr\u003eWed Jan 07 15:49:02 +0000 2015"}, {"group": 677, "id": 7, "label": "552854886283366400", "shape": "dot", "size": 10, "title": "552854886283366400\u003cbr\u003e@sankrant jyada pol kholenge to\u003cbr\u003emadam kahengi ki sanghi harass\u003cbr\u003ekar rahe han !! @Vyomnaut\u003cbr\u003e@faiezakhan\u003cbr\u003eWed Jan 07 15:50:51 +0000 2015"}, {"group": 677, "id": 8, "label": "552855195559161857", "shape": "dot", "size": 10, "title": "552855195559161857\u003cbr\u003e@sankrant @neha_aks @faiezakhan #CharlieHebdo #PK\u003cbr\u003eye duniya ki sabse barbaric\u003cbr\u003ereligion hai..I hate this religion..99%\u003cbr\u003eterrorist are islamist\u003cbr\u003eWed Jan 07 15:52:04 +0000 2015"}, {"group": 677, "id": 9, "label": "552856160445792256", "shape": "dot", "size": 10, "title": "552856160445792256\u003cbr\u003e@sankrant @neha_aks @faiezakhan \nAll of\u003cbr\u003ethem are doing Ajay Maken\u003cbr\u003ehere. Nonsense ordinance.\u003cbr\u003eWed Jan 07 15:55:54 +0000 2015"}, {"group": 677, "id": 10, "label": "552860015921336322", "shape": "dot", "size": 10, "title": "552860015921336322\u003cbr\u003e@sankrant on this fateful day,\u003cbr\u003ehypocrisies galore https://t.co/joQer16nIG. @neha_aks @faiezakhan\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:11:14 +0000 2015"}, {"group": 677, "id": 11, "label": "552863079537467393", "shape": "dot", "size": 10, "title": "552863079537467393\u003cbr\u003e@sankrant @faiezakhan @Vyomnaut Looks like\u003cbr\u003eher \"open mind\" went down\u003cbr\u003ean open drainage pipe.\u003cbr\u003eWed Jan 07 16:23:24 +0000 2015"}, {"group": 677, "id": 12, "label": "552865206154457088", "shape": "dot", "size": 10, "title": "552865206154457088\u003cbr\u003e@sankrant @kailashkaushik8 why giving attention\u003cbr\u003eto idiot @faiezakhan she always\u003cbr\u003esupport all anti Indian Things.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:31:51 +0000 2015"}, {"group": 677, "id": 13, "label": "552865684477464576", "shape": "dot", "size": 10, "title": "552865684477464576\u003cbr\u003e@sankrant @neha_aks Havne\u0027t you heard\u003cbr\u003ethis saying, \"Once a Muslim,\u003cbr\u003eAlways a hypocrite\" \u0026gt;\u0026gt;@faiezakhan #PKdebate\u003cbr\u003e#PathologicalHypocrites\u003cbr\u003eWed Jan 07 16:33:45 +0000 2015"}, {"group": 677, "id": 14, "label": "552866136723689473", "shape": "dot", "size": 10, "title": "552866136723689473\u003cbr\u003e\u201c@sankrant: Hypocrites like @faiezakhan in\u003cbr\u003eone screen shot. #CharlieHebdo #PK\u003cbr\u003ehttp://t.co/2TJQ2fmPCl\u201d\u003cbr\u003eWed Jan 07 16:35:33 +0000 2015"}, {"group": 677, "id": 15, "label": "552866512495579136", "shape": "dot", "size": 10, "title": "552866512495579136\u003cbr\u003e@sankrant @kailashkaushik8 @faiezakhan  Muslim\u003cbr\u003eshe is.\u003cbr\u003eWed Jan 07 16:37:02 +0000 2015"}, {"group": 677, "id": 16, "label": "552867407367512065", "shape": "dot", "size": 10, "title": "552867407367512065\u003cbr\u003e@sankrant @AgentSaffron @faiezakhan saying ,\u003cbr\u003e\u0027\u0027 ANYWAY condolences...\u0027\u0027 is patronising\u003cbr\u003eand being dismissive.\u003cbr\u003eWed Jan 07 16:40:36 +0000 2015"}, {"group": 677, "id": 18, "label": "552878251778269186", "shape": "dot", "size": 10, "title": "552878251778269186\u003cbr\u003e@sankrant Such a classic hypocrite.\u003cbr\u003eCant make this shit up.\u003cbr\u003e@faiezakhan\u003cbr\u003eWed Jan 07 17:23:41 +0000 2015"}, {"group": 677, "id": 19, "label": "552879066689175552", "shape": "dot", "size": 10, "title": "552879066689175552\u003cbr\u003e@sankrant @shobhit_todi @faiezakhan she is\u003cbr\u003econtradicting her own statement\u003cbr\u003eWed Jan 07 17:26:56 +0000 2015"}, {"group": 677, "id": 17, "label": "552868180742254592", "shape": "dot", "size": 10, "title": "552868180742254592\u003cbr\u003e@ammarawrites @sankrant @faiezakhan Bat tu\u003cbr\u003esuch hy magar bat hy\u003cbr\u003eruswye ke..Condenm terrorism anywhere PK\u003cbr\u003erightly told story #ParisShooting\u003cbr\u003eWed Jan 07 16:43:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 14, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 18, "id": 0, "label": "552789550238801920", "shape": "dot", "size": 10, "title": "552789550238801920\u003cbr\u003eSolidarity with Charlie Hebdo. http://t.co/gvLp0NwLax\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:31:13 +0000 2015"}, {"group": 18, "id": 1, "label": "552790474634063872", "shape": "dot", "size": 10, "title": "552790474634063872\u003cbr\u003e\u201c@jacobinism: Solidarity with Charlie Hebdo.\u003cbr\u003ehttp://t.co/BqpvpOtPFR\u201d\u003cbr\u003eWed Jan 07 11:34:54 +0000 2015"}, {"group": 18, "id": 2, "label": "552796543229890560", "shape": "dot", "size": 10, "title": "552796543229890560\u003cbr\u003e@jacobinism @MortuusBestia \"Soumission\" !!!\u003cbr\u003eWed Jan 07 11:59:01 +0000 2015"}, {"group": 18, "id": 3, "label": "552815699278983168", "shape": "dot", "size": 10, "title": "552815699278983168\u003cbr\u003e@jacobinism I wish I\u0027d paid\u003cbr\u003eattention in French at school\u003cbr\u003enow!!!\u003cbr\u003eWed Jan 07 13:15:08 +0000 2015"}, {"group": 18, "id": 4, "label": "552816114330533888", "shape": "dot", "size": 10, "title": "552816114330533888\u003cbr\u003e@jacobinism @richiesalter Islam is a\u003cbr\u003elie and Mohammed is a\u003cbr\u003eFALSE PROPHET who sucked people\u003cbr\u003einto his death cult. Ban\u003cbr\u003eIslam from planet EARTH.\u003cbr\u003eWed Jan 07 13:16:47 +0000 2015"}, {"group": 18, "id": 7, "label": "552829199015088128", "shape": "dot", "size": 10, "title": "552829199015088128\u003cbr\u003e@jacobinism Could you, if you\u003cbr\u003eknow, translate this into English,\u003cbr\u003eplease?\u003cbr\u003eWed Jan 07 14:08:46 +0000 2015"}, {"group": 18, "id": 10, "label": "552943078559219714", "shape": "dot", "size": 10, "title": "552943078559219714\u003cbr\u003e@jacobinism @NickCohen4 Hats off to\u003cbr\u003eyou Nick. Respect.\u003cbr\u003eWed Jan 07 21:41:17 +0000 2015"}, {"group": 18, "id": 5, "label": "552816541876908032", "shape": "dot", "size": 10, "title": "552816541876908032\u003cbr\u003e@jhendricks2301 Sez: A con-film about\u003cbr\u003eIslam triggers Fundamentalist rage.\n\"Show us\u003cbr\u003ean intelligent film and we\u0027ll\u003cbr\u003estart the Third World War!\"\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:18:29 +0000 2015"}, {"group": 18, "id": 6, "label": "552817227217772544", "shape": "dot", "size": 10, "title": "552817227217772544\u003cbr\u003e@jacobinism thanks!!!\u003cbr\u003eWed Jan 07 13:21:12 +0000 2015"}, {"group": 18, "id": 8, "label": "552830208450260993", "shape": "dot", "size": 10, "title": "552830208450260993\u003cbr\u003e@DGBJPN A con-film about Islam\u003cbr\u003etriggers Fundamentalist rage.\n\"Show us an\u003cbr\u003eintelligent film and we\u0027ll start\u003cbr\u003ethe Third World War!\"\u003cbr\u003eWed Jan 07 14:12:47 +0000 2015"}, {"group": 18, "id": 9, "label": "552830694460624896", "shape": "dot", "size": 10, "title": "552830694460624896\u003cbr\u003e@jacobinism thankyou\u003cbr\u003eWed Jan 07 14:14:43 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

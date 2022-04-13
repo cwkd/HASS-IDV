@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1515, "id": 0, "label": "553581501422788608", "shape": "dot", "size": 10, "title": "553581501422788608\u003cbr\u003eBREAKING: Gunshots and several explosions\u003cbr\u003eheard at Dammartin-en-Goele site in\u003cbr\u003eFrance: Reuters reporter\u003cbr\u003eFri Jan 09 15:58:09 +0000 2015"}, {"group": 1515, "id": 1, "label": "553581565096120321", "shape": "dot", "size": 10, "title": "553581565096120321\u003cbr\u003e@Reuters #JeSuisJuif\u003cbr\u003eFri Jan 09 15:58:24 +0000 2015"}, {"group": 1515, "id": 2, "label": "553581669438214144", "shape": "dot", "size": 10, "title": "553581669438214144\u003cbr\u003e\u201c@Reuters: BREAKING: Gunshots and several\u003cbr\u003eexplosions heard at Dammartin-en-Goele site\u003cbr\u003ein France: Reuters reporter\u201d\u003cbr\u003eFri Jan 09 15:58:49 +0000 2015"}, {"group": 1515, "id": 3, "label": "553581670977138688", "shape": "dot", "size": 10, "title": "553581670977138688\u003cbr\u003eShit :( RT @Reuters: BREAKING:\u003cbr\u003eGunshots and several explosions heard\u003cbr\u003eat Dammartin-en-Goele site in France:\u003cbr\u003eReuters reporter\u003cbr\u003eFri Jan 09 15:58:50 +0000 2015"}, {"group": 1515, "id": 4, "label": "553581865563471872", "shape": "dot", "size": 10, "title": "553581865563471872\u003cbr\u003e@Reuters \n#StopKillingInnocentPeople\n#FreePalestine\n#freeBurma\n#FreeSyria \n#FreeKashmir\nhttp://t.co/ggBNiIa9fq\u003cbr\u003eFri Jan 09 15:59:36 +0000 2015"}, {"group": 1515, "id": 5, "label": "553582256045178880", "shape": "dot", "size": 10, "title": "553582256045178880\u003cbr\u003eRT @Reuters BREAKING: Gunshots and\u003cbr\u003eseveral explosions heard at Dammartin-en-Goele\u003cbr\u003esite in France: Reuters reporter\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:01:09 +0000 2015"}, {"group": 1515, "id": 6, "label": "553582710636425216", "shape": "dot", "size": 10, "title": "553582710636425216\u003cbr\u003e@Reuters tiros e explos\u00f5es em\u003cbr\u003edammartin-en-goele\u003cbr\u003eFri Jan 09 16:02:57 +0000 2015"}, {"group": 1515, "id": 7, "label": "553582831683653632", "shape": "dot", "size": 10, "title": "553582831683653632\u003cbr\u003eRT @Reuters: BREAKING: Gunshots and\u003cbr\u003eseveral explosions heard at Dammartin-en-Goele\u003cbr\u003esite in France: Reuters reporter\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:03:26 +0000 2015"}, {"group": 1515, "id": 8, "label": "553582833835315200", "shape": "dot", "size": 10, "title": "553582833835315200\u003cbr\u003e\u201c@Reuters: BREAKING: Gunshots and several\u003cbr\u003eexplosions heard at Dammartin-en-Goele site\u003cbr\u003ein France: Reuters reporter\u201d\n\nGet them\u003cbr\u003eTier 1!\u003cbr\u003eFri Jan 09 16:03:27 +0000 2015"}, {"group": 1515, "id": 9, "label": "553583451094253568", "shape": "dot", "size": 10, "title": "553583451094253568\u003cbr\u003e@Reuters lets hope and pray\u003cbr\u003ethat the hostages are safe\u003cbr\u003eand that death to the\u003cbr\u003eterrorist is swift.\u003cbr\u003eFri Jan 09 16:05:54 +0000 2015"}, {"group": 1515, "id": 10, "label": "553583460397645825", "shape": "dot", "size": 10, "title": "553583460397645825\u003cbr\u003eRT\u201c@Reuters: BREAKING: Gunshots and several\u003cbr\u003eexplosions heard at Dammartin-en-Goele site\u003cbr\u003ein France: Reuters reporter\u201d\u003cbr\u003eFri Jan 09 16:05:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

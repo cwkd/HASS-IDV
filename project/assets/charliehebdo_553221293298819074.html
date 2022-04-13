@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1186, "id": 0, "label": "553221293298819074", "shape": "dot", "size": 10, "title": "553221293298819074\u003cbr\u003eCharlie Hebdo Shooting \u0026amp; The\u003cbr\u003eReligion Of Peace #JeSuisCharlie #IAmCharlie:\u003cbr\u003ehttp://t.co/l24GPWrTuZ via @YouTube\u003cbr\u003eThu Jan 08 16:06:49 +0000 2015"}, {"group": 1186, "id": 1, "label": "553221479517941760", "shape": "dot", "size": 10, "title": "553221479517941760\u003cbr\u003e@JaclynGlenn @YouTube Can\u0027t wait!\u003cbr\u003eThu Jan 08 16:07:33 +0000 2015"}, {"group": 1186, "id": 2, "label": "553221945144410112", "shape": "dot", "size": 10, "title": "553221945144410112\u003cbr\u003e@JaclynGlenn @YouTube you mean the\u003cbr\u003ereligion of peaces, head arms\u003cbr\u003elegs all chopped for being\u003cbr\u003egay or apostate\u003cbr\u003eThu Jan 08 16:09:24 +0000 2015"}, {"group": 1186, "id": 3, "label": "553222105077395459", "shape": "dot", "size": 10, "title": "553222105077395459\u003cbr\u003e@JaclynGlenn Merci !\u003cbr\u003eThu Jan 08 16:10:02 +0000 2015"}, {"group": 1186, "id": 4, "label": "553223218207940610", "shape": "dot", "size": 10, "title": "553223218207940610\u003cbr\u003e@JaclynGlenn @YouTube why r Islamic\u003cbr\u003epeople so dumb. And still\u003cbr\u003esay there PEACEFUL.\u003cbr\u003eThu Jan 08 16:14:28 +0000 2015"}, {"group": 1186, "id": 5, "label": "553223233382526976", "shape": "dot", "size": 10, "title": "553223233382526976\u003cbr\u003e@JaclynGlenn @YouTube Mock, Mock, Mock-\u003cbr\u003eMock Islamists. Mock, Mock, Mock-Mock\u003cbr\u003eIslamists--Mock around the clock tonight.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:14:31 +0000 2015"}, {"group": 1186, "id": 6, "label": "553229239676567552", "shape": "dot", "size": 10, "title": "553229239676567552\u003cbr\u003e@JaclynGlenn @YouTube Jaclyn is always\u003cbr\u003ethe voice of reason. Damn\u003cbr\u003eshame that so few are\u003cbr\u003ewilling to express their ideas\u003cbr\u003eoutside of the hugbox.\u003cbr\u003eThu Jan 08 16:38:23 +0000 2015"}, {"group": 1186, "id": 7, "label": "553248124870090753", "shape": "dot", "size": 10, "title": "553248124870090753\u003cbr\u003e@JaclynGlenn @YouTube jaclyn,are you saying\u003cbr\u003eIslam is the only hateful\u003cbr\u003ereligion, or would you include\u003cbr\u003eChristianity in this category as\u003cbr\u003ewell?\u003cbr\u003eThu Jan 08 17:53:26 +0000 2015"}, {"group": 1186, "id": 8, "label": "553249797700718592", "shape": "dot", "size": 10, "title": "553249797700718592\u003cbr\u003e@JaclynGlenn I\u0027m just going to\u003cbr\u003epoint it out that I\u003cbr\u003eam Muslim, I definitely see\u003cbr\u003eand understand all your points\u003cbr\u003ein your video.\u003cbr\u003eThu Jan 08 18:00:05 +0000 2015"}, {"group": 1186, "id": 9, "label": "553250138412433408", "shape": "dot", "size": 10, "title": "553250138412433408\u003cbr\u003e@JaclynGlenn and that I\u0027m not\u003cbr\u003ethat really religious, so I\u003cbr\u003edon\u0027t follow much. I even\u003cbr\u003esupport the LGBTQs.\u003cbr\u003eThu Jan 08 18:01:26 +0000 2015"}, {"group": 1186, "id": 10, "label": "553255524872245248", "shape": "dot", "size": 10, "title": "553255524872245248\u003cbr\u003e@JaclynGlenn another amazing relevant and\u003cbr\u003ewell thought out video! You\u0027re\u003cbr\u003eexcellent and I respect you\u003cbr\u003ea lot it\u0027s not easy\u003cbr\u003ebeing atheist in us\u003cbr\u003eThu Jan 08 18:22:50 +0000 2015"}, {"group": 1186, "id": 11, "label": "553255650101571585", "shape": "dot", "size": 10, "title": "553255650101571585\u003cbr\u003e@JaclynGlenn ... So well done\u003cbr\u003eand keep doing what you\u003cbr\u003edo! Best wishes dude!!\u003cbr\u003eThu Jan 08 18:23:20 +0000 2015"}, {"group": 1186, "id": 12, "label": "553256849697280001", "shape": "dot", "size": 10, "title": "553256849697280001\u003cbr\u003e@JaclynGlenn @lalodagach @YouTube Do not\u003cbr\u003ebe afraid to post pictures\u003cbr\u003eof Mohamed.\u003cbr\u003eThu Jan 08 18:28:06 +0000 2015"}, {"group": 1186, "id": 13, "label": "553278943626010624", "shape": "dot", "size": 10, "title": "553278943626010624\u003cbr\u003e\u201c@JaclynGlenn: Charlie Hebdo Shooting \u0026amp;\u003cbr\u003eThe Religion Of Peace #JeSuisCharlie\u003cbr\u003e#IAmCharlie: http://t.co/Fu9QNbL8XM via @YouTube\u201d\u003cbr\u003eThu Jan 08 19:55:54 +0000 2015"}, {"group": 1186, "id": 14, "label": "553373544609251328", "shape": "dot", "size": 10, "title": "553373544609251328\u003cbr\u003e@JaclynGlenn @YouTube You know... I\u0027ve\u003cbr\u003edecided to draw myself everyday.\u003cbr\u003eAnd I\u0027m here to tell\u003cbr\u003eall Muslims it\u0027s okay to\u003cbr\u003edraw me. -Allah.\u003cbr\u003eFri Jan 09 02:11:48 +0000 2015"}, {"group": 1186, "id": 15, "label": "553442407363006465", "shape": "dot", "size": 10, "title": "553442407363006465\u003cbr\u003e@JaclynGlenn @RichardDawkins @YouTube\u003cbr\u003eFri Jan 09 06:45:27 +0000 2015"}, {"group": 1186, "id": 16, "label": "553443879739875328", "shape": "dot", "size": 10, "title": "553443879739875328\u003cbr\u003e@JaclynGlenn @YouTube @RichardDawkins You read\u003cbr\u003etoo much from twitter-tards, all\u003cbr\u003ethat is obvious to the\u003cbr\u003emost casual observer.\u003cbr\u003eFri Jan 09 06:51:18 +0000 2015"}, {"group": 1186, "id": 17, "label": "553445403220541440", "shape": "dot", "size": 10, "title": "553445403220541440\u003cbr\u003e@JaclynGlenn @RichardDawkins @YouTube so peaceful\u003cbr\u003eI can\u0027t see a thing\u003cbr\u003ebecause of the bright white\u003cbr\u003elight of it\u003cbr\u003eFri Jan 09 06:57:21 +0000 2015"}, {"group": 1186, "id": 19, "label": "553453607761092608", "shape": "dot", "size": 10, "title": "553453607761092608\u003cbr\u003e@JaclynGlenn @RichardDawkins @YouTube Agree with\u003cbr\u003eyou a 100%.\u003cbr\u003eFri Jan 09 07:29:57 +0000 2015"}, {"group": 1186, "id": 18, "label": "553445728228737024", "shape": "dot", "size": 10, "title": "553445728228737024\u003cbr\u003e@xRyan_Leex @JaclynGlenn @YouTube so true.\u003cbr\u003e\u003cbr\u003eFri Jan 09 06:58:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 6, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 424, "id": 0, "label": "552831761957523456", "shape": "dot", "size": 10, "title": "552831761957523456\u003cbr\u003eHere\u0027s the @NewYorker cartoonist\u0027s response\u003cbr\u003eto the #CharlieHebdo attack: https://t.co/feyRMwyCUi\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:18:57 +0000 2015"}, {"group": 424, "id": 1, "label": "552843621314347009", "shape": "dot", "size": 10, "title": "552843621314347009\u003cbr\u003eRT @ninalakhani: Here\u0027s the @NewYorker\u003cbr\u003ecartoonist\u0027s response to the #CharlieHebdo\u003cbr\u003eattack: https://t.co/Z1K9HEei3x\u003cbr\u003eWed Jan 07 15:06:05 +0000 2015"}, {"group": 424, "id": 2, "label": "552843663064432640", "shape": "dot", "size": 10, "title": "552843663064432640\u003cbr\u003e@ninalakhani @NewYorker @OmarWaraich Sorry folks,\u003cbr\u003eits not http://t.co/23yt683mSz\u003cbr\u003eWed Jan 07 15:06:15 +0000 2015"}, {"group": 424, "id": 3, "label": "552845147202154496", "shape": "dot", "size": 10, "title": "552845147202154496\u003cbr\u003eIt is a @NewYorker cartoon\u003cbr\u003efrom 2006 NOT today\u003cbr\u003eWed Jan 07 15:12:09 +0000 2015"}, {"group": 424, "id": 4, "label": "552846007969787904", "shape": "dot", "size": 10, "title": "552846007969787904\u003cbr\u003e@ninalakhani @albertobenitez @NewYorker 2012.\u003cbr\u003eWed Jan 07 15:15:34 +0000 2015"}, {"group": 424, "id": 5, "label": "552846055260573698", "shape": "dot", "size": 10, "title": "552846055260573698\u003cbr\u003e@ninalakhani @_anapastor_ @NewYorker\u003cbr\u003eWed Jan 07 15:15:45 +0000 2015"}, {"group": 424, "id": 6, "label": "552849665667117056", "shape": "dot", "size": 10, "title": "552849665667117056\u003cbr\u003e@ninalakhani @Ssirgany @NewYorker no this\u003cbr\u003eis a 2006 cartoon. 9\u003cbr\u003eyears old.\u003cbr\u003eWed Jan 07 15:30:06 +0000 2015"}, {"group": 424, "id": 7, "label": "552850049919877120", "shape": "dot", "size": 10, "title": "552850049919877120\u003cbr\u003eThis @NewYorker cartoon from 2006\u003cbr\u003eseems to be the perfect\u003cbr\u003eresponse to the #CharlieHebdo attack:\u003cbr\u003ehttps://t.co/gsU1uHSng4 via @ninalakhani\u003cbr\u003eWed Jan 07 15:31:38 +0000 2015"}, {"group": 424, "id": 8, "label": "552855637475225600", "shape": "dot", "size": 10, "title": "552855637475225600\u003cbr\u003e@ninalakhani @_anapastor_ @NewYorker\u003cbr\u003eWed Jan 07 15:53:50 +0000 2015"}, {"group": 424, "id": 9, "label": "552857813878603777", "shape": "dot", "size": 10, "title": "552857813878603777\u003cbr\u003e@ninalakhani @_anapastor_ @NewYorker brilliant\u003cbr\u003eWed Jan 07 16:02:29 +0000 2015"}, {"group": 424, "id": 10, "label": "552860999590899712", "shape": "dot", "size": 10, "title": "552860999590899712\u003cbr\u003e@ninalakhani @martin_caparros @NewYorker Bravo\u003cbr\u003eWed Jan 07 16:15:08 +0000 2015"}, {"group": 424, "id": 11, "label": "553377196350648320", "shape": "dot", "size": 10, "title": "553377196350648320\u003cbr\u003e@ninalakhani @Sarah_Othmann @NewYorker \n#Freedom_there\n#\u0627\u0644\u062d\u0631\u064a\u0629_\u0647\u0646\u0627\u0643 !!!!!!!\nhttp://t.co/GzjXLOQrvv\u003cbr\u003e\u003cbr\u003eFri Jan 09 02:26:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

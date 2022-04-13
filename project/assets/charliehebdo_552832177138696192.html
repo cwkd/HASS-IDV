@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 431, "id": 0, "label": "552832177138696192", "shape": "dot", "size": 10, "title": "552832177138696192\u003cbr\u003eOMG! At least one MSM\u003cbr\u003epublication has done the unthinkable!\u003cbr\u003eNavbharat Times has posted the\u003cbr\u003e#CharlieHebdo cartoons! http://t.co/UZ4DrQqDNO\u003cbr\u003eWed Jan 07 14:20:36 +0000 2015"}, {"group": 431, "id": 1, "label": "552832354382000128", "shape": "dot", "size": 10, "title": "552832354382000128\u003cbr\u003e@smitabarooah  Al ave de\u003cbr\u003epaso, ca\u00f1azo.\u003cbr\u003eWed Jan 07 14:21:19 +0000 2015"}, {"group": 431, "id": 2, "label": "552833004918550528", "shape": "dot", "size": 10, "title": "552833004918550528\u003cbr\u003e@smitabarooah how is it unthinkable\u003cbr\u003eit is great because it\u003cbr\u003eis telling anyone who can\u0027t\u003cbr\u003etake a joke to FUCK\u003cbr\u003eOFF\u003cbr\u003eWed Jan 07 14:23:54 +0000 2015"}, {"group": 431, "id": 3, "label": "552833046811279360", "shape": "dot", "size": 10, "title": "552833046811279360\u003cbr\u003e@smitabarooah It should be the\u003cbr\u003enorm. Sad that it isn\u0027t.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:24:04 +0000 2015"}, {"group": 431, "id": 4, "label": "552833486932180992", "shape": "dot", "size": 10, "title": "552833486932180992\u003cbr\u003e@smitabarooah @DraggoTigger guess they don\u0027t\u003cbr\u003eunderstand French nor expect their\u003cbr\u003ereaders do\u003cbr\u003eWed Jan 07 14:25:49 +0000 2015"}, {"group": 431, "id": 5, "label": "552834654798352384", "shape": "dot", "size": 10, "title": "552834654798352384\u003cbr\u003e@smitabarooah religion is a mental\u003cbr\u003eillness.logic is the cure\u003cbr\u003eWed Jan 07 14:30:27 +0000 2015"}, {"group": 431, "id": 6, "label": "552834969777631232", "shape": "dot", "size": 10, "title": "552834969777631232\u003cbr\u003e@smitabarooah In a country where\u003cbr\u003ethey raped and killed thousands\u003cbr\u003eof muslims in Gujrat under\u003cbr\u003ethe watch of the current\u003cbr\u003eprime minister?\u003cbr\u003eWed Jan 07 14:31:42 +0000 2015"}, {"group": 431, "id": 7, "label": "552835011259297792", "shape": "dot", "size": 10, "title": "552835011259297792\u003cbr\u003e@smitabarooah Yeah Im sure thats\u003cbr\u003ea gutsy move lol....\u003cbr\u003eWed Jan 07 14:31:52 +0000 2015"}, {"group": 431, "id": 8, "label": "552838339720937472", "shape": "dot", "size": 10, "title": "552838339720937472\u003cbr\u003e@smitabarooah it mocked #IS, not\u003cbr\u003e#Islam. there was NOTHING wrong\u003cbr\u003ewith what #CharlieHebdo published. and\u003cbr\u003eNOTHING wrong with reposting it.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:45:06 +0000 2015"}, {"group": 431, "id": 9, "label": "552849866305851392", "shape": "dot", "size": 10, "title": "552849866305851392\u003cbr\u003e@smitabarooah @AviralKapoor_ cc @dhume\u003cbr\u003eWed Jan 07 15:30:54 +0000 2015"}, {"group": 431, "id": 10, "label": "552850118618009604", "shape": "dot", "size": 10, "title": "552850118618009604\u003cbr\u003e@smitabarooah @MistryMania http://t.co/kgoLaSnJFd\u003cbr\u003eWed Jan 07 15:31:54 +0000 2015"}, {"group": 431, "id": 11, "label": "552854271268360193", "shape": "dot", "size": 10, "title": "552854271268360193\u003cbr\u003e@smitabarooah @DeepakKodela Ha...ha...ho... Now let\u0027s\u003cbr\u003esee the PK lovers walk\u003cbr\u003ethe talk\ud83d\ude00\ud83d\ude01\ud83d\ude02\u003cbr\u003eWed Jan 07 15:48:24 +0000 2015"}, {"group": 431, "id": 12, "label": "552854946463617024", "shape": "dot", "size": 10, "title": "552854946463617024\u003cbr\u003edon\u0027t want anyone else hurt\u003cbr\u003ebut I hope MSM worldwide\u003cbr\u003ereprints the #CharlieHebdo Mohammed cartoons\u003cbr\u003ehttp://t.co/dDcxAgQ9xC  h/t @smitabarooah\u003cbr\u003eWed Jan 07 15:51:05 +0000 2015"}, {"group": 431, "id": 13, "label": "552856014610247680", "shape": "dot", "size": 10, "title": "552856014610247680\u003cbr\u003e@smitabarooah actually it says \"Coran\u003cbr\u003eis piece of shit\"\nSo Yes\u003cbr\u003eit is provocative.\u003cbr\u003eWed Jan 07 15:55:20 +0000 2015"}, {"group": 431, "id": 14, "label": "552868250329944064", "shape": "dot", "size": 10, "title": "552868250329944064\u003cbr\u003e@smitabarooah @fgautier26 zee news is\u003cbr\u003ealso doing it.\u003cbr\u003eWed Jan 07 16:43:57 +0000 2015"}, {"group": 431, "id": 15, "label": "552887699929972737", "shape": "dot", "size": 10, "title": "552887699929972737\u003cbr\u003e@smitabarooah deleted after 2 hrs\u003cbr\u003eof fake bravery @vsp888\u003cbr\u003eWed Jan 07 18:01:14 +0000 2015"}, {"group": 431, "id": 18, "label": "552888148288499712", "shape": "dot", "size": 10, "title": "552888148288499712\u003cbr\u003e@smitabarooah @upma23 removed now\u003cbr\u003eWed Jan 07 18:03:01 +0000 2015"}, {"group": 431, "id": 20, "label": "553124638641778688", "shape": "dot", "size": 10, "title": "553124638641778688\u003cbr\u003e@HuK_6 @smitabarooah \nTerrorist spotted!\u003cbr\u003eThu Jan 08 09:42:45 +0000 2015"}, {"group": 431, "id": 21, "label": "553126726344380417", "shape": "dot", "size": 10, "title": "553126726344380417\u003cbr\u003e@HuK_6 You have no Right\u003cbr\u003eto say A Word about\u003cbr\u003eIndia, Untill and Unless you\u003cbr\u003etell us what has happened\u003cbr\u003eto 22% Hindus in #Pak\u003cbr\u003e@smitabarooah\u003cbr\u003eThu Jan 08 09:51:02 +0000 2015"}, {"group": 431, "id": 22, "label": "553127001650102272", "shape": "dot", "size": 10, "title": "553127001650102272\u003cbr\u003e@HuK_6 have you killed them,\u003cbr\u003e#ForceConverted them, and don\u0027t tell\u003cbr\u003eme there is no force\u003cbr\u003eConversion, I can relate from\u003cbr\u003e#ISIS @smitabarooah\u003cbr\u003eThu Jan 08 09:52:08 +0000 2015"}, {"group": 431, "id": 24, "label": "553606159274221568", "shape": "dot", "size": 10, "title": "553606159274221568\u003cbr\u003e@HuK_6 @smitabarooah provocation is bad,so\u003cbr\u003elet\u0027s talk abt unprovoked ethnic\u003cbr\u003ecleansing of KPandits,not d hit\u003cbr\u003etaken by provocative Guj Muslims\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:36:08 +0000 2015"}, {"group": 431, "id": 16, "label": "552887870776569856", "shape": "dot", "size": 10, "title": "552887870776569856\u003cbr\u003e@biswajeetdash @smitabarooah fear of backlash\u003cbr\u003emay be!\u003cbr\u003eWed Jan 07 18:01:55 +0000 2015"}, {"group": 431, "id": 17, "label": "552887970617782272", "shape": "dot", "size": 10, "title": "552887970617782272\u003cbr\u003e@vsp888 @smitabarooah Yeah I think\u003cbr\u003eso\u003cbr\u003eWed Jan 07 18:02:19 +0000 2015"}, {"group": 431, "id": 19, "label": "552888183797465088", "shape": "dot", "size": 10, "title": "552888183797465088\u003cbr\u003e@vsp888 @smitabarooah MSM shud ask\u003cbr\u003ethemselves y has this time\u003cbr\u003ecome and how much they\u003cbr\u003er responsible for ills in\u003cbr\u003ethis nation\u003cbr\u003eWed Jan 07 18:03:09 +0000 2015"}, {"group": 431, "id": 23, "label": "553209349879762944", "shape": "dot", "size": 10, "title": "553209349879762944\u003cbr\u003e@joyjeetchowdhur @smitabarooah Why don\u0027t you\u003cbr\u003eget a profile pic first\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:19:21 +0000 2015"}, {"group": 431, "id": 25, "label": "553607068108615680", "shape": "dot", "size": 10, "title": "553607068108615680\u003cbr\u003e@topblogger1 @smitabarooah Do you also\u003cbr\u003ebelieve in the truth fairy?\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:39:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 6, "to": 20, "weight": 1}, {"from": 6, "to": 21, "weight": 1}, {"from": 6, "to": 22, "weight": 1}, {"from": 6, "to": 24, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 24, "to": 25, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

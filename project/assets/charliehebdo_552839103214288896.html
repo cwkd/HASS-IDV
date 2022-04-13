@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 534, "id": 0, "label": "552839103214288896", "shape": "dot", "size": 10, "title": "552839103214288896\u003cbr\u003eVideo purportedly shows gunmen fleeing\u003cbr\u003eafter opening fire at #CharlieHebdo\u003cbr\u003eoffices in France. http://t.co/yNCZFyhV5a http://t.co/5M9IGKUGWR\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:48:08 +0000 2015"}, {"group": 534, "id": 1, "label": "552839857681465344", "shape": "dot", "size": 10, "title": "552839857681465344\u003cbr\u003e@FoxNews Another case of workplace\u003cbr\u003eviolence?\u003cbr\u003eWed Jan 07 14:51:07 +0000 2015"}, {"group": 534, "id": 6, "label": "552860253659078656", "shape": "dot", "size": 10, "title": "552860253659078656\u003cbr\u003e@FoxNews stop putting these pictures\u003cbr\u003eup. It fuels terrorists.\u003cbr\u003eWed Jan 07 16:12:10 +0000 2015"}, {"group": 534, "id": 2, "label": "552840937727336448", "shape": "dot", "size": 10, "title": "552840937727336448\u003cbr\u003e@jszach1 @FoxNews \nHuh?\u003cbr\u003eWed Jan 07 14:55:25 +0000 2015"}, {"group": 534, "id": 3, "label": "552841956611858433", "shape": "dot", "size": 10, "title": "552841956611858433\u003cbr\u003e@zeusmarko @jszach1 @FoxNews When that\u003cbr\u003earmy muslim doctor shot and\u003cbr\u003ekilled all those army people.\u003cbr\u003eit was considered \"work place\u003cbr\u003eviolence\"\u003cbr\u003eWed Jan 07 14:59:28 +0000 2015"}, {"group": 534, "id": 4, "label": "552842113587875840", "shape": "dot", "size": 10, "title": "552842113587875840\u003cbr\u003e@zeusmarko @jszach1 @FoxNews He was\u003cbr\u003ea terrorist,  but we\u003cbr\u003estill called it workplace violence\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:00:05 +0000 2015"}, {"group": 534, "id": 5, "label": "552843434781077508", "shape": "dot", "size": 10, "title": "552843434781077508\u003cbr\u003e@zeusmarko @FoxNews Obama admin failed\u003cbr\u003ethis morning to call it\u003cbr\u003eterroist attack, though Fr. PM\u003cbr\u003edid. Earnest called out in\u003cbr\u003eWH presser by CNN!\u003cbr\u003eWed Jan 07 15:05:20 +0000 2015"}, {"group": 534, "id": 11, "label": "552865787577638912", "shape": "dot", "size": 10, "title": "552865787577638912\u003cbr\u003e@jszach1 @FoxNews \nThanks Joe...Clearly a\u003cbr\u003eterror attack...\u003cbr\u003eWed Jan 07 16:34:10 +0000 2015"}, {"group": 534, "id": 7, "label": "552862005191651328", "shape": "dot", "size": 10, "title": "552862005191651328\u003cbr\u003e@sandhillshrink @FoxNews \u0026lt;\u0026lt;\u0026lt;Fox News loves\u003cbr\u003ebroadcasting terrorists PSYOPS!!\u003cbr\u003eWed Jan 07 16:19:08 +0000 2015"}, {"group": 534, "id": 8, "label": "552862543098961920", "shape": "dot", "size": 10, "title": "552862543098961920\u003cbr\u003e@1CAVXRAY6 @sandhillshrink @FoxNews So now\u003cbr\u003eu people want the US\u003cbr\u003epress, specifically Fox News, to\u003cbr\u003ebe censored? FU!\u003cbr\u003eWed Jan 07 16:21:16 +0000 2015"}, {"group": 534, "id": 9, "label": "552862872397950976", "shape": "dot", "size": 10, "title": "552862872397950976\u003cbr\u003e@TDogUSA @1CAVXRAY6 @FoxNews no- just\u003cbr\u003edon\u0027t put videos.\u003cbr\u003eWed Jan 07 16:22:35 +0000 2015"}, {"group": 534, "id": 10, "label": "552863816585736193", "shape": "dot", "size": 10, "title": "552863816585736193\u003cbr\u003e@TDogUSA @sandhillshrink @FoxNews When did\u003cbr\u003eFoxNews become News?They Continually add\u003cbr\u003especulation \u0026amp; innuendo in their\u003cbr\u003eNews! make it non-news!\u003cbr\u003eWed Jan 07 16:26:20 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 198, "id": 0, "label": "552814566594576386", "shape": "dot", "size": 10, "title": "552814566594576386\u003cbr\u003eThe world would be a\u003cbr\u003efar better place if all\u003cbr\u003ereligious fanatics followed this advice\n#CharlieHebdo\u003cbr\u003ehttp://t.co/HD43ebNTbT\u003cbr\u003eWed Jan 07 13:10:38 +0000 2015"}, {"group": 198, "id": 1, "label": "552820627761930243", "shape": "dot", "size": 10, "title": "552820627761930243\u003cbr\u003e@cstross @GLove39 Ugh, no. That\u003cbr\u003ejust gives us suicide bombers.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:34:43 +0000 2015"}, {"group": 198, "id": 2, "label": "552821040225583104", "shape": "dot", "size": 10, "title": "552821040225583104\u003cbr\u003e@GLove39 Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/JEmz5bo2Yq\u003cbr\u003eWed Jan 07 13:36:21 +0000 2015"}, {"group": 198, "id": 3, "label": "552821135612850176", "shape": "dot", "size": 10, "title": "552821135612850176\u003cbr\u003eTHIS! @GLove39:\nThe world would be\u003cbr\u003ea far better place if\u003cbr\u003eall religious fanatics followed this\u003cbr\u003eadvice. http://t.co/KhxCZDStRR  #CharlieHebdo\u003cbr\u003eWed Jan 07 13:36:44 +0000 2015"}, {"group": 198, "id": 4, "label": "552821982476394499", "shape": "dot", "size": 10, "title": "552821982476394499\u003cbr\u003e#Ditto! @GLove39 \n#CharlieHebdo http://t.co/g0xyRsCIAN\u003cbr\u003eWed Jan 07 13:40:06 +0000 2015"}, {"group": 198, "id": 5, "label": "552823997772341248", "shape": "dot", "size": 10, "title": "552823997772341248\u003cbr\u003e@GLove39 @ElZnuh Technically blowing yourself\u003cbr\u003eup follows this advice.\u003cbr\u003eWed Jan 07 13:48:06 +0000 2015"}, {"group": 198, "id": 6, "label": "552824717103857664", "shape": "dot", "size": 10, "title": "552824717103857664\u003cbr\u003e\u201c@GLove39: The world would be\u003cbr\u003ea far better place if\u003cbr\u003eall religious fanatics followed this\u003cbr\u003eadvice\n#CharlieHebdo http://t.co/tFRKazSQuf\u201d // +1\u003cbr\u003eWed Jan 07 13:50:58 +0000 2015"}, {"group": 198, "id": 9, "label": "552828780410961920", "shape": "dot", "size": 10, "title": "552828780410961920\u003cbr\u003e@GLove39 Congrats on your 500\u2605\u003cbr\u003etweet! http://t.co/XoWfA5kC04\u003cbr\u003eWed Jan 07 14:07:06 +0000 2015"}, {"group": 198, "id": 12, "label": "552831441714053120", "shape": "dot", "size": 10, "title": "552831441714053120\u003cbr\u003e@GLove39 @eddiemarsan many already do,\u003cbr\u003ebut sadly call themselves suicide\u003cbr\u003ebombers\u003cbr\u003eWed Jan 07 14:17:41 +0000 2015"}, {"group": 198, "id": 16, "label": "552832139163869184", "shape": "dot", "size": 10, "title": "552832139163869184\u003cbr\u003e@GLove39 isn\u0027t that what suicide\u003cbr\u003ebombers do?.\u003cbr\u003eWed Jan 07 14:20:27 +0000 2015"}, {"group": 198, "id": 53, "label": "553263516539699201", "shape": "dot", "size": 10, "title": "553263516539699201\u003cbr\u003e@Obscurica @cstross :L\nAdmittedly the poster\u003cbr\u003ewould be better if there\u003cbr\u003ewas an extra line in\u003cbr\u003ethere saying, \"...and only yourself\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:54:36 +0000 2015"}, {"group": 198, "id": 7, "label": "552826889359097856", "shape": "dot", "size": 10, "title": "552826889359097856\u003cbr\u003e@fuller_derek @LarryWoolfolk @GLove39 Further proof\u003cbr\u003eyour post is spot on\u003cbr\u003ein it\u0027s outrage at how\u003cbr\u003ediabolical this is. http://t.co/Jb5DxlXB0c\u003cbr\u003eWed Jan 07 13:59:36 +0000 2015"}, {"group": 198, "id": 8, "label": "552827840694329344", "shape": "dot", "size": 10, "title": "552827840694329344\u003cbr\u003elooks like religion..  @PittWitchHunt\u003cbr\u003e@LarryWoolfolk @GLove39\u003cbr\u003eWed Jan 07 14:03:22 +0000 2015"}, {"group": 198, "id": 10, "label": "552829492465786880", "shape": "dot", "size": 10, "title": "552829492465786880\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 it still\u003cbr\u003eexist today\u003cbr\u003eWed Jan 07 14:09:56 +0000 2015"}, {"group": 198, "id": 11, "label": "552830349202710528", "shape": "dot", "size": 10, "title": "552830349202710528\u003cbr\u003e@fuller_derek @PittWitchHunt @GLove39 and you\u003cbr\u003eknow the Klan are religious\u003cbr\u003efolks correct God the white\u003cbr\u003eman and the country they\u003cbr\u003estole\u003cbr\u003eWed Jan 07 14:13:20 +0000 2015"}, {"group": 198, "id": 13, "label": "552831691916853248", "shape": "dot", "size": 10, "title": "552831691916853248\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 Problem is\u003cbr\u003etheir Religion is darkness, it\u003cbr\u003eonly masquerades as \"Christ-like\"....many are\u003cbr\u003efooled by them\u003cbr\u003eWed Jan 07 14:18:41 +0000 2015"}, {"group": 198, "id": 15, "label": "552832051146407936", "shape": "dot", "size": 10, "title": "552832051146407936\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 The greatest\u003cbr\u003edanger is how prevalent the\u003cbr\u003esecret membership in this sick\u003cbr\u003ephilosophy within society.\u003cbr\u003eWed Jan 07 14:20:06 +0000 2015"}, {"group": 198, "id": 14, "label": "552831741552254976", "shape": "dot", "size": 10, "title": "552831741552254976\u003cbr\u003e@iOverlord indeed, the poster would\u003cbr\u003ebe better albeit less snappy\u003cbr\u003eif it stated \"kill yourself\u003cbr\u003ein an isolated place with\u003cbr\u003eno bystanders\"\u003cbr\u003eWed Jan 07 14:18:52 +0000 2015"}, {"group": 198, "id": 17, "label": "552832151847448577", "shape": "dot", "size": 10, "title": "552832151847448577\u003cbr\u003eI see a lot of\u003cbr\u003ereligious whiteness over here. @PittWitchHunt\u003cbr\u003e@LarryWoolfolk @GLove39\u003cbr\u003eWed Jan 07 14:20:30 +0000 2015"}, {"group": 198, "id": 18, "label": "552832875771748352", "shape": "dot", "size": 10, "title": "552832875771748352\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 Pitt your\u003cbr\u003estatement hit the nail right\u003cbr\u003ein the head but like\u003cbr\u003eI tell all everyone has\u003cbr\u003ea choice to make\u003cbr\u003eWed Jan 07 14:23:23 +0000 2015"}, {"group": 198, "id": 19, "label": "552833182715109376", "shape": "dot", "size": 10, "title": "552833182715109376\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 and that\u003cbr\u003eall it is a choice\u003cbr\u003eand we should not impose\u003cbr\u003eour choices on no one\u003cbr\u003eelse either\u003cbr\u003eWed Jan 07 14:24:36 +0000 2015"}, {"group": 198, "id": 20, "label": "552833444838129664", "shape": "dot", "size": 10, "title": "552833444838129664\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 am sen\u003cbr\u003eto that but as more\u003cbr\u003eas more of the truth\u003cbr\u003ecomes out about this big\u003cbr\u003elie we have been fed\u003cbr\u003eas kids\u003cbr\u003eWed Jan 07 14:25:39 +0000 2015"}, {"group": 198, "id": 21, "label": "552833660660244481", "shape": "dot", "size": 10, "title": "552833660660244481\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 people will\u003cbr\u003ehave to decide which will\u003cbr\u003ethey choose\u003cbr\u003eWed Jan 07 14:26:30 +0000 2015"}, {"group": 198, "id": 35, "label": "552838817557020672", "shape": "dot", "size": 10, "title": "552838817557020672\u003cbr\u003e@raskal564 admittedly the poster would\u003cbr\u003ebe better, albeit less snappy,\u003cbr\u003eif it stated \"kill yourself\u003cbr\u003ein an isolated place with\u003cbr\u003eno bystanders\"\u003cbr\u003eWed Jan 07 14:47:00 +0000 2015"}, {"group": 198, "id": 22, "label": "552833815543296001", "shape": "dot", "size": 10, "title": "552833815543296001\u003cbr\u003e@fuller_derek @PittWitchHunt @GLove39 religious whiteness\u003cbr\u003eplease do explain\u003cbr\u003eWed Jan 07 14:27:07 +0000 2015"}, {"group": 198, "id": 28, "label": "552836056614453248", "shape": "dot", "size": 10, "title": "552836056614453248\u003cbr\u003e@fuller_derek @LarryWoolfolk @GLove39 We agree...this\u003cbr\u003ewhiteness as in racist supremacy\u003cbr\u003eis in full effect, but\u003cbr\u003ethey do not own Christianity\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:36:01 +0000 2015"}, {"group": 198, "id": 23, "label": "552834113934471170", "shape": "dot", "size": 10, "title": "552834113934471170\u003cbr\u003e@LarryWoolfolk @PittWitchHunt @GLove39 http://t.co/qpIcCqwFwt\u003cbr\u003eWed Jan 07 14:28:18 +0000 2015"}, {"group": 198, "id": 24, "label": "552834459834548224", "shape": "dot", "size": 10, "title": "552834459834548224\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 For me\u003cbr\u003efriend,a Biblical spiritual center is\u003cbr\u003enot of racist white men...the\u003cbr\u003etribe of Judah was/is Black\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:41 +0000 2015"}, {"group": 198, "id": 26, "label": "552835419147345921", "shape": "dot", "size": 10, "title": "552835419147345921\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 I agree\u003cbr\u003ethese evil sort as you\u003cbr\u003esay,\"stole\" Christianity therefore to relinquish\u003cbr\u003eit to them is weakness\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:33:29 +0000 2015"}, {"group": 198, "id": 25, "label": "552834962991628288", "shape": "dot", "size": 10, "title": "552834962991628288\u003cbr\u003eThe institution of our language\u003cbr\u003e\nAre you #AfraidOfTheDark? @LarryWoolfolk @PittWitchHunt\u003cbr\u003e@GLove39 http://t.co/seR9VHipff\u003cbr\u003eWed Jan 07 14:31:41 +0000 2015"}, {"group": 198, "id": 29, "label": "552837040296177665", "shape": "dot", "size": 10, "title": "552837040296177665\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 Gen 15/13\u003cbr\u003eexplains who\"The Black Man in\u003cbr\u003ethe Americas\" is whiteness is\u003cbr\u003edifferent http://t.co/2Dz4YGV6gu\u003cbr\u003eWed Jan 07 14:39:56 +0000 2015"}, {"group": 198, "id": 30, "label": "552837320416985088", "shape": "dot", "size": 10, "title": "552837320416985088\u003cbr\u003e@fuller_derek @PittWitchHunt @GLove39 I agree\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:41:03 +0000 2015"}, {"group": 198, "id": 31, "label": "552837667206230016", "shape": "dot", "size": 10, "title": "552837667206230016\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 funny how\u003cbr\u003ethat has offended some of\u003cbr\u003emy followers and its backed\u003cbr\u003eup by scripture also lol\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:42:25 +0000 2015"}, {"group": 198, "id": 32, "label": "552838004042399744", "shape": "dot", "size": 10, "title": "552838004042399744\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 a d\u003cbr\u003eyou give them these scripture\u003cbr\u003eGenesis 32:28 Jacob and Israel,\u003cbr\u003eRev 1:14-17 description of Jesus\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:43:46 +0000 2015"}, {"group": 198, "id": 34, "label": "552838250738778112", "shape": "dot", "size": 10, "title": "552838250738778112\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 Rev 2:9\u003cbr\u003ethose that called themselves Jews,\u003cbr\u003ethese r not my words\u003cbr\u003elol\u003cbr\u003eWed Jan 07 14:44:44 +0000 2015"}, {"group": 198, "id": 27, "label": "552835842998157312", "shape": "dot", "size": 10, "title": "552835842998157312\u003cbr\u003e@fuller_derek @LarryWoolfolk @PittWitchHunt @GLove39 Looks\u003cbr\u003elike they are trying to\u003cbr\u003estirrup trouble.  :-)\u003cbr\u003eWed Jan 07 14:35:10 +0000 2015"}, {"group": 198, "id": 36, "label": "552839455443546113", "shape": "dot", "size": 10, "title": "552839455443546113\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 and bend\u003cbr\u003eit to suit their agenda\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:49:32 +0000 2015"}, {"group": 198, "id": 39, "label": "552853575521402880", "shape": "dot", "size": 10, "title": "552853575521402880\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 Pitt some\u003cbr\u003egot offended when I posted\u003cbr\u003evids of that, what they\u003cbr\u003eshould b offended by us\u003cbr\u003ebeing lied too\u003cbr\u003eWed Jan 07 15:45:38 +0000 2015"}, {"group": 198, "id": 40, "label": "552854004355461122", "shape": "dot", "size": 10, "title": "552854004355461122\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 about the\u003cbr\u003ebible see I followed Jesus\u003cbr\u003ewhen I thought he was\u003cbr\u003ewhite because of his goodness\u003cbr\u003enot his color\u003cbr\u003eWed Jan 07 15:47:20 +0000 2015"}, {"group": 198, "id": 41, "label": "552854217245736960", "shape": "dot", "size": 10, "title": "552854217245736960\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 and if\u003cbr\u003ethey r really Christian they\u003cbr\u003ewill accept the truth as\u003cbr\u003etold by the book we\u003cbr\u003esay we love\u003cbr\u003eWed Jan 07 15:48:11 +0000 2015"}, {"group": 198, "id": 33, "label": "552838111735320576", "shape": "dot", "size": 10, "title": "552838111735320576\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 Big part\u003cbr\u003eof the Secret Society deception\u003cbr\u003ehas been blinding us from\u003cbr\u003eseeing ourselves in the Bible\u003cbr\u003ealso\u003cbr\u003eWed Jan 07 14:44:11 +0000 2015"}, {"group": 198, "id": 42, "label": "552855070769827840", "shape": "dot", "size": 10, "title": "552855070769827840\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 what does\u003cbr\u003ethe bible say! They have\u003cbr\u003eeyes but do not see\u003cbr\u003eand ears but do not\u003cbr\u003ehear, and some have been\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:51:35 +0000 2015"}, {"group": 198, "id": 43, "label": "552855624338268160", "shape": "dot", "size": 10, "title": "552855624338268160\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 turned over\u003cbr\u003eto a reprobated mind where\u003cbr\u003ethey will embrace a lie\u003cbr\u003ebefore they believe the truth\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:53:47 +0000 2015"}, {"group": 198, "id": 38, "label": "552852018407440384", "shape": "dot", "size": 10, "title": "552852018407440384\u003cbr\u003e@GLove39 but for the life\u003cbr\u003eof me I cannot understand\u003cbr\u003ewhy it\u0027s so insulting to\u003cbr\u003eMuslims to dicuss or criticize\u003cbr\u003ethis religion\u003cbr\u003eWed Jan 07 15:39:27 +0000 2015"}, {"group": 198, "id": 37, "label": "552840070534008835", "shape": "dot", "size": 10, "title": "552840070534008835\u003cbr\u003e@LarryWoolfolk @fuller_derek @GLove39 There is\u003cbr\u003eno easier way to control\u003cbr\u003emasses than Religious deceptions ,\u003cbr\u003eit appeals to inner convictions.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:51:58 +0000 2015"}, {"group": 198, "id": 44, "label": "552856244000550912", "shape": "dot", "size": 10, "title": "552856244000550912\u003cbr\u003e@PittWitchHunt @fuller_derek @GLove39 been that\u003cbr\u003eway since they rewrote the\u003cbr\u003ebible with King Jqmes of\u003cbr\u003eEngland\u003cbr\u003eWed Jan 07 15:56:14 +0000 2015"}, {"group": 198, "id": 45, "label": "552856892658434048", "shape": "dot", "size": 10, "title": "552856892658434048\u003cbr\u003e@PittWitchHunt @LarryWoolfolk - ...or religion-like\u003cbr\u003edeceptions, like \u0027The Word of\u003cbr\u003ethe Prophet Ailes\u0027. #Foxocracy @fuller_derek\u003cbr\u003e@GLove39\u003cbr\u003eWed Jan 07 15:58:49 +0000 2015"}, {"group": 198, "id": 46, "label": "552861774337171456", "shape": "dot", "size": 10, "title": "552861774337171456\u003cbr\u003e@PittWitchHunt @LarryWoolfolk @fuller_derek @GLove39 Television\u003cbr\u003eis best at controlling the\u003cbr\u003emasses.\u003cbr\u003eWed Jan 07 16:18:13 +0000 2015"}, {"group": 198, "id": 47, "label": "553216783860396032", "shape": "dot", "size": 10, "title": "553216783860396032\u003cbr\u003e@jennyfrky @LarryWoolfolk @fuller_derek @GLove39 Of\u003cbr\u003ecourse TV in such cases\u003cbr\u003eclearly follows the marching orders\u003cbr\u003eof the \"hands that feed\u003cbr\u003eit\"\u003cbr\u003eThu Jan 08 15:48:54 +0000 2015"}, {"group": 198, "id": 48, "label": "553224979538403329", "shape": "dot", "size": 10, "title": "553224979538403329\u003cbr\u003e@PittWitchHunt @jennyfrky @fuller_derek @GLove39 it\u003cbr\u003eis a corporation and its\u003cbr\u003eworker or those that depend\u003cbr\u003eon it for their existence\u003cbr\u003ereport\u003cbr\u003eThu Jan 08 16:21:28 +0000 2015"}, {"group": 198, "id": 49, "label": "553225104549617665", "shape": "dot", "size": 10, "title": "553225104549617665\u003cbr\u003e@PittWitchHunt @jennyfrky @fuller_derek @GLove39 what\u003cbr\u003ethey tell them especially #Fox\u003cbr\u003eno news\u003cbr\u003eThu Jan 08 16:21:58 +0000 2015"}, {"group": 198, "id": 50, "label": "553225864713080832", "shape": "dot", "size": 10, "title": "553225864713080832\u003cbr\u003eyea.. @LarryWoolfolk @PittWitchHunt @jennyfrky @GLove39\u003cbr\u003ehttp://t.co/C0GCYXQor0\u003cbr\u003eThu Jan 08 16:24:59 +0000 2015"}, {"group": 198, "id": 51, "label": "553227340265058304", "shape": "dot", "size": 10, "title": "553227340265058304\u003cbr\u003e@fuller_derek @LarryWoolfolk Fox is out\u003cbr\u003eof control #STUPID \n#MEDIAwNOintegrity\u003cbr\u003eThu Jan 08 16:30:51 +0000 2015"}, {"group": 198, "id": 52, "label": "553236883677798400", "shape": "dot", "size": 10, "title": "553236883677798400\u003cbr\u003e@kimberlymontse1 happily, \nFAUX NOISE has\u003cbr\u003ebeen dropped from the \nDISH\u003cbr\u003enetwork!\nToo many complaints \u0026amp; loss\u003cbr\u003eof business!\u003cbr\u003eThu Jan 08 17:08:46 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 1, "to": 53, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 13, "to": 17, "weight": 1}, {"from": 13, "to": 18, "weight": 1}, {"from": 13, "to": 19, "weight": 1}, {"from": 15, "to": 20, "weight": 1}, {"from": 15, "to": 21, "weight": 1}, {"from": 16, "to": 35, "weight": 1}, {"from": 17, "to": 22, "weight": 1}, {"from": 17, "to": 28, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 21, "to": 26, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 22, "to": 29, "weight": 1}, {"from": 23, "to": 30, "weight": 1}, {"from": 24, "to": 31, "weight": 1}, {"from": 24, "to": 32, "weight": 1}, {"from": 24, "to": 34, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 26, "to": 36, "weight": 1}, {"from": 29, "to": 39, "weight": 1}, {"from": 29, "to": 40, "weight": 1}, {"from": 29, "to": 41, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 33, "to": 42, "weight": 1}, {"from": 33, "to": 43, "weight": 1}, {"from": 35, "to": 38, "weight": 1}, {"from": 36, "to": 37, "weight": 1}, {"from": 37, "to": 44, "weight": 1}, {"from": 37, "to": 45, "weight": 1}, {"from": 37, "to": 46, "weight": 1}, {"from": 46, "to": 47, "weight": 1}, {"from": 47, "to": 48, "weight": 1}, {"from": 47, "to": 49, "weight": 1}, {"from": 49, "to": 50, "weight": 1}, {"from": 50, "to": 51, "weight": 1}, {"from": 51, "to": 52, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

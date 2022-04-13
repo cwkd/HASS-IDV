@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1227, "id": 0, "label": "553231516290269184", "shape": "dot", "size": 10, "title": "553231516290269184\u003cbr\u003ePictures From #CharlieHebdo Solidarity Vigils\u003cbr\u003eAcross The Globe\nhttp://t.co/PwIlxlQEuD http://t.co/dgR5c4Tr6m\u003cbr\u003eThu Jan 08 16:47:26 +0000 2015"}, {"group": 1227, "id": 1, "label": "553232356669403136", "shape": "dot", "size": 10, "title": "553232356669403136\u003cbr\u003eLets see some solidarity with\u003cbr\u003ethe millions of innocent victims\u003cbr\u003efrom corrupt, out-of-control SV #Media\u003cbr\u003e\u0026gt;\u0026gt;\u0026gt; @BuzzFeed #CharlieHebdo\u003cbr\u003eThu Jan 08 16:50:47 +0000 2015"}, {"group": 1227, "id": 2, "label": "553232503906271233", "shape": "dot", "size": 10, "title": "553232503906271233\u003cbr\u003e@BuzzFeed I love that there\u003cbr\u003eis only one photo from\u003cbr\u003eAmerica. I guess everyone was\u003cbr\u003etoo busy plotting which brunch\u003cbr\u003espots to invade next...\u003cbr\u003eThu Jan 08 16:51:22 +0000 2015"}, {"group": 1227, "id": 6, "label": "553235214475202560", "shape": "dot", "size": 10, "title": "553235214475202560\u003cbr\u003e\u201c@BuzzFeed: Pictures From #CharlieHebdo Solidarity\u003cbr\u003eVigils Across The Globe\nhttp://t.co/xklMWMrglK http://t.co/Bv44Htnfa5\u201d\u003cbr\u003eSo powerful\u003cbr\u003eThu Jan 08 17:02:08 +0000 2015"}, {"group": 1227, "id": 7, "label": "553235385191763968", "shape": "dot", "size": 10, "title": "553235385191763968\u003cbr\u003e#FreedomOfSpeech \u201c@BuzzFeed: Pictures From #CharlieHebdo\u003cbr\u003eSolidarity Vigils Across The Globe\nhttp://t.co/x22sr7kOeL\u003cbr\u003ehttp://t.co/ElD0lXZW62\u201d\u003cbr\u003eThu Jan 08 17:02:49 +0000 2015"}, {"group": 1227, "id": 9, "label": "553241487240986624", "shape": "dot", "size": 10, "title": "553241487240986624\u003cbr\u003e@BuzzFeed \n\ud83d\ude22\ud83d\ude49\ud83d\ude48\ud83d\ude4a\u003cbr\u003eThu Jan 08 17:27:03 +0000 2015"}, {"group": 1227, "id": 10, "label": "553412110278213633", "shape": "dot", "size": 10, "title": "553412110278213633\u003cbr\u003e@BuzzFeed You\u0027re awesome! You\u0027re also\u003cbr\u003efeatured on my @RebelMouse http://t.co/oDJ1TPntiU\u003cbr\u003e\u003cbr\u003eFri Jan 09 04:45:03 +0000 2015"}, {"group": 1227, "id": 3, "label": "553232643194888192", "shape": "dot", "size": 10, "title": "553232643194888192\u003cbr\u003eThe power-hungry, media-control fiends, are\u003cbr\u003ejumping on this issue because\u003cbr\u003ethey have long $upported, violent\u003cbr\u003eHate Speech. @BuzzFeed\u003cbr\u003eThu Jan 08 16:51:55 +0000 2015"}, {"group": 1227, "id": 5, "label": "553233418197405696", "shape": "dot", "size": 10, "title": "553233418197405696\u003cbr\u003e@emilysirko @BuzzFeed So I guess\u003cbr\u003eyou led your neighborhood vigil\u003cbr\u003ethen?\u003cbr\u003eThu Jan 08 16:55:00 +0000 2015"}, {"group": 1227, "id": 4, "label": "553233082527252480", "shape": "dot", "size": 10, "title": "553233082527252480\u003cbr\u003eIts been a profit source\u003cbr\u003efor them, its also been\u003cbr\u003ea method to spread hatred\u003cbr\u003eand bigotry around the Globe.\u003cbr\u003eWake up, @BuzzFeed\u003cbr\u003eThu Jan 08 16:53:40 +0000 2015"}, {"group": 1227, "id": 8, "label": "553236852384485376", "shape": "dot", "size": 10, "title": "553236852384485376\u003cbr\u003e@81KGB no sir, I did\u003cbr\u003enot. But in all fairness\u003cbr\u003eI haven\u0027t participated in any\u003cbr\u003eof the protests, either.\u003cbr\u003eThu Jan 08 17:08:38 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 5, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

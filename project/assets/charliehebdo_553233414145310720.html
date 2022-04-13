@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1234, "id": 0, "label": "553233414145310720", "shape": "dot", "size": 10, "title": "553233414145310720\u003cbr\u003eOn the one hand Saudi\u003cbr\u003edenounces attack on #CharlieHebdo on\u003cbr\u003eother it condemns @raif_badawi to\u003cbr\u003e10 years and 1000 lashes\u003cbr\u003efor insulting Islam!!\u003cbr\u003eThu Jan 08 16:54:59 +0000 2015"}, {"group": 1234, "id": 1, "label": "553238872964861952", "shape": "dot", "size": 10, "title": "553238872964861952\u003cbr\u003e@RandaHabib @KarlreMarks @raif_badawi Most European\u003cbr\u003esecularists thought they\u0027d seen last\u003cbr\u003eof wars of religion. Then\u003cbr\u003ecame Islam. Not so fast.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:16:40 +0000 2015"}, {"group": 1234, "id": 2, "label": "553238985011494912", "shape": "dot", "size": 10, "title": "553238985011494912\u003cbr\u003e@RandaHabib @KarlreMarks @raif_badawi Contradictions are\u003cbr\u003eso uncomfortable\u003cbr\u003eThu Jan 08 17:17:07 +0000 2015"}, {"group": 1234, "id": 3, "label": "553239879292026880", "shape": "dot", "size": 10, "title": "553239879292026880\u003cbr\u003e@RandaHabib @mollycrabapple @raif_badawi One is\u003cbr\u003ecriminal activity, one is rule\u003cbr\u003eof law. DIfferent scenarios,. Not\u003cbr\u003ethat I like Saudi.\u003cbr\u003eThu Jan 08 17:20:40 +0000 2015"}, {"group": 1234, "id": 4, "label": "553240205163913216", "shape": "dot", "size": 10, "title": "553240205163913216\u003cbr\u003e@RandaHabib @sanjayuvacha @raif_badawi \n Same\u003cbr\u003eas #CharlieHebdo avoided Jew Holocaust\u003cbr\u003ecartoons but prophet cartoons were\u003cbr\u003e#FreedomOfSpeech :)\u003cbr\u003eThu Jan 08 17:21:58 +0000 2015"}, {"group": 1234, "id": 5, "label": "553243314775130112", "shape": "dot", "size": 10, "title": "553243314775130112\u003cbr\u003e@RandaHabib @mollycrabapple @raif_badawi Pragmatic hypocrisy.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:34:19 +0000 2015"}, {"group": 1234, "id": 7, "label": "553247100545536000", "shape": "dot", "size": 10, "title": "553247100545536000\u003cbr\u003e@RandaHabib @rulajebreal @raif_badawi Fuck the\u003cbr\u003eSaudis. Bigger hypocrites than the\u003cbr\u003eAmericans.\u003cbr\u003eThu Jan 08 17:49:22 +0000 2015"}, {"group": 1234, "id": 8, "label": "553248102048862208", "shape": "dot", "size": 10, "title": "553248102048862208\u003cbr\u003e@RandaHabib @sanjayuvacha @raif_badawi Saudis R\u003cbr\u003ethe root cause of all\u003cbr\u003ethe turmoil\u003cbr\u003eThu Jan 08 17:53:21 +0000 2015"}, {"group": 1234, "id": 9, "label": "553249510135443456", "shape": "dot", "size": 10, "title": "553249510135443456\u003cbr\u003e@RandaHabib @rulajebreal @raif_badawi the worst\u003cbr\u003ehypocrisy of arabic world \u003cbr\u003ewhen it comes to freedom\u003cbr\u003eof expression and democracy!!\u003cbr\u003eThu Jan 08 17:58:56 +0000 2015"}, {"group": 1234, "id": 10, "label": "553251023595126784", "shape": "dot", "size": 10, "title": "553251023595126784\u003cbr\u003e@randahabib @raif_badawi @mollycrabapple What can\u003cbr\u003ewe expect from \"our esteemed\u003cbr\u003eally\" who beheads women for\u003cbr\u003e\u0027sorcery?\u0027 #Sick\u003cbr\u003eThu Jan 08 18:04:57 +0000 2015"}, {"group": 1234, "id": 18, "label": "553273987950989312", "shape": "dot", "size": 10, "title": "553273987950989312\u003cbr\u003e@RandaHabib @rulajebreal @raif_badawi double standard\u003cbr\u003eof Saudis trouble makers\u003cbr\u003eThu Jan 08 19:36:12 +0000 2015"}, {"group": 1234, "id": 6, "label": "553246904335994880", "shape": "dot", "size": 10, "title": "553246904335994880\u003cbr\u003e@khushant4 @RandaHabib @sanjayuvacha @raif_badawi The\u003cbr\u003eholocaust actually involved people dying.\u003cbr\u003eThere is no comparison to\u003cbr\u003ebe made.\u003cbr\u003eThu Jan 08 17:48:35 +0000 2015"}, {"group": 1234, "id": 11, "label": "553254348919042049", "shape": "dot", "size": 10, "title": "553254348919042049\u003cbr\u003e@ringaldo @RandaHabib @sanjayuvacha @raif_badawi \n#CharlieHebdo\u003cbr\u003epublished Palestine deaths - people\u003cbr\u003edying.\n Saudi has Blasphemy laws\u003cbr\u003e.\u003cbr\u003eThu Jan 08 18:18:10 +0000 2015"}, {"group": 1234, "id": 12, "label": "553260254935650304", "shape": "dot", "size": 10, "title": "553260254935650304\u003cbr\u003e@khushant4 @RandaHabib @sanjayuvacha @raif_badawi Did\u003cbr\u003ethey satirise Palestinian deaths? Blasphemy\u003cbr\u003elaws are a complete joke.\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:41:38 +0000 2015"}, {"group": 1234, "id": 13, "label": "553262189121789952", "shape": "dot", "size": 10, "title": "553262189121789952\u003cbr\u003e@ringaldo @RandaHabib @sanjayuvacha @raif_badawi Oh\u003cbr\u003eyeah.\nHolocaust denial law of France\u003cbr\u003e\u0026amp; Europe is also joke.\u003cbr\u003e#freedomofexpression\u003cbr\u003eThu Jan 08 18:49:19 +0000 2015"}, {"group": 1234, "id": 14, "label": "553263783112876033", "shape": "dot", "size": 10, "title": "553263783112876033\u003cbr\u003e@khushant4 @RandaHabib @sanjayuvacha @raif_badawi The\u003cbr\u003eholocaust was real. God isn\u0027t.\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:55:39 +0000 2015"}, {"group": 1234, "id": 16, "label": "553266639656210433", "shape": "dot", "size": 10, "title": "553266639656210433\u003cbr\u003e@khushant4 you are a fucking\u003cbr\u003ejoke\u003cbr\u003eThu Jan 08 19:07:00 +0000 2015"}, {"group": 1234, "id": 15, "label": "553264864672489472", "shape": "dot", "size": 10, "title": "553264864672489472\u003cbr\u003e@ringaldo @RandaHabib @sanjayuvacha @raif_badawi So\u003cbr\u003eyou are saying #CharlieHebdo satires\u003cbr\u003eon Politicians was wrong :)\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:59:57 +0000 2015"}, {"group": 1234, "id": 17, "label": "553267737254838273", "shape": "dot", "size": 10, "title": "553267737254838273\u003cbr\u003e@ringaldo @RandaHabib @sanjayuvacha @raif_badawi \n\nOffend\u003cbr\u003e-it\u0027s your right. #CharlieHebdo \u003cbr\u003ehttp://t.co/GaekH3clB6\u003cbr\u003eThu Jan 08 19:11:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 14, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

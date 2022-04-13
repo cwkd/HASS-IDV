@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 372, "id": 0, "label": "552827848734830592", "shape": "dot", "size": 10, "title": "552827848734830592\u003cbr\u003eOne of the people in\u003cbr\u003ethe world I hate the\u003cbr\u003emost is Laden, because he\u003cbr\u003etarred the bright face of\u003cbr\u003eIslam.*** #CharlieHebdo http://t.co/N4J7m6I5OP\u003cbr\u003eWed Jan 07 14:03:24 +0000 2015"}, {"group": 372, "id": 1, "label": "552828131686752258", "shape": "dot", "size": 10, "title": "552828131686752258\u003cbr\u003e@israfilaydemir One of the people\u003cbr\u003ein the world I hate\u003cbr\u003ethe most is Laden, because\u003cbr\u003ehe tarred the bright face\u003cbr\u003eof Islam. #Gulen #CharlieHebdo\u003cbr\u003eWed Jan 07 14:04:32 +0000 2015"}, {"group": 372, "id": 2, "label": "552828286305599489", "shape": "dot", "size": 10, "title": "552828286305599489\u003cbr\u003e@israfilaydemir One of the people\u003cbr\u003ein the world I hate\u003cbr\u003ethe most is Laden, because\u003cbr\u003ehe tarred the bright face\u003cbr\u003eof Islam.*** #CharlieHebdo\u003cbr\u003eWed Jan 07 14:05:09 +0000 2015"}, {"group": 372, "id": 3, "label": "552828516862275584", "shape": "dot", "size": 10, "title": "552828516862275584\u003cbr\u003e@israfilaydemir @Hizmet1299 @sosyalpencere @ZEYBEK_HAVASI Fransa\u0027da\u003cbr\u003e\"FETTULAH G\u00dcLEN EFENDININ INTIKAMINI ALDIK\"\u003cbr\u003ediyerek saldirmislar.\u003cbr\u003eWed Jan 07 14:06:04 +0000 2015"}, {"group": 372, "id": 4, "label": "552828668117258241", "shape": "dot", "size": 10, "title": "552828668117258241\u003cbr\u003e@israfilaydemir I hate Laden\u003cbr\u003eWed Jan 07 14:06:40 +0000 2015"}, {"group": 372, "id": 5, "label": "552828842612887552", "shape": "dot", "size": 10, "title": "552828842612887552\u003cbr\u003e\"@israfilaydemir One of the people\u003cbr\u003ein the world I hate\u003cbr\u003ethe most is Laden, because\u003cbr\u003ehe tarred the bright face\u003cbr\u003eof Islam.*** #CharlieHebdo\"\u003cbr\u003eWed Jan 07 14:07:21 +0000 2015"}, {"group": 372, "id": 6, "label": "552829260574904321", "shape": "dot", "size": 10, "title": "552829260574904321\u003cbr\u003e@israfilaydemir taqqiya in action. the\u003cbr\u003etruth is here -\u0026gt; http://t.co/0U8X1H8RUU\u003cbr\u003e#charliehedbo\u003cbr\u003eWed Jan 07 14:09:01 +0000 2015"}, {"group": 372, "id": 7, "label": "552830597266427904", "shape": "dot", "size": 10, "title": "552830597266427904\u003cbr\u003e@israfilaydemir @sosyalpencere @ZEYBEK_HAVASI @Odak2014 @SosyalAnadolu\u003cbr\u003ehemen ba\u015flay\u0131n propagandaya\u003cbr\u003eWed Jan 07 14:14:20 +0000 2015"}, {"group": 372, "id": 8, "label": "552834355370811392", "shape": "dot", "size": 10, "title": "552834355370811392\u003cbr\u003e@israfilaydemir @sosyalpencere @ZEYBEK_HAVASI @Odak2014 @SosyalAnadolu\u003cbr\u003ei m also hate Laden\u003cbr\u003efake character propaganda ..9/11 was\u003cbr\u003efake.\u003cbr\u003eWed Jan 07 14:29:16 +0000 2015"}, {"group": 372, "id": 9, "label": "552866377392873474", "shape": "dot", "size": 10, "title": "552866377392873474\u003cbr\u003e@israfilaydemir @sosyalpencere @ZEYBEK_HAVASI 9/11 was\u003cbr\u003efake bcs after end of\u003cbr\u003eSoviet War US announced that\u003cbr\u003enot any missile passed our\u003cbr\u003eborders\u003cbr\u003eWed Jan 07 16:36:30 +0000 2015"}, {"group": 372, "id": 10, "label": "552867273103253504", "shape": "dot", "size": 10, "title": "552867273103253504\u003cbr\u003e@israfilaydemir @sosyalpencere @ZEYBEK_HAVASI @Odak2014 @SosyalAnadolu\u003cbr\u003e9/11 was inside job even\u003cbr\u003eall video msgs of laden\u003cbr\u003ewas fake #Hypocrites\u003cbr\u003eWed Jan 07 16:40:04 +0000 2015"}, {"group": 372, "id": 11, "label": "552893885551476736", "shape": "dot", "size": 10, "title": "552893885551476736\u003cbr\u003e@israfilaydemir What about your face\u003cbr\u003eafter taking a massacra chance\u003cbr\u003efor propaganda of Gulen.\u003cbr\u003eWed Jan 07 18:25:49 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

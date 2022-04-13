@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1877, "id": 0, "label": "553478142791548928", "shape": "dot", "size": 10, "title": "553478142791548928\u003cbr\u003eBreaking News: Reports of Gunfire\u003cbr\u003eand Hostage in Search for\u003cbr\u003eSuspects in Paris Attack\nhttp://t.co/U8BE162qls\u003cbr\u003eFri Jan 09 09:07:27 +0000 2015"}, {"group": 1877, "id": 1, "label": "553478246684450816", "shape": "dot", "size": 10, "title": "553478246684450816\u003cbr\u003e@nytimes @TheSunNewspaper   If\u003cbr\u003eyou dare  Watch how\u003cbr\u003eIslam is blinding our governments\u003cbr\u003e https://t.co/PerzKpBU0v\u003cbr\u003eFri Jan 09 09:07:51 +0000 2015"}, {"group": 1877, "id": 2, "label": "553478372144455680", "shape": "dot", "size": 10, "title": "553478372144455680\u003cbr\u003e@nytimes \n\nIN UKRAINE HAVE GIVEN\u003cbr\u003eTHE NAZI COUP, SUPPORTED BY\u003cbr\u003eNATO AND MEDIA COMMUNICATION,AS SEE\u003cbr\u003ePHOTO.\nhttp://t.co/tYCudKSLwr\u003cbr\u003eFri Jan 09 09:08:21 +0000 2015"}, {"group": 1877, "id": 3, "label": "553478471784349696", "shape": "dot", "size": 10, "title": "553478471784349696\u003cbr\u003e\u201c@nytimes: Breaking News: Reports of\u003cbr\u003eGunfire and Hostage in Search\u003cbr\u003efor Suspects in Paris Attack\nhttp://t.co/5Ox8cOE8d5\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:08:45 +0000 2015"}, {"group": 1877, "id": 4, "label": "553478750839783424", "shape": "dot", "size": 10, "title": "553478750839783424\u003cbr\u003eMT @NYTimes: #Breaking Reports of\u003cbr\u003eGunfire and Hostage in Search\u003cbr\u003efor Suspects in Paris Attack\nhttp://t.co/BuWJLixesN\u003cbr\u003e#CharlieHebdo\u003cbr\u003eFri Jan 09 09:09:51 +0000 2015"}, {"group": 1877, "id": 5, "label": "553478953902407680", "shape": "dot", "size": 10, "title": "553478953902407680\u003cbr\u003e@nytimes holy cow.\u003cbr\u003eFri Jan 09 09:10:40 +0000 2015"}, {"group": 1877, "id": 6, "label": "553479719765942273", "shape": "dot", "size": 10, "title": "553479719765942273\u003cbr\u003eI was at CDG earlier\u201c@nytimes:\u003cbr\u003eBreaking News: Reports of Gunfire\u003cbr\u003eand Hostage in Search for\u003cbr\u003eSuspects in Paris Attack\nhttp://t.co/3PobTqPylO\u201d\u003cbr\u003eFri Jan 09 09:13:43 +0000 2015"}, {"group": 1877, "id": 7, "label": "553483142397321216", "shape": "dot", "size": 10, "title": "553483142397321216\u003cbr\u003e@nytimes oh how horrible\u003cbr\u003eFri Jan 09 09:27:19 +0000 2015"}, {"group": 1877, "id": 8, "label": "553486309684420608", "shape": "dot", "size": 10, "title": "553486309684420608\u003cbr\u003e\u201c@nytimes: Breaking News: Reports of\u003cbr\u003eGunfire and Hostage in Search\u003cbr\u003efor Suspects in Paris Attack\nhttp://t.co/ECmxKTy9vK\u201dThe\u003cbr\u003eend is close!!\u003cbr\u003eFri Jan 09 09:39:54 +0000 2015"}, {"group": 1877, "id": 9, "label": "553487440795930624", "shape": "dot", "size": 10, "title": "553487440795930624\u003cbr\u003e@nytimes \u2606 http://t.co/o2T2pAo69W\u003cbr\u003eFri Jan 09 09:44:23 +0000 2015"}, {"group": 1877, "id": 10, "label": "553501429395357696", "shape": "dot", "size": 10, "title": "553501429395357696\u003cbr\u003e@nytimes they brothers ,try to\u003cbr\u003eleave by the ground, they\u003cbr\u003eare everywhere,and said they will\u003cbr\u003ekill you ,make sure your\u003cbr\u003ename remember forever\u003cbr\u003eFri Jan 09 10:39:58 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

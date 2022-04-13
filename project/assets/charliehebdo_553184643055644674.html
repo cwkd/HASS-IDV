@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1827, "id": 0, "label": "553184643055644674", "shape": "dot", "size": 10, "title": "553184643055644674\u003cbr\u003eThe artist behind this iconic\u003cbr\u003e#CharlieHebdo pencil tribute http://t.co/qDdyz2cS8D http://t.co/UrTJu7Pkbd\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:41:11 +0000 2015"}, {"group": 1827, "id": 1, "label": "553184648994762752", "shape": "dot", "size": 10, "title": "553184648994762752\u003cbr\u003eOn @mashable: 12 dead in\u003cbr\u003eParis after \u0027terror attack\u0027 on\u003cbr\u003emagazine | Mashable https://t.co/ondhZudJzy\u003cbr\u003eThu Jan 08 13:41:12 +0000 2015"}, {"group": 1827, "id": 2, "label": "553184952603643905", "shape": "dot", "size": 10, "title": "553184952603643905\u003cbr\u003e\u201c@mashable: The artist behind this\u003cbr\u003eiconic #CharlieHebdo pencil tribute http://t.co/pgDmGjC5kW\u003cbr\u003ehttp://t.co/e0Sfdf1o8Z\u201d\u003cbr\u003eThu Jan 08 13:42:25 +0000 2015"}, {"group": 1827, "id": 3, "label": "553185205259755522", "shape": "dot", "size": 10, "title": "553185205259755522\u003cbr\u003e\u201c@mashable: The artist behind this\u003cbr\u003eiconic #CharlieHebdo pencil tribute http://t.co/DgKIG3EAVt\u003cbr\u003ehttp://t.co/Uts7TqZCd4\u201d\u003cbr\u003eThu Jan 08 13:43:25 +0000 2015"}, {"group": 1827, "id": 4, "label": "553186112479313920", "shape": "dot", "size": 10, "title": "553186112479313920\u003cbr\u003eThe artist behind this iconic\u003cbr\u003e#CharlieHebdo pencil tribute http://t.co/Uv4K51P2zW http://t.co/LDkmZ2uXFO\u003cbr\u003evia @mashable\u003cbr\u003eThu Jan 08 13:47:01 +0000 2015"}, {"group": 1827, "id": 5, "label": "553186473931853825", "shape": "dot", "size": 10, "title": "553186473931853825\u003cbr\u003e\u201c@mashable: The artist behind this\u003cbr\u003eiconic #CharlieHebdo pencil tribute http://t.co/KhLwsKOJlx\u003cbr\u003ehttp://t.co/AmywDFOSk9\u201d.\u003cbr\u003eThu Jan 08 13:48:27 +0000 2015"}, {"group": 1827, "id": 6, "label": "553186946844229633", "shape": "dot", "size": 10, "title": "553186946844229633\u003cbr\u003e@mashable The weapons #Hollande recently\u003cbr\u003egave to terrorists were for\u003cbr\u003ekilling people in #Syria \u0026amp;\u003cbr\u003enot #France http://t.co/YbzHUqBkKl \u2026 \u2026\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:50:20 +0000 2015"}, {"group": 1827, "id": 8, "label": "553187497090748417", "shape": "dot", "size": 10, "title": "553187497090748417\u003cbr\u003eCredit @LucilleClerc. \u201c@mashable: The artist\u003cbr\u003ebehind this iconic #CharlieHebdo pencil\u003cbr\u003etribute http://t.co/SJxZGC4bun http://t.co/ANzOM2BtW9\u201d\u003cbr\u003eThu Jan 08 13:52:31 +0000 2015"}, {"group": 1827, "id": 9, "label": "553187510512541696", "shape": "dot", "size": 10, "title": "553187510512541696\u003cbr\u003e\u201c@mashable: The artist behind this\u003cbr\u003eiconic #CharlieHebdo pencil tribute http://t.co/6O4dVUdjDO\u003cbr\u003ehttp://t.co/jArFZFDQef\u201d\u003cbr\u003eThu Jan 08 13:52:34 +0000 2015"}, {"group": 1827, "id": 10, "label": "553188203058839552", "shape": "dot", "size": 10, "title": "553188203058839552\u003cbr\u003e@mashable @Isham_M_Iqbal The artists behind\u003cbr\u003ethe hate media that evokes\u003cbr\u003eviolence in the guise of\u003cbr\u003efreedom of speech.\u003cbr\u003eThu Jan 08 13:55:20 +0000 2015"}, {"group": 1827, "id": 11, "label": "553189023762898944", "shape": "dot", "size": 10, "title": "553189023762898944\u003cbr\u003eNot fucking Banksy.\n\n\u201c@mashable: The artist\u003cbr\u003ebehind this iconic #CharlieHebdo pencil\u003cbr\u003etribute http://t.co/wtVcmsCE10 http://t.co/VcSiWTSJCp\u201d\u003cbr\u003eThu Jan 08 13:58:35 +0000 2015"}, {"group": 1827, "id": 13, "label": "553189313551151104", "shape": "dot", "size": 10, "title": "553189313551151104\u003cbr\u003eRT \"@mashable: The artist behind\u003cbr\u003ethis iconic #CharlieHebdo pencil tribute\u003cbr\u003ehttp://t.co/J2V2WrCcwO http://t.co/1AfW8ssQzF\u201d\u003cbr\u003eThu Jan 08 13:59:44 +0000 2015"}, {"group": 1827, "id": 17, "label": "553189949701627905", "shape": "dot", "size": 10, "title": "553189949701627905\u003cbr\u003e@mashable terrorism will never stop\u003cbr\u003efreedom of expression! http://t.co/8oOkmNrH91\u003cbr\u003eThu Jan 08 14:02:16 +0000 2015"}, {"group": 1827, "id": 7, "label": "553187135205830656", "shape": "dot", "size": 10, "title": "553187135205830656\u003cbr\u003eThe artist behind this iconic\u003cbr\u003e#CharlieHebdo pencil tribute http://t.co/E24niLUFpg http://t.co/c8gMBr8fQe\u003cbr\u003evia @popboardz @mashable\u003cbr\u003eThu Jan 08 13:51:05 +0000 2015"}, {"group": 1827, "id": 12, "label": "553189155912441856", "shape": "dot", "size": 10, "title": "553189155912441856\u003cbr\u003e@AhamedKMB never care of haters.\u003cbr\u003eJust think of that image.\u003cbr\u003eThat clearly has a message.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:59:07 +0000 2015"}, {"group": 1827, "id": 14, "label": "553189334892179457", "shape": "dot", "size": 10, "title": "553189334892179457\u003cbr\u003e@kyle_conrad @mashable But that\u2019s so\u003cbr\u003egood.\u003cbr\u003eThu Jan 08 13:59:49 +0000 2015"}, {"group": 1827, "id": 25, "label": "553193327898546177", "shape": "dot", "size": 10, "title": "553193327898546177\u003cbr\u003e@Isham_M_Iqbal Hate MEDIA is business\u003cbr\u003eto make money \u0026amp; the\u003cbr\u003eroot cause of violence. Laugh\u003cbr\u003eat yourself that is humour\u003cbr\u003enot laughing at others.\u003cbr\u003eThu Jan 08 14:15:41 +0000 2015"}, {"group": 1827, "id": 15, "label": "553189354739613696", "shape": "dot", "size": 10, "title": "553189354739613696\u003cbr\u003e@kyle_conrad @mashable Regardless.\u003cbr\u003eThu Jan 08 13:59:54 +0000 2015"}, {"group": 1827, "id": 16, "label": "553189778045542401", "shape": "dot", "size": 10, "title": "553189778045542401\u003cbr\u003e@ianpatrickhines I mean, it\u0027s boring\u003cbr\u003ebut sure. It\u0027s at least\u003cbr\u003ebetter than the 5th grade\u003cbr\u003ephilosophy of \"Banksy\"\u003cbr\u003eThu Jan 08 14:01:35 +0000 2015"}, {"group": 1827, "id": 18, "label": "553190004265349120", "shape": "dot", "size": 10, "title": "553190004265349120\u003cbr\u003e@kyle_conrad I\u2019m not sure I\u003cbr\u003eshare your displeasure with Banksy\u2019s\u003cbr\u003eart, though I don\u2019t always\u003cbr\u003eagree with his/her perspective.\u003cbr\u003eThu Jan 08 14:02:29 +0000 2015"}, {"group": 1827, "id": 19, "label": "553190364019187713", "shape": "dot", "size": 10, "title": "553190364019187713\u003cbr\u003e@ianpatrickhines I think it\u0027s childish.\u003cbr\u003eOh no, corporations and war\u003cbr\u003eare BAD, you say? Say\u003cbr\u003esomething new.\u003cbr\u003eThu Jan 08 14:03:55 +0000 2015"}, {"group": 1827, "id": 20, "label": "553190548069429249", "shape": "dot", "size": 10, "title": "553190548069429249\u003cbr\u003e@ianpatrickhines street art has been\u003cbr\u003edone in far more provocative\u003cbr\u003eways before, Banksy just blew\u003cbr\u003eup because the art world\u003cbr\u003epicked him to.\u003cbr\u003eThu Jan 08 14:04:39 +0000 2015"}, {"group": 1827, "id": 21, "label": "553190722242088960", "shape": "dot", "size": 10, "title": "553190722242088960\u003cbr\u003e@kyle_conrad I think it\u2019s the\u003cbr\u003efact that the artwork seems\u003cbr\u003eto resonate with a lot\u003cbr\u003eof people that makes it\u003cbr\u003e\u201cgood.\u201d But art is subjective.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:05:20 +0000 2015"}, {"group": 1827, "id": 22, "label": "553191122441617408", "shape": "dot", "size": 10, "title": "553191122441617408\u003cbr\u003e@ianpatrickhines very true - but\u003cbr\u003eI don\u0027t think anyone can\u003cbr\u003edeny that he blew up\u003cbr\u003ebecause of critics, not because\u003cbr\u003eof some public love.\u003cbr\u003eThu Jan 08 14:06:56 +0000 2015"}, {"group": 1827, "id": 23, "label": "553191230088425472", "shape": "dot", "size": 10, "title": "553191230088425472\u003cbr\u003e@ianpatrickhines anything can \"resonate\" when\u003cbr\u003eit is forced to be\u003cbr\u003epopular.\u003cbr\u003eThu Jan 08 14:07:21 +0000 2015"}, {"group": 1827, "id": 24, "label": "553191313638965248", "shape": "dot", "size": 10, "title": "553191313638965248\u003cbr\u003e@ianpatrickhines that said, Exit Through\u003cbr\u003eThe Gift Shop was pure\u003cbr\u003egenius.\u003cbr\u003eThu Jan 08 14:07:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 12, "to": 25, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

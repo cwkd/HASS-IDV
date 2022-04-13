@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 104, "id": 0, "label": "552805799106732032", "shape": "dot", "size": 10, "title": "552805799106732032\u003cbr\u003eJournalists, admin staff and police\u003cbr\u003eofficers among those injured in\u003cbr\u003e#CharlieHebdo attack http://t.co/cMsu4ASQjl http://t.co/zqkHLJK5b9\u003cbr\u003eWed Jan 07 12:35:47 +0000 2015"}, {"group": 104, "id": 1, "label": "552806147590066177", "shape": "dot", "size": 10, "title": "552806147590066177\u003cbr\u003e@MailOnline maves nudhaanan..adeeb olhaalaa show\u003cbr\u003eves olhaalaa\u003cbr\u003eWed Jan 07 12:37:10 +0000 2015"}, {"group": 104, "id": 2, "label": "552806243149316096", "shape": "dot", "size": 10, "title": "552806243149316096\u003cbr\u003e@MailOnline @RosemarieJarvi1 \nAllow that filth\u003cbr\u003ein your country and this\u003cbr\u003eis what you get.\u003cbr\u003eWed Jan 07 12:37:33 +0000 2015"}, {"group": 104, "id": 3, "label": "552806280356982784", "shape": "dot", "size": 10, "title": "552806280356982784\u003cbr\u003e@MailOnline  Real men don\u0027t\u003cbr\u003eattack and kill unarmed people!\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 12:37:42 +0000 2015"}, {"group": 104, "id": 4, "label": "552806370136039424", "shape": "dot", "size": 10, "title": "552806370136039424\u003cbr\u003e@MailOnline And cartoonists...\u003cbr\u003eWed Jan 07 12:38:03 +0000 2015"}, {"group": 104, "id": 5, "label": "552806666589442049", "shape": "dot", "size": 10, "title": "552806666589442049\u003cbr\u003e@MailOnline if only people didn\u0027t\u003cbr\u003ehand out guns:https://t.co/iPBkLwhQk8 Jeffrey Epstein\u003cbr\u003ealso in CFR+Trilateral Commission\u003cbr\u003eWed Jan 07 12:39:14 +0000 2015"}, {"group": 104, "id": 6, "label": "552807472587886592", "shape": "dot", "size": 10, "title": "552807472587886592\u003cbr\u003e@MailOnline \nSuch lovely people, the\u003cbr\u003emuslims\u003cbr\u003eWed Jan 07 12:42:26 +0000 2015"}, {"group": 104, "id": 7, "label": "552807949564149761", "shape": "dot", "size": 10, "title": "552807949564149761\u003cbr\u003e@MailOnline Its unlawful in Islam\u003cbr\u003eto attack unarmed or armed\u003cbr\u003ewho doesnt attack you! This\u003cbr\u003eis totally prohibited!\u003cbr\u003eWed Jan 07 12:44:20 +0000 2015"}, {"group": 104, "id": 8, "label": "552808607562350592", "shape": "dot", "size": 10, "title": "552808607562350592\u003cbr\u003e@MailOnline this shit is crazy!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:46:57 +0000 2015"}, {"group": 104, "id": 9, "label": "552808636871753731", "shape": "dot", "size": 10, "title": "552808636871753731\u003cbr\u003e@MailOnline well they asked for\u003cbr\u003ethe violence knowing not to\u003cbr\u003epush the boundaries of journalism\u003cbr\u003eby targeting any Religion\u003cbr\u003eWed Jan 07 12:47:04 +0000 2015"}, {"group": 104, "id": 10, "label": "552809101886238720", "shape": "dot", "size": 10, "title": "552809101886238720\u003cbr\u003e@MailOnline attentato barbaro i vigliacchi\u003cbr\u003eagiscono cos\u00ec, sono addolorata.\n Sentite\u003cbr\u003eCondoglianze alle Famiglie dei Caduti.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:48:55 +0000 2015"}, {"group": 104, "id": 11, "label": "552809597095116801", "shape": "dot", "size": 10, "title": "552809597095116801\u003cbr\u003e@MailOnline @RosemarieJarvi1 Attack against France\u003cbr\u003enot against \"Charlie-Hebdo!\"\u003cbr\u003eWed Jan 07 12:50:53 +0000 2015"}, {"group": 104, "id": 12, "label": "552812157516398594", "shape": "dot", "size": 10, "title": "552812157516398594\u003cbr\u003e@MailOnline @Ironmauricio Something is not\u003cbr\u003eworking right when a photographer\u003cbr\u003etakes this shot and an\u003cbr\u003earmed policeman doesn\u0027t.\u003cbr\u003eWed Jan 07 13:01:03 +0000 2015"}, {"group": 104, "id": 13, "label": "552814618620727296", "shape": "dot", "size": 10, "title": "552814618620727296\u003cbr\u003e@MailOnline @FrancsPays Video: https://t.co/3EXOcuw4C6 Screams\u003cbr\u003eabout \"allah\".\u003cbr\u003eWed Jan 07 13:10:50 +0000 2015"}, {"group": 104, "id": 14, "label": "552815776512880640", "shape": "dot", "size": 10, "title": "552815776512880640\u003cbr\u003e@MailOnline The people working at\u003cbr\u003eCharlie Hebdo should have been\u003cbr\u003earmed to the teeth. it\u0027s\u003cbr\u003ea shame if they were\u003cbr\u003edefenseless.\u003cbr\u003eWed Jan 07 13:15:26 +0000 2015"}, {"group": 104, "id": 18, "label": "552820398341885955", "shape": "dot", "size": 10, "title": "552820398341885955\u003cbr\u003e@MailOnline @AndrewGatward Liberals are learned\u003cbr\u003efools who lack wisdom.\nFrance has\u003cbr\u003enaturalised 6.7 million foreign Muslims.\u003cbr\u003e#multiculturalism\u003cbr\u003eWed Jan 07 13:33:48 +0000 2015"}, {"group": 104, "id": 15, "label": "552817857634254848", "shape": "dot", "size": 10, "title": "552817857634254848\u003cbr\u003e@Brano1979 @MailOnline how any human\u003cbr\u003ecan do such cold blooded\u003cbr\u003emurder is out of this\u003cbr\u003eworld #WakeUpWorld #terrorism #wipeitout #war\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:23:42 +0000 2015"}, {"group": 104, "id": 17, "label": "552818672973381633", "shape": "dot", "size": 10, "title": "552818672973381633\u003cbr\u003e@malikanura876 @MailOnline don\u0027t talk fecking\u003cbr\u003estupid \"they asked 4 it\"\u003cbr\u003enobody should lose there life\u003cbr\u003ethrough cold blooded murder #terrorism\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:26:57 +0000 2015"}, {"group": 104, "id": 16, "label": "552818237486817281", "shape": "dot", "size": 10, "title": "552818237486817281\u003cbr\u003e@PatriceBleux @RosemarieJarvi1 @MailOnline question is,\u003cbr\u003ewill France submit? Freedom is\u003cbr\u003eon the line.\u003cbr\u003eWed Jan 07 13:25:13 +0000 2015"}, {"group": 104, "id": 19, "label": "552821178285293568", "shape": "dot", "size": 10, "title": "552821178285293568\u003cbr\u003e@Twitey2011 @MailOnline hahaha so why\u003cbr\u003eprovoke why push the boundaries?\u003cbr\u003eWhy\u003cbr\u003eWed Jan 07 13:36:54 +0000 2015"}, {"group": 104, "id": 20, "label": "552823734579765248", "shape": "dot", "size": 10, "title": "552823734579765248\u003cbr\u003e@malikanura876 @MailOnline freedom of speech\u003cbr\u003e\u0026amp; your views are ridiculous.\u003cbr\u003eMaybe your involved in this\u003cbr\u003edespicable act of cold blooded\u003cbr\u003emurder.\u003cbr\u003eWed Jan 07 13:47:03 +0000 2015"}, {"group": 104, "id": 21, "label": "552827110809538561", "shape": "dot", "size": 10, "title": "552827110809538561\u003cbr\u003e@Twitey2011 @MailOnline hahahahaha what a\u003cbr\u003ejoke watch it buster ok\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:00:28 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 9, "to": 17, "weight": 1}, {"from": 11, "to": 16, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

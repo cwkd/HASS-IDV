@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 357, "id": 0, "label": "552826724774592512", "shape": "dot", "size": 10, "title": "552826724774592512\u003cbr\u003eTerrorist attack in Paris at\u003cbr\u003esatirical magazine is just heartbreaking.\u003cbr\u003ePrayers. So is the #NAACPBombing.\u003cbr\u003eI wish we would talk\u003cbr\u003eabout both.\u003cbr\u003eWed Jan 07 13:58:56 +0000 2015"}, {"group": 357, "id": 1, "label": "552838549486444544", "shape": "dot", "size": 10, "title": "552838549486444544\u003cbr\u003e@ChrissyCole no 1 died at\u003cbr\u003ethe latter.\u003cbr\u003eWed Jan 07 14:45:56 +0000 2015"}, {"group": 357, "id": 2, "label": "553365202398621696", "shape": "dot", "size": 10, "title": "553365202398621696\u003cbr\u003e@VincentMcAnuff @ChrissyCole so what? If\u003cbr\u003esomeone did, they still would\u003cbr\u003enot say anything. The point\u003cbr\u003eis that they do not\u003cbr\u003ecare or give a shyt\u003cbr\u003e\u003cbr\u003eFri Jan 09 01:38:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 1, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

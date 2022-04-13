@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 208, "id": 0, "label": "552815091331366912", "shape": "dot", "size": 10, "title": "552815091331366912\u003cbr\u003eGeorge Orwell: \u201cIf liberty means\u003cbr\u003eanything at all, it means\u003cbr\u003ethe right to tell people\u003cbr\u003ewhat they do not want\u003cbr\u003eto hear.\" #CharlieHebdo\u003cbr\u003eWed Jan 07 13:12:43 +0000 2015"}, {"group": 208, "id": 1, "label": "552815536900685825", "shape": "dot", "size": 10, "title": "552815536900685825\u003cbr\u003e@StewartWood Liverpool\u0027s wealth is founded\u003cbr\u003ein slavery and your team\u003cbr\u003eis shit.\u003cbr\u003eWed Jan 07 13:14:29 +0000 2015"}, {"group": 208, "id": 2, "label": "552816142193274880", "shape": "dot", "size": 10, "title": "552816142193274880\u003cbr\u003e@StewartWood They don\u0027t have to\u003cbr\u003elisten, though, just not penalise\u003cbr\u003eyou for it.\u003cbr\u003eWed Jan 07 13:16:53 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

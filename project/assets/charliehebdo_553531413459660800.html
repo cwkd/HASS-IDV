@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1945, "id": 0, "label": "553531413459660800", "shape": "dot", "size": 10, "title": "553531413459660800\u003cbr\u003eUpdate - AFP says gunman\u003cbr\u003ewho has taken a hostage\u003cbr\u003eat kosher supermarket in Paris\u003cbr\u003ebelieved to be suspect in\u003cbr\u003ekilling of policewoman on Thursday\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:39:07 +0000 2015"}, {"group": 1945, "id": 1, "label": "553531601838432257", "shape": "dot", "size": 10, "title": "553531601838432257\u003cbr\u003e@SkyNewsBreak Does he have a\u003cbr\u003escript to take away more\u003cbr\u003efreedoms.\u003cbr\u003eFri Jan 09 12:39:52 +0000 2015"}, {"group": 1945, "id": 2, "label": "553531861885259776", "shape": "dot", "size": 10, "title": "553531861885259776\u003cbr\u003e@SkyNewsBreak Doesnt sound like he\u003cbr\u003ehas thought this one through\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:40:54 +0000 2015"}, {"group": 1945, "id": 3, "label": "553532010447527936", "shape": "dot", "size": 10, "title": "553532010447527936\u003cbr\u003e@fernandocarnota @LongobardiM @nelsonalcastro @SkyNewsBreak: AFP\u003cbr\u003esays gunman who has taken\u003cbr\u003ea hostage at kosher supermarket\u003cbr\u003ein Paris\u003cbr\u003eFri Jan 09 12:41:30 +0000 2015"}, {"group": 1945, "id": 4, "label": "553532431517876225", "shape": "dot", "size": 10, "title": "553532431517876225\u003cbr\u003e@SkyNewsBreak looks like a deliberate\u003cbr\u003eattempt to split the French\u003cbr\u003epolice action an cause confusion.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:43:10 +0000 2015"}, {"group": 1945, "id": 5, "label": "553532938508587008", "shape": "dot", "size": 10, "title": "553532938508587008\u003cbr\u003e@SkyNewsBreak Presume they wanted a\u003cbr\u003e#Jewish #hostage. So much for\u003cbr\u003emartyrdom. Why a kosher deli\u003cbr\u003eparticularly?\u003cbr\u003eFri Jan 09 12:45:11 +0000 2015"}, {"group": 1945, "id": 6, "label": "553533391216582656", "shape": "dot", "size": 10, "title": "553533391216582656\u003cbr\u003e@SkyNewsBreak @_DarkMavis U haven\u0027t sent\u003cbr\u003eQueen Bee Burley to France\u003cbr\u003ehave u,if so it\u0027s only\u003cbr\u003ea matter of time be4\u003cbr\u003eshe comes out with a\u003cbr\u003eclassic\u003cbr\u003eFri Jan 09 12:46:59 +0000 2015"}, {"group": 1945, "id": 7, "label": "553534531522011136", "shape": "dot", "size": 10, "title": "553534531522011136\u003cbr\u003e@skynewsbreak hostage taken at kosher\u003cbr\u003esupermarket ,HyperCacher Vincennnes\u003cbr\u003eFri Jan 09 12:51:31 +0000 2015"}, {"group": 1945, "id": 8, "label": "553535185695043584", "shape": "dot", "size": 10, "title": "553535185695043584\u003cbr\u003e@SkyNewsBreak Why would someone leave\u003cbr\u003etheir ID-card? Thereafter allegedly seen\u003cbr\u003eat a gas station. Now\u003cbr\u003ehostage sit. Reports of\u003cbr\u003eFri Jan 09 12:54:07 +0000 2015"}, {"group": 1945, "id": 10, "label": "553535680979427328", "shape": "dot", "size": 10, "title": "553535680979427328\u003cbr\u003e@SkyNewsBreak Why state kosher grocery?\u003cbr\u003eYou, nor any other news\u003cbr\u003eagency say Christian grocery if\u003cbr\u003eit would of been the\u003cbr\u003ecase\u003cbr\u003eFri Jan 09 12:56:05 +0000 2015"}, {"group": 1945, "id": 11, "label": "553538891228385280", "shape": "dot", "size": 10, "title": "553538891228385280\u003cbr\u003e@SkyNewsBreak Hunted Down, excellent police\u003cbr\u003ework, hope the other two\u003cbr\u003efollow soon\u003cbr\u003eFri Jan 09 13:08:50 +0000 2015"}, {"group": 1945, "id": 12, "label": "553542100143591426", "shape": "dot", "size": 10, "title": "553542100143591426\u003cbr\u003e@SkyNewsBreak which means the phsyco\u003cbr\u003eis ruthless and will shoot\u003cbr\u003eall. Attack is best defence.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:21:35 +0000 2015"}, {"group": 1945, "id": 13, "label": "554247300738854912", "shape": "dot", "size": 10, "title": "554247300738854912\u003cbr\u003e@SkyNewsBreak  really sad situation\u003cbr\u003e\u003cbr\u003eSun Jan 11 12:03:48 +0000 2015"}, {"group": 1945, "id": 9, "label": "553535295111847936", "shape": "dot", "size": 10, "title": "553535295111847936\u003cbr\u003e@SkyNewsBreak a 3rd shooting at\u003cbr\u003epresent\n\nDivert Operatons?\u003cbr\u003eFri Jan 09 12:54:33 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1850, "id": 0, "label": "553470977972375553", "shape": "dot", "size": 10, "title": "553470977972375553\u003cbr\u003eBREAKING: Reports of shots fired,\u003cbr\u003ehostages taken in town Northeast\u003cbr\u003eof Paris http://t.co/f30TSVt1yN http://t.co/jeuTP0IOZg\u003cbr\u003eFri Jan 09 08:38:58 +0000 2015"}, {"group": 1850, "id": 1, "label": "553471699790737409", "shape": "dot", "size": 10, "title": "553471699790737409\u003cbr\u003e@Independent wtf???? I\u0027m moving there\u003cbr\u003esoon ppl!!!! Damn it! Leave\u003cbr\u003eit alone!!!!\u003cbr\u003eFri Jan 09 08:41:50 +0000 2015"}, {"group": 1850, "id": 2, "label": "553471707319513088", "shape": "dot", "size": 10, "title": "553471707319513088\u003cbr\u003e@Independent https://t.co/Z1fbrKGmT1\u003cbr\u003eFri Jan 09 08:41:52 +0000 2015"}, {"group": 1850, "id": 3, "label": "553472186908831744", "shape": "dot", "size": 10, "title": "553472186908831744\u003cbr\u003eRT @Independent: BREAKING: Reports of\u003cbr\u003eshots fired, hostages taken in\u003cbr\u003etown Northeast of Paris http://t.co/PolnMNUL2i\u003cbr\u003ehttp://t.co/S6cn6dknM8\u201d\u003cbr\u003eFri Jan 09 08:43:47 +0000 2015"}, {"group": 1850, "id": 4, "label": "553474617302867968", "shape": "dot", "size": 10, "title": "553474617302867968\u003cbr\u003e@Independent @englishmanshome France needs an\u003cbr\u003eeradication program\u003cbr\u003eFri Jan 09 08:53:26 +0000 2015"}, {"group": 1850, "id": 5, "label": "553476307267633152", "shape": "dot", "size": 10, "title": "553476307267633152\u003cbr\u003e@Independent Let\u0027s hope that mob\u003cbr\u003ecatch the animals alive \ud83d\udc4a\ud83d\udc4a\ud83d\udc4a\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:00:09 +0000 2015"}, {"group": 1850, "id": 6, "label": "553487505761517568", "shape": "dot", "size": 10, "title": "553487505761517568\u003cbr\u003e@Independent \u2606 http://t.co/PRon9ZGwwH\u003cbr\u003eFri Jan 09 09:44:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1199, "id": 0, "label": "553225402282692608", "shape": "dot", "size": 10, "title": "553225402282692608\u003cbr\u003e#CharlieHebdo: If we talk about\u003cbr\u003e\u2018war\u2019, we fall into the\u003cbr\u003etrap set by murderers, @robinlustig\u003cbr\u003ehttp://t.co/dbBJUkm0sR http://t.co/IqouaAdFxx\u003cbr\u003eThu Jan 08 16:23:08 +0000 2015"}, {"group": 1199, "id": 1, "label": "553226405996408832", "shape": "dot", "size": 10, "title": "553226405996408832\u003cbr\u003e@Independent @robinlustig http://t.co/l2lUrndHha\u003cbr\u003eThu Jan 08 16:27:08 +0000 2015"}, {"group": 1199, "id": 2, "label": "553226496920547328", "shape": "dot", "size": 10, "title": "553226496920547328\u003cbr\u003e@Independent @robinlustig muhammad http://t.co/IADTSmJrDh\u003cbr\u003eThu Jan 08 16:27:29 +0000 2015"}, {"group": 1199, "id": 3, "label": "553227079190585344", "shape": "dot", "size": 10, "title": "553227079190585344\u003cbr\u003e@Independent @robinlustig\u003cbr\u003eThu Jan 08 16:29:48 +0000 2015"}, {"group": 1199, "id": 4, "label": "553227560579256320", "shape": "dot", "size": 10, "title": "553227560579256320\u003cbr\u003e@Independent @robinlustig if the West,\u003cbr\u003ealong w/ Russia, would have\u003cbr\u003ehad that attitude in 1941,\u003cbr\u003eI think my German would\u003cbr\u003ebe a whole lot better\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:31:43 +0000 2015"}, {"group": 1199, "id": 5, "label": "553227659073687552", "shape": "dot", "size": 10, "title": "553227659073687552\u003cbr\u003e@Independent @robinlustig tolerance is indeed\u003cbr\u003ea virtue, however some have\u003cbr\u003eproblems tolerating others different to\u003cbr\u003ethemselves\u003cbr\u003eThu Jan 08 16:32:07 +0000 2015"}, {"group": 1199, "id": 6, "label": "553231186034569218", "shape": "dot", "size": 10, "title": "553231186034569218\u003cbr\u003eThat sign was manufactured awfully\u003cbr\u003equickly @Independent @robinlustig\u003cbr\u003eThu Jan 08 16:46:07 +0000 2015"}, {"group": 1199, "id": 9, "label": "553235132212318208", "shape": "dot", "size": 10, "title": "553235132212318208\u003cbr\u003e@Independent @robinlustig The same false\u003cbr\u003elogic used by Chamberlain and\u003cbr\u003eothers to resist rearmament in\u003cbr\u003ethe 30\u0027s\u003cbr\u003eThu Jan 08 17:01:48 +0000 2015"}, {"group": 1199, "id": 7, "label": "553231992306008064", "shape": "dot", "size": 10, "title": "553231992306008064\u003cbr\u003e@GoldHardShell @Independent @robinlustig I like\u003cbr\u003ethat sign. Sums up nicely.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:49:20 +0000 2015"}, {"group": 1199, "id": 8, "label": "553232773230493696", "shape": "dot", "size": 10, "title": "553232773230493696\u003cbr\u003eIt\u0027s a high end sign\u003cbr\u003efor such a \u0027spontaneous\u0027 event\u003cbr\u003e. Who whipped it out\u003cbr\u003eof whose ass? @SonnyRaye @Independent\u003cbr\u003e@robinlustig\u003cbr\u003eThu Jan 08 16:52:26 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

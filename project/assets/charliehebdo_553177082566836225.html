@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1019, "id": 0, "label": "553177082566836225", "shape": "dot", "size": 10, "title": "553177082566836225\u003cbr\u003eRevenge attacks on Muslim spaces\u003cbr\u003ebegin in France after #CharlieHebdo\u003cbr\u003emassacre http://t.co/50anhW9BEk http://t.co/uKL5El7V2B\u003cbr\u003eThu Jan 08 13:11:08 +0000 2015"}, {"group": 1019, "id": 1, "label": "553177877517041664", "shape": "dot", "size": 10, "title": "553177877517041664\u003cbr\u003e\u201c@MailOnline: Revenge attacks on Muslim\u003cbr\u003espaces begin in France after\u003cbr\u003e#CharlieHebdo massacre http://t.co/Z4L1HH5elf http://t.co/pMIW0goIZv\u201d\u003cbr\u003eThu Jan 08 13:14:18 +0000 2015"}, {"group": 1019, "id": 2, "label": "553177927299641344", "shape": "dot", "size": 10, "title": "553177927299641344\u003cbr\u003e@MailOnline revenge attacks on Muslims\u003cbr\u003enow--France is destabilizing into chaos\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:14:30 +0000 2015"}, {"group": 1019, "id": 3, "label": "553177943837376512", "shape": "dot", "size": 10, "title": "553177943837376512\u003cbr\u003e@MailOnline @ #charliehebdo\nMost documented false\u003cbr\u003eflag shooter\nhttp://t.co/B5my3mLkul\n Secret service Intelligence\nhttps://t.co/oxXVe3WcaR\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:14:34 +0000 2015"}, {"group": 1019, "id": 4, "label": "553178480176017410", "shape": "dot", "size": 10, "title": "553178480176017410\u003cbr\u003e@MailOnline @DailyMail good.\u003cbr\u003eThu Jan 08 13:16:41 +0000 2015"}, {"group": 1019, "id": 5, "label": "553179474985254912", "shape": "dot", "size": 10, "title": "553179474985254912\u003cbr\u003e@MailOnline Well, at least they\u003cbr\u003ewont be serving our #children\u003cbr\u003eup as kebabs, anymore! #CharleneDownes\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:20:39 +0000 2015"}, {"group": 1019, "id": 6, "label": "553180053140279298", "shape": "dot", "size": 10, "title": "553180053140279298\u003cbr\u003e@MailOnline when leadership is weak\u003cbr\u003e\u0026amp; does nothing to stop\u003cbr\u003eradical Islam, the people will\u003cbr\u003erebel...with pitch forks. #history #CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:22:56 +0000 2015"}, {"group": 1019, "id": 7, "label": "553181007470657538", "shape": "dot", "size": 10, "title": "553181007470657538\u003cbr\u003e@MailOnline Islam cannot \u0026amp; will\u003cbr\u003enot co exist with the\u003cbr\u003eWest. They are here to\u003cbr\u003esubjugate \u0026amp; conquer. Wake Up!\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:26:44 +0000 2015"}, {"group": 1019, "id": 8, "label": "553181360890724352", "shape": "dot", "size": 10, "title": "553181360890724352\u003cbr\u003e@MailOnline Good. Mosques should be\u003cbr\u003eat the top of the\u003cbr\u003ehit parade.\u003cbr\u003eThu Jan 08 13:28:08 +0000 2015"}, {"group": 1019, "id": 10, "label": "553182269305663488", "shape": "dot", "size": 10, "title": "553182269305663488\u003cbr\u003e@MailOnline @grampa194235 http://t.co/NCKKitEWUx\u003cbr\u003eThu Jan 08 13:31:45 +0000 2015"}, {"group": 1019, "id": 11, "label": "553187196011040769", "shape": "dot", "size": 10, "title": "553187196011040769\u003cbr\u003e@MailOnline keep it up! Get\u003cbr\u003ethem out of Europe. They\u003cbr\u003eare a disease!\u003cbr\u003eThu Jan 08 13:51:19 +0000 2015"}, {"group": 1019, "id": 9, "label": "553181911997480960", "shape": "dot", "size": 10, "title": "553181911997480960\u003cbr\u003e@lucyk6992 Dirty bitch.\u003cbr\u003eThu Jan 08 13:30:20 +0000 2015"}, {"group": 1019, "id": 12, "label": "553188197652762626", "shape": "dot", "size": 10, "title": "553188197652762626\u003cbr\u003e@KhanUR1983 @jackADdawkins obviously he sucked\u003cbr\u003eat it. RIP\u003cbr\u003eThu Jan 08 13:55:18 +0000 2015"}, {"group": 1019, "id": 13, "label": "553200269954416640", "shape": "dot", "size": 10, "title": "553200269954416640\u003cbr\u003e@TroyTottah @jackADdawkins and the 2nd\u003cbr\u003eNON MUSLIM police officer killed\u003cbr\u003etoo?\u003cbr\u003eThu Jan 08 14:43:16 +0000 2015"}, {"group": 1019, "id": 14, "label": "553201490903715840", "shape": "dot", "size": 10, "title": "553201490903715840\u003cbr\u003eScum like @TroyTottah r \"outraged\"\u003cbr\u003eover the #CharlieHebdo #ParisShooting but\u003cbr\u003enot 4 the muslim victim.Make\u003cbr\u003efun of him http://t.co/zM3fshNTwC\u003cbr\u003eThu Jan 08 14:48:08 +0000 2015"}, {"group": 1019, "id": 15, "label": "553202988526104576", "shape": "dot", "size": 10, "title": "553202988526104576\u003cbr\u003e@KhanUR1983 I believe the term\u003cbr\u003ein the vernacular for @TroyTottah\u003cbr\u003eis #owned\u003cbr\u003eThu Jan 08 14:54:05 +0000 2015"}, {"group": 1019, "id": 16, "label": "553203431952109568", "shape": "dot", "size": 10, "title": "553203431952109568\u003cbr\u003e@MrTickle3 @KhanUR1983 @TroyTottah \n\nTwat should\u003cbr\u003eof been aborted. Bet he\u0027s\u003cbr\u003ean ugly one too\u003cbr\u003eThu Jan 08 14:55:50 +0000 2015"}, {"group": 1019, "id": 17, "label": "553249541605298177", "shape": "dot", "size": 10, "title": "553249541605298177\u003cbr\u003e@KSKhazi @MrTickle3 @KhanUR1983 I\u0027m handsome\u003cbr\u003eas my Mum and Dad\u003cbr\u003eare not siblings. http://t.co/wv75F1bjIM\u003cbr\u003eThu Jan 08 17:59:04 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1677, "id": 0, "label": "552796863297236992", "shape": "dot", "size": 10, "title": "552796863297236992\u003cbr\u003e#CharlieHebdo gunmen fled in stolen\u003cbr\u003ecar after \u0027mass shoot-out\u0027 with\u003cbr\u003epolice officers http://t.co/eocvQn42Hg http://t.co/545ooj5xMM\u003cbr\u003eWed Jan 07 12:00:17 +0000 2015"}, {"group": 1677, "id": 1, "label": "552797121762848771", "shape": "dot", "size": 10, "title": "552797121762848771\u003cbr\u003e@MailOnline Terrible; if only people\u003cbr\u003edidn\u0027t hand out guns: https://t.co/u0pUXhx8sl\u003cbr\u003eJeffrey Epstein also member of\u003cbr\u003eCFR+Trilateral Commission\u003cbr\u003eWed Jan 07 12:01:18 +0000 2015"}, {"group": 1677, "id": 2, "label": "552797365770670080", "shape": "dot", "size": 10, "title": "552797365770670080\u003cbr\u003e#CharlieHebdo gunmen fled in stolen\u003cbr\u003ecar after \u0027mass shoot-out\u0027 with\u003cbr\u003epolice http://t.co/XMZ3ShLf6u @MailOnline http://t.co/TIcNEMquKf\u003cbr\u003eWed Jan 07 12:02:17 +0000 2015"}, {"group": 1677, "id": 3, "label": "552798736083353600", "shape": "dot", "size": 10, "title": "552798736083353600\u003cbr\u003e@MailOnline Last call for 2\u003cbr\u003elate passengers back to Tel\u003cbr\u003eAviv gate closing #Hollande Russia\u003cbr\u003eSanctions speech? Timing #RaceWars @davidicke\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:07:43 +0000 2015"}, {"group": 1677, "id": 4, "label": "552799527250702336", "shape": "dot", "size": 10, "title": "552799527250702336\u003cbr\u003e@MailOnline @Holbornlolz \u0130 do hope\u003cbr\u003eno cyclists were hurt.\u003cbr\u003eWed Jan 07 12:10:52 +0000 2015"}, {"group": 1677, "id": 5, "label": "552842731228495872", "shape": "dot", "size": 10, "title": "552842731228495872\u003cbr\u003e@MailOnline @AuntyNeville Please RT -\u003cbr\u003eDownload a hilarious FREE Koran\u003cbr\u003ePARODY for infidels of all\u003cbr\u003eages - https://t.co/hXbeZHdguj\u003cbr\u003eWed Jan 07 15:02:33 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

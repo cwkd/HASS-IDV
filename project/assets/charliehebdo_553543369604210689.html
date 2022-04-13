@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1980, "id": 0, "label": "553543369604210689", "shape": "dot", "size": 10, "title": "553543369604210689\u003cbr\u003eAn 11-month old baby is\u003cbr\u003eamong the hostages at the\u003cbr\u003eKosher supermarket in Paris. Unbearably\u003cbr\u003esad.\nhttp://t.co/yXXlHehst9\u003cbr\u003eFri Jan 09 13:26:38 +0000 2015"}, {"group": 1980, "id": 1, "label": "553543653424386049", "shape": "dot", "size": 10, "title": "553543653424386049\u003cbr\u003e@BklynMiddleton rumors say hostages are\u003cbr\u003e1 women and 4 childrens---\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:27:45 +0000 2015"}, {"group": 1980, "id": 2, "label": "553543671308886016", "shape": "dot", "size": 10, "title": "553543671308886016\u003cbr\u003e@BklynMiddleton sorrow is not the\u003cbr\u003eemotion one should have at\u003cbr\u003ethis stage. maybe afterwards. right\u003cbr\u003enow, it\u0027s appropriate to be\u003cbr\u003efilled w rage\u003cbr\u003eFri Jan 09 13:27:50 +0000 2015"}, {"group": 1980, "id": 3, "label": "553544356700094464", "shape": "dot", "size": 10, "title": "553544356700094464\u003cbr\u003e@BklynMiddleton is it just a\u003cbr\u003ecoincidence that kosher market thing\u003cbr\u003eor a missibg part of\u003cbr\u003ethe picture ?\u003cbr\u003eFri Jan 09 13:30:33 +0000 2015"}, {"group": 1980, "id": 4, "label": "553544770430464000", "shape": "dot", "size": 10, "title": "553544770430464000\u003cbr\u003eRT @BklynMiddleton: An 11-month old\u003cbr\u003ebaby is among the hostages\u003cbr\u003eat the Kosher supermarket in\u003cbr\u003e#ParisAttack\u003cbr\u003eFri Jan 09 13:32:12 +0000 2015"}, {"group": 1980, "id": 6, "label": "553545251651342337", "shape": "dot", "size": 10, "title": "553545251651342337\u003cbr\u003e@BklynMiddleton really sad. Ever seen\u003cbr\u003efotos of gaza babies ?\u003cbr\u003eAll babies r equal i\u003cbr\u003esuppose\u003cbr\u003eFri Jan 09 13:34:07 +0000 2015"}, {"group": 1980, "id": 8, "label": "553547724860456961", "shape": "dot", "size": 10, "title": "553547724860456961\u003cbr\u003e*Mutes Universe*\u003cbr\u003eFri Jan 09 13:43:56 +0000 2015"}, {"group": 1980, "id": 15, "label": "553549440263675904", "shape": "dot", "size": 10, "title": "553549440263675904\u003cbr\u003e@BklynMiddleton u r among the\u003cbr\u003eonly journalists saying kosher market\u003cbr\u003e\u0026amp; not calling it something\u003cbr\u003egeneric. If it\u0027s kosher it\u003cbr\u003ewas targeted. Thx\u003cbr\u003eFri Jan 09 13:50:45 +0000 2015"}, {"group": 1980, "id": 5, "label": "553545137725657088", "shape": "dot", "size": 10, "title": "553545137725657088\u003cbr\u003e@paytheline11 Maybe you should scroll\u003cbr\u003ethrough my tweets.\u003cbr\u003eFri Jan 09 13:33:39 +0000 2015"}, {"group": 1980, "id": 7, "label": "553545602165129218", "shape": "dot", "size": 10, "title": "553545602165129218\u003cbr\u003e@BklynMiddleton i\u0027ll get right on\u003cbr\u003ethat\u003cbr\u003eFri Jan 09 13:35:30 +0000 2015"}, {"group": 1980, "id": 14, "label": "553549163674476544", "shape": "dot", "size": 10, "title": "553549163674476544\u003cbr\u003e@Jon_Startin @BklynMiddleton they are better\u003cbr\u003epeople than most then. \u003cbr\u003ebecause this is not worthy\u003cbr\u003eof sorrow IMO. it should\u003cbr\u003emake you angry\u003cbr\u003eFri Jan 09 13:49:39 +0000 2015"}, {"group": 1980, "id": 9, "label": "553548084656214016", "shape": "dot", "size": 10, "title": "553548084656214016\u003cbr\u003e@BklynMiddleton The pause button is\u003cbr\u003ebroken and there is no\u003cbr\u003erewind function.\nIt\u0027s terrifying when you\u003cbr\u003ethink about it.\u003cbr\u003eFri Jan 09 13:45:22 +0000 2015"}, {"group": 1980, "id": 10, "label": "553548128138584065", "shape": "dot", "size": 10, "title": "553548128138584065\u003cbr\u003e@BklynMiddleton it\u0027s a dialogue isn\u0027t\u003cbr\u003eit? please don\u0027t take my\u003cbr\u003ecomment as attacking. i am\u003cbr\u003enot sad.. yet. im stark\u003cbr\u003eraving mad.\u003cbr\u003eFri Jan 09 13:45:32 +0000 2015"}, {"group": 1980, "id": 11, "label": "553548166629691392", "shape": "dot", "size": 10, "title": "553548166629691392\u003cbr\u003e@BklynMiddleton It\u0027s that kind of\u003cbr\u003eday. The kind where you\u003cbr\u003ewant to go back to\u003cbr\u003ebed with some fiction to\u003cbr\u003edistract.\u003cbr\u003eFri Jan 09 13:45:42 +0000 2015"}, {"group": 1980, "id": 17, "label": "553550815940837376", "shape": "dot", "size": 10, "title": "553550815940837376\u003cbr\u003e@BklynMiddleton can i borrow your\u003cbr\u003euniversal mute button?\u003cbr\u003eFri Jan 09 13:56:13 +0000 2015"}, {"group": 1980, "id": 18, "label": "553551580801536000", "shape": "dot", "size": 10, "title": "553551580801536000\u003cbr\u003e@BklynMiddleton rather than being a\u003cbr\u003e\u0027lone-wolf copy-cat\u0027 the fact the\u003cbr\u003eattacker is so well-armed points\u003cbr\u003eto a far more worrying\u003cbr\u003eescalation.\u003cbr\u003eFri Jan 09 13:59:16 +0000 2015"}, {"group": 1980, "id": 12, "label": "553548306383912960", "shape": "dot", "size": 10, "title": "553548306383912960\u003cbr\u003e@pptsapper Or the day you\u003cbr\u003ewonder why you didn\u0027t just\u003cbr\u003estudy creative writing and adopt\u003cbr\u003esome nice cats in Vermont....\u003cbr\u003eor something.\u003cbr\u003eFri Jan 09 13:46:15 +0000 2015"}, {"group": 1980, "id": 13, "label": "553548731690520576", "shape": "dot", "size": 10, "title": "553548731690520576\u003cbr\u003e@BklynMiddleton I could become a\u003cbr\u003enovelist and live in the\u003cbr\u003ewoods of northern Maine...with no\u003cbr\u003einternet. And ditto cat(s)\u003cbr\u003eFri Jan 09 13:47:56 +0000 2015"}, {"group": 1980, "id": 16, "label": "553549946738446336", "shape": "dot", "size": 10, "title": "553549946738446336\u003cbr\u003e@PD28 @BklynMiddleton Hashtag #kosher shows\u003cbr\u003elots of journalists are referring\u003cbr\u003eto it as a kosher\u003cbr\u003esupermarket.\u003cbr\u003eFri Jan 09 13:52:46 +0000 2015"}, {"group": 1980, "id": 19, "label": "553552954297692160", "shape": "dot", "size": 10, "title": "553552954297692160\u003cbr\u003e@tsrosenberg @BklynMiddleton that\u0027s my mistake.\u003cbr\u003eThanks!\u003cbr\u003eFri Jan 09 14:04:43 +0000 2015"}, {"group": 1980, "id": 20, "label": "553553099470946304", "shape": "dot", "size": 10, "title": "553553099470946304\u003cbr\u003e@PD28 @BklynMiddleton No problem! Wish\u003cbr\u003eit weren\u0027t such a horrible\u003cbr\u003esituation.\u003cbr\u003eFri Jan 09 14:05:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 5, "to": 5, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 14, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 8, "to": 17, "weight": 1}, {"from": 8, "to": 18, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

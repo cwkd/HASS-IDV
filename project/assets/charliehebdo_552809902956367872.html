@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 143, "id": 0, "label": "552809902956367872", "shape": "dot", "size": 10, "title": "552809902956367872\u003cbr\u003e#CharlieHebdo massacre: modus operandi, efficiency\u003cbr\u003e\u0026amp; focus point to jihad\u003cbr\u003ereturnees, guys trained to kill\u003cbr\u003erepeatedly not one-time kamikazes\u003cbr\u003eWed Jan 07 12:52:06 +0000 2015"}, {"group": 143, "id": 1, "label": "552810575139717120", "shape": "dot", "size": 10, "title": "552810575139717120\u003cbr\u003e@FHeisbourg time to look into\u003cbr\u003eTurkey role in letting terrorist\u003cbr\u003eand criminal networks pass through\u003cbr\u003eits borders and support jihadi\u003cbr\u003egroups.\u003cbr\u003eWed Jan 07 12:54:46 +0000 2015"}, {"group": 143, "id": 2, "label": "552810670849540097", "shape": "dot", "size": 10, "title": "552810670849540097\u003cbr\u003e@FHeisbourg likely ISIS veterans, it\u0027s\u003cbr\u003eenough. @BeataGWinter\u003cbr\u003eWed Jan 07 12:55:09 +0000 2015"}, {"group": 143, "id": 3, "label": "552812443412742144", "shape": "dot", "size": 10, "title": "552812443412742144\u003cbr\u003e@FHeisbourg it\u0027s what comes up\u003cbr\u003eto mind when seeing the\u003cbr\u003eterrible killing of the police\u003cbr\u003eofficer\u003cbr\u003eWed Jan 07 13:02:11 +0000 2015"}, {"group": 143, "id": 4, "label": "552814102998179840", "shape": "dot", "size": 10, "title": "552814102998179840\u003cbr\u003e@FHeisbourg @londil mag had long\u003cbr\u003ehistory of anti israel covers\u003cbr\u003etoo http://t.co/dnsam10l9B\u003cbr\u003eWed Jan 07 13:08:47 +0000 2015"}, {"group": 143, "id": 5, "label": "552814169981190145", "shape": "dot", "size": 10, "title": "552814169981190145\u003cbr\u003e@FHeisbourg @londil the outcome in\u003cbr\u003ehaving politicians who act like\u003cbr\u003eostriches.\u003cbr\u003eWed Jan 07 13:09:03 +0000 2015"}, {"group": 143, "id": 8, "label": "552815344256290816", "shape": "dot", "size": 10, "title": "552815344256290816\u003cbr\u003e@FHeisbourg @NafeezAhmed tell the west\u003cbr\u003e/in particular USA to stop\u003cbr\u003esupporting extremists in Syria and\u003cbr\u003elybia-\u003cbr\u003eWed Jan 07 13:13:43 +0000 2015"}, {"group": 143, "id": 9, "label": "552817588313792512", "shape": "dot", "size": 10, "title": "552817588313792512\u003cbr\u003e@FHeisbourg @OzKaterji Strategic military attack.\u003cbr\u003eChanges everything.\u003cbr\u003eWed Jan 07 13:22:38 +0000 2015"}, {"group": 143, "id": 10, "label": "552817878928748544", "shape": "dot", "size": 10, "title": "552817878928748544\u003cbr\u003e@FHeisbourg these people look very\u003cbr\u003ewell trained, the tight grouping\u003cbr\u003eon the police car tells\u003cbr\u003eus that #CharlieHebdo\u003cbr\u003eWed Jan 07 13:23:47 +0000 2015"}, {"group": 143, "id": 11, "label": "552819028147060736", "shape": "dot", "size": 10, "title": "552819028147060736\u003cbr\u003e.@FHeisbourg \"modus operandi,efficiency \u0026amp; focus\u003cbr\u003epoint to jihad returnees,guys trained\u003cbr\u003eto kill repeatedly not 1-time\u003cbr\u003ekamikazes #CharlieHebdo\"\u003cbr\u003eWed Jan 07 13:28:21 +0000 2015"}, {"group": 143, "id": 12, "label": "552854349060128768", "shape": "dot", "size": 10, "title": "552854349060128768\u003cbr\u003e@FHeisbourg @medialens \n\nSo you know\u003cbr\u003ewho it was... Great .\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:48:43 +0000 2015"}, {"group": 143, "id": 13, "label": "552904474495557632", "shape": "dot", "size": 10, "title": "552904474495557632\u003cbr\u003e@FHeisbourg @Coeurdelion87 the only thing\u003cbr\u003eto look forward to is\u003cbr\u003ethem dying in a hail\u003cbr\u003eof bullets\u003cbr\u003eWed Jan 07 19:07:53 +0000 2015"}, {"group": 143, "id": 6, "label": "552814193167323136", "shape": "dot", "size": 10, "title": "552814193167323136\u003cbr\u003e@Perseus009 @FHeisbourg @londil And anti-Christian,\u003cbr\u003eetc.\u003cbr\u003eWed Jan 07 13:09:09 +0000 2015"}, {"group": 143, "id": 7, "label": "552814620906647552", "shape": "dot", "size": 10, "title": "552814620906647552\u003cbr\u003e@ArchieHenry2 @FHeisbourg @londil it was\u003cbr\u003ethe perfect mag. Hope they\u003cbr\u003ekeep it going.\u003cbr\u003eWed Jan 07 13:10:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

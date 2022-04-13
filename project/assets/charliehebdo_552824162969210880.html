@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 326, "id": 0, "label": "552824162969210880", "shape": "dot", "size": 10, "title": "552824162969210880\u003cbr\u003eFollow the latest updates on\u003cbr\u003ethe deadly shooting at the\u003cbr\u003eParis offices of the satirical\u003cbr\u003enewspaper Charlie Hebdo http://t.co/LYnQ6zsmoS\u003cbr\u003eWed Jan 07 13:48:46 +0000 2015"}, {"group": 326, "id": 1, "label": "552824333949603840", "shape": "dot", "size": 10, "title": "552824333949603840\u003cbr\u003e#Netanyahu\u0027s #GOP @nytimes Jews push\u003cbr\u003eFrench terrorist story but not\u003cbr\u003ethe #NAACPBombing terrorist story http://t.co/dul8asMcLo\u003cbr\u003e#JewsForScalise\u003cbr\u003eWed Jan 07 13:49:26 +0000 2015"}, {"group": 326, "id": 2, "label": "552824341990506497", "shape": "dot", "size": 10, "title": "552824341990506497\u003cbr\u003e@nytimes\u003cbr\u003eWed Jan 07 13:49:28 +0000 2015"}, {"group": 326, "id": 3, "label": "552824783801692160", "shape": "dot", "size": 10, "title": "552824783801692160\u003cbr\u003e@nytimes This wasn\u0027t ISIS. The\u003cbr\u003eattackers wore body armor. And\u003cbr\u003ethey didn\u0027t stay to blow\u003cbr\u003ethemselves up inside the bldg.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:51:14 +0000 2015"}, {"group": 326, "id": 4, "label": "552824861694103553", "shape": "dot", "size": 10, "title": "552824861694103553\u003cbr\u003e@nytimes #LiberteDelaPresse http://t.co/ixLCUA62ar\u003cbr\u003eWed Jan 07 13:51:32 +0000 2015"}, {"group": 326, "id": 5, "label": "552825414993707008", "shape": "dot", "size": 10, "title": "552825414993707008\u003cbr\u003e@nytimes such a nightmare :(\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:53:44 +0000 2015"}, {"group": 326, "id": 6, "label": "552825908579799040", "shape": "dot", "size": 10, "title": "552825908579799040\u003cbr\u003e@nytimes barbarism #charlie_hebdo\u003cbr\u003eWed Jan 07 13:55:42 +0000 2015"}, {"group": 326, "id": 7, "label": "552826719003230208", "shape": "dot", "size": 10, "title": "552826719003230208\u003cbr\u003e@nytimes What the West didn\u0027t\u003cbr\u003eunderstand is that making a\u003cbr\u003ecaricature of what a people\u003cbr\u003econsider as scared is symbolic\u003cbr\u003eviolence itself.\u003cbr\u003eWed Jan 07 13:58:55 +0000 2015"}, {"group": 326, "id": 8, "label": "552827205580251136", "shape": "dot", "size": 10, "title": "552827205580251136\u003cbr\u003e\u201c@nytimes: Follow the latest updates\u003cbr\u003eon the deadly shooting at\u003cbr\u003ethe Paris offices of the\u003cbr\u003esatirical  http://t.co/8ZTkpDnQbj\u201d @cecyg_ \ud83d\ude27\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:00:51 +0000 2015"}, {"group": 326, "id": 11, "label": "552832671769174016", "shape": "dot", "size": 10, "title": "552832671769174016\u003cbr\u003e@nytimes I condemn the cowardly\u003cbr\u003eattacks. Terrorism is not religion.\u003cbr\u003eThis inhumane. God bless everyone\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:22:34 +0000 2015"}, {"group": 326, "id": 12, "label": "552835113470685184", "shape": "dot", "size": 10, "title": "552835113470685184\u003cbr\u003e\u201c@nytimes: latest updates on the\u003cbr\u003edeadly shooting at the Paris\u003cbr\u003eoffices of the satirical newspaper\u003cbr\u003eCharlie Hebdo *Pesky workplace violence\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:16 +0000 2015"}, {"group": 326, "id": 13, "label": "552845637847232513", "shape": "dot", "size": 10, "title": "552845637847232513\u003cbr\u003e@nytimes \njournalist attacked for what\u003cbr\u003eterrorist say we\u0027re wrongly expressed\u003cbr\u003eviews on Islam! Words have\u003cbr\u003epower!\u003cbr\u003eWed Jan 07 15:14:06 +0000 2015"}, {"group": 326, "id": 14, "label": "552900654524411904", "shape": "dot", "size": 10, "title": "552900654524411904\u003cbr\u003e@nytimes Terrible event in a\u003cbr\u003egreat city. I hope they\u003cbr\u003eget the perps\u003cbr\u003eWed Jan 07 18:52:43 +0000 2015"}, {"group": 326, "id": 10, "label": "552832558619439104", "shape": "dot", "size": 10, "title": "552832558619439104\u003cbr\u003e@Zerihun_et No it isn\u0027t. If\u003cbr\u003eit was, terrorist groups would\u003cbr\u003eonly did caricatures, but obviously\u003cbr\u003ethey don\u0027t. Stop defending terrorism,\u003cbr\u003easshole\u003cbr\u003eWed Jan 07 14:22:07 +0000 2015"}, {"group": 326, "id": 9, "label": "552828418942074880", "shape": "dot", "size": 10, "title": "552828418942074880\u003cbr\u003e@_Aleas si me estoy enterando\u003cbr\u003eapenas!!! Fue lejos de donde\u003cbr\u003evivo pero con raz\u00f3n la\u003cbr\u003evigilancia ahorita\ud83d\ude33\u003cbr\u003eWed Jan 07 14:05:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2004, "id": 0, "label": "553554585634496512", "shape": "dot", "size": 10, "title": "553554585634496512\u003cbr\u003eThere are reports of an\u003cbr\u003earmed incident at the Trocadero\u003cbr\u003enear the Eiffel Tower. #ParisAttacks\u003cbr\u003ehttp://t.co/ATmBpjwW3b http://t.co/U7DXrdPheI\u003cbr\u003eFri Jan 09 14:11:12 +0000 2015"}, {"group": 2004, "id": 1, "label": "553555130612985856", "shape": "dot", "size": 10, "title": "553555130612985856\u003cbr\u003e@SkyNews @RazAkkoc WTF\u003cbr\u003eFri Jan 09 14:13:22 +0000 2015"}, {"group": 2004, "id": 3, "label": "553555428597321729", "shape": "dot", "size": 10, "title": "553555428597321729\u003cbr\u003e@SkyNews @OfMindOfGrime check this one\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:14:33 +0000 2015"}, {"group": 2004, "id": 4, "label": "553555569249103872", "shape": "dot", "size": 10, "title": "553555569249103872\u003cbr\u003e@SkyNews #JeSuisCharlie #CharlieHebdo http://t.co/WoCkwWdM0o\u003cbr\u003eFri Jan 09 14:15:06 +0000 2015"}, {"group": 2004, "id": 7, "label": "553555623309504512", "shape": "dot", "size": 10, "title": "553555623309504512\u003cbr\u003eWTF? \u201c@SkyNews: There are reports\u003cbr\u003eof an armed incident at\u003cbr\u003ethe Trocadero near the Eiffel\u003cbr\u003eTower. #ParisAttacks http://t.co/rhl8kMaLLd\"\u003cbr\u003eFri Jan 09 14:15:19 +0000 2015"}, {"group": 2004, "id": 9, "label": "553556819927629825", "shape": "dot", "size": 10, "title": "553556819927629825\u003cbr\u003e@SkyNews @MitchKinney this is just\u003cbr\u003egetting crazy \ud83d\ude14\u003cbr\u003eFri Jan 09 14:20:05 +0000 2015"}, {"group": 2004, "id": 13, "label": "553557680334602242", "shape": "dot", "size": 10, "title": "553557680334602242\u003cbr\u003e@SkyNews Now confirmed as a\u003cbr\u003efalse alarm thankfully.\n#CharlieHebdo #JeSuisCharlie #Kosher\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:23:30 +0000 2015"}, {"group": 2004, "id": 2, "label": "553555234581405696", "shape": "dot", "size": 10, "title": "553555234581405696\u003cbr\u003e@hannah__osborne @SkyNews mate I KNOW\u003cbr\u003eWTAF\u003cbr\u003eFri Jan 09 14:13:47 +0000 2015"}, {"group": 2004, "id": 12, "label": "553557651435831296", "shape": "dot", "size": 10, "title": "553557651435831296\u003cbr\u003e@RazAkkoc @hannah__osborne @SkyNews unconfirmed. Lets\u003cbr\u003ekeep our hats on for\u003cbr\u003ea moment.\u003cbr\u003eFri Jan 09 14:23:23 +0000 2015"}, {"group": 2004, "id": 5, "label": "553555579403530241", "shape": "dot", "size": 10, "title": "553555579403530241\u003cbr\u003e@BIGED04 @SkyNews Thus is another\u003cbr\u003eone, wtf\u003cbr\u003eFri Jan 09 14:15:09 +0000 2015"}, {"group": 2004, "id": 6, "label": "553555595572559872", "shape": "dot", "size": 10, "title": "553555595572559872\u003cbr\u003e@BIGED04 @SkyNews *this\u003cbr\u003eFri Jan 09 14:15:13 +0000 2015"}, {"group": 2004, "id": 8, "label": "553556734816845824", "shape": "dot", "size": 10, "title": "553556734816845824\u003cbr\u003e@OfMindOfGrime @SkyNews Bruv everyone just\u003cbr\u003eneeds to stay at home\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:19:44 +0000 2015"}, {"group": 2004, "id": 10, "label": "553556939817627649", "shape": "dot", "size": 10, "title": "553556939817627649\u003cbr\u003e@MadonnaRebel @SkyNews apparently there\u0027s another\u003cbr\u003eman near the Eiffel Tower\u003cbr\u003ewith a gun as well..\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:20:33 +0000 2015"}, {"group": 2004, "id": 11, "label": "553557029701550080", "shape": "dot", "size": 10, "title": "553557029701550080\u003cbr\u003e@MadonnaRebel @SkyNews no news about\u003cbr\u003ewhat he did or is\u003cbr\u003edoing though \nIt\u0027s all very\u003cbr\u003evague atm\u003cbr\u003eFri Jan 09 14:20:55 +0000 2015"}, {"group": 2004, "id": 14, "label": "553557747313438720", "shape": "dot", "size": 10, "title": "553557747313438720\u003cbr\u003e@janemccallion @hannah__osborne @SkyNews looking like\u003cbr\u003ea false alarm\u003cbr\u003eFri Jan 09 14:23:46 +0000 2015"}, {"group": 2004, "id": 15, "label": "553558096526979073", "shape": "dot", "size": 10, "title": "553558096526979073\u003cbr\u003e.@janemccallion @hannah__osborne @SkyNews https://t.co/Df7IqAGumv\u003cbr\u003eFri Jan 09 14:25:09 +0000 2015"}, {"group": 2004, "id": 16, "label": "553558298914717696", "shape": "dot", "size": 10, "title": "553558298914717696\u003cbr\u003e@49_invincible @1JESUISCHARLIE7 @SkyNews ^\u003cbr\u003eFri Jan 09 14:25:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 12, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 16, "to": 16, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

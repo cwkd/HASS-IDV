@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1438, "id": 0, "label": "553555293645590528", "shape": "dot", "size": 10, "title": "553555293645590528\u003cbr\u003eHere\u2019s the grocery store in\u003cbr\u003eeastern Paris where hostage crisis\u003cbr\u003eis unfolding http://t.co/r4rG2j2Maq http://t.co/KVzJB8m9rH\u003cbr\u003eFri Jan 09 14:14:01 +0000 2015"}, {"group": 1438, "id": 1, "label": "553562556350988289", "shape": "dot", "size": 10, "title": "553562556350988289\u003cbr\u003e@MailOnline @DavidLimbaugh France, today Je\u003cbr\u003esuis la police de paris.\u003cbr\u003e\nRid your country of the\u003cbr\u003eMuslim scum. Crusade the bastards.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:42:52 +0000 2015"}, {"group": 1438, "id": 2, "label": "553579480665821184", "shape": "dot", "size": 10, "title": "553579480665821184\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/soRCOKiMIE\u003cbr\u003ehttp://t.co/HLcD8Nn2ME\u003cbr\u003eFri Jan 09 15:50:07 +0000 2015"}, {"group": 1438, "id": 3, "label": "553579480774877184", "shape": "dot", "size": 10, "title": "553579480774877184\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/kUArX3qQ4L\u003cbr\u003ehttp://t.co/XEE4r1xLGm\u003cbr\u003eFri Jan 09 15:50:07 +0000 2015"}, {"group": 1438, "id": 4, "label": "553579482951725058", "shape": "dot", "size": 10, "title": "553579482951725058\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/8paEPd8rHC\u003cbr\u003ehttp://t.co/EzxeVu0AeO\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 5, "label": "553579483903848448", "shape": "dot", "size": 10, "title": "553579483903848448\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/1n8UrJPijV\u003cbr\u003ehttp://t.co/8cWTAmxYmm\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 6, "label": "553579484562354176", "shape": "dot", "size": 10, "title": "553579484562354176\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/qWctxXAy4h\u003cbr\u003ehttp://t.co/xxpoXOqqD7\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 7, "label": "553579484574912512", "shape": "dot", "size": 10, "title": "553579484574912512\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/fWAACX5xj4\u003cbr\u003ehttp://t.co/PQT8kzpsGe\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 8, "label": "553579484696547328", "shape": "dot", "size": 10, "title": "553579484696547328\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/LWJAbfHpPU\u003cbr\u003ehttp://t.co/4rg0cBhAbb\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 9, "label": "553579484730126336", "shape": "dot", "size": 10, "title": "553579484730126336\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/cjsdijJlk4\u003cbr\u003ehttp://t.co/pfrmFxciS0\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 10, "label": "553579484830789634", "shape": "dot", "size": 10, "title": "553579484830789634\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/cVYBvEoRbo\u003cbr\u003ehttp://t.co/Idh0h6BvoS\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 11, "label": "553579484855939072", "shape": "dot", "size": 10, "title": "553579484855939072\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/jMLnPUCpLV\u003cbr\u003ehttp://t.co/lyxh59VQum\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 12, "label": "553579484868517888", "shape": "dot", "size": 10, "title": "553579484868517888\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/3Yn2KZZUq6\u003cbr\u003ehttp://t.co/UPqNie95mw\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 13, "label": "553579484914663425", "shape": "dot", "size": 10, "title": "553579484914663425\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/e4ECUyjjW5\u003cbr\u003ehttp://t.co/kyp9tYnIB3\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 14, "label": "553579484948230144", "shape": "dot", "size": 10, "title": "553579484948230144\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/OVKiX73XpO\u003cbr\u003ehttp://t.co/TNFO34Rp3c\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 15, "label": "553579484981772289", "shape": "dot", "size": 10, "title": "553579484981772289\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/TUIC0JcibY\u003cbr\u003ehttp://t.co/ES7FrUisab\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 16, "label": "553579485019508736", "shape": "dot", "size": 10, "title": "553579485019508736\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/EbFuzGqkcD\u003cbr\u003ehttp://t.co/VkgV2xksLU\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 17, "label": "553579485057273856", "shape": "dot", "size": 10, "title": "553579485057273856\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/wk0CwzaZrO\u003cbr\u003ehttp://t.co/zpkTdJfR1T\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 18, "label": "553579485099220992", "shape": "dot", "size": 10, "title": "553579485099220992\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/tTzjTcbfmM\u003cbr\u003ehttp://t.co/Xen85XJtnG\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}, {"group": 1438, "id": 19, "label": "553579485149532160", "shape": "dot", "size": 10, "title": "553579485149532160\u003cbr\u003eRT @MailOnline: Grocery store in\u003cbr\u003eParis where Islamic Terrorist has\u003cbr\u003eshot two victims  http://t.co/U4ccmV4CjP\u003cbr\u003ehttp://t.co/UoqdOwUzZy\u003cbr\u003eFri Jan 09 15:50:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

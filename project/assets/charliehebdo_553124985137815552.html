@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 812, "id": 0, "label": "553124985137815552", "shape": "dot", "size": 10, "title": "553124985137815552\u003cbr\u003ePhotos: Thousands gather to express\u003cbr\u003esolidarity after attacks in Paris.\u003cbr\u003ehttp://t.co/ta8XHTulLR #CharlieHebdo http://t.co/tJGXoGppqt\u003cbr\u003eThu Jan 08 09:44:07 +0000 2015"}, {"group": 812, "id": 1, "label": "553125238381481984", "shape": "dot", "size": 10, "title": "553125238381481984\u003cbr\u003e@WSJ\u003cbr\u003eThu Jan 08 09:45:08 +0000 2015"}, {"group": 812, "id": 2, "label": "553125314843656192", "shape": "dot", "size": 10, "title": "553125314843656192\u003cbr\u003e@WSJ The response to these\u003cbr\u003eattacks has been incredible. A\u003cbr\u003ebrave example of human spirit.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:45:26 +0000 2015"}, {"group": 812, "id": 3, "label": "553125435589292033", "shape": "dot", "size": 10, "title": "553125435589292033\u003cbr\u003e\u201c@WSJ: Photos: Thousands gather to\u003cbr\u003eexpress solidarity after attacks in\u003cbr\u003eParis. http://t.co/Wh7foKGsrE #CharlieHebdo http://t.co/uLpNg5Lx6y\u201d\u003cbr\u003eThu Jan 08 09:45:55 +0000 2015"}, {"group": 812, "id": 4, "label": "553125606897250304", "shape": "dot", "size": 10, "title": "553125606897250304\u003cbr\u003e@wsj freedom to speak n\u003cbr\u003efreedom to kill are the\u003cbr\u003esame\u003cbr\u003eThu Jan 08 09:46:35 +0000 2015"}, {"group": 812, "id": 5, "label": "553125855996952577", "shape": "dot", "size": 10, "title": "553125855996952577\u003cbr\u003e\u201c@WSJ: Thousands gather to express\u003cbr\u003esolidarity after attacks in Paris.\u003cbr\u003ehttp://t.co/BhakQ92uJI http://t.co/wP2HD5koUw\u201d -queria ter ido\u003cbr\u003ea paris\u003cbr\u003eThu Jan 08 09:47:35 +0000 2015"}, {"group": 812, "id": 6, "label": "553126449818112000", "shape": "dot", "size": 10, "title": "553126449818112000\u003cbr\u003e@WSJ I bet their mother\u003cbr\u003eis proud she raised two\u003cbr\u003emurderers.\u003cbr\u003eThu Jan 08 09:49:56 +0000 2015"}, {"group": 812, "id": 7, "label": "553126673193762816", "shape": "dot", "size": 10, "title": "553126673193762816\u003cbr\u003e@WSJ #CharlieHebdo people die in\u003cbr\u003eFrance, nation unites. A chain\u003cbr\u003eletter spreads in the US\u003cbr\u003eand @sonypictures panics. Who says\u003cbr\u003efrench are weak?\u003cbr\u003eThu Jan 08 09:50:50 +0000 2015"}, {"group": 812, "id": 8, "label": "553126713123565568", "shape": "dot", "size": 10, "title": "553126713123565568\u003cbr\u003e@WSJ Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet \nthank you \nhttp://t.co/Cf3z3jOxyx\u003cbr\u003eThu Jan 08 09:50:59 +0000 2015"}, {"group": 812, "id": 9, "label": "553127456811798528", "shape": "dot", "size": 10, "title": "553127456811798528\u003cbr\u003e@WSJ That\"s right we are\u003cbr\u003enot afreid\u2665\u263a\u003cbr\u003eThu Jan 08 09:53:56 +0000 2015"}, {"group": 812, "id": 10, "label": "553128356133498881", "shape": "dot", "size": 10, "title": "553128356133498881\u003cbr\u003e@WSJ  I can confirm\u003cbr\u003ethat the people of GAZA\u003cbr\u003eare totally terrified just in\u003cbr\u003ecase anyone is interested\u003cbr\u003eThu Jan 08 09:57:31 +0000 2015"}, {"group": 812, "id": 11, "label": "553134074987298818", "shape": "dot", "size": 10, "title": "553134074987298818\u003cbr\u003e@WSJ PARIS MURDERS BREAKING VIDEO\u0026gt;\u0026gt;http://t.co/TySY8Ys49w\u003cbr\u003e#ParisShooting\u003cbr\u003eThu Jan 08 10:20:14 +0000 2015"}, {"group": 812, "id": 12, "label": "553134690262319104", "shape": "dot", "size": 10, "title": "553134690262319104\u003cbr\u003e\u201c@WSJ: Photos: http://t.co/GSLUqHysLv #CharlieHebdo http://t.co/iflo92BWZl\u201d\u003cbr\u003eI was here last night\u003cbr\u003eat Place de la R\u00e9publique!\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:22:41 +0000 2015"}, {"group": 812, "id": 13, "label": "553137510638182401", "shape": "dot", "size": 10, "title": "553137510638182401\u003cbr\u003e@WSJ m\u00eame pas peur! Vive\u003cbr\u003eCharlie !\u003cbr\u003eThu Jan 08 10:33:53 +0000 2015"}, {"group": 812, "id": 14, "label": "553139296476360704", "shape": "dot", "size": 10, "title": "553139296476360704\u003cbr\u003e\u201c@WSJ: Photos: Thousands gather to\u003cbr\u003eexpress solidarity after attacks in\u003cbr\u003eParis. http://t.co/Ao3OA3dfUR #CharlieHebdo http://t.co/Y3TTt2gtgT\u201d\u003cbr\u003eThu Jan 08 10:40:59 +0000 2015"}, {"group": 812, "id": 15, "label": "553139650920214528", "shape": "dot", "size": 10, "title": "553139650920214528\u003cbr\u003e@WSJ why do people seek\u003cbr\u003esignificance by violent acts? Instead\u003cbr\u003eof peace? What makes violence\u003cbr\u003eso appealing to certain human\u003cbr\u003ebeings?\u003cbr\u003eThu Jan 08 10:42:24 +0000 2015"}, {"group": 812, "id": 16, "label": "553147784183173123", "shape": "dot", "size": 10, "title": "553147784183173123\u003cbr\u003e@WSJ  we hope they\u003cbr\u003eare chasing these dirty muslims\u003cbr\u003eout their country? Round um\u003cbr\u003eup! All these evil muslims!\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:14:43 +0000 2015"}, {"group": 812, "id": 17, "label": "553150335108513793", "shape": "dot", "size": 10, "title": "553150335108513793\u003cbr\u003e@WSJ #JeSuisCharlie http://t.co/y7DZUEs1ya\u003cbr\u003eThu Jan 08 11:24:51 +0000 2015"}, {"group": 812, "id": 18, "label": "553162163267719168", "shape": "dot", "size": 10, "title": "553162163267719168\u003cbr\u003e\u201c@WSJ: Photos: Thousands gather to\u003cbr\u003eexpress solidarity after attacks in\u003cbr\u003eParis. http://t.co/7HTUDSpz6i #CharlieHebdo http://t.co/PYSwgSW9gi\u201d\u003cbr\u003eThu Jan 08 12:11:51 +0000 2015"}, {"group": 812, "id": 19, "label": "553166039107010561", "shape": "dot", "size": 10, "title": "553166039107010561\u003cbr\u003e@WSJ \n#ParisShooting\nwake up call 2all\u003cbr\u003epro #civilsociety\nwhy #CharlieHebdo supported\n#Kobane #resistance\u003cbr\u003evs #IS http://t.co/qbj6dk5DC2\u003cbr\u003eThu Jan 08 12:27:15 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

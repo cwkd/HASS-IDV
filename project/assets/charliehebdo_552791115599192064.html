@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1655, "id": 0, "label": "552791115599192064", "shape": "dot", "size": 10, "title": "552791115599192064\u003cbr\u003eWitnesses say several masked men\u003cbr\u003ewere involved in the shooting\u003cbr\u003eat #CharlieHebdo\u0027s Paris HQ. http://t.co/xcK8lY9IeR\u003cbr\u003ehttp://t.co/QPKtv7stET\u003cbr\u003eWed Jan 07 11:37:26 +0000 2015"}, {"group": 1655, "id": 1, "label": "552791498329456640", "shape": "dot", "size": 10, "title": "552791498329456640\u003cbr\u003e@SkyNews \u03a0\u03ac\u03c1\u03c4\u03b5 \u039c\u03c9\u03ac\u03bc\u03b5\u03b8 \u03ba\u03b1\u03b9 \u03c0\u03c9\u03c2\u003cbr\u003e\u03b3\u03af\u03bd\u03b5\u03c4\u03b1\u03b9 \u03c4\u03bf \u03bc\u03b1\u03ba\u03b5\u03bb\u03b5\u03b9\u03cc!\u003cbr\u003eWed Jan 07 11:38:58 +0000 2015"}, {"group": 1655, "id": 2, "label": "552791757323522048", "shape": "dot", "size": 10, "title": "552791757323522048\u003cbr\u003e@SkyNews doesn\u0027t mean they\u0027re Muslims.\u003cbr\u003eNot real Muslims anyway. Islam\u003cbr\u003eis the religion of peace\u003cbr\u003edon\u0027t you know.\u003cbr\u003eWed Jan 07 11:39:59 +0000 2015"}, {"group": 1655, "id": 3, "label": "552792265538957313", "shape": "dot", "size": 10, "title": "552792265538957313\u003cbr\u003e@SkyNews Jesus\u003cbr\u003eWed Jan 07 11:42:01 +0000 2015"}, {"group": 1655, "id": 4, "label": "552792405590937601", "shape": "dot", "size": 10, "title": "552792405590937601\u003cbr\u003e@SkyNews \nTolerant Muslim no doubt?\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:42:34 +0000 2015"}, {"group": 1655, "id": 5, "label": "552792706640924674", "shape": "dot", "size": 10, "title": "552792706640924674\u003cbr\u003e@SkyNews @vyshakmv you join \"USA\u003cbr\u003ewar against terror\" now pay\u003cbr\u003efor membership @JohnKerry  ##ParisShooting\u003cbr\u003e #isis #Syria http://t.co/9huteRACn5\u003cbr\u003eWed Jan 07 11:43:46 +0000 2015"}, {"group": 1655, "id": 7, "label": "552917397309755392", "shape": "dot", "size": 10, "title": "552917397309755392\u003cbr\u003e@harrycarter87 No its not.\u003cbr\u003eWed Jan 07 19:59:14 +0000 2015"}, {"group": 1655, "id": 6, "label": "552795850347671552", "shape": "dot", "size": 10, "title": "552795850347671552\u003cbr\u003e@sandeepbaliga @SkyNews @vyshakmv @JohnKerry this\u003cbr\u003eis in bad taste. Dont\u003cbr\u003ejustify the cowardice.\u003cbr\u003eWed Jan 07 11:56:15 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 2, "to": 7, "weight": 1}, {"from": 5, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1132, "id": 0, "label": "553208300607922177", "shape": "dot", "size": 10, "title": "553208300607922177\u003cbr\u003eA crowd gathered in Toulouse\u003cbr\u003efor the national moment of\u003cbr\u003esilence for the #CharlieHebdo victims\u003cbr\u003ehttp://t.co/2AcfAIiVMR http://t.co/QrMRIxpA5N\u003cbr\u003eThu Jan 08 15:15:11 +0000 2015"}, {"group": 1132, "id": 1, "label": "553210416453935105", "shape": "dot", "size": 10, "title": "553210416453935105\u003cbr\u003eHow many deaths? MT @nytimesworld\u003cbr\u003eA crowd gathered in Toulouse\u003cbr\u003efor the national moment of\u003cbr\u003esilence for the #CharlieHebdo victims\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:23:36 +0000 2015"}, {"group": 1132, "id": 2, "label": "553210840199876609", "shape": "dot", "size": 10, "title": "553210840199876609\u003cbr\u003e@nytimesworld I am with them\u003cbr\u003ein spirit. The Charlie Hebdo\u003cbr\u003esatirical cartoons should be published\u003cbr\u003eworldwide in support of those\u003cbr\u003ewho died.\u003cbr\u003eThu Jan 08 15:25:17 +0000 2015"}, {"group": 1132, "id": 3, "label": "553211144236990464", "shape": "dot", "size": 10, "title": "553211144236990464\u003cbr\u003eA moment of silence is\u003cbr\u003ethe last thing we need.\u003cbr\u003eMT @nytimesworld A crowd gathered\u003cbr\u003ein Toulouse for the national\u003cbr\u003emoment of silence\u003cbr\u003eThu Jan 08 15:26:29 +0000 2015"}, {"group": 1132, "id": 4, "label": "553211306413547521", "shape": "dot", "size": 10, "title": "553211306413547521\u003cbr\u003e@nytimesworld @nytimes How many susbcribed\u003cbr\u003eto CharlieHebdo?\u003cbr\u003eThu Jan 08 15:27:08 +0000 2015"}, {"group": 1132, "id": 8, "label": "553214163288195075", "shape": "dot", "size": 10, "title": "553214163288195075\u003cbr\u003e@nytimesworld @nytimes moments of silence\u003cbr\u003eare overrated.  Time to\u003cbr\u003estart making some noise!\u003cbr\u003eThu Jan 08 15:38:29 +0000 2015"}, {"group": 1132, "id": 9, "label": "553223091351216130", "shape": "dot", "size": 10, "title": "553223091351216130\u003cbr\u003e@nytimesworld @DanielBeerthuis Sensless killings...\u003cbr\u003eThu Jan 08 16:13:58 +0000 2015"}, {"group": 1132, "id": 5, "label": "553211428937551872", "shape": "dot", "size": 10, "title": "553211428937551872\u003cbr\u003e@BDDusbiber @nytimesworld Better yet, subscribe\u003cbr\u003eto the paper, don\u0027t use\u003cbr\u003eit for personal political cause.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:27:37 +0000 2015"}, {"group": 1132, "id": 6, "label": "553212151876550656", "shape": "dot", "size": 10, "title": "553212151876550656\u003cbr\u003eI don\u0027t know, it\u0027s pretty\u003cbr\u003equiet on the range when\u003cbr\u003ethe tower calls Make Ready...\n@iowahawkblog\u003cbr\u003e@nytimesworld\u003cbr\u003eThu Jan 08 15:30:29 +0000 2015"}, {"group": 1132, "id": 7, "label": "553212305786564608", "shape": "dot", "size": 10, "title": "553212305786564608\u003cbr\u003e@iowahawkblog @nytimesworld THE avg French\u003cbr\u003e(or European, American, Canadian, Australian)\u003cbr\u003ehas been SILENT TOO LONG\n#JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:31:06 +0000 2015"}, {"group": 1132, "id": 10, "label": "553233376925450240", "shape": "dot", "size": 10, "title": "553233376925450240\u003cbr\u003eRT: @iowahawkblog: A moment of\u003cbr\u003esilence is the last thing\u003cbr\u003ewe need.\nMT: @nytimesworld Crowd gathered\u003cbr\u003ein Toulouse for moment of\u003cbr\u003esilence\u003cbr\u003eThu Jan 08 16:54:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 3, "to": 7, "weight": 1}, {"from": 3, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

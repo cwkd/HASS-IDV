@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 819, "id": 0, "label": "553126492579053568", "shape": "dot", "size": 10, "title": "553126492579053568\u003cbr\u003eHero police officer executed in\u003cbr\u003estreet was 42-year-old married Muslim\u003cbr\u003eAhmed Merabet http://t.co/gL5epqmdpu #CharlieHebdo\u003cbr\u003eThu Jan 08 09:50:07 +0000 2015"}, {"group": 819, "id": 1, "label": "553127388331409409", "shape": "dot", "size": 10, "title": "553127388331409409\u003cbr\u003e@MailOnline Muslims killing Muslims.\u003cbr\u003eThu Jan 08 09:53:40 +0000 2015"}, {"group": 819, "id": 2, "label": "553129290490191873", "shape": "dot", "size": 10, "title": "553129290490191873\u003cbr\u003e@MailOnline They are that deranged\u003cbr\u003ethey are even killing their\u003cbr\u003eown. No one is safe\u003cbr\u003efrom them.\u003cbr\u003eThu Jan 08 10:01:14 +0000 2015"}, {"group": 819, "id": 3, "label": "553135804005244928", "shape": "dot", "size": 10, "title": "553135804005244928\u003cbr\u003e@MailOnline Pls stop calling this\u003cbr\u003eas an execution, It was\u003cbr\u003emurder! Execute: To carry out\u003cbr\u003ea sentence of death on\u003cbr\u003e(a legally condemned person).\u003cbr\u003eThu Jan 08 10:27:07 +0000 2015"}, {"group": 819, "id": 4, "label": "553136796113305601", "shape": "dot", "size": 10, "title": "553136796113305601\u003cbr\u003e@MailOnline Why was there no\u003cbr\u003eblood when he was shot\u003cbr\u003epoint blank in the head?\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:31:03 +0000 2015"}, {"group": 819, "id": 5, "label": "553180164998586368", "shape": "dot", "size": 10, "title": "553180164998586368\u003cbr\u003e@MailOnline shocking all these attacks\u003cbr\u003ein Paris\u003cbr\u003eThu Jan 08 13:23:23 +0000 2015"}, {"group": 819, "id": 6, "label": "553204884657303552", "shape": "dot", "size": 10, "title": "553204884657303552\u003cbr\u003e@MailOnline @SyazaNadiah these are not\u003cbr\u003etrue muslim, these are extremists.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:01:37 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

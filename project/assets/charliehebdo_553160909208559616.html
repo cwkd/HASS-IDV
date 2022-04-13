@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 959, "id": 0, "label": "553160909208559616", "shape": "dot", "size": 10, "title": "553160909208559616\u003cbr\u003eViolence can not stop basic\u003cbr\u003ehuman rights. My thoughts go\u003cbr\u003eout to everyone affected by\u003cbr\u003ethis tragedy. #JeSuisCharlie http://t.co/Kxx38xRYDu\u003cbr\u003eThu Jan 08 12:06:52 +0000 2015"}, {"group": 959, "id": 1, "label": "553161072861904898", "shape": "dot", "size": 10, "title": "553161072861904898\u003cbr\u003e@Sketch_Dailies #NousSommesCharlie\u003cbr\u003eThu Jan 08 12:07:31 +0000 2015"}, {"group": 959, "id": 2, "label": "553163257230663680", "shape": "dot", "size": 10, "title": "553163257230663680\u003cbr\u003e@TaylorClutter @Sketch_Dailies very nice\u003cbr\u003eThu Jan 08 12:16:12 +0000 2015"}, {"group": 959, "id": 3, "label": "553163629609365504", "shape": "dot", "size": 10, "title": "553163629609365504\u003cbr\u003e@TaylorClutter Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 12:17:41 +0000 2015"}, {"group": 959, "id": 4, "label": "553164283325202432", "shape": "dot", "size": 10, "title": "553164283325202432\u003cbr\u003e@TaylorClutter Thank you mate, it\u003cbr\u003emeans a lot to us.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:20:17 +0000 2015"}, {"group": 959, "id": 5, "label": "553172573551620096", "shape": "dot", "size": 10, "title": "553172573551620096\u003cbr\u003e@TaylorClutter @Sketch_Dailies Lovely pic, but\u003cbr\u003eI don\u0027t think Charlie would\u003cbr\u003elike a non-white hand on\u003cbr\u003etheir homage.\u003cbr\u003eThu Jan 08 12:53:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

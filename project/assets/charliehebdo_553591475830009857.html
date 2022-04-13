@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1604, "id": 0, "label": "553591475830009857", "shape": "dot", "size": 10, "title": "553591475830009857\u003cbr\u003eCharlie Hebdo: appears that Charlie\u003cbr\u003eHebdo suspects have been killed\u003cbr\u003e\u2013 live updates http://t.co/Opa6b0FlQT\u003cbr\u003eFri Jan 09 16:37:47 +0000 2015"}, {"group": 1604, "id": 1, "label": "553591818966036480", "shape": "dot", "size": 10, "title": "553591818966036480\u003cbr\u003eDamn RT @guardian: Charlie Hebdo:\u003cbr\u003eappears that Charlie Hebdo suspects\u003cbr\u003ehave been killed \u2013 live\u003cbr\u003eupdates http://t.co/o7XXPAASv6\u003cbr\u003eFri Jan 09 16:39:09 +0000 2015"}, {"group": 1604, "id": 2, "label": "553591945826947072", "shape": "dot", "size": 10, "title": "553591945826947072\u003cbr\u003e@guardian @Robbie_Vicencio\u003cbr\u003eFri Jan 09 16:39:39 +0000 2015"}, {"group": 1604, "id": 3, "label": "553592038558814208", "shape": "dot", "size": 10, "title": "553592038558814208\u003cbr\u003e@guardian Bravo to the French\u003cbr\u003ePolice!\u003cbr\u003eFri Jan 09 16:40:01 +0000 2015"}, {"group": 1604, "id": 4, "label": "553592068850089984", "shape": "dot", "size": 10, "title": "553592068850089984\u003cbr\u003e@guardian thts gud\u003cbr\u003eFri Jan 09 16:40:09 +0000 2015"}, {"group": 1604, "id": 5, "label": "553592344654938112", "shape": "dot", "size": 10, "title": "553592344654938112\u003cbr\u003e@guardian conspiracy +dead+ case close\u003cbr\u003e.. christian and muslim wil\u003cbr\u003eknw be fighting. i just\u003cbr\u003eknew something like a JFK\u003cbr\u003ething might happen here\u003cbr\u003eFri Jan 09 16:41:14 +0000 2015"}, {"group": 1604, "id": 6, "label": "553592487496122368", "shape": "dot", "size": 10, "title": "553592487496122368\u003cbr\u003e@guardian As was expected. \u003cbr\u003eThe French method neither mess\u003cbr\u003eabout or waste money when\u003cbr\u003efacts clear moto when trouble\u003cbr\u003ekicks off, leave the area\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:41:48 +0000 2015"}, {"group": 1604, "id": 7, "label": "553594045315162113", "shape": "dot", "size": 10, "title": "553594045315162113\u003cbr\u003e@guardian#CharlieHebdo is it just me\u003cbr\u003ewonderin why in past 5yrs\u003cbr\u003eall suspects involved in Islamic\u003cbr\u003eattack:Boston,Sydney r never captured alive?\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:48:00 +0000 2015"}, {"group": 1604, "id": 8, "label": "553596574425571328", "shape": "dot", "size": 10, "title": "553596574425571328\u003cbr\u003e\"@guardian: Charlie Hebdo: appears that\u003cbr\u003eCharlie Hebdo suspects have been\u003cbr\u003ekilled! http://t.co/6YeYcwc4Fv\" Finally\ud83d\ude48\u003cbr\u003eFri Jan 09 16:58:03 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

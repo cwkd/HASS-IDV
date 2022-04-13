@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1068, "id": 0, "label": "553189490521812992", "shape": "dot", "size": 10, "title": "553189490521812992\u003cbr\u003eCartoonists stand in solidarity with\u003cbr\u003e#CharlieHebdo victims with these powerful\u003cbr\u003eimages http://t.co/Tbg2WDiIHF http://t.co/MhPgwnz9gQ\u003cbr\u003eThu Jan 08 14:00:26 +0000 2015"}, {"group": 1068, "id": 1, "label": "553201321621217281", "shape": "dot", "size": 10, "title": "553201321621217281\u003cbr\u003e@MotherJones Ok I am against\u003cbr\u003eviolence of all kinds ,\u003cbr\u003ewhich is why I cant\u003cbr\u003eforgive the cartoonists for being\u003cbr\u003eso hateful in there messages.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:47:27 +0000 2015"}, {"group": 1068, "id": 2, "label": "553203383826657280", "shape": "dot", "size": 10, "title": "553203383826657280\u003cbr\u003e\u201c@MotherJones: Cartoonists stand in solidarity\u003cbr\u003e#CharlieHebdo with these powerful images\u003cbr\u003ehttp://t.co/Ih7HZuWyci http://t.co/zDRN4107Bn\u201d\u003cbr\u003eThu Jan 08 14:55:39 +0000 2015"}, {"group": 1068, "id": 3, "label": "553213103115337729", "shape": "dot", "size": 10, "title": "553213103115337729\u003cbr\u003e\u201c@MotherJones: Cartoonists stand in solidarity\u003cbr\u003ewith #CharlieHebdo victims with these\u003cbr\u003eimages http://t.co/3HoRNxh2u2 http://t.co/LfJlJcKvee\u201d\u003cbr\u003eThu Jan 08 15:34:16 +0000 2015"}, {"group": 1068, "id": 4, "label": "553218585804677120", "shape": "dot", "size": 10, "title": "553218585804677120\u003cbr\u003e@MotherJones Wake up \u0026amp; smell\u003cbr\u003ethe coffee, French press. \u003cbr\u003eWar profiteers did this, not\u003cbr\u003eIslam. BREAKING VIDEO \u0026gt;\u0026gt; http://t.co/d2GGtLsdnJ\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:56:03 +0000 2015"}, {"group": 1068, "id": 5, "label": "553222725150736384", "shape": "dot", "size": 10, "title": "553222725150736384\u003cbr\u003e@MotherJones #ParisAttack Associated With US\u003cbr\u003e9/11 Cover-Up: Former Intelligence Chairman\u003cbr\u003e/ Sputnik International http://t.co/rkGK5CzoEZ\u003cbr\u003eThu Jan 08 16:12:30 +0000 2015"}, {"group": 1068, "id": 10, "label": "553281992176185345", "shape": "dot", "size": 10, "title": "553281992176185345\u003cbr\u003e@MotherJones @SSG_Echo Je suis Charlie!!!\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:08:01 +0000 2015"}, {"group": 1068, "id": 13, "label": "553456652720939008", "shape": "dot", "size": 10, "title": "553456652720939008\u003cbr\u003e@MotherJones And me too in\u003cbr\u003eNew Zealand https://t.co/YA1GHxc8vI\u003cbr\u003eFri Jan 09 07:42:03 +0000 2015"}, {"group": 1068, "id": 6, "label": "553256718550179840", "shape": "dot", "size": 10, "title": "553256718550179840\u003cbr\u003e@Anonomobile @MotherJones  bullshit\u003cbr\u003eThu Jan 08 18:27:35 +0000 2015"}, {"group": 1068, "id": 7, "label": "553263737373990912", "shape": "dot", "size": 10, "title": "553263737373990912\u003cbr\u003e@project9999 Paris Attack Associated With\u003cbr\u003eUS 9/11 Cover-Up: Former Intelligence\u003cbr\u003eChairman / Sputnik International http://t.co/rkGK5CzoEZ\u003cbr\u003e\u003cbr\u003eThu Jan 08 18:55:28 +0000 2015"}, {"group": 1068, "id": 8, "label": "553274819647930369", "shape": "dot", "size": 10, "title": "553274819647930369\u003cbr\u003e@Anonomobile  As I said\u003cbr\u003eearlier \"bullshit\". This is an\u003cbr\u003eact by believers in a\u003cbr\u003efairytale called Islam. Kill a\u003cbr\u003edozen innocents for a cartoon\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:39:31 +0000 2015"}, {"group": 1068, "id": 11, "label": "553289024119795712", "shape": "dot", "size": 10, "title": "553289024119795712\u003cbr\u003e@Anonomobile  Your source for\u003cbr\u003ereliable news is http://t.co/asgX8E9dvw.? No\u003cbr\u003ewonder you are so uninformed.\u003cbr\u003e\u003cbr\u003eThu Jan 08 20:35:57 +0000 2015"}, {"group": 1068, "id": 12, "label": "553291875143417857", "shape": "dot", "size": 10, "title": "553291875143417857\u003cbr\u003e@Anonomobile http://t.co/asgX8E9dvw is the mouthpiece\u003cbr\u003eof Russia. It\u0027s laughable you\u003cbr\u003ewould quote this crap. Aren\u0027t\u003cbr\u003eyou embarrassed\u003cbr\u003eThu Jan 08 20:47:17 +0000 2015"}, {"group": 1068, "id": 9, "label": "553276147363225602", "shape": "dot", "size": 10, "title": "553276147363225602\u003cbr\u003e@project9999 Paris Attack Associated With\u003cbr\u003eUS 9/11 Cover-Up: Former Intelligence\u003cbr\u003eChairman / Sputnik International http://t.co/rkGK5CzoEZ\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:44:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 11, "weight": 1}, {"from": 7, "to": 12, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 507, "id": 0, "label": "552837484221300736", "shape": "dot", "size": 10, "title": "552837484221300736\u003cbr\u003eMan violently lifts the Prophet\u003cbr\u003eup by the lapels of\u003cbr\u003ehis cloak asking for money!\u003cbr\u003eHe smiles and gives him\u003cbr\u003emore than he\u0027s due. #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:41:42 +0000 2015"}, {"group": 507, "id": 1, "label": "552841285644869634", "shape": "dot", "size": 10, "title": "552841285644869634\u003cbr\u003e@iyad_elbaghdadi You damn right, the\u003cbr\u003eterrorists weren\u0027t fighting and killing\u003cbr\u003efor muhummad for nothing. Mercenaries\u003cbr\u003eneed to be paid or\u003cbr\u003eelse.\u003cbr\u003eWed Jan 07 14:56:48 +0000 2015"}, {"group": 507, "id": 2, "label": "552842075494825984", "shape": "dot", "size": 10, "title": "552842075494825984\u003cbr\u003esimak TL @iyad_elbaghdadi tentang sikap\u003cbr\u003eNabi Muhammad kepada penghinanya atau\u003cbr\u003epenghina Islam. menyejukkan. #CharlieHebdo\u003cbr\u003eWed Jan 07 14:59:56 +0000 2015"}, {"group": 507, "id": 3, "label": "552843645892567041", "shape": "dot", "size": 10, "title": "552843645892567041\u003cbr\u003e@iyad_elbaghdadi \nMan asking for his\u003cbr\u003eright (or what he thought\u003cbr\u003ehis right) with a rough\u003cbr\u003eway...also not an insult\u003cbr\u003eWed Jan 07 15:06:11 +0000 2015"}, {"group": 507, "id": 4, "label": "552853257828048896", "shape": "dot", "size": 10, "title": "552853257828048896\u003cbr\u003e@iyad_elbaghdadi http://t.co/3xMj20FjOi by CM Naim,\u003cbr\u003eIn the Indian Express @mehranzaidi\u003cbr\u003e2/2\u003cbr\u003eWed Jan 07 15:44:22 +0000 2015"}, {"group": 507, "id": 5, "label": "552905297397039105", "shape": "dot", "size": 10, "title": "552905297397039105\u003cbr\u003e@iyad_elbaghdadi I think the problem\u003cbr\u003eis that Muslims need to\u003cbr\u003elearn about the teachings of\u003cbr\u003eIslam. If they did, we\u003cbr\u003ewouldn\u0027t be here.\u003cbr\u003eWed Jan 07 19:11:10 +0000 2015"}, {"group": 507, "id": 6, "label": "552951394857390080", "shape": "dot", "size": 10, "title": "552951394857390080\u003cbr\u003e@iyad_elbaghdadi @EliotHiggins http://t.co/rOSAKEqDYo\u003cbr\u003eWed Jan 07 22:14:20 +0000 2015"}, {"group": 507, "id": 7, "label": "552952493504987136", "shape": "dot", "size": 10, "title": "552952493504987136\u003cbr\u003e@iyad_elbaghdadi @EliotHiggins  i must\u003cbr\u003eto kill someone tomorow because\u003cbr\u003eof this cartoon ))) are\u003cbr\u003eu moron or what ?\u003cbr\u003ehttp://t.co/nkWm8gkhQN\u003cbr\u003eWed Jan 07 22:18:42 +0000 2015"}, {"group": 507, "id": 8, "label": "554057634542661632", "shape": "dot", "size": 10, "title": "554057634542661632\u003cbr\u003e@iyad_elbaghdadi Talk about Jews what\u003cbr\u003ethey did to prophet Muhammad\u003cbr\u003eand the other prophets...\u003cbr\u003eSat Jan 10 23:30:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

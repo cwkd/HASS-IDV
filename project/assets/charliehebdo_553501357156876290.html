@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1908, "id": 0, "label": "553501357156876290", "shape": "dot", "size": 10, "title": "553501357156876290\u003cbr\u003e#CharlieHebdo suspects \"prepared to die\u003cbr\u003eas martyrs\", they tell police\u003cbr\u003eafter making contact - French\u003cbr\u003emedia http://t.co/Qgmn70TXSU\u003cbr\u003eFri Jan 09 10:39:41 +0000 2015"}, {"group": 1908, "id": 1, "label": "553501672035856384", "shape": "dot", "size": 10, "title": "553501672035856384\u003cbr\u003e@BBCBreaking No martyrs there, just\u003cbr\u003ecowards.\u003cbr\u003eFri Jan 09 10:40:56 +0000 2015"}, {"group": 1908, "id": 2, "label": "553501710497628162", "shape": "dot", "size": 10, "title": "553501710497628162\u003cbr\u003e@BBCBreaking I think you mean\u003cbr\u003emorons.\u003cbr\u003eFri Jan 09 10:41:06 +0000 2015"}, {"group": 1908, "id": 3, "label": "553501723743223808", "shape": "dot", "size": 10, "title": "553501723743223808\u003cbr\u003e@BBCBreaking Good! Kill \u0027em and\u003cbr\u003equickly! The 144 are getting\u003cbr\u003efrustrated beyond belief waiting for\u003cbr\u003ethem both!\u003cbr\u003eFri Jan 09 10:41:09 +0000 2015"}, {"group": 1908, "id": 4, "label": "553501889254678528", "shape": "dot", "size": 10, "title": "553501889254678528\u003cbr\u003e@BBCBreaking They should tell them,\u003cbr\u003eno you\u0027ll just die as\u003cbr\u003emurderers, not martyrs\u003cbr\u003eFri Jan 09 10:41:48 +0000 2015"}, {"group": 1908, "id": 5, "label": "553502087661645824", "shape": "dot", "size": 10, "title": "553502087661645824\u003cbr\u003e@BBCBreaking  rubbish! Martyrs don\u0027t\u003cbr\u003erun away they should have\u003cbr\u003efaced consequences immediately.\u003cbr\u003eFri Jan 09 10:42:35 +0000 2015"}, {"group": 1908, "id": 6, "label": "553502133979713536", "shape": "dot", "size": 10, "title": "553502133979713536\u003cbr\u003e@BBCBreaking please don\u0027t starting saying\u003cbr\u003ethese guys are marters, they\u003cbr\u003eare cold blooded murderers, you\u003cbr\u003eare fuelling what they want!\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:42:46 +0000 2015"}, {"group": 1908, "id": 9, "label": "553502205748080640", "shape": "dot", "size": 10, "title": "553502205748080640\u003cbr\u003e@bbcbreaking I don\u0027t think these\u003cbr\u003etype of Muslims know what\u003cbr\u003ethe word \"martyr\" means.\u003cbr\u003eFri Jan 09 10:43:04 +0000 2015"}, {"group": 1908, "id": 11, "label": "553502788819632129", "shape": "dot", "size": 10, "title": "553502788819632129\u003cbr\u003e@BBCBreaking Just kill them. Nothing\u003cbr\u003eto see here, only cowards.\u003cbr\u003eNothing lost.\u003cbr\u003eFri Jan 09 10:45:23 +0000 2015"}, {"group": 1908, "id": 12, "label": "553503274176110592", "shape": "dot", "size": 10, "title": "553503274176110592\u003cbr\u003e@BBCBreaking stop saying this every\u003cbr\u003e2 minutes ur gloryfyinh it...\u003cbr\u003eNO! They will die kicking\u003cbr\u003eand screaming the cowards they\u003cbr\u003eare not heros\u003cbr\u003eFri Jan 09 10:47:18 +0000 2015"}, {"group": 1908, "id": 13, "label": "553503283986563073", "shape": "dot", "size": 10, "title": "553503283986563073\u003cbr\u003e@BBCBreaking @FCN2go\u003cbr\u003eFri Jan 09 10:47:21 +0000 2015"}, {"group": 1908, "id": 14, "label": "553503331356651521", "shape": "dot", "size": 10, "title": "553503331356651521\u003cbr\u003e@BBCBreaking no - set them\u003cbr\u003efree in the streets of\u003cbr\u003eParis \u0026amp; give them a\u003cbr\u003e30 second head start.\u003cbr\u003eFri Jan 09 10:47:32 +0000 2015"}, {"group": 1908, "id": 15, "label": "553503365100228609", "shape": "dot", "size": 10, "title": "553503365100228609\u003cbr\u003e\u201c@BBCBreaking #CharlieHebdo suspects \"prepared to\u003cbr\u003edie as martyrs\", they tell\u003cbr\u003epolice after making contact. http://t.co/PUM8cYDXS0\u201d\u003cbr\u003ePrevis\u00edvel\u003cbr\u003eFri Jan 09 10:47:40 +0000 2015"}, {"group": 1908, "id": 16, "label": "553503523539652608", "shape": "dot", "size": 10, "title": "553503523539652608\u003cbr\u003e.@BBCBreaking I hope they get\u003cbr\u003etheir wish... @oliverdarcy\u003cbr\u003eFri Jan 09 10:48:18 +0000 2015"}, {"group": 1908, "id": 18, "label": "553503876394262528", "shape": "dot", "size": 10, "title": "553503876394262528\u003cbr\u003e@BBCBreaking They wont be martyrs.A\u003cbr\u003emartyr dies because of their\u003cbr\u003ereligion.These rats will be dying\u003cbr\u003ebecause they murdered a muslim\u003cbr\u003eand others\u003cbr\u003eFri Jan 09 10:49:42 +0000 2015"}, {"group": 1908, "id": 19, "label": "553504019742990336", "shape": "dot", "size": 10, "title": "553504019742990336\u003cbr\u003e@Wend999 @BBCBreaking \nPunk Cowards\u003cbr\u003eFri Jan 09 10:50:16 +0000 2015"}, {"group": 1908, "id": 8, "label": "553502186999529473", "shape": "dot", "size": 10, "title": "553502186999529473\u003cbr\u003e@darrenjames61 @BBCBreaking put them through\u003cbr\u003ea wood chipper.\u003cbr\u003eFri Jan 09 10:42:59 +0000 2015"}, {"group": 1908, "id": 7, "label": "553502135204478976", "shape": "dot", "size": 10, "title": "553502135204478976\u003cbr\u003e@TrudiCTID Agreed. Relevant and timely\u003cbr\u003eclarification: martyrs are assassinated, they\u0027re\u003cbr\u003enot the assassins.\u003cbr\u003eFri Jan 09 10:42:47 +0000 2015"}, {"group": 1908, "id": 17, "label": "553503611104542720", "shape": "dot", "size": 10, "title": "553503611104542720\u003cbr\u003e@SaeeinAhmad @BBCBreaking so if they\u2019d\u003cbr\u003estayed at the scene they\u003cbr\u003ewould have been martyrs?\u003cbr\u003eFri Jan 09 10:48:39 +0000 2015"}, {"group": 1908, "id": 10, "label": "553502599358722048", "shape": "dot", "size": 10, "title": "553502599358722048\u003cbr\u003e@JamesEsqLtd brainwashed!!\u003cbr\u003eFri Jan 09 10:44:37 +0000 2015"}, {"group": 1908, "id": 20, "label": "553504747508879360", "shape": "dot", "size": 10, "title": "553504747508879360\u003cbr\u003e@bradydan @BBCBreaking they would still\u003cbr\u003ebe murderers I don\u0027t think\u003cbr\u003eanyone can consider this martyrdom\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:53:10 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 19, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 5, "to": 17, "weight": 1}, {"from": 6, "to": 10, "weight": 1}, {"from": 17, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 241, "id": 0, "label": "552817711617552385", "shape": "dot", "size": 10, "title": "552817711617552385\u003cbr\u003eSomewhere, Marine Le Pen is\u003cbr\u003eplanning her presidential inauguration \u0026amp;\u003cbr\u003efiguring out where Putin\u0027s guest\u003cbr\u003eof honor seat will be.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 13:23:07 +0000 2015"}, {"group": 241, "id": 1, "label": "552818087951880193", "shape": "dot", "size": 10, "title": "552818087951880193\u003cbr\u003e@20committee PEGIDA just cant print\u003cbr\u003eflags fast enough this morning\u003cbr\u003econsidering the counter-protesting 2 days\u003cbr\u003eago...\u003cbr\u003eWed Jan 07 13:24:37 +0000 2015"}, {"group": 241, "id": 2, "label": "552818180872486912", "shape": "dot", "size": 10, "title": "552818180872486912\u003cbr\u003e@20committee good time for putin\u003cbr\u003eto offer assistance in \"fighting\u003cbr\u003eterrorism\" indeed.\u003cbr\u003eWed Jan 07 13:24:59 +0000 2015"}, {"group": 241, "id": 3, "label": "552818663183896576", "shape": "dot", "size": 10, "title": "552818663183896576\u003cbr\u003e@20committee and the irony is\u003cbr\u003ethat the assinated cartoonists were\u003cbr\u003efar more critical of the\u003cbr\u003eextreme right than of islam...\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:26:54 +0000 2015"}, {"group": 241, "id": 4, "label": "552818817752383489", "shape": "dot", "size": 10, "title": "552818817752383489\u003cbr\u003e@20committee I\u0027m speculating from little\u003cbr\u003eknowledge, but it\u0027s possible Islamist\u003cbr\u003eimagery might cover Russian special\u003cbr\u003eops you forewarned about\u003cbr\u003eWed Jan 07 13:27:31 +0000 2015"}, {"group": 241, "id": 5, "label": "552818844340080640", "shape": "dot", "size": 10, "title": "552818844340080640\u003cbr\u003e@20committee I seriously doubt that.\u003cbr\u003eThe Toulouse killings occurred right\u003cbr\u003ein the middle of the\u003cbr\u003e\u201912 presidential campaign.\u003cbr\u003eWed Jan 07 13:27:38 +0000 2015"}, {"group": 241, "id": 7, "label": "552819294590218240", "shape": "dot", "size": 10, "title": "552819294590218240\u003cbr\u003e@20committee Putin \u0027resolutely condemns terrorism\u0027\nhttps://t.co/qLPRuBfNNx\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:29:25 +0000 2015"}, {"group": 241, "id": 8, "label": "552819580905996288", "shape": "dot", "size": 10, "title": "552819580905996288\u003cbr\u003e@20committee 1st Prize! For making\u003cbr\u003epossible (very troubling) link between\u003cbr\u003edark forces operating (together) in\u003cbr\u003eFrance. #justsaying\u003cbr\u003eWed Jan 07 13:30:33 +0000 2015"}, {"group": 241, "id": 10, "label": "552820448724279296", "shape": "dot", "size": 10, "title": "552820448724279296\u003cbr\u003e@20committee Thought about that right\u003cbr\u003eaway, really worried about russian\u003cbr\u003einfluence over the french leadership\u003cbr\u003eafter the election now.\u003cbr\u003eWed Jan 07 13:34:00 +0000 2015"}, {"group": 241, "id": 11, "label": "552820817386819584", "shape": "dot", "size": 10, "title": "552820817386819584\u003cbr\u003e@20committee in general FRench intel\u003cbr\u003eis good, no?\u003cbr\u003eWed Jan 07 13:35:28 +0000 2015"}, {"group": 241, "id": 18, "label": "552832231434366976", "shape": "dot", "size": 10, "title": "552832231434366976\u003cbr\u003e@20committee And they\u0027ll be shouting:\u003cbr\u003e\"Nationalist conservatives of all countries,\u003cbr\u003eunite!\"? ;)\u003cbr\u003eWed Jan 07 14:20:49 +0000 2015"}, {"group": 241, "id": 14, "label": "552824800796626944", "shape": "dot", "size": 10, "title": "552824800796626944\u003cbr\u003e@Kennigit @20committee When the German\u003cbr\u003eNationalist Movement gets going, THAT\u0027S\u003cbr\u003ewhen things will start getting\u003cbr\u003einteresting.\u003cbr\u003eWed Jan 07 13:51:18 +0000 2015"}, {"group": 241, "id": 15, "label": "552825193278623744", "shape": "dot", "size": 10, "title": "552825193278623744\u003cbr\u003e@Kennigit @20committee So far, the\u003cbr\u003eAbwehr has been able to\u003cbr\u003ekeep this stuff from happening\u003cbr\u003ein Germany. The PEGIDA movement\u003cbr\u003echanges this.\u003cbr\u003eWed Jan 07 13:52:51 +0000 2015"}, {"group": 241, "id": 16, "label": "552825691155070976", "shape": "dot", "size": 10, "title": "552825691155070976\u003cbr\u003e@Kennigit @20committee Eventually, there\u0027s going\u003cbr\u003eto be a sea-changing attack\u003cbr\u003einside Germany. Merkel\u0027s luck will\u003cbr\u003eeventually run out.\u003cbr\u003eWed Jan 07 13:54:50 +0000 2015"}, {"group": 241, "id": 19, "label": "552832386489393152", "shape": "dot", "size": 10, "title": "552832386489393152\u003cbr\u003e@magutw @20committee Sad sad sad...\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:21:26 +0000 2015"}, {"group": 241, "id": 6, "label": "552818929387597826", "shape": "dot", "size": 10, "title": "552818929387597826\u003cbr\u003e@Moe_Delaun most possible indeed....\u003cbr\u003eWed Jan 07 13:27:58 +0000 2015"}, {"group": 241, "id": 20, "label": "552832676793970688", "shape": "dot", "size": 10, "title": "552832676793970688\u003cbr\u003e@MarcelD10 @20committee And the political\u003cbr\u003ecorrectness propaganda machine of the\u003cbr\u003eestablishment also prevents the \u0027extreme\u003cbr\u003eright\u0027 to win\u003cbr\u003eWed Jan 07 14:22:35 +0000 2015"}, {"group": 241, "id": 25, "label": "552849975236112386", "shape": "dot", "size": 10, "title": "552849975236112386\u003cbr\u003e@20committee @Moe_Delaun Some are saying\u003cbr\u003ethat the attackers are speaking\u003cbr\u003eRU in the execution vid.\u003cbr\u003eWhat do you think? https://t.co/0Kcg58JjHv\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:31:20 +0000 2015"}, {"group": 241, "id": 9, "label": "552820140568760321", "shape": "dot", "size": 10, "title": "552820140568760321\u003cbr\u003e@GorseFires @20committee Ahh now the\u003cbr\u003elefties will write that its\u003cbr\u003eSVR agents not jihadists.\u003cbr\u003eWed Jan 07 13:32:47 +0000 2015"}, {"group": 241, "id": 12, "label": "552821871033741313", "shape": "dot", "size": 10, "title": "552821871033741313\u003cbr\u003e@GorseFires @20committee i\u0027m affraid France\u003cbr\u003eis going through dark days...\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:39:39 +0000 2015"}, {"group": 241, "id": 13, "label": "552824274739032066", "shape": "dot", "size": 10, "title": "552824274739032066\u003cbr\u003e@LiketErik Of course it was\u003cbr\u003efucking jihadists. But someone, somewhere\u003cbr\u003ewas either negligent or deliberate\u003cbr\u003ein letting this happen @20committee\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:49:12 +0000 2015"}, {"group": 241, "id": 22, "label": "552833661805264897", "shape": "dot", "size": 10, "title": "552833661805264897\u003cbr\u003e@SiIent_Storm @20committee It\u0027s so paradoxal;\u003cbr\u003eRus fights islam extrm but\u003cbr\u003ealso very alike in ideology\u003cbr\u003e(anti-US,ultra-conservative,orthodox..)\u003cbr\u003eWed Jan 07 14:26:30 +0000 2015"}, {"group": 241, "id": 23, "label": "552834145031036928", "shape": "dot", "size": 10, "title": "552834145031036928\u003cbr\u003e@chrisjefferson @Kennigit @20committee What do\u003cbr\u003eyou mean? Abwehr = intel\u003cbr\u003eservices and Pegida triggers extreme\u003cbr\u003emuslim attacks?\u003cbr\u003eWed Jan 07 14:28:25 +0000 2015"}, {"group": 241, "id": 17, "label": "552826645112164353", "shape": "dot", "size": 10, "title": "552826645112164353\u003cbr\u003e@chrisjefferson @20committee agreed\u003cbr\u003eWed Jan 07 13:58:37 +0000 2015"}, {"group": 241, "id": 21, "label": "552833015525937152", "shape": "dot", "size": 10, "title": "552833015525937152\u003cbr\u003e@kevinhaast @20committee Or perhaps they\u003cbr\u003edon\u2019t win because they\u2019re not\u003cbr\u003egood enough.\u003cbr\u003eWed Jan 07 14:23:56 +0000 2015"}, {"group": 241, "id": 24, "label": "552834488129290240", "shape": "dot", "size": 10, "title": "552834488129290240\u003cbr\u003e@MarcelD10 @20committee Perhaps too. We\u0027ll\u003cbr\u003enever know for sure, until\u003cbr\u003ethey win. Usually they\u0027re disappointing\u003cbr\u003eanyway. So bring it on...\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:29:47 +0000 2015"}, {"group": 241, "id": 26, "label": "552864999152951298", "shape": "dot", "size": 10, "title": "552864999152951298\u003cbr\u003e@kevinhaast @Kennigit @20committee I suspect\u003cbr\u003ethat German counterintelligence has had\u003cbr\u003ean extraordinary run of good\u003cbr\u003eluck which is running out.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:31:02 +0000 2015"}, {"group": 241, "id": 34, "label": "552923030301970436", "shape": "dot", "size": 10, "title": "552923030301970436\u003cbr\u003e@DetlefKroeze @20committee Seems Russian speech\u003cbr\u003eis iffy \u0026amp; latest news\u003cbr\u003esuggests French nationals. But that\u003cbr\u003edoesn\u0027t rule out foreign influence\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:21:37 +0000 2015"}, {"group": 241, "id": 27, "label": "552867388186976256", "shape": "dot", "size": 10, "title": "552867388186976256\u003cbr\u003e@chrisjefferson @kevinhaast @20committee Yeah i\u0027ve\u003cbr\u003eargued that to my german\u003cbr\u003ecoworkers - just needs 1\u003cbr\u003eincident for the national tone\u003cbr\u003eto shift\u003cbr\u003eWed Jan 07 16:40:31 +0000 2015"}, {"group": 241, "id": 28, "label": "552867650783965186", "shape": "dot", "size": 10, "title": "552867650783965186\u003cbr\u003e@chrisjefferson @kevinhaast @20committee West Germany\u003cbr\u003eespecially is in a bit\u003cbr\u003eof a liberal bubble\u003cbr\u003eWed Jan 07 16:41:34 +0000 2015"}, {"group": 241, "id": 30, "label": "552873639285370880", "shape": "dot", "size": 10, "title": "552873639285370880\u003cbr\u003e@chrisjefferson @Kennigit @20committee Watch \u0027A\u003cbr\u003emost wanted Man\u0027 dir. Anton\u003cbr\u003eCorbijn w/ Philip Seymour Hoffmann.Realistic,\u003cbr\u003epoignant \u0026amp; current\u003cbr\u003eWed Jan 07 17:05:22 +0000 2015"}, {"group": 241, "id": 31, "label": "552875178494296064", "shape": "dot", "size": 10, "title": "552875178494296064\u003cbr\u003e@Kennigit @chrisjefferson @20committee Unfort. yes.\u003cbr\u003eLet\u0027s hope won\u0027t happen. Aslongas\u003cbr\u003eChechens \u0026amp; Yezidis fight e.o.\u003cbr\u003emost Germans don\u0027t care\u003cbr\u003eWed Jan 07 17:11:29 +0000 2015"}, {"group": 241, "id": 29, "label": "552868101134360576", "shape": "dot", "size": 10, "title": "552868101134360576\u003cbr\u003e@Kennigit @kevinhaast @20committee East Germans\u003cbr\u003emuch more receptive to immigration\u003cbr\u003erestrictions and a Firm Hand,\u003cbr\u003eIMHO.\u003cbr\u003eWed Jan 07 16:43:21 +0000 2015"}, {"group": 241, "id": 32, "label": "552875668498026497", "shape": "dot", "size": 10, "title": "552875668498026497\u003cbr\u003e@chrisjefferson @Kennigit @20committee The only\u003cbr\u003ething ex communist countries did\u003cbr\u003eright; not importing (and afterw.\u003cbr\u003enot integrating) islam\u003cbr\u003eWed Jan 07 17:13:25 +0000 2015"}, {"group": 241, "id": 33, "label": "552875940821614594", "shape": "dot", "size": 10, "title": "552875940821614594\u003cbr\u003e@chrisjefferson @Kennigit @20committee in leftist\u003cbr\u003eWestern Europe those immigrants were\u003cbr\u003enever encouraged to integrate well\u003cbr\u003einto society\u003cbr\u003eWed Jan 07 17:14:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 14, "weight": 1}, {"from": 1, "to": 15, "weight": 1}, {"from": 1, "to": 16, "weight": 1}, {"from": 3, "to": 19, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 5, "to": 20, "weight": 1}, {"from": 6, "to": 25, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 9, "to": 13, "weight": 1}, {"from": 10, "to": 22, "weight": 1}, {"from": 15, "to": 23, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 23, "to": 26, "weight": 1}, {"from": 25, "to": 34, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 26, "to": 30, "weight": 1}, {"from": 27, "to": 31, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 29, "to": 32, "weight": 1}, {"from": 32, "to": 33, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

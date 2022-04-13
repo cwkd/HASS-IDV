@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1127, "id": 0, "label": "553206304396038145", "shape": "dot", "size": 10, "title": "553206304396038145\u003cbr\u003eFront pages from around the\u003cbr\u003eworld, as publications react to\u003cbr\u003e#CharlieHebdo attack: http://t.co/hrslXlve4D via @Newseum\u003cbr\u003ehttp://t.co/ZD62G2klC7\u003cbr\u003eThu Jan 08 15:07:15 +0000 2015"}, {"group": 1127, "id": 1, "label": "553208671329480705", "shape": "dot", "size": 10, "title": "553208671329480705\u003cbr\u003e@USATODAY @cherokee_autumn @Newseum https://t.co/I8k0RudQFa\u003cbr\u003eThu Jan 08 15:16:40 +0000 2015"}, {"group": 1127, "id": 2, "label": "553208737515970560", "shape": "dot", "size": 10, "title": "553208737515970560\u003cbr\u003e@USATODAY @Newseum when #terrorism goes\u003cbr\u003ewrong.\u003cbr\u003eThu Jan 08 15:16:55 +0000 2015"}, {"group": 1127, "id": 3, "label": "553211297115176961", "shape": "dot", "size": 10, "title": "553211297115176961\u003cbr\u003e@USATODAY @Newseum total y absoluta\u003cbr\u003econdena y tan repulsivos actos\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:27:06 +0000 2015"}, {"group": 1127, "id": 4, "label": "553212336744706048", "shape": "dot", "size": 10, "title": "553212336744706048\u003cbr\u003e@USATODAY @Newseum Nice cartoon but\u003cbr\u003eUSA today would show some\u003cbr\u003espine by publishing the charlie\u003cbr\u003ecartoons. Cowards to the man.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:31:13 +0000 2015"}, {"group": 1127, "id": 5, "label": "553214077607378944", "shape": "dot", "size": 10, "title": "553214077607378944\u003cbr\u003e@USATODAY @AimeTerezo @Newseum good to\u003cbr\u003esee the ar machine not\u003cbr\u003emissing a chance to to\u003cbr\u003estir the pot #hypocrisy\u003cbr\u003eThu Jan 08 15:38:08 +0000 2015"}, {"group": 1127, "id": 6, "label": "553228953453068289", "shape": "dot", "size": 10, "title": "553228953453068289\u003cbr\u003e@USATODAY What 2,000,000,000 Muslims NOT\u003cbr\u003econdemning a terror attack looks\u003cbr\u003elike. #TheSilenceIsDeafening\n#CharlieHebdo http://t.co/I9MSHcT3tV\u003cbr\u003eThu Jan 08 16:37:15 +0000 2015"}, {"group": 1127, "id": 7, "label": "553234869611143170", "shape": "dot", "size": 10, "title": "553234869611143170\u003cbr\u003e@USATODAY @Newseum https://t.co/6oHlNN7KAy\u003cbr\u003eThu Jan 08 17:00:46 +0000 2015"}, {"group": 1127, "id": 9, "label": "553338037850345474", "shape": "dot", "size": 10, "title": "553338037850345474\u003cbr\u003e@USATODAY i am Charlie, you\u003cbr\u003eare Charlie, WE are Charlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 23:50:43 +0000 2015"}, {"group": 1127, "id": 10, "label": "553636618775846914", "shape": "dot", "size": 10, "title": "553636618775846914\u003cbr\u003e@USATODAY @Newseum http://t.co/ESPnAAPMP9\u003cbr\u003eFri Jan 09 19:37:10 +0000 2015"}, {"group": 1127, "id": 8, "label": "553238622548160512", "shape": "dot", "size": 10, "title": "553238622548160512\u003cbr\u003e@PC_GoneWild @USATODAY powerful pic.\u003cbr\u003eThu Jan 08 17:15:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 6, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

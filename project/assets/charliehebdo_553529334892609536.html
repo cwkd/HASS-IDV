@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1935, "id": 0, "label": "553529334892609536", "shape": "dot", "size": 10, "title": "553529334892609536\u003cbr\u003eBREAKING: Gunfire at store in\u003cbr\u003ePorte de Vincennes, eastern Paris\u003cbr\u003e- reports http://t.co/cI8cztQjE6\u003cbr\u003eFri Jan 09 12:30:52 +0000 2015"}, {"group": 1935, "id": 1, "label": "553529812396937216", "shape": "dot", "size": 10, "title": "553529812396937216\u003cbr\u003e@RT_com uhhhh\u003cbr\u003eFri Jan 09 12:32:46 +0000 2015"}, {"group": 1935, "id": 2, "label": "553530095626117120", "shape": "dot", "size": 10, "title": "553530095626117120\u003cbr\u003eBREAKING: Gunfire at store in\u003cbr\u003ePorte de Vincennes, eastern Paris\u003cbr\u003e- reports http://t.co/6Tn4pu3IdT via @RT_com\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:33:53 +0000 2015"}, {"group": 1935, "id": 3, "label": "553530549848276994", "shape": "dot", "size": 10, "title": "553530549848276994\u003cbr\u003e\u201c@RT_com: BREAKING: Gunfire at store\u003cbr\u003ein Porte de Vincennes, eastern\u003cbr\u003eParis - reports http://t.co/yNlpHCtFmE\u201d\u003cbr\u003eFri Jan 09 12:35:41 +0000 2015"}, {"group": 1935, "id": 4, "label": "553530637504618496", "shape": "dot", "size": 10, "title": "553530637504618496\u003cbr\u003e@RT_com  watching #RT Now\u003cbr\u003e:)\u003cbr\u003eFri Jan 09 12:36:02 +0000 2015"}, {"group": 1935, "id": 5, "label": "553531912506335232", "shape": "dot", "size": 10, "title": "553531912506335232\u003cbr\u003eMORE: Gunman linked to policewoman\u003cbr\u003ekilling suspect in shooting in\u003cbr\u003e#Vincennes \u2013 Local media http://t.co/cI8cztQjE6\u003cbr\u003ehttp://t.co/AnagJz9EbW\u003cbr\u003eFri Jan 09 12:41:06 +0000 2015"}, {"group": 1935, "id": 6, "label": "553532049655885824", "shape": "dot", "size": 10, "title": "553532049655885824\u003cbr\u003e\u201c@RT_com: BREAKING: Gunfire at store\u003cbr\u003ein Porte de Vincennes, eastern\u003cbr\u003eParis - reports http://t.co/C0gE9fTG1i\u201dwoww\u003cbr\u003eFri Jan 09 12:41:39 +0000 2015"}, {"group": 1935, "id": 7, "label": "553533897221603329", "shape": "dot", "size": 10, "title": "553533897221603329\u003cbr\u003eUPDATE: One injured as armed\u003cbr\u003eman takes hostage in kosher\u003cbr\u003egrocery store in eastern Paris\u003cbr\u003e- Reports http://t.co/cI8cztQjE6\u003cbr\u003eFri Jan 09 12:48:59 +0000 2015"}, {"group": 1935, "id": 8, "label": "553534335358599168", "shape": "dot", "size": 10, "title": "553534335358599168\u003cbr\u003e@RT_com http://t.co/ThdKPkbKdl \u0420\u0415\u0413\u0418\u0421\u0422\u0420\u0418\u0420\u0423\u0419\u0421\u042f \u042d\u0422\u041e \u0422\u041e\u0427\u041d\u041e\u003cbr\u003e\u0414\u041b\u042f \u0422\u0415\u0411\u042f.\u003cbr\u003eFri Jan 09 12:50:44 +0000 2015"}, {"group": 1935, "id": 9, "label": "553541684424740864", "shape": "dot", "size": 10, "title": "553541684424740864\u003cbr\u003e@RT_com kosher? Jewish grocery??\u003cbr\u003eFri Jan 09 13:19:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

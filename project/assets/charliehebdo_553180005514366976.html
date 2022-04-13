@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1027, "id": 0, "label": "553180005514366976", "shape": "dot", "size": 10, "title": "553180005514366976\u003cbr\u003eHow the Jewish pro-censorship lobby\u003cbr\u003elegitimized attacks on Carlie Hebdo\u003cbr\u003efor \"offensive\" speech http://t.co/6Ts6rWgw7p #CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:22:45 +0000 2015"}, {"group": 1027, "id": 1, "label": "553180233806143488", "shape": "dot", "size": 10, "title": "553180233806143488\u003cbr\u003e.@wikileaks @Telegraph - #Zionists please.\u003cbr\u003eJews are against the state\u003cbr\u003eof Israel.\u003cbr\u003eThu Jan 08 13:23:39 +0000 2015"}, {"group": 1027, "id": 2, "label": "553180523414450176", "shape": "dot", "size": 10, "title": "553180523414450176\u003cbr\u003e@wikileaks And how many of\u003cbr\u003ethem did they kill, Julian?\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:24:49 +0000 2015"}, {"group": 1027, "id": 3, "label": "553180716029075459", "shape": "dot", "size": 10, "title": "553180716029075459\u003cbr\u003e@wikileaks oh yeah\nthen the zionists\u003cbr\u003ecame in and shot everyone\nc\u0027mon\u003cbr\u003eyou pathetic moron\u003cbr\u003eThu Jan 08 13:25:34 +0000 2015"}, {"group": 1027, "id": 4, "label": "553180806785794048", "shape": "dot", "size": 10, "title": "553180806785794048\u003cbr\u003e@wikileaks in his mind, Sinet\u003cbr\u003ethought he reminded people Jean\u003cbr\u003eSarkozy was only a careerist,\u003cbr\u003enot someone sincere. It was\u003cbr\u003enot about juda\u00efsm\u003cbr\u003eThu Jan 08 13:25:56 +0000 2015"}, {"group": 1027, "id": 7, "label": "553181707894276097", "shape": "dot", "size": 10, "title": "553181707894276097\u003cbr\u003e@wikileaks no doubt\u003cbr\u003eThu Jan 08 13:29:31 +0000 2015"}, {"group": 1027, "id": 10, "label": "553183184695750656", "shape": "dot", "size": 10, "title": "553183184695750656\u003cbr\u003e@wikileaks \u0026lt;\u0026lt;\u0026lt;==================JEW HATERS, scary Jew\u003cbr\u003eHaters = to German Workers\u003cbr\u003eParty \u0026amp; NATIONAL SOCIALISTS\u003cbr\u003eThu Jan 08 13:35:23 +0000 2015"}, {"group": 1027, "id": 11, "label": "553185203351326721", "shape": "dot", "size": 10, "title": "553185203351326721\u003cbr\u003e@wikileaks short time sensations works\u003cbr\u003ejust nice in some places\u003cbr\u003eoften!!\u003cbr\u003eThu Jan 08 13:43:24 +0000 2015"}, {"group": 1027, "id": 16, "label": "553187810099097600", "shape": "dot", "size": 10, "title": "553187810099097600\u003cbr\u003eThis tweet is like another\u003cbr\u003eShoah! Someone call Netanyahu @wikileaks\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:53:46 +0000 2015"}, {"group": 1027, "id": 5, "label": "553181080858013696", "shape": "dot", "size": 10, "title": "553181080858013696\u003cbr\u003e@hugorifkind don\u0027t you find anything\u003cbr\u003ewrong with your question? @wikileaks\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:27:01 +0000 2015"}, {"group": 1027, "id": 20, "label": "553189252373442561", "shape": "dot", "size": 10, "title": "553189252373442561\u003cbr\u003e.@hugorifkind @wikileaks Julian\u2019s got cabin\u003cbr\u003efever\u003cbr\u003eThu Jan 08 13:59:30 +0000 2015"}, {"group": 1027, "id": 6, "label": "553181237154963456", "shape": "dot", "size": 10, "title": "553181237154963456\u003cbr\u003e@rifat_islam @wikileaks What\u0027s wrong with\u003cbr\u003emy question?\u003cbr\u003eThu Jan 08 13:27:39 +0000 2015"}, {"group": 1027, "id": 8, "label": "553182180097011714", "shape": "dot", "size": 10, "title": "553182180097011714\u003cbr\u003e@hugorifkind the implied comparison @wikileaks\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:31:24 +0000 2015"}, {"group": 1027, "id": 9, "label": "553183040751828992", "shape": "dot", "size": 10, "title": "553183040751828992\u003cbr\u003e@rifat_islam @wikileaks Spell it out\u003cbr\u003efor me.\u003cbr\u003eThu Jan 08 13:34:49 +0000 2015"}, {"group": 1027, "id": 12, "label": "553185910049603584", "shape": "dot", "size": 10, "title": "553185910049603584\u003cbr\u003e@hugorifkind I take it back\u003cbr\u003e:) @wikileaks\u003cbr\u003eThu Jan 08 13:46:13 +0000 2015"}, {"group": 1027, "id": 13, "label": "553187118139604992", "shape": "dot", "size": 10, "title": "553187118139604992\u003cbr\u003e@rifat_islam @KohinoorSays \"as much\"? People\u003cbr\u003ewho lobby for a sacking\u003cbr\u003eare equal terrorists to mass\u003cbr\u003emurderers? This is really your\u003cbr\u003eview?\u003cbr\u003eThu Jan 08 13:51:01 +0000 2015"}, {"group": 1027, "id": 14, "label": "553187484956237824", "shape": "dot", "size": 10, "title": "553187484956237824\u003cbr\u003e@hugorifkind them= Zionists I was\u003cbr\u003ereplying to what @KohinoorSays said\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:52:28 +0000 2015"}, {"group": 1027, "id": 15, "label": "553187744881459200", "shape": "dot", "size": 10, "title": "553187744881459200\u003cbr\u003e@hugorifkind er... who said I\u003cbr\u003edon\u0027t find the murder appalling?\u003cbr\u003eseriously... that\u0027s what\u0027s wrong with\u003cbr\u003ethe question @KohinoorSays\u003cbr\u003eThu Jan 08 13:53:30 +0000 2015"}, {"group": 1027, "id": 18, "label": "553188488775217154", "shape": "dot", "size": 10, "title": "553188488775217154\u003cbr\u003e@rifat_islam @KohinoorSays I\u0027m not sure\u003cbr\u003eyou mean the same thing\u003cbr\u003eby \"Zionist\" as I do.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:56:28 +0000 2015"}, {"group": 1027, "id": 23, "label": "553272558435729408", "shape": "dot", "size": 10, "title": "553272558435729408\u003cbr\u003eIsrael has killed many, many\u003cbr\u003emore innocents than 12 @hugorifkind\u003cbr\u003e@KohinoorSays @rifat_islam\u003cbr\u003eThu Jan 08 19:30:31 +0000 2015"}, {"group": 1027, "id": 17, "label": "553187984036864000", "shape": "dot", "size": 10, "title": "553187984036864000\u003cbr\u003e@rifat_islam @KohinoorSays I think we\u003cbr\u003emay be at cross purposes.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:54:27 +0000 2015"}, {"group": 1027, "id": 19, "label": "553189138686431233", "shape": "dot", "size": 10, "title": "553189138686431233\u003cbr\u003e@hugorifkind no I refer to\u003cbr\u003eONLY those who build houses\u003cbr\u003eon mass graves @KohinoorSays I\u003cbr\u003ehave many friends who are\u003cbr\u003ejews but aren\u0027t zionists\u003cbr\u003eThu Jan 08 13:59:03 +0000 2015"}, {"group": 1027, "id": 21, "label": "553193432907149312", "shape": "dot", "size": 10, "title": "553193432907149312\u003cbr\u003e@Engrugger @hugorifkind @wikileaks fact that\u003cbr\u003ethe article is almost 6\u003cbr\u003eyears old shows how desperate\u003cbr\u003eWiki are to find a\u003cbr\u003eJewish conspiracy\u003cbr\u003eThu Jan 08 14:16:06 +0000 2015"}, {"group": 1027, "id": 22, "label": "553194500907360256", "shape": "dot", "size": 10, "title": "553194500907360256\u003cbr\u003e.@LeviClaudia @hugorifkind The Protocols of\u003cbr\u003ethe Elders of @wikileaks\u003cbr\u003eThu Jan 08 14:20:21 +0000 2015"}, {"group": 1027, "id": 24, "label": "553272729269731328", "shape": "dot", "size": 10, "title": "553272729269731328\u003cbr\u003e@kmaj_gpt @KohinoorSays @rifat_islam Relevant how?\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:31:12 +0000 2015"}, {"group": 1027, "id": 25, "label": "553502998173736961", "shape": "dot", "size": 10, "title": "553502998173736961\u003cbr\u003e@hugorifkind @kmaj_gpt @KohinoorSays this conversation\u003cbr\u003eis going nowhere and everywhere.\u003cbr\u003ei\u0027ll take my leave.\u003cbr\u003eFri Jan 09 10:46:13 +0000 2015"}, {"group": 1027, "id": 26, "label": "553503151538864128", "shape": "dot", "size": 10, "title": "553503151538864128\u003cbr\u003e@rifat_islam @kmaj_gpt @KohinoorSays dude, I\u003cbr\u003eleft it yesterday.\u003cbr\u003eFri Jan 09 10:46:49 +0000 2015"}, {"group": 1027, "id": 27, "label": "553503728494325760", "shape": "dot", "size": 10, "title": "553503728494325760\u003cbr\u003e@hugorifkind @kmaj_gpt @KohinoorSays i acknowledged\u003cbr\u003eit. *ends convo*\u003cbr\u003eFri Jan 09 10:49:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 2, "to": 20, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 13, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 14, "to": 18, "weight": 1}, {"from": 14, "to": 23, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1184, "id": 0, "label": "553220369721483266", "shape": "dot", "size": 10, "title": "553220369721483266\u003cbr\u003eThe policeman killed at point\u003cbr\u003eblank range in #CharlieHebdo attack\u003cbr\u003ewas Muslim. Need more proof\u003cbr\u003ethat Terrorists have no religion?!\u003cbr\u003e#RIPAhmed\u003cbr\u003eThu Jan 08 16:03:09 +0000 2015"}, {"group": 1184, "id": 1, "label": "553220470414135296", "shape": "dot", "size": 10, "title": "553220470414135296\u003cbr\u003e@Sophie_Choudry #GopalaGopala #GopalaGopalaOnJan10th\u003cbr\u003eThu Jan 08 16:03:33 +0000 2015"}, {"group": 1184, "id": 2, "label": "553220674420875264", "shape": "dot", "size": 10, "title": "553220674420875264\u003cbr\u003e@Sophie_Choudry Die\u003cbr\u003eThu Jan 08 16:04:21 +0000 2015"}, {"group": 1184, "id": 3, "label": "553220730985254913", "shape": "dot", "size": 10, "title": "553220730985254913\u003cbr\u003e@Sophie_Choudry Please give for Destitute,\u003cbr\u003eOrphan, Very poor, Old age,\u003cbr\u003eso their life can be\u003cbr\u003eas human being like us...\u003cbr\u003ehttp://t.co/1qBqjKsgZS\u003cbr\u003eThu Jan 08 16:04:35 +0000 2015"}, {"group": 1184, "id": 4, "label": "553221060095520768", "shape": "dot", "size": 10, "title": "553221060095520768\u003cbr\u003e@Sophie_Choudry now they are attacking\u003cbr\u003eon mosque. My question Who\u003cbr\u003eis terrorist.\u003cbr\u003eThu Jan 08 16:05:53 +0000 2015"}, {"group": 1184, "id": 5, "label": "553221320373063680", "shape": "dot", "size": 10, "title": "553221320373063680\u003cbr\u003e@Sophie_Choudry Get married , settled\u003cbr\u003eand have kids before it\u0027s\u003cbr\u003etoo late.\u003cbr\u003eThu Jan 08 16:06:55 +0000 2015"}, {"group": 1184, "id": 6, "label": "553221356217585664", "shape": "dot", "size": 10, "title": "553221356217585664\u003cbr\u003e@Sophie_Choudry \nreligion is the reason\u003cbr\u003efor division.\nany division breeds hatred,\u003cbr\u003ekilling, war.....\u003cbr\u003eThu Jan 08 16:07:04 +0000 2015"}, {"group": 1184, "id": 7, "label": "553222148538368000", "shape": "dot", "size": 10, "title": "553222148538368000\u003cbr\u003e@Sophie_Choudry Correcting you atheists have\u003cbr\u003eno religion , Terrorist do\u003cbr\u003ehv religion did prophet said\u003cbr\u003eto behead dos who make\u003cbr\u003ecartoons of his?\u003cbr\u003eThu Jan 08 16:10:13 +0000 2015"}, {"group": 1184, "id": 8, "label": "553222581801590784", "shape": "dot", "size": 10, "title": "553222581801590784\u003cbr\u003e@Sophie_Choudry yes terrorism is a\u003cbr\u003ecurse its nothing to do\u003cbr\u003ewith religion as No religion\u003cbr\u003esupport terrorism..\u003cbr\u003eThu Jan 08 16:11:56 +0000 2015"}, {"group": 1184, "id": 9, "label": "553225979557322752", "shape": "dot", "size": 10, "title": "553225979557322752\u003cbr\u003e@Sophie_Choudry #CharlieHebdo #RIPAhmed finally hats\u003cbr\u003eof to sophie I\u0027m sick\u003cbr\u003eof people pointing at my\u003cbr\u003ereligion Islam \u0026amp; talking low\u003cbr\u003eof muslims\u003cbr\u003eThu Jan 08 16:25:26 +0000 2015"}, {"group": 1184, "id": 10, "label": "553227465833730048", "shape": "dot", "size": 10, "title": "553227465833730048\u003cbr\u003e@Sophie_Choudry this is a war,\u003cbr\u003enot a war between religions,\u003cbr\u003eit\u0027s between MANKIND\u003cbr\u003eThu Jan 08 16:31:20 +0000 2015"}, {"group": 1184, "id": 11, "label": "553231031092776960", "shape": "dot", "size": 10, "title": "553231031092776960\u003cbr\u003e@Sophie_Choudry it\u0027s really good to\u003cbr\u003esee that there are still\u003cbr\u003epeople who think terrorists have\u003cbr\u003eno religion, for those who\u003cbr\u003epoint out???\u003cbr\u003eThu Jan 08 16:45:31 +0000 2015"}, {"group": 1184, "id": 12, "label": "553232636731092992", "shape": "dot", "size": 10, "title": "553232636731092992\u003cbr\u003e@Sophie_Choudry Terrorists Don\u0027t have a\u003cbr\u003ereligion @Sophie_Choudry\u003cbr\u003eThu Jan 08 16:51:53 +0000 2015"}, {"group": 1184, "id": 13, "label": "553235267717726209", "shape": "dot", "size": 10, "title": "553235267717726209\u003cbr\u003e@Sophie_Choudry @cestmoiM agree\u003cbr\u003eThu Jan 08 17:02:21 +0000 2015"}, {"group": 1184, "id": 14, "label": "553235772346998784", "shape": "dot", "size": 10, "title": "553235772346998784\u003cbr\u003e@Sophie_Choudry omg! So didn\u0027t \u003cbr\u003eknow that! Cowards\u003cbr\u003eThu Jan 08 17:04:21 +0000 2015"}, {"group": 1184, "id": 15, "label": "553244516535128065", "shape": "dot", "size": 10, "title": "553244516535128065\u003cbr\u003e@Sophie_Choudry boko haram killed 100\u003cbr\u003elast weekend in Nigeria ,\u003cbr\u003eisn\u0027t boko haram followers of\u003cbr\u003eIslaam\u003cbr\u003eThu Jan 08 17:39:06 +0000 2015"}, {"group": 1184, "id": 16, "label": "553252984407089152", "shape": "dot", "size": 10, "title": "553252984407089152\u003cbr\u003e@Sophie_Choudry..Innocent kids killed in #PeshawarAttack\u003cbr\u003ewere Muslims too. Terrorism has\u003cbr\u003eno religion.God knows when ppl\u003cbr\u003ewill understand this\u003cbr\u003eThu Jan 08 18:12:45 +0000 2015"}, {"group": 1184, "id": 17, "label": "553268073722306561", "shape": "dot", "size": 10, "title": "553268073722306561\u003cbr\u003e@Sophie_Choudry Yes, I know I\u0027m\u003cbr\u003eFrench\u003cbr\u003eThu Jan 08 19:12:42 +0000 2015"}, {"group": 1184, "id": 18, "label": "553277345344520193", "shape": "dot", "size": 10, "title": "553277345344520193\u003cbr\u003e@Sophie_Choudry @thejenwilkinson No, it just\u003cbr\u003eproves they will kill anyone\u003cbr\u003eincluding fellow Muslims...as is happening\u003cbr\u003ein Syria, Iraq etc\u003cbr\u003eThu Jan 08 19:49:33 +0000 2015"}, {"group": 1184, "id": 19, "label": "553277393649954816", "shape": "dot", "size": 10, "title": "553277393649954816\u003cbr\u003e@Sophie_Choudry @thejenwilkinson And show how\u003cbr\u003emuch of cowards they really\u003cbr\u003eare, Ahmed was a very\u003cbr\u003eproud Muslim and a very\u003cbr\u003eproud police officer\u003cbr\u003eThu Jan 08 19:49:44 +0000 2015"}, {"group": 1184, "id": 20, "label": "553277851567685634", "shape": "dot", "size": 10, "title": "553277851567685634\u003cbr\u003e@amelievondollar @Sophie_Choudry who is the\u003cbr\u003e\"they\" Abigail? All Countries have\u003cbr\u003epeople killing others~America is one\u003cbr\u003eof the most violent.\u003cbr\u003eThu Jan 08 19:51:33 +0000 2015"}, {"group": 1184, "id": 21, "label": "553278445376249856", "shape": "dot", "size": 10, "title": "553278445376249856\u003cbr\u003e@amelievondollar @Sophie_Choudry I can not\u003cbr\u003esupport calling all Muslims terrorists.\u003cbr\u003e This is Extremism at\u003cbr\u003ework. VERY dangerous to go\u003cbr\u003ethere.\u003cbr\u003eThu Jan 08 19:53:55 +0000 2015"}, {"group": 1184, "id": 22, "label": "553286676299390979", "shape": "dot", "size": 10, "title": "553286676299390979\u003cbr\u003e@thejenwilkinson @Sophie_Choudry Eh....i never said\u003cbr\u003eall Muslims were terrorists...don\u0027t twist\u003cbr\u003ethings. I have Muslim friends\u003cbr\u003e !\u003cbr\u003eThu Jan 08 20:26:37 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

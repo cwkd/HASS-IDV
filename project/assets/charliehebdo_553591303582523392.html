@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1600, "id": 0, "label": "553591303582523392", "shape": "dot", "size": 10, "title": "553591303582523392\u003cbr\u003eSeveral Paris supermarket hostages seen\u003cbr\u003ebeing evacuated in photo http://t.co/ueAtB5XvkC\u003cbr\u003ehttp://t.co/UfsJLKp7fg\u003cbr\u003eFri Jan 09 16:37:06 +0000 2015"}, {"group": 1600, "id": 1, "label": "553592154896232448", "shape": "dot", "size": 10, "title": "553592154896232448\u003cbr\u003eRT\"@TheWorldPost Several Paris supermarket hostages\u003cbr\u003eseen being evacuated in photo\u00a0http://t.co/Ifuns33yf6\u00a0http://t.co/qzNrShVR2l\"\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:40:29 +0000 2015"}, {"group": 1600, "id": 2, "label": "553592197250285568", "shape": "dot", "size": 10, "title": "553592197250285568\u003cbr\u003eRT @TheWorldPost: Several Paris supermarket\u003cbr\u003ehostages seen being evacuated in\u003cbr\u003ephoto http://t.co/7ClYzbB8C5 http://t.co/4rZZHEcQz5\u003cbr\u003eFri Jan 09 16:40:39 +0000 2015"}, {"group": 1600, "id": 3, "label": "553592871732133888", "shape": "dot", "size": 10, "title": "553592871732133888\u003cbr\u003e@TheWorldPost @HuffingtonPost This is a\u003cbr\u003eprime example of hate\u003cbr\u003eFri Jan 09 16:43:20 +0000 2015"}, {"group": 1600, "id": 4, "label": "553592891449556992", "shape": "dot", "size": 10, "title": "553592891449556992\u003cbr\u003e@TheWorldPost Very glad hostages are\u003cbr\u003esafe\u003cbr\u003eFri Jan 09 16:43:25 +0000 2015"}, {"group": 1600, "id": 5, "label": "553594700515803136", "shape": "dot", "size": 10, "title": "553594700515803136\u003cbr\u003e@TheWorldPost THANK YOU ! #FrenchPolice\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:50:36 +0000 2015"}, {"group": 1600, "id": 6, "label": "553596175493103616", "shape": "dot", "size": 10, "title": "553596175493103616\u003cbr\u003e@TheWorldPost @HuffingtonPost The CIA-----created Al\u003cbr\u003eQaeda\n\nPictures and videos http://t.co/uv1hJxoY5I\u003cbr\u003eFri Jan 09 16:56:28 +0000 2015"}, {"group": 1600, "id": 7, "label": "553598135839490050", "shape": "dot", "size": 10, "title": "553598135839490050\u003cbr\u003e@TheWorldPost @HuffingtonPost Wait a minute.\u003cbr\u003eNo loaves of bread? Are\u003cbr\u003ethese photos accurate?\u003cbr\u003eFri Jan 09 17:04:15 +0000 2015"}, {"group": 1600, "id": 8, "label": "553600955510714368", "shape": "dot", "size": 10, "title": "553600955510714368\u003cbr\u003e\u201c@TheWorldPost: Several Paris supermarket hostages\u003cbr\u003eseen being evacuated in photo\u003cbr\u003ehttp://t.co/Ly04bIXd2v http://t.co/bjlTTqvcqi\u201d Enjoy HELL!\u003cbr\u003eFri Jan 09 17:15:27 +0000 2015"}, {"group": 1600, "id": 9, "label": "553601042005651457", "shape": "dot", "size": 10, "title": "553601042005651457\u003cbr\u003e@TheWorldPost\u003cbr\u003eFri Jan 09 17:15:48 +0000 2015"}, {"group": 1600, "id": 10, "label": "553605627952762883", "shape": "dot", "size": 10, "title": "553605627952762883\u003cbr\u003e@TheWorldPost: Luckily France is not\u003cbr\u003ein Africa, hence NO travel\u003cbr\u003eadvisories #AlJazeera\u003cbr\u003eFri Jan 09 17:34:01 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

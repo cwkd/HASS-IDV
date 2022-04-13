@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2023, "id": 0, "label": "553566877956734976", "shape": "dot", "size": 10, "title": "553566877956734976\u003cbr\u003eFrance faces 2 hostage-taking attacks;\u003cbr\u003eParis kosher market attack has\u003cbr\u003e5 hostages, some wounded: http://t.co/dWlaFSDKjL\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:00:03 +0000 2015"}, {"group": 2023, "id": 1, "label": "553567025331978240", "shape": "dot", "size": 10, "title": "553567025331978240\u003cbr\u003e@AP \nthe majority of Muslims\u003cbr\u003ehave no desire to ostracize\u003cbr\u003ethe cancer that is eating\u003cbr\u003eaway at Islam... the world\u003cbr\u003eneeds to do that\u003cbr\u003eFri Jan 09 15:00:38 +0000 2015"}, {"group": 2023, "id": 2, "label": "553567380266168320", "shape": "dot", "size": 10, "title": "553567380266168320\u003cbr\u003e\u0026gt; RT \u201c@AP: France faces\u003cbr\u003e2 hostage-taking attacks; Paris kosher\u003cbr\u003emarket attack has 5 hostages,\u003cbr\u003esome wounded: http://t.co/KB7OQuiUXA\u201d\u003cbr\u003eFri Jan 09 15:02:02 +0000 2015"}, {"group": 2023, "id": 3, "label": "553567447924486144", "shape": "dot", "size": 10, "title": "553567447924486144\u003cbr\u003e@AP France faces 2 hostage-taking\u003cbr\u003eattacks; Paris kosher market attack\u003cbr\u003ehas 5 hostages, some wounded:\u003cbr\u003ehttp://t.co/OMI0El49pD\u003cbr\u003eFri Jan 09 15:02:19 +0000 2015"}, {"group": 2023, "id": 4, "label": "553567825907154944", "shape": "dot", "size": 10, "title": "553567825907154944\u003cbr\u003e@AP Haven\u0027t we had it\u003cbr\u003ewith religion already? Enough is\u003cbr\u003eenough. Stop killing over dueling\u003cbr\u003emythologies, and stop ignoring the\u003cbr\u003ecause #religion\u003cbr\u003eFri Jan 09 15:03:49 +0000 2015"}, {"group": 2023, "id": 5, "label": "553569515645071363", "shape": "dot", "size": 10, "title": "553569515645071363\u003cbr\u003e@AP 6 hostages, @FRANCE24 said.\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:10:32 +0000 2015"}, {"group": 2023, "id": 6, "label": "553569585535143936", "shape": "dot", "size": 10, "title": "553569585535143936\u003cbr\u003eoh my... @AP RT: France\u003cbr\u003efaces 2 hostage-taking attacks; Paris\u003cbr\u003ekosher market attack has 5\u003cbr\u003ehostages, some wounded: http://t.co/RDrHnGu8SN\u003cbr\u003eFri Jan 09 15:10:48 +0000 2015"}, {"group": 2023, "id": 7, "label": "553573893706100738", "shape": "dot", "size": 10, "title": "553573893706100738\u003cbr\u003e\u201c@AP: France faces 2 hostage-taking\u003cbr\u003eattacks; Paris kosher market attack\u003cbr\u003ehas 5 hostages, some wounded:\u003cbr\u003ehttp://t.co/bffFX60c0s\u201d @LpHarvin\u003cbr\u003eFri Jan 09 15:27:55 +0000 2015"}, {"group": 2023, "id": 8, "label": "553576097200091136", "shape": "dot", "size": 10, "title": "553576097200091136\u003cbr\u003e@AP  horrible \ud83d\ude2d\u003cbr\u003eFri Jan 09 15:36:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

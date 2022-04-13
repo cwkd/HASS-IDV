@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 340, "id": 0, "label": "552825303341740032", "shape": "dot", "size": 10, "title": "552825303341740032\u003cbr\u003eMuslims get judged every day\u003cbr\u003ebecause of all these terrorist\u003cbr\u003eattacks. They are VICTIMS, not\u003cbr\u003esupporters. #CharlieHebdo http://t.co/LbXhLcnby7\u003cbr\u003eWed Jan 07 13:53:17 +0000 2015"}, {"group": 340, "id": 1, "label": "552826175689879552", "shape": "dot", "size": 10, "title": "552826175689879552\u003cbr\u003e@tobeymonster at the end of\u003cbr\u003ethe day, religion is often\u003cbr\u003ejust an excuse for human\u003cbr\u003ebehaviour.\u003cbr\u003eWed Jan 07 13:56:45 +0000 2015"}, {"group": 340, "id": 2, "label": "552827426750095360", "shape": "dot", "size": 10, "title": "552827426750095360\u003cbr\u003e@tobeymonster just a FYI http://t.co/T6AsjLVCvM\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:01:44 +0000 2015"}, {"group": 340, "id": 3, "label": "552827817076203520", "shape": "dot", "size": 10, "title": "552827817076203520\u003cbr\u003e@tobeymonster BILL GATES ETHICAL???????\u003cbr\u003eWed Jan 07 14:03:17 +0000 2015"}, {"group": 340, "id": 4, "label": "552828161902129152", "shape": "dot", "size": 10, "title": "552828161902129152\u003cbr\u003e1. @tobeymonster thank you for\u003cbr\u003edefending muslim people inspite of\u003cbr\u003eall the fake news arround,\u003cbr\u003ethe  world needs more\u003cbr\u003epeople like you\u003cbr\u003eWed Jan 07 14:04:39 +0000 2015"}, {"group": 340, "id": 5, "label": "552828513162518529", "shape": "dot", "size": 10, "title": "552828513162518529\u003cbr\u003e2. @tobeymonster you may dont\u003cbr\u003eknow me but i just\u003cbr\u003ewant to say thank you\u003cbr\u003efor your bravery to say\u003cbr\u003eyour opinion and not afraid\u003cbr\u003eof wht ppl say\u003cbr\u003eWed Jan 07 14:06:03 +0000 2015"}, {"group": 340, "id": 6, "label": "552834987394072576", "shape": "dot", "size": 10, "title": "552834987394072576\u003cbr\u003e@tobeymonster WRONG. RELIGION CREATES IMMORALITY\u003cbr\u003eAND CRIME. IT MAKES OTHERWISE\u003cbr\u003eSANE MEN INTO MURDERERS.\u003cbr\u003eWed Jan 07 14:31:46 +0000 2015"}, {"group": 340, "id": 7, "label": "552836446797971456", "shape": "dot", "size": 10, "title": "552836446797971456\u003cbr\u003e@tobeymonster RELIGION SWITCHES OFF CRITICAL\u003cbr\u003eTHINKING \u0026amp; CAN LEAD TO\u003cbr\u003eVIOLENCE. THIS IS WHAT HAS\u003cbr\u003eHAPPENED HERE. (PATRIOTISM CAN DO\u003cbr\u003eTHE SAME)\u003cbr\u003eWed Jan 07 14:37:34 +0000 2015"}, {"group": 340, "id": 8, "label": "552837025213460480", "shape": "dot", "size": 10, "title": "552837025213460480\u003cbr\u003e@tobeymonster you\u0027re the best\u003cbr\u003eWed Jan 07 14:39:52 +0000 2015"}, {"group": 340, "id": 10, "label": "552899600655212544", "shape": "dot", "size": 10, "title": "552899600655212544\u003cbr\u003e@tobeymonster  yessss....\u003cbr\u003eWed Jan 07 18:48:31 +0000 2015"}, {"group": 340, "id": 11, "label": "552920302850961410", "shape": "dot", "size": 10, "title": "552920302850961410\u003cbr\u003e@tobeymonster @yasminR_xx Chart forgot the\u003cbr\u003egood jews and the bad\u003cbr\u003ejews as well as other\u003cbr\u003eraces and sexual orientations. we\u0027re\u003cbr\u003eall good and bad\u003cbr\u003eWed Jan 07 20:10:47 +0000 2015"}, {"group": 340, "id": 14, "label": "552959213723717632", "shape": "dot", "size": 10, "title": "552959213723717632\u003cbr\u003e@imgagashusband @tobeymonster the truth must\u003cbr\u003ebe conveyed,\u003cbr\u003eWed Jan 07 22:45:24 +0000 2015"}, {"group": 340, "id": 9, "label": "552889270114205696", "shape": "dot", "size": 10, "title": "552889270114205696\u003cbr\u003e@OscarLacrosse @tobeymonster wow you\u0027re trash\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:07:28 +0000 2015"}, {"group": 340, "id": 15, "label": "552968399333376000", "shape": "dot", "size": 10, "title": "552968399333376000\u003cbr\u003e@majesticvxbez @tobeymonster THAT\u0027S NOT AN\u003cbr\u003eARGUMENT. USE YOUR MIND.\u003cbr\u003eWed Jan 07 23:21:54 +0000 2015"}, {"group": 340, "id": 12, "label": "552920540437295104", "shape": "dot", "size": 10, "title": "552920540437295104\u003cbr\u003e@oscaralcivar @tobeymonster yeah. However, jews\u003cbr\u003earen\u0027t really involved with this\u003cbr\u003esituation and the Christians example\u003cbr\u003ewas used as they are\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:11:44 +0000 2015"}, {"group": 340, "id": 13, "label": "552920617276944384", "shape": "dot", "size": 10, "title": "552920617276944384\u003cbr\u003e@oscaralcivar @tobeymonster ... portrayed as\u003cbr\u003einnocent and the \u0027\u0027superior religion\u0027\u0027\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:12:02 +0000 2015"}, {"group": 340, "id": 16, "label": "552970678425878528", "shape": "dot", "size": 10, "title": "552970678425878528\u003cbr\u003e@OscarLacrosse @tobeymonster exactly. It\u0027s not\u003cbr\u003ean argument. Just fact\u003cbr\u003eWed Jan 07 23:30:58 +0000 2015"}, {"group": 340, "id": 17, "label": "552977103621464064", "shape": "dot", "size": 10, "title": "552977103621464064\u003cbr\u003e@majesticvxbez @tobeymonster LEARN TO USE\u003cbr\u003eYOUR MENTAL FACULTIES IN AN\u003cbr\u003eARGUMENT, COMMAND IDEAS \u0026amp; USE\u003cbr\u003eFACTS. THIS WILL HELP YOU\u003cbr\u003eDEVELOP.\u003cbr\u003eWed Jan 07 23:56:29 +0000 2015"}, {"group": 340, "id": 18, "label": "552977230440439808", "shape": "dot", "size": 10, "title": "552977230440439808\u003cbr\u003e@majesticvxbez @tobeymonster IN OTHER WORDS,\u003cbr\u003eBEING PUERILE IS _MY_ JOB!\u003cbr\u003e\u003cbr\u003eWed Jan 07 23:57:00 +0000 2015"}, {"group": 340, "id": 19, "label": "552983698707320832", "shape": "dot", "size": 10, "title": "552983698707320832\u003cbr\u003e@OscarLacrosse @tobeymonster take your caps\u003cbr\u003eoff. Makes you seem less\u003cbr\u003ebrain dead\u003cbr\u003eThu Jan 08 00:22:42 +0000 2015"}, {"group": 340, "id": 20, "label": "552989198924652544", "shape": "dot", "size": 10, "title": "552989198924652544\u003cbr\u003e@majesticvxbez @tobeymonster I DON\u0027T THINK\u003cbr\u003eIT DOES. MINDS ARE MATTERS\u003cbr\u003eOF SUBSTANCE, NOT STYLE. STOP\u003cbr\u003eWORRYING SO MUCH ABOUT STYLE.\u003cbr\u003eTHINK.\u003cbr\u003eThu Jan 08 00:44:33 +0000 2015"}, {"group": 340, "id": 21, "label": "552992378702004225", "shape": "dot", "size": 10, "title": "552992378702004225\u003cbr\u003e@OscarLacrosse @tobeymonster the. Change your\u003cbr\u003estyle since it doesn\u0027t matter\u003cbr\u003eeither way\u003cbr\u003eThu Jan 08 00:57:11 +0000 2015"}, {"group": 340, "id": 22, "label": "552994952683479040", "shape": "dot", "size": 10, "title": "552994952683479040\u003cbr\u003e@majesticvxbez @tobeymonster TRY READING A\u003cbr\u003eBOOK.\u003cbr\u003eThu Jan 08 01:07:25 +0000 2015"}, {"group": 340, "id": 23, "label": "552995101111504897", "shape": "dot", "size": 10, "title": "552995101111504897\u003cbr\u003e@OscarLacrosse @tobeymonster wow. You must\u003cbr\u003ehave a http://t.co/kVgB8WaS02\u003cbr\u003eThu Jan 08 01:08:00 +0000 2015"}, {"group": 340, "id": 24, "label": "552998490394333187", "shape": "dot", "size": 10, "title": "552998490394333187\u003cbr\u003e@majesticvxbez @tobeymonster YOU HAVE FOUND\u003cbr\u003eMY NEW PROFILE PIC.\u003cbr\u003eThu Jan 08 01:21:28 +0000 2015"}, {"group": 340, "id": 26, "label": "553000361150390272", "shape": "dot", "size": 10, "title": "553000361150390272\u003cbr\u003e@majesticvxbez @tobeymonster I\u0027LL PUT IT\u003cbr\u003eIN LANGUAGE YOU CAN UNDERSTAND:\u003cbr\u003eYOUR MENTAL PENIS IS ABOUT\u003cbr\u003e1 INCH LONG.\u003cbr\u003eThu Jan 08 01:28:55 +0000 2015"}, {"group": 340, "id": 25, "label": "552999387413372930", "shape": "dot", "size": 10, "title": "552999387413372930\u003cbr\u003e@majesticvxbez @tobeymonster SERIOUSLY THOUGH, YOU\u003cbr\u003eNEED TO WORK ON YOUR\u003cbr\u003eINTELLECTUAL CHOPS. YOU\u0027VE GOT SAS,\u003cbr\u003eYOU JUST NEED TO DO\u003cbr\u003eSOME WORK.\u003cbr\u003eThu Jan 08 01:25:02 +0000 2015"}, {"group": 340, "id": 27, "label": "553006878050250753", "shape": "dot", "size": 10, "title": "553006878050250753\u003cbr\u003e@OscarLacrosse @tobeymonster big talk for\u003cbr\u003ea little man\u003cbr\u003eThu Jan 08 01:54:48 +0000 2015"}, {"group": 340, "id": 28, "label": "553007417131560961", "shape": "dot", "size": 10, "title": "553007417131560961\u003cbr\u003e@majesticvxbez @tobeymonster OKAY, THAT\u0027S EMPTY\u003cbr\u003eBOILERPLATE: A CLICHE IN THE\u003cbr\u003ePLACE OF THINKING. JUST WHAT\u003cbr\u003eI\u0027M ENCOURAGING YOU TO AVOID.\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:56:57 +0000 2015"}, {"group": 340, "id": 29, "label": "553007804181913600", "shape": "dot", "size": 10, "title": "553007804181913600\u003cbr\u003e@OscarLacrosse @tobeymonster well it fitted\u003cbr\u003eperfectly. You really aren\u0027t worth\u003cbr\u003ethe thinking.\u003cbr\u003eThu Jan 08 01:58:29 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 5, "to": 14, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 9, "to": 15, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 23, "to": 26, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

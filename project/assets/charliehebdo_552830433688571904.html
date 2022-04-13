@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 402, "id": 0, "label": "552830433688571904", "shape": "dot", "size": 10, "title": "552830433688571904\u003cbr\u003eEverything we know about the\u003cbr\u003e#CharlieHebdo attack so far\nhttp://t.co/oqu0qi6N8v http://t.co/uLT5JPOj4t\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:13:41 +0000 2015"}, {"group": 402, "id": 1, "label": "552830720163717121", "shape": "dot", "size": 10, "title": "552830720163717121\u003cbr\u003e@Independent if you can show\u003cbr\u003esuch gruesome pictures of death,\u003cbr\u003ewhy aren\u0027t you showing the\u003cbr\u003ecartoons that caused it? Unbelievable\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 14:14:49 +0000 2015"}, {"group": 402, "id": 2, "label": "552831127871041537", "shape": "dot", "size": 10, "title": "552831127871041537\u003cbr\u003e@Independent \nI read satire, and\u003cbr\u003eno deluded raghead scares me.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:16:26 +0000 2015"}, {"group": 402, "id": 3, "label": "552831220103790592", "shape": "dot", "size": 10, "title": "552831220103790592\u003cbr\u003e@Independent Neguemos a los radicales\u003cbr\u003eislamistas y populistas el acceso\u003cbr\u003ea los medios de comunicaci\u00f3n\u003cbr\u003e#VetoDemocr\u00e1tico por #CharlieHebdo\u003cbr\u003eWed Jan 07 14:16:48 +0000 2015"}, {"group": 402, "id": 4, "label": "552831300563107841", "shape": "dot", "size": 10, "title": "552831300563107841\u003cbr\u003e@Independent ..We cannot allow murdering\u003cbr\u003escum to control us like\u003cbr\u003ethis. If G.ments wont respond\u003cbr\u003ethen people will. (Germany)\u003cbr\u003eWed Jan 07 14:17:07 +0000 2015"}, {"group": 402, "id": 7, "label": "552831911685791746", "shape": "dot", "size": 10, "title": "552831911685791746\u003cbr\u003e@Independent \nParadoxically, hope UKIP does\u003cbr\u003ewell at election. Or else\u003cbr\u003erise for real far \u003cbr\u003eright nutters.\u003cbr\u003eWed Jan 07 14:19:33 +0000 2015"}, {"group": 402, "id": 8, "label": "552831951825272832", "shape": "dot", "size": 10, "title": "552831951825272832\u003cbr\u003e@Independent  Ghandi said an\u003cbr\u003eeye for an eye will\u003cbr\u003emake us all blind, so\u003cbr\u003eright he was, when will\u003cbr\u003eit all end!\u003cbr\u003eWed Jan 07 14:19:43 +0000 2015"}, {"group": 402, "id": 10, "label": "552833636765302784", "shape": "dot", "size": 10, "title": "552833636765302784\u003cbr\u003e@Independent  #mindless #senseless #weakmindedtwistedsheep\u003cbr\u003e#ihatereligon\u003cbr\u003eWed Jan 07 14:26:24 +0000 2015"}, {"group": 402, "id": 11, "label": "552834801749991424", "shape": "dot", "size": 10, "title": "552834801749991424\u003cbr\u003e@Independent cartonist... http://t.co/fwfSPZWdLC\u003cbr\u003eWed Jan 07 14:31:02 +0000 2015"}, {"group": 402, "id": 12, "label": "552840648198746113", "shape": "dot", "size": 10, "title": "552840648198746113\u003cbr\u003e@Independent http://t.co/xCB36lMCDJ\u003cbr\u003eWed Jan 07 14:54:16 +0000 2015"}, {"group": 402, "id": 13, "label": "552841186193707011", "shape": "dot", "size": 10, "title": "552841186193707011\u003cbr\u003e@Independent @sobtw_rans \"A newspaper is\u003cbr\u003enot a weapon of war.\"\u003cbr\u003eYES IT IS\u003cbr\u003eWed Jan 07 14:56:24 +0000 2015"}, {"group": 402, "id": 14, "label": "552854524793466880", "shape": "dot", "size": 10, "title": "552854524793466880\u003cbr\u003e@Independent Horrific news. Deepest sympathy\u003cbr\u003efrom the UK. Islamic savages\u003cbr\u003ehave no humanity.They are Godless\u003cbr\u003ecreatures, worse than animals\u003cbr\u003eWed Jan 07 15:49:24 +0000 2015"}, {"group": 402, "id": 5, "label": "552831529614057474", "shape": "dot", "size": 10, "title": "552831529614057474\u003cbr\u003e@PittacusPhi @Independent ..You fool...have you\u003cbr\u003eany grey matter or are\u003cbr\u003eyou one of them.\u003cbr\u003eWed Jan 07 14:18:02 +0000 2015"}, {"group": 402, "id": 6, "label": "552831775614189568", "shape": "dot", "size": 10, "title": "552831775614189568\u003cbr\u003e@EverywhereInOne @Independent Don\u0027t like it?\u003cbr\u003eGet yourself a shovel and\u003cbr\u003edig yourself out.\u003cbr\u003eWed Jan 07 14:19:01 +0000 2015"}, {"group": 402, "id": 9, "label": "552832366709080065", "shape": "dot", "size": 10, "title": "552832366709080065\u003cbr\u003e@PittacusPhi @Independent ..Ha ha..but you\u003cbr\u003eknow that is copyright ?.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:21:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

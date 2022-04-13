@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1847, "id": 0, "label": "553470382129565696", "shape": "dot", "size": 10, "title": "553470382129565696\u003cbr\u003eUpdate - AP: French police\u003cbr\u003eare chasing a Peugeot on\u003cbr\u003eA2 motorway and say hostages\u003cbr\u003ehave been taken northeast of\u003cbr\u003e#Paris #CharlieHebdo\u003cbr\u003eFri Jan 09 08:36:36 +0000 2015"}, {"group": 1847, "id": 1, "label": "553470568121393152", "shape": "dot", "size": 10, "title": "553470568121393152\u003cbr\u003e\u201c@SkyNewsBreak: Update - AP: French\u003cbr\u003epolice are chasing a Peugeot\u003cbr\u003eon A2 motorway and say\u003cbr\u003ehostages have been taken northeast\u003cbr\u003eof #Paris\u201d\u003cbr\u003eFri Jan 09 08:37:21 +0000 2015"}, {"group": 1847, "id": 2, "label": "553470569640120320", "shape": "dot", "size": 10, "title": "553470569640120320\u003cbr\u003eUpdate - AP: French police\u003cbr\u003eare chasing a Peugeot on\u003cbr\u003eA2 motorway and say hostages\u003cbr\u003ehave been taken northeast of\u003cbr\u003e#Paris v\u00eda @SkyNewsBreak\u003cbr\u003eFri Jan 09 08:37:21 +0000 2015"}, {"group": 1847, "id": 3, "label": "553470714012266496", "shape": "dot", "size": 10, "title": "553470714012266496\u003cbr\u003e@SkyNewsBreak WHERE IS THE SKY\u003cbr\u003eCHOPPER?\u003cbr\u003eFri Jan 09 08:37:55 +0000 2015"}, {"group": 1847, "id": 4, "label": "553470714922405888", "shape": "dot", "size": 10, "title": "553470714922405888\u003cbr\u003e@SkyNewsBreak \nNo retreat,  No\u003cbr\u003esurrender.\u003cbr\u003eFri Jan 09 08:37:56 +0000 2015"}, {"group": 1847, "id": 5, "label": "553471157484421120", "shape": "dot", "size": 10, "title": "553471157484421120\u003cbr\u003e@SkyNewsBreak\u003cbr\u003eFri Jan 09 08:39:41 +0000 2015"}, {"group": 1847, "id": 6, "label": "553471230481674240", "shape": "dot", "size": 10, "title": "553471230481674240\u003cbr\u003e@SkyNewsBreak French Country Men suspects\u003cbr\u003ekiller in Hebdo  took\u003cbr\u003ehostages outside Paris, nothing to\u003cbr\u003edo wth faith #CharlieHebdo \u003cbr\u003e@BarackObama\u003cbr\u003eFri Jan 09 08:39:59 +0000 2015"}, {"group": 1847, "id": 8, "label": "553471392050872320", "shape": "dot", "size": 10, "title": "553471392050872320\u003cbr\u003e@SkyNewsBreak shit!! Hope these people\u003cbr\u003eare ok!!\u003cbr\u003eFri Jan 09 08:40:37 +0000 2015"}, {"group": 1847, "id": 9, "label": "553472045305303040", "shape": "dot", "size": 10, "title": "553472045305303040\u003cbr\u003e@SkyNewsBreak y are you\u0027s hash-tagging\u003cbr\u003eIT?\u003cbr\u003eFri Jan 09 08:43:13 +0000 2015"}, {"group": 1847, "id": 10, "label": "553472750523006976", "shape": "dot", "size": 10, "title": "553472750523006976\u003cbr\u003e@SkyNewsBreak https://t.co/xbvae4WsI9 is now on\u003cbr\u003emy playlist.\u003cbr\u003eFri Jan 09 08:46:01 +0000 2015"}, {"group": 1847, "id": 11, "label": "553472861361676288", "shape": "dot", "size": 10, "title": "553472861361676288\u003cbr\u003e@SkyNewsBreak as your own reporter\u003cbr\u003etold you it is the\u003cbr\u003eN2. The A2 is miles\u003cbr\u003eaway from the area where\u003cbr\u003ethis is happening. #notaclue\u003cbr\u003eFri Jan 09 08:46:27 +0000 2015"}, {"group": 1847, "id": 12, "label": "553474875491639297", "shape": "dot", "size": 10, "title": "553474875491639297\u003cbr\u003e@SkyNewsBreak @YasPti Believe as little\u003cbr\u003eof what the French police\u003cbr\u003esay as what the police\u003cbr\u003eof Pak tell us. More\u003cbr\u003elikely a put-up-job.\u003cbr\u003eFri Jan 09 08:54:28 +0000 2015"}, {"group": 1847, "id": 13, "label": "553475035235901440", "shape": "dot", "size": 10, "title": "553475035235901440\u003cbr\u003e\u201c@SkyNewsBreak: French police are chasing\u003cbr\u003ea Peugeot on A2 motorway\u003cbr\u003eand hostages have been taken\u003cbr\u003enortheast of #Paris\" Obviously a\u003cbr\u003ePeugeot\u003cbr\u003eFri Jan 09 08:55:06 +0000 2015"}, {"group": 1847, "id": 14, "label": "553481205270970368", "shape": "dot", "size": 10, "title": "553481205270970368\u003cbr\u003e@SkyNewsBreak your own Ian Woods\u003cbr\u003ereckons its the N2 \u003cbr\u003eand that there was no\u003cbr\u003echase. @Jimmyh699 #Paris #CharlieHebdo\u003cbr\u003eFri Jan 09 09:19:37 +0000 2015"}, {"group": 1847, "id": 15, "label": "553483035002540033", "shape": "dot", "size": 10, "title": "553483035002540033\u003cbr\u003e@SkyNewsBreak I hope they get\u003cbr\u003eshot between the eyes. Bastards\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:26:53 +0000 2015"}, {"group": 1847, "id": 16, "label": "553494027019239424", "shape": "dot", "size": 10, "title": "553494027019239424\u003cbr\u003e@SkyNewsBreak they\u0027ll break down soon\u003cbr\u003eenough if they\u0027re in a\u003cbr\u003ePeugeot, hope they hang the\u003cbr\u003ebastards\u003cbr\u003eFri Jan 09 10:10:34 +0000 2015"}, {"group": 1847, "id": 7, "label": "553471329576697856", "shape": "dot", "size": 10, "title": "553471329576697856\u003cbr\u003e@NicoHines yes!\u003cbr\u003eFri Jan 09 08:40:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

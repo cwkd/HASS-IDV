@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 350, "id": 0, "label": "552826150141960192", "shape": "dot", "size": 10, "title": "552826150141960192\u003cbr\u003eEditor of Charlie Hebdo has\u003cbr\u003ebeen liberal \u0026amp; righteous. Salute\u003cbr\u003eto all the cartoonists martyred\u003cbr\u003eat the terrorist attack. http://t.co/Yk3PgHkz4S\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:56:39 +0000 2015"}, {"group": 350, "id": 1, "label": "552828242453733376", "shape": "dot", "size": 10, "title": "552828242453733376\u003cbr\u003e@SuvalagnaC  Please give for\u003cbr\u003eDestitute, Orphan, Very poor, Old\u003cbr\u003eage, so their life as\u003cbr\u003ehuman being like us... http://t.co/1qBqjKsgZS\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:04:58 +0000 2015"}, {"group": 350, "id": 2, "label": "552899608737640448", "shape": "dot", "size": 10, "title": "552899608737640448\u003cbr\u003e@SuvalagnaC That which cant stand\u003cbr\u003eto its criticism is weakest\nHere,\u003cbr\u003ea Hindu toon famous and\u003cbr\u003eloved among the followers http://t.co/Vl11xQBZKh\u003cbr\u003e\u003cbr\u003eWed Jan 07 18:48:33 +0000 2015"}, {"group": 350, "id": 3, "label": "553108371839012864", "shape": "dot", "size": 10, "title": "553108371839012864\u003cbr\u003e@SuvalagnaC You are absolutely right\u003cbr\u003eand your statement is justifiable.\nThanks\u003cbr\u003efor upholding the ethics of\u003cbr\u003ejournalism.\u003cbr\u003eThu Jan 08 08:38:06 +0000 2015"}, {"group": 350, "id": 4, "label": "553116166537744385", "shape": "dot", "size": 10, "title": "553116166537744385\u003cbr\u003e@SuvalagnaC @Nisha_Hindu He died believing\u003cbr\u003eFrench Laws would .\u003cbr\u003eThu Jan 08 09:09:05 +0000 2015"}, {"group": 350, "id": 5, "label": "553116756047167490", "shape": "dot", "size": 10, "title": "553116756047167490\u003cbr\u003e@SuvalagnaC @re_ve_ng_er @sraithatha30 @NeelakshiGswm @Nir_27\u003cbr\u003eFreedom of speech?\nAllow me to\u003cbr\u003ecreate a page on the\u003cbr\u003eholocaust \u0026amp; make fun of\u003cbr\u003eit\u003cbr\u003eThu Jan 08 09:11:25 +0000 2015"}, {"group": 350, "id": 6, "label": "553120641461649408", "shape": "dot", "size": 10, "title": "553120641461649408\u003cbr\u003e@zahedullah9 Go on.. make a\u003cbr\u003epage on it.. 1 thing\u003cbr\u003efor sure, u won\u0027t be\u003cbr\u003ekilled. Thats d difference @SuvalagnaC\u003cbr\u003e@sraithatha30 @NeelakshiGswm\u003cbr\u003eThu Jan 08 09:26:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

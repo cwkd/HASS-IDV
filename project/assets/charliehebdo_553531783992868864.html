@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1337, "id": 0, "label": "553531783992868864", "shape": "dot", "size": 10, "title": "553531783992868864\u003cbr\u003eCan these terrorist cunts in\u003cbr\u003eParis just fucking stop with\u003cbr\u003ethis bullshit! \ud83d\ude21\u003cbr\u003eFri Jan 09 12:40:36 +0000 2015"}, {"group": 1337, "id": 1, "label": "553531840645308417", "shape": "dot", "size": 10, "title": "553531840645308417\u003cbr\u003e@ProSyndicate are you ok tom?\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:40:49 +0000 2015"}, {"group": 1337, "id": 2, "label": "553531894017830912", "shape": "dot", "size": 10, "title": "553531894017830912\u003cbr\u003e@ProSyndicate money whore stfu\u003cbr\u003eFri Jan 09 12:41:02 +0000 2015"}, {"group": 1337, "id": 3, "label": "553531900598689792", "shape": "dot", "size": 10, "title": "553531900598689792\u003cbr\u003e@ProSyndicate there is just something\u003cbr\u003ewrong with them\u003cbr\u003eFri Jan 09 12:41:03 +0000 2015"}, {"group": 1337, "id": 4, "label": "553531901752127488", "shape": "dot", "size": 10, "title": "553531901752127488\u003cbr\u003e@ProSyndicate I agree\u003cbr\u003eFri Jan 09 12:41:04 +0000 2015"}, {"group": 1337, "id": 5, "label": "553531904134483968", "shape": "dot", "size": 10, "title": "553531904134483968\u003cbr\u003e@ProSyndicate amen\u003cbr\u003eFri Jan 09 12:41:04 +0000 2015"}, {"group": 1337, "id": 6, "label": "553531911298359296", "shape": "dot", "size": 10, "title": "553531911298359296\u003cbr\u003e@ProSyndicate are you ok?\u003cbr\u003eFri Jan 09 12:41:06 +0000 2015"}, {"group": 1337, "id": 7, "label": "553531929350250496", "shape": "dot", "size": 10, "title": "553531929350250496\u003cbr\u003e@ProSyndicate agreed\u003cbr\u003eFri Jan 09 12:41:10 +0000 2015"}, {"group": 1337, "id": 8, "label": "553531960745009153", "shape": "dot", "size": 10, "title": "553531960745009153\u003cbr\u003e@ProSyndicate they\u0027re fucking cunts!\u003cbr\u003eFri Jan 09 12:41:18 +0000 2015"}, {"group": 1337, "id": 9, "label": "553531974816501760", "shape": "dot", "size": 10, "title": "553531974816501760\u003cbr\u003e@ProSyndicate don\u0027t blame it on\u003cbr\u003eIslam #thisisnotislam\u003cbr\u003eFri Jan 09 12:41:21 +0000 2015"}, {"group": 1337, "id": 10, "label": "553532013618024448", "shape": "dot", "size": 10, "title": "553532013618024448\u003cbr\u003e@ProSyndicate tom dropped the C\u003cbr\u003ebomb\u003cbr\u003eFri Jan 09 12:41:30 +0000 2015"}, {"group": 1337, "id": 48, "label": "553553982509957120", "shape": "dot", "size": 10, "title": "553553982509957120\u003cbr\u003e@Dolpheeen @ProSyndicate he\u0027s fine, he\u0027s\u003cbr\u003enot the only one sick\u003cbr\u003eof terrorism.\u003cbr\u003eFri Jan 09 14:08:48 +0000 2015"}, {"group": 1337, "id": 12, "label": "553532213518958592", "shape": "dot", "size": 10, "title": "553532213518958592\u003cbr\u003e@kharelkiran2 @ProSyndicate attention seeking cunt\u003cbr\u003estfu\u003cbr\u003eFri Jan 09 12:42:18 +0000 2015"}, {"group": 1337, "id": 15, "label": "553532482315108352", "shape": "dot", "size": 10, "title": "553532482315108352\u003cbr\u003e@kharelkiran2 @ProSyndicate fuck off you\u003cbr\u003esad sad person, get a\u003cbr\u003elife pls\u003cbr\u003eFri Jan 09 12:43:22 +0000 2015"}, {"group": 1337, "id": 33, "label": "553534055279362049", "shape": "dot", "size": 10, "title": "553534055279362049\u003cbr\u003e@kharelkiran2 @ProSyndicate Uggh, you\u0027re almost\u003cbr\u003eas bad as the terrorists.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:49:37 +0000 2015"}, {"group": 1337, "id": 11, "label": "553532117108285440", "shape": "dot", "size": 10, "title": "553532117108285440\u003cbr\u003e@12_alkhaledi @ProSyndicate your absolutely right\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:41:55 +0000 2015"}, {"group": 1337, "id": 14, "label": "553532309484625920", "shape": "dot", "size": 10, "title": "553532309484625920\u003cbr\u003e@12_alkhaledi @ProSyndicate when did he\u003cbr\u003esay it was?\u003cbr\u003eFri Jan 09 12:42:41 +0000 2015"}, {"group": 1337, "id": 36, "label": "553546438349959168", "shape": "dot", "size": 10, "title": "553546438349959168\u003cbr\u003e@12_alkhaledi @ProSyndicate it started because\u003cbr\u003eof Islam sadly. Some crazy\u003cbr\u003epeople out there\u003cbr\u003eFri Jan 09 13:38:49 +0000 2015"}, {"group": 1337, "id": 37, "label": "553548460226777089", "shape": "dot", "size": 10, "title": "553548460226777089\u003cbr\u003e@12_alkhaledi @ProSyndicate Only illiterate people\u003cbr\u003eblame Islam, as far as\u003cbr\u003eI know Islam is a\u003cbr\u003ereligion of peace.\u003cbr\u003eFri Jan 09 13:46:52 +0000 2015"}, {"group": 1337, "id": 41, "label": "553551056203153408", "shape": "dot", "size": 10, "title": "553551056203153408\u003cbr\u003e@12_alkhaledi  dude it\u0027s completely\u003cbr\u003eabout fucking Islam are you\u003cbr\u003eretarted. You know why this\u003cbr\u003eincident happened? ISLAM MOTHERFUCKER\u003cbr\u003eFri Jan 09 13:57:10 +0000 2015"}, {"group": 1337, "id": 45, "label": "553552492777066496", "shape": "dot", "size": 10, "title": "553552492777066496\u003cbr\u003e@12_alkhaledi @ProSyndicate it is islam,\u003cbr\u003ebut it\u0027s the radical islamists\u003cbr\u003edoing it\u003cbr\u003eFri Jan 09 14:02:53 +0000 2015"}, {"group": 1337, "id": 22, "label": "553533021878362112", "shape": "dot", "size": 10, "title": "553533021878362112\u003cbr\u003e@Kill_Switch250 I know sir\u003cbr\u003eFri Jan 09 12:45:31 +0000 2015"}, {"group": 1337, "id": 13, "label": "553532300823396352", "shape": "dot", "size": 10, "title": "553532300823396352\u003cbr\u003e@NathanHobill @ProSyndicate 5year old fag\u003cbr\u003estfu\u003cbr\u003eFri Jan 09 12:42:39 +0000 2015"}, {"group": 1337, "id": 17, "label": "553532826801684480", "shape": "dot", "size": 10, "title": "553532826801684480\u003cbr\u003e@kharelkiran2 @ProSyndicate OMG best thing\u003cbr\u003eanyone\u0027s ever said to me\u003cbr\u003e\ud83d\ude02\ud83d\ude02\u003cbr\u003eFri Jan 09 12:44:44 +0000 2015"}, {"group": 1337, "id": 38, "label": "553548557878571008", "shape": "dot", "size": 10, "title": "553548557878571008\u003cbr\u003e@kharelkiran2 @NathanHobill @ProSyndicate Stop attention\u003cbr\u003eseeking \ud83d\ude02\u003cbr\u003eFri Jan 09 13:47:15 +0000 2015"}, {"group": 1337, "id": 20, "label": "553532970556862465", "shape": "dot", "size": 10, "title": "553532970556862465\u003cbr\u003e@zombieking8003 just in case\u003cbr\u003eFri Jan 09 12:45:18 +0000 2015"}, {"group": 1337, "id": 16, "label": "553532646207549440", "shape": "dot", "size": 10, "title": "553532646207549440\u003cbr\u003e@HDColesy @ProSyndicate 2year old fag\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:44:01 +0000 2015"}, {"group": 1337, "id": 21, "label": "553532994850664449", "shape": "dot", "size": 10, "title": "553532994850664449\u003cbr\u003e@HDColesy @kharelkiran2 @ProSyndicate he needs\u003cbr\u003eto go eat a cactus\u003cbr\u003eI swear \ud83d\ude02\ud83d\ude02\u003cbr\u003eFri Jan 09 12:45:24 +0000 2015"}, {"group": 1337, "id": 18, "label": "553532930048659456", "shape": "dot", "size": 10, "title": "553532930048659456\u003cbr\u003e@kharelkiran2 @ProSyndicate 2 year old?\u003cbr\u003eI\u0027ve made more money than\u003cbr\u003eyou ever will scrounging off\u003cbr\u003ebenefits lmao\u003cbr\u003eFri Jan 09 12:45:09 +0000 2015"}, {"group": 1337, "id": 19, "label": "553532931395059712", "shape": "dot", "size": 10, "title": "553532931395059712\u003cbr\u003e@NathanHobill @ProSyndicate emo fag just\u003cbr\u003estfu\u003cbr\u003eFri Jan 09 12:45:09 +0000 2015"}, {"group": 1337, "id": 23, "label": "553533189860622336", "shape": "dot", "size": 10, "title": "553533189860622336\u003cbr\u003e@NathanHobill @kharelkiran2 @ProSyndicate read the\u003cbr\u003ekids tweets it gets better\u003cbr\u003elmao weird people\u003cbr\u003eFri Jan 09 12:46:11 +0000 2015"}, {"group": 1337, "id": 27, "label": "553533390927200256", "shape": "dot", "size": 10, "title": "553533390927200256\u003cbr\u003e@kharelkiran2 @ProSyndicate oh god \ud83d\ude02\ud83d\ude02\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:46:59 +0000 2015"}, {"group": 1337, "id": 28, "label": "553533470488940544", "shape": "dot", "size": 10, "title": "553533470488940544\u003cbr\u003e@12_alkhaledi Uhuh....\u003cbr\u003eFri Jan 09 12:47:18 +0000 2015"}, {"group": 1337, "id": 24, "label": "553533201117741056", "shape": "dot", "size": 10, "title": "553533201117741056\u003cbr\u003e@NathanHobill @HDColesy @ProSyndicate u are\u003cbr\u003ejust a 5 year old\u003cbr\u003efag\u003cbr\u003eFri Jan 09 12:46:13 +0000 2015"}, {"group": 1337, "id": 25, "label": "553533341300195328", "shape": "dot", "size": 10, "title": "553533341300195328\u003cbr\u003e@HDColesy @kharelkiran2 @ProSyndicate AMEN \ud83d\ude02\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:46:47 +0000 2015"}, {"group": 1337, "id": 26, "label": "553533356500332544", "shape": "dot", "size": 10, "title": "553533356500332544\u003cbr\u003e@kharelkiran2 @NathanHobill @ProSyndicate read your\u003cbr\u003etweets you retard you are\u003cbr\u003eclearly so jealous\u003cbr\u003eFri Jan 09 12:46:50 +0000 2015"}, {"group": 1337, "id": 29, "label": "553533634465239040", "shape": "dot", "size": 10, "title": "553533634465239040\u003cbr\u003e@HDColesy @kharelkiran2 @ProSyndicate he\u0027s calling\u003cbr\u003eme an emo fag \ud83d\ude02\ud83d\ude02\u003cbr\u003ehe\u0027s probably still being breastfed\u003cbr\u003etbf\u003cbr\u003eFri Jan 09 12:47:57 +0000 2015"}, {"group": 1337, "id": 30, "label": "553533635987795968", "shape": "dot", "size": 10, "title": "553533635987795968\u003cbr\u003e@HDColesy @NathanHobill @ProSyndicate I can\u003cbr\u003egive a fuck about YouTube\u003cbr\u003eand your YouTube is shit\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:47:57 +0000 2015"}, {"group": 1337, "id": 31, "label": "553533763536576514", "shape": "dot", "size": 10, "title": "553533763536576514\u003cbr\u003e@kharelkiran2 @HDColesy @ProSyndicate definitely a\u003cbr\u003emillion times better that yours\u003cbr\u003ewill ever be \ud83d\ude02\ud83d\ude02\u003cbr\u003eFri Jan 09 12:48:28 +0000 2015"}, {"group": 1337, "id": 32, "label": "553533877915254784", "shape": "dot", "size": 10, "title": "553533877915254784\u003cbr\u003e@kharelkiran2 @NathanHobill @ProSyndicate then why\u003cbr\u003edid you reply to a\u003cbr\u003eyoutuber in the first place?\u003cbr\u003eFucking par\u003cbr\u003eFri Jan 09 12:48:55 +0000 2015"}, {"group": 1337, "id": 34, "label": "553534077756637184", "shape": "dot", "size": 10, "title": "553534077756637184\u003cbr\u003e@HDColesy @kharelkiran2 @ProSyndicate his parents\u003cbr\u003edon\u0027t give him enough attention\u003cbr\u003eso he turns to social\u003cbr\u003emedia and pars syndicate \ud83d\ude02\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:49:42 +0000 2015"}, {"group": 1337, "id": 35, "label": "553535028714823680", "shape": "dot", "size": 10, "title": "553535028714823680\u003cbr\u003e@NathanHobill @kharelkiran2 @ProSyndicate I don\u0027t\u003cbr\u003eeven consider that a par.\u003cbr\u003eIts just random false hate\u003cbr\u003elol\u003cbr\u003eFri Jan 09 12:53:29 +0000 2015"}, {"group": 1337, "id": 39, "label": "553548791148589057", "shape": "dot", "size": 10, "title": "553548791148589057\u003cbr\u003e@SteveTehToaster muslims are not perfect.\u003cbr\u003eIslam is perfect!!!\u003cbr\u003eFri Jan 09 13:48:10 +0000 2015"}, {"group": 1337, "id": 40, "label": "553548945243119616", "shape": "dot", "size": 10, "title": "553548945243119616\u003cbr\u003e@SteveTehToaster those fuckers don\u0027t follow\u003cbr\u003etheir peaceful religion! They don\u0027t\u003cbr\u003ehave an identity!\u003cbr\u003eFri Jan 09 13:48:47 +0000 2015"}, {"group": 1337, "id": 46, "label": "553553668184604672", "shape": "dot", "size": 10, "title": "553553668184604672\u003cbr\u003e@SteveTehToaster @12_alkhaledi @ProSyndicate I learned\u003cbr\u003eyesterday from a Muslim friend\u003cbr\u003eof mine that what they\u0027re\u003cbr\u003edoing is against religion.\u003cbr\u003eFri Jan 09 14:07:33 +0000 2015"}, {"group": 1337, "id": 47, "label": "553553916122501120", "shape": "dot", "size": 10, "title": "553553916122501120\u003cbr\u003e@SteveTehToaster @12_alkhaledi @ProSyndicate what I\u003cbr\u003edon\u0027t get then Is why\u003cbr\u003ethey\u0027re yelling God is great\u003cbr\u003ein the streets when they\u003cbr\u003edon\u0027t follow\u003cbr\u003eFri Jan 09 14:08:32 +0000 2015"}, {"group": 1337, "id": 42, "label": "553551435950854145", "shape": "dot", "size": 10, "title": "553551435950854145\u003cbr\u003e@MagicMenGamer muslims, not Islam. illiterate\u003cbr\u003ebitch\u003cbr\u003eFri Jan 09 13:58:41 +0000 2015"}, {"group": 1337, "id": 43, "label": "553551492846981120", "shape": "dot", "size": 10, "title": "553551492846981120\u003cbr\u003e@12_alkhaledi Islam\u003cbr\u003eFri Jan 09 13:58:55 +0000 2015"}, {"group": 1337, "id": 44, "label": "553551538397122563", "shape": "dot", "size": 10, "title": "553551538397122563\u003cbr\u003e@12_alkhaledi its fucking islam\u003cbr\u003eFri Jan 09 13:59:05 +0000 2015"}, {"group": 1337, "id": 55, "label": "553566558732427264", "shape": "dot", "size": 10, "title": "553566558732427264\u003cbr\u003e@MagicMenGamer @12_alkhaledi http://t.co/rE06kV1t7j\u003cbr\u003eFri Jan 09 14:58:47 +0000 2015"}, {"group": 1337, "id": 56, "label": "553566628525666307", "shape": "dot", "size": 10, "title": "553566628525666307\u003cbr\u003e@MagicMenGamer @12_alkhaledi http://t.co/qYpFNM91hu\u003cbr\u003eFri Jan 09 14:59:03 +0000 2015"}, {"group": 1337, "id": 49, "label": "553554677522890752", "shape": "dot", "size": 10, "title": "553554677522890752\u003cbr\u003e@wrenvickers it\u0027s not\u003cbr\u003eFri Jan 09 14:11:34 +0000 2015"}, {"group": 1337, "id": 50, "label": "553554787958927360", "shape": "dot", "size": 10, "title": "553554787958927360\u003cbr\u003e@dltGamingAS they have no identity!\u003cbr\u003eFucking hypocrites\u003cbr\u003eFri Jan 09 14:12:00 +0000 2015"}, {"group": 1337, "id": 57, "label": "553604105323569154", "shape": "dot", "size": 10, "title": "553604105323569154\u003cbr\u003e@Assyrian518 @ProSyndicate tell me about\u003cbr\u003eit. Just needed to make\u003cbr\u003esure he was safe whilst\u003cbr\u003ehe was away from home\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:27:58 +0000 2015"}, {"group": 1337, "id": 51, "label": "553555324615933954", "shape": "dot", "size": 10, "title": "553555324615933954\u003cbr\u003e@12_alkhaledi Yes it is. They\u003cbr\u003efollow islam, they\u0027re just the\u003cbr\u003ecrazy radicals that think they\u003cbr\u003ehave to kill everyone who\u003cbr\u003edoesn\u0027t follow it too.\u003cbr\u003eFri Jan 09 14:14:08 +0000 2015"}, {"group": 1337, "id": 52, "label": "553555623917273088", "shape": "dot", "size": 10, "title": "553555623917273088\u003cbr\u003e@wrenvickers they don\u0027t follow Islam\u003cbr\u003ecorrectly\u003cbr\u003eFri Jan 09 14:15:19 +0000 2015"}, {"group": 1337, "id": 53, "label": "553556177871568896", "shape": "dot", "size": 10, "title": "553556177871568896\u003cbr\u003e@12_alkhaledi It still makes them\u003cbr\u003eIslamists. Just the crazy radical\u003cbr\u003ekind.\u003cbr\u003eFri Jan 09 14:17:32 +0000 2015"}, {"group": 1337, "id": 54, "label": "553558321160912896", "shape": "dot", "size": 10, "title": "553558321160912896\u003cbr\u003e@wrenvickers their not. You\u0027re not\u003cbr\u003ea soldier if you don\u0027t\u003cbr\u003efight. Not an athlete if\u003cbr\u003eyou don\u0027t practice. You\u0027re not\u003cbr\u003ea muslim if you kill!\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:26:03 +0000 2015"}, {"group": 1337, "id": 58, "label": "553979953474441219", "shape": "dot", "size": 10, "title": "553979953474441219\u003cbr\u003e@cR_zStro your point is? Is\u003cbr\u003eit the double standard? If\u003cbr\u003eso, I know that there\u003cbr\u003eare people who think all\u003cbr\u003eMuslims are terrorists. Their dicks\u003cbr\u003e\u003cbr\u003eSat Jan 10 18:21:28 +0000 2015"}, {"group": 1337, "id": 59, "label": "553981843704262657", "shape": "dot", "size": 10, "title": "553981843704262657\u003cbr\u003e@cR_zStro crazy man with a\u003cbr\u003egun or terrorist in America.\u003cbr\u003e(I hope you know what\u003cbr\u003eAdam Lanza looks like) http://t.co/PzioIPPt2V\u003cbr\u003e\u003cbr\u003eSat Jan 10 18:28:58 +0000 2015"}, {"group": 1337, "id": 60, "label": "557692223052341248", "shape": "dot", "size": 10, "title": "557692223052341248\u003cbr\u003e@cR_zStro rr if only it\u003cbr\u003ewere true\u003cbr\u003eWed Jan 21 00:12:42 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 1, "to": 48, "weight": 1}, {"from": 2, "to": 12, "weight": 1}, {"from": 2, "to": 15, "weight": 1}, {"from": 2, "to": 33, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 9, "to": 14, "weight": 1}, {"from": 9, "to": 36, "weight": 1}, {"from": 9, "to": 37, "weight": 1}, {"from": 9, "to": 41, "weight": 1}, {"from": 9, "to": 45, "weight": 1}, {"from": 11, "to": 22, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 17, "weight": 1}, {"from": 13, "to": 38, "weight": 1}, {"from": 14, "to": 20, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 15, "to": 21, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 17, "to": 23, "weight": 1}, {"from": 19, "to": 27, "weight": 1}, {"from": 20, "to": 28, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 26, "to": 29, "weight": 1}, {"from": 26, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}, {"from": 32, "to": 34, "weight": 1}, {"from": 34, "to": 35, "weight": 1}, {"from": 36, "to": 39, "weight": 1}, {"from": 36, "to": 40, "weight": 1}, {"from": 36, "to": 46, "weight": 1}, {"from": 36, "to": 47, "weight": 1}, {"from": 41, "to": 42, "weight": 1}, {"from": 42, "to": 43, "weight": 1}, {"from": 42, "to": 44, "weight": 1}, {"from": 44, "to": 55, "weight": 1}, {"from": 44, "to": 56, "weight": 1}, {"from": 45, "to": 49, "weight": 1}, {"from": 47, "to": 50, "weight": 1}, {"from": 48, "to": 57, "weight": 1}, {"from": 49, "to": 51, "weight": 1}, {"from": 51, "to": 52, "weight": 1}, {"from": 52, "to": 53, "weight": 1}, {"from": 53, "to": 54, "weight": 1}, {"from": 55, "to": 58, "weight": 1}, {"from": 56, "to": 59, "weight": 1}, {"from": 56, "to": 60, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

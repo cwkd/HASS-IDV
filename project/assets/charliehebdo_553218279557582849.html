@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1175, "id": 0, "label": "553218279557582849", "shape": "dot", "size": 10, "title": "553218279557582849\u003cbr\u003eKudos to Google for donating\u003cbr\u003e\u20ac250,000 to help Charlie Hebdo\u003cbr\u003epublish next week http://t.co/QnmfLssRtf\u003cbr\u003eThu Jan 08 15:54:50 +0000 2015"}, {"group": 1175, "id": 1, "label": "553233739598544896", "shape": "dot", "size": 10, "title": "553233739598544896\u003cbr\u003e@mathewi @glynmoody \n\nGood work! If\u003cbr\u003ethere ever was a defender\u003cbr\u003eof privacy,free speech and democracy,\u003cbr\u003eits Google ! That\u0027s what\u003cbr\u003efriends are for\u003cbr\u003eThu Jan 08 16:56:16 +0000 2015"}, {"group": 1175, "id": 2, "label": "553258181183684608", "shape": "dot", "size": 10, "title": "553258181183684608\u003cbr\u003e@mathewi If stupidity is not\u003cbr\u003eto win, those who knows\u003cbr\u003eopen a fund rising account\u003cbr\u003enamed to Charlie Hebdo\u003cbr\u003eThu Jan 08 18:33:24 +0000 2015"}, {"group": 1175, "id": 3, "label": "553299684077236226", "shape": "dot", "size": 10, "title": "553299684077236226\u003cbr\u003e@mathewi Did you read the\u003cbr\u003earticle? \"Financed [by a fine]\u003cbr\u003ebut not managed by Google\u003cbr\u003ethat money will go to\u003cbr\u003esupport the survival of the\u003cbr\u003eweekly\"\u003cbr\u003eThu Jan 08 21:18:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

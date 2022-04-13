@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1844, "id": 0, "label": "553469523945590784", "shape": "dot", "size": 10, "title": "553469523945590784\u003cbr\u003eReports of shots fired north-east\u003cbr\u003eof Paris as French police\u003cbr\u003epursue two suspected Charlie Hebdo\u003cbr\u003egunmen in car chase http://t.co/FbUYubJDOY\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:33:12 +0000 2015"}, {"group": 1844, "id": 1, "label": "553469771443097600", "shape": "dot", "size": 10, "title": "553469771443097600\u003cbr\u003e@BBCBreaking JeSuisCharlie http://t.co/qSzd1yYHe4\u003cbr\u003eFri Jan 09 08:34:11 +0000 2015"}, {"group": 1844, "id": 2, "label": "553469849159344130", "shape": "dot", "size": 10, "title": "553469849159344130\u003cbr\u003e@BBCBreaking Can we please stop\u003cbr\u003ereporting every single firefight until\u003cbr\u003eit\u0027s really verified that it\u003cbr\u003ehas something to do with\u003cbr\u003e#CharlieHebdo?\u003cbr\u003eFri Jan 09 08:34:29 +0000 2015"}, {"group": 1844, "id": 3, "label": "553470163967025153", "shape": "dot", "size": 10, "title": "553470163967025153\u003cbr\u003e@BBCBreaking It\u0027s a bit pointless\u003cbr\u003eand only contributes to an\u003cbr\u003eatmosphere of panic. You don\u0027t\u003cbr\u003ehave to reproduce everything from\u003cbr\u003eFR media.\u003cbr\u003eFri Jan 09 08:35:44 +0000 2015"}, {"group": 1844, "id": 4, "label": "553470205943242752", "shape": "dot", "size": 10, "title": "553470205943242752\u003cbr\u003e@BBCBreaking Scary\u003cbr\u003eFri Jan 09 08:35:54 +0000 2015"}, {"group": 1844, "id": 6, "label": "553471533302419456", "shape": "dot", "size": 10, "title": "553471533302419456\u003cbr\u003e@BBCBreaking the French police better\u003cbr\u003esubdue the perps  with\u003cbr\u003ewishes..and unicorn horns. Do french\u003cbr\u003epolice at least carry, candy?\u003cbr\u003eFags\u003cbr\u003eFri Jan 09 08:41:11 +0000 2015"}, {"group": 1844, "id": 8, "label": "553472244060815360", "shape": "dot", "size": 10, "title": "553472244060815360\u003cbr\u003e@BBCBreaking Breaking; french police ditch\u003cbr\u003ebicycles for unicycles, in order\u003cbr\u003eto bungle any attempt to\u003cbr\u003ebe taken seriously.\u003cbr\u003eFri Jan 09 08:44:00 +0000 2015"}, {"group": 1844, "id": 9, "label": "553472705010630656", "shape": "dot", "size": 10, "title": "553472705010630656\u003cbr\u003e@BBCBreaking a policeman without a\u003cbr\u003egun is a suggestion.\u003cbr\u003eFri Jan 09 08:45:50 +0000 2015"}, {"group": 1844, "id": 12, "label": "553473413017128960", "shape": "dot", "size": 10, "title": "553473413017128960\u003cbr\u003e@BBCBreaking NE of CDG Apt\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:48:39 +0000 2015"}, {"group": 1844, "id": 5, "label": "553470786749468674", "shape": "dot", "size": 10, "title": "553470786749468674\u003cbr\u003e@prashantqc @BBCBreaking Yeah, nothing to\u003cbr\u003esee her people...move along.\u003cbr\u003eFri Jan 09 08:38:13 +0000 2015"}, {"group": 1844, "id": 7, "label": "553471672893054977", "shape": "dot", "size": 10, "title": "553471672893054977\u003cbr\u003e@prashantqc @BBCBreaking breaking news is\u003cbr\u003ebreaking news. When it\u0027s over\u003cbr\u003eits no longer breaking news\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:41:44 +0000 2015"}, {"group": 1844, "id": 18, "label": "553474495223439361", "shape": "dot", "size": 10, "title": "553474495223439361\u003cbr\u003e@prashantqc they have been identifyed\u003cbr\u003eand got an hostage\u003cbr\u003eFri Jan 09 08:52:57 +0000 2015"}, {"group": 1844, "id": 28, "label": "553657636483530752", "shape": "dot", "size": 10, "title": "553657636483530752\u003cbr\u003e@prashantqc @BBCBreaking Hey guys, \u003cbr\u003eput away the pens. It\u0027s\u003cbr\u003ejust another one of those\u003cbr\u003eroutine French \"firefights\" that happen\u003cbr\u003eso often\u003cbr\u003eFri Jan 09 21:00:41 +0000 2015"}, {"group": 1844, "id": 11, "label": "553473159182438400", "shape": "dot", "size": 10, "title": "553473159182438400\u003cbr\u003e@snake_strike @BBCBreaking Twat. French police\u003cbr\u003eroutinely carry arms. It\u0027s made\u003cbr\u003eno difference.\u003cbr\u003eFri Jan 09 08:47:38 +0000 2015"}, {"group": 1844, "id": 10, "label": "553472944333406209", "shape": "dot", "size": 10, "title": "553472944333406209\u003cbr\u003e@trying365 @BBCBreaking Journalists should exercise\u003cbr\u003ediscretion in what they report,\u003cbr\u003erather than just jumping to\u003cbr\u003econclusions.\u003cbr\u003eFri Jan 09 08:46:47 +0000 2015"}, {"group": 1844, "id": 15, "label": "553474133171130368", "shape": "dot", "size": 10, "title": "553474133171130368\u003cbr\u003e@prashantqc @trying365 @BBCBreaking whether Charlie\u003cbr\u003eHebdo suspects or not helicopters\u003cbr\u003echase with gunmen firing is\u003cbr\u003eworthy of breaking news!\u003cbr\u003eFri Jan 09 08:51:31 +0000 2015"}, {"group": 1844, "id": 16, "label": "553474163433037824", "shape": "dot", "size": 10, "title": "553474163433037824\u003cbr\u003e@prashantqc @trying365 @BBCBreaking It has\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:51:38 +0000 2015"}, {"group": 1844, "id": 13, "label": "553473500720431105", "shape": "dot", "size": 10, "title": "553473500720431105\u003cbr\u003e@timwhistles @BBCBreaking why yes, you\u003cbr\u003eare right...made no difference at\u003cbr\u003eall. Dead.\u003cbr\u003eFri Jan 09 08:49:00 +0000 2015"}, {"group": 1844, "id": 14, "label": "553473640306864128", "shape": "dot", "size": 10, "title": "553473640306864128\u003cbr\u003e@timwhistles @BBCBreaking worthless, and sorry.\u003cbr\u003eSorry as hell.\u003cbr\u003eFri Jan 09 08:49:33 +0000 2015"}, {"group": 1844, "id": 19, "label": "553475958121189376", "shape": "dot", "size": 10, "title": "553475958121189376\u003cbr\u003e@snake_strike @BBCBreaking Twats like you\u003cbr\u003e(Pussies in Americee) feel the\u003cbr\u003efalse fear enough to let\u003cbr\u003etheir citizens carry arms. Your\u003cbr\u003ekids die.\u003cbr\u003eFri Jan 09 08:58:46 +0000 2015"}, {"group": 1844, "id": 17, "label": "553474390961430529", "shape": "dot", "size": 10, "title": "553474390961430529\u003cbr\u003e@quillou1 @trying365 @BBCBreaking Right, just\u003cbr\u003esaw a tweet about the\u003cbr\u003eInterior Ministry confirming it. My\u003cbr\u003ebad!\u003cbr\u003eFri Jan 09 08:52:32 +0000 2015"}, {"group": 1844, "id": 20, "label": "553476272438149120", "shape": "dot", "size": 10, "title": "553476272438149120\u003cbr\u003e@timwhistles @BBCBreaking my kids live\u003cbr\u003eand learn weapons training..your kids\u003cbr\u003esuck muzzie dick. Thanks for\u003cbr\u003eplaying. Next.\u003cbr\u003eFri Jan 09 09:00:01 +0000 2015"}, {"group": 1844, "id": 21, "label": "553476545478938624", "shape": "dot", "size": 10, "title": "553476545478938624\u003cbr\u003e@snake_strike\nFor every U.S. soldier killed\u003cbr\u003ein Afghanistan during 11 years\u003cbr\u003eof war, at least 13\u003cbr\u003echildren were shot and killed\u003cbr\u003ein America.\u003cbr\u003eFri Jan 09 09:01:06 +0000 2015"}, {"group": 1844, "id": 22, "label": "553476794075332608", "shape": "dot", "size": 10, "title": "553476794075332608\u003cbr\u003e@timwhistles mostly trash in inner\u003cbr\u003ecities, that\u0027s a self-cleaning oven.\u003cbr\u003eNext\u003cbr\u003eFri Jan 09 09:02:05 +0000 2015"}, {"group": 1844, "id": 23, "label": "553477496516407296", "shape": "dot", "size": 10, "title": "553477496516407296\u003cbr\u003e@snake_strike Have you had yourself\u003cbr\u003etested on the sociopath scale?\u003cbr\u003eFor your families sake please\u003cbr\u003edo. Seek help.\u003cbr\u003eFri Jan 09 09:04:52 +0000 2015"}, {"group": 1844, "id": 24, "label": "553477875668889601", "shape": "dot", "size": 10, "title": "553477875668889601\u003cbr\u003e@timwhistles get fucked, you could\u003cbr\u003edie of stomach cancer, could\u003cbr\u003ecare less. Good day, sir.\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:06:23 +0000 2015"}, {"group": 1844, "id": 25, "label": "553479550072782848", "shape": "dot", "size": 10, "title": "553479550072782848\u003cbr\u003e@snake_strike Sorry, no, you\u0027re obviously\u003cbr\u003ea psychopath. God help your\u003cbr\u003efamily.\u003cbr\u003eFri Jan 09 09:13:02 +0000 2015"}, {"group": 1844, "id": 26, "label": "553480232909676545", "shape": "dot", "size": 10, "title": "553480232909676545\u003cbr\u003e@timwhistles I have 3 boys,\u003cbr\u003ea daughter, and a wife\u003cbr\u003eof 28 years. 2 are\u003cbr\u003ein college, ones in the\u003cbr\u003emilitary. Wtf do you have?\u003cbr\u003eNothing. Get bent.\u003cbr\u003eFri Jan 09 09:15:45 +0000 2015"}, {"group": 1844, "id": 27, "label": "553481456354619392", "shape": "dot", "size": 10, "title": "553481456354619392\u003cbr\u003e@snake_strike Humanity, peace of mind,\u003cbr\u003ehappiness. Thanks for reminding me!\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:20:37 +0000 2015"}, {"group": 1844, "id": 29, "label": "553657976981319680", "shape": "dot", "size": 10, "title": "553657976981319680\u003cbr\u003e@masanf01 @BBCBreaking No need for\u003cbr\u003emockery, Mark. I was merely\u003cbr\u003earguing against the permanent need\u003cbr\u003eto \"break\" news before verifying\u003cbr\u003ethe facts\u003cbr\u003eFri Jan 09 21:02:02 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 2, "to": 7, "weight": 1}, {"from": 2, "to": 18, "weight": 1}, {"from": 2, "to": 28, "weight": 1}, {"from": 6, "to": 11, "weight": 1}, {"from": 7, "to": 10, "weight": 1}, {"from": 10, "to": 15, "weight": 1}, {"from": 10, "to": 16, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 14, "to": 19, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 28, "to": 29, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

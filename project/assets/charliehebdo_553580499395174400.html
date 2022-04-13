@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1512, "id": 0, "label": "553580499395174400", "shape": "dot", "size": 10, "title": "553580499395174400\u003cbr\u003eWhile the West fought foreign\u003cbr\u003ewars we ignored the threat\u003cbr\u003efrom within our own societies\u003cbr\u003esays UKIP Leader @Nigel_Farage http://t.co/cJ8lyelD5U\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:54:10 +0000 2015"}, {"group": 1512, "id": 1, "label": "553581324557377536", "shape": "dot", "size": 10, "title": "553581324557377536\u003cbr\u003e@UKIP @Nigel_Farage The British people\u003cbr\u003ehave known the threats, it\u003cbr\u003eis actually to late the\u003cbr\u003eenemy is already here unfortunately.\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:57:27 +0000 2015"}, {"group": 1512, "id": 2, "label": "553582674225680384", "shape": "dot", "size": 10, "title": "553582674225680384\u003cbr\u003e@UKIP been here since before\u003cbr\u003ethe London bombings.........\u003cbr\u003eFri Jan 09 16:02:49 +0000 2015"}, {"group": 1512, "id": 3, "label": "553583406765076481", "shape": "dot", "size": 10, "title": "553583406765076481\u003cbr\u003e@UKIP @Nigel_Farage PEARL OF WISDOM.\u003cbr\u003eFROM A TAX AVOIDING FOX\u003cbr\u003eKILLING TWAT\u003cbr\u003eFri Jan 09 16:05:43 +0000 2015"}, {"group": 1512, "id": 4, "label": "553585063666147328", "shape": "dot", "size": 10, "title": "553585063666147328\u003cbr\u003e@ukip Down with the Irish\u003cbr\u003eand their IRA!\u003cbr\u003eFri Jan 09 16:12:18 +0000 2015"}, {"group": 1512, "id": 5, "label": "553586913744273409", "shape": "dot", "size": 10, "title": "553586913744273409\u003cbr\u003e@UKIP @Nigel_Farage Cameronism - meaning\u003cbr\u003eto \"refuse to debate for\u003cbr\u003efear of losing\"\u003cbr\u003eFri Jan 09 16:19:40 +0000 2015"}, {"group": 1512, "id": 6, "label": "553587355979087873", "shape": "dot", "size": 10, "title": "553587355979087873\u003cbr\u003e@UKIP @Nigel_Farage Forget all that....let\u0027s\u003cbr\u003ekill a fox. ..ra ra\u003cbr\u003era. ..\u003cbr\u003eFri Jan 09 16:21:25 +0000 2015"}, {"group": 1512, "id": 7, "label": "553589372801798144", "shape": "dot", "size": 10, "title": "553589372801798144\u003cbr\u003e@UKIP @Nigel_Farage the enemy from\u003cbr\u003ewithin , we will never\u003cbr\u003eget rid of them ,\u003cbr\u003elib lab con keep letting\u003cbr\u003emore in , crazy!!\ud83d\udc4e\u003cbr\u003eFri Jan 09 16:29:26 +0000 2015"}, {"group": 1512, "id": 8, "label": "553592099103604741", "shape": "dot", "size": 10, "title": "553592099103604741\u003cbr\u003e@UKIP @Nigel_Farage Very obvious now\u003cbr\u003eand barn door still wide\u003cbr\u003eopen. Duh !\u003cbr\u003eFri Jan 09 16:40:16 +0000 2015"}, {"group": 1512, "id": 9, "label": "553593374536892417", "shape": "dot", "size": 10, "title": "553593374536892417\u003cbr\u003e@UKIP @Nigel_Farage #terrorismfromhell  queimem\u003cbr\u003eno inferno terroristas mu\u00e7ulmanos!!!\u003cbr\u003eFri Jan 09 16:45:20 +0000 2015"}, {"group": 1512, "id": 10, "label": "553610522478649345", "shape": "dot", "size": 10, "title": "553610522478649345\u003cbr\u003e@UKIP @Nigel_Farage  We neglected\u003cbr\u003eour self and encouraged a\u003cbr\u003e5th column. The shame of\u003cbr\u003ethe left\u003cbr\u003eFri Jan 09 17:53:28 +0000 2015"}, {"group": 1512, "id": 11, "label": "553617811776733185", "shape": "dot", "size": 10, "title": "553617811776733185\u003cbr\u003e@UKIP @Nigel_Farage soooooo true!!!\u003cbr\u003eFri Jan 09 18:22:26 +0000 2015"}, {"group": 1512, "id": 12, "label": "553620647587246082", "shape": "dot", "size": 10, "title": "553620647587246082\u003cbr\u003e@UKIP @2tweetaboutit @Nigel_Farage If you\u003cbr\u003edon\u0027t see the threat ALL\u003cbr\u003emuslims pose to the west\u003cbr\u003ethen you\u0027re a COMPLETE idiot!\u003cbr\u003eBan islam, PERIOD!\u003cbr\u003eFri Jan 09 18:33:42 +0000 2015"}, {"group": 1512, "id": 13, "label": "553664149197443072", "shape": "dot", "size": 10, "title": "553664149197443072\u003cbr\u003e@UKIP @Nigel_Farage absolute rubbish as\u003cbr\u003eusual #fascists #gobacktothepub\u003cbr\u003eFri Jan 09 21:26:34 +0000 2015"}, {"group": 1512, "id": 15, "label": "553853326316802048", "shape": "dot", "size": 10, "title": "553853326316802048\u003cbr\u003e@UKIP @Nigel_Farage the real problem\u003cbr\u003etoday is people in positions\u003cbr\u003eof power who have been\u003cbr\u003eweak and continued to look\u003cbr\u003ethe other way\u003cbr\u003eSat Jan 10 09:58:17 +0000 2015"}, {"group": 1512, "id": 16, "label": "553933925379088384", "shape": "dot", "size": 10, "title": "553933925379088384\u003cbr\u003e@UKIP @Nigel_Farage You are totally\u003cbr\u003ecorrect when you describe the\u003cbr\u003e5th column amongst us.\u003cbr\u003eSat Jan 10 15:18:34 +0000 2015"}, {"group": 1512, "id": 17, "label": "554357212593020928", "shape": "dot", "size": 10, "title": "554357212593020928\u003cbr\u003e@UKIP @Nigel_Farage yes, we\u0027ve ignored\u003cbr\u003ethe threat of Ukip for\u003cbr\u003efar too long. #Nastyparty\u003cbr\u003eSun Jan 11 19:20:33 +0000 2015"}, {"group": 1512, "id": 14, "label": "553671783149490177", "shape": "dot", "size": 10, "title": "553671783149490177\u003cbr\u003e@daverhiwlas @UKIP @Nigel_Farage Time to\u003cbr\u003efight back stand up to\u003cbr\u003ethese lunatics\u003cbr\u003eFri Jan 09 21:56:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

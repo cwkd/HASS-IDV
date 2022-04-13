@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 814, "id": 0, "label": "553125301090525185", "shape": "dot", "size": 10, "title": "553125301090525185\u003cbr\u003eFrench Muslims condemn the Charlie\u003cbr\u003eHebdo shooting http://t.co/ybORInfaLK http://t.co/SLUJRFhy3u\u003cbr\u003eThu Jan 08 09:45:23 +0000 2015"}, {"group": 814, "id": 1, "label": "553125918051696640", "shape": "dot", "size": 10, "title": "553125918051696640\u003cbr\u003e@thei100 Wrong.. A lot of\u003cbr\u003eMuslims French Twitter accounts are\u003cbr\u003ecelebrating this event.\u003cbr\u003eThu Jan 08 09:47:50 +0000 2015"}, {"group": 814, "id": 2, "label": "553126138705616897", "shape": "dot", "size": 10, "title": "553126138705616897\u003cbr\u003e\u201c@thei100: French Muslims condemn the\u003cbr\u003eCharlie Hebdo shooting http://t.co/UwkYyl4Llx http://t.co/vF0zYTrtAm\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:48:42 +0000 2015"}, {"group": 814, "id": 3, "label": "553126199644684288", "shape": "dot", "size": 10, "title": "553126199644684288\u003cbr\u003e@thei100 @Independent Thank you Mister\u003cbr\u003eChalgoumi!\nNow can you repeat this\u003cbr\u003ein ARABIC please?\u003cbr\u003eThu Jan 08 09:48:57 +0000 2015"}, {"group": 814, "id": 5, "label": "553126245480034304", "shape": "dot", "size": 10, "title": "553126245480034304\u003cbr\u003e\u201c@thei100: French Muslims condemn the\u003cbr\u003eCharlie Hebdo shooting http://t.co/djiAgmxXQc http://t.co/LMAvcuaKQa\u201d\u003cbr\u003e\u2764\ufe0f #JeSuisCharlie\u003cbr\u003eThu Jan 08 09:49:08 +0000 2015"}, {"group": 814, "id": 7, "label": "553127157799469059", "shape": "dot", "size": 10, "title": "553127157799469059\u003cbr\u003e@thei100 @Independent Cequi estl\u00e0les musulmans\u003cbr\u003emm sontdivis\u00e9chaque interprete lecorant come\u003cbr\u003elaphilosophie come ilpeuv.Mohamed afetelmoiaussi\u003cbr\u003eThu Jan 08 09:52:45 +0000 2015"}, {"group": 814, "id": 8, "label": "553127471072432128", "shape": "dot", "size": 10, "title": "553127471072432128\u003cbr\u003e@thei100 @Independent http://t.co/oN1Sxnkadw\u003cbr\u003eThu Jan 08 09:54:00 +0000 2015"}, {"group": 814, "id": 13, "label": "553128574140821505", "shape": "dot", "size": 10, "title": "553128574140821505\u003cbr\u003e@thei100 @Independent 1 French Muslim?\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:58:23 +0000 2015"}, {"group": 814, "id": 16, "label": "553129003440427008", "shape": "dot", "size": 10, "title": "553129003440427008\u003cbr\u003e@thei100 don\u0027t believe them.\u003cbr\u003eThu Jan 08 10:00:05 +0000 2015"}, {"group": 814, "id": 18, "label": "553132101965332480", "shape": "dot", "size": 10, "title": "553132101965332480\u003cbr\u003e@thei100 @raahildabest Problems always with\u003cbr\u003ethe person who creates it\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:12:24 +0000 2015"}, {"group": 814, "id": 4, "label": "553126244511133696", "shape": "dot", "size": 10, "title": "553126244511133696\u003cbr\u003e@pklarno @thei100 It\u0027s still a\u003cbr\u003eminority of the total number\u003cbr\u003eof Muslims\u003cbr\u003eThu Jan 08 09:49:07 +0000 2015"}, {"group": 814, "id": 14, "label": "553128732949377025", "shape": "dot", "size": 10, "title": "553128732949377025\u003cbr\u003e@pklarno @thei100 Thatis eaxact,true mydear,muslim\u003cbr\u003ewouldtransform allcontries the contries allperson\u003cbr\u003eismuslim,thatis theirdream.Jesussove us\u003cbr\u003eThu Jan 08 09:59:01 +0000 2015"}, {"group": 814, "id": 6, "label": "553126661215240192", "shape": "dot", "size": 10, "title": "553126661215240192\u003cbr\u003e@KamranTahir2 @thei100 It\u0027s the job\u003cbr\u003eof the majority to stop\u003cbr\u003etheir minority then. Not ours.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:50:47 +0000 2015"}, {"group": 814, "id": 11, "label": "553128355147841536", "shape": "dot", "size": 10, "title": "553128355147841536\u003cbr\u003e@KamranTahir2 @pklarno @thei100 If you\u0027re\u003cbr\u003ea bigot then 100 or\u003cbr\u003eeven 1000 Twitter users out\u003cbr\u003eof 4.7 million Muslims in\u003cbr\u003eFrance seems a lot.\u003cbr\u003eThu Jan 08 09:57:31 +0000 2015"}, {"group": 814, "id": 9, "label": "553127546859298816", "shape": "dot", "size": 10, "title": "553127546859298816\u003cbr\u003e@pklarno @thei100 They\u0027ll kill Muslims\u003cbr\u003ewho get into their way.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:54:18 +0000 2015"}, {"group": 814, "id": 32, "label": "553169971933892608", "shape": "dot", "size": 10, "title": "553169971933892608\u003cbr\u003e@pklarno @KamranTahir2 @thei100  if\u003cbr\u003ethat was possible, there would\u003cbr\u003ebe no idiots in any\u003cbr\u003ereligion.\u003cbr\u003eThu Jan 08 12:42:53 +0000 2015"}, {"group": 814, "id": 10, "label": "553127849948110848", "shape": "dot", "size": 10, "title": "553127849948110848\u003cbr\u003e@KamranTahir2 @thei100 So there is\u003cbr\u003ea true problem with this\u003cbr\u003ereligion and/or culture\u003cbr\u003eThu Jan 08 09:55:30 +0000 2015"}, {"group": 814, "id": 12, "label": "553128504112742402", "shape": "dot", "size": 10, "title": "553128504112742402\u003cbr\u003e@pklarno @thei100 It has nothing\u003cbr\u003eto do with religion. They\u003cbr\u003ewouldn\u0027t be killing other Muslims\u003cbr\u003eif it was.\u003cbr\u003eThu Jan 08 09:58:06 +0000 2015"}, {"group": 814, "id": 17, "label": "553131558467813376", "shape": "dot", "size": 10, "title": "553131558467813376\u003cbr\u003e@boskee_voitek @KamranTahir2 @thei100 Yes maybe..But\u003cbr\u003ejust realize that these 100\u003cbr\u003eor 1000 people can show\u003cbr\u003eup in a Press Office\u003cbr\u003ewith AK47.\u003cbr\u003eThu Jan 08 10:10:14 +0000 2015"}, {"group": 814, "id": 15, "label": "553128826855624704", "shape": "dot", "size": 10, "title": "553128826855624704\u003cbr\u003e@masonfallon How to prevent #isis\u003cbr\u003efrom obeying radical #imams? Read\u003cbr\u003ehere: http://t.co/WnFoxPmjTI\u003cbr\u003eThu Jan 08 09:59:23 +0000 2015"}, {"group": 814, "id": 26, "label": "553137676250263552", "shape": "dot", "size": 10, "title": "553137676250263552\u003cbr\u003e@Harrythiefpott @thei100 You don\u0027t believe\u003cbr\u003ewho? The Muslims who condemn\u003cbr\u003ethat attack?\u003cbr\u003eThu Jan 08 10:34:33 +0000 2015"}, {"group": 814, "id": 19, "label": "553133212919410688", "shape": "dot", "size": 10, "title": "553133212919410688\u003cbr\u003e@pklarno @KamranTahir2 @thei100 So can\u003cbr\u003e100s or 1000s of Christians\u003cbr\u003ewho celebrate deaths of Iraqi\u003cbr\u003eor Afghani people, because \"terrorists\".\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:16:49 +0000 2015"}, {"group": 814, "id": 20, "label": "553133399008116736", "shape": "dot", "size": 10, "title": "553133399008116736\u003cbr\u003e@pklarno @KamranTahir2 @thei100 Also, AFP\u003cbr\u003ereports on attacks against Mosques\u003cbr\u003ein France. I don\u0027t think\u003cbr\u003eit was Muslims who attacked\u003cbr\u003ethem.\u003cbr\u003eThu Jan 08 10:17:33 +0000 2015"}, {"group": 814, "id": 21, "label": "553133626884620288", "shape": "dot", "size": 10, "title": "553133626884620288\u003cbr\u003e@boskee_voitek @KamranTahir2 @thei100 As a\u003cbr\u003eChristian, I never celebrated any\u003cbr\u003edeath. I even prayed for\u003cbr\u003eBin Laden\u0027s soul\u003cbr\u003eThu Jan 08 10:18:28 +0000 2015"}, {"group": 814, "id": 22, "label": "553133927234564096", "shape": "dot", "size": 10, "title": "553133927234564096\u003cbr\u003e@boskee_voitek @KamranTahir2 @thei100 Any casualities?\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:19:39 +0000 2015"}, {"group": 814, "id": 29, "label": "553153543059013633", "shape": "dot", "size": 10, "title": "553153543059013633\u003cbr\u003e@boskee_voitek @KamranTahir2 @thei100 I\u0027m browsing\u003cbr\u003ethe AFP notices (which is\u003cbr\u003efrench) no news from this.\u003cbr\u003eCan you please send me\u003cbr\u003ea link to it?\u003cbr\u003eThu Jan 08 11:37:36 +0000 2015"}, {"group": 814, "id": 23, "label": "553135144337698816", "shape": "dot", "size": 10, "title": "553135144337698816\u003cbr\u003e@pklarno @KamranTahir2 @thei100 But you\u0027re\u003cbr\u003enot a murderer psychopath like\u003cbr\u003ethese 3 bastards. 4.7 million\u003cbr\u003eMuslims in France aren\u0027t either.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:24:29 +0000 2015"}, {"group": 814, "id": 24, "label": "553135302114816001", "shape": "dot", "size": 10, "title": "553135302114816001\u003cbr\u003e@pklarno @KamranTahir2 @thei100 No reports\u003cbr\u003eon that yet. An explosion\u003cbr\u003ewas heard near a \"kebab\u003cbr\u003eshop\" too.\u003cbr\u003eThu Jan 08 10:25:07 +0000 2015"}, {"group": 814, "id": 25, "label": "553136802060836864", "shape": "dot", "size": 10, "title": "553136802060836864\u003cbr\u003e@boskee_voitek @pklarno @thei100  \u003cbr\u003e   3 Grenades\u003cbr\u003ewere thrown at a Mosque\u003cbr\u003eearlier today.\u003cbr\u003eThu Jan 08 10:31:05 +0000 2015"}, {"group": 814, "id": 28, "label": "553152738876739584", "shape": "dot", "size": 10, "title": "553152738876739584\u003cbr\u003e@boskee_voitek @KamranTahir2 @thei100 a Kebab\u003cbr\u003eis a restaurant, not a\u003cbr\u003eshop. Please send me the\u003cbr\u003esources\u003cbr\u003eThu Jan 08 11:34:24 +0000 2015"}, {"group": 814, "id": 27, "label": "553137846559588352", "shape": "dot", "size": 10, "title": "553137846559588352\u003cbr\u003e@KamranTahir2 @boskee_voitek @pklarno @thei100 i\u003cbr\u003esaw that:/ ignorance is real\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:35:14 +0000 2015"}, {"group": 814, "id": 30, "label": "553163451062038528", "shape": "dot", "size": 10, "title": "553163451062038528\u003cbr\u003e@pklarno @boskee_voitek @thei100 http://t.co/pYQm6tRzhN\u003cbr\u003eThu Jan 08 12:16:58 +0000 2015"}, {"group": 814, "id": 31, "label": "553163703731122176", "shape": "dot", "size": 10, "title": "553163703731122176\u003cbr\u003e@KamranTahir2 @boskee_voitek @thei100 oh wow\u003cbr\u003e! that\u0027s bad.. Any casualities?\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:17:58 +0000 2015"}, {"group": 814, "id": 33, "label": "553171066785656832", "shape": "dot", "size": 10, "title": "553171066785656832\u003cbr\u003e@SocioChickadee @KamranTahir2 @thei100 There is\u003cbr\u003ea massive difference between them.\u003cbr\u003eI would never kill a\u003cbr\u003eMuslim. I just want them\u003cbr\u003eto go\u003cbr\u003eThu Jan 08 12:47:14 +0000 2015"}, {"group": 814, "id": 34, "label": "553173380539899904", "shape": "dot", "size": 10, "title": "553173380539899904\u003cbr\u003e@pklarno @SocioChickadee @thei100 Bye then\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:56:26 +0000 2015"}, {"group": 814, "id": 35, "label": "553174310568091649", "shape": "dot", "size": 10, "title": "553174310568091649\u003cbr\u003e@pklarno @KamranTahir2 @thei100 Frankly Just\u003cbr\u003eas #kiling  I don\u0027t\u003cbr\u003ethink it\u0027s appropriate to offend\u003cbr\u003esomeone in a #Civil #\u003cbr\u003esociety.\u003cbr\u003eThu Jan 08 13:00:07 +0000 2015"}, {"group": 814, "id": 36, "label": "553179727931121664", "shape": "dot", "size": 10, "title": "553179727931121664\u003cbr\u003e@SocioChickadee @pklarno @thei100 If this\u003cbr\u003ewas against Christians or Jews\u003cbr\u003ethere would be a huge\u003cbr\u003euproar.\u003cbr\u003eThu Jan 08 13:21:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 1, "to": 14, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 4, "to": 11, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 32, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 11, "to": 17, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 16, "to": 26, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 20, "to": 29, "weight": 1}, {"from": 21, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 24, "to": 28, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 32, "to": 33, "weight": 1}, {"from": 33, "to": 34, "weight": 1}, {"from": 33, "to": 35, "weight": 1}, {"from": 35, "to": 36, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

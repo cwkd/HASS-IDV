@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 718, "id": 0, "label": "552983966932688897", "shape": "dot", "size": 10, "title": "552983966932688897\u003cbr\u003eMeet Ahmed Merabet, first officer\u003cbr\u003eon scene to die at\u003cbr\u003e#CharlieHebdo , #ParisShooting http://t.co/D5z1suuB7P\u003cbr\u003eThu Jan 08 00:23:46 +0000 2015"}, {"group": 718, "id": 1, "label": "552985606742347777", "shape": "dot", "size": 10, "title": "552985606742347777\u003cbr\u003e@Bipartisanism @lsferguson Awwww... \ud83d\ude4f\u003cbr\u003eThu Jan 08 00:30:17 +0000 2015"}, {"group": 718, "id": 2, "label": "552985877295927296", "shape": "dot", "size": 10, "title": "552985877295927296\u003cbr\u003e@Bipartisanism the problem is Islam,\u003cbr\u003eit matters not a jot\u003cbr\u003eif Muslims are amongst the\u003cbr\u003evictims\u003cbr\u003eThu Jan 08 00:31:21 +0000 2015"}, {"group": 718, "id": 5, "label": "552986695314853888", "shape": "dot", "size": 10, "title": "552986695314853888\u003cbr\u003e@Bipartisanism Ironically tragic. He was\u003cbr\u003ea Muslim.\u003cbr\u003eThu Jan 08 00:34:36 +0000 2015"}, {"group": 718, "id": 6, "label": "552986835333693441", "shape": "dot", "size": 10, "title": "552986835333693441\u003cbr\u003e@Bipartisanism @lsferguson Killed in the\u003cbr\u003eline of duty.May God have\u003cbr\u003emercy on your soul.\u003cbr\u003eThu Jan 08 00:35:10 +0000 2015"}, {"group": 718, "id": 7, "label": "552990170149310464", "shape": "dot", "size": 10, "title": "552990170149310464\u003cbr\u003e@Bipartisanism Ahmed Merabet. May God\u003cbr\u003ehonour you.\nThere is only one\u003cbr\u003eGod. To think that God\u003cbr\u003ecan be diminished means that\u003cbr\u003eone\u0027s faith is weak.\u003cbr\u003eThu Jan 08 00:48:25 +0000 2015"}, {"group": 718, "id": 8, "label": "552990893922217986", "shape": "dot", "size": 10, "title": "552990893922217986\u003cbr\u003e@Bipartisanism proving not all Muslims\u003cbr\u003eare terrorists...but these were.\u003cbr\u003eThu Jan 08 00:51:17 +0000 2015"}, {"group": 718, "id": 9, "label": "552991662453297152", "shape": "dot", "size": 10, "title": "552991662453297152\u003cbr\u003e@Bipartisanism I wonder if France\u0027s\u003cbr\u003epolice will blame everyone BUT\u003cbr\u003ethe shooters. Like NYPD.\u003cbr\u003eThu Jan 08 00:54:21 +0000 2015"}, {"group": 718, "id": 10, "label": "552992499120480256", "shape": "dot", "size": 10, "title": "552992499120480256\u003cbr\u003e@Bipartisanism A muslim victim of\u003cbr\u003ederanged muslims. RIP Ahmed Merabet!\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:57:40 +0000 2015"}, {"group": 718, "id": 11, "label": "552994853442035712", "shape": "dot", "size": 10, "title": "552994853442035712\u003cbr\u003e\u201c@Bipartisanism: Meet Ahmed Merabet, first\u003cbr\u003eofficer on scene to die\u003cbr\u003eat #CharlieHebdo , #ParisShooting http://t.co/wiJ2A2oDRC\u201d\u003cbr\u003e\ud83d\ude14\u003cbr\u003eThu Jan 08 01:07:01 +0000 2015"}, {"group": 718, "id": 13, "label": "553029811657244673", "shape": "dot", "size": 10, "title": "553029811657244673\u003cbr\u003e@Bipartisanism @tee_reed May he rest\u003cbr\u003ein peace.\u003cbr\u003eThu Jan 08 03:25:56 +0000 2015"}, {"group": 718, "id": 3, "label": "552986204657184772", "shape": "dot", "size": 10, "title": "552986204657184772\u003cbr\u003e@mememdo the problem is hate/intolerance.\u003cbr\u003eIf not religion the psychos\u003cbr\u003ewill find something else to\u003cbr\u003ekill over - like race\u003cbr\u003e@Bipartisanism\u003cbr\u003eThu Jan 08 00:32:39 +0000 2015"}, {"group": 718, "id": 4, "label": "552986610661588992", "shape": "dot", "size": 10, "title": "552986610661588992\u003cbr\u003e@mememdo @Bipartisanism nasty comment to\u003cbr\u003emake about an officer dying\u003cbr\u003ein the line of duty.\u003cbr\u003eCondolences to all the families\u003cbr\u003eof victims.\u003cbr\u003eThu Jan 08 00:34:16 +0000 2015"}, {"group": 718, "id": 12, "label": "552995337762516992", "shape": "dot", "size": 10, "title": "552995337762516992\u003cbr\u003e@patrypl @Bipartisanism God Bless and\u003cbr\u003esympathies to those that know\u003cbr\u003eand love him\u003cbr\u003eThu Jan 08 01:08:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 11, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

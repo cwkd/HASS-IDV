@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1256, "id": 0, "label": "553480257747963905", "shape": "dot", "size": 10, "title": "553480257747963905\u003cbr\u003eWhy #CharlieHebdo attack outrages me\u003cbr\u003eyet I won\u0027t publish its\u003cbr\u003ecartoons. Why I\u0027d defend #PK\u003cbr\u003ebut ask MF Husain questions\u003cbr\u003ehttp://t.co/2s4nugBYq7\u003cbr\u003eFri Jan 09 09:15:51 +0000 2015"}, {"group": 1256, "id": 1, "label": "553481930180526082", "shape": "dot", "size": 10, "title": "553481930180526082\u003cbr\u003e@ShekharGupta @AMadumoole INDIA journos r\u003cbr\u003esafe frm terrorist attack,coz terrorist\u003cbr\u003ekills only fearless journos\u003cbr\u003eFri Jan 09 09:22:30 +0000 2015"}, {"group": 1256, "id": 2, "label": "553481945712041984", "shape": "dot", "size": 10, "title": "553481945712041984\u003cbr\u003e@ShekharGupta http://t.co/9y1sp21x7n\u003cbr\u003eFri Jan 09 09:22:33 +0000 2015"}, {"group": 1256, "id": 3, "label": "553482922448011264", "shape": "dot", "size": 10, "title": "553482922448011264\u003cbr\u003e@ShekharGupta it is truth of\u003cbr\u003eIndia now. They showing there\u003cbr\u003eface how much they hate\u003cbr\u003eMuslim. @ikaveri\u003cbr\u003eFri Jan 09 09:26:26 +0000 2015"}, {"group": 1256, "id": 4, "label": "553483955458945024", "shape": "dot", "size": 10, "title": "553483955458945024\u003cbr\u003e@ShekharGupta @ikaveri .\u0907\u0938 \u0926\u0947\u0936 \u0915\u0947\u003cbr\u003e\u0932\u094b\u0917\u094b \u0915\u094b \u0905\u092c \u0907\u0938 \u0926\u0947\u0936\u003cbr\u003e\u0915\u0947 \u092e\u0940\u0921\u093f\u092f\u093e \u0916\u092c\u0930\u094b\u0902 \u092a\u0930 \u092c\u093f\u0932\u094d\u0915\u0941\u0932\u003cbr\u003e\u092d\u0940 \u092d\u0930\u094b\u0938\u093e \u0928\u0939\u0940 \u0915\u0930\u0928\u093e \u091a\u093e\u0939\u093f\u092f\u0947\u003cbr\u003e\u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0907\u0938 \u0926\u0947\u0936 \u0915\u0940 \u092e\u0940\u0921\u093f\u092f\u093e\u003cbr\u003e\u0938\u093f\u0930\u094d\u092b TRP-\u003cbr\u003eFri Jan 09 09:30:32 +0000 2015"}, {"group": 1256, "id": 5, "label": "553484703466942464", "shape": "dot", "size": 10, "title": "553484703466942464\u003cbr\u003e@ShekharGupta @ikaveri - \u0915\u0947 \u0932\u093f\u092f\u0947\u003cbr\u003e\u0915\u093e\u092e \u0915\u0930\u0924\u0940 \u0939\u0948 \u0938\u091a\u094d\u091a\u093e\u0908 \u0915\u0947\u003cbr\u003e\u0932\u093f\u090f \u0928\u0939\u0940, \u0909\u0938\u0915\u0940 \u0916\u092c\u0930\u0947\u0902 \u092e\u0938\u093e\u0932\u0947\u003cbr\u003e\u0926\u093e\u0930 \u0939\u094b\u0924\u0940 \u0939\u0948 \u0938\u091a\u094d\u091a\u0940 \u0928\u0939\u0940.\u003cbr\u003e\u0938\u091a \u0915\u0939\u0928\u0947 \u0915\u093e \u0938\u093e\u0939\u0938 \u0928\u0939\u0940\u003cbr\u003e\u0939\u0948 \u0921\u0930 \u0915\u0930 \u0938\u093f\u0930\u094d\u092b-\u003cbr\u003eFri Jan 09 09:33:31 +0000 2015"}, {"group": 1256, "id": 6, "label": "553485046611726336", "shape": "dot", "size": 10, "title": "553485046611726336\u003cbr\u003e@ShekharGupta Because you have elastic\u003cbr\u003emorality of psuedo secular kind\u003cbr\u003e#CharlieHebdo\u003cbr\u003eFri Jan 09 09:34:53 +0000 2015"}, {"group": 1256, "id": 7, "label": "553485055041888256", "shape": "dot", "size": 10, "title": "553485055041888256\u003cbr\u003e@ShekharGupta Poor you...soooo confused...@vaiju7\u003cbr\u003eFri Jan 09 09:34:55 +0000 2015"}, {"group": 1256, "id": 8, "label": "553485139401916416", "shape": "dot", "size": 10, "title": "553485139401916416\u003cbr\u003e@ShekharGupta @ikaveri - \u090f\u0915 \u0924\u0930\u092b\u093e\u003cbr\u003e\u0930\u093f\u0930\u094d\u092a\u094b\u091f\u093f\u0902\u0917 \u0915\u0930\u0924\u0940  \u0939\u0948 \u0906\u0927\u093e\u003cbr\u003e\u0905\u0927\u0942\u0930\u093e \u0938\u091a \u0926\u093f\u0916\u093e\u0924\u0940 \u0939\u0948.\u003cbr\u003eFri Jan 09 09:35:15 +0000 2015"}, {"group": 1256, "id": 9, "label": "553485680236449792", "shape": "dot", "size": 10, "title": "553485680236449792\u003cbr\u003e@ShekharGupta So FoE is not\u003cbr\u003eabsolute but  relative\u003cbr\u003eFri Jan 09 09:37:24 +0000 2015"}, {"group": 1256, "id": 10, "label": "553486755928616960", "shape": "dot", "size": 10, "title": "553486755928616960\u003cbr\u003e@ShekharGupta Agree with much u\u003cbr\u003esay. Disagree if you mean\u003cbr\u003eunfettered FoE. Any society must\u003cbr\u003ehold some things as Sacred.\u003cbr\u003eProfanity not allowed\u003cbr\u003eFri Jan 09 09:41:40 +0000 2015"}, {"group": 1256, "id": 11, "label": "553487473888620545", "shape": "dot", "size": 10, "title": "553487473888620545\u003cbr\u003e@ShekharGupta  meet BSP MP,\u003cbr\u003eyou will soon get enlightenment\u003cbr\u003e! He\u0027s waiting for you\u003cbr\u003emy dear! #Paidmedia #Parisshooting #CharlieHebdo\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:44:31 +0000 2015"}, {"group": 1256, "id": 12, "label": "553498154524372993", "shape": "dot", "size": 10, "title": "553498154524372993\u003cbr\u003e@ShekharGupta Sir, an absolutely brilliant\u003cbr\u003eand incisive article! It was\u003cbr\u003eindeed such a delight to\u003cbr\u003eread an article laced with\u003cbr\u003esuch subtlety.\u003cbr\u003eFri Jan 09 10:26:58 +0000 2015"}, {"group": 1256, "id": 13, "label": "553499341852131328", "shape": "dot", "size": 10, "title": "553499341852131328\u003cbr\u003e@smitabarooah \nSo, why was the\u003cbr\u003eDa Vinci Code banned in\u003cbr\u003e7 states of India dear\u003cbr\u003e@ShekharGupta ?\u003cbr\u003eFri Jan 09 10:31:41 +0000 2015"}, {"group": 1256, "id": 14, "label": "553505077315792897", "shape": "dot", "size": 10, "title": "553505077315792897\u003cbr\u003eInteresting perspective by @ShekharGupta: Why\u003cbr\u003e#CharlieHebdo attack outrages me yet\u003cbr\u003eI won\u0027t publish its cartoons.\u003cbr\u003ehttp://t.co/ta2t4mJIKD\u003cbr\u003eFri Jan 09 10:54:28 +0000 2015"}, {"group": 1256, "id": 16, "label": "553515381260705792", "shape": "dot", "size": 10, "title": "553515381260705792\u003cbr\u003e@ShekharGupta @smitabarooah \u0936\u0947\u0916\u0930 \u092c\u093e\u092c\u0942 \u0907\u0924\u0928\u0940\u003cbr\u003e\u092c\u095c\u0940 \u0906\u0930\u094d\u091f\u093f\u0915\u0932 \u0932\u093f\u0916 \u0926\u093f\u090f \u092a\u0930\u003cbr\u003e\u092f\u0947 \u0938\u091a \u0928\u0939\u0940\u0902 \u092c\u094b\u0932 \u092a\u093e\u092f\u0947\u003cbr\u003e\u0915\u0940 \u092d\u093e\u0930\u0924\u0940\u092f \u092e\u0940\u0921\u093f\u092f\u093e \u0921\u0930\u092a\u094b\u0915 \u0939\u0948\u0964\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:35:25 +0000 2015"}, {"group": 1256, "id": 17, "label": "553528366679080961", "shape": "dot", "size": 10, "title": "553528366679080961\u003cbr\u003e@ShekharGupta did you ask MF\u003cbr\u003eHusain these questions when the\u003cbr\u003econtroversy was raging and a\u003cbr\u003estand mattered then? If yes,\u003cbr\u003eplease do post links.\u003cbr\u003eFri Jan 09 12:27:01 +0000 2015"}, {"group": 1256, "id": 15, "label": "553506459263442944", "shape": "dot", "size": 10, "title": "553506459263442944\u003cbr\u003e@IndianYash Make quite a bit\u003cbr\u003eof sense. Did you read\u003cbr\u003ethe Pratap Bhanu Mehta perspective\u003cbr\u003eon this? @ShekharGupta\u003cbr\u003eFri Jan 09 10:59:58 +0000 2015"}, {"group": 1256, "id": 18, "label": "553529138095464449", "shape": "dot", "size": 10, "title": "553529138095464449\u003cbr\u003e@amishra77 No wonder we call\u003cbr\u003ehere SIKULARS AND FIBERALS --\u0026gt;\u0026gt;\u0026gt;\u0026gt;\u0026gt;\u0026gt;\u003cbr\u003e@ShekharGupta\u003cbr\u003eFri Jan 09 12:30:05 +0000 2015"}, {"group": 1256, "id": 19, "label": "553531258542645249", "shape": "dot", "size": 10, "title": "553531258542645249\u003cbr\u003e@amishra77 Don\u0027t think so. ..tho\u003cbr\u003elargely agree with his current\u003cbr\u003eposition.  @ShekharGupta\u003cbr\u003eFri Jan 09 12:38:30 +0000 2015"}, {"group": 1256, "id": 24, "label": "553746109646901249", "shape": "dot", "size": 10, "title": "553746109646901249\u003cbr\u003e@amishra77 @vijayvaani @ShekharGupta http://t.co/mwg8xPOZAe\u003cbr\u003eSat Jan 10 02:52:15 +0000 2015"}, {"group": 1256, "id": 20, "label": "553532028981739522", "shape": "dot", "size": 10, "title": "553532028981739522\u003cbr\u003e@alisaspeaks this current position is\u003cbr\u003ea mish-mash after years of\u003cbr\u003esiding with propagandists and professional\u003cbr\u003esecularists @ShekharGupta\u003cbr\u003eFri Jan 09 12:41:34 +0000 2015"}, {"group": 1256, "id": 21, "label": "553538587413581825", "shape": "dot", "size": 10, "title": "553538587413581825\u003cbr\u003e@amishra77 Oh yes @ShekharGupta like\u003cbr\u003ethe rest of his breed,\u003cbr\u003eis a fair weather journalist\u003cbr\u003e:)\u003cbr\u003eFri Jan 09 13:07:38 +0000 2015"}, {"group": 1256, "id": 22, "label": "553539194891431937", "shape": "dot", "size": 10, "title": "553539194891431937\u003cbr\u003e@alisaspeaks the thing is, counting\u003cbr\u003eon short memories of people,\u003cbr\u003eusually a fair bet, does\u003cbr\u003enot work that well in\u003cbr\u003einternet world @ShekharGupta\u003cbr\u003eFri Jan 09 13:10:02 +0000 2015"}, {"group": 1256, "id": 23, "label": "553539458897674240", "shape": "dot", "size": 10, "title": "553539458897674240\u003cbr\u003e@amishra77 @ShekharGupta Which is why\u003cbr\u003eMSM hates SM. And I\u003cbr\u003euse the word \u0027hate\u0027 responsibly\u003cbr\u003e:)\u003cbr\u003eFri Jan 09 13:11:05 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 17, "to": 19, "weight": 1}, {"from": 17, "to": 24, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

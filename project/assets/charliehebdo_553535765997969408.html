@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1348, "id": 0, "label": "553535765997969408", "shape": "dot", "size": 10, "title": "553535765997969408\u003cbr\u003eKill them \u0026amp; when you\u0027re\u003cbr\u003edone kill their pet goat\u274cRT\"@sammy2168:\u003cbr\u003e@jjauthor  @FlyoverCulture @DrMartyFox http://t.co/0oTaUVvisg\u201d\u003cbr\u003e#CharlieHebdo\u003cbr\u003eFri Jan 09 12:56:25 +0000 2015"}, {"group": 1348, "id": 1, "label": "553536049767804928", "shape": "dot", "size": 10, "title": "553536049767804928\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eI freaking LOVE this guy.\u003cbr\u003e Would vote for him\u003cbr\u003ein a New York minute.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:57:33 +0000 2015"}, {"group": 1348, "id": 2, "label": "553536286058119168", "shape": "dot", "size": 10, "title": "553536286058119168\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eleave the goats in peace..ain\u0027t\u003cbr\u003etheir fault.\u003cbr\u003eFri Jan 09 12:58:29 +0000 2015"}, {"group": 1348, "id": 3, "label": "553536288838545408", "shape": "dot", "size": 10, "title": "553536288838545408\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003e My father traveled all\u003cbr\u003eover the world. He called\u003cbr\u003ethe Mongoloid Hoards\u003cbr\u003eFri Jan 09 12:58:30 +0000 2015"}, {"group": 1348, "id": 4, "label": "553536468627771393", "shape": "dot", "size": 10, "title": "553536468627771393\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003erun, you cur, RUN! Tell\u003cbr\u003eall curs the law\u0027s coming\u003cbr\u003e\u0026amp; hell\u0027s coming with us,\u003cbr\u003ehear?\u003cbr\u003eFri Jan 09 12:59:12 +0000 2015"}, {"group": 1348, "id": 5, "label": "553536468782571520", "shape": "dot", "size": 10, "title": "553536468782571520\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eWe should just let them\u003cbr\u003ekill each other off and\u003cbr\u003ebe done with it\u003cbr\u003eFri Jan 09 12:59:13 +0000 2015"}, {"group": 1348, "id": 6, "label": "553536618645049344", "shape": "dot", "size": 10, "title": "553536618645049344\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eWhy do westerners relate Muslim\u003cbr\u003ewith a goat? #JeSuisCharlie #CharlieHebdo\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:59:48 +0000 2015"}, {"group": 1348, "id": 7, "label": "553536624307765248", "shape": "dot", "size": 10, "title": "553536624307765248\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eif ONLY we had a\u003cbr\u003eREAL Commander-in-Chief!\u003cbr\u003eFri Jan 09 12:59:50 +0000 2015"}, {"group": 1348, "id": 8, "label": "553536824673861633", "shape": "dot", "size": 10, "title": "553536824673861633\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003ejust look at how long\u003cbr\u003ethey have been killing ,\u003cbr\u003eit\u0027s time to end their\u003cbr\u003eterror\u003cbr\u003eFri Jan 09 13:00:37 +0000 2015"}, {"group": 1348, "id": 9, "label": "553537065678540801", "shape": "dot", "size": 10, "title": "553537065678540801\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eWe\u0027ve been @war, It\u0027s kill\u003cbr\u003eor be killed\u003cbr\u003eFri Jan 09 13:01:35 +0000 2015"}, {"group": 1348, "id": 10, "label": "553540270575607809", "shape": "dot", "size": 10, "title": "553540270575607809\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eThe goat is innocent!\u003cbr\u003eFri Jan 09 13:14:19 +0000 2015"}, {"group": 1348, "id": 12, "label": "553540960718962690", "shape": "dot", "size": 10, "title": "553540960718962690\u003cbr\u003e@peddoc63 I appreciate your interesting\u003cbr\u003etweet... It\u0027s my pleasure to\u003cbr\u003efeature it on http://t.co/jhXRqJSYPE\u003cbr\u003eFri Jan 09 13:17:03 +0000 2015"}, {"group": 1348, "id": 13, "label": "553545787737923584", "shape": "dot", "size": 10, "title": "553545787737923584\u003cbr\u003e@peddoc63 I love thay guy!\u003cbr\u003eI\u0027ve been saying all wk...just\u003cbr\u003ebehead them on every muslim\u003cbr\u003ereply @sammy2168 @jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:36:14 +0000 2015"}, {"group": 1348, "id": 14, "label": "553545896739086336", "shape": "dot", "size": 10, "title": "553545896739086336\u003cbr\u003e@peddoc63 @anncompana @sammy2168 @jjauthor @FlyoverCulture\u003cbr\u003e@DrMartyFox Correct, except the goat\u003cbr\u003ewasn\u0027t his pet, it was\u003cbr\u003ehis wife.\u003cbr\u003eFri Jan 09 13:36:40 +0000 2015"}, {"group": 1348, "id": 15, "label": "553551026662285312", "shape": "dot", "size": 10, "title": "553551026662285312\u003cbr\u003e@peddoc63 @sammy2168 @jjauthor @flyoverculture @drmartyfox\u003cbr\u003e you mean their temporary\u003cbr\u003ewives. http://t.co/PDgo1PsRWo\u003cbr\u003eFri Jan 09 13:57:03 +0000 2015"}, {"group": 1348, "id": 16, "label": "553563770891411457", "shape": "dot", "size": 10, "title": "553563770891411457\u003cbr\u003e@peddoc63 My 16 y/o son\u003cbr\u003eloves this guy! Yeah....#GlassParkingLot @sammy2168\u003cbr\u003e@jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eFri Jan 09 14:47:42 +0000 2015"}, {"group": 1348, "id": 17, "label": "553584019871260672", "shape": "dot", "size": 10, "title": "553584019871260672\u003cbr\u003e@peddoc63 Just shove it Fiesty\u003cbr\u003ewill ya ? You condemn\u003cbr\u003eslaughter by advocating slaughter ,\u003cbr\u003eboth you and Islamic fanatics\u003cbr\u003eare pure FILTH .\u003cbr\u003eFri Jan 09 16:08:10 +0000 2015"}, {"group": 1348, "id": 18, "label": "553662924011884544", "shape": "dot", "size": 10, "title": "553662924011884544\u003cbr\u003e@peddoc63 @PJStrikeForce @sammy2168 @jjauthor @FlyoverCulture\u003cbr\u003e@DrMartyFox Well, at least the\u003cbr\u003egoats would then be safe\u003cbr\u003efrom rape...\u003cbr\u003eFri Jan 09 21:21:42 +0000 2015"}, {"group": 1348, "id": 19, "label": "553663023340982272", "shape": "dot", "size": 10, "title": "553663023340982272\u003cbr\u003ePoor goat/wife @peddoc63 @PJStrikeForce @sammy2168\u003cbr\u003e@jjauthor @FlyoverCulture @DrMartyFox\u003cbr\u003eFri Jan 09 21:22:05 +0000 2015"}, {"group": 1348, "id": 11, "label": "553540409272442880", "shape": "dot", "size": 10, "title": "553540409272442880\u003cbr\u003e@azrita1995 @peddoc63 @sammy2168 @jjauthor @FlyoverCulture\u003cbr\u003e@DrMartyFox they\u0027ve suffered enough! http://t.co/2A22zEB9RR\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:14:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

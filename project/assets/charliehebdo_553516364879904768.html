@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1315, "id": 0, "label": "553516364879904768", "shape": "dot", "size": 10, "title": "553516364879904768\u003cbr\u003eMy cartoon today @TheTimes on\u003cbr\u003eIslamist terror: a cartoon fightback\u003cbr\u003e#CharlieHebdo http://t.co/0lG5ax0vF8\u003cbr\u003eFri Jan 09 11:39:19 +0000 2015"}, {"group": 1315, "id": 1, "label": "553517200116813826", "shape": "dot", "size": 10, "title": "553517200116813826\u003cbr\u003e\u201c@BrookesTimes: My cartoon today @TheTimes\u003cbr\u003eon Islamist terror: a cartoon\u003cbr\u003efightback #CharlieHebdo http://t.co/zbdf3PlEnM\u201d\n\nLove this.\u003cbr\u003eFri Jan 09 11:42:39 +0000 2015"}, {"group": 1315, "id": 2, "label": "553517624555208704", "shape": "dot", "size": 10, "title": "553517624555208704\u003cbr\u003e@BrookesTimes @thetimes That\u2019s better.\u003cbr\u003eFri Jan 09 11:44:20 +0000 2015"}, {"group": 1315, "id": 3, "label": "553517665273528320", "shape": "dot", "size": 10, "title": "553517665273528320\u003cbr\u003e@BrookesTimes @Holbornlolz @thetimes some snack-bar\u003cbr\u003earrr wanted.\u003cbr\u003eFri Jan 09 11:44:29 +0000 2015"}, {"group": 1315, "id": 4, "label": "553520461313634306", "shape": "dot", "size": 10, "title": "553520461313634306\u003cbr\u003e@BrookesTimes @thetimes these terrorists r\u003cbr\u003eonly harming Islam. Islam is\u003cbr\u003eall about Love \u0026amp; Peace.\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:55:36 +0000 2015"}, {"group": 1315, "id": 5, "label": "553522927057260544", "shape": "dot", "size": 10, "title": "553522927057260544\u003cbr\u003e@BrookesTimes @TheTweetOfAllah @thetimes what irony.\u003cbr\u003eJust. Publish. Charlie. Hebdo.\u003cbr\u003eFri Jan 09 12:05:24 +0000 2015"}, {"group": 1315, "id": 6, "label": "553524637548564480", "shape": "dot", "size": 10, "title": "553524637548564480\u003cbr\u003e@BrookesTimes @RitaPanahi  be careful\u003cbr\u003ethey\u0027ll be after you next\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:12:12 +0000 2015"}, {"group": 1315, "id": 8, "label": "553537664545476608", "shape": "dot", "size": 10, "title": "553537664545476608\u003cbr\u003e@BrookesTimes:My cartoon today @TheTimes on\u003cbr\u003eIslamist terror:cartoon fightback #CharlieHebdo http://t.co/jxw5I0GM6V\u003cbr\u003eAls de dood voor cartoons\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:03:58 +0000 2015"}, {"group": 1315, "id": 9, "label": "553540090392477696", "shape": "dot", "size": 10, "title": "553540090392477696\u003cbr\u003eA tat aggressive, @BrookesTimes, but\u003cbr\u003eit\u0027s a brave effort to\u003cbr\u003estand up for #FreeSpeech. Kudos\u003cbr\u003e@thetimes \n#CharlieHebdo\u003cbr\u003eFri Jan 09 13:13:36 +0000 2015"}, {"group": 1315, "id": 10, "label": "553550616149364736", "shape": "dot", "size": 10, "title": "553550616149364736\u003cbr\u003e@BrookesTimes @RitaPanahi @thetimes Were \u003cbr\u003eit only so easy.\u003cbr\u003eFri Jan 09 13:55:26 +0000 2015"}, {"group": 1315, "id": 11, "label": "553569594196369408", "shape": "dot", "size": 10, "title": "553569594196369408\u003cbr\u003e@BrookesTimes @acarvin @thetimes Riiiihgt but\u003cbr\u003ethen saying \"God is Great\"\u003cbr\u003eis not what needs to\u003cbr\u003ekill the assassin.  Another\u003cbr\u003eutterance better.\u003cbr\u003eFri Jan 09 15:10:50 +0000 2015"}, {"group": 1315, "id": 12, "label": "553570918346543106", "shape": "dot", "size": 10, "title": "553570918346543106\u003cbr\u003eRT: @BrookesTimes: My cartoon today\u003cbr\u003e@TheTimes on Islamist terror: a\u003cbr\u003ecartoon fightback #CharlieHebdo http://t.co/p1cDZ8xUJU\u003cbr\u003eFri Jan 09 15:16:06 +0000 2015"}, {"group": 1315, "id": 14, "label": "553574861595877376", "shape": "dot", "size": 10, "title": "553574861595877376\u003cbr\u003e@BrookesTimes @thetimes Guess what,only anything\u003cbr\u003eagainst #Islam is freedom of\u003cbr\u003espeech #CharlieHebdo #ParisAttack http://t.co/5bVfPK7gQi\u003cbr\u003eFri Jan 09 15:31:46 +0000 2015"}, {"group": 1315, "id": 15, "label": "553576645584384002", "shape": "dot", "size": 10, "title": "553576645584384002\u003cbr\u003e@BrookesTimes @brianstelter @thetimes .What about\u003cbr\u003eyr bloody Christian/Jewish Terror in\u003cbr\u003eIRAQ\u0026amp;others. Cheeky you. Do not\u003cbr\u003elink Islam to terror.\u003cbr\u003eFri Jan 09 15:38:51 +0000 2015"}, {"group": 1315, "id": 16, "label": "553583087721140224", "shape": "dot", "size": 10, "title": "553583087721140224\u003cbr\u003e@BrookesTimes @thetimes your cartoon is\u003cbr\u003eviolent. Where and when does\u003cbr\u003ethe hate stops? We want\u003cbr\u003epeace! #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:04:27 +0000 2015"}, {"group": 1315, "id": 17, "label": "553585968125861888", "shape": "dot", "size": 10, "title": "553585968125861888\u003cbr\u003eRT\"@BrookesTimes Mi vi\u00f1eta de hoy\u003cbr\u003e@TheTimes sobre el Terror Isl\u00e1mico:El\u003cbr\u003econtraataque de la vi\u00f1eta #CharlieHebdo\u003cbr\u003ehttp://t.co/wAz9qYvndr\"[TR.]\u003cbr\u003eFri Jan 09 16:15:54 +0000 2015"}, {"group": 1315, "id": 18, "label": "553586868210511873", "shape": "dot", "size": 10, "title": "553586868210511873\u003cbr\u003e@BrookesTimes @bernerlap @thetimes Glad to\u003cbr\u003esee The Times hasn\u0027t buckled\u003cbr\u003eto Islamist censorship demands.\u003cbr\u003eFri Jan 09 16:19:29 +0000 2015"}, {"group": 1315, "id": 19, "label": "553587817444814849", "shape": "dot", "size": 10, "title": "553587817444814849\u003cbr\u003e@BrookesTimes @hjoneshojo @thetimes Cartoon \"fightback\"\u003cbr\u003eor biased propaganda? You have\u003cbr\u003ethe power to create, use\u003cbr\u003eit wisely.\u003cbr\u003eFri Jan 09 16:23:15 +0000 2015"}, {"group": 1315, "id": 7, "label": "553526316520464384", "shape": "dot", "size": 10, "title": "553526316520464384\u003cbr\u003e@WakeUpPakNation @BrookesTimes @thetimes Right. I\u0027m\u003cbr\u003esure that\u0027s what that police\u003cbr\u003eofficer was thinking before that\u003cbr\u003ebullet went thru his head.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:18:52 +0000 2015"}, {"group": 1315, "id": 13, "label": "553572412864753664", "shape": "dot", "size": 10, "title": "553572412864753664\u003cbr\u003e@WakeUpPakNation @BrookesTimes @thetimes Yes, Islam\u003cbr\u003eis like Christianity, it\u0027s all\u003cbr\u003eabout love and peace.\u003cbr\u003eFri Jan 09 15:22:02 +0000 2015"}, {"group": 1315, "id": 20, "label": "553590535416729600", "shape": "dot", "size": 10, "title": "553590535416729600\u003cbr\u003e@WakeUpPakNation @BrookesTimes @thetimes Islam about\u003cbr\u003elove and peace? You wish!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:34:03 +0000 2015"}, {"group": 1315, "id": 21, "label": "553744960676442112", "shape": "dot", "size": 10, "title": "553744960676442112\u003cbr\u003e@AfterHardship @BrookesTimes @acarvin @thetimes Why?\u003cbr\u003eThat\u0027s what the assassins utter\u003cbr\u003ewhen killing countless victims around\u003cbr\u003ethe world.\u003cbr\u003eSat Jan 10 02:47:41 +0000 2015"}, {"group": 1315, "id": 22, "label": "553835810664235008", "shape": "dot", "size": 10, "title": "553835810664235008\u003cbr\u003e@JessicaGG25 @BrookesTimes @acarvin @thetimes \u003cbr\u003e\"Allahu Akbar\" is not as\u003cbr\u003egood as gunman\u0027s  \"Do\u003cbr\u003eyou want to kill me?\"\u003cbr\u003espoken to #AhmedMerabet\u003cbr\u003eSat Jan 10 08:48:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 13, "weight": 1}, {"from": 4, "to": 20, "weight": 1}, {"from": 11, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

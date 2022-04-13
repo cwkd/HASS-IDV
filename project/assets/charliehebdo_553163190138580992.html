@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 969, "id": 0, "label": "553163190138580992", "shape": "dot", "size": 10, "title": "553163190138580992\u003cbr\u003eAsterix and Obelix pay tribute\u003cbr\u003eto #CharlieHebdo victims (via @asterixofficiel)\u003cbr\u003ehttp://t.co/ssgYsoKoIC\u003cbr\u003eThu Jan 08 12:15:56 +0000 2015"}, {"group": 969, "id": 1, "label": "553167624495198208", "shape": "dot", "size": 10, "title": "553167624495198208\u003cbr\u003e\u201c@elenacresci: Asterix and Obelix pay\u003cbr\u003etribute to #CharlieHebdo victims (via\u003cbr\u003e@asterixofficiel) http://t.co/AEV2T8Efgt\u201d beautiful\u003cbr\u003eThu Jan 08 12:33:33 +0000 2015"}, {"group": 969, "id": 2, "label": "553173569216446464", "shape": "dot", "size": 10, "title": "553173569216446464\u003cbr\u003e@elenacresci @SymbolicJest @asterixofficiel I LOVE\u003cbr\u003eTHE ASTERIX COMICS!! I have\u003cbr\u003e10 of them!!!\u003cbr\u003eThu Jan 08 12:57:11 +0000 2015"}, {"group": 969, "id": 3, "label": "553176824491298816", "shape": "dot", "size": 10, "title": "553176824491298816\u003cbr\u003eRT @elenacresci: Asterix and Obelix\u003cbr\u003epay tribute to #CharlieHebdo victims\u003cbr\u003e(via @asterixofficiel) http://t.co/cIvmouIHiW\u003cbr\u003eThu Jan 08 13:10:07 +0000 2015"}, {"group": 969, "id": 4, "label": "553176887338758144", "shape": "dot", "size": 10, "title": "553176887338758144\u003cbr\u003e@elenacresci @asterixofficiel love this. Well\u003cbr\u003edone xx\u003cbr\u003eThu Jan 08 13:10:22 +0000 2015"}, {"group": 969, "id": 5, "label": "553177356786216960", "shape": "dot", "size": 10, "title": "553177356786216960\u003cbr\u003e@elenacresci @almurray @asterixofficiel These terrorists\u003cbr\u003eare crazy!\u003cbr\u003eThu Jan 08 13:12:14 +0000 2015"}, {"group": 969, "id": 6, "label": "553178485238538240", "shape": "dot", "size": 10, "title": "553178485238538240\u003cbr\u003e@elenacresci @almurray @asterixofficiel Touching. Genuinely\u003cbr\u003eso.\u003cbr\u003eThu Jan 08 13:16:43 +0000 2015"}, {"group": 969, "id": 7, "label": "553179692640264192", "shape": "dot", "size": 10, "title": "553179692640264192\u003cbr\u003e@elenacresci @almurray @asterixofficiel respect\u003cbr\u003eThu Jan 08 13:21:30 +0000 2015"}, {"group": 969, "id": 8, "label": "553184027788967936", "shape": "dot", "size": 10, "title": "553184027788967936\u003cbr\u003e#Cartoonist solidarity \u201c@elenacresci: Asterix and\u003cbr\u003eObelix pay tribute to #CharlieHebdo\u003cbr\u003evictims (via @asterixofficiel) http://t.co/qTXcfBXg01\u201d\u003cbr\u003eThu Jan 08 13:38:44 +0000 2015"}, {"group": 969, "id": 9, "label": "553184808659324928", "shape": "dot", "size": 10, "title": "553184808659324928\u003cbr\u003e@elenacresci @asterixofficiel muslims a religion\u003cbr\u003eof peace and tollrence as\u003cbr\u003elong as you agree\u003cbr\u003eThu Jan 08 13:41:50 +0000 2015"}, {"group": 969, "id": 10, "label": "553188637790449664", "shape": "dot", "size": 10, "title": "553188637790449664\u003cbr\u003e@elenacresci You made my @RebelMouse\u003cbr\u003ehttp://t.co/NeF61ith5w\u003cbr\u003eThu Jan 08 13:57:03 +0000 2015"}, {"group": 969, "id": 11, "label": "553189444027961344", "shape": "dot", "size": 10, "title": "553189444027961344\u003cbr\u003e@elenacresci @RufusHound @asterixofficiel\u003cbr\u003eThu Jan 08 14:00:15 +0000 2015"}, {"group": 969, "id": 12, "label": "553194789458280449", "shape": "dot", "size": 10, "title": "553194789458280449\u003cbr\u003e@elenacresci Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/Hl94lob2sz\u003cbr\u003eThu Jan 08 14:21:30 +0000 2015"}, {"group": 969, "id": 13, "label": "553198891882283008", "shape": "dot", "size": 10, "title": "553198891882283008\u003cbr\u003e@elenacresci @SandraBaierl @asterixofficiel freedom of\u003cbr\u003espeech is more important than\u003cbr\u003eany religion or ideology\u003cbr\u003eThu Jan 08 14:37:48 +0000 2015"}, {"group": 969, "id": 14, "label": "553199171113857024", "shape": "dot", "size": 10, "title": "553199171113857024\u003cbr\u003e\u201c@elenacresci: Asterix and Obelix pay\u003cbr\u003etribute to #CharlieHebdo victims (via\u003cbr\u003e@asterixofficiel) http://t.co/UGFkUuwZjA\u201d\n#JeSuisCharlie\u003cbr\u003eThu Jan 08 14:38:54 +0000 2015"}, {"group": 969, "id": 17, "label": "553652053231558656", "shape": "dot", "size": 10, "title": "553652053231558656\u003cbr\u003e@elenacresci @almurray beautiful\u003cbr\u003eFri Jan 09 20:38:30 +0000 2015"}, {"group": 969, "id": 15, "label": "553254732358483969", "shape": "dot", "size": 10, "title": "553254732358483969\u003cbr\u003e@irenejuliawise @elenacresci @asterixofficiel loved asterix\u003cbr\u003eand obelix...a lovely tribute\u003cbr\u003eThu Jan 08 18:19:41 +0000 2015"}, {"group": 969, "id": 16, "label": "553288256075603968", "shape": "dot", "size": 10, "title": "553288256075603968\u003cbr\u003e@irenejuliawise @elenacresci @asterixofficiel beautiful and\u003cbr\u003etouching\u003cbr\u003eThu Jan 08 20:32:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 8, "to": 16, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

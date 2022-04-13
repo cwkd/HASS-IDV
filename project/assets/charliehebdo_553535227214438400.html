@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1345, "id": 0, "label": "553535227214438400", "shape": "dot", "size": 10, "title": "553535227214438400\u003cbr\u003eIslamophobia: a word created by\u003cbr\u003efascists, used by cowards, to\u003cbr\u003emanipulate morons. @YoungBLKRepub  \u003cbr\u003ehttp://t.co/uJowPJhbAi #CharlieHebdo\u003cbr\u003eFri Jan 09 12:54:17 +0000 2015"}, {"group": 1345, "id": 1, "label": "553535686880407552", "shape": "dot", "size": 10, "title": "553535686880407552\u003cbr\u003e@peddoc63 @YoungBLKRepub I know he\u003cbr\u003ewouldn\u0027t like me saying this,\u003cbr\u003ebut God bless Christopher he\u003cbr\u003ehad a way with words.\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:56:06 +0000 2015"}, {"group": 1345, "id": 2, "label": "553537822292860928", "shape": "dot", "size": 10, "title": "553537822292860928\u003cbr\u003e@peddoc63 @YoungBLKRepub ppl don\u0027t seem\u003cbr\u003e2 unseat stand that phobia\u003cbr\u003eis an IRRATIONAL fear of\u003cbr\u003esomething. Seems very rational 2\u003cbr\u003eme 2 fear evil\u003cbr\u003eFri Jan 09 13:04:35 +0000 2015"}, {"group": 1345, "id": 3, "label": "553538590333235200", "shape": "dot", "size": 10, "title": "553538590333235200\u003cbr\u003e@peddoc63 @YoungBLKRepub SO WELL STATED!!!\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:07:38 +0000 2015"}, {"group": 1345, "id": 4, "label": "553546692515995649", "shape": "dot", "size": 10, "title": "553546692515995649\u003cbr\u003e@peddoc63 except you\u0027re a hypocrite\u003cbr\u003ebecause you are afraid of\u003cbr\u003eIslam and want it gone...take\u003cbr\u003ea look at one of\u003cbr\u003eyour most recent retweets.\u003cbr\u003eFri Jan 09 13:39:50 +0000 2015"}, {"group": 1345, "id": 5, "label": "553547319019188224", "shape": "dot", "size": 10, "title": "553547319019188224\u003cbr\u003e@peddoc63 yeah they manipulated you\u003cbr\u003emoron http://t.co/za8fJLN691\u003cbr\u003eFri Jan 09 13:42:19 +0000 2015"}, {"group": 1345, "id": 6, "label": "553553107872120832", "shape": "dot", "size": 10, "title": "553553107872120832\u003cbr\u003e@peddoc63 @YoungBLKRepub an oxymoronic statement\u003cbr\u003emorons don\u0027t reason they emote.\u003cbr\u003eThe word was developed by\u003cbr\u003eword smiths for word smiths\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:05:20 +0000 2015"}, {"group": 1345, "id": 7, "label": "553556642336624640", "shape": "dot", "size": 10, "title": "553556642336624640\u003cbr\u003e@peddoc63 @YoungBLKRepub Craven US media\u003cbr\u003eexplain cowardice re Mo cartoons:\u003cbr\u003e\"We\u0027re sensitive.\" @greta @megynkelly @JudgeJeanine\u003cbr\u003e#PJNET #tpot\u003cbr\u003eFri Jan 09 14:19:22 +0000 2015"}, {"group": 1345, "id": 8, "label": "553557066560729088", "shape": "dot", "size": 10, "title": "553557066560729088\u003cbr\u003e@peddoc63 @KandiRider @YoungBLKRepub It\u0027s used\u003cbr\u003elike RACISM or RACIST to\u003cbr\u003escare people.\u003cbr\u003eFri Jan 09 14:21:03 +0000 2015"}, {"group": 1345, "id": 9, "label": "553565334658371584", "shape": "dot", "size": 10, "title": "553565334658371584\u003cbr\u003e@peddoc63 @YoungBLKRepub It\u00a8s been a\u003cbr\u003ejob for Western PC-media to\u003cbr\u003ehide the thuth from this\u003cbr\u003egenius. But after #CharlieHebdo they\u003cbr\u003eacknoledge it\u003cbr\u003eFri Jan 09 14:53:55 +0000 2015"}, {"group": 1345, "id": 10, "label": "553568716428816384", "shape": "dot", "size": 10, "title": "553568716428816384\u003cbr\u003e@peddoc63 @YoungBLKRepub   I\u003cbr\u003ethought Hitchens died of the\u003cbr\u003ebutt flu a couple years\u003cbr\u003eago?\u003cbr\u003eFri Jan 09 15:07:21 +0000 2015"}, {"group": 1345, "id": 11, "label": "553576510548766720", "shape": "dot", "size": 10, "title": "553576510548766720\u003cbr\u003e\u201c@peddoc63: Islamophobia: a word created\u003cbr\u003eby fascists, used by cowards,\u003cbr\u003eto manipulate morons. http://t.co/vOQ6fhxFev #CharlieHebdo\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:38:19 +0000 2015"}, {"group": 1345, "id": 12, "label": "553964772417622016", "shape": "dot", "size": 10, "title": "553964772417622016\u003cbr\u003e@peddoc63 @Fairfax51 @YoungBLKRepub I hope\u003cbr\u003eyou Christians understand the irony\u003cbr\u003eof invoking Hitchens.\u003cbr\u003eSat Jan 10 17:21:08 +0000 2015"}, {"group": 1345, "id": 13, "label": "553998331890782209", "shape": "dot", "size": 10, "title": "553998331890782209\u003cbr\u003e@RySource @peddoc63 @YoungBLKRepub Hitchen was\u003cbr\u003ean atheist...so? Doesn\u0027t mean he\u003cbr\u003ewasn\u0027t right about almost everything\u003cbr\u003eelse.\u003cbr\u003eSat Jan 10 19:34:29 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

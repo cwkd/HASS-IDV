@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 304, "id": 0, "label": "552822718115373057", "shape": "dot", "size": 10, "title": "552822718115373057\u003cbr\u003eMichelle Stanistreet, general secretary of\u003cbr\u003ethe National Union of Journalists\u003cbr\u003e(UK) on the #CharlieHebdo attack:\u003cbr\u003ehttp://t.co/L0uUdPmswx\u003cbr\u003eWed Jan 07 13:43:01 +0000 2015"}, {"group": 304, "id": 1, "label": "552823218713939968", "shape": "dot", "size": 10, "title": "552823218713939968\u003cbr\u003e@guardian prayers for France! USA\u003cbr\u003eSUPPORTS FREEDOM OF THE PRESS!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:45:00 +0000 2015"}, {"group": 304, "id": 2, "label": "552823680649420801", "shape": "dot", "size": 10, "title": "552823680649420801\u003cbr\u003e@guardian @tigeriza \u0027...without threats, intimidation,\u003cbr\u003eand ...\u0027 wonder ...how about\u003cbr\u003ehow @FreeBarrett_ Brown, @FreeJeremyNet \u003cbr\u003eHammond treated\u003cbr\u003eWed Jan 07 13:46:51 +0000 2015"}, {"group": 304, "id": 3, "label": "552823693815345152", "shape": "dot", "size": 10, "title": "552823693815345152\u003cbr\u003e#religionofpeace \"@guardian: Gral. secretary of\u003cbr\u003ethe National Union of Journalists\u003cbr\u003e(UK) on the #CharlieHebdo attack:\u003cbr\u003ehttp://t.co/z8aB6N2Z82\u201d\u003cbr\u003eWed Jan 07 13:46:54 +0000 2015"}, {"group": 304, "id": 4, "label": "552823870366175233", "shape": "dot", "size": 10, "title": "552823870366175233\u003cbr\u003e@guardian @dwwatchnews now if the\u003cbr\u003ecorporations of the world agree,\u003cbr\u003ewe would not need we\u003cbr\u003ewould really have #pressfreedom from\u003cbr\u003ecensorship.\u003cbr\u003eWed Jan 07 13:47:36 +0000 2015"}, {"group": 304, "id": 5, "label": "552824769494544385", "shape": "dot", "size": 10, "title": "552824769494544385\u003cbr\u003e@guardian Freedom Freedom Freedom, Never\u003cbr\u003eNever Never STAND DOWN .\u003cbr\u003eVIVA LA FRANCE.\u003cbr\u003eWed Jan 07 13:51:10 +0000 2015"}, {"group": 304, "id": 6, "label": "552824859638898690", "shape": "dot", "size": 10, "title": "552824859638898690\u003cbr\u003e@guardian So let\u0027s see these\u003cbr\u003ecartoons on tomorrow\u0027s front pages.\u003cbr\u003eSurely. Surely ?\u003cbr\u003eWed Jan 07 13:51:32 +0000 2015"}, {"group": 304, "id": 7, "label": "552825064190922752", "shape": "dot", "size": 10, "title": "552825064190922752\u003cbr\u003e@guardian MOST RELIGIOUS ORGANISATIONS LIKE\u003cbr\u003eTO SILENCE THEIR CRITICS TRY\u003cbr\u003e#METHODISTCONF OR #CHURCHOFENGLAND SADLY THESE\u003cbr\u003eTWATS JUST USE GUNS\u003cbr\u003eWed Jan 07 13:52:20 +0000 2015"}, {"group": 304, "id": 8, "label": "552827404998410240", "shape": "dot", "size": 10, "title": "552827404998410240\u003cbr\u003e@guardian\u003cbr\u003eWed Jan 07 14:01:39 +0000 2015"}, {"group": 304, "id": 9, "label": "552828618431553536", "shape": "dot", "size": 10, "title": "552828618431553536\u003cbr\u003e#echr Freedom of Expression belongs\u003cbr\u003eto the world \u201c@guardian National\u003cbr\u003eUnion of Journalists (UK) #CharlieHebdo\u003cbr\u003eattack: http://t.co/pALXM3QLUN\u201d\u003cbr\u003eWed Jan 07 14:06:28 +0000 2015"}, {"group": 304, "id": 10, "label": "552829321245491200", "shape": "dot", "size": 10, "title": "552829321245491200\u003cbr\u003e@guardian Republish the cartoons #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:09:15 +0000 2015"}, {"group": 304, "id": 11, "label": "552831662615429120", "shape": "dot", "size": 10, "title": "552831662615429120\u003cbr\u003e@guardian At least 12 killed\u003cbr\u003ein shooting at office of\u003cbr\u003eFrench satirical: http://t.co/dTrEfTWyLp #paris Charlie\u003cbr\u003eHebdo\u003cbr\u003eWed Jan 07 14:18:34 +0000 2015"}, {"group": 304, "id": 12, "label": "552832390406864898", "shape": "dot", "size": 10, "title": "552832390406864898\u003cbr\u003e@guardian supporters of free speech\u003cbr\u003eand liberty in Europe have\u003cbr\u003ebeen victimised as right wing\u003cbr\u003e\"racists\" of late unfortunately .\u003cbr\u003e#pegida\u003cbr\u003eWed Jan 07 14:21:27 +0000 2015"}, {"group": 304, "id": 13, "label": "552835266143322112", "shape": "dot", "size": 10, "title": "552835266143322112\u003cbr\u003e@guardian plz retweets HAPY NEW\u003cbr\u003eYEAR GUYS SHARE PASS IT\u003cbr\u003eON. http://t.co/IUhfDfx1wk \nhttp://t.co/TfdW20lKcK \u2026 http://t.co/MLSW8rmeVV\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:53 +0000 2015"}, {"group": 304, "id": 14, "label": "552840260615700480", "shape": "dot", "size": 10, "title": "552840260615700480\u003cbr\u003eMT @guardian: Michelle Stanistreet, general\u003cbr\u003esec of the National Union\u003cbr\u003eof Journalists (UK) on #CharlieHebdo\u003cbr\u003eattack: http://t.co/rNYCO5Eaxc\u003cbr\u003eWed Jan 07 14:52:44 +0000 2015"}, {"group": 304, "id": 15, "label": "552840619530665984", "shape": "dot", "size": 10, "title": "552840619530665984\u003cbr\u003e\u201c@guardian: Hear, hear! Ms Stanistreet,\u003cbr\u003egeneral secretary of the NUJ\u003cbr\u003e(UK) on the #CharlieHebdo attack:\u003cbr\u003ehttp://t.co/YAOP3RXLkX\u201d\u003cbr\u003eWed Jan 07 14:54:09 +0000 2015"}, {"group": 304, "id": 16, "label": "552942869578022912", "shape": "dot", "size": 10, "title": "552942869578022912\u003cbr\u003e@guardian @markthomasinfo All the words\u003cbr\u003ein the world wont bring\u003cbr\u003eback the dead. Western governments\u003cbr\u003eneed to rethink their foreign\u003cbr\u003epolicies\u003cbr\u003eWed Jan 07 21:40:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

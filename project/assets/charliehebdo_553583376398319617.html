@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1534, "id": 0, "label": "553583376398319617", "shape": "dot", "size": 10, "title": "553583376398319617\u003cbr\u003eSmoke rises from site where\u003cbr\u003eCharlie Hebdo suspects holed up\u003cbr\u003ehttp://t.co/3JnzARhAck\u003cbr\u003eFri Jan 09 16:05:36 +0000 2015"}, {"group": 1534, "id": 1, "label": "553583614508924928", "shape": "dot", "size": 10, "title": "553583614508924928\u003cbr\u003e\u201c@AFP: Smoke rises from site\u003cbr\u003ewhere #CharlieHebdo suspects holed up\u003cbr\u003ehttp://t.co/8Jn35DPjA2\u201d\u003cbr\u003eFri Jan 09 16:06:33 +0000 2015"}, {"group": 1534, "id": 2, "label": "553583717319708672", "shape": "dot", "size": 10, "title": "553583717319708672\u003cbr\u003e\"@AFP: Smoke rises from site\u003cbr\u003ewhere Charlie Hebdo suspects holed\u003cbr\u003eup\" http://t.co/CKBINBBUiV\u003cbr\u003eFri Jan 09 16:06:57 +0000 2015"}, {"group": 1534, "id": 3, "label": "553584834795151360", "shape": "dot", "size": 10, "title": "553584834795151360\u003cbr\u003eSmoke rises from site where\u003cbr\u003eCharlie Hebdo suspects holed up\u003cbr\u003ehttp://t.co/PDW0PoGL6e via @AFP\u003cbr\u003eFri Jan 09 16:11:24 +0000 2015"}, {"group": 1534, "id": 4, "label": "553585368918786048", "shape": "dot", "size": 10, "title": "553585368918786048\u003cbr\u003eRT @AFP: Smoke rises from\u003cbr\u003esite where Charlie Hebdo suspects\u003cbr\u003eholed up http://t.co/ZUZwWXXgz2\u003cbr\u003eFri Jan 09 16:13:31 +0000 2015"}, {"group": 1534, "id": 5, "label": "553586839613759489", "shape": "dot", "size": 10, "title": "553586839613759489\u003cbr\u003e@AFP @BDUTT Smokeing  \u003cbr\u003eis very bad thing\u003cbr\u003eFri Jan 09 16:19:22 +0000 2015"}, {"group": 1534, "id": 6, "label": "553587541945745408", "shape": "dot", "size": 10, "title": "553587541945745408\u003cbr\u003e@AFP @BDUTT it seems Paris\u003cbr\u003epolice is helpless as not\u003cbr\u003eused to handling terrorists,need expert\u003cbr\u003ehelp\u003cbr\u003eFri Jan 09 16:22:09 +0000 2015"}, {"group": 1534, "id": 7, "label": "553590848714452992", "shape": "dot", "size": 10, "title": "553590848714452992\u003cbr\u003e@AFP Time to play the\u003cbr\u003esuper loud music all day\u003cbr\u003e\u0026amp; night like in Waco,\u003cbr\u003eTX ? Pls send thoughts\u003cbr\u003eof next steps... We the\u003cbr\u003esane want to know.\u003cbr\u003eFri Jan 09 16:35:18 +0000 2015"}, {"group": 1534, "id": 8, "label": "553591834057125888", "shape": "dot", "size": 10, "title": "553591834057125888\u003cbr\u003e@AFP @BDUTT it\u0027s done \u0026amp;\u003cbr\u003edusted\u003cbr\u003eFri Jan 09 16:39:13 +0000 2015"}, {"group": 1534, "id": 9, "label": "553597659634991104", "shape": "dot", "size": 10, "title": "553597659634991104\u003cbr\u003e@AFP @cobbo3 http://t.co/pUToiwAlY9\u003cbr\u003eFri Jan 09 17:02:22 +0000 2015"}, {"group": 1534, "id": 10, "label": "553599577106833409", "shape": "dot", "size": 10, "title": "553599577106833409\u003cbr\u003e@AFP @BDUTT Who supplied cigars\u003cbr\u003eto them ?\u003cbr\u003eFri Jan 09 17:09:59 +0000 2015"}, {"group": 1534, "id": 11, "label": "553599984763801600", "shape": "dot", "size": 10, "title": "553599984763801600\u003cbr\u003e@AFP @BDUTT Arrest Cubans who\u003cbr\u003esupplied cigars to them\u003cbr\u003eFri Jan 09 17:11:36 +0000 2015"}, {"group": 1534, "id": 12, "label": "553742542282317824", "shape": "dot", "size": 10, "title": "553742542282317824\u003cbr\u003e@AFP @BDUTT\u003cbr\u003eSat Jan 10 02:38:04 +0000 2015"}, {"group": 1534, "id": 13, "label": "553742579720679424", "shape": "dot", "size": 10, "title": "553742579720679424\u003cbr\u003e@AFP @BDUTT hhjj\u003cbr\u003eSat Jan 10 02:38:13 +0000 2015"}, {"group": 1534, "id": 14, "label": "553745079634911234", "shape": "dot", "size": 10, "title": "553745079634911234\u003cbr\u003e@AFP @BDUTT French media inspired\u003cbr\u003eby 26/11. Only thing they\u003cbr\u003edon\u0027t understand is Indian media\u003cbr\u003ehelped the terrorist. No lessons\u003cbr\u003elearnt there\u003cbr\u003eSat Jan 10 02:48:09 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

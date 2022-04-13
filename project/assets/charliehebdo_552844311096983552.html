@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 590, "id": 0, "label": "552844311096983552", "shape": "dot", "size": 10, "title": "552844311096983552\u003cbr\u003eBREAKING: Charlie Hebdo editor and\u003cbr\u003ecartoonist Stephane Charbonnier among dead\u003cbr\u003ein attack on magazine, police\u003cbr\u003esay. http://t.co/ak9mTVfJdR\u003cbr\u003eWed Jan 07 15:08:49 +0000 2015"}, {"group": 590, "id": 1, "label": "552844448812785664", "shape": "dot", "size": 10, "title": "552844448812785664\u003cbr\u003e@cnni Who funded/armed/trained gunmen? https://t.co/iPBkLwhQk8\u003cbr\u003e\u2026 Jeffrey Epstein also in\u003cbr\u003eCFR+Trilateral Commission #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:09:22 +0000 2015"}, {"group": 590, "id": 2, "label": "552844711908880384", "shape": "dot", "size": 10, "title": "552844711908880384\u003cbr\u003e@cnni And Diane Feinstein does\u003cbr\u003enot believe in water boarding.\u003cbr\u003e It doesn\u0027t kill people\u003cbr\u003ebut it does serve a\u003cbr\u003epurpose that you don\u0027t understand\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:10:25 +0000 2015"}, {"group": 590, "id": 3, "label": "552845069695590400", "shape": "dot", "size": 10, "title": "552845069695590400\u003cbr\u003e@cnni @AC360\u003cbr\u003eWed Jan 07 15:11:50 +0000 2015"}, {"group": 590, "id": 4, "label": "552845317151154176", "shape": "dot", "size": 10, "title": "552845317151154176\u003cbr\u003eWhat\u0027s going on in the\u003cbr\u003eworld? \ud83d\ude16 \u201c@cnni: Charlie Hebdo\u003cbr\u003eeditor \u0026amp; cartoonist Stephane Charbonnier\u003cbr\u003eamong dead in attack http://t.co/0WNhwBlrkn\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:12:49 +0000 2015"}, {"group": 590, "id": 5, "label": "552845367159816193", "shape": "dot", "size": 10, "title": "552845367159816193\u003cbr\u003e@cnni @AC360 Are there no\u003cbr\u003eother anchors? Are we stuck\u003cbr\u003ewith Wolf for the next\u003cbr\u003e4 hours?\u003cbr\u003eWed Jan 07 15:13:01 +0000 2015"}, {"group": 590, "id": 6, "label": "552845905372930048", "shape": "dot", "size": 10, "title": "552845905372930048\u003cbr\u003e@cnni prayers for France! USA\u003cbr\u003eSUPPORTS FREEDOM OF THE PRESS!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:15:09 +0000 2015"}, {"group": 590, "id": 7, "label": "552846045672407040", "shape": "dot", "size": 10, "title": "552846045672407040\u003cbr\u003eA blow to French #FreeSpeech\u003cbr\u003e#CharieHebdo Attacked by terrorists, 12\u003cbr\u003edeadeditor police say. @cnni @CNN\u003cbr\u003ehttp://t.co/pKcAKXHP9M\u201d\u003cbr\u003eWed Jan 07 15:15:43 +0000 2015"}, {"group": 590, "id": 8, "label": "552846486124642304", "shape": "dot", "size": 10, "title": "552846486124642304\u003cbr\u003e.@cnni   God is\u003cbr\u003egreat; Europe collaborated with Islam;\u003cbr\u003enow they have to deal\u003cbr\u003ewith it.\u003cbr\u003eWed Jan 07 15:17:28 +0000 2015"}, {"group": 590, "id": 9, "label": "552846889213632512", "shape": "dot", "size": 10, "title": "552846889213632512\u003cbr\u003e@cnni  Looks like Europe\u003cbr\u003ehas lost its power in\u003cbr\u003eevery way \u0026amp; soon most\u003cbr\u003eof Europe would be worthless\u003cbr\u003ecountries unless immediate steps taken\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:19:04 +0000 2015"}, {"group": 590, "id": 10, "label": "552847684164661248", "shape": "dot", "size": 10, "title": "552847684164661248\u003cbr\u003e@cnni lord where are you\u003cbr\u003elord\u003cbr\u003eWed Jan 07 15:22:13 +0000 2015"}, {"group": 590, "id": 11, "label": "552847858152767489", "shape": "dot", "size": 10, "title": "552847858152767489\u003cbr\u003e@cnni you can kill the\u003cbr\u003ebody of journalist but ideas\u003cbr\u003enever die we stand with\u003cbr\u003eFrench\u003cbr\u003eWed Jan 07 15:22:55 +0000 2015"}, {"group": 590, "id": 12, "label": "552849574658707458", "shape": "dot", "size": 10, "title": "552849574658707458\u003cbr\u003e@cnni Coward act should be\u003cbr\u003edeplored in which innocent have\u003cbr\u003ebeen killed\u003cbr\u003eWed Jan 07 15:29:44 +0000 2015"}, {"group": 590, "id": 13, "label": "552850117888606208", "shape": "dot", "size": 10, "title": "552850117888606208\u003cbr\u003e@cnni @MissUniversNEWS western govts tolerate\u003cbr\u003eand encourage Islamic groups. Now\u003cbr\u003eface consequences. If govts unable\u003cbr\u003eultra right parties\u0027ll do\u003cbr\u003eWed Jan 07 15:31:54 +0000 2015"}, {"group": 590, "id": 14, "label": "552850317201915904", "shape": "dot", "size": 10, "title": "552850317201915904\u003cbr\u003e@cnni @AC360 so sad, unnecessary\u003cbr\u003eRIP, prayers for families \u0026amp;\u003cbr\u003evictims #CharlieHebdo\u003cbr\u003eWed Jan 07 15:32:41 +0000 2015"}, {"group": 590, "id": 15, "label": "552850416531431424", "shape": "dot", "size": 10, "title": "552850416531431424\u003cbr\u003e@cnni @AC360 My heart and\u003cbr\u003emy thoughts are going out\u003cbr\u003eto everyone over in France.\u003cbr\u003eThis is tragedy at its\u003cbr\u003eworse\u003cbr\u003eWed Jan 07 15:33:05 +0000 2015"}, {"group": 590, "id": 16, "label": "552854040301019137", "shape": "dot", "size": 10, "title": "552854040301019137\u003cbr\u003e@cnni\u003cbr\u003eWed Jan 07 15:47:29 +0000 2015"}, {"group": 590, "id": 18, "label": "552862240576397312", "shape": "dot", "size": 10, "title": "552862240576397312\u003cbr\u003e@cnni it is a sad\u003cbr\u003eand dangerous day for humanity\u003cbr\u003ewhen freedom of expression/press is\u003cbr\u003ebeing slaughtered. #CharlieHebdo\u003cbr\u003eWed Jan 07 16:20:04 +0000 2015"}, {"group": 590, "id": 19, "label": "552868299701485569", "shape": "dot", "size": 10, "title": "552868299701485569\u003cbr\u003e@cnni I HIGHLY CONDEMN THE\u003cbr\u003eKILLINGS,EVEN IF MOHAMMAD (PBUH) WAS\u003cbr\u003eALIVE HE WOULD JUST HAVE\u003cbr\u003eSMILED ON THE CARTOONS.\u003cbr\u003eWed Jan 07 16:44:09 +0000 2015"}, {"group": 590, "id": 17, "label": "552858073808007168", "shape": "dot", "size": 10, "title": "552858073808007168\u003cbr\u003e@adrianaamelio @cnni  this is\u003cbr\u003ea sign that we live\u003cbr\u003ein what the Bible calls\u0027\u0027\u003cbr\u003ethe Last days\u0027\u0027 ( http://t.co/L9OxisahV2\u003cbr\u003e)\u003cbr\u003eWed Jan 07 16:03:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 4, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

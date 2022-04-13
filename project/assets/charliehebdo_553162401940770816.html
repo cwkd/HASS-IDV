@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 965, "id": 0, "label": "553162401940770816", "shape": "dot", "size": 10, "title": "553162401940770816\u003cbr\u003eThe Earth without Art is\u003cbr\u003ejust \u0027Eh\u0027. #streetart #JeSuisCharlie http://t.co/72XpFM2kOn\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:12:48 +0000 2015"}, {"group": 965, "id": 1, "label": "553164176332713984", "shape": "dot", "size": 10, "title": "553164176332713984\u003cbr\u003e@charliesaidthat @inthecompanyof Unfortunately, for some\u003cbr\u003emurderers, the \"earth\" without \"art\"\u003cbr\u003eleaves just \"He\". Which is\u003cbr\u003ethe problem.\u003cbr\u003eThu Jan 08 12:19:51 +0000 2015"}, {"group": 965, "id": 2, "label": "553171132405518336", "shape": "dot", "size": 10, "title": "553171132405518336\u003cbr\u003e@charliesaidthat Your name is all\u003cbr\u003eover Twitter.\u003cbr\u003eThu Jan 08 12:47:30 +0000 2015"}, {"group": 965, "id": 4, "label": "553173605849108480", "shape": "dot", "size": 10, "title": "553173605849108480\u003cbr\u003e@charliesaidthat I actually saw your\u003cbr\u003estatus saying #JeSuisCharlie before the\u003cbr\u003enews and wondered why you\u0027re\u003cbr\u003esaying you\u0027re Charlie in French...\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:57:19 +0000 2015"}, {"group": 965, "id": 6, "label": "553188157378670592", "shape": "dot", "size": 10, "title": "553188157378670592\u003cbr\u003e\u201c@charliesaidthat: The Earth without Art\u003cbr\u003eis just \u0027Eh\u0027. #streetart #JeSuisCharlie\u003cbr\u003ehttp://t.co/qvFOam85RJ\u201d love this\u003cbr\u003eThu Jan 08 13:55:09 +0000 2015"}, {"group": 965, "id": 7, "label": "553189598994518017", "shape": "dot", "size": 10, "title": "553189598994518017\u003cbr\u003e@charliesaidthat Rightly said! All the\u003cbr\u003eart lovers out there would\u003cbr\u003esurely agree with it. #BeInteresting\u003cbr\u003e#Streetart\u003cbr\u003eThu Jan 08 14:00:52 +0000 2015"}, {"group": 965, "id": 3, "label": "553172693466742785", "shape": "dot", "size": 10, "title": "553172693466742785\u003cbr\u003e@GaryDayEllison It feels like it.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:53:42 +0000 2015"}, {"group": 965, "id": 5, "label": "553180532880998400", "shape": "dot", "size": 10, "title": "553180532880998400\u003cbr\u003e@charliesaidthat You said it.\u003cbr\u003eThu Jan 08 13:24:51 +0000 2015"}, {"group": 965, "id": 8, "label": "553192736552390656", "shape": "dot", "size": 10, "title": "553192736552390656\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat ...so pay\u003cbr\u003efor art as you would\u003cbr\u003eexpect to pay for food.\u003cbr\u003eArtists need to eat too.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:13:20 +0000 2015"}, {"group": 965, "id": 9, "label": "553196925650866177", "shape": "dot", "size": 10, "title": "553196925650866177\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat so I\u003cbr\u003edo ?!\u003cbr\u003eThu Jan 08 14:29:59 +0000 2015"}, {"group": 965, "id": 10, "label": "553197813887410176", "shape": "dot", "size": 10, "title": "553197813887410176\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat So many\u003cbr\u003epeople pirate nowdays, and call\u003cbr\u003eit \"sharing\".\u003cbr\u003eThu Jan 08 14:33:31 +0000 2015"}, {"group": 965, "id": 11, "label": "553198613740797953", "shape": "dot", "size": 10, "title": "553198613740797953\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat yes they\u003cbr\u003edo\u003cbr\u003eThu Jan 08 14:36:42 +0000 2015"}, {"group": 965, "id": 12, "label": "553200096095916034", "shape": "dot", "size": 10, "title": "553200096095916034\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat that\u0027s why\u003cbr\u003eu shouldn\u0027t put shit up\u003cbr\u003ethat u don\u0027t want to\u003cbr\u003eshare\u003cbr\u003eThu Jan 08 14:42:35 +0000 2015"}, {"group": 965, "id": 13, "label": "553200793919447040", "shape": "dot", "size": 10, "title": "553200793919447040\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat But if\u003cbr\u003eyou put it in a\u003cbr\u003ebox and don\u0027t let anyone\u003cbr\u003esee it ever, you never\u003cbr\u003esell anything.\u003cbr\u003eThu Jan 08 14:45:21 +0000 2015"}, {"group": 965, "id": 14, "label": "553201283394732033", "shape": "dot", "size": 10, "title": "553201283394732033\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat A shop\u003cbr\u003eputs it\u0027s products in a\u003cbr\u003ewindow, as advertising, not as\u003cbr\u003ean invitation to steal.\u003cbr\u003eThu Jan 08 14:47:18 +0000 2015"}, {"group": 965, "id": 15, "label": "553201671548198915", "shape": "dot", "size": 10, "title": "553201671548198915\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat If someone\u003cbr\u003ebreaks the glass to get\u003cbr\u003eit, that person is a\u003cbr\u003ethief, not a customer.\u003cbr\u003eThu Jan 08 14:48:51 +0000 2015"}, {"group": 965, "id": 17, "label": "553202441152651266", "shape": "dot", "size": 10, "title": "553202441152651266\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat I like\u003cbr\u003eJulian\u0027s work, if I were\u003cbr\u003eto print one of his\u003cbr\u003epieces, frame and hang it,\u003cbr\u003eI break the glass.\u003cbr\u003eThu Jan 08 14:51:54 +0000 2015"}, {"group": 965, "id": 16, "label": "553202215188316160", "shape": "dot", "size": 10, "title": "553202215188316160\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat yes that\u0027s\u003cbr\u003ewhy u have stuff u\u003cbr\u003eput on the net to\u003cbr\u003ebe over exposed and collections\u003cbr\u003eu display n sell?\u003cbr\u003eThu Jan 08 14:51:00 +0000 2015"}, {"group": 965, "id": 18, "label": "553202541219966976", "shape": "dot", "size": 10, "title": "553202541219966976\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat what if\u003cbr\u003ethe person takes a photo\u003cbr\u003eof it and posts it\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:52:18 +0000 2015"}, {"group": 965, "id": 19, "label": "553202749282598912", "shape": "dot", "size": 10, "title": "553202749282598912\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat it\u0027s not\u003cbr\u003ethe same as actually stealing\u003cbr\u003ethe object\u003cbr\u003eThu Jan 08 14:53:08 +0000 2015"}, {"group": 965, "id": 22, "label": "553207132066045952", "shape": "dot", "size": 10, "title": "553207132066045952\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat yes that\u0027s\u003cbr\u003ewhy self respecting art respecting\u003cbr\u003epeople won\u0027t do it but\u003cbr\u003ethat\u0027s the chance u take\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:10:33 +0000 2015"}, {"group": 965, "id": 23, "label": "553207222444900354", "shape": "dot", "size": 10, "title": "553207222444900354\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat putting shit\u003cbr\u003eonline\u003cbr\u003eThu Jan 08 15:10:54 +0000 2015"}, {"group": 965, "id": 20, "label": "553202876139732994", "shape": "dot", "size": 10, "title": "553202876139732994\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat Jessica, It\u003cbr\u003emust be sheer heaven being\u003cbr\u003emarried to you. (sarcasm)\u003cbr\u003eThu Jan 08 14:53:38 +0000 2015"}, {"group": 965, "id": 21, "label": "553203199449247746", "shape": "dot", "size": 10, "title": "553203199449247746\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat It is\u003cbr\u003esteeling intellectual property you apologistic\u003cbr\u003ecow, \u0026amp; a violation of\u003cbr\u003ecopyright law.\u003cbr\u003eThu Jan 08 14:54:55 +0000 2015"}, {"group": 965, "id": 25, "label": "553207396718223360", "shape": "dot", "size": 10, "title": "553207396718223360\u003cbr\u003e\u201c@DeanPHanley: @JesseCEEEE @QuayeJulian @charliesaidthat Jessica,\u003cbr\u003eIt must be sheer heaven\u003cbr\u003ebeing married to you. (sarcasm)\u201d\u003cbr\u003elol\u003cbr\u003eThu Jan 08 15:11:36 +0000 2015"}, {"group": 965, "id": 26, "label": "553207501412257792", "shape": "dot", "size": 10, "title": "553207501412257792\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat lmao what\u0027s\u003cbr\u003ethat supposed to mean\u003cbr\u003eThu Jan 08 15:12:01 +0000 2015"}, {"group": 965, "id": 24, "label": "553207328489500672", "shape": "dot", "size": 10, "title": "553207328489500672\u003cbr\u003e@DeanPHanley @JesseCEEEE @QuayeJulian a photo\u003cbr\u003ehas it\u0027s own copyright, immaterial\u003cbr\u003eof the subject.#justsaying\u003cbr\u003eThu Jan 08 15:11:19 +0000 2015"}, {"group": 965, "id": 27, "label": "553207732367409152", "shape": "dot", "size": 10, "title": "553207732367409152\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat woha now\u003cbr\u003eI\u0027m a Cow  !\u003cbr\u003eWhy moooooooooo\u003cbr\u003eThu Jan 08 15:12:56 +0000 2015"}, {"group": 965, "id": 28, "label": "553208274460225536", "shape": "dot", "size": 10, "title": "553208274460225536\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat no need\u003cbr\u003efor the hate if u\u003cbr\u003edon\u0027t want ur shit stolen\u003cbr\u003ecopy right it print ur\u003cbr\u003elogo across it\u003cbr\u003eThu Jan 08 15:15:05 +0000 2015"}, {"group": 965, "id": 41, "label": "553232688568868864", "shape": "dot", "size": 10, "title": "553232688568868864\u003cbr\u003e@charliesaidthat That may be if\u003cbr\u003ean artwork is included, incidentally,\u003cbr\u003ein a photo, however unauthorized\u003cbr\u003ereproduction is a federal offense.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:52:06 +0000 2015"}, {"group": 965, "id": 42, "label": "553233458848628737", "shape": "dot", "size": 10, "title": "553233458848628737\u003cbr\u003e@charliesaidthat By incidentally, I mean,\u003cbr\u003eby example, if it is\u003cbr\u003ehanging on a wall behind\u003cbr\u003esomeone taking a selfie.\u003cbr\u003eThu Jan 08 16:55:09 +0000 2015"}, {"group": 965, "id": 43, "label": "553235110846537728", "shape": "dot", "size": 10, "title": "553235110846537728\u003cbr\u003e@charliesaidthat @JesseCEEEE @QuayeJulian If said\u003cbr\u003ephoto were isolated from context\u003cbr\u003eof the selfie, and reproduced,\u003cbr\u003eper se, that would be\u003cbr\u003e---\u003cbr\u003eThu Jan 08 17:01:43 +0000 2015"}, {"group": 965, "id": 44, "label": "553235844975583232", "shape": "dot", "size": 10, "title": "553235844975583232\u003cbr\u003e@charliesaidthat --- a violation of\u003cbr\u003ecopyright law. All this is\u003cbr\u003ecodified in detail. You may\u003cbr\u003eneed to protect your own\u003cbr\u003ework someday. I hope not\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:04:38 +0000 2015"}, {"group": 965, "id": 29, "label": "553208777374466049", "shape": "dot", "size": 10, "title": "553208777374466049\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat At least\u003cbr\u003eyou acknowledge that you are\u003cbr\u003ea cow.\u003cbr\u003eThu Jan 08 15:17:05 +0000 2015"}, {"group": 965, "id": 30, "label": "553209264693837824", "shape": "dot", "size": 10, "title": "553209264693837824\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat Everything is\u003cbr\u003esigned, dated and marked copyright.\u003cbr\u003eThat is all that I\u003cbr\u003eneed, to sue a thief.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:19:01 +0000 2015"}, {"group": 965, "id": 31, "label": "553209315549405185", "shape": "dot", "size": 10, "title": "553209315549405185\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat are you\u003cbr\u003eshort or something is this\u003cbr\u003ewhy your picking on me\u003cbr\u003emooooooooooo\u003cbr\u003eThu Jan 08 15:19:13 +0000 2015"}, {"group": 965, "id": 32, "label": "553209492913917953", "shape": "dot", "size": 10, "title": "553209492913917953\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat do u\u003cbr\u003eacknowledge that u have a\u003cbr\u003esmall penis and are a\u003cbr\u003eangry lil man\u003cbr\u003eThu Jan 08 15:19:55 +0000 2015"}, {"group": 965, "id": 34, "label": "553209825245421568", "shape": "dot", "size": 10, "title": "553209825245421568\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat ok great\u003cbr\u003ethere you go sue away\u003cbr\u003ewhy am I being targeted\u003cbr\u003eby u in this rant\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:21:15 +0000 2015"}, {"group": 965, "id": 33, "label": "553209632433639424", "shape": "dot", "size": 10, "title": "553209632433639424\u003cbr\u003e@JesseCEEEE @QuayeJulian @charliesaidthat Worst case\u003cbr\u003eof Mad Cow Disease I\u0027ve\u003cbr\u003eever seen.\u003cbr\u003eThu Jan 08 15:20:29 +0000 2015"}, {"group": 965, "id": 35, "label": "553210044926263297", "shape": "dot", "size": 10, "title": "553210044926263297\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat moooooooooooooooo hold\u003cbr\u003eup lemme steal some of\u003cbr\u003eyour art ok bye\u003cbr\u003eThu Jan 08 15:22:07 +0000 2015"}, {"group": 965, "id": 36, "label": "553210247179816960", "shape": "dot", "size": 10, "title": "553210247179816960\u003cbr\u003e@DeanPHanley @QuayeJulian @charliesaidthat why are\u003cbr\u003eyou so angry\u003cbr\u003eThu Jan 08 15:22:55 +0000 2015"}, {"group": 965, "id": 37, "label": "553210697908502530", "shape": "dot", "size": 10, "title": "553210697908502530\u003cbr\u003e@JesseCEEEE @DeanPHanley @QuayeJulian Wowser. You\u003cbr\u003ecan omit me from further\u003cbr\u003eshouting at the interwebs please.\u003cbr\u003e;)\u003cbr\u003eThu Jan 08 15:24:43 +0000 2015"}, {"group": 965, "id": 38, "label": "553211858618839042", "shape": "dot", "size": 10, "title": "553211858618839042\u003cbr\u003e@charliesaidthat @DeanPHanley @QuayeJulian who are\u003cbr\u003eyou ppl I didn\u0027t steal\u003cbr\u003eany of yo dam ugly\u003cbr\u003eart ppl don\u0027t buy of\u003cbr\u003eya\u0027ll coz of ur attitude\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:29:19 +0000 2015"}, {"group": 965, "id": 39, "label": "553216666344382465", "shape": "dot", "size": 10, "title": "553216666344382465\u003cbr\u003e@charliesaidthat @JesseCEEEE @QuayeJulian My apologies,\u003cbr\u003eShe was blocked and reported\u003cbr\u003ethe moment she threatened to\u003cbr\u003esteal my work.\u003cbr\u003eThu Jan 08 15:48:26 +0000 2015"}, {"group": 965, "id": 40, "label": "553216858368008192", "shape": "dot", "size": 10, "title": "553216858368008192\u003cbr\u003e@charliesaidthat @JesseCEEEE @QuayeJulian I suggest\u003cbr\u003eother artists do the same.\u003cbr\u003e\u003cbr\u003eThu Jan 08 15:49:11 +0000 2015"}, {"group": 965, "id": 45, "label": "553243600122048513", "shape": "dot", "size": 10, "title": "553243600122048513\u003cbr\u003e@DeanPHanley Ah you are talking\u003cbr\u003eUS copyright law. I know\u003cbr\u003eabout UK copyright law -\u003cbr\u003eand law is seemingly quite\u003cbr\u003edifferent then.\u003cbr\u003eThu Jan 08 17:35:27 +0000 2015"}, {"group": 965, "id": 46, "label": "553244129707446272", "shape": "dot", "size": 10, "title": "553244129707446272\u003cbr\u003e@charliesaidthat Still, International treaty obligations\u003cbr\u003edemand that US law, and\u003cbr\u003eBritish law, be mutually respected.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:37:33 +0000 2015"}, {"group": 965, "id": 47, "label": "553244509241610242", "shape": "dot", "size": 10, "title": "553244509241610242\u003cbr\u003e@charliesaidthat And again, I apologize\u003cbr\u003efor any distress that I\u003cbr\u003emay have inadvertently caused you.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:39:04 +0000 2015"}, {"group": 965, "id": 48, "label": "553245115549224960", "shape": "dot", "size": 10, "title": "553245115549224960\u003cbr\u003e@charliesaidthat On the other hand,\u003cbr\u003edescription of the method Jack\u003cbr\u003ethe ripper used to subdue\u003cbr\u003ehis victims, is considered property\u003cbr\u003eof the ...\u003cbr\u003eThu Jan 08 17:41:29 +0000 2015"}, {"group": 965, "id": 49, "label": "553245585101582336", "shape": "dot", "size": 10, "title": "553245585101582336\u003cbr\u003e@charliesaidthat Times of London. This\u003cbr\u003eis something we yanks consider\u003cbr\u003every odd. To us, news\u003cbr\u003eis public domain, but we\u003cbr\u003estill have to respect\u003cbr\u003eThu Jan 08 17:43:20 +0000 2015"}, {"group": 965, "id": 50, "label": "553246044705005568", "shape": "dot", "size": 10, "title": "553246044705005568\u003cbr\u003e@charliesaidthat British copyright law.\u003cbr\u003eThu Jan 08 17:45:10 +0000 2015"}, {"group": 965, "id": 51, "label": "553256081150214145", "shape": "dot", "size": 10, "title": "553256081150214145\u003cbr\u003e@charliesaidthat Canaletto\u0027s paintings are consicered\u003cbr\u003eby US law to be\u003cbr\u003eold enough for public domain,\u003cbr\u003ehowever, if I were to\u003cbr\u003ereproduce\u003cbr\u003eThu Jan 08 18:25:03 +0000 2015"}, {"group": 965, "id": 52, "label": "553256416966766592", "shape": "dot", "size": 10, "title": "553256416966766592\u003cbr\u003e@charliesaidthat  Canaletto from King\u003cbr\u003eGeorge\u0027s collection, I would have\u003cbr\u003eto obtain permission from Her\u003cbr\u003eRoyal Majesty, Queen Elizabeth,and\u003cbr\u003eThu Jan 08 18:26:23 +0000 2015"}, {"group": 965, "id": 53, "label": "553256566150160385", "shape": "dot", "size": 10, "title": "553256566150160385\u003cbr\u003e@charliesaidthat attach a notification, to\u003cbr\u003ethe image stating that I\u003cbr\u003ehad done so.\u003cbr\u003eThu Jan 08 18:26:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 12, "to": 17, "weight": 1}, {"from": 13, "to": 16, "weight": 1}, {"from": 14, "to": 18, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 17, "to": 22, "weight": 1}, {"from": 17, "to": 23, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 25, "weight": 1}, {"from": 20, "to": 26, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 21, "to": 27, "weight": 1}, {"from": 21, "to": 28, "weight": 1}, {"from": 24, "to": 41, "weight": 1}, {"from": 24, "to": 42, "weight": 1}, {"from": 24, "to": 43, "weight": 1}, {"from": 24, "to": 44, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 29, "to": 32, "weight": 1}, {"from": 30, "to": 34, "weight": 1}, {"from": 31, "to": 33, "weight": 1}, {"from": 33, "to": 35, "weight": 1}, {"from": 33, "to": 36, "weight": 1}, {"from": 36, "to": 37, "weight": 1}, {"from": 37, "to": 38, "weight": 1}, {"from": 37, "to": 39, "weight": 1}, {"from": 37, "to": 40, "weight": 1}, {"from": 41, "to": 45, "weight": 1}, {"from": 45, "to": 46, "weight": 1}, {"from": 45, "to": 47, "weight": 1}, {"from": 45, "to": 48, "weight": 1}, {"from": 45, "to": 49, "weight": 1}, {"from": 45, "to": 50, "weight": 1}, {"from": 45, "to": 51, "weight": 1}, {"from": 45, "to": 52, "weight": 1}, {"from": 45, "to": 53, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 260, "id": 0, "label": "552819208212717568", "shape": "dot", "size": 10, "title": "552819208212717568\u003cbr\u003eIt is a horrifying thought\u003cbr\u003ethat people in our world\u003cbr\u003ewould prefer to kill rather\u003cbr\u003ethan allow critcism #CharlieHebdo http://t.co/DpLEYjEj7y\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:29:04 +0000 2015"}, {"group": 260, "id": 1, "label": "552820087938613248", "shape": "dot", "size": 10, "title": "552820087938613248\u003cbr\u003e@PhysicsHenry I feel offended, my\u003cbr\u003ereligion forbid rectangle !\u003cbr\u003eWed Jan 07 13:32:34 +0000 2015"}, {"group": 260, "id": 5, "label": "552822259732451328", "shape": "dot", "size": 10, "title": "552822259732451328\u003cbr\u003e@PhysicsHenry its racist. Look at\u003cbr\u003eall that white compared to\u003cbr\u003ethe black. Horrible\u003cbr\u003eWed Jan 07 13:41:12 +0000 2015"}, {"group": 260, "id": 6, "label": "552823707039985665", "shape": "dot", "size": 10, "title": "552823707039985665\u003cbr\u003e@PhysicsHenry @vincenzof The exaggerated use\u003cbr\u003eof whitespace is SO SinoCentric.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:46:57 +0000 2015"}, {"group": 260, "id": 8, "label": "552834580651470848", "shape": "dot", "size": 10, "title": "552834580651470848\u003cbr\u003e@PhysicsHenry @andreadelogu it\u0027s an horrible\u003cbr\u003eattack to art, humorism and\u003cbr\u003efreedom...in other words to our\u003cbr\u003elife!!!\u003cbr\u003eWed Jan 07 14:30:09 +0000 2015"}, {"group": 260, "id": 10, "label": "552839737984417793", "shape": "dot", "size": 10, "title": "552839737984417793\u003cbr\u003e@PhysicsHenry mental people\u003cbr\u003eWed Jan 07 14:50:39 +0000 2015"}, {"group": 260, "id": 2, "label": "552820610272067584", "shape": "dot", "size": 10, "title": "552820610272067584\u003cbr\u003eWhy is this image so\u003cbr\u003ewhite?! Why is it not\u003cbr\u003eenthically diverse? A sign of\u003cbr\u003eracism and xenophobia @natsfr @PhysicsHenry\u003cbr\u003ehttp://t.co/q3tg3WKXGA\u003cbr\u003eWed Jan 07 13:34:39 +0000 2015"}, {"group": 260, "id": 7, "label": "552825590777405440", "shape": "dot", "size": 10, "title": "552825590777405440\u003cbr\u003e@natsfr @PhysicsHenry \"There are no\u003cbr\u003eshapes but triangles and big\u003cbr\u003ebird is their prophet\".\u003cbr\u003eWed Jan 07 13:54:26 +0000 2015"}, {"group": 260, "id": 3, "label": "552820841504055296", "shape": "dot", "size": 10, "title": "552820841504055296\u003cbr\u003e@NorBdelta @PhysicsHenry and there is\u003cbr\u003ea rectangle !!! I can\u0027t\u003cbr\u003estand that make it black\u003cbr\u003ecircle !!!\u003cbr\u003eWed Jan 07 13:35:34 +0000 2015"}, {"group": 260, "id": 4, "label": "552821319071711232", "shape": "dot", "size": 10, "title": "552821319071711232\u003cbr\u003e@NorBdelta @natsfr @PhysicsHenry Shame for\u003cbr\u003eyou. You just activated my\u003cbr\u003eAlucard http://t.co/MwIKATNI70\u003cbr\u003eWed Jan 07 13:37:28 +0000 2015"}, {"group": 260, "id": 9, "label": "552835924652851200", "shape": "dot", "size": 10, "title": "552835924652851200\u003cbr\u003e@shining_dust2  hi look at\u003cbr\u003eall of these beautiful painted\u003cbr\u003erocks http://t.co/jKthmRtAaW\u003cbr\u003eWed Jan 07 14:35:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 1, "to": 7, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 8, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

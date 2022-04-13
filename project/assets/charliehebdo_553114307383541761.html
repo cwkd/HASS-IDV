@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 785, "id": 0, "label": "553114307383541761", "shape": "dot", "size": 10, "title": "553114307383541761\u003cbr\u003eThis is Melbourne right now!\u003cbr\u003e\n#JeSuisCharlie\n#CharlieHebdo \nhttp://t.co/6Vyt2viHo2 http://t.co/EYcFr2BfSd\u003cbr\u003eThu Jan 08 09:01:41 +0000 2015"}, {"group": 785, "id": 1, "label": "553114583742038017", "shape": "dot", "size": 10, "title": "553114583742038017\u003cbr\u003e@HuffPostUKPics sassy\u003cbr\u003eThu Jan 08 09:02:47 +0000 2015"}, {"group": 785, "id": 2, "label": "553115012148240384", "shape": "dot", "size": 10, "title": "553115012148240384\u003cbr\u003e@HuffPostUKPics @HuffPostUK #JeSuisCharlie http://t.co/q0HeTKPZ0X\u003cbr\u003eThu Jan 08 09:04:29 +0000 2015"}, {"group": 785, "id": 3, "label": "553116729422135298", "shape": "dot", "size": 10, "title": "553116729422135298\u003cbr\u003ePeople are awesome \u0026gt;\u0026gt; \n\u201c@HuffPostUKPics:\u003cbr\u003eMelbourne right now! \n#JeSuisCharlie\n#CharlieHebdo \nhttp://t.co/5g5gI9X8fI\u003cbr\u003ehttp://t.co/9WcHLAuhvy\u201d\u003cbr\u003eThu Jan 08 09:11:19 +0000 2015"}, {"group": 785, "id": 4, "label": "553117282080423936", "shape": "dot", "size": 10, "title": "553117282080423936\u003cbr\u003e@HuffPostUKPics @HuffPostUK This worldwide reaction\u003cbr\u003eis heartwarming. Sadly, they\u0027re all\u003cbr\u003egoing to be ignored by\u003cbr\u003ethe criminal b*stards.\u003cbr\u003eThu Jan 08 09:13:31 +0000 2015"}, {"group": 785, "id": 5, "label": "553119361855004673", "shape": "dot", "size": 10, "title": "553119361855004673\u003cbr\u003e@HuffPostUKPics Wish I could be\u003cbr\u003ethere.\u003cbr\u003eThu Jan 08 09:21:46 +0000 2015"}, {"group": 785, "id": 6, "label": "553121780043235328", "shape": "dot", "size": 10, "title": "553121780043235328\u003cbr\u003e@HuffPostUKPics thank\u0027s Melbourne !\u003cbr\u003eThu Jan 08 09:31:23 +0000 2015"}, {"group": 785, "id": 7, "label": "553122644024123392", "shape": "dot", "size": 10, "title": "553122644024123392\u003cbr\u003e@HuffPostUKPics Thank you guys. Thank\u003cbr\u003eyou\u003cbr\u003eThu Jan 08 09:34:49 +0000 2015"}, {"group": 785, "id": 8, "label": "553124302845796352", "shape": "dot", "size": 10, "title": "553124302845796352\u003cbr\u003e@HuffPostUKPics A satire on Mohammed\u003cbr\u003ecan get you killed. A\u003cbr\u003esatire on Hindu God can\u003cbr\u003eget U 300 Crs! And\u003cbr\u003estill Hindus should learn tolerance?\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:41:25 +0000 2015"}, {"group": 785, "id": 9, "label": "553126471150354432", "shape": "dot", "size": 10, "title": "553126471150354432\u003cbr\u003e@HuffPostUKPics @EmlynHywel Well done Australia!\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:50:01 +0000 2015"}, {"group": 785, "id": 10, "label": "553136856423215104", "shape": "dot", "size": 10, "title": "553136856423215104\u003cbr\u003e@HuffPostUKPics @thesirenofangel je suis Charlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:31:18 +0000 2015"}, {"group": 785, "id": 11, "label": "553142427809107968", "shape": "dot", "size": 10, "title": "553142427809107968\u003cbr\u003e@HuffPostUKPics \nNice to see the\u003cbr\u003esolidarity and condemnation. But, until\u003cbr\u003ethe heads of Islam do\u003cbr\u003esomething about it will get\u003cbr\u003eworse b4 better.\u003cbr\u003eThu Jan 08 10:53:26 +0000 2015"}, {"group": 785, "id": 12, "label": "553147198481760256", "shape": "dot", "size": 10, "title": "553147198481760256\u003cbr\u003e@HuffPostUKPics @black_mamba_06  Thats beautiful\u003cbr\u003eand sad at the same\u003cbr\u003etime i live in Melbourne\u003cbr\u003eAustralia.\u003cbr\u003eThu Jan 08 11:12:23 +0000 2015"}, {"group": 785, "id": 14, "label": "553148393699430401", "shape": "dot", "size": 10, "title": "553148393699430401\u003cbr\u003e@HuffPostUKPics @ExUnitateVires We are Charlie\u003cbr\u003eand we will fight the\u003cbr\u003eMuslims like we fought the\u003cbr\u003eNazis.\u003cbr\u003eThu Jan 08 11:17:08 +0000 2015"}, {"group": 785, "id": 16, "label": "553150819491905536", "shape": "dot", "size": 10, "title": "553150819491905536\u003cbr\u003e@HuffPostUKPics @ExUnitateVires  Huffpost supports\u003cbr\u003e#amnesty and therefore #WhiteGenocide\u003cbr\u003eThu Jan 08 11:26:47 +0000 2015"}, {"group": 785, "id": 17, "label": "553172498590998529", "shape": "dot", "size": 10, "title": "553172498590998529\u003cbr\u003e@HuffPostUKPics @RobertgrizzlyP http://t.co/xJbOZWNkPc\u003cbr\u003eThu Jan 08 12:52:55 +0000 2015"}, {"group": 785, "id": 18, "label": "553196408451657728", "shape": "dot", "size": 10, "title": "553196408451657728\u003cbr\u003e@HuffPostUKPics @marousia Enough is enough!\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:27:56 +0000 2015"}, {"group": 785, "id": 19, "label": "553241998720000003", "shape": "dot", "size": 10, "title": "553241998720000003\u003cbr\u003e@HuffPostUKPics # public protest supporting\u003cbr\u003efreedom \nof speech after horrific\u003cbr\u003eslaughter in Paris.\u003cbr\u003eThu Jan 08 17:29:05 +0000 2015"}, {"group": 785, "id": 13, "label": "553147902613528576", "shape": "dot", "size": 10, "title": "553147902613528576\u003cbr\u003e@shiree_64 @HuffPostUKPics \u0026lt;3 Agree with\u003cbr\u003eYou Sweetheart... We\u0027re All united\u003cbr\u003ein All the World to\u003cbr\u003esay NO #barbarity Merci!\u0026lt;3 #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:15:11 +0000 2015"}, {"group": 785, "id": 15, "label": "553149686920409088", "shape": "dot", "size": 10, "title": "553149686920409088\u003cbr\u003e@black_mamba_06 @HuffPostUKPics  I know\u003cbr\u003etragedy has an affect on\u003cbr\u003eso many people lifes gone\u003cbr\u003efor nothing god bless.\u003cbr\u003eThu Jan 08 11:22:17 +0000 2015"}, {"group": 785, "id": 20, "label": "553410413488910337", "shape": "dot", "size": 10, "title": "553410413488910337\u003cbr\u003e@PoetCorey Indeed it is!\u003cbr\u003eFri Jan 09 04:38:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 15, "weight": 1}, {"from": 18, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

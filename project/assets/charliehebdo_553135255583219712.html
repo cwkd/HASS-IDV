@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 851, "id": 0, "label": "553135255583219712", "shape": "dot", "size": 10, "title": "553135255583219712\u003cbr\u003eWe are observing a minute\u0027s\u003cbr\u003esilence today at 11am. If\u003cbr\u003eyou support press freedom please\u003cbr\u003eshare \u0026amp; join us #JeSuisCharlie\u003cbr\u003ehttp://t.co/RpO4aXd7PE\u003cbr\u003eThu Jan 08 10:24:56 +0000 2015"}, {"group": 851, "id": 1, "label": "553136394005405697", "shape": "dot", "size": 10, "title": "553136394005405697\u003cbr\u003e@MENnewsdesk should do it now\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:29:27 +0000 2015"}, {"group": 851, "id": 2, "label": "553136937968869376", "shape": "dot", "size": 10, "title": "553136937968869376\u003cbr\u003e@MENnewsdesk if you support press\u003cbr\u003efreedom, print the Muhammed cartoons.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:31:37 +0000 2015"}, {"group": 851, "id": 3, "label": "553140378569039872", "shape": "dot", "size": 10, "title": "553140378569039872\u003cbr\u003e@MENnewsdesk @BadManMedia I may not\u003cbr\u003ebe able to stand up\u003cbr\u003e\u0026amp; demonstrate so I have\u003cbr\u003echanged my profile photo for\u003cbr\u003e#12days #joinme\u003cbr\u003eThu Jan 08 10:45:17 +0000 2015"}, {"group": 851, "id": 4, "label": "553142434637819904", "shape": "dot", "size": 10, "title": "553142434637819904\u003cbr\u003e@MENnewsdesk Please RT - Download\u003cbr\u003ea hilarious FREE Koran PARODY\u003cbr\u003efor infidels of all ages\u003cbr\u003e- https://t.co/hXbeZHdguj\u003cbr\u003eThu Jan 08 10:53:27 +0000 2015"}, {"group": 851, "id": 5, "label": "553147690503372801", "shape": "dot", "size": 10, "title": "553147690503372801\u003cbr\u003ePen is mightier than the\u003cbr\u003esword - joining my @MENnewsdesk\u003cbr\u003ecolleagues to support press freedom\u003cbr\u003e#JeSuisCharlie http://t.co/cE9S8wxXbx\u003cbr\u003eThu Jan 08 11:14:21 +0000 2015"}, {"group": 851, "id": 6, "label": "553148904355930112", "shape": "dot", "size": 10, "title": "553148904355930112\u003cbr\u003e@MENnewsdesk @StuBrennanMEN freedom of expression?\u003cbr\u003eNo, it was racist\u003cbr\u003eThu Jan 08 11:19:10 +0000 2015"}, {"group": 851, "id": 7, "label": "553149198062059520", "shape": "dot", "size": 10, "title": "553149198062059520\u003cbr\u003e@ShelinaBegum_ @MENnewsdesk But can you\u003cbr\u003ewrite all over the wallpaper\u003cbr\u003ewith a sword? I think\u003cbr\u003enot! #JeSuisCharlie\u003cbr\u003eThu Jan 08 11:20:20 +0000 2015"}, {"group": 851, "id": 8, "label": "553152321501528066", "shape": "dot", "size": 10, "title": "553152321501528066\u003cbr\u003e@ShelinaBegum_ is this your little\u003cbr\u003eboy? Congratulations x\u003cbr\u003eThu Jan 08 11:32:45 +0000 2015"}, {"group": 851, "id": 11, "label": "553160655751364608", "shape": "dot", "size": 10, "title": "553160655751364608\u003cbr\u003e@ShelinaBegum_ Congratulations Shelina! He looks\u003cbr\u003ebeautiful. Send my best to\u003cbr\u003eMatt. Hope all is well\u003cbr\u003eand looking forward to seeing\u003cbr\u003eyou soon\u003cbr\u003eThu Jan 08 12:05:52 +0000 2015"}, {"group": 851, "id": 12, "label": "553638271923027968", "shape": "dot", "size": 10, "title": "553638271923027968\u003cbr\u003e@ShelinaBegum_ @MENnewsdesk great stance and\u003cbr\u003egorgeous baby \ud83d\udc96 #CharlieHebdo\u003cbr\u003eFri Jan 09 19:43:44 +0000 2015"}, {"group": 851, "id": 9, "label": "553155434941796352", "shape": "dot", "size": 10, "title": "553155434941796352\u003cbr\u003e@Jess_Beckett Yes it is baby\u003cbr\u003eEshan he\u0027s five week olds\u003cbr\u003eand grabbing things already. How\u0027s\u003cbr\u003eyour lo x\u003cbr\u003eThu Jan 08 11:45:07 +0000 2015"}, {"group": 851, "id": 10, "label": "553157775904489474", "shape": "dot", "size": 10, "title": "553157775904489474\u003cbr\u003e@ShelinaBegum_ Aww, lovely name. He\u0027s\u003cbr\u003egreat thank you - getting\u003cbr\u003ebig now. It goes too\u003cbr\u003efast \ud83d\ude22\u003cbr\u003eThu Jan 08 11:54:25 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 5, "to": 12, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

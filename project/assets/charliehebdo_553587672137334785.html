@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2048, "id": 0, "label": "553587672137334785", "shape": "dot", "size": 10, "title": "553587672137334785\u003cbr\u003eAFP: suspected #CharlieHebdo gunmen have\u003cbr\u003ebeen killed\u003cbr\u003eFri Jan 09 16:22:40 +0000 2015"}, {"group": 2048, "id": 1, "label": "553587713535123456", "shape": "dot", "size": 10, "title": "553587713535123456\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d\u003cbr\u003eFri Jan 09 16:22:50 +0000 2015"}, {"group": 2048, "id": 2, "label": "553587842623234048", "shape": "dot", "size": 10, "title": "553587842623234048\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d\u003cbr\u003eFri Jan 09 16:23:21 +0000 2015"}, {"group": 2048, "id": 3, "label": "553587861636009984", "shape": "dot", "size": 10, "title": "553587861636009984\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d\u0026lt;\u0026lt;\u003cbr\u003eFri Jan 09 16:23:26 +0000 2015"}, {"group": 2048, "id": 4, "label": "553587884263874561", "shape": "dot", "size": 10, "title": "553587884263874561\u003cbr\u003e@SkyNewsBreak hallelujah, enjoy the 40\u003cbr\u003evirgins\u003cbr\u003eFri Jan 09 16:23:31 +0000 2015"}, {"group": 2048, "id": 5, "label": "553587974680875008", "shape": "dot", "size": 10, "title": "553587974680875008\u003cbr\u003e@SkyNewsBreak @UKlPVoter good  thats\u003cbr\u003ea start\u003cbr\u003eFri Jan 09 16:23:52 +0000 2015"}, {"group": 2048, "id": 6, "label": "553587990237171712", "shape": "dot", "size": 10, "title": "553587990237171712\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d yay\u003cbr\u003eFri Jan 09 16:23:56 +0000 2015"}, {"group": 2048, "id": 7, "label": "553588033313046528", "shape": "dot", "size": 10, "title": "553588033313046528\u003cbr\u003eGot the bastards! \"@SkyNewsBreak: AFP:\u003cbr\u003esuspected #CharlieHebdo gunmen have been\u003cbr\u003ekilled\u201d\u003cbr\u003eFri Jan 09 16:24:06 +0000 2015"}, {"group": 2048, "id": 8, "label": "553588141576454144", "shape": "dot", "size": 10, "title": "553588141576454144\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d Hoping that\u003cbr\u003ethis is now the end\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:24:32 +0000 2015"}, {"group": 2048, "id": 9, "label": "553588198577025026", "shape": "dot", "size": 10, "title": "553588198577025026\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d \u0026lt;\u0026lt;\u0026lt;Was inevitable\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:24:46 +0000 2015"}, {"group": 2048, "id": 10, "label": "553588238867517441", "shape": "dot", "size": 10, "title": "553588238867517441\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d vive la\u003cbr\u003eFrance\u003cbr\u003eFri Jan 09 16:24:55 +0000 2015"}, {"group": 2048, "id": 11, "label": "553588931707822080", "shape": "dot", "size": 10, "title": "553588931707822080\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d BANG BANG\u003cbr\u003eNIGGA\u003cbr\u003eFri Jan 09 16:27:41 +0000 2015"}, {"group": 2048, "id": 12, "label": "553589201347035136", "shape": "dot", "size": 10, "title": "553589201347035136\u003cbr\u003e@SkyNewsBreak @DLoesch like a Bogo\u0027,\u0027\u003cbr\u003eand done\u003cbr\u003eFri Jan 09 16:28:45 +0000 2015"}, {"group": 2048, "id": 13, "label": "553589304245493761", "shape": "dot", "size": 10, "title": "553589304245493761\u003cbr\u003eRT @SkyNewsBreak: AFP: suspected #CharlieHebdo\u003cbr\u003egunmen have been killed\u003cbr\u003eFri Jan 09 16:29:09 +0000 2015"}, {"group": 2048, "id": 14, "label": "553589615379374080", "shape": "dot", "size": 10, "title": "553589615379374080\u003cbr\u003e@SkyNewsBreak Great outcome. All murderers\u003cbr\u003edead. All hostages freed. Great\u003cbr\u003ejob by French police\u003cbr\u003eFri Jan 09 16:30:24 +0000 2015"}, {"group": 2048, "id": 15, "label": "553589786775412737", "shape": "dot", "size": 10, "title": "553589786775412737\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d@nevsinmengu\u003cbr\u003eFri Jan 09 16:31:05 +0000 2015"}, {"group": 2048, "id": 16, "label": "553589804492148736", "shape": "dot", "size": 10, "title": "553589804492148736\u003cbr\u003e@SkyNewsBreak good\u003cbr\u003eFri Jan 09 16:31:09 +0000 2015"}, {"group": 2048, "id": 17, "label": "553590107807428608", "shape": "dot", "size": 10, "title": "553590107807428608\u003cbr\u003e\u201c@SkyNewsBreak: AFP: suspected #CharlieHebdo gunmen\u003cbr\u003ehave been killed\u201d yayyy#boom\u003cbr\u003eFri Jan 09 16:32:21 +0000 2015"}, {"group": 2048, "id": 18, "label": "553592680866152449", "shape": "dot", "size": 10, "title": "553592680866152449\u003cbr\u003e@SkyNewsBreak @gazsc go on shoot\u003cbr\u003eem again just to make\u003cbr\u003esure\u003cbr\u003eFri Jan 09 16:42:35 +0000 2015"}, {"group": 2048, "id": 26, "label": "553596969978179584", "shape": "dot", "size": 10, "title": "553596969978179584\u003cbr\u003e@andrea_avena it will never be\u003cbr\u003ethe end\u003cbr\u003eFri Jan 09 16:59:37 +0000 2015"}, {"group": 2048, "id": 19, "label": "553592819622092800", "shape": "dot", "size": 10, "title": "553592819622092800\u003cbr\u003e@jaseblazefan @SkyNewsBreak stick em full\u003cbr\u003eof pencils.\u003cbr\u003eFri Jan 09 16:43:08 +0000 2015"}, {"group": 2048, "id": 24, "label": "553595514739253248", "shape": "dot", "size": 10, "title": "553595514739253248\u003cbr\u003e@jaseblazefan @SkyNewsBreak sod watching them\u003cbr\u003eand then them escaping being\u003cbr\u003ewatched. If they support terrorism.\u003cbr\u003e.send them out of our\u003cbr\u003ecountry\u003cbr\u003eFri Jan 09 16:53:50 +0000 2015"}, {"group": 2048, "id": 20, "label": "553593105233248257", "shape": "dot", "size": 10, "title": "553593105233248257\u003cbr\u003e@gazsc @SkyNewsBreak and shove a\u003cbr\u003ecopy of #CharlieHebdo up their\u003cbr\u003eass\u003cbr\u003eFri Jan 09 16:44:16 +0000 2015"}, {"group": 2048, "id": 21, "label": "553593746865258497", "shape": "dot", "size": 10, "title": "553593746865258497\u003cbr\u003e@jaseblazefan @SkyNewsBreak then send them\u003cbr\u003eto the countries the supported\u003cbr\u003eas a sign. We are\u003cbr\u003enot backing down\u003cbr\u003eFri Jan 09 16:46:49 +0000 2015"}, {"group": 2048, "id": 22, "label": "553594432743018496", "shape": "dot", "size": 10, "title": "553594432743018496\u003cbr\u003e@gazsc @SkyNewsBreak that\u0027s a good\u003cbr\u003eidea, just attach a note\u003cbr\u003esaying \" I think this\u003cbr\u003eis your shit have it\u003cbr\u003eback\"\u003cbr\u003eFri Jan 09 16:49:32 +0000 2015"}, {"group": 2048, "id": 23, "label": "553595330009518080", "shape": "dot", "size": 10, "title": "553595330009518080\u003cbr\u003e@jaseblazefan wonder if @SkyNewsBreak get\u003cbr\u003ethe impression we are sick\u003cbr\u003eof these extremists and how\u003cbr\u003ethe government just let them\u003cbr\u003ein\u003cbr\u003eFri Jan 09 16:53:06 +0000 2015"}, {"group": 2048, "id": 25, "label": "553596198956056576", "shape": "dot", "size": 10, "title": "553596198956056576\u003cbr\u003e@gazsc @SkyNewsBreak it could never\u003cbr\u003ehappen here, we don\u0027t have\u003cbr\u003ea paper with enough balls\u003cbr\u003eto publish anything that offends\u003cbr\u003eMuslims #notPC\u003cbr\u003eFri Jan 09 16:56:33 +0000 2015"}, {"group": 2048, "id": 27, "label": "553597910504714240", "shape": "dot", "size": 10, "title": "553597910504714240\u003cbr\u003e@jaseblazefan @SkyNewsBreak true. Perhaps they\u003cbr\u003eshould all grow some #NoHope\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:03:21 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 8, "to": 26, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 18, "to": 24, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 25, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

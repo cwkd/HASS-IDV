@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2060, "id": 0, "label": "553588913747808256", "shape": "dot", "size": 10, "title": "553588913747808256\u003cbr\u003e#BREAKING Reports: 2 brothers suspected\u003cbr\u003eof Charlie Hebdo attack are\u003cbr\u003edead http://t.co/7tGdSv4fr8\u003cbr\u003eFri Jan 09 16:27:36 +0000 2015"}, {"group": 2060, "id": 1, "label": "553588997390602240", "shape": "dot", "size": 10, "title": "553588997390602240\u003cbr\u003e\u201c@USATODAY: #BREAKING Reports: 2 brothers\u003cbr\u003esuspected of Charlie Hebdo attack\u003cbr\u003eare dead http://t.co/R3DF0nzlBU\u201d\u003cbr\u003eFri Jan 09 16:27:56 +0000 2015"}, {"group": 2060, "id": 2, "label": "553589184838250496", "shape": "dot", "size": 10, "title": "553589184838250496\u003cbr\u003e@USATODAY two less to go...\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:28:41 +0000 2015"}, {"group": 2060, "id": 3, "label": "553589253142499328", "shape": "dot", "size": 10, "title": "553589253142499328\u003cbr\u003e\u201c@USATODAY: #BREAKING Reports: 2 brothers\u003cbr\u003esuspected of Charlie Hebdo attack\u003cbr\u003eare dead http://t.co/SsPKEP4eu6\u201d good \ud83c\uddeb\ud83c\uddf7\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:28:57 +0000 2015"}, {"group": 2060, "id": 4, "label": "553589371421470720", "shape": "dot", "size": 10, "title": "553589371421470720\u003cbr\u003e\u201c@USATODAY: #BREAKING Reports: 2 brothers\u003cbr\u003esuspected of Charlie Hebdo attack\u003cbr\u003eare dead http://t.co/Ue36HqnBPB\u201d #JeSuisCharlie\u003cbr\u003eFri Jan 09 16:29:25 +0000 2015"}, {"group": 2060, "id": 5, "label": "553589497569763329", "shape": "dot", "size": 10, "title": "553589497569763329\u003cbr\u003e\u201c@USATODAY: #BREAKING Reports: 2 brothers\u003cbr\u003esuspected of Charlie Hebdo attack\u003cbr\u003eare dead http://t.co/hdjAUs61vN\u201d and gone\u003cbr\u003eto hell\u003cbr\u003eFri Jan 09 16:29:56 +0000 2015"}, {"group": 2060, "id": 6, "label": "553589710262898688", "shape": "dot", "size": 10, "title": "553589710262898688\u003cbr\u003e@USATODAY Got to kill the\u003cbr\u003eones that were ordered to\u003cbr\u003ekill the journalists right? Just\u003cbr\u003ea guess...\u003cbr\u003eFri Jan 09 16:30:46 +0000 2015"}, {"group": 2060, "id": 7, "label": "553589750733737986", "shape": "dot", "size": 10, "title": "553589750733737986\u003cbr\u003e\u201c@USATODAY: #BREAKING Reports: 2 brothers\u003cbr\u003esuspected of Charlie Hebdo attack\u003cbr\u003eare dead http://t.co/0ULr0bh3Rg\u201d\u003cbr\u003eFri Jan 09 16:30:56 +0000 2015"}, {"group": 2060, "id": 8, "label": "553590322559987712", "shape": "dot", "size": 10, "title": "553590322559987712\u003cbr\u003e@USATODAY :it\u0027s unfortunate that they\u003cbr\u003egot what they wanted, to\u003cbr\u003edie as martyrs, but I\u0027m\u003cbr\u003eglad for the French people\u003cbr\u003ethat this part is over.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:33:12 +0000 2015"}, {"group": 2060, "id": 9, "label": "553590366558244865", "shape": "dot", "size": 10, "title": "553590366558244865\u003cbr\u003e@USATODAY @azcentral That sucks. Think\u003cbr\u003ebigger picture. We need to\u003cbr\u003eknow what they know and\u003cbr\u003ewho they worked for.\u003cbr\u003eFri Jan 09 16:33:23 +0000 2015"}, {"group": 2060, "id": 10, "label": "553592857492459520", "shape": "dot", "size": 10, "title": "553592857492459520\u003cbr\u003e@USATODAY I gave in...heard from\u003cbr\u003emy favorite radio station here\u003cbr\u003ein DC area...thank u for\u003cbr\u003ewriting ...\u0026lt;3\u003cbr\u003eFri Jan 09 16:43:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

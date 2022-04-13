@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 771, "id": 0, "label": "553110751238701058", "shape": "dot", "size": 10, "title": "553110751238701058\u003cbr\u003e#MaryamRajavi condemns criminal attack in\u003cbr\u003e#Paris offers her condolences to\u003cbr\u003eFrench people and government #CharlieHebdo\u003cbr\u003ehttp://t.co/umc2nD8KDL\u003cbr\u003eThu Jan 08 08:47:34 +0000 2015"}, {"group": 771, "id": 1, "label": "553250294977794048", "shape": "dot", "size": 10, "title": "553250294977794048\u003cbr\u003e@4FreedominIran Great #travel post! Why\u003cbr\u003eNot post on http://t.co/tXGMBRYHGX Proximity\u003cbr\u003eBased Travel Network? http://t.co/53bXnfwwzA\u003cbr\u003eThu Jan 08 18:02:03 +0000 2015"}, {"group": 771, "id": 2, "label": "553302686846943233", "shape": "dot", "size": 10, "title": "553302686846943233\u003cbr\u003e@mdoustmohamadi @4freedominiran Cartoons drawn for\u003cbr\u003eCharlie Hebdo:  http://t.co/Wjbxph6AcV #CharlieHebdo\u003cbr\u003e#paris\u003cbr\u003eThu Jan 08 21:30:15 +0000 2015"}, {"group": 771, "id": 3, "label": "553502063850950656", "shape": "dot", "size": 10, "title": "553502063850950656\u003cbr\u003e@dannemanroger @4freedominiran Paris attack raises\u003cbr\u003equestions about Obama\u0027s policies http://t.co/DA50JYJG9o\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:42:30 +0000 2015"}, {"group": 771, "id": 4, "label": "554338213452857344", "shape": "dot", "size": 10, "title": "554338213452857344\u003cbr\u003e@4FreedominIran Great #Paris Post! hy\u003cbr\u003eNot post on http://t.co/tXGMBRYHGX Proximity\u003cbr\u003eBased Travel Network? @mikepenrod http://t.co/53bXnfwwzA\u003cbr\u003e\u003cbr\u003eSun Jan 11 18:05:03 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 705, "id": 0, "label": "552981889619722241", "shape": "dot", "size": 10, "title": "552981889619722241\u003cbr\u003eEverybody wants to  march\u003cbr\u003ein maudlin Princess Di-style candlelight\u003cbr\u003evigils with \"Je Suis Charlie\"\u003cbr\u003esigns, nobody wants to be\u003cbr\u003eCharlie Hebdo.\u003cbr\u003eThu Jan 08 00:15:31 +0000 2015"}, {"group": 705, "id": 1, "label": "552982256155779072", "shape": "dot", "size": 10, "title": "552982256155779072\u003cbr\u003e@iowahawkblog try being a nation\u003cbr\u003eof 7 million jews surrounded\u003cbr\u003eon every side by 350\u003cbr\u003emillion arab muslims that want\u003cbr\u003eyou dead. punk as fuck,\u003cbr\u003eyo\u003cbr\u003eThu Jan 08 00:16:58 +0000 2015"}, {"group": 705, "id": 2, "label": "552986254720385025", "shape": "dot", "size": 10, "title": "552986254720385025\u003cbr\u003eI think it\u0027s good news\u003cbr\u003ethat they rallied at all,\u003cbr\u003ethey could have cowered, esp.\u003cbr\u003econsidering suspects were not in\u003cbr\u003ecustody yet @iowahawkblog\u003cbr\u003eThu Jan 08 00:32:51 +0000 2015"}, {"group": 705, "id": 5, "label": "553010405832785920", "shape": "dot", "size": 10, "title": "553010405832785920\u003cbr\u003eThere are many ppl tweeting\u003cbr\u003eat #EverybodyDrawMohammed #EveryoneDrawMohammed #DrawMohammedDay willing\u003cbr\u003eto be #CharlieHebdo. @iowahawkblog\u003cbr\u003eThu Jan 08 02:08:49 +0000 2015"}, {"group": 705, "id": 6, "label": "553019448777781248", "shape": "dot", "size": 10, "title": "553019448777781248\u003cbr\u003e.@iowahawkblog @AceofSpadesHQ Enough candles, perhaps\u003cbr\u003egrab some fucking guns instead.\u003cbr\u003e\u003cbr\u003eThu Jan 08 02:44:45 +0000 2015"}, {"group": 705, "id": 9, "label": "553033689605476354", "shape": "dot", "size": 10, "title": "553033689605476354\u003cbr\u003e.@iowahawkblog I know a few\u003cbr\u003ethat are touched \u0026amp; moved\u003cbr\u003eby these vigils http://t.co/uEnTW7rXqL\u003cbr\u003eThu Jan 08 03:41:21 +0000 2015"}, {"group": 705, "id": 10, "label": "553040026129293312", "shape": "dot", "size": 10, "title": "553040026129293312\u003cbr\u003e@iowahawkblog did they hold their\u003cbr\u003evigils in the 10th or\u003cbr\u003e19th arrondissement?\u003cbr\u003eThu Jan 08 04:06:31 +0000 2015"}, {"group": 705, "id": 11, "label": "553163909176098816", "shape": "dot", "size": 10, "title": "553163909176098816\u003cbr\u003e@iowahawkblog @sweetakin and eat \"French\u003cbr\u003eFries\"\u003cbr\u003eThu Jan 08 12:18:47 +0000 2015"}, {"group": 705, "id": 3, "label": "552990372805103616", "shape": "dot", "size": 10, "title": "552990372805103616\u003cbr\u003e@righteousaxe why did they go\u003cbr\u003eto the middle east instead\u003cbr\u003eof America, If its so\u003cbr\u003edangerous...?Part of the reason they\u0027re\u003cbr\u003emad is taking land!\u003cbr\u003eThu Jan 08 00:49:13 +0000 2015"}, {"group": 705, "id": 4, "label": "552990600304160768", "shape": "dot", "size": 10, "title": "552990600304160768\u003cbr\u003e@righteousaxe seriously, why was it\u003cbr\u003efair for Palestinians to lose\u003cbr\u003etheir land and have to\u003cbr\u003emove out and give their\u003cbr\u003ecountry away?\u003cbr\u003eThu Jan 08 00:50:07 +0000 2015"}, {"group": 705, "id": 7, "label": "553023207373307904", "shape": "dot", "size": 10, "title": "553023207373307904\u003cbr\u003e@ExWasimV @righteousaxe Ask the Cossacks,\u003cbr\u003eCarthagenians, and Armenians.\u003cbr\u003eThu Jan 08 02:59:41 +0000 2015"}, {"group": 705, "id": 18, "label": "553221532571688960", "shape": "dot", "size": 10, "title": "553221532571688960\u003cbr\u003e@ExWasimV @righteousaxe Did you know\u003cbr\u003ethat Muslims continue to live\u003cbr\u003eon their land in Israel?\u003cbr\u003eThey are more fortunate than\u003cbr\u003eJordanians.\u003cbr\u003eThu Jan 08 16:07:46 +0000 2015"}, {"group": 705, "id": 8, "label": "553031568747278337", "shape": "dot", "size": 10, "title": "553031568747278337\u003cbr\u003e@Ringo6 @ExWasimV @righteousaxe dear lord\u003cbr\u003eyou think that\u0027s a rebuttal?\u003cbr\u003eor that you scored a\u003cbr\u003epoint? how does that justify\u003cbr\u003ewhat Israel does?\u003cbr\u003eThu Jan 08 03:32:55 +0000 2015"}, {"group": 705, "id": 12, "label": "553193481599213569", "shape": "dot", "size": 10, "title": "553193481599213569\u003cbr\u003e@ExWasimV @righteousaxe Grow up. since\u003cbr\u003ethe dawn of history, weak\u003cbr\u003eand non-productive people have been\u003cbr\u003easked to move along. Nothing\u003cbr\u003enew here.\u003cbr\u003eThu Jan 08 14:16:18 +0000 2015"}, {"group": 705, "id": 13, "label": "553217314787565568", "shape": "dot", "size": 10, "title": "553217314787565568\u003cbr\u003e@Ringo6 @righteousaxe make sense, idiot.\u003cbr\u003ePalestinians are the victims \u0026amp;\u003cbr\u003esupporters of Israel have the\u003cbr\u003emost disgusting venom in their\u003cbr\u003ehearts\u003cbr\u003eThu Jan 08 15:51:00 +0000 2015"}, {"group": 705, "id": 14, "label": "553217660863782912", "shape": "dot", "size": 10, "title": "553217660863782912\u003cbr\u003e@Ringo6 @righteousaxe ignoring rationality in\u003cbr\u003eorder to oppress the innocent?\u003cbr\u003eSHAME ON YOU, senseless, despicable\u003cbr\u003emilitarist!!!!\u003cbr\u003eThu Jan 08 15:52:23 +0000 2015"}, {"group": 705, "id": 15, "label": "553218332799688704", "shape": "dot", "size": 10, "title": "553218332799688704\u003cbr\u003e@Ringo6 are you saying that\u003cbr\u003eJews were weak and non\u003cbr\u003eproductive when they were victims\u003cbr\u003eof Pharaoh, Rome, Hitler? You\u003cbr\u003ethink ends justify means?\u003cbr\u003eThu Jan 08 15:55:03 +0000 2015"}, {"group": 705, "id": 16, "label": "553220865488195584", "shape": "dot", "size": 10, "title": "553220865488195584\u003cbr\u003e@ExWasimV Your mother is a\u003cbr\u003etramp, and your sister wears\u003cbr\u003ecombat boots.\u003cbr\u003eThu Jan 08 16:05:07 +0000 2015"}, {"group": 705, "id": 17, "label": "553221039069880320", "shape": "dot", "size": 10, "title": "553221039069880320\u003cbr\u003e@ExWasimV Do you have \u003cbr\u003ereading comprehension problem? I said\u003cbr\u003enothing of the sort.\u003cbr\u003eThu Jan 08 16:05:48 +0000 2015"}, {"group": 705, "id": 19, "label": "553225219796520961", "shape": "dot", "size": 10, "title": "553225219796520961\u003cbr\u003e@Ringo6 I don\u0027t get it....\u003cbr\u003eBoots?\u003cbr\u003eThu Jan 08 16:22:25 +0000 2015"}, {"group": 705, "id": 20, "label": "553225610076499968", "shape": "dot", "size": 10, "title": "553225610076499968\u003cbr\u003e@Ringo6 you said people who\u003cbr\u003eare weak have to move\u003cbr\u003ealong, like the Palestinians. Well,\u003cbr\u003ewhy not Israelis 2? They\u003cbr\u003ewere evicted from their land\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:23:58 +0000 2015"}, {"group": 705, "id": 22, "label": "553226047508848641", "shape": "dot", "size": 10, "title": "553226047508848641\u003cbr\u003e@Ringo6 they have military checkpoints,\u003cbr\u003eIDF abuse, bombings, restrictions on\u003cbr\u003ebuilding materials and supplies, Israel\u003cbr\u003ewithholds taxes etc\u003cbr\u003eThu Jan 08 16:25:42 +0000 2015"}, {"group": 705, "id": 21, "label": "553226011027202048", "shape": "dot", "size": 10, "title": "553226011027202048\u003cbr\u003e@ExWasimV Good luck with that.\u003cbr\u003eThe only people trying to\u003cbr\u003emove them are too incompetent\u003cbr\u003eto maintain their sewer systems.\u003cbr\u003e#Palestinians\u003cbr\u003eThu Jan 08 16:25:34 +0000 2015"}, {"group": 705, "id": 23, "label": "553226382290198528", "shape": "dot", "size": 10, "title": "553226382290198528\u003cbr\u003e@ExWasimV How many wars do\u003cbr\u003ethe Palestinians have to lose\u003cbr\u003ebefore they grow up? They\u003cbr\u003ehave the worst leadership on\u003cbr\u003eEarth. #Loosers\u003cbr\u003eThu Jan 08 16:27:02 +0000 2015"}, {"group": 705, "id": 24, "label": "553226450162036736", "shape": "dot", "size": 10, "title": "553226450162036736\u003cbr\u003e@Ringo6 and 350 million angry\u003cbr\u003eMuslims. I hope the only\u003cbr\u003evictims of Hamas are idiots\u003cbr\u003elike you, with such hateful\u003cbr\u003eviews http://t.co/hoPEPAvH9Q\u003cbr\u003eThu Jan 08 16:27:18 +0000 2015"}, {"group": 705, "id": 25, "label": "553226846637408257", "shape": "dot", "size": 10, "title": "553226846637408257\u003cbr\u003e@ExWasimV They are lucky to\u003cbr\u003ehave property rights. I don\u0027t\u003cbr\u003eunderstand why the Israelis don\u0027t\u003cbr\u003eburn them out.\u003cbr\u003eThu Jan 08 16:28:53 +0000 2015"}, {"group": 705, "id": 29, "label": "553235911182282752", "shape": "dot", "size": 10, "title": "553235911182282752\u003cbr\u003e@Ringo6 PALESTINIANS WILL NEVER GIVE\u003cbr\u003eUP THEIR HOMES.\u003cbr\u003eThu Jan 08 17:04:54 +0000 2015"}, {"group": 705, "id": 26, "label": "553227316319752193", "shape": "dot", "size": 10, "title": "553227316319752193\u003cbr\u003e@ExWasimV Your father slept beneath\u003cbr\u003ea thousand camels.\u003cbr\u003eThu Jan 08 16:30:45 +0000 2015"}, {"group": 705, "id": 28, "label": "553235591756652544", "shape": "dot", "size": 10, "title": "553235591756652544\u003cbr\u003e@Ringo6 You\u0027re an awful person.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:03:38 +0000 2015"}, {"group": 705, "id": 27, "label": "553235342694694912", "shape": "dot", "size": 10, "title": "553235342694694912\u003cbr\u003e@Ringo6 I\u0027m African, not Arab.\u003cbr\u003eWhy am I surprised a\u003cbr\u003eracist idiot is also ignorant?\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:02:38 +0000 2015"}, {"group": 705, "id": 30, "label": "553236034239348736", "shape": "dot", "size": 10, "title": "553236034239348736\u003cbr\u003e@ExWasimV Your brother reeks of\u003cbr\u003ebourbon, and your oldest child\u003cbr\u003eis a victim of pedophilia.\u003cbr\u003eNeanderthals have a higher IQ\u003cbr\u003ethan you.\u003cbr\u003eThu Jan 08 17:05:23 +0000 2015"}, {"group": 705, "id": 32, "label": "553236647803105281", "shape": "dot", "size": 10, "title": "553236647803105281\u003cbr\u003e@ExWasimV Your vocabulary says you\u003cbr\u003e14. Enjoy minimum wage before\u003cbr\u003ethe Illegal aliens take it\u003cbr\u003eaway from you.\u003cbr\u003eThu Jan 08 17:07:50 +0000 2015"}, {"group": 705, "id": 31, "label": "553236242738208768", "shape": "dot", "size": 10, "title": "553236242738208768\u003cbr\u003e@ExWasimV They may not have\u003cbr\u003ean option, if western countries\u003cbr\u003estop paying their mortgage.\u003cbr\u003eThu Jan 08 17:06:13 +0000 2015"}, {"group": 705, "id": 33, "label": "553237748312600579", "shape": "dot", "size": 10, "title": "553237748312600579\u003cbr\u003e@Ringo6 ......wow, you\u0027re ACTUALLY a\u003cbr\u003ecomedian? Dude, at least TRY\u003cbr\u003eto be clever. \"ugh, you\u0027re\u003cbr\u003eugly and yo mama so\u003cbr\u003efat\".\u003cbr\u003eThu Jan 08 17:12:12 +0000 2015"}, {"group": 705, "id": 34, "label": "553237963719462914", "shape": "dot", "size": 10, "title": "553237963719462914\u003cbr\u003e@Ringo6 wait until you try.\u003cbr\u003eYou haven\u0027t SEEN terrorism yet.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:13:03 +0000 2015"}, {"group": 705, "id": 35, "label": "553238240866492416", "shape": "dot", "size": 10, "title": "553238240866492416\u003cbr\u003e@Ringo6 I\u0027m Canadian! We bring\u003cbr\u003eover as many immigrants here\u003cbr\u003eas we can! My wife\u003cbr\u003eis an immigrant. The world\u003cbr\u003eloves Canada and attacks/Hates USA\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:14:09 +0000 2015"}, {"group": 705, "id": 36, "label": "553238562137964544", "shape": "dot", "size": 10, "title": "553238562137964544\u003cbr\u003e@ExWasimV Hmmm. Are y\u0027all in\u003cbr\u003eWikipedia? I\u0027ll check it out.\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:15:26 +0000 2015"}, {"group": 705, "id": 37, "label": "553239353573396480", "shape": "dot", "size": 10, "title": "553239353573396480\u003cbr\u003e@Ringo6 We are a perfect\u003cbr\u003ecountry. None of your ignorance\u003cbr\u003epasses here. People aren\u0027t allowed\u003cbr\u003eto be idiot conservatives. I\u003cbr\u003eget free healthcare\u003cbr\u003eThu Jan 08 17:18:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 1, "to": 4, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 4, "to": 18, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 12, "to": 15, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 18, "to": 22, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 21, "to": 24, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 23, "to": 29, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 25, "to": 28, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 30, "weight": 1}, {"from": 28, "to": 32, "weight": 1}, {"from": 29, "to": 31, "weight": 1}, {"from": 30, "to": 33, "weight": 1}, {"from": 31, "to": 34, "weight": 1}, {"from": 32, "to": 35, "weight": 1}, {"from": 35, "to": 36, "weight": 1}, {"from": 36, "to": 37, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

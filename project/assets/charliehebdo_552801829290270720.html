@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1688, "id": 0, "label": "552801829290270720", "shape": "dot", "size": 10, "title": "552801829290270720\u003cbr\u003eFact that the Gunmen were\u003cbr\u003eshouting \"Allah Hu Akbar\" while\u003cbr\u003eshooting rules out any connection\u003cbr\u003ewith the Religion of peace.\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 12:20:01 +0000 2015"}, {"group": 1688, "id": 1, "label": "552802910829281282", "shape": "dot", "size": 10, "title": "552802910829281282\u003cbr\u003e@TRobinsonNewEra hi wanker x http://t.co/4jVf0Iv8KU\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:24:19 +0000 2015"}, {"group": 1688, "id": 2, "label": "552803144229732352", "shape": "dot", "size": 10, "title": "552803144229732352\u003cbr\u003e@TRobinsonNewEra news just reported it\u003cbr\u003ewasn\u0027t clear who was doing\u003cbr\u003ethe shouting \ud83d\ude02 #wakeup\u003cbr\u003eWed Jan 07 12:25:14 +0000 2015"}, {"group": 1688, "id": 3, "label": "552804538739351554", "shape": "dot", "size": 10, "title": "552804538739351554\u003cbr\u003e\u201c@TRobinsonNewEra: Fact that the Gunmen\u003cbr\u003ewere shouting \"Allah Hu Akbar\"\u003cbr\u003ewhile shooting\u201d\n\nFact: decided by Tommy\u003cbr\u003eRobinson\u003cbr\u003eWed Jan 07 12:30:47 +0000 2015"}, {"group": 1688, "id": 4, "label": "552804619710394368", "shape": "dot", "size": 10, "title": "552804619710394368\u003cbr\u003e@Ben_Johnston92 @TRobinsonNewEra seen the video\u003cbr\u003eit\u0027s horrific.Shot a man who\u003cbr\u003ebegged for his life.Monsters screaming\u003cbr\u003eallah akbar.Not muslims?\u003cbr\u003eWed Jan 07 12:31:06 +0000 2015"}, {"group": 1688, "id": 5, "label": "552804933842796545", "shape": "dot", "size": 10, "title": "552804933842796545\u003cbr\u003e@beckyt141 @TRobinsonNewEra there are live\u003cbr\u003evideos showing that ..\u003cbr\u003eWed Jan 07 12:32:21 +0000 2015"}, {"group": 1688, "id": 8, "label": "552826229054001152", "shape": "dot", "size": 10, "title": "552826229054001152\u003cbr\u003e@beckyt141 have u watched the\u003cbr\u003evideo yet to see I\u003cbr\u003ewas 100% correct, it\u0027s ok\u003cbr\u003eI accept your apology becky\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:56:58 +0000 2015"}, {"group": 1688, "id": 16, "label": "552829321329778690", "shape": "dot", "size": 10, "title": "552829321329778690\u003cbr\u003e@beckyt141 you fucking simpleton @TRobinsonNewEra\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:09:15 +0000 2015"}, {"group": 1688, "id": 6, "label": "552805236927393792", "shape": "dot", "size": 10, "title": "552805236927393792\u003cbr\u003e@MrTonyMan @TRobinsonNewEra but they said\u003cbr\u003ethey cannot confirm where the\u003cbr\u003eshouting was coming from\u003cbr\u003eWed Jan 07 12:33:33 +0000 2015"}, {"group": 1688, "id": 7, "label": "552805524501450753", "shape": "dot", "size": 10, "title": "552805524501450753\u003cbr\u003e@beckyt141 @TRobinsonNewEra Look on liveleak\u003cbr\u003eBecky and make up your\u003cbr\u003eown mind. its clear enough\u003cbr\u003eto me.\u003cbr\u003eWed Jan 07 12:34:42 +0000 2015"}, {"group": 1688, "id": 9, "label": "552828335005634561", "shape": "dot", "size": 10, "title": "552828335005634561\u003cbr\u003e@beckyt141 @MrTonyMan @TRobinsonNewEra or look\u003cbr\u003eat CNN amature footage ,\u003cbr\u003eyou dont have to condemn\u003cbr\u003eall muslims to condemn islamists\u003cbr\u003ehow\u003cbr\u003eWed Jan 07 14:05:20 +0000 2015"}, {"group": 1688, "id": 10, "label": "552828411417493504", "shape": "dot", "size": 10, "title": "552828411417493504\u003cbr\u003e@beckyt141 @MrTonyMan @TRobinsonNewEra long untill\u003cbr\u003eits on your doorstep ?\u003cbr\u003ewake up !!\u003cbr\u003eWed Jan 07 14:05:38 +0000 2015"}, {"group": 1688, "id": 26, "label": "552832534267326466", "shape": "dot", "size": 10, "title": "552832534267326466\u003cbr\u003e@beckyt141 @MrTonyMan @TRobinsonNewEra becky come\u003cbr\u003eon that\u0027s weak ,everyone is\u003cbr\u003ewrong once in a while\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:22:01 +0000 2015"}, {"group": 1688, "id": 25, "label": "552831850029527041", "shape": "dot", "size": 10, "title": "552831850029527041\u003cbr\u003e@TRobinsonNewEra @beckyt141 dont hold your\u003cbr\u003ebreath tommy :) ,he could\u003cbr\u003ehave said where\u0027s the snackbar\u003cbr\u003ehe might have been hungry\u003cbr\u003eafter murder\u003cbr\u003eWed Jan 07 14:19:18 +0000 2015"}, {"group": 1688, "id": 11, "label": "552828751349022720", "shape": "dot", "size": 10, "title": "552828751349022720\u003cbr\u003e@SophiaLippylips @beckyt141 @MrTonyMan @TRobinsonNewEra hey\u003cbr\u003edickhead x http://t.co/sgthhVYmRO\u003cbr\u003eWed Jan 07 14:07:00 +0000 2015"}, {"group": 1688, "id": 12, "label": "552828957352296449", "shape": "dot", "size": 10, "title": "552828957352296449\u003cbr\u003e@technicalswitch @beckyt141 @MrTonyMan @TRobinsonNewEra hey\u003cbr\u003edickhead fuck off ! and\u003cbr\u003eswivel on my middle finger\u003cbr\u003e!\u003cbr\u003eWed Jan 07 14:07:49 +0000 2015"}, {"group": 1688, "id": 13, "label": "552829191939710976", "shape": "dot", "size": 10, "title": "552829191939710976\u003cbr\u003e@technicalswitch @beckyt141 @MrTonyMan @TRobinsonNewEra clearly\u003cbr\u003edidnt read my tweet did\u003cbr\u003eyou arsehole and FYI my\u003cbr\u003esister inlaw is muslim\u003cbr\u003eWed Jan 07 14:08:45 +0000 2015"}, {"group": 1688, "id": 15, "label": "552829260600463360", "shape": "dot", "size": 10, "title": "552829260600463360\u003cbr\u003e@technicalswitch @beckyt141 @MrTonyMan @TRobinsonNewEra and\u003cbr\u003esays the same as me\u003cbr\u003etwatstick !\u003cbr\u003eWed Jan 07 14:09:01 +0000 2015"}, {"group": 1688, "id": 14, "label": "552829228333686785", "shape": "dot", "size": 10, "title": "552829228333686785\u003cbr\u003e@SophiaLippylips @beckyt141 @MrTonyMan @TRobinsonNewEra \ud83d\udc4c\u003cbr\u003ehttp://t.co/cnhtRBqo9S\u003cbr\u003eWed Jan 07 14:08:53 +0000 2015"}, {"group": 1688, "id": 17, "label": "552829661290700800", "shape": "dot", "size": 10, "title": "552829661290700800\u003cbr\u003e@technicalswitch @SophiaLippylips @beckyt141 @MrTonyMan @TRobinsonNewEra\u003cbr\u003eNever done a line before?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:10:36 +0000 2015"}, {"group": 1688, "id": 18, "label": "552829699676991488", "shape": "dot", "size": 10, "title": "552829699676991488\u003cbr\u003e@technicalswitch @beckyt141 @MrTonyMan @TRobinsonNewEra and\u003cbr\u003eget a gram up your\u003cbr\u003enose ya mong might wake\u003cbr\u003eyou up !\u003cbr\u003eWed Jan 07 14:10:46 +0000 2015"}, {"group": 1688, "id": 19, "label": "552829799836946432", "shape": "dot", "size": 10, "title": "552829799836946432\u003cbr\u003e@venimus_vidimus @beckyt141 @TRobinsonNewEra Well, tbf\u003cbr\u003eshe\u0027s got a better brain\u003cbr\u003ethat Mr Robinson here. And\u003cbr\u003ethat\u0027s a fact.\u003cbr\u003eWed Jan 07 14:11:10 +0000 2015"}, {"group": 1688, "id": 20, "label": "552829891574788096", "shape": "dot", "size": 10, "title": "552829891574788096\u003cbr\u003e@venimus_vidimus @technicalswitch @SophiaLippylips @beckyt141 @TRobinsonNewEra\u003cbr\u003eLeave me out of your\u003cbr\u003econversation - thanks\u003cbr\u003eWed Jan 07 14:11:31 +0000 2015"}, {"group": 1688, "id": 21, "label": "552829996692434944", "shape": "dot", "size": 10, "title": "552829996692434944\u003cbr\u003e@SophiaLippylips @beckyt141 @MrTonyMan @TRobinsonNewEra oh\u003cbr\u003elet me guess.. http://t.co/DrgRTpoDGX\u003cbr\u003eWed Jan 07 14:11:56 +0000 2015"}, {"group": 1688, "id": 22, "label": "552830341178986496", "shape": "dot", "size": 10, "title": "552830341178986496\u003cbr\u003e@technicalswitch @beckyt141 @MrTonyMan @TRobinsonNewEra who\u003cbr\u003esaid i hated muslims ya\u003cbr\u003epleb show me ?\u003cbr\u003eWed Jan 07 14:13:19 +0000 2015"}, {"group": 1688, "id": 23, "label": "552830896945246208", "shape": "dot", "size": 10, "title": "552830896945246208\u003cbr\u003e@SophiaLippylips @technicalswitch @beckyt141 @TRobinsonNewEra \n\nLook\u003cbr\u003eget a room and leave\u003cbr\u003eme out of your conversation\u003cbr\u003eplease.\u003cbr\u003eWed Jan 07 14:15:31 +0000 2015"}, {"group": 1688, "id": 24, "label": "552831588984451073", "shape": "dot", "size": 10, "title": "552831588984451073\u003cbr\u003e@MrTonyMan @technicalswitch @beckyt141 @TRobinsonNewEra if\u003cbr\u003eyou dont want to be\u003cbr\u003einvolved dont get involved its\u003cbr\u003ethat simple \ud83d\udc4c untagging ya\u003cbr\u003e!\u003cbr\u003eWed Jan 07 14:18:16 +0000 2015"}, {"group": 1688, "id": 27, "label": "552834256444342272", "shape": "dot", "size": 10, "title": "552834256444342272\u003cbr\u003e@squidtheyid @MrTonyMan @TRobinsonNewEra all I\u0027m\u003cbr\u003esaying is that within minutes\u003cbr\u003eof the shooting being reported,\u003cbr\u003eTommy blamed islam. Bit low\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:28:52 +0000 2015"}, {"group": 1688, "id": 28, "label": "552835353682665472", "shape": "dot", "size": 10, "title": "552835353682665472\u003cbr\u003e@beckyt141 @MrTonyMan @TRobinsonNewEra I understand\u003cbr\u003e,but it was obvious (to\u003cbr\u003eme anyway)from the outset who\u003cbr\u003ewas responsible\u003cbr\u003eWed Jan 07 14:33:14 +0000 2015"}, {"group": 1688, "id": 29, "label": "552835815123210240", "shape": "dot", "size": 10, "title": "552835815123210240\u003cbr\u003e@squidtheyid I\u0027m never going to\u003cbr\u003edeny anything that\u0027s clear. However\u003cbr\u003ewithin about 30 of the\u003cbr\u003enews breaking, he\u0027d blamed islam.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:35:04 +0000 2015"}, {"group": 1688, "id": 30, "label": "552835987366486016", "shape": "dot", "size": 10, "title": "552835987366486016\u003cbr\u003e@squidtheyid that\u0027s my only point.\u003cbr\u003eIt appears they were probably\u003cbr\u003eextremist muslims, however that doesn\u0027t\u003cbr\u003ejustify Tommys assumptions\u003cbr\u003eWed Jan 07 14:35:45 +0000 2015"}, {"group": 1688, "id": 31, "label": "552836724213448704", "shape": "dot", "size": 10, "title": "552836724213448704\u003cbr\u003e@beckyt141 he knew the back\u003cbr\u003estory about the cartoon Mohammaed\u003cbr\u003ethe printed,so not a full\u003cbr\u003eassumption\u003cbr\u003eWed Jan 07 14:38:40 +0000 2015"}, {"group": 1688, "id": 32, "label": "552837042624020482", "shape": "dot", "size": 10, "title": "552837042624020482\u003cbr\u003e@beckyt141 anyway he got it\u003cbr\u003ebang on again! He\u0027s good\u003cbr\u003eat predicting things lol, tom\u003cbr\u003eany chance of this SATs\u003cbr\u003elotto numbers\u003cbr\u003eWed Jan 07 14:39:56 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 2, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 3, "to": 16, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 9, "weight": 1}, {"from": 6, "to": 10, "weight": 1}, {"from": 6, "to": 26, "weight": 1}, {"from": 8, "to": 25, "weight": 1}, {"from": 9, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 14, "to": 17, "weight": 1}, {"from": 14, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 29, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 30, "to": 32, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

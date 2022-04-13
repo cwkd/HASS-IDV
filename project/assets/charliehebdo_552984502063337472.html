@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1777, "id": 0, "label": "552984502063337472", "shape": "dot", "size": 10, "title": "552984502063337472\u003cbr\u003e#UPDATE Three men including two\u003cbr\u003ebrothers identified in France newspaper\u003cbr\u003eattack: source http://t.co/5NoNuqJSu1 #JeSuisCharlie #CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:25:53 +0000 2015"}, {"group": 1777, "id": 1, "label": "552989544589430784", "shape": "dot", "size": 10, "title": "552989544589430784\u003cbr\u003e\u201c@AFP: #UPDATE Three men including\u003cbr\u003etwo brothers identified in France\u003cbr\u003enewspaper attack: source http://t.co/sXtqLIsrW4 #CharlieHebdo\u201d\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:45:56 +0000 2015"}, {"group": 1777, "id": 2, "label": "552998100764491776", "shape": "dot", "size": 10, "title": "552998100764491776\u003cbr\u003e@AFP Protestamos com Arte tamb\u00e9m\u003cbr\u003eaqui no Brasil http://t.co/vz33IStpj6 #CharlieHebdo\u003cbr\u003e http://t.co/eid1oMMmjb\u003cbr\u003eThu Jan 08 01:19:56 +0000 2015"}, {"group": 1777, "id": 3, "label": "553091815218237440", "shape": "dot", "size": 10, "title": "553091815218237440\u003cbr\u003e@AFP Go to hell #CharlieHebdo\u003cbr\u003e\u003cbr\u003eThu Jan 08 07:32:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

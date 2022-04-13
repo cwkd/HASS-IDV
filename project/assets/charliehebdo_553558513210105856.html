@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2016, "id": 0, "label": "553558513210105856", "shape": "dot", "size": 10, "title": "553558513210105856\u003cbr\u003eUpdate - French interior ministry\u003cbr\u003esays incident which led to\u003cbr\u003eevacuation of Trocadero near the\u003cbr\u003eEiffel Tower in Paris was\u003cbr\u003ea false alarm\u003cbr\u003eFri Jan 09 14:26:48 +0000 2015"}, {"group": 2016, "id": 1, "label": "553558710732464128", "shape": "dot", "size": 10, "title": "553558710732464128\u003cbr\u003e@SkyNewsBreak At least they\u0027re alert.\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:27:35 +0000 2015"}, {"group": 2016, "id": 2, "label": "553559181962530817", "shape": "dot", "size": 10, "title": "553559181962530817\u003cbr\u003e@Golden_Gaytime @SkyNewsBreak thank God. This\u003cbr\u003eis already horrific enough.\u003cbr\u003eFri Jan 09 14:29:28 +0000 2015"}, {"group": 2016, "id": 3, "label": "553559328020787201", "shape": "dot", "size": 10, "title": "553559328020787201\u003cbr\u003e@SkyNewsBreak @LTCPeterLerner Have you thought\u003cbr\u003eof confirming information before posting\u003cbr\u003eit on Twitter? Might be\u003cbr\u003ehelpful.\u003cbr\u003eFri Jan 09 14:30:03 +0000 2015"}, {"group": 2016, "id": 4, "label": "553560400437186560", "shape": "dot", "size": 10, "title": "553560400437186560\u003cbr\u003e\u201c@SkyNewsBreak: French interior ministry says\u003cbr\u003eincident which led to evacuation\u003cbr\u003eof Trocadero in Paris was\u003cbr\u003efalse alarm\u201d @kristaalyce\u003cbr\u003eFri Jan 09 14:34:18 +0000 2015"}, {"group": 2016, "id": 5, "label": "553560741878714368", "shape": "dot", "size": 10, "title": "553560741878714368\u003cbr\u003e@theloon @SkyNewsBreak @LTCPeterLerner  I\u003cbr\u003eam not posting any info\u003cbr\u003efrom now on which is\u003cbr\u003enot confirmed. Creates confusion.\u003cbr\u003eFri Jan 09 14:35:40 +0000 2015"}, {"group": 2016, "id": 6, "label": "553561048448782336", "shape": "dot", "size": 10, "title": "553561048448782336\u003cbr\u003e@collywobbles54 @SkyNewsBreak @LTCPeterLerner - Also\u003cbr\u003ecreates unnecessary anxiety/fear for anyone\u003cbr\u003ewith relatives/friends in France.\u003cbr\u003eFri Jan 09 14:36:53 +0000 2015"}, {"group": 2016, "id": 7, "label": "553561195383627776", "shape": "dot", "size": 10, "title": "553561195383627776\u003cbr\u003e@theloon @SkyNewsBreak @LTCPeterLerner  of\u003cbr\u003ecourse.\u003cbr\u003eFri Jan 09 14:37:28 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

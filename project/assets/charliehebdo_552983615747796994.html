@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1775, "id": 0, "label": "552983615747796994", "shape": "dot", "size": 10, "title": "552983615747796994\u003cbr\u003eBanksy\u2019s take on #CharlieHebdo http://t.co/FuqO8rAVcP\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:22:22 +0000 2015"}, {"group": 1775, "id": 1, "label": "552984434538848256", "shape": "dot", "size": 10, "title": "552984434538848256\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/FrpXUipEKC\u201d\u003cbr\u003eThu Jan 08 00:25:37 +0000 2015"}, {"group": 1775, "id": 2, "label": "552987439413743616", "shape": "dot", "size": 10, "title": "552987439413743616\u003cbr\u003eRT @bkjabour: Banksy\u2019s take on\u003cbr\u003e#CharlieHebdo http://t.co/R0jQlByAjL via @ayrestim\u003cbr\u003eThu Jan 08 00:37:34 +0000 2015"}, {"group": 1775, "id": 3, "label": "552988722506260480", "shape": "dot", "size": 10, "title": "552988722506260480\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/KnSavYdw0t\u201d\u003cbr\u003eThu Jan 08 00:42:40 +0000 2015"}, {"group": 1775, "id": 4, "label": "552990117686968320", "shape": "dot", "size": 10, "title": "552990117686968320\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/B7arUjz6E4\u201d\u003cbr\u003eThu Jan 08 00:48:12 +0000 2015"}, {"group": 1775, "id": 5, "label": "552991200320319488", "shape": "dot", "size": 10, "title": "552991200320319488\u003cbr\u003e@bkjabour Yes, c\u0027est \u00e7a!\u003cbr\u003eThu Jan 08 00:52:30 +0000 2015"}, {"group": 1775, "id": 6, "label": "552992712924749824", "shape": "dot", "size": 10, "title": "552992712924749824\u003cbr\u003e@bkjabour Very, very clever. Love\u003cbr\u003eit.\u003cbr\u003eThu Jan 08 00:58:31 +0000 2015"}, {"group": 1775, "id": 7, "label": "552993543736680448", "shape": "dot", "size": 10, "title": "552993543736680448\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/kiJcclEngH\u201d\u003cbr\u003eThu Jan 08 01:01:49 +0000 2015"}, {"group": 1775, "id": 8, "label": "552997036232957952", "shape": "dot", "size": 10, "title": "552997036232957952\u003cbr\u003e@bkjabour Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/eg4OUMWamR\u003cbr\u003eThu Jan 08 01:15:42 +0000 2015"}, {"group": 1775, "id": 9, "label": "553006265178546176", "shape": "dot", "size": 10, "title": "553006265178546176\u003cbr\u003e@bkjabour @gte Not really Banksy\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:52:22 +0000 2015"}, {"group": 1775, "id": 10, "label": "553021188029415424", "shape": "dot", "size": 10, "title": "553021188029415424\u003cbr\u003e@bkjabour Congrats on your 500\u2605\u003cbr\u003etweet! http://t.co/mrqwNY0vV1\u003cbr\u003eThu Jan 08 02:51:40 +0000 2015"}, {"group": 1775, "id": 11, "label": "553051758776561666", "shape": "dot", "size": 10, "title": "553051758776561666\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/4nkbwWNmBs\u201d wow.\u003cbr\u003eThu Jan 08 04:53:09 +0000 2015"}, {"group": 1775, "id": 12, "label": "553090923546943488", "shape": "dot", "size": 10, "title": "553090923546943488\u003cbr\u003e@bkjabour doubling up the hatred....the\u003cbr\u003emultiplying effect on western hatred\u003cbr\u003eof Islam exponential.\u003cbr\u003eThu Jan 08 07:28:46 +0000 2015"}, {"group": 1775, "id": 13, "label": "553098752874254336", "shape": "dot", "size": 10, "title": "553098752874254336\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/VxrxnVT6y6\u201d \u0026lt; this is brilliant\u003cbr\u003e\u003cbr\u003eThu Jan 08 07:59:53 +0000 2015"}, {"group": 1775, "id": 14, "label": "553106137533644801", "shape": "dot", "size": 10, "title": "553106137533644801\u003cbr\u003e@bkjabour @DebHazeldine Mm? Great minds\u003cbr\u003ethinking alike or... http://t.co/2Lbvh37PaC\u003cbr\u003eThu Jan 08 08:29:14 +0000 2015"}, {"group": 1775, "id": 15, "label": "553106333776740353", "shape": "dot", "size": 10, "title": "553106333776740353\u003cbr\u003e@bkjabour Congrats on your 1000\u2605\u003cbr\u003etweet! http://t.co/6zgdK0DNUY\u003cbr\u003eThu Jan 08 08:30:00 +0000 2015"}, {"group": 1775, "id": 16, "label": "553110670443835393", "shape": "dot", "size": 10, "title": "553110670443835393\u003cbr\u003eIt\u0027s by @LucilleClerc, not Banksy.\u003cbr\u003e@bkjabour @sarahbenton\u003cbr\u003eThu Jan 08 08:47:14 +0000 2015"}, {"group": 1775, "id": 17, "label": "553111857104318464", "shape": "dot", "size": 10, "title": "553111857104318464\u003cbr\u003e@bkjabour @DavidSharaz- FYI - The\u003cbr\u003eimage that everyone is sharing\u003cbr\u003eby \u0027Banksy\u0027 isn\u0027t by Banksy\u003cbr\u003esays @BusInsiderAU - http://t.co/4qo05LbFqs\u003cbr\u003eThu Jan 08 08:51:57 +0000 2015"}, {"group": 1775, "id": 18, "label": "553114579589677057", "shape": "dot", "size": 10, "title": "553114579589677057\u003cbr\u003e\u201c@bkjabour: Banksy\u2019s take on #CharlieHebdo\u003cbr\u003ehttp://t.co/YCChiTjFNb\u201d Banksy is unbelievable\u003cbr\u003eThu Jan 08 09:02:46 +0000 2015"}, {"group": 1775, "id": 23, "label": "553230615420878848", "shape": "dot", "size": 10, "title": "553230615420878848\u003cbr\u003e\u201c@JohnDougherty8: It\u0027s by @LucilleClerc, not\u003cbr\u003eBanksy. @bkjabour @sarahbenton\u201d @MarkRuffalo\u003cbr\u003eThu Jan 08 16:43:51 +0000 2015"}, {"group": 1775, "id": 22, "label": "553124066920378368", "shape": "dot", "size": 10, "title": "553124066920378368\u003cbr\u003e@couchman1 @bkjabour @BusInsiderAU Thanks for\u003cbr\u003ethe link! Really appreciate it.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:40:28 +0000 2015"}, {"group": 1775, "id": 19, "label": "553116312948707328", "shape": "dot", "size": 10, "title": "553116312948707328\u003cbr\u003e@DannyShezz @bkjabour arrrrghhhh its not\u003cbr\u003eBanksy its a fan site\u003cbr\u003e.\u003cbr\u003eThu Jan 08 09:09:40 +0000 2015"}, {"group": 1775, "id": 20, "label": "553118240197849088", "shape": "dot", "size": 10, "title": "553118240197849088\u003cbr\u003e@PaulEEMAK @bkjabour apologies, you know\u003cbr\u003ethe thought process\u003cbr\u003eThu Jan 08 09:17:19 +0000 2015"}, {"group": 1775, "id": 21, "label": "553119772674514944", "shape": "dot", "size": 10, "title": "553119772674514944\u003cbr\u003e@DannyShezz @bkjabour \ud83d\udc4d.\u003cbr\u003eThu Jan 08 09:23:24 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 16, "to": 23, "weight": 1}, {"from": 17, "to": 22, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

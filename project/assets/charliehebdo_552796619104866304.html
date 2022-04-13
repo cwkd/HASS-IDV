@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 45, "id": 0, "label": "552796619104866304", "shape": "dot", "size": 10, "title": "552796619104866304\u003cbr\u003eHere are some of the\u003cbr\u003esatirical pictures Charlie Hebdo have\u003cbr\u003eproduced #freespeech #BanIslam http://t.co/m4OaNCf5e0\u003cbr\u003eWed Jan 07 11:59:19 +0000 2015"}, {"group": 45, "id": 1, "label": "552797388482805760", "shape": "dot", "size": 10, "title": "552797388482805760\u003cbr\u003e@DavidJo52951945 Every newspaper in the\u003cbr\u003eU.S. should publish these cartoons\u003cbr\u003eASAP and continue to publish\u003cbr\u003eday after day.\u003cbr\u003eWed Jan 07 12:02:22 +0000 2015"}, {"group": 45, "id": 2, "label": "552797669266300928", "shape": "dot", "size": 10, "title": "552797669266300928\u003cbr\u003e.@DavidJo52951945 .@TRobinsonNewEra Class lol\u003cbr\u003eWed Jan 07 12:03:29 +0000 2015"}, {"group": 45, "id": 3, "label": "552797710475329536", "shape": "dot", "size": 10, "title": "552797710475329536\u003cbr\u003e@DavidJo52951945 @PymPurnell This is apparently\u003cbr\u003ethe one that broke the\u003cbr\u003ecamels back! LOL\nhttps://t.co/dmnNEMu6pt\nFUCK ZOG \u0026amp;\u003cbr\u003eITS MUSLIM DOGS!\u003cbr\u003eWed Jan 07 12:03:39 +0000 2015"}, {"group": 45, "id": 4, "label": "552797891799318528", "shape": "dot", "size": 10, "title": "552797891799318528\u003cbr\u003e@DavidJo52951945 You want free speech\u003cbr\u003ebut want to ban Islam.\u003cbr\u003eDo you see the utter\u003cbr\u003estupidity in your tweet?\u003cbr\u003eWed Jan 07 12:04:22 +0000 2015"}, {"group": 45, "id": 7, "label": "552798544978268160", "shape": "dot", "size": 10, "title": "552798544978268160\u003cbr\u003e@DavidJo52951945 @HarryPlowman2 Religion of peace!!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:06:58 +0000 2015"}, {"group": 45, "id": 8, "label": "552799409839546368", "shape": "dot", "size": 10, "title": "552799409839546368\u003cbr\u003e@DavidJo52951945 @PieEaterobey Radical #Muslims kill\u003cbr\u003e#Christians, #Yazidis, #Turks \u0026amp; other\u003cbr\u003e#Kafirs yet #Islam cannot stand\u003cbr\u003eup to scrutiny\u003cbr\u003eWed Jan 07 12:10:24 +0000 2015"}, {"group": 45, "id": 9, "label": "552800185626402817", "shape": "dot", "size": 10, "title": "552800185626402817\u003cbr\u003e@DavidJo52951945 @perth_atheist The \"star is\u003cbr\u003eborn\" one made me chuckle.\n\nReligion\u003cbr\u003eis our species\u0027 biggest problem.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:13:29 +0000 2015"}, {"group": 45, "id": 10, "label": "552801319313235968", "shape": "dot", "size": 10, "title": "552801319313235968\u003cbr\u003e\u201c@DavidJo52951945: Here are some of\u003cbr\u003ethe satirical pictures Charlie Hebdo\u003cbr\u003ehave produced #freespeech http://t.co/oMPjDAJ9Na\u201d\u003cbr\u003eWed Jan 07 12:17:59 +0000 2015"}, {"group": 45, "id": 15, "label": "552816204696809472", "shape": "dot", "size": 10, "title": "552816204696809472\u003cbr\u003e@DavidJo52951945 Religion of peace....please tell\u003cbr\u003eme when.\u003cbr\u003eWed Jan 07 13:17:08 +0000 2015"}, {"group": 45, "id": 17, "label": "552864534911025152", "shape": "dot", "size": 10, "title": "552864534911025152\u003cbr\u003e@DavidJo52951945 @jeanniemcbride Post them EVERYWHERE.\u003cbr\u003eWEAR THEM ON T SHIRTS.\u003cbr\u003eI am going to. Call\u003cbr\u003ethese assholes out for what\u003cbr\u003ethey are.\u003cbr\u003eWed Jan 07 16:29:11 +0000 2015"}, {"group": 45, "id": 18, "label": "552864620684136448", "shape": "dot", "size": 10, "title": "552864620684136448\u003cbr\u003e@DavidJo52951945 @jeanniemcbride only saying the\u003cbr\u003etruth about the so called\u003cbr\u003ereligion of peace\u003cbr\u003eWed Jan 07 16:29:31 +0000 2015"}, {"group": 45, "id": 19, "label": "552864655044251650", "shape": "dot", "size": 10, "title": "552864655044251650\u003cbr\u003e@DavidJo52951945 @jeanniemcbride THey are Murderers.\u003cbr\u003ethat is all they are.\u003cbr\u003eOutright degenerate Murderers. THe world\u003cbr\u003emust be rid of them.NOW.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:29:40 +0000 2015"}, {"group": 45, "id": 5, "label": "552798095558590464", "shape": "dot", "size": 10, "title": "552798095558590464\u003cbr\u003e@GaryT30 Islam is incompatible with\u003cbr\u003eWestern society #enemywithin\u003cbr\u003eWed Jan 07 12:05:11 +0000 2015"}, {"group": 45, "id": 6, "label": "552798514028490752", "shape": "dot", "size": 10, "title": "552798514028490752\u003cbr\u003e@GaryT30 @DavidJo52951945 #LOGIC.\u003cbr\u003eWed Jan 07 12:06:50 +0000 2015"}, {"group": 45, "id": 11, "label": "552801605956149248", "shape": "dot", "size": 10, "title": "552801605956149248\u003cbr\u003e@DavidJo52951945 @GaryT30 christianity is incompatible\u003cbr\u003ewith the western world.\nSo what\u003cbr\u003epoint where you trying to\u003cbr\u003emake?\u003cbr\u003eWed Jan 07 12:19:08 +0000 2015"}, {"group": 45, "id": 12, "label": "552801674117783552", "shape": "dot", "size": 10, "title": "552801674117783552\u003cbr\u003e@DavidJo52951945 Islam has been part\u003cbr\u003eof Western society for a\u003cbr\u003every long time. It\u0027s Western\u003cbr\u003ecountries invading Islamic lands that\u0027s\u003cbr\u003ethe prob\u003cbr\u003eWed Jan 07 12:19:24 +0000 2015"}, {"group": 45, "id": 16, "label": "552821668473610242", "shape": "dot", "size": 10, "title": "552821668473610242\u003cbr\u003e@DavidJo52951945 @GaryT30 It is Humanity\u0027s\u003cbr\u003eCancer.\u003cbr\u003eWed Jan 07 13:38:51 +0000 2015"}, {"group": 45, "id": 13, "label": "552802077437853696", "shape": "dot", "size": 10, "title": "552802077437853696\u003cbr\u003e@DavidJames2100 @DavidJo52951945 He\u0027s a UKIP\u003cbr\u003esupporter. Read his bio, says\u003cbr\u003eit all.\u003cbr\u003eWed Jan 07 12:21:00 +0000 2015"}, {"group": 45, "id": 14, "label": "552802211361980418", "shape": "dot", "size": 10, "title": "552802211361980418\u003cbr\u003e@GaryT30 @DavidJo52951945 the union flag\u003cbr\u003ewas a kinda of giveaway\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:21:32 +0000 2015"}, {"group": 45, "id": 22, "label": "552867690407550977", "shape": "dot", "size": 10, "title": "552867690407550977\u003cbr\u003e@LabeGirlM4 @DavidJo52951945 Another ignorant moron.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:41:43 +0000 2015"}, {"group": 45, "id": 23, "label": "552928189304299520", "shape": "dot", "size": 10, "title": "552928189304299520\u003cbr\u003eActually, cancer is humanity\u0027s cancer.\u003cbr\u003e@LabeGirlM4\u003cbr\u003eWed Jan 07 20:42:07 +0000 2015"}, {"group": 45, "id": 20, "label": "552865373117505536", "shape": "dot", "size": 10, "title": "552865373117505536\u003cbr\u003e@hollyammon @DavidJo52951945 @jeanniemcbride I\u0027m RTing\u003cbr\u003eevery allah cartoon I can\u003cbr\u003efind on Twitter, lets show\u003cbr\u003ethe bastards what we think\u003cbr\u003eof em\u003cbr\u003eWed Jan 07 16:32:31 +0000 2015"}, {"group": 45, "id": 21, "label": "552865752181927938", "shape": "dot", "size": 10, "title": "552865752181927938\u003cbr\u003e@LeeP59 @DavidJo52951945 @jeanniemcbride THat is\u003cbr\u003ethe way to go,Patti. Any\u003cbr\u003esign of weakness , these\u003cbr\u003eassholes will be laughing, THey\u003cbr\u003eare dirt.\u003cbr\u003eWed Jan 07 16:34:01 +0000 2015"}, {"group": 45, "id": 24, "label": "552929690244349952", "shape": "dot", "size": 10, "title": "552929690244349952\u003cbr\u003e@hrtbps She protected her tweets\u003cbr\u003eas well\u003cbr\u003eWed Jan 07 20:48:05 +0000 2015"}, {"group": 45, "id": 25, "label": "552930828586848257", "shape": "dot", "size": 10, "title": "552930828586848257\u003cbr\u003e@hrtbps I want a block\u003cbr\u003e\u003cbr\u003eWed Jan 07 20:52:37 +0000 2015"}, {"group": 45, "id": 26, "label": "552931970683244545", "shape": "dot", "size": 10, "title": "552931970683244545\u003cbr\u003e@chris_emerson @hrtbps I imagine they\u003cbr\u003eare as precious as her\u003cbr\u003egun rack and love for\u003cbr\u003eher daddy.\u003cbr\u003eWed Jan 07 20:57:09 +0000 2015"}, {"group": 45, "id": 27, "label": "552932123347517440", "shape": "dot", "size": 10, "title": "552932123347517440\u003cbr\u003e@QuebecTango @hrtbps America is full\u003cbr\u003eof bloody strange people\u003cbr\u003eWed Jan 07 20:57:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 5, "to": 12, "weight": 1}, {"from": 5, "to": 16, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 16, "to": 22, "weight": 1}, {"from": 16, "to": 23, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 23, "to": 25, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1606, "id": 0, "label": "553591518619893760", "shape": "dot", "size": 10, "title": "553591518619893760\u003cbr\u003eThere is no death penalty\u003cbr\u003ein France. Good that those\u003cbr\u003eterrorist killers are killed. #CharlieHebdo\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:37:57 +0000 2015"}, {"group": 1606, "id": 1, "label": "553591972569825280", "shape": "dot", "size": 10, "title": "553591972569825280\u003cbr\u003e@taslimanasreen Death penalty Never brought\u003cbr\u003ejustice ....\u003cbr\u003eFri Jan 09 16:39:46 +0000 2015"}, {"group": 1606, "id": 2, "label": "553592232456904707", "shape": "dot", "size": 10, "title": "553592232456904707\u003cbr\u003e@taslimanasreen You\u0027re one hell of\u003cbr\u003ea brave woman. No wonder\u003cbr\u003epsudos across spectrum are irked\u003cbr\u003eat ur mere mention. Go\u003cbr\u003eStrong!\u003cbr\u003eFri Jan 09 16:40:48 +0000 2015"}, {"group": 1606, "id": 3, "label": "553592728274358272", "shape": "dot", "size": 10, "title": "553592728274358272\u003cbr\u003e@taslimanasreen Don\u0027t think there was\u003cbr\u003eany doubt how the French\u003cbr\u003eauthorities intended to end this.\u003cbr\u003eRight move.\u003cbr\u003eFri Jan 09 16:42:46 +0000 2015"}, {"group": 1606, "id": 4, "label": "553593338696183808", "shape": "dot", "size": 10, "title": "553593338696183808\u003cbr\u003e@taslimanasreen What policies will the\u003cbr\u003eFrench Gov have in place\u003cbr\u003eto tackle the scum that\u003cbr\u003eis hell bent to create\u003cbr\u003efuture problems?\u003cbr\u003eFri Jan 09 16:45:11 +0000 2015"}, {"group": 1606, "id": 5, "label": "553593583387680769", "shape": "dot", "size": 10, "title": "553593583387680769\u003cbr\u003e@taslimanasreen loved your interview on\u003cbr\u003eHeadlines today.. be that \u003cbr\u003efierce always.. \u0026amp; keep inviting\u003cbr\u003eFatwas :)\u003cbr\u003eFri Jan 09 16:46:10 +0000 2015"}, {"group": 1606, "id": 7, "label": "553595234106372101", "shape": "dot", "size": 10, "title": "553595234106372101\u003cbr\u003e@taslimanasreen watchd ur intrview in\u003cbr\u003eheadlinetoday. Hope@rajdeepsardesai now know the\u003cbr\u003edifference b/w islamic \u0026amp; other\u003cbr\u003ereligious hardliners.\u003cbr\u003eFri Jan 09 16:52:43 +0000 2015"}, {"group": 1606, "id": 11, "label": "553598329766952960", "shape": "dot", "size": 10, "title": "553598329766952960\u003cbr\u003e@taslimanasreen So you think it\u003cbr\u003eis very ok to kill\u003cbr\u003epeople without an investigation and\u003cbr\u003etrial?\u003cbr\u003eFri Jan 09 17:05:01 +0000 2015"}, {"group": 1606, "id": 15, "label": "553604662411014144", "shape": "dot", "size": 10, "title": "553604662411014144\u003cbr\u003e@taslimanasreen Wonder what your great\u003cbr\u003edisciple @Atheist_Club would feel about\u003cbr\u003ethis tweet ...! ;)\u003cbr\u003eFri Jan 09 17:30:11 +0000 2015"}, {"group": 1606, "id": 6, "label": "553594650607779840", "shape": "dot", "size": 10, "title": "553594650607779840\u003cbr\u003e@ramram2you @taslimanasreen Authorities in France\u003cbr\u003e\u0026amp; elsewhere should adopt \u0027implicit\u0027\u003cbr\u003eguidelines to kill jihad terrorists\u003cbr\u003ewhere possible.\u003cbr\u003eFri Jan 09 16:50:24 +0000 2015"}, {"group": 1606, "id": 27, "label": "555627437497651200", "shape": "dot", "size": 10, "title": "555627437497651200\u003cbr\u003e@IanNieves @riwired @ramram2you @taslimanasreen Secret\u003cbr\u003earmies to fight fire with\u003cbr\u003eFire\u003cbr\u003eThu Jan 15 07:27:58 +0000 2015"}, {"group": 1606, "id": 8, "label": "553595581180805120", "shape": "dot", "size": 10, "title": "553595581180805120\u003cbr\u003e@k_tulika interview was suddenly stopped\u003cbr\u003ebecause of breaking news, they\u003cbr\u003ehaven\u0027t telecasted the rest of\u003cbr\u003ethe interview.\u003cbr\u003eFri Jan 09 16:54:06 +0000 2015"}, {"group": 1606, "id": 9, "label": "553596534269296640", "shape": "dot", "size": 10, "title": "553596534269296640\u003cbr\u003e@taslimanasreen the whole of it\u003cbr\u003ewasnt telecast b/c you were\u003cbr\u003enot following d script...lol..@k_tulika\u003cbr\u003eFri Jan 09 16:57:53 +0000 2015"}, {"group": 1606, "id": 10, "label": "553596547833659392", "shape": "dot", "size": 10, "title": "553596547833659392\u003cbr\u003e@taslimanasreen never mind ! People\u003cbr\u003ewho know ur thoughts through\u003cbr\u003eur books n tweets know\u003cbr\u003ewell how you will silence\u003cbr\u003esecular apologist :)\u003cbr\u003eFri Jan 09 16:57:56 +0000 2015"}, {"group": 1606, "id": 12, "label": "553600086018916353", "shape": "dot", "size": 10, "title": "553600086018916353\u003cbr\u003e@taslimanasreen @k_tulika kon se chanel\u003cbr\u003epar interview aa rha tha\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:12:00 +0000 2015"}, {"group": 1606, "id": 13, "label": "553600381662416897", "shape": "dot", "size": 10, "title": "553600381662416897\u003cbr\u003e@Neera_26 @taslimanasreen cant agree with\u003cbr\u003eu more. Rajdeep tried hard\u003cbr\u003e2make Taslima speak language of\u003cbr\u003epseudo secularist but in vain.\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:13:11 +0000 2015"}, {"group": 1606, "id": 20, "label": "553773238224838657", "shape": "dot", "size": 10, "title": "553773238224838657\u003cbr\u003e.@k_tulika LOL! Secular apologist? Hindus\u003cbr\u003eare so good at coining\u003cbr\u003epreposterous phrases. ;-) You forgot\u003cbr\u003eto add #Peudo!  @taslimanasreen\u003cbr\u003e\u003cbr\u003eSat Jan 10 04:40:03 +0000 2015"}, {"group": 1606, "id": 16, "label": "553611058166784000", "shape": "dot", "size": 10, "title": "553611058166784000\u003cbr\u003e@mttwit @taslimanasreen r u blind\u003cbr\u003eor sumthng,u need a bloody\u003cbr\u003einvestigation on open killing at\u003cbr\u003e#charliehebdo\u003cbr\u003eFri Jan 09 17:55:36 +0000 2015"}, {"group": 1606, "id": 14, "label": "553600691004919808", "shape": "dot", "size": 10, "title": "553600691004919808\u003cbr\u003e@mahimatyagi @taslimanasreen headlines today\u003cbr\u003eFri Jan 09 17:14:24 +0000 2015"}, {"group": 1606, "id": 21, "label": "553773538734125056", "shape": "dot", "size": 10, "title": "553773538734125056\u003cbr\u003e.@k_tulika There you are #Pseudo\u003cbr\u003eSecularist. I wonder what is\u003cbr\u003ea #PseudoHinduist though. ;-) @Neera_26\u003cbr\u003e@taslimanasreen #LOLz\u003cbr\u003eSat Jan 10 04:41:14 +0000 2015"}, {"group": 1606, "id": 19, "label": "553766727540961280", "shape": "dot", "size": 10, "title": "553766727540961280\u003cbr\u003eThere\u0027s no blasphemy law either,\u003cbr\u003ehence #ParisShooting? Violence is wrong,whether\u003cbr\u003eby police or by terrorists.@suraj_mk\u003cbr\u003e@taslimanasreen\u003cbr\u003eSat Jan 10 04:14:10 +0000 2015"}, {"group": 1606, "id": 17, "label": "553611418260348928", "shape": "dot", "size": 10, "title": "553611418260348928\u003cbr\u003e@UmeshDhise @taslimanasreen yes. every incident\u003cbr\u003eneeds an investigation, every human\u003cbr\u003ebeing deserves a trial.\u003cbr\u003eFri Jan 09 17:57:02 +0000 2015"}, {"group": 1606, "id": 18, "label": "553613436416827392", "shape": "dot", "size": 10, "title": "553613436416827392\u003cbr\u003e@mttwit @taslimanasreen Boko Haram needs\u003cbr\u003ea investigation,go to Nigeria\u003cbr\u003eFri Jan 09 18:05:03 +0000 2015"}, {"group": 1606, "id": 22, "label": "553773809820385280", "shape": "dot", "size": 10, "title": "553773809820385280\u003cbr\u003eBut wait, a politically motivated\u003cbr\u003eSIT can give a #cleanchit\u003cbr\u003eanytime. ;-) @mttwit @UmeshDhise @taslimanasreen\u003cbr\u003eLOLz.\u003cbr\u003eSat Jan 10 04:42:19 +0000 2015"}, {"group": 1606, "id": 23, "label": "553774283462152192", "shape": "dot", "size": 10, "title": "553774283462152192\u003cbr\u003eInnocent until proven guilty you\u003cbr\u003esee,which applies to #HinduTerrorist eg\u003cbr\u003e@narendramodi \u0026amp; @amitshahoffice.@mttwit @UmeshDhise @taslimanasreen\u003cbr\u003e\u003cbr\u003eSat Jan 10 04:44:12 +0000 2015"}, {"group": 1606, "id": 24, "label": "554179915658981376", "shape": "dot", "size": 10, "title": "554179915658981376\u003cbr\u003e@UmeshDhise @riwired @mttwit @taslimanasreen Trial\u003cbr\u003ewould take sec.to come to\u003cbr\u003edecision. Eye witnesses, videos would\u003cbr\u003eaddress that.\u003cbr\u003eSun Jan 11 07:36:02 +0000 2015"}, {"group": 1606, "id": 25, "label": "554229723270631424", "shape": "dot", "size": 10, "title": "554229723270631424\u003cbr\u003e@NinaMaechik @UmeshDhise @riwired @taslimanasreen Yes\u003cbr\u003ethose few seconds are their\u003cbr\u003eright. If u act savage\u003cbr\u003ewith savages then you are\u003cbr\u003ethe same\u003cbr\u003eSun Jan 11 10:53:57 +0000 2015"}, {"group": 1606, "id": 26, "label": "554297099068534785", "shape": "dot", "size": 10, "title": "554297099068534785\u003cbr\u003e@mttwit @UmeshDhise @riwired @taslimanasreen agree!\u003cbr\u003e\u003cbr\u003eSun Jan 11 15:21:41 +0000 2015"}, {"group": 1606, "id": 28, "label": "555640925217882112", "shape": "dot", "size": 10, "title": "555640925217882112\u003cbr\u003e@tearohaboy @riwired @ramram2you @taslimanasreen Versatile\u003cbr\u003earmies with 2 missions: de\u003cbr\u003ejure for media \u0026amp; de\u003cbr\u003efacto to exterminate Jihadists.\u003cbr\u003eThu Jan 15 08:21:34 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 4, "to": 6, "weight": 1}, {"from": 6, "to": 27, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 9, "to": 13, "weight": 1}, {"from": 10, "to": 20, "weight": 1}, {"from": 11, "to": 16, "weight": 1}, {"from": 12, "to": 14, "weight": 1}, {"from": 13, "to": 21, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 17, "to": 22, "weight": 1}, {"from": 17, "to": 23, "weight": 1}, {"from": 18, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 27, "to": 28, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

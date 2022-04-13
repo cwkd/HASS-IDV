@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 489, "id": 0, "label": "552836844560609281", "shape": "dot", "size": 10, "title": "552836844560609281\u003cbr\u003eCounter terrorism expert Colonel Mike\u003cbr\u003eDewar says Paris will have\u003cbr\u003ebeen put on \"virtual shutdown\"\u003cbr\u003e#CharlieHebdo http://t.co/qDOohI456v\u003cbr\u003eWed Jan 07 14:39:09 +0000 2015"}, {"group": 489, "id": 1, "label": "552836988823666688", "shape": "dot", "size": 10, "title": "552836988823666688\u003cbr\u003e@bbc5live Who funded/armed/trained gunmen? https://t.co/iPBkLwhQk8\u003cbr\u003e Jeffrey Epstein also in\u003cbr\u003eCFR+Trilateral Commission\u003cbr\u003eWed Jan 07 14:39:44 +0000 2015"}, {"group": 489, "id": 2, "label": "552837185481609218", "shape": "dot", "size": 10, "title": "552837185481609218\u003cbr\u003e@bbc5live @BBCWorld what did they\u003cbr\u003ethink was going to happen\u003cbr\u003eafter 80,000 jihadis \u0026amp; supporters\u003cbr\u003emarched screaming \"kill the jews\"\u003cbr\u003ein Paris?\u003cbr\u003eWed Jan 07 14:40:30 +0000 2015"}, {"group": 489, "id": 3, "label": "552838902286155777", "shape": "dot", "size": 10, "title": "552838902286155777\u003cbr\u003e@bbc5live I heard a gang\u003cbr\u003eof Rabbits have gone on\u003cbr\u003erampage with shotguns in Hollywood\u003cbr\u003eprotesting at certain cartoons suggesting\u003cbr\u003ethey`re stupid\u003cbr\u003eWed Jan 07 14:47:20 +0000 2015"}, {"group": 489, "id": 4, "label": "552839305178013697", "shape": "dot", "size": 10, "title": "552839305178013697\u003cbr\u003e@bbc5live @BBCWorld India suffering from\u003cbr\u003escourge since last three decades,but\u003cbr\u003eno one gave a serious\u003cbr\u003ethought to emerging threat,now theengulf\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:48:56 +0000 2015"}, {"group": 489, "id": 5, "label": "552840257251868673", "shape": "dot", "size": 10, "title": "552840257251868673\u003cbr\u003e@bbc5live No wonder he\u0027s an\u003cbr\u003eexpert with insight like that.\u003cbr\u003eI thought they\u0027d just carry\u003cbr\u003eon as normal. #fuckwit\u003cbr\u003eWed Jan 07 14:52:43 +0000 2015"}, {"group": 489, "id": 6, "label": "552840666506866688", "shape": "dot", "size": 10, "title": "552840666506866688\u003cbr\u003e@bbc5live\u003cbr\u003eWed Jan 07 14:54:20 +0000 2015"}, {"group": 489, "id": 7, "label": "552841200798302208", "shape": "dot", "size": 10, "title": "552841200798302208\u003cbr\u003e@bbc5live @BBCWorld  The city\u003cbr\u003eof lights, A city for\u003cbr\u003elovers, splattered with blood and\u003cbr\u003eignorance.  dark days ahead.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:56:28 +0000 2015"}, {"group": 489, "id": 8, "label": "552841874038198273", "shape": "dot", "size": 10, "title": "552841874038198273\u003cbr\u003e@bbc5live @BBCWorld\u003cbr\u003eWed Jan 07 14:59:08 +0000 2015"}, {"group": 489, "id": 9, "label": "552842205065646081", "shape": "dot", "size": 10, "title": "552842205065646081\u003cbr\u003e@bbc5live @dublinrecruiter Least no ones\u003cbr\u003egonna steal the Eiffel tower\u003cbr\u003e@crinklecutchips\u003cbr\u003eWed Jan 07 15:00:27 +0000 2015"}, {"group": 489, "id": 10, "label": "552842233842790400", "shape": "dot", "size": 10, "title": "552842233842790400\u003cbr\u003e@bbc5live shhot the #islam\u003cbr\u003eWed Jan 07 15:00:34 +0000 2015"}, {"group": 489, "id": 11, "label": "552843057910251522", "shape": "dot", "size": 10, "title": "552843057910251522\u003cbr\u003e\u201c@bbc5live: Counter terrorism expert Colonel\u003cbr\u003eMike Dewar says Paris put\u003cbr\u003eon \"virtual shutdown\" #CharlieHebdo http://t.co/gVEhZoZOE1\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:03:50 +0000 2015"}, {"group": 489, "id": 13, "label": "552851533399076865", "shape": "dot", "size": 10, "title": "552851533399076865\u003cbr\u003e@bbc5live @BBCWorld until when?\nYou cannot\u003cbr\u003erestrict any serious activity inside\u003cbr\u003ea country \u0027s Capital City\u003cbr\u003efor big periods of time.Harmful\u003cbr\u003eis\u003cbr\u003eWed Jan 07 15:37:31 +0000 2015"}, {"group": 489, "id": 14, "label": "552858896277450752", "shape": "dot", "size": 10, "title": "552858896277450752\u003cbr\u003e@bbc5live. Fashola has already done\u003cbr\u003ethat.Why is the PDP always\u003cbr\u003etrying to crash on people\u0027s\u003cbr\u003esuccess? Because they can\u0027t do\u003cbr\u003eit?\u003cbr\u003eWed Jan 07 16:06:47 +0000 2015"}, {"group": 489, "id": 15, "label": "552871810921144320", "shape": "dot", "size": 10, "title": "552871810921144320\u003cbr\u003e@bbc5live @FrenchMorningNY #JeSuisCharlie\u003cbr\u003eWed Jan 07 16:58:06 +0000 2015"}, {"group": 489, "id": 16, "label": "552890148355313664", "shape": "dot", "size": 10, "title": "552890148355313664\u003cbr\u003e@bbc5live can\u0027t believe what I\u0027m\u003cbr\u003eseeing- shocking, scary and incredibly\u003cbr\u003esad.  Thoughts with the\u003cbr\u003efamilies of the murdered\u003cbr\u003eWed Jan 07 18:10:58 +0000 2015"}, {"group": 489, "id": 17, "label": "552995611302445057", "shape": "dot", "size": 10, "title": "552995611302445057\u003cbr\u003e@bbc5live\u003cbr\u003eThu Jan 08 01:10:02 +0000 2015"}, {"group": 489, "id": 12, "label": "552843866291048448", "shape": "dot", "size": 10, "title": "552843866291048448\u003cbr\u003e@Karen1Clarke @bbc5live @dublinrecruiter ...or is\u003cbr\u003eit? Maybe the fundamentalists attack\u003cbr\u003ephallic symbols as well...\u003cbr\u003eWed Jan 07 15:07:03 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 9, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 447, "id": 0, "label": "552833658017824768", "shape": "dot", "size": 10, "title": "552833658017824768\u003cbr\u003eHow President Obama Sold Out\u003cbr\u003eCharlie Hebdo http://t.co/MTKYYiYqdw\u003cbr\u003eWed Jan 07 14:26:29 +0000 2015"}, {"group": 447, "id": 1, "label": "552837927391465472", "shape": "dot", "size": 10, "title": "552837927391465472\u003cbr\u003e@FDRLST @pegobry I think that\u003cbr\u003ethere are days, like today,\u003cbr\u003ewhere taking a nice cup\u003cbr\u003eof \"shut the fuck up\u003cbr\u003eand publish tomorrow\" is worth\u003cbr\u003esmthg\u003cbr\u003eWed Jan 07 14:43:27 +0000 2015"}, {"group": 447, "id": 2, "label": "552838183789264897", "shape": "dot", "size": 10, "title": "552838183789264897\u003cbr\u003e@FDRLST the bodies have just\u003cbr\u003ecooled down, but you\u0027re already\u003cbr\u003eusing the attack for your\u003cbr\u003epolitical agenda. Nice going, asshole.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:44:28 +0000 2015"}, {"group": 447, "id": 3, "label": "552854999521566721", "shape": "dot", "size": 10, "title": "552854999521566721\u003cbr\u003e. @FDRLST Selective amnesia.\u003cbr\u003eWed Jan 07 15:51:18 +0000 2015"}, {"group": 447, "id": 4, "label": "552866217720283136", "shape": "dot", "size": 10, "title": "552866217720283136\u003cbr\u003e\u201c@FDRLST: How President Obama Sold\u003cbr\u003eOut Charlie Hebdo http://t.co/eG7A5vFC2I\u201d IMPEACH\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:35:52 +0000 2015"}, {"group": 447, "id": 5, "label": "552866287974875137", "shape": "dot", "size": 10, "title": "552866287974875137\u003cbr\u003e@FDRLST @michellemalkin Obama is a\u003cbr\u003eMuslim. He is also illegal\u003cbr\u003eand dangerous to our Republic.\u003cbr\u003eShould be arrested 4 treason\u003cbr\u003e. today.\u003cbr\u003eWed Jan 07 16:36:09 +0000 2015"}, {"group": 447, "id": 6, "label": "552867129897132033", "shape": "dot", "size": 10, "title": "552867129897132033\u003cbr\u003e@FDRLST @michellemalkin Obama sold out\u003cbr\u003ethe whole country. This POTUS\u003cbr\u003eis a traitor to the\u003cbr\u003econstitution.\u003cbr\u003eWed Jan 07 16:39:30 +0000 2015"}, {"group": 447, "id": 7, "label": "552868799469191168", "shape": "dot", "size": 10, "title": "552868799469191168\u003cbr\u003e\"@FDRLST: How President Obama Sold\u003cbr\u003eOut Charlie Hebdo http://t.co/KuApfmOlDI\"\u003cbr\u003eWed Jan 07 16:46:08 +0000 2015"}, {"group": 447, "id": 8, "label": "552873561673957376", "shape": "dot", "size": 10, "title": "552873561673957376\u003cbr\u003e@FDRLST @michellemalkin @MZHemingway I knew\u003cbr\u003ethat before the start of\u003cbr\u003ehis first term\u003cbr\u003eWed Jan 07 17:05:03 +0000 2015"}, {"group": 447, "id": 9, "label": "552873684046979074", "shape": "dot", "size": 10, "title": "552873684046979074\u003cbr\u003e@FDRLST @michellemalkin @MZHemingway with his\u003cbr\u003ewatered-down version of the black\u003cbr\u003eagenda and not acknowledging Islamic\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:05:32 +0000 2015"}, {"group": 447, "id": 10, "label": "552873722269683713", "shape": "dot", "size": 10, "title": "552873722269683713\u003cbr\u003e@FDRLST @michellemalkin @MZHemingway terrorism\u003cbr\u003eWed Jan 07 17:05:41 +0000 2015"}, {"group": 447, "id": 11, "label": "552874334176280577", "shape": "dot", "size": 10, "title": "552874334176280577\u003cbr\u003e@FDRLST @ukipwebmaster Obama seeks to\u003cbr\u003edestroy the west that is\u003cbr\u003ehis only ambition\u003cbr\u003eWed Jan 07 17:08:07 +0000 2015"}, {"group": 447, "id": 12, "label": "552885771024097280", "shape": "dot", "size": 10, "title": "552885771024097280\u003cbr\u003e\u201c@FDRLST: How President Obama Sold\u003cbr\u003eOut Charlie Hebdo http://t.co/NrbVHwcTLp\u201d-Our current\u003cbr\u003eGovt. cop out,wimps in this\u003cbr\u003eadministration!\u003cbr\u003eWed Jan 07 17:53:34 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

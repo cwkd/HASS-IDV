@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1596, "id": 0, "label": "553591049541914624", "shape": "dot", "size": 10, "title": "553591049541914624\u003cbr\u003eBREAKING: Suspects in the #CharlieHebdo\u003cbr\u003emassacre killed by police, local\u003cbr\u003emayor tells CNN: http://t.co/qB4b5cKvPg http://t.co/6sg4RCfZee\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:36:06 +0000 2015"}, {"group": 1596, "id": 1, "label": "553591139341971457", "shape": "dot", "size": 10, "title": "553591139341971457\u003cbr\u003e@cnni @blayneyoung25\u003cbr\u003eFri Jan 09 16:36:27 +0000 2015"}, {"group": 1596, "id": 2, "label": "553591430950965248", "shape": "dot", "size": 10, "title": "553591430950965248\u003cbr\u003e@cnni bury them in a\u003cbr\u003eChristian grave with a pack\u003cbr\u003eof pork chops.\u003cbr\u003eFri Jan 09 16:37:37 +0000 2015"}, {"group": 1596, "id": 3, "label": "553591481421012993", "shape": "dot", "size": 10, "title": "553591481421012993\u003cbr\u003e@cnni I have been watching\u003cbr\u003elive coverage and it was\u003cbr\u003ereported here first\u003cbr\u003eFri Jan 09 16:37:49 +0000 2015"}, {"group": 1596, "id": 4, "label": "553591516917018624", "shape": "dot", "size": 10, "title": "553591516917018624\u003cbr\u003e@cnni \": Suspects in the\u003cbr\u003e#CharlieHebdo massacre killed by police,\u003cbr\u003elocal mayor tells CNN: http://t.co/Phb5kc8Eos\u003cbr\u003ehttp://t.co/dOYF97F75I\",\u003cbr\u003eFri Jan 09 16:37:57 +0000 2015"}, {"group": 1596, "id": 5, "label": "553591639919591424", "shape": "dot", "size": 10, "title": "553591639919591424\u003cbr\u003e@cnni BOOOOOM! About time as\u003cbr\u003ewell!!!\u003cbr\u003eFri Jan 09 16:38:26 +0000 2015"}, {"group": 1596, "id": 6, "label": "553591862217289728", "shape": "dot", "size": 10, "title": "553591862217289728\u003cbr\u003e\u201c@cnni: BX: Suspects in the\u003cbr\u003e#CharlieHebdo massacre killed by police,\u003cbr\u003elocal mayor tells CNN: http://t.co/Jdte9BJeTT\u003cbr\u003ehttp://t.co/RlZjGk3PWz\u201d\u003cbr\u003eFri Jan 09 16:39:19 +0000 2015"}, {"group": 1596, "id": 7, "label": "553592042505658369", "shape": "dot", "size": 10, "title": "553592042505658369\u003cbr\u003e@cnni  Bury them at\u003cbr\u003esea in pig skin bags\u003cbr\u003e#ParisShooting #CharlieHebdo #Muslims #terroistattack\u003cbr\u003eFri Jan 09 16:40:02 +0000 2015"}, {"group": 1596, "id": 8, "label": "553592309657632768", "shape": "dot", "size": 10, "title": "553592309657632768\u003cbr\u003e@cnni what ever happened to\u003cbr\u003earresting people , jails too\u003cbr\u003efull?\u003cbr\u003eFri Jan 09 16:41:06 +0000 2015"}, {"group": 1596, "id": 12, "label": "553593050329792512", "shape": "dot", "size": 10, "title": "553593050329792512\u003cbr\u003e@cnni  The suspects lived\u003cbr\u003eby the gun and, given\u003cbr\u003etheir determination to try to\u003cbr\u003eavoid capture, died by the\u003cbr\u003egun, too.\u003cbr\u003eFri Jan 09 16:44:03 +0000 2015"}, {"group": 1596, "id": 14, "label": "553593696977817600", "shape": "dot", "size": 10, "title": "553593696977817600\u003cbr\u003e@cnni I feel that they\u003cbr\u003eare innocent\u003cbr\u003eFri Jan 09 16:46:37 +0000 2015"}, {"group": 1596, "id": 15, "label": "553593991858749441", "shape": "dot", "size": 10, "title": "553593991858749441\u003cbr\u003e@cnni got away too easily\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:47:47 +0000 2015"}, {"group": 1596, "id": 17, "label": "553594490284703744", "shape": "dot", "size": 10, "title": "553594490284703744\u003cbr\u003e@cnni https://t.co/HiIuDzTL7U\u003cbr\u003eFri Jan 09 16:49:46 +0000 2015"}, {"group": 1596, "id": 18, "label": "553595355682836481", "shape": "dot", "size": 10, "title": "553595355682836481\u003cbr\u003eRT @cnni BREAKING: Suspects in\u003cbr\u003e#CharlieHebdo massacre killed by police,\u003cbr\u003elocal mayor tells CNN http://t.co/Oa4RgL6Wag\u003cbr\u003ehttp://t.co/Chg6JBegQS\u003cbr\u003eFri Jan 09 16:53:12 +0000 2015"}, {"group": 1596, "id": 19, "label": "553595971180167168", "shape": "dot", "size": 10, "title": "553595971180167168\u003cbr\u003e@cnni they are having sex\u003cbr\u003ewith 72 virgins now......\u003cbr\u003eFri Jan 09 16:55:39 +0000 2015"}, {"group": 1596, "id": 9, "label": "553592396466769920", "shape": "dot", "size": 10, "title": "553592396466769920\u003cbr\u003e@peirson_y @cnni  and a\u003cbr\u003ecopy of the latest Charlie\u003cbr\u003eHebdo magazine. The gratitude of\u003cbr\u003ethe entire world is extended\u003cbr\u003eto the Paris police today\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:41:27 +0000 2015"}, {"group": 1596, "id": 11, "label": "553593027961167873", "shape": "dot", "size": 10, "title": "553593027961167873\u003cbr\u003e@peirson_y @cnni  are you\u003cbr\u003edrunk? Your words is \u003cbr\u003ea really terrorism.\u003cbr\u003eFri Jan 09 16:43:57 +0000 2015"}, {"group": 1596, "id": 22, "label": "553605717639565313", "shape": "dot", "size": 10, "title": "553605717639565313\u003cbr\u003e@peirson_y @cnni pig food \ud83d\udc16\ud83d\udc16\ud83d\udc16\ud83d\udc16\ud83d\udc4d\ud83d\udc4d\ud83d\udc4d\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:34:23 +0000 2015"}, {"group": 1596, "id": 10, "label": "553592992506736642", "shape": "dot", "size": 10, "title": "553592992506736642\u003cbr\u003e@SalmaDey @cnni they wanted to\u003cbr\u003ebe martyrs, they didn\u0027t want\u003cbr\u003eto be captured alive.\u003cbr\u003eFri Jan 09 16:43:49 +0000 2015"}, {"group": 1596, "id": 13, "label": "553593268101853185", "shape": "dot", "size": 10, "title": "553593268101853185\u003cbr\u003e@b_a_mac @peirson_y @cnni Bravo @PNationale\u003cbr\u003e@Gendarmerie #RAID #GIGN for your\u003cbr\u003ecourage, you make the French\u003cbr\u003epeople very proud #ParisShooting\u003cbr\u003eFri Jan 09 16:44:55 +0000 2015"}, {"group": 1596, "id": 28, "label": "553720196876468224", "shape": "dot", "size": 10, "title": "553720196876468224\u003cbr\u003e@CdnCarrieFan33 @SalmaDey @cnni they died\u003cbr\u003ecowards\u003cbr\u003eSat Jan 10 01:09:17 +0000 2015"}, {"group": 1596, "id": 16, "label": "553594205441130496", "shape": "dot", "size": 10, "title": "553594205441130496\u003cbr\u003e@WaleeeedMr @cnni suck it up\u003cbr\u003ebutter cup they got what\u003cbr\u003ethey deserved yeeee haaaaaa\u003cbr\u003eFri Jan 09 16:48:38 +0000 2015"}, {"group": 1596, "id": 20, "label": "553596970468536322", "shape": "dot", "size": 10, "title": "553596970468536322\u003cbr\u003e@WaleeeedMr @peirson_y \" your words\u003cbr\u003eare terrorism \" hahahahaha better\u003cbr\u003eburn them they don\u0027t even\u003cbr\u003edeserve an inch of land\u003cbr\u003e @cnni\u003cbr\u003eFri Jan 09 16:59:37 +0000 2015"}, {"group": 1596, "id": 29, "label": "553720427588370433", "shape": "dot", "size": 10, "title": "553720427588370433\u003cbr\u003e@reema22q8 @cnni they shot innocent\u003cbr\u003epeople how they innocent\u003cbr\u003eSat Jan 10 01:10:12 +0000 2015"}, {"group": 1596, "id": 23, "label": "553607024328843265", "shape": "dot", "size": 10, "title": "553607024328843265\u003cbr\u003e@maxligart @cnni I do hope\u003cbr\u003ethat they are the most\u003cbr\u003ebutt ugly, syphilitic ridden skanks\u003cbr\u003ethere\u003cbr\u003eFri Jan 09 17:39:34 +0000 2015"}, {"group": 1596, "id": 24, "label": "553607798240448512", "shape": "dot", "size": 10, "title": "553607798240448512\u003cbr\u003e@maxligart @cnni they r burning\u003cbr\u003ein hell..\u003cbr\u003eFri Jan 09 17:42:39 +0000 2015"}, {"group": 1596, "id": 21, "label": "553604989692559360", "shape": "dot", "size": 10, "title": "553604989692559360\u003cbr\u003e@TarunPoonia @WaleeeedMr @peirson_y @cnni its\u003cbr\u003elife, its a bad mens\u003cbr\u003elife, but its still life.\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:31:29 +0000 2015"}, {"group": 1596, "id": 25, "label": "553611432156086272", "shape": "dot", "size": 10, "title": "553611432156086272\u003cbr\u003e@Gulibear240902 @WaleeeedMr @peirson_y @cnni they\u003cbr\u003ewere monsters not men .\u003cbr\u003eit is time to wipeout\u003cbr\u003epeople who support them \u0026amp;\u003cbr\u003ethere thinking .\u003cbr\u003eFri Jan 09 17:57:05 +0000 2015"}, {"group": 1596, "id": 26, "label": "553611916489146368", "shape": "dot", "size": 10, "title": "553611916489146368\u003cbr\u003e@TarunPoonia @WaleeeedMr @peirson_y @cnni yes\u003cbr\u003etheyre monsters but its still\u003cbr\u003elife\u003cbr\u003eFri Jan 09 17:59:01 +0000 2015"}, {"group": 1596, "id": 27, "label": "553625297916944384", "shape": "dot", "size": 10, "title": "553625297916944384\u003cbr\u003e@Gulibear240902 @TarunPoonia @peirson_y @cnni if\u003cbr\u003eyou want to fight a\u003cbr\u003eterrorism then you must first\u003cbr\u003estop US and Zionest War\u003cbr\u003eagainst muslims.\u003cbr\u003eFri Jan 09 18:52:11 +0000 2015"}, {"group": 1596, "id": 30, "label": "553729603647180800", "shape": "dot", "size": 10, "title": "553729603647180800\u003cbr\u003e@WaleeeedMr @Gulibear240902 @peirson_y @cnni what\u003cbr\u003eMuslims Saudi hate Iran ,\u003cbr\u003eAfgan hate Pakistan ,Iraq hate\u003cbr\u003eQatar, talk about yourself only\u003cbr\u003e\u003cbr\u003eSat Jan 10 01:46:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 2, "to": 9, "weight": 1}, {"from": 2, "to": 11, "weight": 1}, {"from": 2, "to": 22, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 9, "to": 13, "weight": 1}, {"from": 10, "to": 28, "weight": 1}, {"from": 11, "to": 16, "weight": 1}, {"from": 11, "to": 20, "weight": 1}, {"from": 14, "to": 29, "weight": 1}, {"from": 19, "to": 23, "weight": 1}, {"from": 19, "to": 24, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 26, "to": 27, "weight": 1}, {"from": 27, "to": 30, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 866, "id": 0, "label": "553139285717950465", "shape": "dot", "size": 10, "title": "553139285717950465\u003cbr\u003eWe are observing a minute\u0027s\u003cbr\u003esilence at 11am today. If\u003cbr\u003eyou support press freedom please\u003cbr\u003eshare \u0026amp; join us #JeSuisCharlie\u003cbr\u003ehttp://t.co/8VqK7VnrV5\u003cbr\u003eThu Jan 08 10:40:57 +0000 2015"}, {"group": 866, "id": 1, "label": "553139814338670593", "shape": "dot", "size": 10, "title": "553139814338670593\u003cbr\u003e@DailyMirror it could have been\u003cbr\u003eany one of us\u003cbr\u003eThu Jan 08 10:43:03 +0000 2015"}, {"group": 866, "id": 2, "label": "553139872471715840", "shape": "dot", "size": 10, "title": "553139872471715840\u003cbr\u003e.@DailyMirror je suis charlie? print\u003cbr\u003etheir cartoons then. #cowards\u003cbr\u003eThu Jan 08 10:43:17 +0000 2015"}, {"group": 866, "id": 3, "label": "553140321446821889", "shape": "dot", "size": 10, "title": "553140321446821889\u003cbr\u003e@DailyMirror just featured you on\u003cbr\u003emy @RebelMouse http://t.co/5K2KLIegLB\u003cbr\u003eThu Jan 08 10:45:04 +0000 2015"}, {"group": 866, "id": 4, "label": "553141472791257088", "shape": "dot", "size": 10, "title": "553141472791257088\u003cbr\u003e@DailyMirror I will be observing\u003cbr\u003ethe minutes silence at 11am\u003cbr\u003e#JeSuisCharlie\u003cbr\u003eThu Jan 08 10:49:38 +0000 2015"}, {"group": 866, "id": 5, "label": "553144837739147264", "shape": "dot", "size": 10, "title": "553144837739147264\u003cbr\u003e@DailyMirror\u003cbr\u003eThu Jan 08 11:03:00 +0000 2015"}, {"group": 866, "id": 6, "label": "553160942008008707", "shape": "dot", "size": 10, "title": "553160942008008707\u003cbr\u003e@DailyMirror @hu_jia  Je suis\u003cbr\u003eCharlie\u003cbr\u003eThu Jan 08 12:07:00 +0000 2015"}, {"group": 866, "id": 7, "label": "553164397871648768", "shape": "dot", "size": 10, "title": "553164397871648768\u003cbr\u003e@DailyMirror L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:20:44 +0000 2015"}, {"group": 866, "id": 8, "label": "553169502054408192", "shape": "dot", "size": 10, "title": "553169502054408192\u003cbr\u003e@DailyMirror @pradip sorry i missed\u003cbr\u003ethat , when have the\u003cbr\u003epress ever been free? #dnotice\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:41:01 +0000 2015"}, {"group": 866, "id": 9, "label": "553269070909689857", "shape": "dot", "size": 10, "title": "553269070909689857\u003cbr\u003e@DailyMirror http://t.co/1yjqSwEysL #JeSuisSine press 4\u003cbr\u003efreedom\u003cbr\u003eThu Jan 08 19:16:40 +0000 2015"}, {"group": 866, "id": 10, "label": "554390523524689920", "shape": "dot", "size": 10, "title": "554390523524689920\u003cbr\u003e@DailyMirror Some may not see\u003cbr\u003ethis on time.  Make\u003cbr\u003ea site where we can\u003cbr\u003eadd our twitter id\u0027s in\u003cbr\u003esupport.\u003cbr\u003eSun Jan 11 21:32:55 +0000 2015"}, {"group": 866, "id": 11, "label": "554566225863245824", "shape": "dot", "size": 10, "title": "554566225863245824\u003cbr\u003e@DailyMirror This is a tribute\u003cbr\u003ehonoring the Charlie Hebdo magazine\u003cbr\u003estaff #JeSuisCharlie #CharlieHebdo http://t.co/JyFiqxh9L9\u003cbr\u003eMon Jan 12 09:11:06 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

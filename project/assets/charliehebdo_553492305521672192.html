@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1283, "id": 0, "label": "553492305521672192", "shape": "dot", "size": 10, "title": "553492305521672192\u003cbr\u003eThe irony, it hurts. Apple,\u003cbr\u003ewho repeatedly censored #CharlieHebdo on\u003cbr\u003eits platforms, is now claiming\u003cbr\u003e\"to be Charlie\" http://t.co/b1duzbndzQ\u003cbr\u003eFri Jan 09 10:03:43 +0000 2015"}, {"group": 1283, "id": 1, "label": "553492794896285696", "shape": "dot", "size": 10, "title": "553492794896285696\u003cbr\u003e@FredericJacobs So did the newspaper\u003cbr\u003emedia who sensored a lot\u003cbr\u003eof shit. Ughh.. Double fucking\u003cbr\u003estandards.\u003cbr\u003eFri Jan 09 10:05:40 +0000 2015"}, {"group": 1283, "id": 2, "label": "553492803771457536", "shape": "dot", "size": 10, "title": "553492803771457536\u003cbr\u003e@FredericJacobs PR I guess \ud83d\ude01\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:05:42 +0000 2015"}, {"group": 1283, "id": 3, "label": "553493479968747520", "shape": "dot", "size": 10, "title": "553493479968747520\u003cbr\u003e@gonz0_ @FredericJacobs alas poor Will,\u003cbr\u003eI knew where the free\u003cbr\u003epizza power switch was, I\u0027d\u003cbr\u003ego with it.\u003cbr\u003eFri Jan 09 10:08:23 +0000 2015"}, {"group": 1283, "id": 4, "label": "553493767844798465", "shape": "dot", "size": 10, "title": "553493767844798465\u003cbr\u003e.@FredericJacobs @furtherfield No irony to\u003cbr\u003esupport free speech but not\u003cbr\u003ewant to associate with causing\u003cbr\u003eoffence (not often on Apple\u0027s\u003cbr\u003eside)\u003cbr\u003eFri Jan 09 10:09:32 +0000 2015"}, {"group": 1283, "id": 6, "label": "553496109671534592", "shape": "dot", "size": 10, "title": "553496109671534592\u003cbr\u003eApple says #JeSuisCharlie but they\u003cbr\u003eweren\u0027t really friends before (in\u003cbr\u003efrench)\nhttp://t.co/mFflfuyBWH /via @fredericjacobs (indirectly ;-)\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:18:50 +0000 2015"}, {"group": 1283, "id": 7, "label": "553496142852665344", "shape": "dot", "size": 10, "title": "553496142852665344\u003cbr\u003e@FredericJacobs @violetblue This is not\u003cbr\u003eJob\u0027s @Apple.\u003cbr\u003eFri Jan 09 10:18:58 +0000 2015"}, {"group": 1283, "id": 8, "label": "553496314378735617", "shape": "dot", "size": 10, "title": "553496314378735617\u003cbr\u003e@FredericJacobs @okhin I fear you\u003cbr\u003etake the \u00ab\u00a0Je suis Charlie\u00a0\u00bb\u003cbr\u003ea little bit too literal.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:19:39 +0000 2015"}, {"group": 1283, "id": 10, "label": "553496691190398976", "shape": "dot", "size": 10, "title": "553496691190398976\u003cbr\u003e@FredericJacobs @thegrugq You can disagree\u003cbr\u003eand not want to broadcast\u003cbr\u003esomeone\u0027s views but believe in\u003cbr\u003etheir opinion to have and\u003cbr\u003edisplay theirs\u003cbr\u003eFri Jan 09 10:21:09 +0000 2015"}, {"group": 1283, "id": 11, "label": "553496811785428992", "shape": "dot", "size": 10, "title": "553496811785428992\u003cbr\u003e@FredericJacobs @samfeys Oh irony and\u003cbr\u003ecorporate opportunism. Fyi: I don\u0027t\u003cbr\u003esee the banner here (in\u003cbr\u003eBelgium, on Chrome)\u003cbr\u003eFri Jan 09 10:21:38 +0000 2015"}, {"group": 1283, "id": 14, "label": "553498639960907776", "shape": "dot", "size": 10, "title": "553498639960907776\u003cbr\u003e@FredericJacobs @PootBlog \"Freedom of speech\"\u003cbr\u003edoes not mean you have\u003cbr\u003eto publish everything, even if\u003cbr\u003eyou disagree.\u003cbr\u003eFri Jan 09 10:28:53 +0000 2015"}, {"group": 1283, "id": 15, "label": "553498868269469698", "shape": "dot", "size": 10, "title": "553498868269469698\u003cbr\u003e@FredericJacobs @PootBlog and even more\u003cbr\u003eimportantly, there is a difference\u003cbr\u003ebetween \u0027not publishing\u0027 and \u0027brutally\u003cbr\u003ekilling with machine guns\u0027\u003cbr\u003eFri Jan 09 10:29:48 +0000 2015"}, {"group": 1283, "id": 16, "label": "553499022238154752", "shape": "dot", "size": 10, "title": "553499022238154752\u003cbr\u003e@FredericJacobs @kheops2713 I saw a\u003cbr\u003esimple black ribbon on Amazon\u003cbr\u003eyesterday. Thought it was much\u003cbr\u003emore discreet and less self-serving.\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:30:25 +0000 2015"}, {"group": 1283, "id": 5, "label": "553494701337477120", "shape": "dot", "size": 10, "title": "553494701337477120\u003cbr\u003e@WooTube @FredericJacobs yes, I get\u003cbr\u003ewhat you\u0027re saying \u0026amp; am\u003cbr\u003eopen to reevaluation...\u003cbr\u003eFri Jan 09 10:13:14 +0000 2015"}, {"group": 1283, "id": 9, "label": "553496578850582528", "shape": "dot", "size": 10, "title": "553496578850582528\u003cbr\u003e@WooTube @FredericJacobs @furtherfield censuring isn\u0027t\u003cbr\u003esupporting free speech. Apple sucks\u003cbr\u003eat free speech.\u003cbr\u003eFri Jan 09 10:20:42 +0000 2015"}, {"group": 1283, "id": 28, "label": "553516513186316289", "shape": "dot", "size": 10, "title": "553516513186316289\u003cbr\u003e@wootube @fredericjacobs @furtherfield you realise\u003cbr\u003ecensorship and free speech support\u003cbr\u003eare opposites right ?\u003cbr\u003eFri Jan 09 11:39:55 +0000 2015"}, {"group": 1283, "id": 13, "label": "553497848877436928", "shape": "dot", "size": 10, "title": "553497848877436928\u003cbr\u003e@oleok2 @FredericJacobs @furtherfield That may\u003cbr\u003ebe true but I was\u003cbr\u003enot willing to RT these\u003cbr\u003ehateful cartoons either, so I\u003cbr\u003efeel right this time\u003cbr\u003eFri Jan 09 10:25:45 +0000 2015"}, {"group": 1283, "id": 12, "label": "553497155143753728", "shape": "dot", "size": 10, "title": "553497155143753728\u003cbr\u003e@Pieterjanvl @samfeys bezoek de Franse\u003cbr\u003eurl https://t.co/u8AzOi9wLK\u003cbr\u003eFri Jan 09 10:22:59 +0000 2015"}, {"group": 1283, "id": 19, "label": "553500595936825344", "shape": "dot", "size": 10, "title": "553500595936825344\u003cbr\u003e@FredericJacobs @samfeys \u00e7a marche, merci!\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:36:40 +0000 2015"}, {"group": 1283, "id": 24, "label": "553501716357070848", "shape": "dot", "size": 10, "title": "553501716357070848\u003cbr\u003e@WooTube @FredericJacobs @furtherfield you \"feel\"\u003cbr\u003eright? Whaaat. Hateful? You mean\u003cbr\u003esatirical - Charlie Hebdo have\u003cbr\u003eeven promoted anti-racism.\u003cbr\u003eFri Jan 09 10:41:07 +0000 2015"}, {"group": 1283, "id": 25, "label": "553502005982167040", "shape": "dot", "size": 10, "title": "553502005982167040\u003cbr\u003e@WooTube @FredericJacobs @furtherfield you show\u003cbr\u003ea true lack of understanding\u003cbr\u003eof satire and the work\u003cbr\u003eof Charlie Hebdo. Good for\u003cbr\u003eyou.\u003cbr\u003eFri Jan 09 10:42:16 +0000 2015"}, {"group": 1283, "id": 17, "label": "553499357627289600", "shape": "dot", "size": 10, "title": "553499357627289600\u003cbr\u003e@Belfegore @FredericJacobs True. So what?\u003cbr\u003eClaiming complete identification with people\u003cbr\u003eyou oppose on exactly the\u003cbr\u003ematter they were murdered\u2026\u003cbr\u003eFri Jan 09 10:31:45 +0000 2015"}, {"group": 1283, "id": 18, "label": "553499707549302784", "shape": "dot", "size": 10, "title": "553499707549302784\u003cbr\u003e@Belfegore @FredericJacobs \u2026over takes a\u003cbr\u003eparticular kind of bandwagon-jumping nerve.\u003cbr\u003e(I\u0027d have had less problem\u003cbr\u003ewith generalised support.)\u003cbr\u003eFri Jan 09 10:33:08 +0000 2015"}, {"group": 1283, "id": 20, "label": "553500924023697408", "shape": "dot", "size": 10, "title": "553500924023697408\u003cbr\u003e@PootBlog sorry but bollocks. \u0027Jesuischarlie\u0027\u003cbr\u003eis not \u0027complete identification\u0027. It\u0027s\u003cbr\u003eshowing solidarity with victims of\u003cbr\u003ebrutal killings.\u003cbr\u003eFri Jan 09 10:37:58 +0000 2015"}, {"group": 1283, "id": 21, "label": "553501315691995136", "shape": "dot", "size": 10, "title": "553501315691995136\u003cbr\u003e@PootBlog just look at iTunes\u003cbr\u003eand you will find plenty\u003cbr\u003esome deranged bozo would gladly\u003cbr\u003ekill for.\u003cbr\u003eFri Jan 09 10:39:31 +0000 2015"}, {"group": 1283, "id": 22, "label": "553501350110457856", "shape": "dot", "size": 10, "title": "553501350110457856\u003cbr\u003e@Belfegore Christ, we\u0027re actually in\u003cbr\u003e\"It depends what your definition\u003cbr\u003eof \u0027is\u0027 is\" territory. I\u0027m\u003cbr\u003eoutta here. Thanks for the\u003cbr\u003edebate.\u003cbr\u003eFri Jan 09 10:39:40 +0000 2015"}, {"group": 1283, "id": 23, "label": "553501488778313728", "shape": "dot", "size": 10, "title": "553501488778313728\u003cbr\u003e@PootBlog you\u0027re very welcome. :)\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:40:13 +0000 2015"}, {"group": 1283, "id": 26, "label": "553502344835760128", "shape": "dot", "size": 10, "title": "553502344835760128\u003cbr\u003e@oleok2 @FredericJacobs @furtherfield is that\u003cbr\u003ethe one with a black\u003cbr\u003emember of the government as\u003cbr\u003ea monkey that offended my\u003cbr\u003eSA friend? !\u003cbr\u003eFri Jan 09 10:43:37 +0000 2015"}, {"group": 1283, "id": 27, "label": "553503156018364416", "shape": "dot", "size": 10, "title": "553503156018364416\u003cbr\u003e@oleok2 @FredericJacobs @furtherfield Yes, there\u003cbr\u003emay be cultural differences between\u003cbr\u003eEnglish and French satire. Also\u003cbr\u003eUS!\u003cbr\u003eFri Jan 09 10:46:50 +0000 2015"}, {"group": 1283, "id": 32, "label": "553920368575266816", "shape": "dot", "size": 10, "title": "553920368575266816\u003cbr\u003e@WooTube @oleok2 @FredericJacobs @furtherfield you\u003cbr\u003eneed to check the context\u003cbr\u003eof this particular drawing. It\u003cbr\u003ewas not racist at all.\u003cbr\u003e\u003cbr\u003eSat Jan 10 14:24:41 +0000 2015"}, {"group": 1283, "id": 29, "label": "553525762662621184", "shape": "dot", "size": 10, "title": "553525762662621184\u003cbr\u003e@traboukos @FredericJacobs @furtherfield No, only\u003cbr\u003ecensorship of others. My right\u003cbr\u003eto silence used to be\u003cbr\u003eenshrined in English law.\u003cbr\u003eFri Jan 09 12:16:40 +0000 2015"}, {"group": 1283, "id": 30, "label": "553526209288892418", "shape": "dot", "size": 10, "title": "553526209288892418\u003cbr\u003e@traboukos @FredericJacobs @furtherfield You are\u003cbr\u003econfusing freedom of the press\u003cbr\u003ewith refusal to forward an\u003cbr\u003eunpleasant chain-letter.\u003cbr\u003eFri Jan 09 12:18:26 +0000 2015"}, {"group": 1283, "id": 31, "label": "553534591345385472", "shape": "dot", "size": 10, "title": "553534591345385472\u003cbr\u003e@wootube @fredericjacobs @furtherfield http://t.co/Rc5moGXsk2 better\u003cbr\u003ego flag that page and\u003cbr\u003eedit it. Add that chain\u003cbr\u003eletter thing.\u003cbr\u003eFri Jan 09 12:51:45 +0000 2015"}, {"group": 1283, "id": 33, "label": "553952590892113920", "shape": "dot", "size": 10, "title": "553952590892113920\u003cbr\u003e@jujuxim Sorry, I don\u0027t speak\u003cbr\u003eFrench well enough to know\u003cbr\u003ethat. I saw translations \u0026amp;\u003cbr\u003ethought some were in poor\u003cbr\u003etaste. I didn\u0027t want to\u003cbr\u003eRT.\u003cbr\u003eSat Jan 10 16:32:44 +0000 2015"}, {"group": 1283, "id": 34, "label": "553981364266364928", "shape": "dot", "size": 10, "title": "553981364266364928\u003cbr\u003e@WooTube the context was :\u003cbr\u003ea far-right elected post a\u003cbr\u003epicture on FB where she\u003cbr\u003ecompared the minister with a\u003cbr\u003emonkey...\u003cbr\u003eSat Jan 10 18:27:04 +0000 2015"}, {"group": 1283, "id": 35, "label": "553981708744548352", "shape": "dot", "size": 10, "title": "553981708744548352\u003cbr\u003e@WooTube so Charlie Hebdo (left,\u003cbr\u003eeven far left journal) reference\u003cbr\u003ethat in that drawing.\u003cbr\u003eSat Jan 10 18:28:26 +0000 2015"}, {"group": 1283, "id": 36, "label": "553982197443854337", "shape": "dot", "size": 10, "title": "553982197443854337\u003cbr\u003e@WooTube and the caption references\u003cbr\u003ea far right movement link\u003cbr\u003eto the far right party.\u003cbr\u003eSo basically they laugh at\u003cbr\u003ethis party.\u003cbr\u003eSat Jan 10 18:30:23 +0000 2015"}, {"group": 1283, "id": 37, "label": "553982408048246784", "shape": "dot", "size": 10, "title": "553982408048246784\u003cbr\u003e@WooTube I hope I make\u003cbr\u003emyself understand with a few\u003cbr\u003esentences. Regards.\u003cbr\u003eSat Jan 10 18:31:13 +0000 2015"}, {"group": 1283, "id": 38, "label": "553996722482212864", "shape": "dot", "size": 10, "title": "553996722482212864\u003cbr\u003e@jujuxim Thanks\u003cbr\u003eSat Jan 10 19:28:06 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 9, "weight": 1}, {"from": 4, "to": 28, "weight": 1}, {"from": 9, "to": 13, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 19, "weight": 1}, {"from": 13, "to": 24, "weight": 1}, {"from": 13, "to": 25, "weight": 1}, {"from": 14, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 17, "to": 20, "weight": 1}, {"from": 18, "to": 21, "weight": 1}, {"from": 20, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 24, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 26, "to": 32, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}, {"from": 30, "to": 31, "weight": 1}, {"from": 32, "to": 33, "weight": 1}, {"from": 33, "to": 34, "weight": 1}, {"from": 33, "to": 35, "weight": 1}, {"from": 33, "to": 36, "weight": 1}, {"from": 33, "to": 37, "weight": 1}, {"from": 37, "to": 38, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

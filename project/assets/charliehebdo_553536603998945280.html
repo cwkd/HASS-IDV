@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1967, "id": 0, "label": "553536603998945280", "shape": "dot", "size": 10, "title": "553536603998945280\u003cbr\u003eFeared at least 5 hostages\u003cbr\u003eare being held in Paris\u003cbr\u003e\u0027kosher\u0027 grocery http://t.co/zoafNwyEtr http://t.co/ntDatZ8Pp7\u003cbr\u003eFri Jan 09 12:59:45 +0000 2015"}, {"group": 1967, "id": 1, "label": "553536827479822336", "shape": "dot", "size": 10, "title": "553536827479822336\u003cbr\u003e@MailOnline :(!\u003cbr\u003eFri Jan 09 13:00:38 +0000 2015"}, {"group": 1967, "id": 2, "label": "553536861012885505", "shape": "dot", "size": 10, "title": "553536861012885505\u003cbr\u003e\u201c@MailOnline: Feared at least 5\u003cbr\u003ehostages are being held in\u003cbr\u003eParis \u0027kosher\u0027 grocery http://t.co/foVXkxm6PZ http://t.co/SbCoXTkZ5L\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:00:46 +0000 2015"}, {"group": 1967, "id": 3, "label": "553536976025292800", "shape": "dot", "size": 10, "title": "553536976025292800\u003cbr\u003eOooo, \"scare\" quotes on \"kosher\".\u003cbr\u003eMaybe you should pixelate the\u003cbr\u003ewhole word. Don\u0027t want to\u003cbr\u003eoffend people @MailOnline\u003cbr\u003eFri Jan 09 13:01:13 +0000 2015"}, {"group": 1967, "id": 4, "label": "553537223745101825", "shape": "dot", "size": 10, "title": "553537223745101825\u003cbr\u003e@MailOnline @richardcalhoun what did people\u003cbr\u003ethink would happen if they\u003cbr\u003efilled their countries up with\u003cbr\u003emuslims SAVEEUROPEVOTEUKIP\u003cbr\u003eFri Jan 09 13:02:13 +0000 2015"}, {"group": 1967, "id": 5, "label": "553537487881388032", "shape": "dot", "size": 10, "title": "553537487881388032\u003cbr\u003e@MailOnline @davidjacksmith who kosher in\u003cbr\u003equotations?\u003cbr\u003eFri Jan 09 13:03:15 +0000 2015"}, {"group": 1967, "id": 6, "label": "553537689266696192", "shape": "dot", "size": 10, "title": "553537689266696192\u003cbr\u003eRT\u201c@MailOnline:Feared at least 5 hostages\u003cbr\u003eare being held in Paris\u003cbr\u003e\u0027kosher\u0027 grocery http://t.co/hGUy8ZdLQZ http://t.co/V854VitvJ2\"@laluzjose\u003cbr\u003eFri Jan 09 13:04:04 +0000 2015"}, {"group": 1967, "id": 7, "label": "553537702512320514", "shape": "dot", "size": 10, "title": "553537702512320514\u003cbr\u003e@MailOnline \nMore workplace violence by\u003cbr\u003ethe religion of peace?\u003cbr\u003eFri Jan 09 13:04:07 +0000 2015"}, {"group": 1967, "id": 9, "label": "553538108223143936", "shape": "dot", "size": 10, "title": "553538108223143936\u003cbr\u003e@MailOnline it reminds me of\u003cbr\u003e#WestgateAttack in Kenya, terrorists have\u003cbr\u003eno boundaries... May God deliver\u003cbr\u003ethe hostages\u003cbr\u003eFri Jan 09 13:05:43 +0000 2015"}, {"group": 1967, "id": 11, "label": "553540250522615810", "shape": "dot", "size": 10, "title": "553540250522615810\u003cbr\u003e@MailOnline Charles traiteur\u003cbr\u003eFri Jan 09 13:14:14 +0000 2015"}, {"group": 1967, "id": 12, "label": "553540595898396672", "shape": "dot", "size": 10, "title": "553540595898396672\u003cbr\u003e@MailOnline NOT FOR LONG..OUR GOD\u003cbr\u003eIS GREAT..ALL OF U WILL\u003cbr\u003eDYE IN HELL..TOO BAD!! WRONG\u003cbr\u003eGOD.LOSESR TERROISTS.#IDIOTSERVANTS\u003cbr\u003eFri Jan 09 13:15:37 +0000 2015"}, {"group": 1967, "id": 13, "label": "553540780254834688", "shape": "dot", "size": 10, "title": "553540780254834688\u003cbr\u003e@MailOnline At least 5 sausages\u003cbr\u003eheld in Paris Kosher butchers\u003cbr\u003e- Media Distortion+Stage Events? @MiddleEastEye\u003cbr\u003e@ExaroNews @AP #JeSuisCharlie\u003cbr\u003eFri Jan 09 13:16:20 +0000 2015"}, {"group": 1967, "id": 14, "label": "553544292291969025", "shape": "dot", "size": 10, "title": "553544292291969025\u003cbr\u003e@MailOnline evil mindset people\u003cbr\u003eFri Jan 09 13:30:18 +0000 2015"}, {"group": 1967, "id": 15, "label": "553546869507624961", "shape": "dot", "size": 10, "title": "553546869507624961\u003cbr\u003eAre they unsure of the\u003cbr\u003ehechsher? RT @MailOnline Feared at\u003cbr\u003eleast 5 hostages are being\u003cbr\u003eheld in Paris \u0027kosher\u0027 grocery\u003cbr\u003ehttp://t.co/3ghwhRwTQU\u003cbr\u003eFri Jan 09 13:40:32 +0000 2015"}, {"group": 1967, "id": 16, "label": "553549707822530560", "shape": "dot", "size": 10, "title": "553549707822530560\u003cbr\u003e@MailOnline Terrorists are people with\u003cbr\u003eno morals..they don\u0027t know right\u003cbr\u003efrom rong they just know\u003cbr\u003ehow to kill.. \u0026amp; are\u003cbr\u003efrom all walks of life.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:51:49 +0000 2015"}, {"group": 1967, "id": 17, "label": "553553788263358465", "shape": "dot", "size": 10, "title": "553553788263358465\u003cbr\u003e@MailOnline estos tambien ofendiero a\u003cbr\u003eAla?\u003cbr\u003eFri Jan 09 14:08:02 +0000 2015"}, {"group": 1967, "id": 18, "label": "553564810420682753", "shape": "dot", "size": 10, "title": "553564810420682753\u003cbr\u003e@MailOnline FRANCE Votes For Palestinian\u003cbr\u003eState - ZIONISTS Stage False\u003cbr\u003eFlag Operation.\u003cbr\u003eFri Jan 09 14:51:50 +0000 2015"}, {"group": 1967, "id": 19, "label": "553613466041614337", "shape": "dot", "size": 10, "title": "553613466041614337\u003cbr\u003e@MailOnline bloody awful.\u003cbr\u003eFri Jan 09 18:05:10 +0000 2015"}, {"group": 1967, "id": 8, "label": "553537753166913536", "shape": "dot", "size": 10, "title": "553537753166913536\u003cbr\u003e.@Rabbishish MT @MailOnline Feared at\u003cbr\u003eleast 5 hostages are being\u003cbr\u003eheld in Paris \u0027kosher\u0027 grocery\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:04:19 +0000 2015"}, {"group": 1967, "id": 10, "label": "553539014196998144", "shape": "dot", "size": 10, "title": "553539014196998144\u003cbr\u003e@davidjacksmith @MailOnline maybe it should\u003cbr\u003esay \"hostages\"...\u003cbr\u003eFri Jan 09 13:09:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

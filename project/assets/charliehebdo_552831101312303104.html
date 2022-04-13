@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 412, "id": 0, "label": "552831101312303104", "shape": "dot", "size": 10, "title": "552831101312303104\u003cbr\u003e12 people have reportedly been\u003cbr\u003ekilled in a shooting at\u003cbr\u003eFrench satirical magazine Charlie Hebdo\u003cbr\u003ehttp://t.co/j5QlD3v5IS http://t.co/eXEx2Sm7K5\u003cbr\u003eWed Jan 07 14:16:20 +0000 2015"}, {"group": 412, "id": 1, "label": "552833928071880704", "shape": "dot", "size": 10, "title": "552833928071880704\u003cbr\u003e@Variety Islam rules by terror\u003cbr\u003einside its own countries; don\u0027t\u003cbr\u003eexpect anything better outside. Islam\u003cbr\u003eis not a religion of\u003cbr\u003epeace.\u003cbr\u003eWed Jan 07 14:27:34 +0000 2015"}, {"group": 412, "id": 2, "label": "552834126047240193", "shape": "dot", "size": 10, "title": "552834126047240193\u003cbr\u003e@Variety Every media outlet should\u003cbr\u003epublish a Mo cartoon today.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:28:21 +0000 2015"}, {"group": 412, "id": 3, "label": "552835858043535360", "shape": "dot", "size": 10, "title": "552835858043535360\u003cbr\u003e@Variety So sad,on many different\u003cbr\u003elevels. This new form of\u003cbr\u003eterrorism, attacking art \u0026amp; free\u003cbr\u003espeech has now become deadly.\u003cbr\u003eIt\u0027s gut wrenching.\u003cbr\u003eWed Jan 07 14:35:14 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

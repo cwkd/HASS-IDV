@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 52, "id": 0, "label": "552797170295144449", "shape": "dot", "size": 10, "title": "552797170295144449\u003cbr\u003eVideo of #terrorists attacking Charlie\u003cbr\u003eHebdo HQ in Paris http://t.co/SdniwkJtT1\u003cbr\u003ehttp://t.co/z6O8IhNjCk\u003cbr\u003eWed Jan 07 12:01:30 +0000 2015"}, {"group": 52, "id": 1, "label": "552797955132911616", "shape": "dot", "size": 10, "title": "552797955132911616\u003cbr\u003e\u201c@russian_market: Video of #terrorists attacking\u003cbr\u003eCharlie Hebdo HQ in Paris\u003cbr\u003ehttp://t.co/moL9XhDIZY http://t.co/xSm1TSZqm6\u201d\u003cbr\u003eWed Jan 07 12:04:37 +0000 2015"}, {"group": 52, "id": 2, "label": "552798470176645120", "shape": "dot", "size": 10, "title": "552798470176645120\u003cbr\u003eAllahu Akbar clearly heard. RT\u201c@russian_market:\u003cbr\u003eVideo of #terrorists attacking #CharlieHebdo\u003cbr\u003ehttp://t.co/Ra6fn0ZxSB http://t.co/NlUN2970F7\u201d\u003cbr\u003eWed Jan 07 12:06:40 +0000 2015"}, {"group": 52, "id": 3, "label": "552798559721259008", "shape": "dot", "size": 10, "title": "552798559721259008\u003cbr\u003e@russian_market @EliotHiggins they take the\u003cbr\u003etime it seems..making own video?\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:07:01 +0000 2015"}, {"group": 52, "id": 4, "label": "552798658660679680", "shape": "dot", "size": 10, "title": "552798658660679680\u003cbr\u003eHorrifying \u201c@russian_market: Video of #terrorists\u003cbr\u003eattacking Charlie Hebdo HQ in\u003cbr\u003eParis http://t.co/3ykXoKSS2j http://t.co/xSDXlnl4A5\u201d\u003cbr\u003eWed Jan 07 12:07:25 +0000 2015"}, {"group": 52, "id": 8, "label": "552857300319207424", "shape": "dot", "size": 10, "title": "552857300319207424\u003cbr\u003e@russian_market @EliotHiggins THANK OBAMA, SUZIE\u003cbr\u003eRICE \u0026amp; CREW FOR ENABLING\u003cbr\u003eTODAY\u2019S TERRORIST ATTACK IN PARIS\u003cbr\u003e http://t.co/ZkQoH3KivH\u003cbr\u003eWed Jan 07 16:00:26 +0000 2015"}, {"group": 52, "id": 6, "label": "552798843591733248", "shape": "dot", "size": 10, "title": "552798843591733248\u003cbr\u003e@JonDonnison Jon this one is\u003cbr\u003eterrifying watch via  @cyrbkk:\u003cbr\u003eVideo of the attack at\u003cbr\u003ehttps://t.co/Az5oLh3A91\u003cbr\u003eWed Jan 07 12:08:09 +0000 2015"}, {"group": 52, "id": 5, "label": "552798750712659968", "shape": "dot", "size": 10, "title": "552798750712659968\u003cbr\u003e@AAhronheim @russian_market  where do\u003cbr\u003eI click to watch?\u003cbr\u003eWed Jan 07 12:07:47 +0000 2015"}, {"group": 52, "id": 7, "label": "552808565765701632", "shape": "dot", "size": 10, "title": "552808565765701632\u003cbr\u003e@Salted2 @russian_market its in the\u003cbr\u003earticle\u003cbr\u003eWed Jan 07 12:46:47 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 5, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

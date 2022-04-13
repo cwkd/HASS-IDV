@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1572, "id": 0, "label": "553589330846183425", "shape": "dot", "size": 10, "title": "553589330846183425\u003cbr\u003eBREAKING: Police official tells the\u003cbr\u003eAssociated Press suspects in Charlie\u003cbr\u003eHebdo massacre killed, hostage freed.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:29:16 +0000 2015"}, {"group": 1572, "id": 1, "label": "553589437113065473", "shape": "dot", "size": 10, "title": "553589437113065473\u003cbr\u003e@CP24 great news\u003cbr\u003eFri Jan 09 16:29:41 +0000 2015"}, {"group": 1572, "id": 2, "label": "553589726264188928", "shape": "dot", "size": 10, "title": "553589726264188928\u003cbr\u003eRT @CP24: #BREAKING: Police official\u003cbr\u003etells the Associated Press suspects\u003cbr\u003ein Charlie Hebdo massacre killed,\u003cbr\u003ehostage freed.\u003cbr\u003eFri Jan 09 16:30:50 +0000 2015"}, {"group": 1572, "id": 3, "label": "553590042191740928", "shape": "dot", "size": 10, "title": "553590042191740928\u003cbr\u003e\u201c@CP24: BREAKING: Police official tells\u003cbr\u003ethe Associated Press suspects in\u003cbr\u003eCharlie Hebdo massacre killed, hostage\u003cbr\u003efreed.\u201d Burn in hell\u003cbr\u003eFri Jan 09 16:32:05 +0000 2015"}, {"group": 1572, "id": 4, "label": "553590250204041218", "shape": "dot", "size": 10, "title": "553590250204041218\u003cbr\u003eRT @CP24: BREAKING: Police official\u003cbr\u003etells the Associated Press suspects\u003cbr\u003ein Charlie Hebdo massacre killed,\u003cbr\u003ehostage freed.\u003cbr\u003eFri Jan 09 16:32:55 +0000 2015"}, {"group": 1572, "id": 5, "label": "553590728107229187", "shape": "dot", "size": 10, "title": "553590728107229187\u003cbr\u003e\u201c@CP24: BREAKING: Police official tells\u003cbr\u003ethe Associated Press suspects in\u003cbr\u003eCharlie Hebdo massacre killed, hostage\u003cbr\u003efreed.\u201dWOOOOOOOOOOOOOOW\u003cbr\u003eFri Jan 09 16:34:49 +0000 2015"}, {"group": 1572, "id": 6, "label": "553593590774251520", "shape": "dot", "size": 10, "title": "553593590774251520\u003cbr\u003e@CP24 http://t.co/sZrDlZqCqn\u003cbr\u003eFri Jan 09 16:46:11 +0000 2015"}, {"group": 1572, "id": 7, "label": "553595453636612097", "shape": "dot", "size": 10, "title": "553595453636612097\u003cbr\u003e\u201c@CP24: BREAKING: Police official tells\u003cbr\u003ethe Associated Press suspects in\u003cbr\u003eCharlie Hebdo massacre killed, hostage\u003cbr\u003efreed.\u201d\u003cbr\u003eFri Jan 09 16:53:36 +0000 2015"}, {"group": 1572, "id": 8, "label": "553599570576695297", "shape": "dot", "size": 10, "title": "553599570576695297\u003cbr\u003e\u201c@CP24: BREAKING: Police official tells\u003cbr\u003ethe Associated Press suspects in\u003cbr\u003eCharlie Hebdo massacre killed, hostage\u003cbr\u003efreed.\u201d\u003cbr\u003eFri Jan 09 17:09:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

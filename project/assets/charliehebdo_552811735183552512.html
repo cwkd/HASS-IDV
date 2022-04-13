@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 164, "id": 0, "label": "552811735183552512", "shape": "dot", "size": 10, "title": "552811735183552512\u003cbr\u003e#CharlieHebdo massacre: \u0027Attack will heighten\u003cbr\u003eanti-Islamic tensions across Europe\u0027 http://t.co/1EBlSuVTWe\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:59:23 +0000 2015"}, {"group": 164, "id": 1, "label": "552811964057911296", "shape": "dot", "size": 10, "title": "552811964057911296\u003cbr\u003e\u201c@RT_com: #CharlieHebdo massacre: \u0027Attack will\u003cbr\u003eheighten anti-Islamic tensions across Europe\u0027\u003cbr\u003ehttp://t.co/y27WcvHWfP\u201d\n\nYou don\u0027t say. \ud83d\ude14\u003cbr\u003eWed Jan 07 13:00:17 +0000 2015"}, {"group": 164, "id": 2, "label": "552811999051386881", "shape": "dot", "size": 10, "title": "552811999051386881\u003cbr\u003e@RT_com how do we know\u003cbr\u003eit was muslins?\u003cbr\u003eWed Jan 07 13:00:25 +0000 2015"}, {"group": 164, "id": 3, "label": "552812300956995584", "shape": "dot", "size": 10, "title": "552812300956995584\u003cbr\u003e@RT_com we don\u0027t need an\u003cbr\u003eall out war\u003cbr\u003eWed Jan 07 13:01:37 +0000 2015"}, {"group": 164, "id": 4, "label": "552812623667150848", "shape": "dot", "size": 10, "title": "552812623667150848\u003cbr\u003e@RT_com That\u0027s the plan. \u003cbr\u003eDivide and conquer.\u003cbr\u003eWed Jan 07 13:02:54 +0000 2015"}, {"group": 164, "id": 7, "label": "552813309775601664", "shape": "dot", "size": 10, "title": "552813309775601664\u003cbr\u003e@RT_com #Rothschild #Zionist Media: Quick,\u003cbr\u003ewe need to highten tensions\u003cbr\u003eacross Europe to distract from\u003cbr\u003e#VIPaedophiles #star4 #IRAQWAR #Gaza\u003cbr\u003eWed Jan 07 13:05:38 +0000 2015"}, {"group": 164, "id": 5, "label": "552812754298732544", "shape": "dot", "size": 10, "title": "552812754298732544\u003cbr\u003e@librab103 @RT_com Because they shouted\u003cbr\u003e\"Mahommet has been avenged\" and\u003cbr\u003e\"Allah is Grand\"\u003cbr\u003eWed Jan 07 13:03:26 +0000 2015"}, {"group": 164, "id": 6, "label": "552812765908574208", "shape": "dot", "size": 10, "title": "552812765908574208\u003cbr\u003e@librab103 @RT_com Jews are caught\u003cbr\u003eover and over impersonating \"radical\u003cbr\u003eIslamists\".\u003cbr\u003eWed Jan 07 13:03:28 +0000 2015"}, {"group": 164, "id": 22, "label": "553163747762925568", "shape": "dot", "size": 10, "title": "553163747762925568\u003cbr\u003e@librab103 Sa\u00edd and Cher\u00edf Kourachi.\u003cbr\u003eBorn in Paris with Algerian\u003cbr\u003eparents. I\u0027ll bet you 100\u20ac\u003cbr\u003ethat they ain\u0027t Buddhist. #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:18:09 +0000 2015"}, {"group": 164, "id": 11, "label": "552815144871686144", "shape": "dot", "size": 10, "title": "552815144871686144\u003cbr\u003e@malagaaunike @RT_com hmmm so if\u003cbr\u003eI shout Jesus is the\u003cbr\u003eonly saviour before I shoot\u003cbr\u003eup a school does that\u003cbr\u003emake me Christian?\u003cbr\u003eWed Jan 07 13:12:56 +0000 2015"}, {"group": 164, "id": 8, "label": "552813558099345408", "shape": "dot", "size": 10, "title": "552813558099345408\u003cbr\u003e@ChadHale2 @librab103 @RT_com lmao\u003cbr\u003eWed Jan 07 13:06:37 +0000 2015"}, {"group": 164, "id": 17, "label": "552828301757415425", "shape": "dot", "size": 10, "title": "552828301757415425\u003cbr\u003e@ChadHale2 @librab103 @RT_com They still\u003cbr\u003edo in Ar-Raqqah. Pls support\u003cbr\u003eyour claims\u003cbr\u003eWed Jan 07 14:05:12 +0000 2015"}, {"group": 164, "id": 9, "label": "552814052125450241", "shape": "dot", "size": 10, "title": "552814052125450241\u003cbr\u003e@AllDigitalCoins @RT_com kick them all\u003cbr\u003eout!\u003cbr\u003eWed Jan 07 13:08:35 +0000 2015"}, {"group": 164, "id": 12, "label": "552825113671110657", "shape": "dot", "size": 10, "title": "552825113671110657\u003cbr\u003e@TheRabbitHabbit @librab103 @RT_com Oh? \u003cbr\u003eI said something funny?\u003cbr\u003eWed Jan 07 13:52:32 +0000 2015"}, {"group": 164, "id": 10, "label": "552814943943544832", "shape": "dot", "size": 10, "title": "552814943943544832\u003cbr\u003e@TheRabbitHabbit @RT_com Shields are down\u003cbr\u003eCaptain, she canny take much\u003cbr\u003emore #CSAinquiry @theblairdoc #NHS secret\u003cbr\u003esell-off deal @MailOnline\u003cbr\u003eWed Jan 07 13:12:08 +0000 2015"}, {"group": 164, "id": 13, "label": "552825477791236096", "shape": "dot", "size": 10, "title": "552825477791236096\u003cbr\u003e@ChadHale2 @librab103 @RT_com it\u0027s in\u003cbr\u003eagreement .. Sarcastic laugh\u003cbr\u003eWed Jan 07 13:53:59 +0000 2015"}, {"group": 164, "id": 14, "label": "552825613128830976", "shape": "dot", "size": 10, "title": "552825613128830976\u003cbr\u003e@TheRabbitHabbit @librab103 @RT_com I see.\u003cbr\u003e Difficult to hear.\u003cbr\u003eWed Jan 07 13:54:31 +0000 2015"}, {"group": 164, "id": 15, "label": "552826015089963008", "shape": "dot", "size": 10, "title": "552826015089963008\u003cbr\u003e@ChadHale2 @librab103 @RT_com HOW ABOUT\u003cbr\u003eTHIS IS LOUD ENOUGH.. UR\u003cbr\u003eAN IDIOT!\u003cbr\u003eWed Jan 07 13:56:07 +0000 2015"}, {"group": 164, "id": 16, "label": "552826241284587520", "shape": "dot", "size": 10, "title": "552826241284587520\u003cbr\u003e@TheRabbitHabbit @librab103 That was certainly\u003cbr\u003euncalled for.\u003cbr\u003eWed Jan 07 13:57:01 +0000 2015"}, {"group": 164, "id": 20, "label": "552862042324205568", "shape": "dot", "size": 10, "title": "552862042324205568\u003cbr\u003e@ChadHale2 @librab103 https://t.co/S6I8i1f67x gotta be\u003cbr\u003ethe jews!\u003cbr\u003eWed Jan 07 16:19:17 +0000 2015"}, {"group": 164, "id": 18, "label": "552829353579806720", "shape": "dot", "size": 10, "title": "552829353579806720\u003cbr\u003e@Musorky @librab103 Is your google\u003cbr\u003ebroken?\u003cbr\u003eWed Jan 07 14:09:23 +0000 2015"}, {"group": 164, "id": 19, "label": "552832151679684608", "shape": "dot", "size": 10, "title": "552832151679684608\u003cbr\u003e@ChadHale2 @librab103 Yep\u003cbr\u003eWed Jan 07 14:20:30 +0000 2015"}, {"group": 164, "id": 21, "label": "552871077404499969", "shape": "dot", "size": 10, "title": "552871077404499969\u003cbr\u003e@TheRabbitHabbit @librab103 buh-bye, annoyance.\u003cbr\u003eWed Jan 07 16:55:11 +0000 2015"}, {"group": 164, "id": 23, "label": "553171086402416640", "shape": "dot", "size": 10, "title": "553171086402416640\u003cbr\u003e@dejanvlastelica are you saying Buddhists\u003cbr\u003eare not violent?\u003cbr\u003eThu Jan 08 12:47:19 +0000 2015"}, {"group": 164, "id": 24, "label": "553181673643573248", "shape": "dot", "size": 10, "title": "553181673643573248\u003cbr\u003e@librab103 Some of them are.\u003cbr\u003eI\u0027m saying the brothers were\u003cbr\u003eMuslims. That\u0027s it :)\u003cbr\u003eThu Jan 08 13:29:23 +0000 2015"}, {"group": 164, "id": 25, "label": "553182274125316099", "shape": "dot", "size": 10, "title": "553182274125316099\u003cbr\u003e@dejanvlastelica I rather call them\u003cbr\u003epsychopaths who use religion as\u003cbr\u003ean excuse to kill people!\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:31:46 +0000 2015"}, {"group": 164, "id": 26, "label": "553183536136859648", "shape": "dot", "size": 10, "title": "553183536136859648\u003cbr\u003e@librab103 That\u0027s one of the\u003cbr\u003ereasons religion is dangerous. When\u003cbr\u003edid someone kill another human\u003cbr\u003ebeing in the name of\u003cbr\u003escience?\u003cbr\u003eThu Jan 08 13:36:47 +0000 2015"}, {"group": 164, "id": 27, "label": "553183764646752256", "shape": "dot", "size": 10, "title": "553183764646752256\u003cbr\u003e@librab103 ..or even more -\u003cbr\u003ein the name of atheism?\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:37:41 +0000 2015"}, {"group": 164, "id": 28, "label": "553185041669718018", "shape": "dot", "size": 10, "title": "553185041669718018\u003cbr\u003e@dejanvlastelica Really the only person\u003cbr\u003emost people can think of\u003cbr\u003ewho was atheist and killed\u003cbr\u003epeople based on his ideology\u003cbr\u003ewas Hitler!\u003cbr\u003eThu Jan 08 13:42:46 +0000 2015"}, {"group": 164, "id": 29, "label": "553185089052741633", "shape": "dot", "size": 10, "title": "553185089052741633\u003cbr\u003e@dejanvlastelica Other than that I\u003cbr\u003ecannot think of anyone!\u003cbr\u003eThu Jan 08 13:42:57 +0000 2015"}, {"group": 164, "id": 30, "label": "553196320148553728", "shape": "dot", "size": 10, "title": "553196320148553728\u003cbr\u003e@librab103 Atheism and Social Darwinism\u003cbr\u003eare two different \"ideologies\". Hitler\u003cbr\u003ebelonged to neither. https://t.co/xq5KGUaRCs\u003cbr\u003eThu Jan 08 14:27:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 2, "to": 22, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 6, "to": 17, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 8, "to": 12, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 16, "to": 20, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 23, "to": 24, "weight": 1}, {"from": 24, "to": 25, "weight": 1}, {"from": 25, "to": 26, "weight": 1}, {"from": 25, "to": 27, "weight": 1}, {"from": 27, "to": 28, "weight": 1}, {"from": 27, "to": 29, "weight": 1}, {"from": 28, "to": 30, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

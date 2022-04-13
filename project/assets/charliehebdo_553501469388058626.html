@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1295, "id": 0, "label": "553501469388058626", "shape": "dot", "size": 10, "title": "553501469388058626\u003cbr\u003eAs tribute to the victims\u003cbr\u003e\u0026amp; statement to the world.\n\u003cbr\u003e\n#JeSuisCharlie http://t.co/TJLbOGPTT4\u003cbr\u003eFri Jan 09 10:40:08 +0000 2015"}, {"group": 1295, "id": 1, "label": "553502243723288576", "shape": "dot", "size": 10, "title": "553502243723288576\u003cbr\u003e@marcelkittel Strength through unity, Marcel.\u003cbr\u003eWe are all beating the\u003cbr\u003esame drum. We will never\u003cbr\u003egive in. We will never\u003cbr\u003esubmit to barbarism.\u003cbr\u003eFri Jan 09 10:43:13 +0000 2015"}, {"group": 1295, "id": 2, "label": "553502490545889280", "shape": "dot", "size": 10, "title": "553502490545889280\u003cbr\u003e#Respect, Mr.Kittel! RT @marcelkittel\nAs tribute\u003cbr\u003eto the victims \u0026amp; statement\u003cbr\u003eto the world.\n#JeSuisCharlie http://t.co/sgQwdHLRdu\u003cbr\u003eFri Jan 09 10:44:11 +0000 2015"}, {"group": 1295, "id": 3, "label": "553503087437303808", "shape": "dot", "size": 10, "title": "553503087437303808\u003cbr\u003e@marcelkittel #je_ne_suis_pas_charlie_hebdo  #Je_suis_musliman\u003cbr\u003eFri Jan 09 10:46:34 +0000 2015"}, {"group": 1295, "id": 4, "label": "553503317201276928", "shape": "dot", "size": 10, "title": "553503317201276928\u003cbr\u003e@marcelkittel Thanks you.. Lovely \u2764\u003cbr\u003e\u003cbr\u003eFri Jan 09 10:47:29 +0000 2015"}, {"group": 1295, "id": 5, "label": "553508481379344385", "shape": "dot", "size": 10, "title": "553508481379344385\u003cbr\u003e@marcelkittel looks alot like something\u003cbr\u003efrom @MrMarkFairhurst #freedomofspeech\u003cbr\u003eFri Jan 09 11:08:00 +0000 2015"}, {"group": 1295, "id": 6, "label": "553512745463996416", "shape": "dot", "size": 10, "title": "553512745463996416\u003cbr\u003eNice one. \u201c@marcelkittel: As tribute\u003cbr\u003eto the victims \u0026amp; statement\u003cbr\u003eto the world.\n \n#JeSuisCharlie http://t.co/dWmXGvxK16\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:24:56 +0000 2015"}, {"group": 1295, "id": 8, "label": "553518495376633856", "shape": "dot", "size": 10, "title": "553518495376633856\u003cbr\u003e@marcelkittel L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #FranceStrong\u003cbr\u003eFri Jan 09 11:47:47 +0000 2015"}, {"group": 1295, "id": 9, "label": "553568547742691329", "shape": "dot", "size": 10, "title": "553568547742691329\u003cbr\u003e\u201c@marcelkittel: As tribute to the\u003cbr\u003evictims \u0026amp; statement to the\u003cbr\u003eworld.\n \n#JeSuisCharlie http://t.co/MBB0RBQaHW\u201d Chapeau!\u003cbr\u003eFri Jan 09 15:06:41 +0000 2015"}, {"group": 1295, "id": 10, "label": "553581119384195072", "shape": "dot", "size": 10, "title": "553581119384195072\u003cbr\u003e@marcelkittel #fuckyouterroristcowards\u003cbr\u003eFri Jan 09 15:56:38 +0000 2015"}, {"group": 1295, "id": 11, "label": "553927052307734528", "shape": "dot", "size": 10, "title": "553927052307734528\u003cbr\u003e@marcelkittel @Sarah112511 IS A NICE\u003cbr\u003eJERSEY... #JE_SUIS_CHARLIE\u003cbr\u003eSat Jan 10 14:51:15 +0000 2015"}, {"group": 1295, "id": 13, "label": "554265594900393984", "shape": "dot", "size": 10, "title": "554265594900393984\u003cbr\u003e@marcelkittel JE SUIS CHARLIE aussi!!\u003cbr\u003eVIVA LA FRANCE!!!\u003cbr\u003eSun Jan 11 13:16:30 +0000 2015"}, {"group": 1295, "id": 7, "label": "553516977449631744", "shape": "dot", "size": 10, "title": "553516977449631744\u003cbr\u003e@miksteph @marcelkittel http://t.co/4kNSlFCr7f\u003cbr\u003eFri Jan 09 11:41:45 +0000 2015"}, {"group": 1295, "id": 12, "label": "553927371590729729", "shape": "dot", "size": 10, "title": "553927371590729729\u003cbr\u003e@HectorDuathlon1 @marcelkittel @Sarah112511 Les habitants\u003cbr\u003ede #Boston se tiennent avec\u003cbr\u003ela #France. #FranceStrong\u003cbr\u003eSat Jan 10 14:52:31 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 11, "to": 12, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

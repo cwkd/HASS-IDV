@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1543, "id": 0, "label": "553584782987497474", "shape": "dot", "size": 10, "title": "553584782987497474\u003cbr\u003eFrench police launch assault at\u003cbr\u003esite north of Paris where\u003cbr\u003etwo suspected Charlie Hebdo killers\u003cbr\u003eare holding a hostage http://t.co/WBAbocdrBQ\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:11:12 +0000 2015"}, {"group": 1543, "id": 1, "label": "553584986969092097", "shape": "dot", "size": 10, "title": "553584986969092097\u003cbr\u003e@BBCBreaking  live on @cnn\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:12:00 +0000 2015"}, {"group": 1543, "id": 2, "label": "553585040442261505", "shape": "dot", "size": 10, "title": "553585040442261505\u003cbr\u003e@BBCBreaking But what about the\u003cbr\u003eweather??...\u003cbr\u003eFri Jan 09 16:12:13 +0000 2015"}, {"group": 1543, "id": 3, "label": "553585674721689600", "shape": "dot", "size": 10, "title": "553585674721689600\u003cbr\u003eScene at site north of\u003cbr\u003eParis where French police are\u003cbr\u003elaunching assault http://t.co/jMOZXPaSOJ #CharlieHebdo http://t.co/puASv6vuuD\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:14:44 +0000 2015"}, {"group": 1543, "id": 4, "label": "553585743982264321", "shape": "dot", "size": 10, "title": "553585743982264321\u003cbr\u003e@BBCBreaking @bbc5live 4 big explosions\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:15:01 +0000 2015"}, {"group": 1543, "id": 6, "label": "553586563758968832", "shape": "dot", "size": 10, "title": "553586563758968832\u003cbr\u003e@BBCBreaking @ChaboiJoee I heard there\u003cbr\u003ewere tanks too\u003cbr\u003eFri Jan 09 16:18:16 +0000 2015"}, {"group": 1543, "id": 7, "label": "553586573653331970", "shape": "dot", "size": 10, "title": "553586573653331970\u003cbr\u003e\u201c@BBCBreaking: French police launch assault\u003cbr\u003eat site north of Paris\u003cbr\u003ewhere two suspected Charlie Hebdo\u003cbr\u003ekillers are holding a hostage!\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:18:18 +0000 2015"}, {"group": 1543, "id": 8, "label": "553587643918090240", "shape": "dot", "size": 10, "title": "553587643918090240\u003cbr\u003e@BBCBreaking @bbc5live yeh we were\u003cbr\u003eall watching it on TV\u003cbr\u003ewhen you decided to cut\u003cbr\u003eto the weather you utter\u003cbr\u003ewankers\u003cbr\u003eFri Jan 09 16:22:34 +0000 2015"}, {"group": 1543, "id": 5, "label": "553586260942782464", "shape": "dot", "size": 10, "title": "553586260942782464\u003cbr\u003eRT @BBCBreaking: Scene at site\u003cbr\u003enorth of Paris where French\u003cbr\u003epolice are launching assault http://t.co/y3u2wrmMms\u003cbr\u003ehttp://t.co/1HP9jY4M8V\u003cbr\u003eFri Jan 09 16:17:04 +0000 2015"}, {"group": 1543, "id": 9, "label": "553654237968994306", "shape": "dot", "size": 10, "title": "553654237968994306\u003cbr\u003e@ParisPalerme @DarlinaRami @BBCBreaking they\u0027re the\u003cbr\u003ecounter terrorism and rescue group\u003cbr\u003eyes? Who are part of\u003cbr\u003ethe Gendarmerie. Big difference\u003cbr\u003eFri Jan 09 20:47:11 +0000 2015"}, {"group": 1543, "id": 10, "label": "553654311256088577", "shape": "dot", "size": 10, "title": "553654311256088577\u003cbr\u003e@ParisPalerme @DarlinaRami @BBCBreaking between that\u003cbr\u003eand bringing an infantry division\u003cbr\u003ein\u003cbr\u003eFri Jan 09 20:47:28 +0000 2015"}, {"group": 1543, "id": 11, "label": "553659367963516928", "shape": "dot", "size": 10, "title": "553659367963516928\u003cbr\u003e@fuckoffcoldplay @DarlinaRami @BBCBreaking google \"GIGN\u003cbr\u003emarignane\" and you\u0027ll see what\u003cbr\u003ethese guys can do...\u003cbr\u003eFri Jan 09 21:07:34 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 9, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 11, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

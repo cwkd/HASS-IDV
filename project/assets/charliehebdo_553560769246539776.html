@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1456, "id": 0, "label": "553560769246539776", "shape": "dot", "size": 10, "title": "553560769246539776\u003cbr\u003eChildren among at least six\u003cbr\u003epeople taken hostage at kosher\u003cbr\u003estore, reports say. #ParisAttacks http://t.co/qxlwCWdaVB\u003cbr\u003ehttp://t.co/Om5eouAAdt\u003cbr\u003eFri Jan 09 14:35:46 +0000 2015"}, {"group": 1456, "id": 1, "label": "553561272265211904", "shape": "dot", "size": 10, "title": "553561272265211904\u003cbr\u003e#Breaking RT @SkyNews: Children among\u003cbr\u003ehostages at kosher store. #ParisAttacks\u003cbr\u003ehttp://t.co/2A4YcCMx79 http://t.co/FyyfrCULY2\u003cbr\u003eFri Jan 09 14:37:46 +0000 2015"}, {"group": 1456, "id": 2, "label": "553561296122425344", "shape": "dot", "size": 10, "title": "553561296122425344\u003cbr\u003eMT @SkyNews Reports: Children among\u003cbr\u003eat least 6 people hostage\u003cbr\u003eat kosher store #ParisAttacks http://t.co/aVVprgq4aA\u003cbr\u003ehttp://t.co/1cG0cklcS3\u003cbr\u003eFri Jan 09 14:37:52 +0000 2015"}, {"group": 1456, "id": 3, "label": "553561533167726592", "shape": "dot", "size": 10, "title": "553561533167726592\u003cbr\u003e@skynews oh my god!!!\u003cbr\u003eFri Jan 09 14:38:48 +0000 2015"}, {"group": 1456, "id": 4, "label": "553561538460528640", "shape": "dot", "size": 10, "title": "553561538460528640\u003cbr\u003e@SkyNews \n#StopKillingInnocentPeople\n#FreePalestine\n#freeBurma\n#FreeSyria \n#FreeKashmir\nhttp://t.co/ggBNiIa9fq\u003cbr\u003eFri Jan 09 14:38:50 +0000 2015"}, {"group": 1456, "id": 5, "label": "553561686427598848", "shape": "dot", "size": 10, "title": "553561686427598848\u003cbr\u003e@SkyNews police are asking news\u003cbr\u003eoutlets not to publish pictures\u003cbr\u003eof police for safety reasons,\u003cbr\u003eyet u see fit to\u003cbr\u003epublish video and pics? Opsec\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:39:25 +0000 2015"}, {"group": 1456, "id": 6, "label": "553561755914219522", "shape": "dot", "size": 10, "title": "553561755914219522\u003cbr\u003e@SkyNews   #france \u003cbr\u003e#listen very Carefully  I\u003cbr\u003eshall says this only Once\u003cbr\u003e #jesuis MichelleDubois http://t.co/qwdgN5cX5Y\u003cbr\u003eFri Jan 09 14:39:41 +0000 2015"}, {"group": 1456, "id": 8, "label": "553563000624668672", "shape": "dot", "size": 10, "title": "553563000624668672\u003cbr\u003e@SkyNews praying for the safety\u003cbr\u003eof the hostages.\u003cbr\u003eFri Jan 09 14:44:38 +0000 2015"}, {"group": 1456, "id": 9, "label": "553563205835173888", "shape": "dot", "size": 10, "title": "553563205835173888\u003cbr\u003e@SkyNews http://t.co/1WKEsYqPWZ\u003cbr\u003eFri Jan 09 14:45:27 +0000 2015"}, {"group": 1456, "id": 10, "label": "553563309174431744", "shape": "dot", "size": 10, "title": "553563309174431744\u003cbr\u003e@SkyNews the gunmen are already\u003cbr\u003ein hell so cannot be\u003cbr\u003emartyrs.\u003cbr\u003eFri Jan 09 14:45:52 +0000 2015"}, {"group": 1456, "id": 11, "label": "553563589257482241", "shape": "dot", "size": 10, "title": "553563589257482241\u003cbr\u003e@SkyNews @billpostmus Cowardly punks.\u003cbr\u003eFri Jan 09 14:46:59 +0000 2015"}, {"group": 1456, "id": 12, "label": "553563601563582464", "shape": "dot", "size": 10, "title": "553563601563582464\u003cbr\u003eRT@SkyNews:Children among at least six\u003cbr\u003epeople taken hostage at kosher\u003cbr\u003estore. #ParisAttacks http://t.co/NWXM6E09TR http://t.co/2B3t3PjRgo\u201d\u003cbr\u003eFri Jan 09 14:47:01 +0000 2015"}, {"group": 1456, "id": 13, "label": "553564025104400385", "shape": "dot", "size": 10, "title": "553564025104400385\u003cbr\u003e@SkyNews OMG how much more\u003cbr\u003e!!!!!  Poor #France \ud83d\ude14\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:48:42 +0000 2015"}, {"group": 1456, "id": 14, "label": "553565137051729921", "shape": "dot", "size": 10, "title": "553565137051729921\u003cbr\u003e@SkyNews @GothPrimer\u003cbr\u003eFri Jan 09 14:53:08 +0000 2015"}, {"group": 1456, "id": 15, "label": "553566196592046081", "shape": "dot", "size": 10, "title": "553566196592046081\u003cbr\u003e@SkyNews @RedHotSquirrel Time to stop\u003cbr\u003e\u0027pussy-footing\u0027 around with these people.\u003cbr\u003eMove in and #exterminate the\u003cbr\u003ebuggers.\u003cbr\u003eFri Jan 09 14:57:20 +0000 2015"}, {"group": 1456, "id": 16, "label": "553569033329463296", "shape": "dot", "size": 10, "title": "553569033329463296\u003cbr\u003e@SkyNews Jewish lives matter, too!!\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:08:37 +0000 2015"}, {"group": 1456, "id": 17, "label": "553570539357605888", "shape": "dot", "size": 10, "title": "553570539357605888\u003cbr\u003e@SkyNews this is unbelievable what\u0027s\u003cbr\u003ehappening with society these days\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:14:36 +0000 2015"}, {"group": 1456, "id": 18, "label": "553574406308773888", "shape": "dot", "size": 10, "title": "553574406308773888\u003cbr\u003e@SkyNews what is the world\u003cbr\u003ecoming to\u003cbr\u003eFri Jan 09 15:29:58 +0000 2015"}, {"group": 1456, "id": 7, "label": "553562510843195393", "shape": "dot", "size": 10, "title": "553562510843195393\u003cbr\u003e@CBS12 @SkyNews dear God I\u003cbr\u003epray to protect them. Innocent\u003cbr\u003ego to heaven the angry\u003cbr\u003eguilty are already in hell\u003cbr\u003e\u003cbr\u003eFri Jan 09 14:42:41 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

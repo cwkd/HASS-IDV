@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 622, "id": 0, "label": "552846938677059586", "shape": "dot", "size": 10, "title": "552846938677059586\u003cbr\u003e#CharlieHebdo The four Hero\u0027s of\u003cbr\u003efreedom of expression who were\u003cbr\u003ekilled by terrorists in Paris.\u003cbr\u003e#ParisShooting http://t.co/rbZ4ZSyehB\u003cbr\u003eWed Jan 07 15:19:16 +0000 2015"}, {"group": 622, "id": 1, "label": "552847585233215489", "shape": "dot", "size": 10, "title": "552847585233215489\u003cbr\u003e@ivivekbansal @noconversion RIP the real\u003cbr\u003etrue heroes of Earth !!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:21:50 +0000 2015"}, {"group": 622, "id": 2, "label": "552851189466140672", "shape": "dot", "size": 10, "title": "552851189466140672\u003cbr\u003e@ivivekbansal @FuckIsis_Canada The #world must\u003cbr\u003eshow them what real #Terror\u003cbr\u003eis before western society is\u003cbr\u003edestroy! #Fuckislam #God #Bible\u003cbr\u003eWed Jan 07 15:36:09 +0000 2015"}, {"group": 622, "id": 3, "label": "552859487892033536", "shape": "dot", "size": 10, "title": "552859487892033536\u003cbr\u003e@ivivekbansal @JBrockm tragic ...but keep\u003cbr\u003eletting Muslims take over your\u003cbr\u003ecountry. France :(\u003cbr\u003eWed Jan 07 16:09:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

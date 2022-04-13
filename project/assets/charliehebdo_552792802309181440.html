@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1662, "id": 0, "label": "552792802309181440", "shape": "dot", "size": 10, "title": "552792802309181440\u003cbr\u003e#CharlieHebdo -  11 dead\u003cbr\u003eincluding 2 police in Paris\u003cbr\u003eshooting. Photo @MartinBureau1 #AFP http://t.co/aksGP63MB7\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:44:09 +0000 2015"}, {"group": 1662, "id": 1, "label": "552793142693744640", "shape": "dot", "size": 10, "title": "552793142693744640\u003cbr\u003e\u201c@AFPphoto: #CharlieHebdo -  11\u003cbr\u003edead including 2 police in\u003cbr\u003eParis shooting. Photo @MartinBureau1 #AFP\u003cbr\u003ehttp://t.co/f2LHfFFvrb\u201d\u003cbr\u003eWed Jan 07 11:45:30 +0000 2015"}, {"group": 1662, "id": 2, "label": "552793785747660801", "shape": "dot", "size": 10, "title": "552793785747660801\u003cbr\u003eEt merde. \u201c@AFPphoto: #CharlieHebdo -\u003cbr\u003e 11 dead including 2\u003cbr\u003epolice in Paris shooting. Photo\u003cbr\u003e@MartinBureau1 #AFP http://t.co/MFpQhJPBfz\u201d\u003cbr\u003eWed Jan 07 11:48:03 +0000 2015"}, {"group": 1662, "id": 3, "label": "552793899522355200", "shape": "dot", "size": 10, "title": "552793899522355200\u003cbr\u003e@AFPphoto I strongly condemn this\u003cbr\u003eterrorist attack as a Turkish\u003cbr\u003eMuslim.I love my Prophet.But my\u003cbr\u003eProphet rejects terrorism.\u003cbr\u003eWed Jan 07 11:48:30 +0000 2015"}, {"group": 1662, "id": 4, "label": "552793901866971136", "shape": "dot", "size": 10, "title": "552793901866971136\u003cbr\u003eOh my God !!! RT\u003cbr\u003e@AFPphoto  #CharlieHebdo - 11\u003cbr\u003edead including 2 police in\u003cbr\u003eParis shooting. http://t.co/tzgCctKshB\u003cbr\u003eWed Jan 07 11:48:31 +0000 2015"}, {"group": 1662, "id": 6, "label": "552795463850930176", "shape": "dot", "size": 10, "title": "552795463850930176\u003cbr\u003e@AFPphoto @MartinBureau1 Cazeneuve responsable !\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:54:43 +0000 2015"}, {"group": 1662, "id": 7, "label": "552808923707617282", "shape": "dot", "size": 10, "title": "552808923707617282\u003cbr\u003e\u201c@AFPphoto: #CharlieHebdo -  11\u003cbr\u003edead including 2 police in\u003cbr\u003eParis shooting. Photo @MartinBureau1 #AFP\u003cbr\u003ehttp://t.co/rYQSyWmQi5\u201d #tragedy\u003cbr\u003eWed Jan 07 12:48:12 +0000 2015"}, {"group": 1662, "id": 5, "label": "552795124288073729", "shape": "dot", "size": 10, "title": "552795124288073729\u003cbr\u003e@galaturco @AFPphoto how do you\u003cbr\u003eknow that the attackers were\u003cbr\u003emuslims?\u003cbr\u003eWed Jan 07 11:53:22 +0000 2015"}, {"group": 1662, "id": 8, "label": "552834504520630274", "shape": "dot", "size": 10, "title": "552834504520630274\u003cbr\u003e@babsmediabrissy , @lifegallery spotted your\u003cbr\u003ephoto http://t.co/EGHvdnhkpB\u003cbr\u003eWed Jan 07 14:29:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 7, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

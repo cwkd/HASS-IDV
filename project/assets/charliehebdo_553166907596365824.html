@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 984, "id": 0, "label": "553166907596365824", "shape": "dot", "size": 10, "title": "553166907596365824\u003cbr\u003e#JeSuisCharlie \nThey\u0027re only cartoons ,or\u003cbr\u003eam I also prone to\u003cbr\u003ebeing killed for posting them\u003cbr\u003ehttp://t.co/f0bWALfCPl\u003cbr\u003eThu Jan 08 12:30:42 +0000 2015"}, {"group": 984, "id": 1, "label": "553168912997949441", "shape": "dot", "size": 10, "title": "553168912997949441\u003cbr\u003e@notxsane The things that happened\u003cbr\u003ein N.Y or in France\u003cbr\u003ewasn\u0027t planned by Muslims. They\u003cbr\u003ewere bad people, but we\u003cbr\u003eare not. #RespectForMuslims\u003cbr\u003eThu Jan 08 12:38:40 +0000 2015"}, {"group": 984, "id": 6, "label": "553199695200550913", "shape": "dot", "size": 10, "title": "553199695200550913\u003cbr\u003e@notxsane good for you. \u003cbr\u003eI have never really followed\u003cbr\u003ecartoons but I do now.......\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:40:59 +0000 2015"}, {"group": 984, "id": 7, "label": "553204477755666433", "shape": "dot", "size": 10, "title": "553204477755666433\u003cbr\u003e\u201c@notxsane: #JeSuisCharlie \nThey\u0027re only cartoons\u003cbr\u003e,or am I also prone\u003cbr\u003eto being killed for posting\u003cbr\u003ethem http://t.co/kgJIJYd6Yr\u201d #islam\u003cbr\u003eThu Jan 08 15:00:00 +0000 2015"}, {"group": 984, "id": 8, "label": "553227399652208640", "shape": "dot", "size": 10, "title": "553227399652208640\u003cbr\u003e@notxsane Stop Lying This Attack\u003cbr\u003eWas Nothing To Do With\u003cbr\u003eFree Speech\u200a https://t.co/odHoHQB11a\u003cbr\u003eThu Jan 08 16:31:05 +0000 2015"}, {"group": 984, "id": 11, "label": "553236746910302208", "shape": "dot", "size": 10, "title": "553236746910302208\u003cbr\u003eHOW THE FUCK DID THIS\u003cbr\u003eTWEET BLOW UP OMFG MY\u003cbr\u003eMENTIONS ARE A FUCKING WAR\u003cbr\u003eZONE\u003cbr\u003eThu Jan 08 17:08:13 +0000 2015"}, {"group": 984, "id": 12, "label": "553285148545126401", "shape": "dot", "size": 10, "title": "553285148545126401\u003cbr\u003e@notxsane Everyone should repost them.They\u003cbr\u003ecan\u0027t come after everyone!!\u003cbr\u003eThu Jan 08 20:20:33 +0000 2015"}, {"group": 984, "id": 13, "label": "554562631860637697", "shape": "dot", "size": 10, "title": "554562631860637697\u003cbr\u003e@notxsane If you are for\u003cbr\u003efree speech then this #tshirt\u003cbr\u003eis for you support #JeSuisCharlie\u003cbr\u003e#CharlieHebdo buy it now http://t.co/h6I5yDH9tP\u003cbr\u003e\u003cbr\u003eMon Jan 12 08:56:49 +0000 2015"}, {"group": 984, "id": 2, "label": "553173867305635840", "shape": "dot", "size": 10, "title": "553173867305635840\u003cbr\u003e@seanistdeafie @notxsane They were Muslims.\u003cbr\u003eThere are things called fatwas\u003cbr\u003efor the same, issued by\u003cbr\u003eentire muslim countries, too. #Truth\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:58:22 +0000 2015"}, {"group": 984, "id": 3, "label": "553176127960010752", "shape": "dot", "size": 10, "title": "553176127960010752\u003cbr\u003e@KabiDeGeer then treat everyone the\u003cbr\u003esame because we didn\u0027t start\u003cbr\u003ethe world wars or we\u003cbr\u003edidn\u0027t bomb Hiroshima so I\u003cbr\u003eguess we are all bad\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:07:21 +0000 2015"}, {"group": 984, "id": 4, "label": "553187706579472384", "shape": "dot", "size": 10, "title": "553187706579472384\u003cbr\u003e@seanistdeafie Well, that\u0027s an illogical\u003cbr\u003estretch, and off-topic. To say\u003cbr\u003ethe murderers are NOT muslim\u003cbr\u003eis distortion. They are extremists.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:53:21 +0000 2015"}, {"group": 984, "id": 5, "label": "553188168514945025", "shape": "dot", "size": 10, "title": "553188168514945025\u003cbr\u003e@seanistdeafie Look up Salman Rushdie.\u003cbr\u003eAyaan Hirsi Ali. Theo Van\u003cbr\u003eGogh. Educate yourself. #Islamism\u003cbr\u003eThu Jan 08 13:55:11 +0000 2015"}, {"group": 984, "id": 9, "label": "553227506531442689", "shape": "dot", "size": 10, "title": "553227506531442689\u003cbr\u003e@seanistdeafie @KabiDeGeer Stop Lying This\u003cbr\u003eAttack Was Nothing To Do\u003cbr\u003eWith Free Speech\u200a https://t.co/odHoHQB11a\u003cbr\u003eThu Jan 08 16:31:30 +0000 2015"}, {"group": 984, "id": 10, "label": "553233157466890241", "shape": "dot", "size": 10, "title": "553233157466890241\u003cbr\u003e@AsgharBukhari @seanistdeafie You\u0027re right. It\u003cbr\u003ehad nothing to do with\u003cbr\u003efree speech but an extremist\u003cbr\u003eand SLAVISH VIEW of your\u003cbr\u003eRELIGION.\u003cbr\u003eThu Jan 08 16:53:57 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 1, "to": 2, "weight": 1}, {"from": 2, "to": 3, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

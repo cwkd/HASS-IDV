@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 231, "id": 0, "label": "552816933851394048", "shape": "dot", "size": 10, "title": "552816933851394048\u003cbr\u003e#CharlieHebdo  journalist: \"We want\u003cbr\u003eto laugh at the extremists\u2014every\u003cbr\u003eextremist. They can be Muslim,\u003cbr\u003eJewish, Catholic\" http://t.co/TZlKXk6dEi\u003cbr\u003eWed Jan 07 13:20:02 +0000 2015"}, {"group": 231, "id": 1, "label": "552817917071728640", "shape": "dot", "size": 10, "title": "552817917071728640\u003cbr\u003e@shashj @ByronTau That\u2019s all very\u003cbr\u003ewell. But only one of\u003cbr\u003ethose targets commits murder if\u003cbr\u003ethey\u2019re offended.\u003cbr\u003eWed Jan 07 13:23:56 +0000 2015"}, {"group": 231, "id": 2, "label": "552818600860323840", "shape": "dot", "size": 10, "title": "552818600860323840\u003cbr\u003e@shashj @reglash the false equivocation\u003cbr\u003ein that statement didn\u0027t save\u003cbr\u003ehis life\u003cbr\u003eWed Jan 07 13:26:39 +0000 2015"}, {"group": 231, "id": 3, "label": "552822174701346817", "shape": "dot", "size": 10, "title": "552822174701346817\u003cbr\u003e@shashj @aliamjadrizvi More evidence that\u003cbr\u003ereligion makes people stupid \u0026amp;\u003cbr\u003eviolent. Pubhlish the satire.\u003cbr\u003eWed Jan 07 13:40:52 +0000 2015"}, {"group": 231, "id": 4, "label": "552822963335352320", "shape": "dot", "size": 10, "title": "552822963335352320\u003cbr\u003e.@shashj @WabKinew Unfortunately, they never\u003cbr\u003edid get around to anyone\u003cbr\u003ebut Muslims, over and over.\u003cbr\u003eSome places call that \"asking\u003cbr\u003efor it\"\u003cbr\u003eWed Jan 07 13:44:00 +0000 2015"}, {"group": 231, "id": 6, "label": "552823934874177536", "shape": "dot", "size": 10, "title": "552823934874177536\u003cbr\u003e! \"@shashj @mdentandt #CharlieHebdo \u003cbr\u003ejournalist: \"We want 2 laugh\u003cbr\u003e@ the extremists-every extremistThey can\u003cbr\u003eB MuslimJewishCatholic\"\u003cbr\u003eWed Jan 07 13:47:51 +0000 2015"}, {"group": 231, "id": 9, "label": "552839860860362754", "shape": "dot", "size": 10, "title": "552839860860362754\u003cbr\u003e@shashj @NewYorker A satire on\u003cbr\u003eMohammed can get you killed.\u003cbr\u003eA satire on Hindu God\u003cbr\u003ecan get U 300 Crs!And\u003cbr\u003estill Hindus should learn tolerance?\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:51:08 +0000 2015"}, {"group": 231, "id": 10, "label": "552842816783523842", "shape": "dot", "size": 10, "title": "552842816783523842\u003cbr\u003e@shashj O don\u0027t see any\u003cbr\u003eCatholic or Jewish extremists...where are\u003cbr\u003ethey\u003cbr\u003eWed Jan 07 15:02:53 +0000 2015"}, {"group": 231, "id": 15, "label": "553026716772208640", "shape": "dot", "size": 10, "title": "553026716772208640\u003cbr\u003e@shashj @NewYorker . Why hurt\u003cbr\u003esentiments held deeply by people\u003cbr\u003e? Why was building not\u003cbr\u003ewell guarded?Reaction was bound to\u003cbr\u003ecome . Terrible .\u003cbr\u003eThu Jan 08 03:13:38 +0000 2015"}, {"group": 231, "id": 5, "label": "552823035167010816", "shape": "dot", "size": 10, "title": "552823035167010816\u003cbr\u003e@charlescwcooke @shashj @ByronTau bullshit\u003cbr\u003eWed Jan 07 13:44:17 +0000 2015"}, {"group": 231, "id": 7, "label": "552830400519995392", "shape": "dot", "size": 10, "title": "552830400519995392\u003cbr\u003e@bigpicguy @shashj Mark, you are\u003cbr\u003ea fool. This mag has\u003cbr\u003eskewered Christians, Pope, Jews, etc.\u003cbr\u003eDo your research you lazy\u003cbr\u003eass!\u003cbr\u003eWed Jan 07 14:13:33 +0000 2015"}, {"group": 231, "id": 11, "label": "552860561843560449", "shape": "dot", "size": 10, "title": "552860561843560449\u003cbr\u003e@bigpicguy @charlescwcooke @shashj @ByronTau No\u003cbr\u003ereally, look.\u003cbr\u003eWed Jan 07 16:13:24 +0000 2015"}, {"group": 231, "id": 8, "label": "552832017810075648", "shape": "dot", "size": 10, "title": "552832017810075648\u003cbr\u003e@19Pam56 @shashj fuck you. If\u003cbr\u003eyou keep rubbing peoples faces\u003cbr\u003ein things, bad shit happens.\u003cbr\u003eThat garbage wasn\u0027t satire.\u003cbr\u003eWed Jan 07 14:19:58 +0000 2015"}, {"group": 231, "id": 16, "label": "553296331285200900", "shape": "dot", "size": 10, "title": "553296331285200900\u003cbr\u003e@bigpicguy @shashj So..Mark you are\u003cbr\u003enow the decider of what\u003cbr\u003eis/is not satire?  Who\u003cbr\u003edied and made you God?\u003cbr\u003e\u003cbr\u003eThu Jan 08 21:04:59 +0000 2015"}, {"group": 231, "id": 12, "label": "552862166593044482", "shape": "dot", "size": 10, "title": "552862166593044482\u003cbr\u003e.@MikeDGarrison @charlescwcooke @shashj @ByronTau continue\u003cbr\u003eon blaming all Muslims for\u003cbr\u003ethe actions of a few.\u003cbr\u003eSame with Blacks. First Nations.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:19:46 +0000 2015"}, {"group": 231, "id": 13, "label": "552862875006820353", "shape": "dot", "size": 10, "title": "552862875006820353\u003cbr\u003e.@MikeDGarrison @charlescwcooke @shashj @ByronTau Everyone\u003cbr\u003eis horrible, except ALL white\u003cbr\u003eguys and the few PoC\u003cbr\u003ewho become rich.\u003cbr\u003eWed Jan 07 16:22:35 +0000 2015"}, {"group": 231, "id": 14, "label": "552863071535136769", "shape": "dot", "size": 10, "title": "552863071535136769\u003cbr\u003e.@MikeDGarrison @charlescwcooke @shashj @ByronTau When\u003cbr\u003ewhite people conduct mass slaughter,\u003cbr\u003ethey\u0027re just crazy, coloured folk\u003cbr\u003eare terrorists\u003cbr\u003eWed Jan 07 16:23:22 +0000 2015"}, {"group": 231, "id": 17, "label": "553302809970745345", "shape": "dot", "size": 10, "title": "553302809970745345\u003cbr\u003e@19Pam56 @shashj No one. I\u003cbr\u003eam allowed my opinion just\u003cbr\u003eas you are. By the\u003cbr\u003eway there is no God.\u003cbr\u003eAlso my opinion.\u003cbr\u003eThu Jan 08 21:30:44 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 1, "to": 5, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 5, "to": 11, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 7, "to": 16, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 16, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

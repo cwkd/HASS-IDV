@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 823, "id": 0, "label": "553127086706397185", "shape": "dot", "size": 10, "title": "553127086706397185\u003cbr\u003eMedia translates\"By the way I\u003cbr\u003elove you\" 2 Allah Akbar:)\u003cbr\u003e#ParisShooting #CharlieHebdo #JeSuisCharlie @JamilaBoughelaf http://t.co/in0VVlUbJg\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:52:28 +0000 2015"}, {"group": 823, "id": 1, "label": "553127438621081600", "shape": "dot", "size": 10, "title": "553127438621081600\u003cbr\u003e@masoud_ahmed @JamilaBoughelaf lol\u003cbr\u003eThu Jan 08 09:53:52 +0000 2015"}, {"group": 823, "id": 2, "label": "553130981943566336", "shape": "dot", "size": 10, "title": "553130981943566336\u003cbr\u003e@masoud_ahmed @JamilaBoughelaf just wow... unbelievable\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:07:57 +0000 2015"}, {"group": 823, "id": 3, "label": "553134118767038465", "shape": "dot", "size": 10, "title": "553134118767038465\u003cbr\u003e@masoud_ahmed @Belalmd12 @JamilaBoughelaf Where is\u003cbr\u003ethis graffiti from?\u003cbr\u003eThu Jan 08 10:20:25 +0000 2015"}, {"group": 823, "id": 7, "label": "553138605011398656", "shape": "dot", "size": 10, "title": "553138605011398656\u003cbr\u003e@masoud_ahmed @JamilaBoughelaf hhhhh\u003cbr\u003eThu Jan 08 10:38:14 +0000 2015"}, {"group": 823, "id": 8, "label": "553139300263821313", "shape": "dot", "size": 10, "title": "553139300263821313\u003cbr\u003e@masoud_ahmed @Belalmd12 @JamilaBoughelaf I don\u0027t\u003cbr\u003eknow whether to laugh or\u003cbr\u003ecry\u003cbr\u003eThu Jan 08 10:41:00 +0000 2015"}, {"group": 823, "id": 9, "label": "553148379166162944", "shape": "dot", "size": 10, "title": "553148379166162944\u003cbr\u003e@masoud_ahmed @TheSuperDee @JamilaBoughelaf m\u00e9rdias menteurs\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:17:05 +0000 2015"}, {"group": 823, "id": 11, "label": "553165732134281216", "shape": "dot", "size": 10, "title": "553165732134281216\u003cbr\u003e@masoud_ahmed Shame on #LegaNord and\u003cbr\u003eto Mayor of #Vigevano Andrea\u003cbr\u003eSala.\u003cbr\u003eThu Jan 08 12:26:02 +0000 2015"}, {"group": 823, "id": 12, "label": "553170003441483776", "shape": "dot", "size": 10, "title": "553170003441483776\u003cbr\u003e@masoud_ahmed @MoRhymesDaPoet @JamilaBoughelaf loooool all\u003cbr\u003ethat says is \"by the\u003cbr\u003eway I still love you\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:43:00 +0000 2015"}, {"group": 823, "id": 13, "label": "553189085360439296", "shape": "dot", "size": 10, "title": "553189085360439296\u003cbr\u003e@masoud_ahmed @JamilaBoughelaf by the way\u003cbr\u003ewe become paranoyds (my translation)\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:58:50 +0000 2015"}, {"group": 823, "id": 15, "label": "553234680125063169", "shape": "dot", "size": 10, "title": "553234680125063169\u003cbr\u003e\u201c@masoud_ahmed: Media translates\"By the way\u003cbr\u003eI love you\" 2 Allah\u003cbr\u003eAkbar:) #CharlieHebdo http://t.co/u18f6gdRkC\u201d nonostante tutto...\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:00:01 +0000 2015"}, {"group": 823, "id": 17, "label": "553254754374397952", "shape": "dot", "size": 10, "title": "553254754374397952\u003cbr\u003e@masoud_ahmed @JamilaBoughelaf LOL!!!!\u003cbr\u003eThu Jan 08 18:19:47 +0000 2015"}, {"group": 823, "id": 19, "label": "553344515378282496", "shape": "dot", "size": 10, "title": "553344515378282496\u003cbr\u003e@masoud_ahmed @jamilaboughelaf So ego of\u003cbr\u003elang V #naturaldisposition is how\u003cbr\u003eMuslims should c prob of\u003cbr\u003elang \u0026amp; ppl\u003cbr\u003eFri Jan 09 00:16:27 +0000 2015"}, {"group": 823, "id": 4, "label": "553137228466376704", "shape": "dot", "size": 10, "title": "553137228466376704\u003cbr\u003e@ZarrarKhuhro @masoud_ahmed @Belalmd12 @JamilaBoughelaf Vigevano,\u003cbr\u003ea northern-Italian town in Lombardy,\u003cbr\u003egoverned by the xenophobic Lega\u003cbr\u003eNord.\u003cbr\u003eThu Jan 08 10:32:46 +0000 2015"}, {"group": 823, "id": 10, "label": "553148786672160768", "shape": "dot", "size": 10, "title": "553148786672160768\u003cbr\u003e@ZarrarKhuhro @masoud_ahmed @Belalmd12 from a\u003cbr\u003esmall town in Italy where\u003cbr\u003eunfortunately I come from! Sad!\u003cbr\u003e\u003cbr\u003eThu Jan 08 11:18:42 +0000 2015"}, {"group": 823, "id": 5, "label": "553137383911079936", "shape": "dot", "size": 10, "title": "553137383911079936\u003cbr\u003e@faunpomale @masoud_ahmed @Belalmd12 @JamilaBoughelaf Thank\u003cbr\u003eyou. And the grab is\u003cbr\u003efrom local Italian TV?\u003cbr\u003eThu Jan 08 10:33:23 +0000 2015"}, {"group": 823, "id": 6, "label": "553137629404073984", "shape": "dot", "size": 10, "title": "553137629404073984\u003cbr\u003e@ZarrarKhuhro @masoud_ahmed @Belalmd12 @JamilaBoughelaf yeah,\u003cbr\u003eit\u0027s not the national media.\u003cbr\u003eNot that they would have\u003cbr\u003echecked twice.\u003cbr\u003eThu Jan 08 10:34:22 +0000 2015"}, {"group": 823, "id": 14, "label": "553191918327586817", "shape": "dot", "size": 10, "title": "553191918327586817\u003cbr\u003e@JamilaBoughelaf I think it is\u003cbr\u003eproblem with the media as\u003cbr\u003ea whole not just individuals.\u003cbr\u003eMedia prophesies violence by marginalising\u003cbr\u003eothers\u003cbr\u003eThu Jan 08 14:10:05 +0000 2015"}, {"group": 823, "id": 18, "label": "553317114552262656", "shape": "dot", "size": 10, "title": "553317114552262656\u003cbr\u003e@CaterinaDoglio @JamilaBoughelaf :) hehe good\u003cbr\u003eone\u003cbr\u003eThu Jan 08 22:27:34 +0000 2015"}, {"group": 823, "id": 16, "label": "553235248486825984", "shape": "dot", "size": 10, "title": "553235248486825984\u003cbr\u003e@olghita @masoud_ahmed media crap\u003cbr\u003eThu Jan 08 17:02:16 +0000 2015"}, {"group": 823, "id": 20, "label": "553344903997292544", "shape": "dot", "size": 10, "title": "553344903997292544\u003cbr\u003e@yusufalan @_omakun @officialyaumil @islamRecognise\u003cbr\u003eFri Jan 09 00:18:00 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 10, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 11, "to": 14, "weight": 1}, {"from": 13, "to": 18, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 869, "id": 0, "label": "553140194606469121", "shape": "dot", "size": 10, "title": "553140194606469121\u003cbr\u003eA sea of #JeSuisCharlie signs\u003cbr\u003eheld by French nationals in\u003cbr\u003eSydney for #CharlesHebdo victims. http://t.co/YC6rpzAyiZ\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:44:33 +0000 2015"}, {"group": 869, "id": 1, "label": "553141284810932224", "shape": "dot", "size": 10, "title": "553141284810932224\u003cbr\u003e\u201c@Mo_Taha1: A sea of #JeSuisCharlie\u003cbr\u003esigns held by French nationals\u003cbr\u003ein Sydney for #CharlesHebdo victims.\u003cbr\u003ehttp://t.co/ArGzB33ajS\u201d amazing\u003cbr\u003eThu Jan 08 10:48:53 +0000 2015"}, {"group": 869, "id": 2, "label": "553141778388615169", "shape": "dot", "size": 10, "title": "553141778388615169\u003cbr\u003e\u201c@Mo_Taha1: A sea of #JeSuisCharlie\u003cbr\u003esigns held by French nationals\u003cbr\u003ein #Sydney for #CharlesHebdo victims.\u003cbr\u003ehttp://t.co/Uva6wvYIlO\u201d\u003cbr\u003eThu Jan 08 10:50:51 +0000 2015"}, {"group": 869, "id": 3, "label": "553141820566159360", "shape": "dot", "size": 10, "title": "553141820566159360\u003cbr\u003eSydney grieving RT @Mo_Taha1: #JeSuisCharlie\u003cbr\u003esigns held by French nationals\u003cbr\u003ein Sydney for #CharlesHebdo victims.\u003cbr\u003ehttp://t.co/RG8mGzAIkC\u201d\u003cbr\u003eThu Jan 08 10:51:01 +0000 2015"}, {"group": 869, "id": 4, "label": "553142056843886593", "shape": "dot", "size": 10, "title": "553142056843886593\u003cbr\u003e\u201c@Mo_Taha1: A sea of #JeSuisCharlie\u003cbr\u003esigns held by French nationals\u003cbr\u003ein Sydney for #CharlesHebdo victims.\u003cbr\u003ehttp://t.co/ysf82y5PFh\u003cbr\u003eThu Jan 08 10:51:57 +0000 2015"}, {"group": 869, "id": 5, "label": "553142599528099840", "shape": "dot", "size": 10, "title": "553142599528099840\u003cbr\u003e@Mo_Taha1 Better, Braver to see\u003cbr\u003ea sea of signs of\u003cbr\u003e#CharlieHebdo Prophet Cartoons At least\u003cbr\u003ethat would put most of\u003cbr\u003ethe cowering media 2 shame\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:54:07 +0000 2015"}, {"group": 869, "id": 6, "label": "553146935994249216", "shape": "dot", "size": 10, "title": "553146935994249216\u003cbr\u003e@Mo_Taha1 http://t.co/C1sbm2UH9E\u003cbr\u003eThu Jan 08 11:11:21 +0000 2015"}, {"group": 869, "id": 7, "label": "553147819091972096", "shape": "dot", "size": 10, "title": "553147819091972096\u003cbr\u003e\u201c@Mo_Taha1: A sea of #JeSuisCharlie\u003cbr\u003esigns held by French nationals\u003cbr\u003ein Sydney for #CharlesHebdo victims.\u003cbr\u003ehttp://t.co/Y73qBUw0TY\u201d WOW xxxx\u003cbr\u003eThu Jan 08 11:14:51 +0000 2015"}, {"group": 869, "id": 8, "label": "553164340560658434", "shape": "dot", "size": 10, "title": "553164340560658434\u003cbr\u003e@Mo_Taha1 L\u0027Am\u00e9rique se tient avec\u003cbr\u003ela France. #JeSuisCharlie\u003cbr\u003eThu Jan 08 12:20:30 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

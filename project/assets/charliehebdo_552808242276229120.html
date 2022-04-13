@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 133, "id": 0, "label": "552808242276229120", "shape": "dot", "size": 10, "title": "552808242276229120\u003cbr\u003eYou can\u0027t kill free speech\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 12:45:30 +0000 2015"}, {"group": 133, "id": 1, "label": "552808495389868032", "shape": "dot", "size": 10, "title": "552808495389868032\u003cbr\u003e@ThePoke but you can kill\u003cbr\u003einnocent people if you are\u003cbr\u003escum :(\u003cbr\u003eWed Jan 07 12:46:30 +0000 2015"}, {"group": 133, "id": 2, "label": "552808696133464064", "shape": "dot", "size": 10, "title": "552808696133464064\u003cbr\u003e@ThePoke We\u2019re trying our best\u003cbr\u003ein the UK. @Nicola_Heath\u003cbr\u003eWed Jan 07 12:47:18 +0000 2015"}, {"group": 133, "id": 3, "label": "552809030541139969", "shape": "dot", "size": 10, "title": "552809030541139969\u003cbr\u003e@ThePoke Yes you can, haven\u0027t\u003cbr\u003eyou heard of \"anti-racist laws\"\u003cbr\u003elike \"PC\", \"racist\", Marx and\u003cbr\u003eOrwell warned us of this!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:48:38 +0000 2015"}, {"group": 133, "id": 4, "label": "552809170748321792", "shape": "dot", "size": 10, "title": "552809170748321792\u003cbr\u003e@ThePoke Then there is no\u003cbr\u003ereason not to post the\u003cbr\u003eMohammed cartoons.\u003cbr\u003eWed Jan 07 12:49:11 +0000 2015"}, {"group": 133, "id": 5, "label": "552809484465491968", "shape": "dot", "size": 10, "title": "552809484465491968\u003cbr\u003e@ThePoke Who funded/armed/trained them? https://t.co/iPBkLwhQk8\u003cbr\u003eJeffrey Epstein also in CFR+Trilateral\u003cbr\u003eCommission\u003cbr\u003eWed Jan 07 12:50:26 +0000 2015"}, {"group": 133, "id": 6, "label": "552809601138425857", "shape": "dot", "size": 10, "title": "552809601138425857\u003cbr\u003e@ThePoke you demonstrably can\u003cbr\u003eWed Jan 07 12:50:54 +0000 2015"}, {"group": 133, "id": 7, "label": "552809899252776961", "shape": "dot", "size": 10, "title": "552809899252776961\u003cbr\u003eYou can\u0027t kill #Pegida RT:\u003cbr\u003e\"@ThePoke: You can\u0027t kill free\u003cbr\u003espeech #CharlieHebdo\u201d\u003cbr\u003eWed Jan 07 12:52:05 +0000 2015"}, {"group": 133, "id": 8, "label": "552810348957696000", "shape": "dot", "size": 10, "title": "552810348957696000\u003cbr\u003e@ThePoke Sickening!  Totally! \u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 12:53:52 +0000 2015"}, {"group": 133, "id": 9, "label": "552811414499639296", "shape": "dot", "size": 10, "title": "552811414499639296\u003cbr\u003e@ThePoke \"You can blow out\u003cbr\u003ea candle but you can\u0027t\u003cbr\u003eblow out a fire\". \u003cbr\u003ePeter Gabriel - Biko.\u003cbr\u003eWed Jan 07 12:58:06 +0000 2015"}, {"group": 133, "id": 10, "label": "552811963416580096", "shape": "dot", "size": 10, "title": "552811963416580096\u003cbr\u003e@ThePoke @spikeyspud ,,, you try\u003cbr\u003ewalking around london shouting \u003cbr\u003ei\u0027m A BRIT,,,,\u003cbr\u003eWed Jan 07 13:00:17 +0000 2015"}, {"group": 133, "id": 11, "label": "552812007666511873", "shape": "dot", "size": 10, "title": "552812007666511873\u003cbr\u003e@ThePoke contacting you from @bbc5live.\u003cbr\u003eWe\u0027d like to speak to\u003cbr\u003eyou regarding #FreedomOfSpeech. Please follow\u003cbr\u003eback and DM a number.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:00:28 +0000 2015"}, {"group": 133, "id": 12, "label": "552813045328916482", "shape": "dot", "size": 10, "title": "552813045328916482\u003cbr\u003e@ThePoke #CharlieHebdo\nJust clean muslims from\u003cbr\u003eEurope.\u003cbr\u003eWed Jan 07 13:04:35 +0000 2015"}, {"group": 133, "id": 13, "label": "552813325130559488", "shape": "dot", "size": 10, "title": "552813325130559488\u003cbr\u003e@ThePoke does that mean i\u003cbr\u003ecan say that your mum\u003cbr\u003eis a complete idiot who\u003cbr\u003edecided to be with your\u003cbr\u003edouchebag dad? #freespeech #justsaying\u003cbr\u003eWed Jan 07 13:05:42 +0000 2015"}, {"group": 133, "id": 14, "label": "552814333722648577", "shape": "dot", "size": 10, "title": "552814333722648577\u003cbr\u003e@ThePoke It\u0027s not free speech\u003cbr\u003eto insult somebody...\u003cbr\u003eWed Jan 07 13:09:42 +0000 2015"}, {"group": 133, "id": 15, "label": "552816376004763648", "shape": "dot", "size": 10, "title": "552816376004763648\u003cbr\u003e@ThePoke Nope. But you can\u003cbr\u003ekill the people who speak\u003cbr\u003eit tho. Apparently.\u003cbr\u003eWed Jan 07 13:17:49 +0000 2015"}, {"group": 133, "id": 16, "label": "552919320163262465", "shape": "dot", "size": 10, "title": "552919320163262465\u003cbr\u003e@ThePoke vous-\u00eates Charlie?\u003cbr\u003eWed Jan 07 20:06:53 +0000 2015"}, {"group": 133, "id": 17, "label": "554173712753098752", "shape": "dot", "size": 10, "title": "554173712753098752\u003cbr\u003e@ThePoke \ud83d\udc4d\ud83d\udc4d\ud83d\udc4d\ud83d\udc4f\ud83d\udc4f\u2705\u2705\u003cbr\u003eSun Jan 11 07:11:23 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

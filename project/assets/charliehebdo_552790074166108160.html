@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1645, "id": 0, "label": "552790074166108160", "shape": "dot", "size": 10, "title": "552790074166108160\u003cbr\u003eTen dead in shooting at\u003cbr\u003eParis offices of satirical magazine\u003cbr\u003eCharlie Hebdo \u2013 live updates\u003cbr\u003ehttp://t.co/JXujfbiZGu\u003cbr\u003eWed Jan 07 11:33:18 +0000 2015"}, {"group": 1645, "id": 1, "label": "552790202066817024", "shape": "dot", "size": 10, "title": "552790202066817024\u003cbr\u003e\u201c@guardian: Ten dead in shooting\u003cbr\u003eat Paris offices of satirical\u003cbr\u003emagazine Charlie Hebdo \u2013 live\u003cbr\u003eupdates http://t.co/C6UqubgpJj\u201d\u003cbr\u003eWed Jan 07 11:33:49 +0000 2015"}, {"group": 1645, "id": 2, "label": "552790841354616835", "shape": "dot", "size": 10, "title": "552790841354616835\u003cbr\u003e\u201c@guardian: Ten dead in shooting\u003cbr\u003eat Paris offices of satirical\u003cbr\u003emagazine Charlie Hebdo \u2013 live\u003cbr\u003eupdates http://t.co/Y9nAoxNj3J\u201d\u003cbr\u003eWed Jan 07 11:36:21 +0000 2015"}, {"group": 1645, "id": 3, "label": "552790854998687744", "shape": "dot", "size": 10, "title": "552790854998687744\u003cbr\u003e@guardian President Hollande is reportedly\u003cbr\u003eon his way to #Charliehebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 11:36:24 +0000 2015"}, {"group": 1645, "id": 4, "label": "552791900110196736", "shape": "dot", "size": 10, "title": "552791900110196736\u003cbr\u003e@guardian 11 dead now including\u003cbr\u003e2 policemen\u003cbr\u003eWed Jan 07 11:40:34 +0000 2015"}, {"group": 1645, "id": 5, "label": "552792509647429633", "shape": "dot", "size": 10, "title": "552792509647429633\u003cbr\u003e\u201c@guardian: Ten dead in shooting\u003cbr\u003eat Paris offices of satirical\u003cbr\u003emagazine Charlie Hebdo \u2013 live\u003cbr\u003eupdates http://t.co/SdbXfSqSQS\u201d\u003cbr\u003eWed Jan 07 11:42:59 +0000 2015"}, {"group": 1645, "id": 6, "label": "552792797762576385", "shape": "dot", "size": 10, "title": "552792797762576385\u003cbr\u003e@guardian @SWLondonwebed really hope it\u0027s\u003cbr\u003enot connected to their IS\u003cbr\u003ecartoon #freespeech #charliehebdo\u003cbr\u003eWed Jan 07 11:44:08 +0000 2015"}, {"group": 1645, "id": 7, "label": "552793970732826625", "shape": "dot", "size": 10, "title": "552793970732826625\u003cbr\u003e@guardian Baby photo contest are\u003cbr\u003einvolved, you voted offline publications\u003cbr\u003eTweet\nthank you\nhttp://t.co/Cf3z3jOxyx\u003cbr\u003eWed Jan 07 11:48:47 +0000 2015"}, {"group": 1645, "id": 8, "label": "552795009888841728", "shape": "dot", "size": 10, "title": "552795009888841728\u003cbr\u003eDamm \u201c@guardian: Ten dead in\u003cbr\u003eshooting at Paris offices of\u003cbr\u003esatirical magazine Charlie Hebdo \u2013\u003cbr\u003elive updates http://t.co/dLe3Y5qdoF\u201d\u003cbr\u003eWed Jan 07 11:52:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

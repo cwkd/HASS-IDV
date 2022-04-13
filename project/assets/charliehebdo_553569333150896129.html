@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1479, "id": 0, "label": "553569333150896129", "shape": "dot", "size": 10, "title": "553569333150896129\u003cbr\u003eWake up,it\u0027s real. #CharlieHebdo http://t.co/nuA9sHgEOR\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:09:48 +0000 2015"}, {"group": 1479, "id": 1, "label": "553570730730721281", "shape": "dot", "size": 10, "title": "553570730730721281\u003cbr\u003e@LadySandersfarm OGAY THE JIHADI MUSLIM\u003cbr\u003eIN CHIEF,HAS BANNED ALL @NSA\u003cbr\u003eFROM SPYING ON HIS TERROR\u003cbr\u003eCELLS IN TRAINING @ MOSQUES\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:15:21 +0000 2015"}, {"group": 1479, "id": 2, "label": "553576956030369792", "shape": "dot", "size": 10, "title": "553576956030369792\u003cbr\u003e@LadySandersfarm @PaulReverePress coincidence this attack\u003cbr\u003ehappened after France went anti-Zion\u003cbr\u003eand voted up Palestinian statehood?\u003cbr\u003eLol not\u003cbr\u003eFri Jan 09 15:40:05 +0000 2015"}, {"group": 1479, "id": 3, "label": "553586221696692224", "shape": "dot", "size": 10, "title": "553586221696692224\u003cbr\u003e@LadySandersfarm @ImusZero WE INVITED THEM\u003cbr\u003eIN --- TIME TO INVITE\u003cbr\u003eTHEM OUT!\u003cbr\u003eFri Jan 09 16:16:55 +0000 2015"}, {"group": 1479, "id": 4, "label": "553597729684074496", "shape": "dot", "size": 10, "title": "553597729684074496\u003cbr\u003e@LadySandersfarm @KandiRider I love you\u003cbr\u003eguys xx\u003cbr\u003eFri Jan 09 17:02:38 +0000 2015"}, {"group": 1479, "id": 5, "label": "553604401743421440", "shape": "dot", "size": 10, "title": "553604401743421440\u003cbr\u003e@LadySandersfarm Actually, up to 24,809\u003cbr\u003enow: http://t.co/xwTNBpAmpP\u003cbr\u003eFri Jan 09 17:29:09 +0000 2015"}, {"group": 1479, "id": 6, "label": "553604717075386368", "shape": "dot", "size": 10, "title": "553604717075386368\u003cbr\u003e@LadySandersfarm Oops, read that as\u003cbr\u003emurdered. Not attacks. I\u0027d have\u003cbr\u003e2 check on that, but\u003cbr\u003eif this meme is old,\u003cbr\u003ethe number is probably higher.\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:30:24 +0000 2015"}, {"group": 1479, "id": 7, "label": "553605094214602752", "shape": "dot", "size": 10, "title": "553605094214602752\u003cbr\u003e@LadySandersfarm Psshh! Ignore me. I\u003cbr\u003ewas right the first time.\u003cbr\u003eSorry, got a lot on\u003cbr\u003emy side of the \u0027puter\u003cbr\u003escreen. Just check out the\u003cbr\u003elink. ;)\u003cbr\u003eFri Jan 09 17:31:54 +0000 2015"}, {"group": 1479, "id": 8, "label": "553612100111982592", "shape": "dot", "size": 10, "title": "553612100111982592\u003cbr\u003e@LadySandersfarm And that\u0027s not counting\u003cbr\u003ethe ones PRIOR TO 9/11\u003cbr\u003esince 1928 upon all of\u003cbr\u003eour EMBASSY\u0027S....Google them.\u003cbr\u003eFri Jan 09 17:59:44 +0000 2015"}, {"group": 1479, "id": 9, "label": "553612276687966209", "shape": "dot", "size": 10, "title": "553612276687966209\u003cbr\u003e@LadySandersfarm great tweet. So true\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:00:27 +0000 2015"}, {"group": 1479, "id": 12, "label": "553634077778411520", "shape": "dot", "size": 10, "title": "553634077778411520\u003cbr\u003e@LadySandersfarm #thank_you http://t.co/LMruaj60Yx\u003cbr\u003eFri Jan 09 19:27:04 +0000 2015"}, {"group": 1479, "id": 13, "label": "553692606450778113", "shape": "dot", "size": 10, "title": "553692606450778113\u003cbr\u003e@LadySandersfarm @Thew3B do you have\u003cbr\u003ea link for that?\u003cbr\u003eFri Jan 09 23:19:39 +0000 2015"}, {"group": 1479, "id": 14, "label": "553719283365474304", "shape": "dot", "size": 10, "title": "553719283365474304\u003cbr\u003e@akawhit1 @LadySandersfarm @nsa http://t.co/cwXLq7tpd7\u003cbr\u003eSat Jan 10 01:05:39 +0000 2015"}, {"group": 1479, "id": 16, "label": "553724375556313088", "shape": "dot", "size": 10, "title": "553724375556313088\u003cbr\u003e.@akawhit1 @DagnyRed @LadySandersfarm @nsa GOOD\u003cbr\u003ePOINT! EXCELLENT IN FACT! NOW\u003cbr\u003eI UNDERSTAND THE WAR ON\u003cbr\u003eTHEM AND .@CIA!!!!!\u003cbr\u003eSat Jan 10 01:25:53 +0000 2015"}, {"group": 1479, "id": 17, "label": "553724401393598464", "shape": "dot", "size": 10, "title": "553724401393598464\u003cbr\u003e@akawhit1 @DagnyRed @LadySandersfarm @nsa THEY\u003cbr\u003eTRUELY NEED TO BE GONE\u003cbr\u003eFROM AMERICA!!!!\u003cbr\u003eSat Jan 10 01:25:59 +0000 2015"}, {"group": 1479, "id": 11, "label": "553623533855592448", "shape": "dot", "size": 10, "title": "553623533855592448\u003cbr\u003e@GanjaGaryGreen @PaulReverePress You\u0027re smoking too\u003cbr\u003emuch ganja, you\u0027re getting paranoid.\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:45:10 +0000 2015"}, {"group": 1479, "id": 10, "label": "553618743733911553", "shape": "dot", "size": 10, "title": "553618743733911553\u003cbr\u003e@jackskershy @KandiRider Thank you, \ud83d\ude09\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:26:08 +0000 2015"}, {"group": 1479, "id": 15, "label": "553719524839538688", "shape": "dot", "size": 10, "title": "553719524839538688\u003cbr\u003e@singingbaker @Thew3B Look in above\u003cbr\u003ereplies.\u003cbr\u003eSat Jan 10 01:06:36 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 1, "to": 14, "weight": 1}, {"from": 1, "to": 16, "weight": 1}, {"from": 1, "to": 17, "weight": 1}, {"from": 2, "to": 11, "weight": 1}, {"from": 4, "to": 10, "weight": 1}, {"from": 13, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

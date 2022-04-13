@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2035, "id": 0, "label": "553580959661309952", "shape": "dot", "size": 10, "title": "553580959661309952\u003cbr\u003eParis gunman vows to kill\u003cbr\u003e5 hostages if France storms\u003cbr\u003eprinting plant with brothers accused\u003cbr\u003eof attacking newspaper: http://t.co/d2WXdK4XLG\u003cbr\u003eFri Jan 09 15:56:00 +0000 2015"}, {"group": 2035, "id": 1, "label": "553581164942745600", "shape": "dot", "size": 10, "title": "553581164942745600\u003cbr\u003e@AP Is the printing plant\u003cbr\u003ethe one that printed the\u003cbr\u003eCharles Hebdo magazine?\u003cbr\u003eFri Jan 09 15:56:49 +0000 2015"}, {"group": 2035, "id": 2, "label": "553581206303170560", "shape": "dot", "size": 10, "title": "553581206303170560\u003cbr\u003e@AP take them all out\u003cbr\u003eat the same time!\u003cbr\u003eFri Jan 09 15:56:59 +0000 2015"}, {"group": 2035, "id": 3, "label": "553581425518456834", "shape": "dot", "size": 10, "title": "553581425518456834\u003cbr\u003e@AP Seize both locations at\u003cbr\u003ethe same time.\u003cbr\u003eFri Jan 09 15:57:51 +0000 2015"}, {"group": 2035, "id": 4, "label": "553581438784659456", "shape": "dot", "size": 10, "title": "553581438784659456\u003cbr\u003e\u201c@AP: #Paris gunman vows to\u003cbr\u003ekill 5 #hostages if France\u003cbr\u003estorms printing plant: http://t.co/3gCLyb5A0r\u201d #parisattacks\u003cbr\u003e#CharlieHebdo\u003cbr\u003eFri Jan 09 15:57:54 +0000 2015"}, {"group": 2035, "id": 5, "label": "553581442832535552", "shape": "dot", "size": 10, "title": "553581442832535552\u003cbr\u003e@AP it\u0027s just been stormed\u003cbr\u003etho\u003cbr\u003eFri Jan 09 15:57:55 +0000 2015"}, {"group": 2035, "id": 6, "label": "553581764963479554", "shape": "dot", "size": 10, "title": "553581764963479554\u003cbr\u003e@AP they are going to\u003cbr\u003ekill the hostages anyway so\u003cbr\u003eget into both at the\u003cbr\u003esame time, if the French\u003cbr\u003ecan\u0027t do it there\u0027s some\u003cbr\u003eboys in Hereford\u003cbr\u003eFri Jan 09 15:59:12 +0000 2015"}, {"group": 2035, "id": 7, "label": "553581834647638016", "shape": "dot", "size": 10, "title": "553581834647638016\u003cbr\u003e#Bastards! MT @AP: Paris gunman\u003cbr\u003evows to kill 5 hostages\u003cbr\u003eif France storms printing plant\u003cbr\u003ew/ hunted down brothers: http://t.co/XsHvaDHTBS\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:59:29 +0000 2015"}, {"group": 2035, "id": 8, "label": "553582031805108224", "shape": "dot", "size": 10, "title": "553582031805108224\u003cbr\u003e@AP Take them out.\u003cbr\u003eFri Jan 09 16:00:16 +0000 2015"}, {"group": 2035, "id": 9, "label": "553582042823135236", "shape": "dot", "size": 10, "title": "553582042823135236\u003cbr\u003e@AP #remembergoldenbergsdeli\u003cbr\u003eFri Jan 09 16:00:18 +0000 2015"}, {"group": 2035, "id": 12, "label": "553582228194996227", "shape": "dot", "size": 10, "title": "553582228194996227\u003cbr\u003e@AP need to rewrite that\u003cbr\u003epost-misplaced modifier\u003cbr\u003eFri Jan 09 16:01:02 +0000 2015"}, {"group": 2035, "id": 13, "label": "553582557317849088", "shape": "dot", "size": 10, "title": "553582557317849088\u003cbr\u003e@AP You cant show any\u003cbr\u003eweakness never negotiate out of\u003cbr\u003efear\u003cbr\u003eFri Jan 09 16:02:21 +0000 2015"}, {"group": 2035, "id": 14, "label": "553583430294708225", "shape": "dot", "size": 10, "title": "553583430294708225\u003cbr\u003e@AP They\u0027re not martyrs to\u003cbr\u003ea cause; they\u0027re easily manipulated\u003cbr\u003eidiots and murderers.\u003cbr\u003eFri Jan 09 16:05:49 +0000 2015"}, {"group": 2035, "id": 16, "label": "553583952880222209", "shape": "dot", "size": 10, "title": "553583952880222209\u003cbr\u003e@AP @JedediahBila from what I\u0027ve\u003cbr\u003eheard, France has very good\u003cbr\u003eequivalent to SWAT. Hostages should\u003cbr\u003ebe ok\u003cbr\u003eFri Jan 09 16:07:54 +0000 2015"}, {"group": 2035, "id": 17, "label": "553584694546419712", "shape": "dot", "size": 10, "title": "553584694546419712\u003cbr\u003e@AP @JedediahBila It is now\u003cbr\u003ereported that French special forces\u003cbr\u003ehave stormed the printing plant.\u003cbr\u003e Gunshots, explosions and smoke\u003cbr\u003eare visible\u003cbr\u003eFri Jan 09 16:10:50 +0000 2015"}, {"group": 2035, "id": 19, "label": "553585167122857987", "shape": "dot", "size": 10, "title": "553585167122857987\u003cbr\u003eIk hoop niet dat dit\u003cbr\u003euitkomt @ap Paris gunman vows\u003cbr\u003eto kill 5 hostages if\u003cbr\u003eFrance storms printing plant with\u003cbr\u003ebrothers accused of attacking CH\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:12:43 +0000 2015"}, {"group": 2035, "id": 11, "label": "553582111177703424", "shape": "dot", "size": 10, "title": "553582111177703424\u003cbr\u003e@amcc2015 @AP #remembergoldenbergsdeli\u003cbr\u003eFri Jan 09 16:00:35 +0000 2015"}, {"group": 2035, "id": 10, "label": "553582069406646272", "shape": "dot", "size": 10, "title": "553582069406646272\u003cbr\u003e@stevestrawbs @AP #remembergoldenbergsdeli\u003cbr\u003eFri Jan 09 16:00:25 +0000 2015"}, {"group": 2035, "id": 18, "label": "553585021467242497", "shape": "dot", "size": 10, "title": "553585021467242497\u003cbr\u003e@peter_kimber @AP - So true.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:12:08 +0000 2015"}, {"group": 2035, "id": 15, "label": "553583914317410305", "shape": "dot", "size": 10, "title": "553583914317410305\u003cbr\u003e@allysonrtaylor7  1982 \n#JeMeSouviens\u003cbr\u003eFri Jan 09 16:07:44 +0000 2015"}, {"group": 2035, "id": 20, "label": "553585457309954048", "shape": "dot", "size": 10, "title": "553585457309954048\u003cbr\u003e@AnkeTruijen @AP Schoten nu...\u003cbr\u003eFri Jan 09 16:13:52 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 11, "weight": 1}, {"from": 2, "to": 10, "weight": 1}, {"from": 6, "to": 18, "weight": 1}, {"from": 11, "to": 15, "weight": 1}, {"from": 19, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

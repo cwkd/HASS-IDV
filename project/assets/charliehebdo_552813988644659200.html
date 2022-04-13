@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 187, "id": 0, "label": "552813988644659200", "shape": "dot", "size": 10, "title": "552813988644659200\u003cbr\u003ePress \"must stand together to\u003cbr\u003esend the message that murderous\u003cbr\u003eattempts to silence us will\u003cbr\u003enot stand\" #CharlieHebdo http://t.co/aiF9kVv9hw\u003cbr\u003eWed Jan 07 13:08:20 +0000 2015"}, {"group": 187, "id": 1, "label": "552814431345065985", "shape": "dot", "size": 10, "title": "552814431345065985\u003cbr\u003e@pressfreedom  I strongly condemn\u003cbr\u003ethis terrorist attack as a\u003cbr\u003eTurkish Muslim.Terrorists Cannot represent Islam\u003cbr\u003e#notinmyname #NoToTerrorism\u003cbr\u003eWed Jan 07 13:10:05 +0000 2015"}, {"group": 187, "id": 2, "label": "552814445110784002", "shape": "dot", "size": 10, "title": "552814445110784002\u003cbr\u003e@pressfreedom @paullewismoney I have no\u003cbr\u003edoubt Theresa May is looking\u003cbr\u003eat how she can keep\u003cbr\u003eus safe by introducing more\u003cbr\u003eDraconian measures\u003cbr\u003eWed Jan 07 13:10:09 +0000 2015"}, {"group": 187, "id": 3, "label": "552819451494932480", "shape": "dot", "size": 10, "title": "552819451494932480\u003cbr\u003e@pressfreedom How? Will you publish\u003cbr\u003e#ChalieHebdo cartoons in solidarity or\u003cbr\u003eoffer platitudes? @brianstelter\u003cbr\u003eWed Jan 07 13:30:02 +0000 2015"}, {"group": 187, "id": 4, "label": "552823104314281987", "shape": "dot", "size": 10, "title": "552823104314281987\u003cbr\u003e@pressfreedom Extremists cannot accept their\u003cbr\u003edistaste free expression.\u003cbr\u003eWed Jan 07 13:44:33 +0000 2015"}, {"group": 187, "id": 5, "label": "552823465859104769", "shape": "dot", "size": 10, "title": "552823465859104769\u003cbr\u003e@pressfreedom @TimesCrime Who funded/armed/trained gunmen?\u003cbr\u003ehttps://t.co/iPBkLwhQk8 \u2026 Jeffrey Epstein also\u003cbr\u003ein CFR+Trilateral Commission\u003cbr\u003eWed Jan 07 13:45:59 +0000 2015"}, {"group": 187, "id": 6, "label": "552826083700404225", "shape": "dot", "size": 10, "title": "552826083700404225\u003cbr\u003e.@pressfreedom 1 can believe what\u003cbr\u003e1 wants. But if satirical\u003cbr\u003ecartoons make u homicidal, there\u0027s\u003cbr\u003esomething WRONG w/what u believe!\u003cbr\u003e#UniteBlue\u003cbr\u003eWed Jan 07 13:56:24 +0000 2015"}, {"group": 187, "id": 7, "label": "552834721152270336", "shape": "dot", "size": 10, "title": "552834721152270336\u003cbr\u003e@pressfreedom @2kdei Encourage every global\u003cbr\u003enewspaper to reprint the #CharlieHebdo\u003cbr\u003ecartoon.\u003cbr\u003eWed Jan 07 14:30:43 +0000 2015"}, {"group": 187, "id": 8, "label": "552860254019403776", "shape": "dot", "size": 10, "title": "552860254019403776\u003cbr\u003e@pressfreedom @TomClarke24G Press message will\u003cbr\u003enot help. One must send\u003cbr\u003ethe message full scale revenge\u003cbr\u003eOne of US, 100 of\u003cbr\u003eyou. That they\u003cbr\u003eWed Jan 07 16:12:10 +0000 2015"}, {"group": 187, "id": 9, "label": "552860666399178752", "shape": "dot", "size": 10, "title": "552860666399178752\u003cbr\u003e@pressfreedom @TomClarke24G Understand loud and\u003cbr\u003eclear. BLOD FOR BLOD. But\u003cbr\u003ein your democracy that not\u003cbr\u003epossible. Hell then put Democracy\u003cbr\u003ea\u003cbr\u003eWed Jan 07 16:13:49 +0000 2015"}, {"group": 187, "id": 10, "label": "552860821370306560", "shape": "dot", "size": 10, "title": "552860821370306560\u003cbr\u003e@pressfreedom @TomClarke24G side for some\u003cbr\u003etime. What we are talking\u003cbr\u003eis national survival.\u003cbr\u003eWed Jan 07 16:14:26 +0000 2015"}, {"group": 187, "id": 11, "label": "552861170059587584", "shape": "dot", "size": 10, "title": "552861170059587584\u003cbr\u003e@pressfreedom @hrw strongly condemn this\u003cbr\u003ebrutal attack ! The Magazines\u003cbr\u003emust be careful ...publishing unwanted\u003cbr\u003esentimental materials !\u003cbr\u003eWed Jan 07 16:15:49 +0000 2015"}, {"group": 187, "id": 12, "label": "552861513224966144", "shape": "dot", "size": 10, "title": "552861513224966144\u003cbr\u003e@pressfreedom @hrw Press Freedom must\u003cbr\u003ebe there but under some\u003cbr\u003ecode of conduct!!\u003cbr\u003eWed Jan 07 16:17:11 +0000 2015"}, {"group": 187, "id": 13, "label": "552862121428795392", "shape": "dot", "size": 10, "title": "552862121428795392\u003cbr\u003e@pressfreedom #CharlieHebdo #GunsForAll_USA Double standard\u003cbr\u003ewhen USA + @CNN get\u003cbr\u003erid of @piersmorgan for speaking\u003cbr\u003eout???\u003cbr\u003eWed Jan 07 16:19:36 +0000 2015"}, {"group": 187, "id": 14, "label": "552871646500233217", "shape": "dot", "size": 10, "title": "552871646500233217\u003cbr\u003e@pressfreedom @hrw\n#CharlieWilsonsWar\nCms 2 Charlie Hebdo\nhttp://t.co/5owII84szF\nCIA\u003cbr\u003e#Afghanistan \u002779 to #France\u002715\nhttp://t.co/63lqZIP5xS\u003cbr\u003eWed Jan 07 16:57:27 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

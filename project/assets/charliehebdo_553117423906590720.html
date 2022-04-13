@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 792, "id": 0, "label": "553117423906590720", "shape": "dot", "size": 10, "title": "553117423906590720\u003cbr\u003eI tweet this cartoon by\u003cbr\u003emy husband, cartoonist #WillKevans, in\u003cbr\u003esupport of cartoonists everywhere #JeSuisCharlie\u003cbr\u003ehttp://t.co/rmjZ7cfulA\u003cbr\u003eThu Jan 08 09:14:04 +0000 2015"}, {"group": 792, "id": 1, "label": "553117781013831680", "shape": "dot", "size": 10, "title": "553117781013831680\u003cbr\u003e@anniekevans @renelukassen He did good!\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:15:30 +0000 2015"}, {"group": 792, "id": 2, "label": "553118859604283392", "shape": "dot", "size": 10, "title": "553118859604283392\u003cbr\u003e@anniekevans Vive la freedom of\u003cbr\u003espeech!\u003cbr\u003eThu Jan 08 09:19:47 +0000 2015"}, {"group": 792, "id": 3, "label": "553122209863307265", "shape": "dot", "size": 10, "title": "553122209863307265\u003cbr\u003e@anniekevans thanks for your support.\u003cbr\u003e\u003cbr\u003eThu Jan 08 09:33:06 +0000 2015"}, {"group": 792, "id": 4, "label": "553124023765594112", "shape": "dot", "size": 10, "title": "553124023765594112\u003cbr\u003e@anniekevans You have freedom you\u003cbr\u003estupid! The problem is that\u003cbr\u003eyou are hurting the islam\u003cbr\u003ereligion by illustrating Muhammad!!!\u003cbr\u003eThu Jan 08 09:40:18 +0000 2015"}, {"group": 792, "id": 8, "label": "553127123813416960", "shape": "dot", "size": 10, "title": "553127123813416960\u003cbr\u003e@anniekevans @TangoMango9 Absolutely spot on!\u003cbr\u003eX\u003cbr\u003eThu Jan 08 09:52:37 +0000 2015"}, {"group": 792, "id": 9, "label": "553129392533417985", "shape": "dot", "size": 10, "title": "553129392533417985\u003cbr\u003e@anniekevans @JPSargeant78 love that.\u003cbr\u003eThu Jan 08 10:01:38 +0000 2015"}, {"group": 792, "id": 15, "label": "553135715622875138", "shape": "dot", "size": 10, "title": "553135715622875138\u003cbr\u003e@anniekevans @renelukassen What about reactions\u003cbr\u003eon cartoons about Jews ?\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:26:46 +0000 2015"}, {"group": 792, "id": 5, "label": "553124922592354305", "shape": "dot", "size": 10, "title": "553124922592354305\u003cbr\u003e@vida_andras The cartoon depicts a\u003cbr\u003ecartoonist. I loved my Uncle\u003cbr\u003eBashir, a Muslim, very much\u003cbr\u003eand don\u0027t agree with disrespecting\u003cbr\u003eanyone.\u003cbr\u003eThu Jan 08 09:43:52 +0000 2015"}, {"group": 792, "id": 24, "label": "553139499182850048", "shape": "dot", "size": 10, "title": "553139499182850048\u003cbr\u003ePlease tell us how you\u003cbr\u003eknow a drawing is of\u003cbr\u003eMohammed, of whom no images\u003cbr\u003eexist @vida_andras @anniekevans\u003cbr\u003eThu Jan 08 10:41:48 +0000 2015"}, {"group": 792, "id": 26, "label": "553139838866980864", "shape": "dot", "size": 10, "title": "553139838866980864\u003cbr\u003e@vida_andras How does drawing a\u003cbr\u003epicture manage to _hurt_ any\u003cbr\u003ereligion? @anniekevans\u003cbr\u003eThu Jan 08 10:43:09 +0000 2015"}, {"group": 792, "id": 6, "label": "553125795766743041", "shape": "dot", "size": 10, "title": "553125795766743041\u003cbr\u003e@anniekevans This attack on illustrators\u003cbr\u003estarted and continued because retards\u003cbr\u003ewon\u0027t stop depicting Muhammad, after\u003cbr\u003e9 years of disrespect.\u003cbr\u003eThu Jan 08 09:47:20 +0000 2015"}, {"group": 792, "id": 7, "label": "553126924030320640", "shape": "dot", "size": 10, "title": "553126924030320640\u003cbr\u003e@vida_andras @anniekevans They will never\u003cbr\u003ebe transparant on who payed\u003cbr\u003ethem to do that insulting!\u003cbr\u003eCant imagine they lived that\u003cbr\u003einsulting!\u003cbr\u003eThu Jan 08 09:51:49 +0000 2015"}, {"group": 792, "id": 10, "label": "553134109493833728", "shape": "dot", "size": 10, "title": "553134109493833728\u003cbr\u003eYou seem to just be\u003cbr\u003egoing around insulting people for\u003cbr\u003ethings they aren\u0027t doing. You\u003cbr\u003efucking ableist piece of shit.\u003cbr\u003e@vida_andras\u003cbr\u003eThu Jan 08 10:20:23 +0000 2015"}, {"group": 792, "id": 30, "label": "553140517114880000", "shape": "dot", "size": 10, "title": "553140517114880000\u003cbr\u003e@vida_andras @anniekevans Fuck Mohammed http://t.co/43eoyB0zRB\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:45:50 +0000 2015"}, {"group": 792, "id": 11, "label": "553134128280133633", "shape": "dot", "size": 10, "title": "553134128280133633\u003cbr\u003e@korikisulda @vida_andras fucking Amazon.\u003cbr\u003eThu Jan 08 10:20:27 +0000 2015"}, {"group": 792, "id": 12, "label": "553134928398155776", "shape": "dot", "size": 10, "title": "553134928398155776\u003cbr\u003e@korikisulda listen. Hey are protesting\u003cbr\u003eagainst freedom, where they don\u0027t\u003cbr\u003erespect other people. That\u0027s bad.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:23:38 +0000 2015"}, {"group": 792, "id": 13, "label": "553135234951434240", "shape": "dot", "size": 10, "title": "553135234951434240\u003cbr\u003eSo freedom of speech isn\u0027t\u003cbr\u003efreedom? lel. @vida_andras\u003cbr\u003eThu Jan 08 10:24:51 +0000 2015"}, {"group": 792, "id": 14, "label": "553135604129882113", "shape": "dot", "size": 10, "title": "553135604129882113\u003cbr\u003e@korikisulda they illustrated Muhammad. The\u003cbr\u003eone thing it\u0027s forbidden to\u003cbr\u003eillustrate by religion. And you\u003cbr\u003estand beside this?\u003cbr\u003eThu Jan 08 10:26:19 +0000 2015"}, {"group": 792, "id": 20, "label": "553138778811170816", "shape": "dot", "size": 10, "title": "553138778811170816\u003cbr\u003e@korikisulda @vida_andras Just answer this:\u003cbr\u003ewhy were all je suis\u003cbr\u003echarlie NOT insulting like charlie\u003cbr\u003ehebdo? Afterward its death that\u003cbr\u003eunites?\u003cbr\u003eThu Jan 08 10:38:56 +0000 2015"}, {"group": 792, "id": 16, "label": "553136115176452096", "shape": "dot", "size": 10, "title": "553136115176452096\u003cbr\u003eWhat if I make a\u003cbr\u003ereligion? :D Can I get\u003cbr\u003epeople to do whatever I\u003cbr\u003ewant then? :DDDD @vida_andras\u003cbr\u003eThu Jan 08 10:28:21 +0000 2015"}, {"group": 792, "id": 22, "label": "553139230260867072", "shape": "dot", "size": 10, "title": "553139230260867072\u003cbr\u003e1) They were atheists, your\u003cbr\u003ereligion doesn\u0027t apply 2) Freedom\u003cbr\u003eof speech applies to religion\u003cbr\u003eas well @vida_andras @korikisulda\u003cbr\u003eThu Jan 08 10:40:43 +0000 2015"}, {"group": 792, "id": 19, "label": "553137574563557376", "shape": "dot", "size": 10, "title": "553137574563557376\u003cbr\u003e@margaretthatch @anniekevans Die vraag snap\u003cbr\u003eik niet.\u003cbr\u003eThu Jan 08 10:34:09 +0000 2015"}, {"group": 792, "id": 17, "label": "553136544597704704", "shape": "dot", "size": 10, "title": "553136544597704704\u003cbr\u003e@korikisulda If it has a\u003cbr\u003emoral system that makes sense,\u003cbr\u003eand gain enough followers, yes.\u003cbr\u003eBut you see, you don\u0027t\u003cbr\u003ehave respect\u003cbr\u003eThu Jan 08 10:30:03 +0000 2015"}, {"group": 792, "id": 18, "label": "553136765561995264", "shape": "dot", "size": 10, "title": "553136765561995264\u003cbr\u003eHmm. Well, I guess that\u003cbr\u003ereligion doesn\u0027t have to be\u003cbr\u003etheist. So Putin. @vida_andras\u003cbr\u003eThu Jan 08 10:30:56 +0000 2015"}, {"group": 792, "id": 21, "label": "553138971140947968", "shape": "dot", "size": 10, "title": "553138971140947968\u003cbr\u003e@renelukassen @anniekevans Vraag me af\u003cbr\u003eals er soortgelijke cartoons werden\u003cbr\u003egemaakt over Joden of men\u003cbr\u003edan ook het evangelie van\u003cbr\u003emeningsuiting\u003cbr\u003eThu Jan 08 10:39:42 +0000 2015"}, {"group": 792, "id": 23, "label": "553139397022216192", "shape": "dot", "size": 10, "title": "553139397022216192\u003cbr\u003e*shrug* Death is the one\u003cbr\u003ething which binds us all.\u003cbr\u003e@sacic @vida_andras\u003cbr\u003eThu Jan 08 10:41:23 +0000 2015"}, {"group": 792, "id": 34, "label": "553142057406324739", "shape": "dot", "size": 10, "title": "553142057406324739\u003cbr\u003e@margaretthatch Maak die zin eens\u003cbr\u003eaf.\u003cbr\u003eThu Jan 08 10:51:58 +0000 2015"}, {"group": 792, "id": 25, "label": "553139662882353152", "shape": "dot", "size": 10, "title": "553139662882353152\u003cbr\u003e@anarchic_teapot @vida_andras @korikisulda Its is\u003cbr\u003eforbidden by your religion, not\u003cbr\u003eby anyone else so it\u003cbr\u003edoesn\u0027t count, you people really\u003cbr\u003eare.\u003cbr\u003eThu Jan 08 10:42:27 +0000 2015"}, {"group": 792, "id": 37, "label": "553142425666215937", "shape": "dot", "size": 10, "title": "553142425666215937\u003cbr\u003e@anarchic_teapot @vida_andras @korikisulda don\u0027t be\u003cbr\u003eso ridiculous. The drawing of\u003cbr\u003ea cartoon will never justify\u003cbr\u003emurder.\u003cbr\u003eThu Jan 08 10:53:25 +0000 2015"}, {"group": 792, "id": 38, "label": "553142599113252864", "shape": "dot", "size": 10, "title": "553142599113252864\u003cbr\u003e@anarchic_teapot @vida_andras @korikisulda What kind\u003cbr\u003eof person is so offended\u003cbr\u003eby a drawing they need\u003cbr\u003eto shout god is great\u003cbr\u003eand murder?\u003cbr\u003eThu Jan 08 10:54:07 +0000 2015"}, {"group": 792, "id": 27, "label": "553139986900733952", "shape": "dot", "size": 10, "title": "553139986900733952\u003cbr\u003e@korikisulda @vida_andras Just answer why\u003cbr\u003ewere all je suis charlie\u003cbr\u003eNOT all insulting?\u003cbr\u003eThu Jan 08 10:43:44 +0000 2015"}, {"group": 792, "id": 31, "label": "553140584417083392", "shape": "dot", "size": 10, "title": "553140584417083392\u003cbr\u003e@Audere2010 @anarchic_teapot @korikisulda the thing\u003cbr\u003eis its not my religion.\u003cbr\u003eI\u0027m buddhist. But i can\u003cbr\u003eimagine the phrase sacred.\u003cbr\u003eThu Jan 08 10:46:06 +0000 2015"}, {"group": 792, "id": 28, "label": "553139987731214336", "shape": "dot", "size": 10, "title": "553139987731214336\u003cbr\u003e@Dragonblaze @anniekevans just try to\u003cbr\u003eimagine it. Maybe you could\u003cbr\u003eif you try\u003cbr\u003eThu Jan 08 10:43:44 +0000 2015"}, {"group": 792, "id": 32, "label": "553140718601261056", "shape": "dot", "size": 10, "title": "553140718601261056\u003cbr\u003e@sacic @vida_andras Well you asked\u003cbr\u003etwo questions, and I don\u0027t\u003cbr\u003eknow. Saying you\u0027re Charlie is\u003cbr\u003epretty insulting to dead protestors.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:46:38 +0000 2015"}, {"group": 792, "id": 33, "label": "553141077197471744", "shape": "dot", "size": 10, "title": "553141077197471744\u003cbr\u003e@sacic @korikisulda you see?? They\u003cbr\u003eare to eastern people! The\u003cbr\u003eprotestors don\u0027t understand what they\u003cbr\u003eare doing!\u003cbr\u003eThu Jan 08 10:48:04 +0000 2015"}, {"group": 792, "id": 29, "label": "553140098867662848", "shape": "dot", "size": 10, "title": "553140098867662848\u003cbr\u003e@vida_andras No. You make a\u003cbr\u003epositive claim, you back it\u003cbr\u003eup - or withdraw it\u003cbr\u003eif you can\u0027t. @anniekevans\u003cbr\u003eThu Jan 08 10:44:11 +0000 2015"}, {"group": 792, "id": 36, "label": "553142356338561024", "shape": "dot", "size": 10, "title": "553142356338561024\u003cbr\u003eSo basically, you just missed\u003cbr\u003ean excellent opportunity to not\u003cbr\u003elook like a complete idiot\u003cbr\u003e@vida_andras @Audere2010 @korikisulda\u003cbr\u003eThu Jan 08 10:53:09 +0000 2015"}, {"group": 792, "id": 40, "label": "553143163620458496", "shape": "dot", "size": 10, "title": "553143163620458496\u003cbr\u003e@vida_andras @anarchic_teapot @korikisulda Cough \"bullshit\"\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:56:21 +0000 2015"}, {"group": 792, "id": 35, "label": "553142120488640512", "shape": "dot", "size": 10, "title": "553142120488640512\u003cbr\u003e@vida_andras @korikisulda It was not\u003cbr\u003ethat insulting to being killed\u003cbr\u003eover. Or any insult beeing\u003cbr\u003ekilled over is not worth\u003cbr\u003eit? Cant thinkup any\u003cbr\u003eThu Jan 08 10:52:13 +0000 2015"}, {"group": 792, "id": 39, "label": "553142910846529536", "shape": "dot", "size": 10, "title": "553142910846529536\u003cbr\u003e@thewaterbuffalo @anarchic_teapot @korikisulda you are\u003cbr\u003econfusing islam with terrorism. Think.\u003cbr\u003eThey are the same\u003cbr\u003eThu Jan 08 10:55:21 +0000 2015"}, {"group": 792, "id": 42, "label": "553143460925300736", "shape": "dot", "size": 10, "title": "553143460925300736\u003cbr\u003e@vida_andras @thewaterbuffalo @anarchic_teapot No they\u0027re\u003cbr\u003enot, and why are you\u003cbr\u003ecalling Islam terrorism?\u003cbr\u003eThu Jan 08 10:57:32 +0000 2015"}, {"group": 792, "id": 41, "label": "553143306356785152", "shape": "dot", "size": 10, "title": "553143306356785152\u003cbr\u003e@Audere2010 @anarchic_teapot @korikisulda stop this.\u003cbr\u003eThis is a real world\u003cbr\u003eproblem\u003cbr\u003eThu Jan 08 10:56:55 +0000 2015"}, {"group": 792, "id": 43, "label": "553143631511842817", "shape": "dot", "size": 10, "title": "553143631511842817\u003cbr\u003e@vida_andras @anarchic_teapot @korikisulda No its\u003cbr\u003enot, its a religious fanatic\u003cbr\u003eproblem, that would subvert and\u003cbr\u003ekill freedom of speech\u003cbr\u003eThu Jan 08 10:58:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 4, "to": 24, "weight": 1}, {"from": 4, "to": 26, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 6, "to": 10, "weight": 1}, {"from": 6, "to": 30, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 10, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 13, "to": 20, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 14, "to": 22, "weight": 1}, {"from": 15, "to": 19, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 17, "to": 18, "weight": 1}, {"from": 19, "to": 21, "weight": 1}, {"from": 20, "to": 23, "weight": 1}, {"from": 21, "to": 34, "weight": 1}, {"from": 22, "to": 25, "weight": 1}, {"from": 22, "to": 37, "weight": 1}, {"from": 22, "to": 38, "weight": 1}, {"from": 23, "to": 27, "weight": 1}, {"from": 25, "to": 31, "weight": 1}, {"from": 26, "to": 28, "weight": 1}, {"from": 27, "to": 32, "weight": 1}, {"from": 27, "to": 33, "weight": 1}, {"from": 28, "to": 29, "weight": 1}, {"from": 31, "to": 36, "weight": 1}, {"from": 31, "to": 40, "weight": 1}, {"from": 33, "to": 35, "weight": 1}, {"from": 38, "to": 39, "weight": 1}, {"from": 39, "to": 42, "weight": 1}, {"from": 40, "to": 41, "weight": 1}, {"from": 41, "to": 43, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

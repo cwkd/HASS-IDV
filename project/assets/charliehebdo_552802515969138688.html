@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 79, "id": 0, "label": "552802515969138688", "shape": "dot", "size": 10, "title": "552802515969138688\u003cbr\u003eVideo has emerged showing the\u003cbr\u003emoment gunmen opened fire at\u003cbr\u003e#CharlieHebdo\u0027s HQ in Paris. http://t.co/ZRSbE9Fc1L\u003cbr\u003ehttp://t.co/tE7KwlhuSN\u003cbr\u003eWed Jan 07 12:22:45 +0000 2015"}, {"group": 79, "id": 1, "label": "552802842172727296", "shape": "dot", "size": 10, "title": "552802842172727296\u003cbr\u003e@SkyNews ..its a death cult\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:24:02 +0000 2015"}, {"group": 79, "id": 2, "label": "552802874519220224", "shape": "dot", "size": 10, "title": "552802874519220224\u003cbr\u003e@SkyNews Muslims....I dare you to\u003cbr\u003etell the truth\u003cbr\u003eWed Jan 07 12:24:10 +0000 2015"}, {"group": 79, "id": 3, "label": "552805281336676352", "shape": "dot", "size": 10, "title": "552805281336676352\u003cbr\u003e.@SkyNews Allahu Akhbar being shouted\u003cbr\u003eat 00:07s - nice! Gotta\u003cbr\u003elove religion! #CharlieHebdo. http://t.co/3Z3uqITEi9 http://t.co/CiunPqdoIo\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:33:44 +0000 2015"}, {"group": 79, "id": 4, "label": "552806252070567936", "shape": "dot", "size": 10, "title": "552806252070567936\u003cbr\u003e@SkyNews If they leave to\u003cbr\u003ebe trained. In terrorism why\u003cbr\u003enot let them stay there.\u003cbr\u003eAnd don\u0027t let them back\u003cbr\u003einto any country at all!\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:37:35 +0000 2015"}, {"group": 79, "id": 5, "label": "552807072710926337", "shape": "dot", "size": 10, "title": "552807072710926337\u003cbr\u003e@SkyNews When Israel kills Dozens\u003cbr\u003eof innocent children and women\u003cbr\u003ein Palestine it is NOT\u003cbr\u003eterrorism??? FUCK the western propaganda.\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:40:51 +0000 2015"}, {"group": 79, "id": 6, "label": "552810126915035138", "shape": "dot", "size": 10, "title": "552810126915035138\u003cbr\u003e@SkyNews \nThe world shuld come\u003cbr\u003etogether and go all guns\u003cbr\u003eblazing (literally ) at these\u003cbr\u003ecrooks n get the world\u003cbr\u003erid of them\u003cbr\u003eWed Jan 07 12:52:59 +0000 2015"}, {"group": 79, "id": 7, "label": "552811398154428417", "shape": "dot", "size": 10, "title": "552811398154428417\u003cbr\u003e@SkyNews and they say immigration\u003cbr\u003eis good.\u003cbr\u003eWed Jan 07 12:58:02 +0000 2015"}, {"group": 79, "id": 8, "label": "552816028770897921", "shape": "dot", "size": 10, "title": "552816028770897921\u003cbr\u003e@SkyNews 24784 people have been\u003cbr\u003ekilled in the name of\u003cbr\u003eislam since 9/11 . when\u003cbr\u003ewill you lot start telling\u003cbr\u003ethe truths about this evil\u003cbr\u003eideology\u003cbr\u003eWed Jan 07 13:16:26 +0000 2015"}, {"group": 79, "id": 10, "label": "553490608833441792", "shape": "dot", "size": 10, "title": "553490608833441792\u003cbr\u003e@SkyNews #JeSuisCharlie\n#UnsucessfulFrancePolice\n#DammartinEnGoele \n#CharlieHebdo \n#parisisburning \u003cbr\u003e\n20, dead 12  injured\u003cbr\u003e 57 Hostage\u003cbr\u003eFri Jan 09 09:56:59 +0000 2015"}, {"group": 79, "id": 9, "label": "552970899688022016", "shape": "dot", "size": 10, "title": "552970899688022016\u003cbr\u003e@MoxOne75 @SkyNews hopefully you dont\u003cbr\u003elive in the western world.\u003cbr\u003e If you do fuck\u003cbr\u003eof and when you have\u003cbr\u003efuck of some more\u003cbr\u003eWed Jan 07 23:31:50 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 5, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

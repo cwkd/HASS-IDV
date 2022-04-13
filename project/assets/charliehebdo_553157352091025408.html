@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 943, "id": 0, "label": "553157352091025408", "shape": "dot", "size": 10, "title": "553157352091025408\u003cbr\u003eCartoonists around the world continue\u003cbr\u003eto show support for #CharieHebdo,\u003cbr\u003ethis by famous #DRCongo\u0027s Kash\u003cbr\u003e#JeSuisCharlie http://t.co/LtVJhnkUwB\u003cbr\u003eThu Jan 08 11:52:44 +0000 2015"}, {"group": 943, "id": 1, "label": "553158896442150912", "shape": "dot", "size": 10, "title": "553158896442150912\u003cbr\u003e@bbcfessy @BBCAfrica date 7.01.2015\u003cbr\u003eThu Jan 08 11:58:52 +0000 2015"}, {"group": 943, "id": 2, "label": "553165871301287936", "shape": "dot", "size": 10, "title": "553165871301287936\u003cbr\u003e@friendmoscow @bbcfessy Bots will conquest\u003cbr\u003eall the world.\u003cbr\u003eThu Jan 08 12:26:35 +0000 2015"}, {"group": 943, "id": 3, "label": "553287915120640000", "shape": "dot", "size": 10, "title": "553287915120640000\u003cbr\u003e@bbcfessy @rakidi...Is matter of time\u003cbr\u003ethese criminal will soon brought\u003cbr\u003eto justice\u003cbr\u003eThu Jan 08 20:31:33 +0000 2015"}, {"group": 943, "id": 4, "label": "553357418076581888", "shape": "dot", "size": 10, "title": "553357418076581888\u003cbr\u003e@bbcfessy @Hewete \nAnd pen is\u003cbr\u003emightier than bullet!\u003cbr\u003eFri Jan 09 01:07:44 +0000 2015"}, {"group": 943, "id": 5, "label": "553461456961024000", "shape": "dot", "size": 10, "title": "553461456961024000\u003cbr\u003e@bbcfessy @BBCAfrica They are afraid!\u003cbr\u003e\u003cbr\u003eFri Jan 09 08:01:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

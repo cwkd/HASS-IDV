@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1953, "id": 0, "label": "553534707108155392", "shape": "dot", "size": 10, "title": "553534707108155392\u003cbr\u003eCRISIS IN FRANCE\n- Massacre suspects\u003cbr\u003etake hostage at business near\u003cbr\u003eParis\n- Policewoman-killer takes hostages at\u003cbr\u003esupermarket in east Paris\u003cbr\u003eFri Jan 09 12:52:13 +0000 2015"}, {"group": 1953, "id": 1, "label": "553535125372567552", "shape": "dot", "size": 10, "title": "553535125372567552\u003cbr\u003e@PzFeed crISIS\u003cbr\u003eFri Jan 09 12:53:52 +0000 2015"}, {"group": 1953, "id": 2, "label": "553536433466929152", "shape": "dot", "size": 10, "title": "553536433466929152\u003cbr\u003e@PzFeed @PingPongSam what the fuck\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:59:04 +0000 2015"}, {"group": 1953, "id": 3, "label": "553537673789714435", "shape": "dot", "size": 10, "title": "553537673789714435\u003cbr\u003e@PzFeed what is going on\u003cbr\u003ein France they can\u0027t catch\u003cbr\u003ea break...\u003cbr\u003eFri Jan 09 13:04:00 +0000 2015"}, {"group": 1953, "id": 4, "label": "553538102720233472", "shape": "dot", "size": 10, "title": "553538102720233472\u003cbr\u003e@PzFeed Condemn anti-semitizm.\u003cbr\u003eFri Jan 09 13:05:42 +0000 2015"}, {"group": 1953, "id": 5, "label": "553540291685527552", "shape": "dot", "size": 10, "title": "553540291685527552\u003cbr\u003e@PzFeed @007LisaJones One hostage at\u003cbr\u003ethe print shop in Dammartin,\u003cbr\u003efive hostages at the Kosher\u003cbr\u003egrocery.\u003cbr\u003eFri Jan 09 13:14:24 +0000 2015"}, {"group": 1953, "id": 6, "label": "553541336000106496", "shape": "dot", "size": 10, "title": "553541336000106496\u003cbr\u003e@PzFeed just crazy. Europe has\u003cbr\u003eto protect their culture from\u003cbr\u003ethese barbarians.\u003cbr\u003eFri Jan 09 13:18:33 +0000 2015"}, {"group": 1953, "id": 7, "label": "553555783544098816", "shape": "dot", "size": 10, "title": "553555783544098816\u003cbr\u003e@PzFeed @spyrohh\u003cbr\u003eFri Jan 09 14:15:58 +0000 2015"}, {"group": 1953, "id": 8, "label": "553581055949938688", "shape": "dot", "size": 10, "title": "553581055949938688\u003cbr\u003e@alphainparis @PzFeed and now a\u003cbr\u003e3rd siuation at the Eiffel\u003cbr\u003eTower?  woh.\u003cbr\u003eFri Jan 09 15:56:23 +0000 2015"}, {"group": 1953, "id": 9, "label": "553581401795465217", "shape": "dot", "size": 10, "title": "553581401795465217\u003cbr\u003e@007LisaJones @PzFeed This isn\u0027t a\u003cbr\u003egame. This is war. People\u003cbr\u003eneed to recognize it. Especially\u003cbr\u003ecomplacent Americans.\u003cbr\u003eFri Jan 09 15:57:45 +0000 2015"}, {"group": 1953, "id": 10, "label": "553581907342946305", "shape": "dot", "size": 10, "title": "553581907342946305\u003cbr\u003e@alphainparis @PzFeed locked and loaded,\u003cbr\u003efriend~  #2A\u003cbr\u003eFri Jan 09 15:59:46 +0000 2015"}, {"group": 1953, "id": 11, "label": "553582877204828160", "shape": "dot", "size": 10, "title": "553582877204828160\u003cbr\u003e@007LisaJones @PzFeed More than you\u003cbr\u003emight imagine are right beside\u003cbr\u003eyou. There\u0027s comfort in that,\u003cbr\u003ejust as there is safety\u003cbr\u003ein numbers.\u003cbr\u003eFri Jan 09 16:03:37 +0000 2015"}, {"group": 1953, "id": 12, "label": "553583652664541184", "shape": "dot", "size": 10, "title": "553583652664541184\u003cbr\u003e@alphainparis @PzFeed get to know\u003cbr\u003eyour neighbors for sure! \u003cbr\u003e#Prepared\u003cbr\u003eFri Jan 09 16:06:42 +0000 2015"}, {"group": 1953, "id": 13, "label": "553583872844529665", "shape": "dot", "size": 10, "title": "553583872844529665\u003cbr\u003e@007LisaJones @PzFeed Copy that!\u003cbr\u003eFri Jan 09 16:07:35 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 5, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

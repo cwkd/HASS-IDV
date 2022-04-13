@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 949, "id": 0, "label": "553158824979619840", "shape": "dot", "size": 10, "title": "553158824979619840\u003cbr\u003eIsrael, where Muslim women and\u003cbr\u003echildren were slaughtered in Palestine\u003cbr\u003ethis world?\n\n#RespectForMuslims\n#CharlieHebdo http://t.co/LCrI2NOQN8\u003cbr\u003eThu Jan 08 11:58:35 +0000 2015"}, {"group": 949, "id": 1, "label": "553171881646624769", "shape": "dot", "size": 10, "title": "553171881646624769\u003cbr\u003e@Mehmet_Canturk Karde\u015flerim Cant\u00fcrk karde\u015fin twiti\u003cbr\u003ert fav islam D\u00fc\u015fmanlar\u0131na kar\u015f\u0131.\u003cbr\u003e@38Orhanates @LyYalcin @AKRTFAV @BULUT_USTASI @a\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:50:28 +0000 2015"}, {"group": 949, "id": 2, "label": "553172307938918400", "shape": "dot", "size": 10, "title": "553172307938918400\u003cbr\u003e@Mehmet_Canturk \u0026lt;\u0026lt;\u0026lt;karde\u015fimizin son twitini rt\u003cbr\u003efav in\u015feAllah @BeRkAT53 @bavehayran @berberoglu79\u003cbr\u003e@by_ingush @NurcanDilaver @bircanbasak1\u003cbr\u003eThu Jan 08 12:52:10 +0000 2015"}, {"group": 949, "id": 3, "label": "553172817618165762", "shape": "dot", "size": 10, "title": "553172817618165762\u003cbr\u003e@Mehmet_Canturk \u0026lt;\u0026lt;\u0026lt;son twitini rt fav\u003cbr\u003ein\u015feAllah @bayramaygun2 @kendimce_ben @yusufbilgin2929 @ceylanturk\u003cbr\u003e@ZuhaLBaykalRTE @Adambir42\u003cbr\u003eThu Jan 08 12:54:11 +0000 2015"}, {"group": 949, "id": 4, "label": "553173225031860224", "shape": "dot", "size": 10, "title": "553173225031860224\u003cbr\u003e@Mehmet_Canturk \u0026lt;\u0026lt;\u0026lt;Son twitini rt fav\u003cbr\u003ein\u015feAllah @zorhaydar @uguronal @analiz1453 @mehmet_harmanc\u003cbr\u003e@oguz_cann @fetohakan @mert_yki @ecakmak29\u003cbr\u003eThu Jan 08 12:55:48 +0000 2015"}, {"group": 949, "id": 5, "label": "553173763517579264", "shape": "dot", "size": 10, "title": "553173763517579264\u003cbr\u003e@Mehmet_Canturk \u0026lt;\u0026lt;\u0026lt;Son twitini rt fav\u003cbr\u003ein\u015feAllah @KaifDoan @ParlakDuru @draliardic @DobraUzunAdam\u003cbr\u003e@DoganAbidin @AllahaSevdalli @szr44malatya\u003cbr\u003eThu Jan 08 12:57:57 +0000 2015"}, {"group": 949, "id": 6, "label": "553174413659865088", "shape": "dot", "size": 10, "title": "553174413659865088\u003cbr\u003e@Mehmet_Canturk \u0026lt; \u0026lt; \u0026lt; son\u003cbr\u003etwitini rt fav in\u015feAllah @atakan_van\u003cbr\u003e@yenidnya20 @ilhn_kt @EhlIhak @demirhatice53 @dervisgezgin42\u003cbr\u003e@KDALGASI\u003cbr\u003eThu Jan 08 13:00:32 +0000 2015"}, {"group": 949, "id": 7, "label": "553176422937030656", "shape": "dot", "size": 10, "title": "553176422937030656\u003cbr\u003e@Mehmet_Canturk \u0026lt; \u0026lt; \u0026lt;son twitini\u003cbr\u003ert fav in\u015feAllah @mearslan42 @ebru_imen\u003cbr\u003e@esma_fb_3437 @ensari622 @mesutevr @enginyaman1979 @esma_sultannnn\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:08:31 +0000 2015"}, {"group": 949, "id": 8, "label": "553176882804695040", "shape": "dot", "size": 10, "title": "553176882804695040\u003cbr\u003e@Mehmet_Canturk \u0026lt; \u0026lt; \u0026lt; son\u003cbr\u003etwitini rt fav in\u015feAllah @sosyetehaci\u003cbr\u003e@EyyubSabri @Malikejder47 @ExecutiveAK @7171eliflal @Emrehan_Polat\u003cbr\u003e@ERANUBA\u003cbr\u003eThu Jan 08 13:10:21 +0000 2015"}, {"group": 949, "id": 9, "label": "553178529085784064", "shape": "dot", "size": 10, "title": "553178529085784064\u003cbr\u003e@Mehmet_Canturk @Malikejder47 Al\u0131n size ter\u00f6r.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:16:53 +0000 2015"}, {"group": 949, "id": 10, "label": "553195906775150592", "shape": "dot", "size": 10, "title": "553195906775150592\u003cbr\u003e@Mehmet_Canturk @Ay__Sunaz AMBER\u0130N ZAMAN ALLAH\u003cbr\u003eSANADA BU \u00c7OCUKLARIN ANNE VE\u003cbr\u003eBABASININ ACISINI YA\u015eATSIN DESEM NE\u003cbr\u003eKADAR ZAL\u0130M OLURUM D\u0130M\u0130!!!\u003cbr\u003eThu Jan 08 14:25:56 +0000 2015"}, {"group": 949, "id": 11, "label": "553213698173857793", "shape": "dot", "size": 10, "title": "553213698173857793\u003cbr\u003e@Mehmet_Canturk #islamofobiyekars\u0131birlikol #TerrorismHasNoReligion\u003cbr\u003eThu Jan 08 15:36:38 +0000 2015"}, {"group": 949, "id": 12, "label": "553225245268934656", "shape": "dot", "size": 10, "title": "553225245268934656\u003cbr\u003e@Mehmet_Canturk @canuzun3535 CENNETTE KEVSER IRMA\u011eININ\u003cbr\u003eBA\u015eINDADIR BU G\u00dcNAHSIZLAR ....\u003cbr\u003eThu Jan 08 16:22:31 +0000 2015"}, {"group": 949, "id": 13, "label": "553244697230315521", "shape": "dot", "size": 10, "title": "553244697230315521\u003cbr\u003e@Mehmet_Canturk @shahirahalyahya Please tweet a\u003cbr\u003epicture of Syria where Islamic\u003cbr\u003epeople were killed by Islamic\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:39:49 +0000 2015"}, {"group": 949, "id": 14, "label": "553289413732491264", "shape": "dot", "size": 10, "title": "553289413732491264\u003cbr\u003e@Mehmet_Canturk https://t.co/GBDL2PA64S\nHamas are not killing\u003cbr\u003echildren?\u003cbr\u003eThu Jan 08 20:37:30 +0000 2015"}, {"group": 949, "id": 15, "label": "553449044451024896", "shape": "dot", "size": 10, "title": "553449044451024896\u003cbr\u003e@Mehmet_Canturk @akyurekler\u003cbr\u003eFri Jan 09 07:11:49 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

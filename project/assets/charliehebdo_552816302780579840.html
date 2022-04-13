@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1733, "id": 0, "label": "552816302780579840", "shape": "dot", "size": 10, "title": "552816302780579840\u003cbr\u003e\u201cI don\u2019t feel as though\u003cbr\u003eI\u2019m killing someone with a\u003cbr\u003epen.\" -Stephane Charbonnier 1967-2015 #CharlieHebdo\u003cbr\u003ehttp://t.co/RmJlpSsaNt\u003cbr\u003eWed Jan 07 13:17:32 +0000 2015"}, {"group": 1733, "id": 1, "label": "552817905587748864", "shape": "dot", "size": 10, "title": "552817905587748864\u003cbr\u003eRT @notrexmurphy \u201cI don\u2019t feel\u003cbr\u003eas though I\u2019m killing someone\u003cbr\u003ewith a pen\" Stephane Charbonnier\u003cbr\u003e1967-2015 #CharlieHebdo http://t.co/ajcUCHIypX\u003cbr\u003eWed Jan 07 13:23:54 +0000 2015"}, {"group": 1733, "id": 2, "label": "552818673858404352", "shape": "dot", "size": 10, "title": "552818673858404352\u003cbr\u003e\u201c@notrexmurphy: \u201cI don\u2019t feel as\u003cbr\u003ethough I\u2019m killing someone with\u003cbr\u003ea pen\" Stephane Charbonnier 1967-2015\u003cbr\u003e#CharlieHebdo http://t.co/JxodC0qoXr\u201d\u003cbr\u003eWed Jan 07 13:26:57 +0000 2015"}, {"group": 1733, "id": 3, "label": "552819273044074496", "shape": "dot", "size": 10, "title": "552819273044074496\u003cbr\u003e@notrexmurphy @GabyEtchelecu No matar\u00e1n la\u003cbr\u003ecultura y la libertad. Mataron\u003cbr\u003ea #Cabu, #Wolinski, #Charb, #Tignous\u003cbr\u003ey otros m\u00e1s... otros vendr\u00e1n!\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:29:20 +0000 2015"}, {"group": 1733, "id": 4, "label": "552819644776869890", "shape": "dot", "size": 10, "title": "552819644776869890\u003cbr\u003e@notrexmurphy @MitchBenn Some pitiful people\u003cbr\u003eare clearly frightened of the\u003cbr\u003epen.\u003cbr\u003eWed Jan 07 13:30:48 +0000 2015"}, {"group": 1733, "id": 5, "label": "552819853594488833", "shape": "dot", "size": 10, "title": "552819853594488833\u003cbr\u003e\u201cI don\u2019t feel as though\u003cbr\u003eI\u2019m killing someone with a\u003cbr\u003epen.\" -Stephane Charbonnier 1967-2015 #CharlieHebdo\u003cbr\u003ehttp://t.co/MAZ2XvTUPY  @notrexmurphy\u003cbr\u003eWed Jan 07 13:31:38 +0000 2015"}, {"group": 1733, "id": 6, "label": "552820105634390016", "shape": "dot", "size": 10, "title": "552820105634390016\u003cbr\u003e@notrexmurphy @MooreintheAM RIP\u003cbr\u003eWed Jan 07 13:32:38 +0000 2015"}, {"group": 1733, "id": 7, "label": "552821307625451520", "shape": "dot", "size": 10, "title": "552821307625451520\u003cbr\u003eRIP. MT \u201c@notrexmurphy:\"I don\u2019t feel\u003cbr\u003eas though I\u2019m killing someone\u003cbr\u003ewith a pen.\"-Stephane Charbonnier. http://t.co/Z18QKcb1aG\u201d\u003cbr\u003e#CharlieHebdo\u003cbr\u003eWed Jan 07 13:37:25 +0000 2015"}, {"group": 1733, "id": 8, "label": "552821345914847232", "shape": "dot", "size": 10, "title": "552821345914847232\u003cbr\u003e@notrexmurphy Lines have apparently been\u003cbr\u003edrawn. We know that neither\u003cbr\u003eside will yield what they\u003cbr\u003ebelieve. I fear for the\u003cbr\u003efuture of our planet\u003cbr\u003eWed Jan 07 13:37:34 +0000 2015"}, {"group": 1733, "id": 10, "label": "552822411826298882", "shape": "dot", "size": 10, "title": "552822411826298882\u003cbr\u003e@notrexmurphy #unlawfuleviction  \nWeds 7th\u003cbr\u003eof Jan 12:00pm 16 Buncer\u003cbr\u003eLane, Blackburn BB2 6SE #HELP\u003cbr\u003e@stand4commonlaw #RT #Thanks\u003cbr\u003eWed Jan 07 13:41:48 +0000 2015"}, {"group": 1733, "id": 12, "label": "552825611405000704", "shape": "dot", "size": 10, "title": "552825611405000704\u003cbr\u003e@notrexmurphy @selengulun @Charlie_Hebdo_  \"I\u003cbr\u003edon\u0027t feel as though I\u0027m\u003cbr\u003ekilling someone with a pen.\"\u003cbr\u003e-Stephane Charbonnier\u003cbr\u003eWed Jan 07 13:54:31 +0000 2015"}, {"group": 1733, "id": 13, "label": "552830731056324609", "shape": "dot", "size": 10, "title": "552830731056324609\u003cbr\u003e@notrexmurphy @BlueRaveFinn damn. This is\u003cbr\u003ebrutal. WTF were the police\u003cbr\u003eand security services? This seems\u003cbr\u003elike a no brainer to\u003cbr\u003eprotect\u003cbr\u003eWed Jan 07 14:14:52 +0000 2015"}, {"group": 1733, "id": 15, "label": "552831021943513089", "shape": "dot", "size": 10, "title": "552831021943513089\u003cbr\u003e@notrexmurphy Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/rZJc1YTxj4\u003cbr\u003eWed Jan 07 14:16:01 +0000 2015"}, {"group": 1733, "id": 17, "label": "552833084081451008", "shape": "dot", "size": 10, "title": "552833084081451008\u003cbr\u003e\u201cI don\u2019t feel as though\u003cbr\u003eI\u2019m killing someone with a\u003cbr\u003epen.\" -Stephane Charbonnier 1967-2015 #CharlieHebdo\u003cbr\u003ehttp://t.co/dDLxmci88I @notrexmurphy\u003cbr\u003eWed Jan 07 14:24:13 +0000 2015"}, {"group": 1733, "id": 18, "label": "552835190645460993", "shape": "dot", "size": 10, "title": "552835190645460993\u003cbr\u003e@notrexmurphy @dmitte makes me cry.\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:32:35 +0000 2015"}, {"group": 1733, "id": 9, "label": "552821947089059840", "shape": "dot", "size": 10, "title": "552821947089059840\u003cbr\u003e@arikan @ismailsaymaz @notrexmurphy http://t.co/Ij7Jg5n9xE\u003cbr\u003eWed Jan 07 13:39:57 +0000 2015"}, {"group": 1733, "id": 11, "label": "552825035568975873", "shape": "dot", "size": 10, "title": "552825035568975873\u003cbr\u003e@TariqBruno We will defeat the\u003cbr\u003eenemies of freedom. I\u0027m certain\u003cbr\u003e@notrexmurphy\u003cbr\u003eWed Jan 07 13:52:14 +0000 2015"}, {"group": 1733, "id": 14, "label": "552831002356506624", "shape": "dot", "size": 10, "title": "552831002356506624\u003cbr\u003e@nika7k @notrexmurphy Apparently they didn\u0027t\u003cbr\u003ethink so. :(\u003cbr\u003eWed Jan 07 14:15:56 +0000 2015"}, {"group": 1733, "id": 19, "label": "552846967509110785", "shape": "dot", "size": 10, "title": "552846967509110785\u003cbr\u003e.@nika7k @notrexmurphy @BlueRaveFinn The offices,\u003cbr\u003e\u0026amp; some cartoonists, were under\u003cbr\u003epolice protection. Police were killed\u003cbr\u003eby the gunmen.\u003cbr\u003eWed Jan 07 15:19:23 +0000 2015"}, {"group": 1733, "id": 20, "label": "552855225519071235", "shape": "dot", "size": 10, "title": "552855225519071235\u003cbr\u003e@nika7k @notrexmurphy @BlueRaveFinn The police\u003cbr\u003eofficers that were there were\u003cbr\u003ekilled also\u003cbr\u003eWed Jan 07 15:52:11 +0000 2015"}, {"group": 1733, "id": 16, "label": "552832025087209472", "shape": "dot", "size": 10, "title": "552832025087209472\u003cbr\u003e@BlueRaveFinn @notrexmurphy these journos were\u003cbr\u003esome of the MOST at\u003cbr\u003erisk in all of france\u003cbr\u003e- this is incompetence #CharlieHebdo\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:20:00 +0000 2015"}, {"group": 1733, "id": 21, "label": "552865970352820225", "shape": "dot", "size": 10, "title": "552865970352820225\u003cbr\u003e@OnlyWhiteTiger @notrexmurphy @BlueRaveFinn then sadly\u003cbr\u003ethey were not given the\u003cbr\u003enecessary resources considering the risks\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:34:53 +0000 2015"}, {"group": 1733, "id": 22, "label": "552869091888070657", "shape": "dot", "size": 10, "title": "552869091888070657\u003cbr\u003e@nika7k @notrexmurphy @BlueRaveFinn No there\u003cbr\u003ewere not enough\u003cbr\u003eWed Jan 07 16:47:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 13, "to": 19, "weight": 1}, {"from": 13, "to": 20, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

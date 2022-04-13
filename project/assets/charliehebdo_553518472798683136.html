@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1928, "id": 0, "label": "553518472798683136", "shape": "dot", "size": 10, "title": "553518472798683136\u003cbr\u003eMORE: Official: French terror suspects\u003cbr\u003ewant to be martyrs; are\u003cbr\u003eholed up with hostage north\u003cbr\u003eof Paris: http://t.co/sJXudtGUOV\u003cbr\u003eFri Jan 09 11:47:42 +0000 2015"}, {"group": 1928, "id": 1, "label": "553518706681053184", "shape": "dot", "size": 10, "title": "553518706681053184\u003cbr\u003e@AP easy. Wish granted. Just\u003cbr\u003estep outside!!\u003cbr\u003eFri Jan 09 11:48:38 +0000 2015"}, {"group": 1928, "id": 2, "label": "553518879222161408", "shape": "dot", "size": 10, "title": "553518879222161408\u003cbr\u003eRT \u201c@AP: MORE: Official: French\u003cbr\u003eterror suspects want to be\u003cbr\u003emartyrs; are holed up with\u003cbr\u003ehostage north of Paris: http://t.co/dVHsry8ALE\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:49:19 +0000 2015"}, {"group": 1928, "id": 3, "label": "553518923409547264", "shape": "dot", "size": 10, "title": "553518923409547264\u003cbr\u003e@AP that\u0027s an easy request\u003cbr\u003eto grant\u003cbr\u003eFri Jan 09 11:49:29 +0000 2015"}, {"group": 1928, "id": 4, "label": "553519009149100032", "shape": "dot", "size": 10, "title": "553519009149100032\u003cbr\u003e@AP Let them due as\u003cbr\u003emartyrs then.\u003cbr\u003eFri Jan 09 11:49:50 +0000 2015"}, {"group": 1928, "id": 5, "label": "553519647400554497", "shape": "dot", "size": 10, "title": "553519647400554497\u003cbr\u003e@AP http://t.co/s1eGeuX6OR\u003cbr\u003eFri Jan 09 11:52:22 +0000 2015"}, {"group": 1928, "id": 6, "label": "553519787943690242", "shape": "dot", "size": 10, "title": "553519787943690242\u003cbr\u003eRT @AP: French terror suspects\u003cbr\u003ewant to be martyrs; are\u003cbr\u003eholed up with hostage north\u003cbr\u003eof Paris: http://t.co/HugPOFmqe8\u003cbr\u003eFri Jan 09 11:52:56 +0000 2015"}, {"group": 1928, "id": 7, "label": "553519836249071617", "shape": "dot", "size": 10, "title": "553519836249071617\u003cbr\u003e@AP\nConceal and carry law coming\u003cbr\u003eto France...\u003cbr\u003eFri Jan 09 11:53:07 +0000 2015"}, {"group": 1928, "id": 8, "label": "553520097395245056", "shape": "dot", "size": 10, "title": "553520097395245056\u003cbr\u003e@AP give the fuckers there\u003cbr\u003ewish\u003cbr\u003eFri Jan 09 11:54:09 +0000 2015"}, {"group": 1928, "id": 9, "label": "553520342111494145", "shape": "dot", "size": 10, "title": "553520342111494145\u003cbr\u003e\u201c@AP: MORE: Official: French terror\u003cbr\u003esuspects want to be martyrs;\u003cbr\u003eare holed up with hostage\u003cbr\u003enorth of Paris: http://t.co/LCSQOl65DG\u201d\u003cbr\u003eFri Jan 09 11:55:08 +0000 2015"}, {"group": 1928, "id": 10, "label": "553520622920536064", "shape": "dot", "size": 10, "title": "553520622920536064\u003cbr\u003e\u201c@AP: MORE: Official: French terror\u003cbr\u003esuspects want to be martyrs;\u003cbr\u003eare holed up with hostage\u003cbr\u003enorth of Paris: http://t.co/EHbYtzi6pG\u201d\u003cbr\u003eFri Jan 09 11:56:15 +0000 2015"}, {"group": 1928, "id": 11, "label": "553520926906941440", "shape": "dot", "size": 10, "title": "553520926906941440\u003cbr\u003e@AP @lyorcohen would like me\u003cbr\u003eto say we love you\u003cbr\u003e\u0026amp; all know ddrs caused\u003cbr\u003ethis f\u0027d up situation. Please\u003cbr\u003ebe like Joan of Arc\u003cbr\u003e\u0026amp; listen to Him.\u003cbr\u003eFri Jan 09 11:57:27 +0000 2015"}, {"group": 1928, "id": 12, "label": "553521113733824513", "shape": "dot", "size": 10, "title": "553521113733824513\u003cbr\u003e@AP Come to the window\u003cbr\u003eand we will grant you\u003cbr\u003eyour wish!!\u003cbr\u003eFri Jan 09 11:58:12 +0000 2015"}, {"group": 1928, "id": 13, "label": "553521154921881600", "shape": "dot", "size": 10, "title": "553521154921881600\u003cbr\u003e@AP let\u0027s not forget the\u003cbr\u003eClinton(s) frequenting the Royal pedophile\u003cbr\u003epalace.\u003cbr\u003eFri Jan 09 11:58:21 +0000 2015"}, {"group": 1928, "id": 14, "label": "553521233162031104", "shape": "dot", "size": 10, "title": "553521233162031104\u003cbr\u003e@AP  \nFuck! If you\u003cbr\u003edo, that rat hole becomes\u003cbr\u003ea mosque! Fuck this 7th\u003cbr\u003ec barbarism!\u003cbr\u003eFri Jan 09 11:58:40 +0000 2015"}, {"group": 1928, "id": 15, "label": "553521356378476544", "shape": "dot", "size": 10, "title": "553521356378476544\u003cbr\u003e@AP capture them, shave them,\u003cbr\u003eand march them through the\u003cbr\u003estreets of Paris like WWII\u003cbr\u003ecollaborators. #JeSuisCharlie #Cowards\u003cbr\u003eFri Jan 09 11:59:09 +0000 2015"}, {"group": 1928, "id": 16, "label": "553521412934475777", "shape": "dot", "size": 10, "title": "553521412934475777\u003cbr\u003eCapturing them alive wd ruin\u003cbr\u003etheir plan \u201c@AP French terror\u003cbr\u003esuspects want to be martyrs;\u003cbr\u003eare holed up north of\u003cbr\u003eParis: http://t.co/qj4T411Nyf\u201d\u003cbr\u003eFri Jan 09 11:59:23 +0000 2015"}, {"group": 1928, "id": 17, "label": "553521650831196160", "shape": "dot", "size": 10, "title": "553521650831196160\u003cbr\u003eThe 144 virgins to line\u003cbr\u003eup\u201c@AP: MORE: Official: French terror\u003cbr\u003esuspects want to be martyrs;\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:00:20 +0000 2015"}, {"group": 1928, "id": 18, "label": "553521787225796608", "shape": "dot", "size": 10, "title": "553521787225796608\u003cbr\u003e@AP Not sure how taking\u003cbr\u003ea hostage says \"Martyr\". \u003cbr\u003eRelease the hostage, the french\u003cbr\u003ewill then martyr you.\u003cbr\u003eFri Jan 09 12:00:52 +0000 2015"}, {"group": 1928, "id": 19, "label": "553522878902468608", "shape": "dot", "size": 10, "title": "553522878902468608\u003cbr\u003e@AP everyone in France will\u003cbr\u003ebe celebrating, but many of\u003cbr\u003ethem will undoubtedly be celebrating\u003cbr\u003eand acknowledging their martyr status\u003cbr\u003e\u003cbr\u003eFri Jan 09 12:05:12 +0000 2015"}, {"group": 1928, "id": 20, "label": "553524538903109632", "shape": "dot", "size": 10, "title": "553524538903109632\u003cbr\u003e@brotherbell @AP what? will they?\u003cbr\u003ethough I do think many\u003cbr\u003ein France will treat them\u003cbr\u003eas martyrs when they do\u003cbr\u003eeventually die!\u003cbr\u003eFri Jan 09 12:11:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 18, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

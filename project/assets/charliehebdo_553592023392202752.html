@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1616, "id": 0, "label": "553592023392202752", "shape": "dot", "size": 10, "title": "553592023392202752\u003cbr\u003eSome hostages seen leaving Paris\u003cbr\u003ekosher market after police raid\u003cbr\u003ehttp://t.co/mavZxj17F7 http://t.co/arlafQgjK0\u003cbr\u003eFri Jan 09 16:39:58 +0000 2015"}, {"group": 1616, "id": 1, "label": "553592828174278656", "shape": "dot", "size": 10, "title": "553592828174278656\u003cbr\u003e@mashable @Varneyco great work.\u003cbr\u003eFri Jan 09 16:43:10 +0000 2015"}, {"group": 1616, "id": 2, "label": "553593283012993025", "shape": "dot", "size": 10, "title": "553593283012993025\u003cbr\u003e@mashable @DailymotionUSA Here the site\u003cbr\u003eof the second space of\u003cbr\u003ehostage in PARIS !! \u0026lt;33\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:44:58 +0000 2015"}, {"group": 1616, "id": 3, "label": "553593500890324992", "shape": "dot", "size": 10, "title": "553593500890324992\u003cbr\u003e@mashable @DailymotionUSA CT win FUCK\u003cbr\u003eISLAM\u003cbr\u003eFri Jan 09 16:45:50 +0000 2015"}, {"group": 1616, "id": 4, "label": "553593730859794433", "shape": "dot", "size": 10, "title": "553593730859794433\u003cbr\u003e\u201c@mashable: Some hostages seen leaving\u003cbr\u003eParis kosher market after police\u003cbr\u003eraid http://t.co/nUHx717N1y http://t.co/Wy6BSePuTz\u201d\u003cbr\u003eFri Jan 09 16:46:45 +0000 2015"}, {"group": 1616, "id": 6, "label": "553596611155083264", "shape": "dot", "size": 10, "title": "553596611155083264\u003cbr\u003e@mashable @Varneyco The time has\u003cbr\u003ecome for work to begin\u003cbr\u003eon Keystone XL, in spite\u003cbr\u003eof Obama\u0027s stonewalling. One man\u003cbr\u003ecannot block this project.\u003cbr\u003eFri Jan 09 16:58:12 +0000 2015"}, {"group": 1616, "id": 7, "label": "553598848707592192", "shape": "dot", "size": 10, "title": "553598848707592192\u003cbr\u003e@mashable http://t.co/8lSzs5XoWn\nhttp://t.co/xHGAydawQD\nhttp://t.co/QglsY8mprY\nhttp://t.co/d4g2QawXfI\nhttp://t.co/6l10yaC24X\u003cbr\u003eFri Jan 09 17:07:05 +0000 2015"}, {"group": 1616, "id": 8, "label": "553670423280627713", "shape": "dot", "size": 10, "title": "553670423280627713\u003cbr\u003ePowerful photo of the day\u003cbr\u003eMT \u201c@mashable: hostages leaving Paris\u003cbr\u003ekosher mkt after police raid\u003cbr\u003ehttp://t.co/htHVyw8rq3 http://t.co/xVcMQAO6n0\u201d\u003cbr\u003eFri Jan 09 21:51:30 +0000 2015"}, {"group": 1616, "id": 9, "label": "553688059280379904", "shape": "dot", "size": 10, "title": "553688059280379904\u003cbr\u003e@mashable prayers and thoughts are\u003cbr\u003ewith every victim the bastards\u003cbr\u003etormented. ..\u003cbr\u003eFri Jan 09 23:01:35 +0000 2015"}, {"group": 1616, "id": 5, "label": "553593995914665984", "shape": "dot", "size": 10, "title": "553593995914665984\u003cbr\u003e@mashable @DailymotionUSA @yuka120700\u003cbr\u003eFri Jan 09 16:47:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 2, "to": 5, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

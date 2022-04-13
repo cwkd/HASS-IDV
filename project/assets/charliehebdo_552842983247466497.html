@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 580, "id": 0, "label": "552842983247466497", "shape": "dot", "size": 10, "title": "552842983247466497\u003cbr\u003e#CharlieHebdo\u0027s editor Charb, assassinated today,\u003cbr\u003esaid in 2012:\"I prefer to\u003cbr\u003edie standing than to live\u003cbr\u003eon my knees.\" http://t.co/fopZNpukcJ\u003cbr\u003eWed Jan 07 15:03:33 +0000 2015"}, {"group": 580, "id": 1, "label": "552844376100319232", "shape": "dot", "size": 10, "title": "552844376100319232\u003cbr\u003e@PzFeed @goutch kien RDI ce\u003cbr\u003ematin un a demand\u00e9 a\u003cbr\u003egarnotte;Croyez vous que les caricatures\u003cbr\u003e\u00e9taient de la provocation? Lis\u003cbr\u003eca mon garcon\u003cbr\u003eWed Jan 07 15:09:05 +0000 2015"}, {"group": 580, "id": 2, "label": "552844730565136385", "shape": "dot", "size": 10, "title": "552844730565136385\u003cbr\u003e@PzFeed\u003cbr\u003eWed Jan 07 15:10:29 +0000 2015"}, {"group": 580, "id": 4, "label": "552845463846924288", "shape": "dot", "size": 10, "title": "552845463846924288\u003cbr\u003eV\u00eda @PzFeed: Editor de #CharlieHebdo\u0027s\u003cbr\u003easesinado hoy, dijo en 2012\u003cbr\u003e\"Prefiero morir de pie que\u003cbr\u003evivir arrodillado\" http://t.co/OkmpeNqNMR\u003cbr\u003eWed Jan 07 15:13:24 +0000 2015"}, {"group": 580, "id": 5, "label": "552846316964175872", "shape": "dot", "size": 10, "title": "552846316964175872\u003cbr\u003e@PzFeed @holbornstrikes \n\nRIP Monsieur...\u003cbr\u003eWed Jan 07 15:16:48 +0000 2015"}, {"group": 580, "id": 6, "label": "552846386169790465", "shape": "dot", "size": 10, "title": "552846386169790465\u003cbr\u003e@PzFeed #EmelioZapataQuote\u003cbr\u003eWed Jan 07 15:17:04 +0000 2015"}, {"group": 580, "id": 7, "label": "552846526356414464", "shape": "dot", "size": 10, "title": "552846526356414464\u003cbr\u003e@PzFeed Al Tiftach Pe L\u0027suten!\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:17:37 +0000 2015"}, {"group": 580, "id": 8, "label": "552849222887043074", "shape": "dot", "size": 10, "title": "552849222887043074\u003cbr\u003e\u201c@PzFeed: \"i prefer to die\u003cbr\u003estanding than to live on\u003cbr\u003emy knees.\" http://t.co/t2p28Ee3Bj\u201d @jpmoroge\u003cbr\u003eWed Jan 07 15:28:20 +0000 2015"}, {"group": 580, "id": 9, "label": "552850213225127936", "shape": "dot", "size": 10, "title": "552850213225127936\u003cbr\u003e@PzFeed @Dasssha2010 \u043c\u0435\u0447\u0442\u044b \u0441\u0431\u044b\u0432\u0430\u044e\u0442\u0441\u044f...\u003cbr\u003eWed Jan 07 15:32:16 +0000 2015"}, {"group": 580, "id": 10, "label": "552856757564108800", "shape": "dot", "size": 10, "title": "552856757564108800\u003cbr\u003e@PzFeed @YannickNet \nso sad...fucking islam!\u003cbr\u003eRIP bro\u003cbr\u003eWed Jan 07 15:58:17 +0000 2015"}, {"group": 580, "id": 11, "label": "552856935834206208", "shape": "dot", "size": 10, "title": "552856935834206208\u003cbr\u003e@PzFeed @JedediahBila #LIVEFREEORDIE\u003cbr\u003eWed Jan 07 15:58:59 +0000 2015"}, {"group": 580, "id": 12, "label": "552857773361201153", "shape": "dot", "size": 10, "title": "552857773361201153\u003cbr\u003e@PzFeed @charlesadler\u003cbr\u003eWed Jan 07 16:02:19 +0000 2015"}, {"group": 580, "id": 13, "label": "552858413773107201", "shape": "dot", "size": 10, "title": "552858413773107201\u003cbr\u003e@PzFeed @ednajm I guess he\u003cbr\u003egot his wish...\u003cbr\u003eWed Jan 07 16:04:52 +0000 2015"}, {"group": 580, "id": 14, "label": "552860734695030784", "shape": "dot", "size": 10, "title": "552860734695030784\u003cbr\u003e@PzFeed @JedediahBila Good man. Hope\u003cbr\u003ethey catch the bastards.\u003cbr\u003eWed Jan 07 16:14:05 +0000 2015"}, {"group": 580, "id": 15, "label": "552861052195454977", "shape": "dot", "size": 10, "title": "552861052195454977\u003cbr\u003e@PzFeed @JJINGHAM And he did.\u003cbr\u003e\u003cbr\u003eWed Jan 07 16:15:21 +0000 2015"}, {"group": 580, "id": 16, "label": "552864194354479104", "shape": "dot", "size": 10, "title": "552864194354479104\u003cbr\u003e@PzFeed Die standing it is\u003cbr\u003ethen..\u003cbr\u003eWed Jan 07 16:27:50 +0000 2015"}, {"group": 580, "id": 17, "label": "552871477092286464", "shape": "dot", "size": 10, "title": "552871477092286464\u003cbr\u003e@PzFeed definition of a man...a\u003cbr\u003ehero.\u003cbr\u003eWed Jan 07 16:56:46 +0000 2015"}, {"group": 580, "id": 18, "label": "552873107036569600", "shape": "dot", "size": 10, "title": "552873107036569600\u003cbr\u003e#RIP #CharlieHebdo editor, who said\u003cbr\u003ein 2012: \"I prefer to\u003cbr\u003edie standing than to live\u003cbr\u003eon my knees.\"\n\nvia @PzFeed #tcot\u003cbr\u003ehttp://t.co/IDOKFUJjn3\u003cbr\u003eWed Jan 07 17:03:15 +0000 2015"}, {"group": 580, "id": 19, "label": "552880429221806081", "shape": "dot", "size": 10, "title": "552880429221806081\u003cbr\u003e@PzFeed @SergeiMinaev an idiot?\u003cbr\u003eWed Jan 07 17:32:21 +0000 2015"}, {"group": 580, "id": 3, "label": "552845237492936706", "shape": "dot", "size": 10, "title": "552845237492936706\u003cbr\u003e@PzFeed @goutch editor Charb, assassinated\u003cbr\u003etoday, said in 2012:\"I prefer\u003cbr\u003eto die standing than to\u003cbr\u003elive on my knees.\"\u003cbr\u003eWed Jan 07 15:12:30 +0000 2015"}, {"group": 580, "id": 20, "label": "552968613293211650", "shape": "dot", "size": 10, "title": "552968613293211650\u003cbr\u003e@MarieMoroge @PzFeed @jpmoroge that is\u003cbr\u003eexactly how I feel when\u003cbr\u003eI oppose #YesAllWomen ( Feminist\u003cbr\u003e) and Homosexuals( #LGBT )\u003cbr\u003e\u003cbr\u003eWed Jan 07 23:22:45 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 1, "to": 3, "weight": 1}, {"from": 8, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

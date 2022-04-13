@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 182, "id": 0, "label": "552813155572006912", "shape": "dot", "size": 10, "title": "552813155572006912\u003cbr\u003eInstead of focusing on the\u003cbr\u003erecent dead in Paris, we\u003cbr\u003eshould keep in mind that\u003cbr\u003eIslamists have committed 24,784 deadly\u003cbr\u003eattacks since 9/11.\u003cbr\u003eWed Jan 07 13:05:01 +0000 2015"}, {"group": 182, "id": 1, "label": "552814335656198144", "shape": "dot", "size": 10, "title": "552814335656198144\u003cbr\u003e@securitythinker @islamisbad More important, every\u003cbr\u003eMuslim is a potential \"Islamist\".\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:09:43 +0000 2015"}, {"group": 182, "id": 2, "label": "552814515168247808", "shape": "dot", "size": 10, "title": "552814515168247808\u003cbr\u003e@securitythinker In America theyre called\u003cbr\u003e\"racial\" discrimination cases. WAKE UP\u003cbr\u003eUSA. Malik Shabazz-Islamist rallied Ferguson\u003cbr\u003eis O\u0027s buddy\u003cbr\u003eWed Jan 07 13:10:25 +0000 2015"}, {"group": 182, "id": 3, "label": "552815002798026752", "shape": "dot", "size": 10, "title": "552815002798026752\u003cbr\u003e@securitythinker @RuralLeader If we add\u003cbr\u003eup all attacks prompted by\u003cbr\u003ereligious fundamentalism, its the big\u003cbr\u003earms spend christians head the\u003cbr\u003elist\u003cbr\u003eWed Jan 07 13:12:22 +0000 2015"}, {"group": 182, "id": 4, "label": "552816223655063552", "shape": "dot", "size": 10, "title": "552816223655063552\u003cbr\u003e@securitythinker @RuralLeader 3000 died in\u003cbr\u003e11/9, same number killed every\u003cbr\u003e5-6 weeks by firearms in\u003cbr\u003eUSA\n\nHow many died in Iraq\u003cbr\u003e\u0026amp; Afghanistan?\u003cbr\u003eWed Jan 07 13:17:13 +0000 2015"}, {"group": 182, "id": 5, "label": "552818578496708608", "shape": "dot", "size": 10, "title": "552818578496708608\u003cbr\u003e@securitythinker  All the while\u003cbr\u003epeople excuse atrocities because they\u003cbr\u003eare NOT `true muslims` this\u003cbr\u003eevil will continue.#JeSuisCharlie\u003cbr\u003eWed Jan 07 13:26:34 +0000 2015"}, {"group": 182, "id": 6, "label": "552818987881742336", "shape": "dot", "size": 10, "title": "552818987881742336\u003cbr\u003e@securitythinker @PoliticalLaughs Yes but we\u003cbr\u003eare the bad ones because\u003cbr\u003ewe went to legitimate war!\u003cbr\u003eYou forgot that part! ;)\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:28:12 +0000 2015"}, {"group": 182, "id": 7, "label": "552822964765212672", "shape": "dot", "size": 10, "title": "552822964765212672\u003cbr\u003e.@securitythinker @Aussie_Ace It\u2019s not \u201cinstead\u201d.\u003cbr\u003eIt\u2019s not a case of\u003cbr\u003eone or the other.\u003cbr\u003eWed Jan 07 13:44:00 +0000 2015"}, {"group": 182, "id": 9, "label": "552826060178735105", "shape": "dot", "size": 10, "title": "552826060178735105\u003cbr\u003e@securitythinker @ex3Tory \nAnd, add the\u003cbr\u003emulti-1000\u0027s US/NATO have dispatched along\u003cbr\u003ew/ societies destroyed\nWho wins?\nWe all\u003cbr\u003elose\u003cbr\u003eWed Jan 07 13:56:18 +0000 2015"}, {"group": 182, "id": 10, "label": "552863304851271680", "shape": "dot", "size": 10, "title": "552863304851271680\u003cbr\u003e@securitythinker \nNot either / or.\u003cbr\u003eBoth. Focus on Paris and\u003cbr\u003ethe others. It is us\u003cbr\u003evs them.\n@dananaby\u003cbr\u003eWed Jan 07 16:24:18 +0000 2015"}, {"group": 182, "id": 11, "label": "553604534019584001", "shape": "dot", "size": 10, "title": "553604534019584001\u003cbr\u003e@securitythinker @famousquotenet almost all of\u003cbr\u003ethem on other muslims, and\u003cbr\u003earmed and trained by israel\u003cbr\u003eand the west. get your\u003cbr\u003efacts straight.\u003cbr\u003eFri Jan 09 17:29:41 +0000 2015"}, {"group": 182, "id": 14, "label": "553612220299370496", "shape": "dot", "size": 10, "title": "553612220299370496\u003cbr\u003e@securitythinker @famousquotenet daily reminder that\u003cbr\u003e#France has no freedom of\u003cbr\u003espeech, no matter what #CharlieHebdo\u003cbr\u003ethinks\u003cbr\u003eFri Jan 09 18:00:13 +0000 2015"}, {"group": 182, "id": 15, "label": "553649125225680899", "shape": "dot", "size": 10, "title": "553649125225680899\u003cbr\u003e@securitythinker @famousquotenet Why are you\u003cbr\u003ecalling them \u0027Islamists\u0027 instead of\u003cbr\u003eMuslims?\u003cbr\u003eFri Jan 09 20:26:52 +0000 2015"}, {"group": 182, "id": 8, "label": "552824578070691840", "shape": "dot", "size": 10, "title": "552824578070691840\u003cbr\u003e@esseeeayeenn @securitythinker \nAgree!\u003cbr\u003eWed Jan 07 13:50:25 +0000 2015"}, {"group": 182, "id": 12, "label": "553605469886234624", "shape": "dot", "size": 10, "title": "553605469886234624\u003cbr\u003e@justin_casey_84 You are delusionally insane.\u003cbr\u003e\u003cbr\u003eFri Jan 09 17:33:24 +0000 2015"}, {"group": 182, "id": 13, "label": "553605821792522240", "shape": "dot", "size": 10, "title": "553605821792522240\u003cbr\u003e@famousquotenet don\u0027t make me laugh,\u003cbr\u003eu must live in the\u003cbr\u003eusa to be this ignorant\u003cbr\u003eabout whats going on. absolute\u003cbr\u003ebaloon..\u003cbr\u003eFri Jan 09 17:34:48 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

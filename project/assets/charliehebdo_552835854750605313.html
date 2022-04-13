@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 476, "id": 0, "label": "552835854750605313", "shape": "dot", "size": 10, "title": "552835854750605313\u003cbr\u003e\u0027We should be able to\u003cbr\u003esatirise religion - religion should\u003cbr\u003ebe able to cope\u0027 http://t.co/mgu7P5oMs7\u003cbr\u003e(Pic: F Strazzari) http://t.co/UhvArPhM38\u003cbr\u003eWed Jan 07 14:35:13 +0000 2015"}, {"group": 476, "id": 1, "label": "552836096703602688", "shape": "dot", "size": 10, "title": "552836096703602688\u003cbr\u003e@Telegraph then dont blur out\u003cbr\u003e#CharlieHebdo !\u003cbr\u003eWed Jan 07 14:36:11 +0000 2015"}, {"group": 476, "id": 2, "label": "552836185958014976", "shape": "dot", "size": 10, "title": "552836185958014976\u003cbr\u003e@Telegraph \n#IslamIsPeace http://t.co/lHhiXcsWt9\u003cbr\u003eWed Jan 07 14:36:32 +0000 2015"}, {"group": 476, "id": 3, "label": "552836273556426753", "shape": "dot", "size": 10, "title": "552836273556426753\u003cbr\u003e@Telegraph no, we should have\u003cbr\u003econdemned religion to the dustbin\u003cbr\u003eof history at the end\u003cbr\u003eof the dark ages.\nIt isn\u0027t\u003cbr\u003esurviving satire.\u003cbr\u003eWed Jan 07 14:36:53 +0000 2015"}, {"group": 476, "id": 4, "label": "552836275443490818", "shape": "dot", "size": 10, "title": "552836275443490818\u003cbr\u003e@Telegraph Hypocrites\u003cbr\u003eWed Jan 07 14:36:53 +0000 2015"}, {"group": 476, "id": 5, "label": "552836305974231040", "shape": "dot", "size": 10, "title": "552836305974231040\u003cbr\u003e@Telegraph plz retweets HAPY NEW\u003cbr\u003eYEAR GUYS SHARE PASS IT\u003cbr\u003eON. http://t.co/IUhfDfx1wk \nhttp://t.co/TfdW20lKcK \u2026 http://t.co/MLSW8rmeVV\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:37:01 +0000 2015"}, {"group": 476, "id": 6, "label": "552836332226379776", "shape": "dot", "size": 10, "title": "552836332226379776\u003cbr\u003e@Telegraph It\u0027s only the weak\u003cbr\u003ewho fear being satirized.\u003cbr\u003eWed Jan 07 14:37:07 +0000 2015"}, {"group": 476, "id": 7, "label": "552836397045149696", "shape": "dot", "size": 10, "title": "552836397045149696\u003cbr\u003e@Telegraph https://t.co/fz7z6XacUQ\u003cbr\u003eWed Jan 07 14:37:22 +0000 2015"}, {"group": 476, "id": 8, "label": "552836543162097664", "shape": "dot", "size": 10, "title": "552836543162097664\u003cbr\u003e@Telegraph .Oh we will UK\u003cbr\u003epress..we will..its you lot who\u003cbr\u003eare the cowards.\u003cbr\u003eWed Jan 07 14:37:57 +0000 2015"}, {"group": 476, "id": 9, "label": "552836685101555712", "shape": "dot", "size": 10, "title": "552836685101555712\u003cbr\u003e@Telegraph Then show the cartoons\u003cbr\u003eyou #cowards #CharlieHebdo\u003cbr\u003eWed Jan 07 14:38:31 +0000 2015"}, {"group": 476, "id": 10, "label": "552837273516257280", "shape": "dot", "size": 10, "title": "552837273516257280\u003cbr\u003e@Telegraph @AaronWorthing most religions do,\u003cbr\u003ewith one obvious exception...\u003cbr\u003eWed Jan 07 14:40:51 +0000 2015"}, {"group": 476, "id": 11, "label": "552837755475345408", "shape": "dot", "size": 10, "title": "552837755475345408\u003cbr\u003e@Telegraph #Sure 63 Drills Since\u003cbr\u003e93 Where #Drill = Actual\u003cbr\u003eTerrorist #Attack #Waco Explosion \u003cbr\u003ehttps://t.co/jDraBaijhj\u003cbr\u003eWed Jan 07 14:42:46 +0000 2015"}, {"group": 476, "id": 12, "label": "552838451817906177", "shape": "dot", "size": 10, "title": "552838451817906177\u003cbr\u003e@Telegraph says the people who\u003cbr\u003epixelated out a picture to\u003cbr\u003emake it \"politically correct\" grow\u003cbr\u003ea spine!\u003cbr\u003eWed Jan 07 14:45:32 +0000 2015"}, {"group": 476, "id": 13, "label": "552838736137183234", "shape": "dot", "size": 10, "title": "552838736137183234\u003cbr\u003e@Telegraph Christianity was often mocked\u003cbr\u003ein Charlie Hebdo but they\u003cbr\u003edidn\u0027t react\u003cbr\u003eWed Jan 07 14:46:40 +0000 2015"}, {"group": 476, "id": 14, "label": "552839298337497088", "shape": "dot", "size": 10, "title": "552839298337497088\u003cbr\u003e@Telegraph every front page to\u003cbr\u003ehave so called prophet Mohammadi\u003cbr\u003ein comical attire. Stand up\u003cbr\u003enot down!\u003cbr\u003eWed Jan 07 14:48:54 +0000 2015"}, {"group": 476, "id": 15, "label": "552840863072919554", "shape": "dot", "size": 10, "title": "552840863072919554\u003cbr\u003e@Telegraph @TelegraphWorld lets word it\u003cbr\u003ecorrectly. We make fun of\u003cbr\u003eChristianity all the time BUT\u003cbr\u003ereligion of peace is life\u003cbr\u003ethreatening\u003cbr\u003eWed Jan 07 14:55:07 +0000 2015"}, {"group": 476, "id": 16, "label": "552841695365455873", "shape": "dot", "size": 10, "title": "552841695365455873\u003cbr\u003e@Telegraph @anthonypermal #thinking\nTo Cope ...\u003cbr\u003ereligious should:\nturn other cheek\npray for\u003cbr\u003eenemies\n#forgive, for they know not\u003cbr\u003ewhat they do\u003cbr\u003eWed Jan 07 14:58:26 +0000 2015"}, {"group": 476, "id": 17, "label": "552842098987499521", "shape": "dot", "size": 10, "title": "552842098987499521\u003cbr\u003e@Telegraph @flyoverangel Don\u0027t you mean\u003cbr\u003eIslam should be able to\u003cbr\u003ecope?\u003cbr\u003eWed Jan 07 15:00:02 +0000 2015"}, {"group": 476, "id": 19, "label": "552843698997035009", "shape": "dot", "size": 10, "title": "552843698997035009\u003cbr\u003e@Telegraph #JournalKentucky #Commentary All the\u003cbr\u003emajor religions have operated this\u003cbr\u003eway as documented in the\u003cbr\u003ebook -\u0026gt; http://t.co/zmHc2H08ij\u003cbr\u003eWed Jan 07 15:06:23 +0000 2015"}, {"group": 476, "id": 18, "label": "552842165404332032", "shape": "dot", "size": 10, "title": "552842165404332032\u003cbr\u003e@KeepItRealist I do, not sure\u003cbr\u003eabout @Telegraph\u003cbr\u003eWed Jan 07 15:00:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 17, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1889, "id": 0, "label": "553484780093050880", "shape": "dot", "size": 10, "title": "553484780093050880\u003cbr\u003eGendarmerie arrive at the hostage\u003cbr\u003etaking in Dammartin-en-Goele. Latest: http://t.co/7N7uvClhWY\u003cbr\u003e(Pic:Martmann/Reuters) http://t.co/kntlzzmvHm\u003cbr\u003eFri Jan 09 09:33:49 +0000 2015"}, {"group": 1889, "id": 1, "label": "553485024809742336", "shape": "dot", "size": 10, "title": "553485024809742336\u003cbr\u003e\u201c@Telegraph: Gendarmerie arrive at the\u003cbr\u003ehostage taking in Dammartin-en-Goele. Latest:\u003cbr\u003ehttp://t.co/ILSoNNL1s3 http://t.co/5eIyL4eIaJ\u201d\u003cbr\u003eFri Jan 09 09:34:47 +0000 2015"}, {"group": 1889, "id": 2, "label": "553486008633671680", "shape": "dot", "size": 10, "title": "553486008633671680\u003cbr\u003e@Telegraph #france must eliminate terror\u003cbr\u003e\u0026amp; its supporters but not\u003cbr\u003especify #Islam terrorist has no\u003cbr\u003ereligion\u003cbr\u003eFri Jan 09 09:38:42 +0000 2015"}, {"group": 1889, "id": 3, "label": "553486223403405312", "shape": "dot", "size": 10, "title": "553486223403405312\u003cbr\u003e@Telegraph \n\nSipan Hemo, T\u00fcrkiye\u2019de I\u015e\u0130D\u003cbr\u003eter\u00f6ristlerini e\u011fiten \u00e7ok say\u0131da kamp\u003cbr\u003evar!\nhttp://t.co/6gQBnyHMt6\nhttp://t.co/A2GIkdkL3Q\u003cbr\u003eFri Jan 09 09:39:33 +0000 2015"}, {"group": 1889, "id": 4, "label": "553486275790254081", "shape": "dot", "size": 10, "title": "553486275790254081\u003cbr\u003e@Telegraph \u0130srailli T\u00fcmgeneral Aviv Ko\u00e7avi:\u003cbr\u003eT\u00fcrkiye\u2019de \u00fc\u00e7 El Kaide \u00fcss\u00fc\u003cbr\u003evar!\nhttp://t.co/tbC091JefY\nhttp://t.co/Qkqkx8wNDe\u003cbr\u003eFri Jan 09 09:39:46 +0000 2015"}, {"group": 1889, "id": 5, "label": "553486328474894336", "shape": "dot", "size": 10, "title": "553486328474894336\u003cbr\u003e@Telegraph \u201cReal Muslims Cannot be\u003cbr\u003eTerrorists\u201d\nhttp://t.co/bUS8fsIwi8\u003cbr\u003eFri Jan 09 09:39:58 +0000 2015"}, {"group": 1889, "id": 6, "label": "553486415506735105", "shape": "dot", "size": 10, "title": "553486415506735105\u003cbr\u003e@Telegraph \u201cG\u00fclen\u0027s Condemnation Message of\u003cbr\u003eTerrorism\u201d\nhttp://t.co/UgTjRAnYGT\nhttp://t.co/wbEQIDmNH1\nhttp://t.co/51XTa9uFR4\u003cbr\u003eFri Jan 09 09:40:19 +0000 2015"}, {"group": 1889, "id": 8, "label": "553487321933557760", "shape": "dot", "size": 10, "title": "553487321933557760\u003cbr\u003e@Telegraph Poor hostages :-(\u003cbr\u003eFri Jan 09 09:43:55 +0000 2015"}, {"group": 1889, "id": 9, "label": "553488375630798848", "shape": "dot", "size": 10, "title": "553488375630798848\u003cbr\u003e\u201c@Telegraph: Gendarmerie arrive at the\u003cbr\u003ehostage taking in Dammartin-en-Goele. That\u0027s\u003cbr\u003ea stock photo, taken from\u003cbr\u003ethe #doughnutchase in 2012!\u003cbr\u003eFri Jan 09 09:48:06 +0000 2015"}, {"group": 1889, "id": 10, "label": "553488609329049601", "shape": "dot", "size": 10, "title": "553488609329049601\u003cbr\u003e\u201c@Telegraph: Gendarmerie arrive at the\u003cbr\u003ehostage taking in Dammartin-en-Goele. Latest:\u003cbr\u003ehttp://t.co/Xmk1EEhKiN http://t.co/GAl30CDo0o\u201d\u003cbr\u003eFri Jan 09 09:49:02 +0000 2015"}, {"group": 1889, "id": 7, "label": "553486757929693184", "shape": "dot", "size": 10, "title": "553486757929693184\u003cbr\u003e@kaarigar @Telegraph this particular brand\u003cbr\u003eof terrorism undeniably has a\u003cbr\u003ereligion. There is no getting\u003cbr\u003eaway from that i\u0027m afraid.\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:41:41 +0000 2015"}, {"group": 1889, "id": 11, "label": "553489016473911296", "shape": "dot", "size": 10, "title": "553489016473911296\u003cbr\u003e@paddy_muldoon @Telegraph #Wahabiism a Saudi\u003cbr\u003eBedouin form of Islam is\u003cbr\u003emain cause of terror\u003cbr\u003eFri Jan 09 09:50:39 +0000 2015"}, {"group": 1889, "id": 12, "label": "553491538173771776", "shape": "dot", "size": 10, "title": "553491538173771776\u003cbr\u003e@cpjskippy @Telegraph The @MailOnline are\u003cbr\u003eusing it too!\u003cbr\u003eFri Jan 09 10:00:40 +0000 2015"}, {"group": 1889, "id": 13, "label": "553496421480280065", "shape": "dot", "size": 10, "title": "553496421480280065\u003cbr\u003e@kaarigar @Telegraph the problem with\u003cbr\u003efundamentalism, is the fundamentals.\u003cbr\u003eFri Jan 09 10:20:05 +0000 2015"}, {"group": 1889, "id": 14, "label": "553518200046891008", "shape": "dot", "size": 10, "title": "553518200046891008\u003cbr\u003e@paddy_muldoon @Telegraph crush all fundamentals\u003cbr\u003e\u003cbr\u003eFri Jan 09 11:46:37 +0000 2015"}, {"group": 1889, "id": 15, "label": "553523830615187456", "shape": "dot", "size": 10, "title": "553523830615187456\u003cbr\u003e@kaarigar @Telegraph lets just crush\u003cbr\u003ethe ridiculous ones.\u003cbr\u003eFri Jan 09 12:08:59 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 2, "to": 7, "weight": 1}, {"from": 7, "to": 11, "weight": 1}, {"from": 9, "to": 12, "weight": 1}, {"from": 11, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

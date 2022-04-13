@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 162, "id": 0, "label": "552811533303296001", "shape": "dot", "size": 10, "title": "552811533303296001\u003cbr\u003eKilling innocent people in the\u003cbr\u003ename of Islam is much,\u003cbr\u003emuch more offensive to me\u003cbr\u003ethan any cartoon can ever\u003cbr\u003ebe. #CharlieHebdo\u003cbr\u003eWed Jan 07 12:58:34 +0000 2015"}, {"group": 162, "id": 1, "label": "552811828032450560", "shape": "dot", "size": 10, "title": "552811828032450560\u003cbr\u003e@baghdadinvest Unless fair-minded people like\u003cbr\u003eyou take initiatives nothing will\u003cbr\u003ehappen ever.\u003cbr\u003eWed Jan 07 12:59:45 +0000 2015"}, {"group": 162, "id": 2, "label": "552811907673882624", "shape": "dot", "size": 10, "title": "552811907673882624\u003cbr\u003e@baghdadinvest didn\u0027t @iyad_elbaghdadi just tweet\u003cbr\u003ethat?\u003cbr\u003eWed Jan 07 13:00:04 +0000 2015"}, {"group": 162, "id": 3, "label": "552812061747851264", "shape": "dot", "size": 10, "title": "552812061747851264\u003cbr\u003e@baghdadinvest \nit act of war\nthe\u003cbr\u003eonly way white blood gets\u003cbr\u003espilt in this conflict is\u003cbr\u003eif #IS brings the war\u003cbr\u003eto the crusaders\nc\u0027est la guerre\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:00:40 +0000 2015"}, {"group": 162, "id": 4, "label": "552812079342579712", "shape": "dot", "size": 10, "title": "552812079342579712\u003cbr\u003e@baghdadinvest but are they innocent\u003cbr\u003ein your eyes?\u003cbr\u003eWed Jan 07 13:00:45 +0000 2015"}, {"group": 162, "id": 5, "label": "552812163132575744", "shape": "dot", "size": 10, "title": "552812163132575744\u003cbr\u003e@baghdadinvest who\u0027s #CharlieHebdo?? And what\u003cbr\u003eexactly did he do??\u003cbr\u003eWed Jan 07 13:01:05 +0000 2015"}, {"group": 162, "id": 6, "label": "552812292686225408", "shape": "dot", "size": 10, "title": "552812292686225408\u003cbr\u003e@baghdadinvest http://t.co/7WlwwUsKqn\u003cbr\u003eWed Jan 07 13:01:35 +0000 2015"}, {"group": 162, "id": 7, "label": "552812462404149249", "shape": "dot", "size": 10, "title": "552812462404149249\u003cbr\u003e@baghdadinvest if they mock Muhammad\u003cbr\u003edo they deserve the Quranic\u003cbr\u003epunishment of death?\u003cbr\u003eWed Jan 07 13:02:16 +0000 2015"}, {"group": 162, "id": 8, "label": "552813797514022914", "shape": "dot", "size": 10, "title": "552813797514022914\u003cbr\u003e@baghdadinvest @mackaysuzie Killing people in\u003cbr\u003ethe name of religion is\u003cbr\u003eoffensive to me.\u003cbr\u003eWed Jan 07 13:07:34 +0000 2015"}, {"group": 162, "id": 9, "label": "552814074858205184", "shape": "dot", "size": 10, "title": "552814074858205184\u003cbr\u003e@baghdadinvest @gsurya its really becoming\u003cbr\u003ea problem now this isis\u003cbr\u003eand stuff\u003cbr\u003eWed Jan 07 13:08:40 +0000 2015"}, {"group": 162, "id": 10, "label": "552814719174967296", "shape": "dot", "size": 10, "title": "552814719174967296\u003cbr\u003e@baghdadinvest Naah, really?\u003cbr\u003eWed Jan 07 13:11:14 +0000 2015"}, {"group": 162, "id": 11, "label": "552815486933549056", "shape": "dot", "size": 10, "title": "552815486933549056\u003cbr\u003e@baghdadinvest @MariaDuggan\u003cbr\u003eWed Jan 07 13:14:17 +0000 2015"}, {"group": 162, "id": 12, "label": "552819881318817792", "shape": "dot", "size": 10, "title": "552819881318817792\u003cbr\u003e@baghdadinvest religion is in every\u003cbr\u003ecorner of every war. Mocking\u003cbr\u003eother people religion is not\u003cbr\u003ea freedom of speech. Yet\u003cbr\u003enobody deserves 2die\u003cbr\u003eWed Jan 07 13:31:45 +0000 2015"}, {"group": 162, "id": 13, "label": "552820124311232512", "shape": "dot", "size": 10, "title": "552820124311232512\u003cbr\u003e@baghdadinvest @Thiru_0914 Wahabism is teaching\u003cbr\u003emuslims that even if you\u003cbr\u003ekill innocents, you need not\u003cbr\u003efeel remorse, as youwill go\u003cbr\u003eto heaven\u003cbr\u003eWed Jan 07 13:32:43 +0000 2015"}, {"group": 162, "id": 14, "label": "552820419246305280", "shape": "dot", "size": 10, "title": "552820419246305280\u003cbr\u003e@baghdadinvest @Thiru_0914 Saudi Arabia is\u003cbr\u003eexporting Wahabism around the world.\u003cbr\u003eThey are the real cultprits!!\u003cbr\u003eSpeak up Saudi Arabia!!\u003cbr\u003eWed Jan 07 13:33:53 +0000 2015"}, {"group": 162, "id": 15, "label": "552820446295752704", "shape": "dot", "size": 10, "title": "552820446295752704\u003cbr\u003e@baghdadinvest in fact infringement of\u003cbr\u003etheir right of Religion. But\u003cbr\u003eI fully condemned killing this\u003cbr\u003epeople\u003cbr\u003eWed Jan 07 13:33:59 +0000 2015"}, {"group": 162, "id": 16, "label": "552821496427458560", "shape": "dot", "size": 10, "title": "552821496427458560\u003cbr\u003e@baghdadinvest @Thiru_0914 @BinMath @Legible_M Wahabism\u003cbr\u003eis upsetting the psychology of\u003cbr\u003emuslim youth; muslims, pl wake\u003cbr\u003eup atleast now!!\u003cbr\u003eWed Jan 07 13:38:10 +0000 2015"}, {"group": 162, "id": 17, "label": "552822420516528128", "shape": "dot", "size": 10, "title": "552822420516528128\u003cbr\u003e@baghdadinvest @Thiru_0914 @Legible_M @BinMath How\u003cbr\u003ecan killing innocent Yazedi,Kurd,Christian,Shia,Hazara, Ahmediya\u003cbr\u003esendyouto heaven?\u003cbr\u003eWed Jan 07 13:41:50 +0000 2015"}, {"group": 162, "id": 19, "label": "552954492585390081", "shape": "dot", "size": 10, "title": "552954492585390081\u003cbr\u003e@baghdadinvest hear hear!\u003cbr\u003eWed Jan 07 22:26:39 +0000 2015"}, {"group": 162, "id": 18, "label": "552822877792108544", "shape": "dot", "size": 10, "title": "552822877792108544\u003cbr\u003e@baghdadinvest @Thiru_0914 @Legible_M @binmath How\u003cbr\u003ecan killing innocent children or\u003cbr\u003esexuallyexploiting them makeway for jannat?is\u003cbr\u003ethisjihad?\u003cbr\u003eWed Jan 07 13:43:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 19, "weight": 1}, {"from": 17, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

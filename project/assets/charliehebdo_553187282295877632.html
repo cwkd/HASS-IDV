@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1057, "id": 0, "label": "553187282295877632", "shape": "dot", "size": 10, "title": "553187282295877632\u003cbr\u003eJulian Assange has lost the\u003cbr\u003eplot. Blames \u201cJewish pro-censorship lobby\u201d\u003cbr\u003efor legitimizing the Charlie Hebdo\u003cbr\u003emassacre. http://t.co/QZClfKB6ZH\u003cbr\u003eThu Jan 08 13:51:40 +0000 2015"}, {"group": 1057, "id": 1, "label": "553187515671138305", "shape": "dot", "size": 10, "title": "553187515671138305\u003cbr\u003e@stillgray wtf...\u003cbr\u003eThu Jan 08 13:52:36 +0000 2015"}, {"group": 1057, "id": 2, "label": "553187543685271552", "shape": "dot", "size": 10, "title": "553187543685271552\u003cbr\u003e@stillgray And one of the\u003cbr\u003efirst people to condemn and\u003cbr\u003esay people should educate themselves\u003cbr\u003eon outrage in the Muslim\u003cbr\u003ecommunity was a Rabbi\u003cbr\u003eThu Jan 08 13:52:42 +0000 2015"}, {"group": 1057, "id": 3, "label": "553188886441377792", "shape": "dot", "size": 10, "title": "553188886441377792\u003cbr\u003eBeen waiting for this moment\u003cbr\u003ea while @stillgray\u003cbr\u003eThu Jan 08 13:58:02 +0000 2015"}, {"group": 1057, "id": 4, "label": "553188964514136064", "shape": "dot", "size": 10, "title": "553188964514136064\u003cbr\u003e@stillgray @UnseenPerfidy Seems he\u0027s getting\u003cbr\u003ea bit of a case\u003cbr\u003eof cabin fever, eh?\u003cbr\u003eThu Jan 08 13:58:21 +0000 2015"}, {"group": 1057, "id": 10, "label": "553190765669924864", "shape": "dot", "size": 10, "title": "553190765669924864\u003cbr\u003e@stillgray Could that man get\u003cbr\u003eany more loathsome?\u003cbr\u003eThu Jan 08 14:05:30 +0000 2015"}, {"group": 1057, "id": 14, "label": "553192703396429824", "shape": "dot", "size": 10, "title": "553192703396429824\u003cbr\u003e@stillgray @decklin unsurprising\u003cbr\u003eThu Jan 08 14:13:12 +0000 2015"}, {"group": 1057, "id": 15, "label": "553193123124224002", "shape": "dot", "size": 10, "title": "553193123124224002\u003cbr\u003e@stillgray @UnseenPerfidy Yeah I lost\u003cbr\u003eall respect for Assange at\u003cbr\u003ethis point if all he\u003cbr\u003ecan do is put up\u003cbr\u003eracist boogeymen.\u003cbr\u003eThu Jan 08 14:14:53 +0000 2015"}, {"group": 1057, "id": 16, "label": "553193937922293761", "shape": "dot", "size": 10, "title": "553193937922293761\u003cbr\u003e@stillgray @DerridaLicious what?\u003cbr\u003eThu Jan 08 14:18:07 +0000 2015"}, {"group": 1057, "id": 5, "label": "553189018867740672", "shape": "dot", "size": 10, "title": "553189018867740672\u003cbr\u003e@AnnieKNK Was only a matter\u003cbr\u003eof time before he went\u003cbr\u003eall out with his anti-semitism.\u003cbr\u003e\u003cbr\u003eThu Jan 08 13:58:34 +0000 2015"}, {"group": 1057, "id": 11, "label": "553190851879661568", "shape": "dot", "size": 10, "title": "553190851879661568\u003cbr\u003e@AnnieKNK @stillgray Close, but you\u003cbr\u003egotta dig deeper.\nThe rabbit hole\u003cbr\u003egoes super-deep I swear.\nhttps://t.co/VAboVhBVtP\u003cbr\u003eThu Jan 08 14:05:51 +0000 2015"}, {"group": 1057, "id": 17, "label": "553194013613096960", "shape": "dot", "size": 10, "title": "553194013613096960\u003cbr\u003e@AnnieKNK @stillgray i must have\u003cbr\u003emissed that in the cumberbatch\u003cbr\u003efilm. But seems like the\u003cbr\u003enatural course for him.\u003cbr\u003eThu Jan 08 14:18:25 +0000 2015"}, {"group": 1057, "id": 7, "label": "553189541767835648", "shape": "dot", "size": 10, "title": "553189541767835648\u003cbr\u003e@GumbaMasta @stillgray He\u0027s just being\u003cbr\u003emore blatant with awful shit\u003cbr\u003ehe\u0027s believed for years.\u003cbr\u003eThu Jan 08 14:00:39 +0000 2015"}, {"group": 1057, "id": 6, "label": "553189508129521665", "shape": "dot", "size": 10, "title": "553189508129521665\u003cbr\u003e@stillgray @AnnieKNK Brace for impacts\u003cbr\u003eof Nazis attempting to shout\u003cbr\u003eI told you so. -_-\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:00:31 +0000 2015"}, {"group": 1057, "id": 13, "label": "553191985897426944", "shape": "dot", "size": 10, "title": "553191985897426944\u003cbr\u003e@stillgray @AnnieKNK uh... Huh.\u003cbr\u003eThu Jan 08 14:10:21 +0000 2015"}, {"group": 1057, "id": 20, "label": "553214077733179392", "shape": "dot", "size": 10, "title": "553214077733179392\u003cbr\u003e@stillgray @AnnieKNK *links to ancient\u003cbr\u003eattempt at trying to be\u003cbr\u003eedgy*\u003cbr\u003eThu Jan 08 15:38:09 +0000 2015"}, {"group": 1057, "id": 8, "label": "553189754645524480", "shape": "dot", "size": 10, "title": "553189754645524480\u003cbr\u003e@Trigger_Check @stillgray @AnnieKNK I\u0027m done\u003cbr\u003ebracing for impacts. We need\u003cbr\u003eto fight back.\u003cbr\u003eThu Jan 08 14:01:29 +0000 2015"}, {"group": 1057, "id": 9, "label": "553190741376520193", "shape": "dot", "size": 10, "title": "553190741376520193\u003cbr\u003e@UnseenPerfidy @stillgray Why can\u0027t can\u0027t\u003cbr\u003ehe get himself a corgie\u003cbr\u003eand some ice cream instead?\u003cbr\u003eMaybe that\u0027ll calm him down.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:05:25 +0000 2015"}, {"group": 1057, "id": 12, "label": "553191961406881795", "shape": "dot", "size": 10, "title": "553191961406881795\u003cbr\u003e@MelaninMissile @stillgray I swear the\u003cbr\u003etime between attacks and the\u003cbr\u003efalse flag truthers gets shorter\u003cbr\u003eand shorter\u003cbr\u003eThu Jan 08 14:10:16 +0000 2015"}, {"group": 1057, "id": 19, "label": "553195510975430656", "shape": "dot", "size": 10, "title": "553195510975430656\u003cbr\u003e@AnnieKNK Yesterday I had somebody\u003cbr\u003esaying the NAACP bombing was\u003cbr\u003ea false flag to distract\u003cbr\u003ethe world from the Charlie\u003cbr\u003eHebdo shooting.\u003cbr\u003eThu Jan 08 14:24:22 +0000 2015"}, {"group": 1057, "id": 18, "label": "553195229570809857", "shape": "dot", "size": 10, "title": "553195229570809857\u003cbr\u003e@SimonCopland Assange needs to log\u003cbr\u003eoff.\u003cbr\u003eThu Jan 08 14:23:15 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 3, "to": 11, "weight": 1}, {"from": 3, "to": 17, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 13, "weight": 1}, {"from": 5, "to": 20, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 7, "to": 9, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 19, "weight": 1}, {"from": 16, "to": 18, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

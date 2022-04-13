@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 589, "id": 0, "label": "552844167681159169", "shape": "dot", "size": 10, "title": "552844167681159169\u003cbr\u003ePresident Obama condemns Paris attack,\u003cbr\u003ecalls it \u0027terrorist attack\u0027 \u0026amp;\u003cbr\u003epledges U.S. assistance: http://t.co/MY0hCwAzu8 http://t.co/ZtcYlciEBA\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:08:15 +0000 2015"}, {"group": 589, "id": 1, "label": "552844909422866432", "shape": "dot", "size": 10, "title": "552844909422866432\u003cbr\u003e@YahooNews Who funded/armed/trained gunmen? https://t.co/iPBkLwhQk8\u003cbr\u003e\u2026 Jeffrey Epstein also in\u003cbr\u003eCFR+Trilateral Commission #JeSuisCharlie\u003cbr\u003eWed Jan 07 15:11:12 +0000 2015"}, {"group": 589, "id": 2, "label": "552845346217283584", "shape": "dot", "size": 10, "title": "552845346217283584\u003cbr\u003e\u201c@YahooNews: President Obama condemns Paris\u003cbr\u003eattack, calls it \u0027terrorist attack\u0027\u003cbr\u003e\u0026amp; pledges U.S. assistance: http://t.co/cB8eWOuze8\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:12:56 +0000 2015"}, {"group": 589, "id": 3, "label": "552846483578716160", "shape": "dot", "size": 10, "title": "552846483578716160\u003cbr\u003e@YahooNews - Yeah whatever Obama.\u003cbr\u003eThe weakest president on terror\u003cbr\u003eand foreign policy ever.\u003cbr\u003eWed Jan 07 15:17:27 +0000 2015"}, {"group": 589, "id": 4, "label": "552851950489055233", "shape": "dot", "size": 10, "title": "552851950489055233\u003cbr\u003e@YahooNews By letting known terrorists\u003cbr\u003ego free from Gitmo?\u003cbr\u003eWed Jan 07 15:39:11 +0000 2015"}, {"group": 589, "id": 5, "label": "552851968193216513", "shape": "dot", "size": 10, "title": "552851968193216513\u003cbr\u003e@YahooNews @Yahoo IT\u00b4S BECAUSE I\u003cbr\u003eLIKE AMERICANS, THEY BUY TO\u003cbr\u003eCOME IN BUT THEY DOULBE\u003cbr\u003ePAY TO OUT OF AN\u003cbr\u003eWAR. U.S.A  IS U.S.A.\u003cbr\u003eFOREVER!\u003cbr\u003eWed Jan 07 15:39:15 +0000 2015"}, {"group": 589, "id": 6, "label": "552867110217453568", "shape": "dot", "size": 10, "title": "552867110217453568\u003cbr\u003e@YahooNews fruits of #Islamic teaching\u003cbr\u003ewake up world! #Peace in\u003cbr\u003eIslam means submission to #Allah\u003cbr\u003eor die!\u003cbr\u003eWed Jan 07 16:39:25 +0000 2015"}, {"group": 589, "id": 7, "label": "552872851234361344", "shape": "dot", "size": 10, "title": "552872851234361344\u003cbr\u003e@YahooNews @katiecouric #JeSuisCharlie\u003cbr\u003eWed Jan 07 17:02:14 +0000 2015"}, {"group": 589, "id": 8, "label": "552911865324777472", "shape": "dot", "size": 10, "title": "552911865324777472\u003cbr\u003e@YahooNews   Obama uses\u003cbr\u003eviolence against Muslims everyday.\u003cbr\u003eWed Jan 07 19:37:15 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

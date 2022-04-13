@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 725, "id": 0, "label": "552985297307598848", "shape": "dot", "size": 10, "title": "552985297307598848\u003cbr\u003eWhy is terrorism international \u0026amp;\u003cbr\u003eweapons from terrorists always Russian\u003cbr\u003e(Soviet) !? \u2014 TT @samiramoto\n\n#JeSuisCharlie\u003cbr\u003ehttp://t.co/iSH566FPu2\u003cbr\u003eThu Jan 08 00:29:03 +0000 2015"}, {"group": 725, "id": 1, "label": "552986085668966401", "shape": "dot", "size": 10, "title": "552986085668966401\u003cbr\u003e@RobPulseNews @samiramoto You know as\u003cbr\u003ewell as I do the\u003cbr\u003eweapons alone do not prove\u003cbr\u003eRussian involvement. BUT, this is\u003cbr\u003ea #KGB style hit.\u003cbr\u003eThu Jan 08 00:32:11 +0000 2015"}, {"group": 725, "id": 2, "label": "552986893580005376", "shape": "dot", "size": 10, "title": "552986893580005376\u003cbr\u003e@RobPulseNews @samiramoto Because they were\u003cbr\u003eproduced by gazillions during Cold\u003cbr\u003eWar and exported to every\u003cbr\u003ecorner of the world\u003cbr\u003eThu Jan 08 00:35:24 +0000 2015"}, {"group": 725, "id": 3, "label": "552988356028940288", "shape": "dot", "size": 10, "title": "552988356028940288\u003cbr\u003e@RobPulseNews @samiramoto Simple operation is\u003cbr\u003enecessary for Morons + min.\u003cbr\u003emaintenance. Favorable price + availability.\u003cbr\u003eHigh devastat. effect\u003cbr\u003eThu Jan 08 00:41:12 +0000 2015"}, {"group": 725, "id": 4, "label": "553048545906151424", "shape": "dot", "size": 10, "title": "553048545906151424\u003cbr\u003e@RutheniaRus @gomonstrous @RobPulseNews She is\u003cbr\u003espineless. Rather futile attempting to\u003cbr\u003elook like a woman. Read\u003cbr\u003emore http://t.co/KZKIb2P22m\u003cbr\u003eThu Jan 08 04:40:23 +0000 2015"}, {"group": 725, "id": 5, "label": "553137512907280384", "shape": "dot", "size": 10, "title": "553137512907280384\u003cbr\u003e@eric_r45 @RutheniaRus @gomonstrous @RobPulseNews \u003cbr\u003ePersonal insults lessen your argument,\u003cbr\u003ehow many votes did her\u003cbr\u003eparty get at last election?\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:33:54 +0000 2015"}, {"group": 725, "id": 6, "label": "553157734934523904", "shape": "dot", "size": 10, "title": "553157734934523904\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews I\u003cbr\u003e see. Tell me: how\u003cbr\u003eis it possible to insult\u003cbr\u003esomeone who supports her own\u003cbr\u003eenemy?\u003cbr\u003eThu Jan 08 11:54:15 +0000 2015"}, {"group": 725, "id": 7, "label": "553158637506805760", "shape": "dot", "size": 10, "title": "553158637506805760\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews The\u003cbr\u003eone power that has never\u003cbr\u003estopped trying to destabilize everyone\u003cbr\u003eelse incl Europe\u003cbr\u003eThu Jan 08 11:57:51 +0000 2015"}, {"group": 725, "id": 9, "label": "553159420717563905", "shape": "dot", "size": 10, "title": "553159420717563905\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews And\u003cbr\u003eif you count her votes\u003cbr\u003eas a justification for her\u003cbr\u003epolitics look then Putins vote\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:00:57 +0000 2015"}, {"group": 725, "id": 8, "label": "553159241041989634", "shape": "dot", "size": 10, "title": "553159241041989634\u003cbr\u003e@eric_r45 @RutheniaRus @gomonstrous @RobPulseNews No\u003cbr\u003eplace for personal abuse ..\u003cbr\u003eNow how many votes did\u003cbr\u003eshe and her party get\u003cbr\u003e..\u003cbr\u003eThu Jan 08 12:00:14 +0000 2015"}, {"group": 725, "id": 10, "label": "553160250128613376", "shape": "dot", "size": 10, "title": "553160250128613376\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews Enough\u003cbr\u003eto  give her \u003cbr\u003ea place in parliament. Just\u003cbr\u003eas Putin did.\u003cbr\u003eThu Jan 08 12:04:15 +0000 2015"}, {"group": 725, "id": 11, "label": "553181731130716161", "shape": "dot", "size": 10, "title": "553181731130716161\u003cbr\u003e@eric_r45 @RutheniaRus @gomonstrous @RobPulseNews How\u003cbr\u003emany people voted for her\u003cbr\u003eand her party? Or in\u003cbr\u003eyour world are they not\u003cbr\u003eallowed a voice\u003cbr\u003eThu Jan 08 13:29:36 +0000 2015"}, {"group": 725, "id": 12, "label": "553182941980143616", "shape": "dot", "size": 10, "title": "553182941980143616\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews They\u003cbr\u003eare welcome to it. But\u003cbr\u003eit did not stop Putin\u003cbr\u003einvading your country?\u003cbr\u003eThu Jan 08 13:34:25 +0000 2015"}, {"group": 725, "id": 13, "label": "553183843034091520", "shape": "dot", "size": 10, "title": "553183843034091520\u003cbr\u003e@eric_r45 @RutheniaRus @gomonstrous @RobPulseNews Clearly\u003cbr\u003eyou won\u0027t answer, which makes\u003cbr\u003eyou part of the cult\u003cbr\u003ethat only listens to one\u003cbr\u003eside\u003cbr\u003eThu Jan 08 13:38:00 +0000 2015"}, {"group": 725, "id": 14, "label": "553195029532266496", "shape": "dot", "size": 10, "title": "553195029532266496\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews I\u003cbr\u003edid answer you. Which makes\u003cbr\u003eyou blind to arguments?\u003cbr\u003eThu Jan 08 14:22:27 +0000 2015"}, {"group": 725, "id": 15, "label": "553196685045030912", "shape": "dot", "size": 10, "title": "553196685045030912\u003cbr\u003e@eric_r45 @RutheniaRus @gomonstrous @RobPulseNews I\u003cbr\u003easked \"How many\" people voted\u003cbr\u003efor her and I wait\u003cbr\u003ethe answer or are you\u003cbr\u003etoo narrow minded\u003cbr\u003eThu Jan 08 14:29:02 +0000 2015"}, {"group": 725, "id": 16, "label": "553198404999077889", "shape": "dot", "size": 10, "title": "553198404999077889\u003cbr\u003e@Doesnotplaywel My dear combattant. Unsure\u003cbr\u003eboth about your real problem\u003cbr\u003eand also the exact number,\u003cbr\u003eI advise you to start\u003cbr\u003ecounting. Ask FN?\u003cbr\u003eThu Jan 08 14:35:52 +0000 2015"}, {"group": 725, "id": 17, "label": "553198660818042880", "shape": "dot", "size": 10, "title": "553198660818042880\u003cbr\u003e@Doesnotplaywel @RutheniaRus @gomonstrous @RobPulseNews Surly\u003cbr\u003ethey will be delighted. Bonne\u003cbr\u003echance...\u003cbr\u003eThu Jan 08 14:36:53 +0000 2015"}, {"group": 725, "id": 18, "label": "553198916674781185", "shape": "dot", "size": 10, "title": "553198916674781185\u003cbr\u003e@eric_r45 You describe yourself as\u003cbr\u003e\"Designer, painter and a critical\u003cbr\u003eoptimist\" you forgot narrow minded\u003cbr\u003ebigot unable to support his\u003cbr\u003eargument\u003cbr\u003eThu Jan 08 14:37:54 +0000 2015"}, {"group": 725, "id": 19, "label": "553200871405010944", "shape": "dot", "size": 10, "title": "553200871405010944\u003cbr\u003e@Doesnotplaywel Lol  yea. Sorry\u003cbr\u003eit would seem our intentions\u003cbr\u003ehere are somewhat misaligned. Enjoy\u003cbr\u003eyour afternoon.\u003cbr\u003eThu Jan 08 14:45:40 +0000 2015"}, {"group": 725, "id": 20, "label": "553289472801271808", "shape": "dot", "size": 10, "title": "553289472801271808\u003cbr\u003e@eric_r45 @doesnotplaywel French society is\u003cbr\u003eracially polarised violent scum,who pretends\u003cbr\u003eto have moral superiority over\u003cbr\u003eother society\u0027s.\u003cbr\u003eThu Jan 08 20:37:44 +0000 2015"}, {"group": 725, "id": 21, "label": "553309458181664768", "shape": "dot", "size": 10, "title": "553309458181664768\u003cbr\u003e@posteuropian  I suppose you\u003cbr\u003eknow french history and culture\u003cbr\u003ereal well? Heard of a\u003cbr\u003eguy called #Rousseau?And #Voltaire is\u003cbr\u003enot a carmaker.\u003cbr\u003eThu Jan 08 21:57:09 +0000 2015"}, {"group": 725, "id": 22, "label": "553382497485348865", "shape": "dot", "size": 10, "title": "553382497485348865\u003cbr\u003e@eric_r45 Some great persons from\u003cbr\u003estone age doesn\u0027t represent 60\u003cbr\u003emillion contemporary French! Fr has\u003cbr\u003ed most racially charged people\u003cbr\u003ein world\u003cbr\u003eFri Jan 09 02:47:23 +0000 2015"}, {"group": 725, "id": 23, "label": "553408995831332864", "shape": "dot", "size": 10, "title": "553408995831332864\u003cbr\u003e@posteuropian Not to insult you\u003cbr\u003ebut what you write might\u003cbr\u003epeople think one of two\u003cbr\u003ethings. That either you know\u003cbr\u003ezero....\u003cbr\u003eFri Jan 09 04:32:41 +0000 2015"}, {"group": 725, "id": 24, "label": "553409382114152450", "shape": "dot", "size": 10, "title": "553409382114152450\u003cbr\u003e@posteuropian ....or that you are\u003cbr\u003enot so smart. And you\u003cbr\u003ewould not want that I\u003cbr\u003ethink?\u003cbr\u003eFri Jan 09 04:34:13 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 4, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 5, "to": 9, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 8, "to": 10, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}, {"from": 14, "to": 15, "weight": 1}, {"from": 15, "to": 16, "weight": 1}, {"from": 15, "to": 17, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 18, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}, {"from": 21, "to": 22, "weight": 1}, {"from": 22, "to": 23, "weight": 1}, {"from": 22, "to": 24, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

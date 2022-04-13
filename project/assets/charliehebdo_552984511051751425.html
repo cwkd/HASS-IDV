@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 721, "id": 0, "label": "552984511051751425", "shape": "dot", "size": 10, "title": "552984511051751425\u003cbr\u003e.@AmbJohnBolton: We have to WAKE\u003cbr\u003eUP --America has to acknowledge\u003cbr\u003ethat we are still at\u003cbr\u003ewar w/terrorism #ParisShooting #JeSuisCharlie @FoxNews\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:25:56 +0000 2015"}, {"group": 721, "id": 1, "label": "552984840707264512", "shape": "dot", "size": 10, "title": "552984840707264512\u003cbr\u003e@greta @AmbJohnBolton @FoxNews sadly we\u003cbr\u003eneed to realize we aren\u0027t\u003cbr\u003eat war with terrorism, but\u003cbr\u003eextreme Islam.\u003cbr\u003eThu Jan 08 00:27:14 +0000 2015"}, {"group": 721, "id": 2, "label": "552985381688594432", "shape": "dot", "size": 10, "title": "552985381688594432\u003cbr\u003e@greta @AmbJohnBolton @FoxNews ....that conversation\u003cbr\u003eneeds to be with the\u003cbr\u003ePresident\u003cbr\u003eThu Jan 08 00:29:23 +0000 2015"}, {"group": 721, "id": 3, "label": "552986004341391361", "shape": "dot", "size": 10, "title": "552986004341391361\u003cbr\u003e@greta @EricAmey2 @AmbJohnBolton @FoxNews \u003cbr\u003eGreta is wrong. King Obama\u003cbr\u003edeclared war was over. I\u003cbr\u003eguess they didn\u0027t get the\u003cbr\u003ememo\u003cbr\u003eThu Jan 08 00:31:52 +0000 2015"}, {"group": 721, "id": 4, "label": "552986797471711232", "shape": "dot", "size": 10, "title": "552986797471711232\u003cbr\u003e@greta @AmbJohnBolton @FoxNews why just\u003cbr\u003eAmerica? The WHOLE WORLD needs\u003cbr\u003eto wake up....\u003cbr\u003eThu Jan 08 00:35:01 +0000 2015"}, {"group": 721, "id": 5, "label": "552987131241840640", "shape": "dot", "size": 10, "title": "552987131241840640\u003cbr\u003e@greta @AmbJohnBolton @FoxNews This was\u003cbr\u003ean attack in another country\u003cbr\u003eall together - Paris is\u003cbr\u003enot an American city FYI...\u003cbr\u003e\u003cbr\u003eThu Jan 08 00:36:20 +0000 2015"}, {"group": 721, "id": 7, "label": "552990522470858752", "shape": "dot", "size": 10, "title": "552990522470858752\u003cbr\u003e@greta @Deadqueen2 @AmbJohnBolton @FoxNews it\u0027s\u003cbr\u003ean ideology contrary to all\u003cbr\u003ewe Americans hold dear! Time\u003cbr\u003eto shut down Islam in\u003cbr\u003eAmerica! NOW\u003cbr\u003eThu Jan 08 00:49:49 +0000 2015"}, {"group": 721, "id": 8, "label": "553008035837509633", "shape": "dot", "size": 10, "title": "553008035837509633\u003cbr\u003e@greta / yes, Greta, we\u003cbr\u003edo know that we are\u003cbr\u003etargets of militant extremists. Gees....\u003cbr\u003e\u003cbr\u003eThu Jan 08 01:59:24 +0000 2015"}, {"group": 721, "id": 9, "label": "553008304373653504", "shape": "dot", "size": 10, "title": "553008304373653504\u003cbr\u003e@greta @AmbJohnBolton @FoxNews / there\u003cbr\u003eare more than islamic terrorists.\u003cbr\u003eI hope you wake up\u003cbr\u003etoo.\u003cbr\u003eThu Jan 08 02:00:28 +0000 2015"}, {"group": 721, "id": 10, "label": "553046798055772160", "shape": "dot", "size": 10, "title": "553046798055772160\u003cbr\u003e@greta @AmbJohnBolton @FoxNews It\u0027s the\u003cbr\u003eWahabbis that are doing this,\u003cbr\u003eNOT the Iranians.  Get\u003cbr\u003ea grip.  Remember 9/11.\u003cbr\u003e Stop the Wahabbi pigs.\u003cbr\u003e\u003cbr\u003eThu Jan 08 04:33:26 +0000 2015"}, {"group": 721, "id": 11, "label": "554048813229686787", "shape": "dot", "size": 10, "title": "554048813229686787\u003cbr\u003e@greta @lsferguson @AmbJohnBolton @FoxNews We\u003cbr\u003ein America are awake..It\u0027s the\u003cbr\u003eAppeaser in Chief who does\u0027nt\u003cbr\u003eget it. #PJNET\u003cbr\u003eSat Jan 10 22:55:05 +0000 2015"}, {"group": 721, "id": 12, "label": "554048906699370496", "shape": "dot", "size": 10, "title": "554048906699370496\u003cbr\u003e@greta @AmbJohnBolton @FoxNews @arrowsmithwoman Unfortunately\u003cbr\u003eterrorism = normative Islam....\u003cbr\u003eSat Jan 10 22:55:27 +0000 2015"}, {"group": 721, "id": 13, "label": "554048943030415361", "shape": "dot", "size": 10, "title": "554048943030415361\u003cbr\u003e@greta @lsferguson @AmbJohnBolton @FoxNews No\u003cbr\u003ewe are at war with\u003cbr\u003e#ISLAM.\u003cbr\u003eSat Jan 10 22:55:36 +0000 2015"}, {"group": 721, "id": 15, "label": "554870903918444544", "shape": "dot", "size": 10, "title": "554870903918444544\u003cbr\u003e@greta @karebair1 @AmbJohnBolton @FoxNews WE\u003cbr\u003eare awake.\u003cbr\u003eTue Jan 13 05:21:47 +0000 2015"}, {"group": 721, "id": 6, "label": "552987312439951360", "shape": "dot", "size": 10, "title": "552987312439951360\u003cbr\u003e@Msf9 @greta @EricAmey2 @AmbJohnBolton @FoxNews\u003cbr\u003eActually, it was GW Bush\u003cbr\u003ewho declared \"Mission Accomplished\"\u003cbr\u003eThu Jan 08 00:37:03 +0000 2015"}, {"group": 721, "id": 14, "label": "554049711301095426", "shape": "dot", "size": 10, "title": "554049711301095426\u003cbr\u003e@greta @lsferguson @AmbJohnBolton @FoxNews http://t.co/YxPRGiNW8c\u003cbr\u003e\u003cbr\u003eSat Jan 10 22:58:39 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

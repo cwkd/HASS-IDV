@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 960, "id": 0, "label": "553161360503500801", "shape": "dot", "size": 10, "title": "553161360503500801\u003cbr\u003eThe more you are motivated\u003cbr\u003eby Love,\nThe more fearless \u0026amp;\u003cbr\u003efree your action will be\nDalai\u003cbr\u003eLama #JeSuisCharlie\n@Asamsakti http://t.co/s5Zlrb8IaX\u003cbr\u003eThu Jan 08 12:08:40 +0000 2015"}, {"group": 960, "id": 1, "label": "553162354931011584", "shape": "dot", "size": 10, "title": "553162354931011584\u003cbr\u003e@artdielle @Asamsakti   Great\u003cbr\u003eone! \ud83d\udc4d  love this\u2764\ufe0f\u003cbr\u003eThanks.\u003cbr\u003eThu Jan 08 12:12:37 +0000 2015"}, {"group": 960, "id": 2, "label": "553163116125487106", "shape": "dot", "size": 10, "title": "553163116125487106\u003cbr\u003e@artdielle @circeanna @Asamsakti Beautifully said.\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:15:38 +0000 2015"}, {"group": 960, "id": 3, "label": "553163352420012035", "shape": "dot", "size": 10, "title": "553163352420012035\u003cbr\u003e@artdielle   What\u0027s up?\u003cbr\u003eWant to know how to\u003cbr\u003eget more done? Look at\u003cbr\u003ethis: http://t.co/EKAwienR0c\u003cbr\u003eThu Jan 08 12:16:35 +0000 2015"}, {"group": 960, "id": 5, "label": "553168977569263616", "shape": "dot", "size": 10, "title": "553168977569263616\u003cbr\u003e@artdielle @PatriziaRametta @Asamsakti vola va\u003cbr\u003eali della liberta\u0027 va\u003cbr\u003eThu Jan 08 12:38:56 +0000 2015"}, {"group": 960, "id": 4, "label": "553163684982571009", "shape": "dot", "size": 10, "title": "553163684982571009\u003cbr\u003e@gupyquvejuqy   K. Brb\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:17:54 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 4, "to": 4, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

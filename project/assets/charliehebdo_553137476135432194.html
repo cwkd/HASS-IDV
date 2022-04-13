@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 859, "id": 0, "label": "553137476135432194", "shape": "dot", "size": 10, "title": "553137476135432194\u003cbr\u003e#Islam is not the #terrorists\u003cbr\u003ewho attacked Charlie Hebdo. Islam\u003cbr\u003eis the policeman who died\u003cbr\u003edefending Charlie Hebdo.\u003cbr\u003eThu Jan 08 10:33:45 +0000 2015"}, {"group": 859, "id": 1, "label": "553137679194673153", "shape": "dot", "size": 10, "title": "553137679194673153\u003cbr\u003e\u201c@MaanImranKhan: #Islam is not the\u003cbr\u003e#terrorists who attacked Charlie Hebdo.\u003cbr\u003eIslam is the policeman who\u003cbr\u003edied defending Charlie Hebdo.\u201d Yes\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:34:34 +0000 2015"}, {"group": 859, "id": 2, "label": "553137872320995330", "shape": "dot", "size": 10, "title": "553137872320995330\u003cbr\u003e@MaanImranKhan TWEET OF THE DAY\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:35:20 +0000 2015"}, {"group": 859, "id": 3, "label": "553138854153445377", "shape": "dot", "size": 10, "title": "553138854153445377\u003cbr\u003e@MaanImranKhan stop crying over Charlie\u003cbr\u003ehedbo they were group of\u003cbr\u003eracist scum\u003cbr\u003eThu Jan 08 10:39:14 +0000 2015"}, {"group": 859, "id": 5, "label": "553141426666881024", "shape": "dot", "size": 10, "title": "553141426666881024\u003cbr\u003e@maanimrankhan islam is not what\u003cbr\u003eu,me,or those who atckd #charliehebdo\u003cbr\u003ethink it is. Islam is\u003cbr\u003ewhat is written in quran\u003cbr\u003eand ahadees.\u003cbr\u003eThu Jan 08 10:49:27 +0000 2015"}, {"group": 859, "id": 7, "label": "553142189639757824", "shape": "dot", "size": 10, "title": "553142189639757824\u003cbr\u003e\u201c@MaanImranKhan: #Islam is not the\u003cbr\u003e#terrorists who attacked Charlie Hebdo.\u003cbr\u003eIslam is the policeman who\u003cbr\u003edied defending Charlie Hebdo.\u201d\u003cbr\u003eThu Jan 08 10:52:29 +0000 2015"}, {"group": 859, "id": 9, "label": "553163157737185281", "shape": "dot", "size": 10, "title": "553163157737185281\u003cbr\u003e@MaanImranKhan Totally agreed!Th biggest champion\u003cbr\u003eof humanrights \u0026amp; placing others\u003cbr\u003eneeds above urs is Islam.\u003cbr\u003eSadly d world believes otherwise\u003cbr\u003e\u003cbr\u003eThu Jan 08 12:15:48 +0000 2015"}, {"group": 859, "id": 10, "label": "553193647680679936", "shape": "dot", "size": 10, "title": "553193647680679936\u003cbr\u003e@MaanImranKhan @wasim_dr yes #islam is\u003cbr\u003ealways peaceful and innocent even\u003cbr\u003ewhen killing Kafirs #JeSuisCharlie http://t.co/SiJ44COLDq\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:16:58 +0000 2015"}, {"group": 859, "id": 11, "label": "553194246279548928", "shape": "dot", "size": 10, "title": "553194246279548928\u003cbr\u003e@MaanImranKhan @patel_ismael Whoever attacked this\u003cbr\u003emagazin. #CharlieHebdo doesn\u0027t deserves our\u003cbr\u003esolidarity! #JeNeSuisPasCharlie\u003cbr\u003eThu Jan 08 14:19:20 +0000 2015"}, {"group": 859, "id": 12, "label": "553194458033172480", "shape": "dot", "size": 10, "title": "553194458033172480\u003cbr\u003e@MaanImranKhan @patel_ismael Respect to the\u003cbr\u003epolice man. He shouldn\u0027t waste\u003cbr\u003ehis live for this. #JeNeSuisPasCharlie\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:20:11 +0000 2015"}, {"group": 859, "id": 13, "label": "553197013911994368", "shape": "dot", "size": 10, "title": "553197013911994368\u003cbr\u003e@MaanImranKhan Well said my friend.\u003cbr\u003e\u003cbr\u003eThu Jan 08 14:30:20 +0000 2015"}, {"group": 859, "id": 14, "label": "553197547532324864", "shape": "dot", "size": 10, "title": "553197547532324864\u003cbr\u003e@MaanImranKhan @BreshnaAfghan   \ud83d\ude2d\u003cbr\u003emost stupid tweet of the\u003cbr\u003eday\u003cbr\u003eThu Jan 08 14:32:27 +0000 2015"}, {"group": 859, "id": 15, "label": "553197904811548672", "shape": "dot", "size": 10, "title": "553197904811548672\u003cbr\u003e@MaanImranKhan @BreshnaAfghan why should a\u003cbr\u003emuslim defend someone who insulted\u003cbr\u003emuhammad sas ? Are u\u003cbr\u003einsane ?\u003cbr\u003eThu Jan 08 14:33:53 +0000 2015"}, {"group": 859, "id": 16, "label": "553200247380647937", "shape": "dot", "size": 10, "title": "553200247380647937\u003cbr\u003e@MaanImranKhan @patel_ismael How can you\u003cbr\u003eeven retweet this looooool\u003cbr\u003eThu Jan 08 14:43:11 +0000 2015"}, {"group": 859, "id": 17, "label": "553207868824903682", "shape": "dot", "size": 10, "title": "553207868824903682\u003cbr\u003e@MaanImranKhan @AbuMK95 The cop was\u003cbr\u003ea Murtad.\u003cbr\u003eThu Jan 08 15:13:28 +0000 2015"}, {"group": 859, "id": 18, "label": "553236993627684865", "shape": "dot", "size": 10, "title": "553236993627684865\u003cbr\u003e\u201c@MaanImranKhan: #Islam is not the\u003cbr\u003e#terrorists who attacked Charlie Hebdo.\u003cbr\u003eIslam is the policeman who\u003cbr\u003edied defending Charlie Hebdo.\u201dc beau\u003cbr\u003e\u003cbr\u003eThu Jan 08 17:09:12 +0000 2015"}, {"group": 859, "id": 4, "label": "553139649389281282", "shape": "dot", "size": 10, "title": "553139649389281282\u003cbr\u003e@AbdulAnsar01 @MaanImranKhan racists? How? They\u003cbr\u003einsulted all religions. As they\u003cbr\u003eshould because religion is laughable.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:42:23 +0000 2015"}, {"group": 859, "id": 8, "label": "553142347866071040", "shape": "dot", "size": 10, "title": "553142347866071040\u003cbr\u003e@AbdulAnsar01 Islam isn\u0027t a race.\u003cbr\u003eIt\u0027s a Doctrine of stories\u003cbr\u003ethat people CHOOSE to believe\u003cbr\u003e@MaanImranKhan\u003cbr\u003eThu Jan 08 10:53:07 +0000 2015"}, {"group": 859, "id": 6, "label": "553142147822936064", "shape": "dot", "size": 10, "title": "553142147822936064\u003cbr\u003e@maanimrankhan  Dnt tweet bout\u003cbr\u003eislam witout proper knwldge of\u003cbr\u003eit.U may gain few retweets.\u003cbr\u003eBt u r answerble bfre\u003cbr\u003eAllah for what u say/tweet.\u003cbr\u003e\u003cbr\u003eThu Jan 08 10:52:19 +0000 2015"}, {"group": 859, "id": 19, "label": "553253816507043840", "shape": "dot", "size": 10, "title": "553253816507043840\u003cbr\u003e@SufiMasterJan @MaanImranKhan @patel_ismael Whoever insulted\u003cbr\u003ethe Prophet (SAW) doesn\u0027t deserve\u003cbr\u003eour solidarity either #JeNeSuisPasCharlie\u003cbr\u003eThu Jan 08 18:16:03 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 3, "to": 8, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 11, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

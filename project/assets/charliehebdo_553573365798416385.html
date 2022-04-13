@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 2026, "id": 0, "label": "553573365798416385", "shape": "dot", "size": 10, "title": "553573365798416385\u003cbr\u003eBREAKING: Paris police: Market gunman\u003cbr\u003ethreatens to kill hostages if\u003cbr\u003epolice storm terrorist brothers.\u003cbr\u003eFri Jan 09 15:25:49 +0000 2015"}, {"group": 2026, "id": 1, "label": "553573522585309184", "shape": "dot", "size": 10, "title": "553573522585309184\u003cbr\u003e\u201c@AP: BREAKING: Paris police: Market\u003cbr\u003egunman threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:26:27 +0000 2015"}, {"group": 2026, "id": 2, "label": "553573562679042048", "shape": "dot", "size": 10, "title": "553573562679042048\u003cbr\u003e\u201c@AP: BREAKING: Paris police: Market\u003cbr\u003egunman threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u201d\u003cbr\u003eCoward son of a b\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:26:36 +0000 2015"}, {"group": 2026, "id": 3, "label": "553573603078184962", "shape": "dot", "size": 10, "title": "553573603078184962\u003cbr\u003e@AP THE POLICE SHOULD KILL\u003cbr\u003eTHEM ALL.  WITH NO\u003cbr\u003eREMORSE.\u003cbr\u003eFri Jan 09 15:26:46 +0000 2015"}, {"group": 2026, "id": 4, "label": "553573618148704256", "shape": "dot", "size": 10, "title": "553573618148704256\u003cbr\u003e\u201c@AP: BREAKING: Paris police: Market\u003cbr\u003egunman threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:26:50 +0000 2015"}, {"group": 2026, "id": 5, "label": "553573625677479937", "shape": "dot", "size": 10, "title": "553573625677479937\u003cbr\u003e\u201c@AP: BREAKING: Paris police: Market\u003cbr\u003egunman threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u201d\u003cbr\u003e\ud83d\ude4f #PrayersForFrance\u003cbr\u003eFri Jan 09 15:26:51 +0000 2015"}, {"group": 2026, "id": 6, "label": "553573753829859329", "shape": "dot", "size": 10, "title": "553573753829859329\u003cbr\u003e@AP They also threaten to\u003cbr\u003ekill anyone just because.\u003cbr\u003eFri Jan 09 15:27:22 +0000 2015"}, {"group": 2026, "id": 7, "label": "553573830850281472", "shape": "dot", "size": 10, "title": "553573830850281472\u003cbr\u003e@AP they\u0027re going to kill\u003cbr\u003ethem regardless. they said they\u003cbr\u003ewant to be martyrs.\u003cbr\u003eFri Jan 09 15:27:40 +0000 2015"}, {"group": 2026, "id": 8, "label": "553573861024104448", "shape": "dot", "size": 10, "title": "553573861024104448\u003cbr\u003e@AP simple do them both\u003cbr\u003eat the same time\u003cbr\u003eFri Jan 09 15:27:48 +0000 2015"}, {"group": 2026, "id": 9, "label": "553573923871555584", "shape": "dot", "size": 10, "title": "553573923871555584\u003cbr\u003e@AP @LordSkipVC So they\u0027ll just\u003cbr\u003estorm both places simultaneously\u003cbr\u003eFri Jan 09 15:28:03 +0000 2015"}, {"group": 2026, "id": 10, "label": "553573994100981760", "shape": "dot", "size": 10, "title": "553573994100981760\u003cbr\u003e@AP Repeat: \"We do no\u003cbr\u003enegotiate with terrorists\"\u003cbr\u003eFri Jan 09 15:28:19 +0000 2015"}, {"group": 2026, "id": 11, "label": "553573998802792448", "shape": "dot", "size": 10, "title": "553573998802792448\u003cbr\u003eShit \u201c@AP: BREAKING: Paris police:\u003cbr\u003eMarket gunman threatens to kill\u003cbr\u003ehostages if police storm terrorist\u003cbr\u003ebrothers.\u201d\u003cbr\u003eFri Jan 09 15:28:20 +0000 2015"}, {"group": 2026, "id": 12, "label": "553574076955242497", "shape": "dot", "size": 10, "title": "553574076955242497\u003cbr\u003e\u201c@AP: BREAKING: Paris police: Market\u003cbr\u003egunman threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u201d\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:28:39 +0000 2015"}, {"group": 2026, "id": 13, "label": "553574124568969216", "shape": "dot", "size": 10, "title": "553574124568969216\u003cbr\u003e\u201c@AP: BREAKING: Paris police: Market\u003cbr\u003egunman threatens to kill hostages\u003cbr\u003eif police storm terrorist brothers.\u201d\ud83d\ude33\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:28:50 +0000 2015"}, {"group": 2026, "id": 14, "label": "553574174477008896", "shape": "dot", "size": 10, "title": "553574174477008896\u003cbr\u003e@AP @BuzzFeedNews cut their phone\u003cbr\u003eservice off.\u003cbr\u003eFri Jan 09 15:29:02 +0000 2015"}, {"group": 2026, "id": 15, "label": "553574182957502464", "shape": "dot", "size": 10, "title": "553574182957502464\u003cbr\u003eMT @AP: BREAKING: Paris police:\u003cbr\u003eMarket gunman threatens to kill\u003cbr\u003ehostages if police storm terrorist\u003cbr\u003ebrothers.\u003cbr\u003eFri Jan 09 15:29:04 +0000 2015"}, {"group": 2026, "id": 16, "label": "553574222375579648", "shape": "dot", "size": 10, "title": "553574222375579648\u003cbr\u003e@AP Plot Twist, does this\u003cbr\u003emean the kosher market hostage\u003cbr\u003etaker is in communication with\u003cbr\u003ethe brothers? How would he\u003cbr\u003eknow otherwise?\u003cbr\u003eFri Jan 09 15:29:14 +0000 2015"}, {"group": 2026, "id": 17, "label": "553574266625859585", "shape": "dot", "size": 10, "title": "553574266625859585\u003cbr\u003e@AP Stop these terrorists NOW!\u003cbr\u003e\u003cbr\u003eFri Jan 09 15:29:24 +0000 2015"}, {"group": 2026, "id": 18, "label": "553574471026900992", "shape": "dot", "size": 10, "title": "553574471026900992\u003cbr\u003e@AP gut \u0027em like swine\u003cbr\u003ein a slaughterhouse\u003cbr\u003eFri Jan 09 15:30:13 +0000 2015"}, {"group": 2026, "id": 19, "label": "553575163942690817", "shape": "dot", "size": 10, "title": "553575163942690817\u003cbr\u003e\u201c@bobbydtv: \u201c@AP: BREAKING: Paris police:\u003cbr\u003eMarket gunman threatens to kill\u003cbr\u003ehostages if police storm terrorist\u003cbr\u003ebrothers.\u201d\u003cbr\u003eFri Jan 09 15:32:58 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 0, "to": 18, "weight": 1}, {"from": 1, "to": 19, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

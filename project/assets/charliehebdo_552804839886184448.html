@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1700, "id": 0, "label": "552804839886184448", "shape": "dot", "size": 10, "title": "552804839886184448\u003cbr\u003eCharlie Hebdo shooting: twelve dead\u003cbr\u003eat Paris offices of satirical\u003cbr\u003emagazine  \u2013 live updates\u003cbr\u003ehttp://t.co/Yc1915SVdD\u003cbr\u003eWed Jan 07 12:31:59 +0000 2015"}, {"group": 1700, "id": 1, "label": "552805808388734977", "shape": "dot", "size": 10, "title": "552805808388734977\u003cbr\u003e\u201c@guardian: Charlie Hebdo shooting: twelve\u003cbr\u003edead at Paris offices of\u003cbr\u003esatirical magazine  \u2013 live\u003cbr\u003eupdates http://t.co/4K08QGw8FN\u201d\u003cbr\u003eWed Jan 07 12:35:50 +0000 2015"}, {"group": 1700, "id": 2, "label": "552806236186361857", "shape": "dot", "size": 10, "title": "552806236186361857\u003cbr\u003e\u201c@guardian: Charlie Hebdo shooting: twelve\u003cbr\u003edead at Paris offices of\u003cbr\u003esatirical magazine  \u2013 live\u003cbr\u003eupdates http://t.co/CD0zmsN6n7\u201d\u003cbr\u003eWed Jan 07 12:37:32 +0000 2015"}, {"group": 1700, "id": 3, "label": "552806759903940608", "shape": "dot", "size": 10, "title": "552806759903940608\u003cbr\u003e@guardian It is sad news..\u003cbr\u003e\u003cbr\u003eWed Jan 07 12:39:36 +0000 2015"}, {"group": 1700, "id": 4, "label": "552807342514143233", "shape": "dot", "size": 10, "title": "552807342514143233\u003cbr\u003e@guardian Just get the authorities\u003cbr\u003eto look for the nearest\u003cbr\u003emosque celebrating the attack, then\u003cbr\u003eagain, doubt theyd have the\u003cbr\u003eresources to cope\u003cbr\u003eWed Jan 07 12:41:55 +0000 2015"}, {"group": 1700, "id": 5, "label": "552807654775848960", "shape": "dot", "size": 10, "title": "552807654775848960\u003cbr\u003e\u201c@guardian: Charlie Hebdo shooting: twelve\u003cbr\u003edead at Paris offices of\u003cbr\u003esatirical magazine  \u2013 live\u003cbr\u003eupdates http://t.co/q11OcHK6xp\u201d\u003cbr\u003eWed Jan 07 12:43:10 +0000 2015"}, {"group": 1700, "id": 6, "label": "552808899712012288", "shape": "dot", "size": 10, "title": "552808899712012288\u003cbr\u003e\u201c@guardian: Charlie Hebdo shooting: twelve\u003cbr\u003edead at Paris offices of\u003cbr\u003esatirical magazine  \u2013 live\u003cbr\u003eupdates http://t.co/CpeAQAMq9J\u201d\u003cbr\u003eWed Jan 07 12:48:07 +0000 2015"}, {"group": 1700, "id": 7, "label": "552810250488000512", "shape": "dot", "size": 10, "title": "552810250488000512\u003cbr\u003eRT @guardian: Charlie Hebdo shooting:\u003cbr\u003etwelve dead at Paris offices\u003cbr\u003eof satirical magazine  \u2013\u003cbr\u003elive updates http://t.co/DjkMZhL6IG\u003cbr\u003eWed Jan 07 12:53:29 +0000 2015"}, {"group": 1700, "id": 8, "label": "552820287067402241", "shape": "dot", "size": 10, "title": "552820287067402241\u003cbr\u003eSo awful! \ud83d\ude14 \u201c@guardian: Charlie\u003cbr\u003eHebdo shooting: twelve dead at\u003cbr\u003eParis offices of satirical magazine\u003cbr\u003e \u2013 live updates http://t.co/CHoAIa18FW\u201d\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:33:21 +0000 2015"}, {"group": 1700, "id": 9, "label": "552854500592324609", "shape": "dot", "size": 10, "title": "552854500592324609\u003cbr\u003e@guardian To hell with all\u003cbr\u003ebastards that kill people on\u003cbr\u003ebehalf of religion! Damn all\u003cbr\u003eterrorist criminals and fundamentalist religious\u003cbr\u003emorons\u003cbr\u003eWed Jan 07 15:49:19 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

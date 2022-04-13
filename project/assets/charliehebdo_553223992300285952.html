@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1193, "id": 0, "label": "553223992300285952", "shape": "dot", "size": 10, "title": "553223992300285952\u003cbr\u003eDid this in a rush\u003cbr\u003efor @SkyNews before latest #CharlieHebdo\u003cbr\u003emedia maelstrom http://t.co/EFgnTIwouk\u003cbr\u003eThu Jan 08 16:17:32 +0000 2015"}, {"group": 1193, "id": 1, "label": "553224344206606336", "shape": "dot", "size": 10, "title": "553224344206606336\u003cbr\u003e@MartinRowson @SkyNews\u003cbr\u003eThu Jan 08 16:18:56 +0000 2015"}, {"group": 1193, "id": 2, "label": "553225380753334272", "shape": "dot", "size": 10, "title": "553225380753334272\u003cbr\u003e@MartinRowson I know everything you\u0027ve\u003cbr\u003edone and said has been\u003cbr\u003eyour own response but thanks\u003cbr\u003efrom this old pencil pusher\u003cbr\u003efor saying it all\u003cbr\u003eThu Jan 08 16:23:03 +0000 2015"}, {"group": 1193, "id": 3, "label": "553226916346728449", "shape": "dot", "size": 10, "title": "553226916346728449\u003cbr\u003e@MartinRowson @SkyNews vive tout les\u003cbr\u003ecartoonists\u003cbr\u003eThu Jan 08 16:29:09 +0000 2015"}, {"group": 1193, "id": 4, "label": "553268619925544960", "shape": "dot", "size": 10, "title": "553268619925544960\u003cbr\u003e@MartinRowson \n#Kobane defender of #civilsociety\nv/sadden\u003cbr\u003eby loosing our supporter \u003cbr\u003e#CharlieHebdo\n#ParisShooting http://t.co/a0NBTIBAqL\u003cbr\u003eThu Jan 08 19:14:52 +0000 2015"}, {"group": 1193, "id": 5, "label": "553270095909519362", "shape": "dot", "size": 10, "title": "553270095909519362\u003cbr\u003e@MartinRowson @PeterTatchell @SkyNews clowns to\u003cbr\u003eus, but sadly millions of\u003cbr\u003eextremist idolize such facist terrorists\u003cbr\u003e\u003cbr\u003eThu Jan 08 19:20:44 +0000 2015"}, {"group": 1193, "id": 7, "label": "553305959159046144", "shape": "dot", "size": 10, "title": "553305959159046144\u003cbr\u003e@MartinRowson @SkyNews  \ud83c\udf1f\ud83c\udf1f\ud83c\udf1f\ud83c\udf1f\ud83c\udf0e\ud83c\udf0d\ud83c\udf0f\ud83c\udfa8\u270f\u2712\ud83d\udcf0\ud83d\udc4c\ud83d\udc4d\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83c\udf0a\ud83d\udc99\ud83c\udf0a\ud83d\udc99\ud83c\udf0a\ud83d\udc99\ud83c\udf0a\u26f5\ud83c\udf0a\ud83d\udea2\ud83c\udf0a\ud83d\udc99 \u003cbr\u003e#NousSommesTousCharlie #weareallcharlie\u003cbr\u003eThu Jan 08 21:43:15 +0000 2015"}, {"group": 1193, "id": 8, "label": "553612498801537024", "shape": "dot", "size": 10, "title": "553612498801537024\u003cbr\u003e@MartinRowson @SkyNews if terrorists killed\u003cbr\u003eevery one, would they have\u003cbr\u003eto do an honest job,\u003cbr\u003eor go on the dole?\u003cbr\u003e\u003cbr\u003eFri Jan 09 18:01:19 +0000 2015"}, {"group": 1193, "id": 11, "label": "553890949508898817", "shape": "dot", "size": 10, "title": "553890949508898817\u003cbr\u003e@MartinRowson @SkyNews Like the style\u003cbr\u003eMr Rowson... V Beano :))\u003cbr\u003e\u003cbr\u003eSat Jan 10 12:27:47 +0000 2015"}, {"group": 1193, "id": 6, "label": "553304123290828800", "shape": "dot", "size": 10, "title": "553304123290828800\u003cbr\u003e@iamstoner @MartinRowson @SkyNews HaHaHa L{}Ve\u003cbr\u003eit !\u003cbr\u003eThu Jan 08 21:35:57 +0000 2015"}, {"group": 1193, "id": 9, "label": "553613354749931520", "shape": "dot", "size": 10, "title": "553613354749931520\u003cbr\u003e@wheneverisit1 @SkyNews Good point. But\u003cbr\u003eif everyone was dead, who\u003cbr\u003ewould they work for?\u003cbr\u003eFri Jan 09 18:04:44 +0000 2015"}, {"group": 1193, "id": 10, "label": "553614210035638273", "shape": "dot", "size": 10, "title": "553614210035638273\u003cbr\u003e@MartinRowson @SkyNews i was thinking\u003cbr\u003e about their \u0027 real\u003cbr\u003eworld survival\u0027 skills. bet they\u003cbr\u003ecant even do their own\u003cbr\u003elaundry.\u003cbr\u003eFri Jan 09 18:08:07 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

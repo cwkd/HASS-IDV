@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 145, "id": 0, "label": "552810124776308736", "shape": "dot", "size": 10, "title": "552810124776308736\u003cbr\u003eStop making excuses for terrorists.\u003cbr\u003e#CharlieHebdo tweeted this before Christmas\u003cbr\u003eand there\u0027ll be no avenging\u003cbr\u003eJesus. http://t.co/BS3Z759LLx\u003cbr\u003eWed Jan 07 12:52:59 +0000 2015"}, {"group": 145, "id": 1, "label": "552811315501469696", "shape": "dot", "size": 10, "title": "552811315501469696\u003cbr\u003e@Jonathan_Witt who is making excuses\u003cbr\u003efor terrorists,Jonathan?\u003cbr\u003eWed Jan 07 12:57:43 +0000 2015"}, {"group": 145, "id": 2, "label": "552811415606931456", "shape": "dot", "size": 10, "title": "552811415606931456\u003cbr\u003e@Jonathan_Witt @This_Boy_Ben now class ..\u003cbr\u003enew word F A L\u003cbr\u003eS E   F\u003cbr\u003eL A G ... uncle\u003cbr\u003ebib\u0027s favourite , the queen\u003cbr\u003eis also very partial\u003cbr\u003eWed Jan 07 12:58:06 +0000 2015"}, {"group": 145, "id": 3, "label": "552811528077205506", "shape": "dot", "size": 10, "title": "552811528077205506\u003cbr\u003e@Jonathan_Witt footage absolutely horrific... Time\u003cbr\u003ethe world sees who these\u003cbr\u003ebastard jihad vermin are! Makes\u003cbr\u003eme so very angry\u003cbr\u003eWed Jan 07 12:58:33 +0000 2015"}, {"group": 145, "id": 4, "label": "552811539879985154", "shape": "dot", "size": 10, "title": "552811539879985154\u003cbr\u003e@Jonathan_Witt mmm, maybe the gunmen\u003cbr\u003ewere Christian Fundamentalists.\u003cbr\u003eWed Jan 07 12:58:36 +0000 2015"}, {"group": 145, "id": 5, "label": "552814069913505793", "shape": "dot", "size": 10, "title": "552814069913505793\u003cbr\u003e@Jonathan_Witt Aaaaaaand cue the \u0027lone\u003cbr\u003ewolf\u0027 brigade #CharlieHebdo #france #shooting\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:08:39 +0000 2015"}, {"group": 145, "id": 8, "label": "552818327379542016", "shape": "dot", "size": 10, "title": "552818327379542016\u003cbr\u003e@Jonathan_Witt @pleb68 God will have\u003cbr\u003eHis revenge on Judgement day.\u003cbr\u003eHe doesn\u0027t need our help\u003cbr\u003eavenging him. #God will take\u003cbr\u003ecare of everything.\u003cbr\u003eWed Jan 07 13:25:34 +0000 2015"}, {"group": 145, "id": 6, "label": "552818035686666240", "shape": "dot", "size": 10, "title": "552818035686666240\u003cbr\u003e@NielsColesky @Jonathan_Witt Read the PC\u003cbr\u003ebullshit for the next few\u003cbr\u003eweeks, then chum\u003cbr\u003eWed Jan 07 13:24:25 +0000 2015"}, {"group": 145, "id": 22, "label": "554160049887907840", "shape": "dot", "size": 10, "title": "554160049887907840\u003cbr\u003e@yolnic @Jonathan_Witt To Clarify\"Jihad\"Sunni scholars\u003cbr\u003erefer to this duty as\u003cbr\u003ethe sixth pillar of Islam.Terrorists\u003cbr\u003ewas the cause of France.uc\u003cbr\u003e\u003cbr\u003eSun Jan 11 06:17:06 +0000 2015"}, {"group": 145, "id": 23, "label": "554165181953998848", "shape": "dot", "size": 10, "title": "554165181953998848\u003cbr\u003e@yolnic @Jonathan_Witt Terrorists are fanatics\u003cbr\u003ewho seek to avenge insults\u003cbr\u003eof Muhammad w/violence are paying\u003cbr\u003eno heed to the Koran.\u003cbr\u003e\u003cbr\u003eSun Jan 11 06:37:29 +0000 2015"}, {"group": 145, "id": 7, "label": "552818266394353666", "shape": "dot", "size": 10, "title": "552818266394353666\u003cbr\u003e@NielsColesky @Jonathan_Witt Oh, we\u0027re down\u003cbr\u003ethe \"white supremacist\" path from\u003cbr\u003eyou pompous pillocks already ?\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:25:20 +0000 2015"}, {"group": 145, "id": 14, "label": "552829163934318593", "shape": "dot", "size": 10, "title": "552829163934318593\u003cbr\u003e@Atlanta_Patriot @Jonathan_Witt @pleb68 Oh FFS!\u003cbr\u003eThat\u0027s all we need, another\u003cbr\u003ebloody religious war on the\u003cbr\u003ehorizon!\u003cbr\u003eWed Jan 07 14:08:38 +0000 2015"}, {"group": 145, "id": 15, "label": "552829295627100162", "shape": "dot", "size": 10, "title": "552829295627100162\u003cbr\u003e@Atlanta_Patriot @Jonathan_Witt @pleb68 ...How about\u003cbr\u003eeveryone just chill the fuck\u003cbr\u003eout?\u003cbr\u003eWed Jan 07 14:09:09 +0000 2015"}, {"group": 145, "id": 9, "label": "552819376328826880", "shape": "dot", "size": 10, "title": "552819376328826880\u003cbr\u003e@Phil_R_Upp @Jonathan_Witt oh I get\u003cbr\u003eit. Yours is a joke\u003cbr\u003ename. Fill her up? Haha.\u003cbr\u003eNot. You shallow vitriolic hate-monger.\u003cbr\u003e\u003cbr\u003eWed Jan 07 13:29:44 +0000 2015"}, {"group": 145, "id": 10, "label": "552819954190651392", "shape": "dot", "size": 10, "title": "552819954190651392\u003cbr\u003e@NielsColesky @Jonathan_Witt I\u0027lll take a\u003cbr\u003ewild guess you\u0027ll have an\u003cbr\u003eoverpaid job at public expense.\u003cbr\u003eusual PC type ?\u003cbr\u003eWed Jan 07 13:32:02 +0000 2015"}, {"group": 145, "id": 17, "label": "552831613353361408", "shape": "dot", "size": 10, "title": "552831613353361408\u003cbr\u003e@Phil_R_Upp @Jonathan_Witt @NielsColesky Sounds about\u003cbr\u003eright to these ears!\u003cbr\u003eWed Jan 07 14:18:22 +0000 2015"}, {"group": 145, "id": 11, "label": "552820285595209728", "shape": "dot", "size": 10, "title": "552820285595209728\u003cbr\u003e@Phil_R_Upp and then?\u003cbr\u003eWed Jan 07 13:33:21 +0000 2015"}, {"group": 145, "id": 12, "label": "552820921984372737", "shape": "dot", "size": 10, "title": "552820921984372737\u003cbr\u003e@NielsColesky I\u0027m sure you need\u003cbr\u003edirections to the nearest loony\u003cbr\u003ebin. Turn left at the\u003cbr\u003esquiggle\u003cbr\u003eWed Jan 07 13:35:53 +0000 2015"}, {"group": 145, "id": 13, "label": "552821367226507264", "shape": "dot", "size": 10, "title": "552821367226507264\u003cbr\u003e@Phil_R_Upp ?\u003cbr\u003eWed Jan 07 13:37:39 +0000 2015"}, {"group": 145, "id": 16, "label": "552829788596236288", "shape": "dot", "size": 10, "title": "552829788596236288\u003cbr\u003e@cockneyreject @Jonathan_Witt @pleb68 On the\u003cbr\u003ehorizon? #ISIS initiated a religious\u003cbr\u003ewar w/ the slaughter of\u003cbr\u003e#Christians. Not the other way\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:11:07 +0000 2015"}, {"group": 145, "id": 18, "label": "552833173672185856", "shape": "dot", "size": 10, "title": "552833173672185856\u003cbr\u003e@Atlanta_Patriot @Jonathan_Witt @pleb68 yeah, maybe\u003cbr\u003enot the best choice of\u003cbr\u003ewords.\u003cbr\u003eWed Jan 07 14:24:34 +0000 2015"}, {"group": 145, "id": 19, "label": "552833432121004033", "shape": "dot", "size": 10, "title": "552833432121004033\u003cbr\u003e@Atlanta_Patriot @Jonathan_Witt @pleb68 ...so \u0027not\u003cbr\u003ea continuation of the same\u003cbr\u003etired old crap\u0027. Ain\u0027t it\u003cbr\u003ebeen going on for far\u003cbr\u003etoo long?\u003cbr\u003eWed Jan 07 14:25:36 +0000 2015"}, {"group": 145, "id": 20, "label": "552833908417789952", "shape": "dot", "size": 10, "title": "552833908417789952\u003cbr\u003e@cockneyreject @Jonathan_Witt @pleb68 So go\u003cbr\u003e\u0026amp; stop it.\u003cbr\u003eWed Jan 07 14:27:29 +0000 2015"}, {"group": 145, "id": 21, "label": "552884873577648128", "shape": "dot", "size": 10, "title": "552884873577648128\u003cbr\u003e@Atlanta_Patriot @Jonathan_Witt @pleb68 Not my\u003cbr\u003ejob friend. I just have\u003cbr\u003ean opinion is all.\u003cbr\u003eWed Jan 07 17:50:00 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 1, "to": 6, "weight": 1}, {"from": 3, "to": 22, "weight": 1}, {"from": 3, "to": 23, "weight": 1}, {"from": 4, "to": 7, "weight": 1}, {"from": 8, "to": 14, "weight": 1}, {"from": 8, "to": 15, "weight": 1}, {"from": 9, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}, {"from": 9, "to": 17, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 14, "to": 16, "weight": 1}, {"from": 16, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 19, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

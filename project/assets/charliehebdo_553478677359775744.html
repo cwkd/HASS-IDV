@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1879, "id": 0, "label": "553478677359775744", "shape": "dot", "size": 10, "title": "553478677359775744\u003cbr\u003eScene at #DammartinEnGoele as police\u003cbr\u003ehunt #CharlieHebdo suspects - follow\u003cbr\u003eour coverage: http://t.co/HvWOnQGf9x http://t.co/NW8RB0E0kY\u003cbr\u003eFri Jan 09 09:09:34 +0000 2015"}, {"group": 1879, "id": 1, "label": "553478884239638528", "shape": "dot", "size": 10, "title": "553478884239638528\u003cbr\u003e@BBCBreaking PHOTO OF THE FACTORY\u003cbr\u003eWHERE THE 2 GUNMEN HAVE\u003cbr\u003eTAKEN HOSTAGES http://t.co/DPKlCgw5P2\u003cbr\u003eFri Jan 09 09:10:23 +0000 2015"}, {"group": 1879, "id": 2, "label": "553479126112546816", "shape": "dot", "size": 10, "title": "553479126112546816\u003cbr\u003e@BBCBreaking shocking driving just to\u003cbr\u003eget the footage first.\u003cbr\u003eFri Jan 09 09:11:21 +0000 2015"}, {"group": 1879, "id": 3, "label": "553479176205139968", "shape": "dot", "size": 10, "title": "553479176205139968\u003cbr\u003e@BBCBreaking How long before the\u003cbr\u003eFox \u0026amp; Badger brigade complain\u003cbr\u003eabout the unfairness of Terrorist\u003cbr\u003eHunting?\u003cbr\u003eFri Jan 09 09:11:33 +0000 2015"}, {"group": 1879, "id": 4, "label": "553479225957949441", "shape": "dot", "size": 10, "title": "553479225957949441\u003cbr\u003e@BBCBreaking CTD Cr\u00e9ation Tendance D\u00e9couverte.\u003cbr\u003e12 ZA les pr\u00e9s Boucher.\u003cbr\u003e77230 #Dammartin-en-Go\u00eble. T\u00e9l : 01\u003cbr\u003e60 03 85 20. Prise\u003cbr\u003ed\u0027otage\u003cbr\u003eFri Jan 09 09:11:45 +0000 2015"}, {"group": 1879, "id": 5, "label": "553479282572288000", "shape": "dot", "size": 10, "title": "553479282572288000\u003cbr\u003e@BBCBreaking hope no more innocent\u003cbr\u003epeople get hurt by these\u003cbr\u003epsychopaths\u003cbr\u003eFri Jan 09 09:11:58 +0000 2015"}, {"group": 1879, "id": 6, "label": "553479343868215296", "shape": "dot", "size": 10, "title": "553479343868215296\u003cbr\u003e@BBCBreaking Somehow I don\u0027t think\u003cbr\u003ethis is going to trial.\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:12:13 +0000 2015"}, {"group": 1879, "id": 7, "label": "553479411761434624", "shape": "dot", "size": 10, "title": "553479411761434624\u003cbr\u003e@BBCBreaking BBC\u0027s idea of breaking\u003cbr\u003enews from French siege -\u003cbr\u003elive footage from a car\u003cbr\u003edriving around, trying to get\u003cbr\u003epast police road blocks??\u003cbr\u003eFri Jan 09 09:12:29 +0000 2015"}, {"group": 1879, "id": 9, "label": "553479607517986816", "shape": "dot", "size": 10, "title": "553479607517986816\u003cbr\u003e@BBCBreaking  hope french police\u003cbr\u003euse the double tap on\u003cbr\u003ethese scum\u003cbr\u003eFri Jan 09 09:13:16 +0000 2015"}, {"group": 1879, "id": 10, "label": "553479875747536896", "shape": "dot", "size": 10, "title": "553479875747536896\u003cbr\u003e@BBCBreaking French Country Men taking\u003cbr\u003erevenge at Paris City Resident\u003cbr\u003eover tax increase nothing to\u003cbr\u003edo wth faith #CharlieHebdo #JeSuisCharlie\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:14:20 +0000 2015"}, {"group": 1879, "id": 11, "label": "553480011915988992", "shape": "dot", "size": 10, "title": "553480011915988992\u003cbr\u003e@BBCBreaking Ridiculous video coverage on\u003cbr\u003e@BBCBreakfast @BBCBreaking, view from a\u003cbr\u003eReuters car causing havoc in\u003cbr\u003ethe rain. #why???\u003cbr\u003eFri Jan 09 09:14:52 +0000 2015"}, {"group": 1879, "id": 12, "label": "553480033197510656", "shape": "dot", "size": 10, "title": "553480033197510656\u003cbr\u003e@BBCBreaking watch live news on\u003cbr\u003ethis https://t.co/uZeZWwp4xa\u003cbr\u003eFri Jan 09 09:14:57 +0000 2015"}, {"group": 1879, "id": 13, "label": "553480045847912448", "shape": "dot", "size": 10, "title": "553480045847912448\u003cbr\u003e@BBCBreaking @SkyNews has better coverage\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:15:00 +0000 2015"}, {"group": 1879, "id": 14, "label": "553480283194789888", "shape": "dot", "size": 10, "title": "553480283194789888\u003cbr\u003e@BBCBreaking @SidraIqbal OMG....cows at work..:)\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:15:57 +0000 2015"}, {"group": 1879, "id": 15, "label": "553480439298793472", "shape": "dot", "size": 10, "title": "553480439298793472\u003cbr\u003e@BBCBreaking The Harder They Come\u003cbr\u003eThe Harder They Fall.\u003cbr\u003eFri Jan 09 09:16:34 +0000 2015"}, {"group": 1879, "id": 16, "label": "553481426746998784", "shape": "dot", "size": 10, "title": "553481426746998784\u003cbr\u003e@BBCBreaking pay no attention to\u003cbr\u003ethe man behind the curtain\u003cbr\u003eand in other news bigfoot\u003cbr\u003ewins lotto #falseflag\u003cbr\u003eFri Jan 09 09:20:29 +0000 2015"}, {"group": 1879, "id": 17, "label": "553481713439891457", "shape": "dot", "size": 10, "title": "553481713439891457\u003cbr\u003e@BBCBreaking @BBCSanjoyM No trail no\u003cbr\u003ecourts hang them. If they\u003cbr\u003eare the one.\u003cbr\u003eFri Jan 09 09:21:38 +0000 2015"}, {"group": 1879, "id": 8, "label": "553479527712972800", "shape": "dot", "size": 10, "title": "553479527712972800\u003cbr\u003e@TheLouisAlb @BBCBreaking CTD Cr\u00e9ation Tendance\u003cbr\u003eD\u00e9couverte. 12 ZA les pr\u00e9s\u003cbr\u003eBoucher. 77230 #Dammartin-en-Go\u00eble. T\u00e9l :\u003cbr\u003e01 60 03 85 20\u003cbr\u003e\u003cbr\u003eFri Jan 09 09:12:57 +0000 2015"}, {"group": 1879, "id": 21, "label": "553615355856556032", "shape": "dot", "size": 10, "title": "553615355856556032\u003cbr\u003e@petermetalli French Special Forces don\u0027t\u003cbr\u003emuck about...\u003cbr\u003eFri Jan 09 18:12:41 +0000 2015"}, {"group": 1879, "id": 18, "label": "553481984627179520", "shape": "dot", "size": 10, "title": "553481984627179520\u003cbr\u003e@alexalqausar @BBCBreaking bullshit\u003cbr\u003eFri Jan 09 09:22:42 +0000 2015"}, {"group": 1879, "id": 19, "label": "553484449678393345", "shape": "dot", "size": 10, "title": "553484449678393345\u003cbr\u003e@MayoAnon @BBCBreaking http://t.co/Ae1S7sqDY0\u003cbr\u003eFri Jan 09 09:32:30 +0000 2015"}, {"group": 1879, "id": 20, "label": "553502106381217792", "shape": "dot", "size": 10, "title": "553502106381217792\u003cbr\u003e@MayoAnon @BBCBreaking All the suspects\u003cbr\u003eare called \u0027Lee Harvey Oswald\u0027.\u003cbr\u003eThat\u0027s just SO amazing.\u003cbr\u003eFri Jan 09 10:42:40 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 0, "to": 17, "weight": 1}, {"from": 1, "to": 8, "weight": 1}, {"from": 6, "to": 21, "weight": 1}, {"from": 10, "to": 18, "weight": 1}, {"from": 16, "to": 19, "weight": 1}, {"from": 16, "to": 20, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

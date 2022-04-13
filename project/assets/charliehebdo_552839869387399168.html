@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 544, "id": 0, "label": "552839869387399168", "shape": "dot", "size": 10, "title": "552839869387399168\u003cbr\u003eExecuting unarmed cartoonists can never\u003cbr\u003ebe the will of any\u003cbr\u003eGod. #CharlieHebdo\u003cbr\u003eWed Jan 07 14:51:10 +0000 2015"}, {"group": 544, "id": 1, "label": "552840372918190081", "shape": "dot", "size": 10, "title": "552840372918190081\u003cbr\u003e@davidwalliams follow me please David.\u2764\ufe0f\u003cbr\u003e\u003cbr\u003eWed Jan 07 14:53:10 +0000 2015"}, {"group": 544, "id": 2, "label": "552840430602424320", "shape": "dot", "size": 10, "title": "552840430602424320\u003cbr\u003e@davidwalliams what is this world\u003cbr\u003ecoming too? #speechless #CharlieHebdo\u003cbr\u003eWed Jan 07 14:53:24 +0000 2015"}, {"group": 544, "id": 3, "label": "552841246826577921", "shape": "dot", "size": 10, "title": "552841246826577921\u003cbr\u003e@davidwalliams how do you know\u003cbr\u003e?\u003cbr\u003eWed Jan 07 14:56:39 +0000 2015"}, {"group": 544, "id": 4, "label": "552841279273721856", "shape": "dot", "size": 10, "title": "552841279273721856\u003cbr\u003e@davidwalliams @KiranOpal Actually murdering dissidents\u003cbr\u003ehas been the will of\u003cbr\u003emany if not most gods\u003cbr\u003ethroughout history.\u003cbr\u003eWed Jan 07 14:56:46 +0000 2015"}, {"group": 544, "id": 5, "label": "552842507894403072", "shape": "dot", "size": 10, "title": "552842507894403072\u003cbr\u003eSalute @davidwalliams\u003cbr\u003eWed Jan 07 15:01:39 +0000 2015"}, {"group": 544, "id": 10, "label": "552845621007482880", "shape": "dot", "size": 10, "title": "552845621007482880\u003cbr\u003e@davidwalliams @isobelletomkins but it is\u003cbr\u003ethe will of the koran\u003cbr\u003e\u0026amp; it\u0027s hadiths, which is\u003cbr\u003edeemed absolute truth by its\u003cbr\u003efollowers. What next?\u003cbr\u003eWed Jan 07 15:14:02 +0000 2015"}, {"group": 544, "id": 12, "label": "552846186068312064", "shape": "dot", "size": 10, "title": "552846186068312064\u003cbr\u003e@davidwalliams so true David xxx\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:16:16 +0000 2015"}, {"group": 544, "id": 14, "label": "552850584748187649", "shape": "dot", "size": 10, "title": "552850584748187649\u003cbr\u003e@davidwalliams @StevenNott Never the will\u003cbr\u003eof the One True God\u003cbr\u003e(of Justice) Jesus but of\u003cbr\u003ethe other gods like Mary,\u003cbr\u003eMichael and Abadon\u003cbr\u003eWed Jan 07 15:33:45 +0000 2015"}, {"group": 544, "id": 15, "label": "552852136720343040", "shape": "dot", "size": 10, "title": "552852136720343040\u003cbr\u003e@davidwalliams You\u0027d assume so, but\u003cbr\u003eit seems not. It\u0027s an\u003cbr\u003eattack on the French way\u003cbr\u003eof life,liberty,freedom-\nmistaking kindness for weakness\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:39:55 +0000 2015"}, {"group": 544, "id": 16, "label": "552878669652574210", "shape": "dot", "size": 10, "title": "552878669652574210\u003cbr\u003e\u201c@davidwalliams: Executing unarmed cartoonists can\u003cbr\u003enever be the will of\u003cbr\u003eany God. #CharlieHebdo\u201d\u003cbr\u003eWed Jan 07 17:25:21 +0000 2015"}, {"group": 544, "id": 6, "label": "552843119662989313", "shape": "dot", "size": 10, "title": "552843119662989313\u003cbr\u003e@xtc_uk @davidwalliams because there is\u003cbr\u003eno god. There are no\u003cbr\u003egods. Just deluded people like\u003cbr\u003eyou Mo.\u003cbr\u003eWed Jan 07 15:04:05 +0000 2015"}, {"group": 544, "id": 18, "label": "552990095150551040", "shape": "dot", "size": 10, "title": "552990095150551040\u003cbr\u003e@xtc_uk @davidwalliams who\u0027s mo?\u003cbr\u003eThu Jan 08 00:48:07 +0000 2015"}, {"group": 544, "id": 19, "label": "552990925991858177", "shape": "dot", "size": 10, "title": "552990925991858177\u003cbr\u003e@MaryNeedsNoHail @davidwalliams @KiranOpal I agree\u003cbr\u003ethat the \"God books\", aka\u003cbr\u003ebibles, say so, but did\u003cbr\u003eGod actually say it...?\u003cbr\u003eThu Jan 08 00:51:25 +0000 2015"}, {"group": 544, "id": 7, "label": "552844328511758336", "shape": "dot", "size": 10, "title": "552844328511758336\u003cbr\u003e@bathguy @davidwalliams hi #thicko im\u003cbr\u003enot mo.\u003cbr\u003eWed Jan 07 15:08:53 +0000 2015"}, {"group": 544, "id": 8, "label": "552844826581164033", "shape": "dot", "size": 10, "title": "552844826581164033\u003cbr\u003e@xtc_uk yes you are. Thicko?\u003cbr\u003eWithering. Get back to slyly\u003cbr\u003edefending Muslim murderers. You\u0027re good\u003cbr\u003eat that Mo.\u003cbr\u003eWed Jan 07 15:10:52 +0000 2015"}, {"group": 544, "id": 9, "label": "552845527541637120", "shape": "dot", "size": 10, "title": "552845527541637120\u003cbr\u003e@bathguy dont tweet me if\u003cbr\u003eyou want mo. youre wasting\u003cbr\u003eyour obsession of mo at\u003cbr\u003eme for no good reason.\u003cbr\u003e\u003cbr\u003eWed Jan 07 15:13:39 +0000 2015"}, {"group": 544, "id": 11, "label": "552845825106518016", "shape": "dot", "size": 10, "title": "552845825106518016\u003cbr\u003e@bathguy why on earth do\u003cbr\u003eyou think mo would want\u003cbr\u003eto interact with you if\u003cbr\u003ehe has you blocked ?\u003cbr\u003eillogical.\u003cbr\u003eWed Jan 07 15:14:50 +0000 2015"}, {"group": 544, "id": 13, "label": "552847093996322817", "shape": "dot", "size": 10, "title": "552847093996322817\u003cbr\u003e@PleaseDemocracy @davidwalliams.It\u0027s expected of believers\u003cbr\u003eto kill anyone deemed to\u003cbr\u003ehave insulted the Prophet, regardless\u003cbr\u003eof \u0027man made law.\u0027\u003cbr\u003eWed Jan 07 15:19:53 +0000 2015"}, {"group": 544, "id": 17, "label": "552879697810694144", "shape": "dot", "size": 10, "title": "552879697810694144\u003cbr\u003e@ghickes @davidwalliams As an #Ahmadi\u003cbr\u003eMuslim I strongly condemn the\u003cbr\u003e#ParisShooting #Charliehebdo  #LoveForAllHatredForNone #StopExtremism\u003cbr\u003e\u003cbr\u003eWed Jan 07 17:29:26 +0000 2015"}, {"group": 544, "id": 20, "label": "553136226451333120", "shape": "dot", "size": 10, "title": "553136226451333120\u003cbr\u003e@tonyvalvo1 @davidwalliams theres a bunch\u003cbr\u003eof idiots on twitter who\u003cbr\u003ethink im someone else based\u003cbr\u003eon hearsay .\u003cbr\u003eThu Jan 08 10:28:47 +0000 2015"}, {"group": 544, "id": 21, "label": "553138370281766912", "shape": "dot", "size": 10, "title": "553138370281766912\u003cbr\u003e@xtc_uk @tonyvalvo1 @davidwalliams You will\u003cbr\u003ejust have to produce your\u003cbr\u003e#passport then :)\u003cbr\u003eThu Jan 08 10:37:18 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 0, "to": 16, "weight": 1}, {"from": 3, "to": 6, "weight": 1}, {"from": 3, "to": 18, "weight": 1}, {"from": 4, "to": 19, "weight": 1}, {"from": 6, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 8, "to": 11, "weight": 1}, {"from": 10, "to": 13, "weight": 1}, {"from": 16, "to": 17, "weight": 1}, {"from": 18, "to": 20, "weight": 1}, {"from": 20, "to": 21, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

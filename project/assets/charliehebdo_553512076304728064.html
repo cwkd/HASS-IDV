@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1310, "id": 0, "label": "553512076304728064", "shape": "dot", "size": 10, "title": "553512076304728064\u003cbr\u003eA few of the #CharlieHebdo\u003cbr\u003eshooting inconsistencies but hey let\u0027s\u003cbr\u003enot nitpick  http://t.co/9I4srbJhsJ\u003cbr\u003eFri Jan 09 11:22:17 +0000 2015"}, {"group": 1310, "id": 1, "label": "553512395461914624", "shape": "dot", "size": 10, "title": "553512395461914624\u003cbr\u003e@HashashinTag yeah, was wondering how\u003cbr\u003ethey\u0027d have known when the\u003cbr\u003emeeting was happening.\u003cbr\u003eFri Jan 09 11:23:33 +0000 2015"}, {"group": 1310, "id": 2, "label": "553516645764055040", "shape": "dot", "size": 10, "title": "553516645764055040\u003cbr\u003e@HashashinTag @FreeFalasteen. Lets hope the\u003cbr\u003ekilling of the extremist cartoonist\u003cbr\u003eserves as a lesson for\u003cbr\u003eothers.\nShit comes around!\u003cbr\u003eFri Jan 09 11:40:26 +0000 2015"}, {"group": 1310, "id": 3, "label": "553524788023795713", "shape": "dot", "size": 10, "title": "553524788023795713\u003cbr\u003e@HashashinTag wow interesting, I don\u0027t\u003cbr\u003eknow for some reason I\u003cbr\u003ehad this intuition that it\u003cbr\u003elooks little set up.\u003cbr\u003eFri Jan 09 12:12:48 +0000 2015"}, {"group": 1310, "id": 4, "label": "553525495200243712", "shape": "dot", "size": 10, "title": "553525495200243712\u003cbr\u003e@HashashinTag Some of this is\u003cbr\u003ea little dubious, though.\u003cbr\u003eFri Jan 09 12:15:36 +0000 2015"}, {"group": 1310, "id": 5, "label": "553526544707383296", "shape": "dot", "size": 10, "title": "553526544707383296\u003cbr\u003e@HashashinTag @ayeshapowell I\u0027m not sure\u003cbr\u003ewith what these things are\u003cbr\u003esaid to be inconsistent. Do\u003cbr\u003ethey suggest a conclusion of\u003cbr\u003esome sort?\u003cbr\u003eFri Jan 09 12:19:46 +0000 2015"}, {"group": 1310, "id": 7, "label": "553534302714339328", "shape": "dot", "size": 10, "title": "553534302714339328\u003cbr\u003e\u201c@HashashinTag: A few of the\u003cbr\u003e#CharlieHebdo shooting inconsistencies but hey\u003cbr\u003elet\u0027s not nitpick  http://t.co/Jmr9cIFW9P\u201dwow\u003cbr\u003eliars they are!\u003cbr\u003eFri Jan 09 12:50:36 +0000 2015"}, {"group": 1310, "id": 10, "label": "553592675161874433", "shape": "dot", "size": 10, "title": "553592675161874433\u003cbr\u003e@HashashinTag @Sunnybluesky321 exactly\u003cbr\u003eFri Jan 09 16:42:33 +0000 2015"}, {"group": 1310, "id": 9, "label": "553552897162870784", "shape": "dot", "size": 10, "title": "553552897162870784\u003cbr\u003e@indigojo_uk Dude it\u0027s Al Qaeda,\u003cbr\u003ethey\u0027re supernatural or something. They\u003cbr\u003ehave better intel than all\u003cbr\u003ewestern counter-terrorism agencies etc.\u003cbr\u003eFri Jan 09 14:04:29 +0000 2015"}, {"group": 1310, "id": 6, "label": "553532300088971264", "shape": "dot", "size": 10, "title": "553532300088971264\u003cbr\u003e@AbuEesaAsifkhan @HashashinTag @FreeFalasteen Today you\u003cbr\u003eonly kill me, but I\u003cbr\u003ewill return and I will\u003cbr\u003ebe millions. \nYour cause is\u003cbr\u003elost already.\u003cbr\u003eFri Jan 09 12:42:39 +0000 2015"}, {"group": 1310, "id": 8, "label": "553539414757228544", "shape": "dot", "size": 10, "title": "553539414757228544\u003cbr\u003e@tupac_katari123 Heyy;) Hope you have\u003cbr\u003ea good day! If you\u003cbr\u003ecan check out this mixtape\u003cbr\u003ejust released by C.O.N\ud83d\udd25 http://t.co/3NyqhlSPN0\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:10:55 +0000 2015"}, {"group": 1310, "id": 11, "label": "553592887469158400", "shape": "dot", "size": 10, "title": "553592887469158400\u003cbr\u003e@a58diamonds @HashashinTag what\u0027s the point.\u003cbr\u003eNo body even wants to\u003cbr\u003eknow the truth these days.\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:43:24 +0000 2015"}, {"group": 1310, "id": 12, "label": "553593436625186816", "shape": "dot", "size": 10, "title": "553593436625186816\u003cbr\u003e@Sunnybluesky321 @HashashinTag yes even you\u003cbr\u003eshow them the false claims\u003cbr\u003eof many a subject \u003cbr\u003ena  doesnt work blocked\u003cbr\u003ebrainwashed,,thats it..\u003cbr\u003eFri Jan 09 16:45:35 +0000 2015"}, {"group": 1310, "id": 13, "label": "553593898506133505", "shape": "dot", "size": 10, "title": "553593898506133505\u003cbr\u003e@a58diamonds @HashashinTag oh well what\u003cbr\u003eto do. People have truly\u003cbr\u003ebecome sheep\u003cbr\u003eFri Jan 09 16:47:25 +0000 2015"}, {"group": 1310, "id": 14, "label": "553594259895746561", "shape": "dot", "size": 10, "title": "553594259895746561\u003cbr\u003e@Sunnybluesky321 @HashashinTag i know \u003cbr\u003ebut they cant even comprehend..\u003cbr\u003ethat hey maybe im looking\u003cbr\u003eat this wrong way .its\u003cbr\u003ein the news its true\u003cbr\u003e\u003cbr\u003eFri Jan 09 16:48:51 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 1, "to": 9, "weight": 1}, {"from": 2, "to": 6, "weight": 1}, {"from": 6, "to": 8, "weight": 1}, {"from": 10, "to": 11, "weight": 1}, {"from": 11, "to": 12, "weight": 1}, {"from": 12, "to": 13, "weight": 1}, {"from": 13, "to": 14, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1962, "id": 0, "label": "553535862911541248", "shape": "dot", "size": 10, "title": "553535862911541248\u003cbr\u003eParis: reports that man suspected\u003cbr\u003eof killing policewoman has 5\u003cbr\u003ehostages at kosher supermarket \u003cbr\u003ehttp://t.co/ZuU5xaf25I http://t.co/DVYPLL3XbF\u003cbr\u003eFri Jan 09 12:56:48 +0000 2015"}, {"group": 1962, "id": 1, "label": "553538727428243456", "shape": "dot", "size": 10, "title": "553538727428243456\u003cbr\u003e@guardiannews It seems the level\u003cbr\u003eof tactical intervention needed to\u003cbr\u003eanswer this Double situation is\u003cbr\u003ealmost overwelming the authorities\u003cbr\u003eFri Jan 09 13:08:11 +0000 2015"}, {"group": 1962, "id": 2, "label": "553539225212452865", "shape": "dot", "size": 10, "title": "553539225212452865\u003cbr\u003e@guardiannews @pugwash1000.  Nothing to\u003cbr\u003edo with Islam. Nothing to\u003cbr\u003edo with Islam.  Any\u003cbr\u003eword on the driver of\u003cbr\u003ethe Glasgow bin lorry?\u003cbr\u003eFri Jan 09 13:10:10 +0000 2015"}, {"group": 1962, "id": 3, "label": "553539241276608512", "shape": "dot", "size": 10, "title": "553539241276608512\u003cbr\u003e@guardiannews Will b terrorists r\u003cbr\u003esurely taking notes somewhere that\u003cbr\u003emultiple unsophisticated attacks by few\u003cbr\u003ewell prepared men could ...\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:10:14 +0000 2015"}, {"group": 1962, "id": 4, "label": "553539406569938946", "shape": "dot", "size": 10, "title": "553539406569938946\u003cbr\u003e\u201c@guardiannews:man suspected of killing policewoman\u003cbr\u003ehas 5 hostages at kosher\u003cbr\u003esupermarket  http://t.co/p9Rx7HaFP0 http://t.co/CY7VxLMerh\u201d\u003cbr\u003eFri Jan 09 13:10:53 +0000 2015"}, {"group": 1962, "id": 7, "label": "553540051838459904", "shape": "dot", "size": 10, "title": "553540051838459904\u003cbr\u003e@guardiannews ...lead to chaotic situation\u003cbr\u003epretty easily How long b4\u003cbr\u003ewe fall into the trap\u003cbr\u003eof war law measures \u0026amp;\u003cbr\u003ehave our freedoms destroyed\u003cbr\u003eFri Jan 09 13:13:27 +0000 2015"}, {"group": 1962, "id": 8, "label": "553540514411474944", "shape": "dot", "size": 10, "title": "553540514411474944\u003cbr\u003e@guardiannews 3 thousand men to\u003cbr\u003ecapture 2 terrorists and now\u003cbr\u003ethis? Seriously? @LaSuperNea\u003cbr\u003eFri Jan 09 13:15:17 +0000 2015"}, {"group": 1962, "id": 9, "label": "553540887871885312", "shape": "dot", "size": 10, "title": "553540887871885312\u003cbr\u003e@guardiannews @The_Real_Fly I\u0027m guessing La\u003cbr\u003ePen will make good use\u003cbr\u003eof this tragedy with the\u003cbr\u003eUltra-Nationalist upsurge that likely follows.\u003cbr\u003e\u003cbr\u003eFri Jan 09 13:16:46 +0000 2015"}, {"group": 1962, "id": 10, "label": "553541533886996480", "shape": "dot", "size": 10, "title": "553541533886996480\u003cbr\u003e@guardiannews Wtf?\u003cbr\u003eFri Jan 09 13:19:20 +0000 2015"}, {"group": 1962, "id": 11, "label": "553546003693842432", "shape": "dot", "size": 10, "title": "553546003693842432\u003cbr\u003e@guardiannews @guardian Lets help this\u003cbr\u003epoor Editor of this Joke\u003cbr\u003enewspaper which should be sold\u003cbr\u003eonly as a toilet paper-its\u003cbr\u003ea muslim terrorist\u003cbr\u003eFri Jan 09 13:37:06 +0000 2015"}, {"group": 1962, "id": 5, "label": "553539506469494784", "shape": "dot", "size": 10, "title": "553539506469494784\u003cbr\u003e@FaithJupiter Nothing to do with\u003cbr\u003eIslam?\u003cbr\u003eFri Jan 09 13:11:17 +0000 2015"}, {"group": 1962, "id": 6, "label": "553539778541805568", "shape": "dot", "size": 10, "title": "553539778541805568\u003cbr\u003e@prozactaker @guardiannews  just warching\u003cbr\u003ethe Live report\u003cbr\u003eFri Jan 09 13:12:22 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 7, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 2, "to": 5, "weight": 1}, {"from": 4, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

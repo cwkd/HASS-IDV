@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 66, "id": 0, "label": "552800223496790018", "shape": "dot", "size": 10, "title": "552800223496790018\u003cbr\u003eWorth remembering Jens Stoltenberg\u0027s words\u003cbr\u003eafter Ut\u00f8ya: \"Our response is\u003cbr\u003emore democracy, more openness and\u003cbr\u003emore humanity\" #CharlieHebdo\u003cbr\u003eWed Jan 07 12:13:38 +0000 2015"}, {"group": 66, "id": 1, "label": "552802684151939072", "shape": "dot", "size": 10, "title": "552802684151939072\u003cbr\u003e@BloomfieldSJ That is stupid. That\u003cbr\u003ewould not have stupid Hitler\u003cbr\u003eand won\u0027t stop Islam.\u003cbr\u003eWed Jan 07 12:23:25 +0000 2015"}, {"group": 66, "id": 2, "label": "552802967074529281", "shape": "dot", "size": 10, "title": "552802967074529281\u003cbr\u003e@BloomfieldSJ All Civilized Nations must\u003cbr\u003eConstitutionally Ban Islam \u0026amp; Kick\u003cbr\u003eAll Muslims Out.\nQuarantine on Saudi\u003cbr\u003epeninsula\u003cbr\u003eWed Jan 07 12:24:32 +0000 2015"}, {"group": 66, "id": 3, "label": "552837119950217216", "shape": "dot", "size": 10, "title": "552837119950217216\u003cbr\u003e@BloomfieldSJ @mpesce Maybe a 140-issue,\u003cbr\u003ebut full quote ends with\u003cbr\u003e\"But never naivety.\" \u0026lt;-- Very\u003cbr\u003eimportant! http://t.co/Ir0WRWLvnY\u003cbr\u003eWed Jan 07 14:40:15 +0000 2015"}, {"group": 66, "id": 8, "label": "552901887687946240", "shape": "dot", "size": 10, "title": "552901887687946240\u003cbr\u003e@BloomfieldSJ @Jane_Samuels Imperative that we\u003cbr\u003eremember this positive message\u003cbr\u003eWed Jan 07 18:57:37 +0000 2015"}, {"group": 66, "id": 9, "label": "552913410409906176", "shape": "dot", "size": 10, "title": "552913410409906176\u003cbr\u003e@BloomfieldSJ And he is right!\u003cbr\u003eIf an innocent person is\u003cbr\u003ekilled by a terrorist or\u003cbr\u003eby warriors against terrorism. Still\u003cbr\u003einnocent, still dead!\u003cbr\u003eWed Jan 07 19:43:24 +0000 2015"}, {"group": 66, "id": 10, "label": "552991256637218816", "shape": "dot", "size": 10, "title": "552991256637218816\u003cbr\u003e@BloomfieldSJ Congrats on your 250\u2605\u003cbr\u003etweet! http://t.co/AJTXlwcqUp\u003cbr\u003eThu Jan 08 00:52:44 +0000 2015"}, {"group": 66, "id": 4, "label": "552838186070581248", "shape": "dot", "size": 10, "title": "552838186070581248\u003cbr\u003e@tveskov @BloomfieldSJ I\u0027m voting for\u003cbr\u003ena\u00efvety.\u003cbr\u003eWed Jan 07 14:44:29 +0000 2015"}, {"group": 66, "id": 5, "label": "552838723306799105", "shape": "dot", "size": 10, "title": "552838723306799105\u003cbr\u003e@mpesce \"Our response is more\u003cbr\u003e.. na\u00efvety\" or? @BloomfieldSJ\u003cbr\u003eWed Jan 07 14:46:37 +0000 2015"}, {"group": 66, "id": 6, "label": "552838990403883008", "shape": "dot", "size": 10, "title": "552838990403883008\u003cbr\u003e@tveskov @BloomfieldSJ The Kingdom of\u003cbr\u003eHeaven belongs to the Minds\u003cbr\u003eof Children\u003cbr\u003eWed Jan 07 14:47:41 +0000 2015"}, {"group": 66, "id": 7, "label": "552839898907312128", "shape": "dot", "size": 10, "title": "552839898907312128\u003cbr\u003e@mpesce I hear you. Not\u003cbr\u003esure how well it\u0027ll work\u003cbr\u003eagainst guys with machineguns in\u003cbr\u003ethe short run, though.\u003cbr\u003eWed Jan 07 14:51:17 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 8, "weight": 1}, {"from": 0, "to": 9, "weight": 1}, {"from": 0, "to": 10, "weight": 1}, {"from": 3, "to": 4, "weight": 1}, {"from": 4, "to": 5, "weight": 1}, {"from": 5, "to": 6, "weight": 1}, {"from": 6, "to": 7, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 1188, "id": 0, "label": "553222038379180032", "shape": "dot", "size": 10, "title": "553222038379180032\u003cbr\u003eAnd this, if you\u0027re not\u003cbr\u003e#CharlieHebdo saturated: http://t.co/CkGBxkIyfD\u003cbr\u003eThu Jan 08 16:09:46 +0000 2015"}, {"group": 1188, "id": 1, "label": "553222448649617408", "shape": "dot", "size": 10, "title": "553222448649617408\u003cbr\u003e@timminchin Need to get angry\u003cbr\u003eabout the Communications Act being\u003cbr\u003eused to jail teenagers for\u003cbr\u003ewriting stupid stuff on Facebook,\u003cbr\u003etoo...\u003cbr\u003eThu Jan 08 16:11:24 +0000 2015"}, {"group": 1188, "id": 2, "label": "553222867651788801", "shape": "dot", "size": 10, "title": "553222867651788801\u003cbr\u003e@timminchin not at all saturated\u003cbr\u003e- public has attention span\u003cbr\u003eof a gnat - we\u003cbr\u003esimply MUST remember the victims\u003cbr\u003eof extremism and hate. Forever.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:13:04 +0000 2015"}, {"group": 1188, "id": 3, "label": "553223126809841665", "shape": "dot", "size": 10, "title": "553223126809841665\u003cbr\u003e@timminchin I\u0027d say some oversaturation\u003cbr\u003eis warranted. :(\u003cbr\u003eThu Jan 08 16:14:06 +0000 2015"}, {"group": 1188, "id": 4, "label": "553223810619830272", "shape": "dot", "size": 10, "title": "553223810619830272\u003cbr\u003e@timminchin ...and even if you\u003cbr\u003eare.\u003cbr\u003eThu Jan 08 16:16:49 +0000 2015"}, {"group": 1188, "id": 6, "label": "553225677923958784", "shape": "dot", "size": 10, "title": "553225677923958784\u003cbr\u003e@timminchin a perspective I wholeheartedly\u003cbr\u003esupport and is completely right.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:24:14 +0000 2015"}, {"group": 1188, "id": 11, "label": "553245179575296001", "shape": "dot", "size": 10, "title": "553245179575296001\u003cbr\u003e@timminchin I don\u0027t think I\u003cbr\u003ecould be saturated I\u0027m so\u003cbr\u003efucking annoyed.\u003cbr\u003eThu Jan 08 17:41:44 +0000 2015"}, {"group": 1188, "id": 12, "label": "553250392705081344", "shape": "dot", "size": 10, "title": "553250392705081344\u003cbr\u003e@timminchin all this is quite\u003cbr\u003ecorrect. But surely it\u2019s only\u003cbr\u003e\u201cus\u201d that reads these. Doesn\u2019t\u003cbr\u003eengage the idiotic \u0026amp; barbaric,\u003cbr\u003ewont read or care\u003cbr\u003eThu Jan 08 18:02:27 +0000 2015"}, {"group": 1188, "id": 13, "label": "553267921951404032", "shape": "dot", "size": 10, "title": "553267921951404032\u003cbr\u003eWe must not stop laughing\u003cbr\u003eat these murderous clowns. \u201c@timminchin:\u003cbr\u003eAnd this, if you\u0027re not\u003cbr\u003e#CharlieHebdo saturated: http://t.co/tp3S51qpDk\u201d\u003cbr\u003eThu Jan 08 19:12:06 +0000 2015"}, {"group": 1188, "id": 14, "label": "553330876525076480", "shape": "dot", "size": 10, "title": "553330876525076480\u003cbr\u003e@timminchin Brilliant.\u003cbr\u003eThu Jan 08 23:22:16 +0000 2015"}, {"group": 1188, "id": 15, "label": "553465955162918912", "shape": "dot", "size": 10, "title": "553465955162918912\u003cbr\u003e@timminchin  I just want\u003cbr\u003eto know how small your\u003cbr\u003edick has to be to\u003cbr\u003ejustify being so threatened by\u003cbr\u003ea bunch of silly French\u003cbr\u003eCartoonist...really\u003cbr\u003eFri Jan 09 08:19:01 +0000 2015"}, {"group": 1188, "id": 5, "label": "553224870558175233", "shape": "dot", "size": 10, "title": "553224870558175233\u003cbr\u003e@Say10Simon @timminchin Why because it\u0027s\u003cbr\u003ein the news? Everyday \u0026gt;12\u003cbr\u003epeople are horribly killed by\u003cbr\u003emad people\u003cbr\u003eThu Jan 08 16:21:02 +0000 2015"}, {"group": 1188, "id": 7, "label": "553226189679370241", "shape": "dot", "size": 10, "title": "553226189679370241\u003cbr\u003e@itdontgo @timminchin So showing compassion\u003cbr\u003eto these people means I\u003cbr\u003efeel none for others? Grow\u003cbr\u003eup.\u003cbr\u003eThu Jan 08 16:26:16 +0000 2015"}, {"group": 1188, "id": 8, "label": "553227591067652096", "shape": "dot", "size": 10, "title": "553227591067652096\u003cbr\u003e@Say10Simon @timminchin I am grown\u003cbr\u003eup. I don\u0027t take everything\u003cbr\u003eas a personal attack. U\u003cbr\u003ewant 2 talk about this\u003cbr\u003ebecause u find it interesting\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:31:50 +0000 2015"}, {"group": 1188, "id": 9, "label": "553228409615421440", "shape": "dot", "size": 10, "title": "553228409615421440\u003cbr\u003e@itdontgo @timminchin Willing to acknowledge\u003cbr\u003ethat it happened cause I\u003cbr\u003efind mass-murder horrific. Your choice\u003cbr\u003eof the word interesting? Scary.\u003cbr\u003e\u003cbr\u003eThu Jan 08 16:35:05 +0000 2015"}, {"group": 1188, "id": 10, "label": "553228866878472193", "shape": "dot", "size": 10, "title": "553228866878472193\u003cbr\u003e@Say10Simon @timminchin OK\u003cbr\u003eThu Jan 08 16:36:55 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 6, "weight": 1}, {"from": 0, "to": 11, "weight": 1}, {"from": 0, "to": 12, "weight": 1}, {"from": 0, "to": 13, "weight": 1}, {"from": 0, "to": 14, "weight": 1}, {"from": 0, "to": 15, "weight": 1}, {"from": 3, "to": 5, "weight": 1}, {"from": 5, "to": 7, "weight": 1}, {"from": 7, "to": 8, "weight": 1}, {"from": 8, "to": 9, "weight": 1}, {"from": 9, "to": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "black", "group": 478, "id": 0, "label": "552836095332081664", "shape": "dot", "size": 10, "title": "552836095332081664\u003cbr\u003eRe: Charlie Hebdo\nSeriously. If your\u003cbr\u003egod \u0026amp;/or prophet needs armed\u003cbr\u003emen to protect him from\u003cbr\u003ecartoons, it pretty much says\u003cbr\u003ehe\u0027s a huge pussy.\u003cbr\u003eWed Jan 07 14:36:10 +0000 2015"}, {"group": 478, "id": 1, "label": "552945549280702464", "shape": "dot", "size": 10, "title": "552945549280702464\u003cbr\u003e@robjones3030 @PoliticalLaughs Love it. Stealing\u003cbr\u003eit \ud83d\ude03\u003cbr\u003eWed Jan 07 21:51:06 +0000 2015"}, {"group": 478, "id": 2, "label": "552946879466848256", "shape": "dot", "size": 10, "title": "552946879466848256\u003cbr\u003e@robjones3030 @PoliticalLaughs thank you-been confronting\u003cbr\u003eon that same topic today-my\u003cbr\u003eGod is big enough to\u003cbr\u003etake it-omiscience is good thing\u003cbr\u003e\u003cbr\u003eWed Jan 07 21:56:23 +0000 2015"}, {"group": 478, "id": 3, "label": "552949658499428353", "shape": "dot", "size": 10, "title": "552949658499428353\u003cbr\u003e@robjones3030 @PoliticalLaughs Add to that\u003cbr\u003ethat his followers are pathologically\u003cbr\u003eignorant.\u003cbr\u003eWed Jan 07 22:07:26 +0000 2015"}, {"group": 478, "id": 4, "label": "552955057432326144", "shape": "dot", "size": 10, "title": "552955057432326144\u003cbr\u003e@robjones3030  I agree\u003cbr\u003eWed Jan 07 22:28:53 +0000 2015"}, {"group": 478, "id": 5, "label": "552995341004328960", "shape": "dot", "size": 10, "title": "552995341004328960\u003cbr\u003e@robjones3030 @PoliticalLaughs awesome\u003cbr\u003eThu Jan 08 01:08:58 +0000 2015"}, {"group": 478, "id": 6, "label": "553052661918887938", "shape": "dot", "size": 10, "title": "553052661918887938\u003cbr\u003e@robjones3030 @zezitom hahahaha well said\u003cbr\u003emate\u003cbr\u003eThu Jan 08 04:56:44 +0000 2015"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}, {"from": 0, "to": 2, "weight": 1}, {"from": 0, "to": 3, "weight": 1}, {"from": 0, "to": 4, "weight": 1}, {"from": 0, "to": 5, "weight": 1}, {"from": 0, "to": 6, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
