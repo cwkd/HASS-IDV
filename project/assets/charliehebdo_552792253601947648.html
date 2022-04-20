@@ -50,8 +50,8 @@
         
 
         // parsing and collecting nodes and edges from the python
-        nodes = new vis.DataSet([{"color": "black", "group": 32, "id": 0, "label": "552792253601947648", "shape": "dot", "size": 10, "title": "552792253601947648\u003cbr\u003e#Freespeech is a non-negotiable human\u003cbr\u003eright. We condemn the appalling\u003cbr\u003eattack on Charlie Hebdo, and\u003cbr\u003eany attempt to silence the\u003cbr\u003efree press.\u003cbr\u003eWed Jan 07 11:41:58 +0000 2015"}, {"group": 32, "id": 1, "label": "552793052667199488", "shape": "dot", "size": 10, "title": "552793052667199488\u003cbr\u003eWe send our thoughts and\u003cbr\u003esolidarity to the staff of\u003cbr\u003eCharlie Hebdo.\u003cbr\u003eWed Jan 07 11:45:08 +0000 2015"}]);
-        edges = new vis.DataSet([{"from": 0, "to": 1, "weight": 1}]);
+        nodes = new vis.DataSet([{"color": "black", "group": 64, "id": 0, "label": "552792253601947648", "shape": "dot", "size": 10, "title": "Tweet ID: 552792253601947648\u003cbr\u003eUser ID: 19341389\u003cbr\u003e#Freespeech is a non-negotiable human\u003cbr\u003eright. We condemn the appalling\u003cbr\u003eattack on Charlie Hebdo, and\u003cbr\u003eany attempt to silence the\u003cbr\u003efree press.\u003cbr\u003eWed Jan 07 11:41:58 +0000 2015"}, {"group": 64, "id": 1, "label": "552793052667199488", "shape": "dot", "size": 10, "title": "Tweet ID: 552793052667199488\u003cbr\u003eUser ID: 19341389\u003cbr\u003eWe send our thoughts and\u003cbr\u003esolidarity to the staff of\u003cbr\u003eCharlie Hebdo.\u003cbr\u003eWed Jan 07 11:45:08 +0000 2015"}]);
+        edges = new vis.DataSet([{"arrows": "to", "from": 0, "to": 1, "weight": 1}]);
 
         // adding nodes and edges to the graph
         data = {nodes: nodes, edges: edges};

@@ -1,13 +1,20 @@
 .main-container {
     margin: auto;
-    max-width: 800px;
+    max-width: 1010px;
 }
 .reference-container {
     margin: auto;
+    width: 100%;
     text-align: center;
 }
 .reference-content {
     margin: auto;
     width: 100%;
     aspect-ratio: 3/2;
+}
+#next-button {
+    width: 10%;
+}
+#back-button {
+    width: 10%;
 }
