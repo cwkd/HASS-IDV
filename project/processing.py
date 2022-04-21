@@ -3,6 +3,7 @@ from pyvis.network import Network
 import networkx as nx
 from datetime import datetime
 from tqdm import tqdm
+from functools import reduce
 import json
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -190,45 +191,59 @@ def compile_user_info(name='charliehebdo'):
             # If tweet is root tweet, add only tweet count to user id
             if key == root_tweetid:
                 try:
-                    tweets_per_userid[f'{userid}'] += 1
+                    tweets_per_userid[f'{userid}'].append(f'{key}')
                 except:
-                    tweets_per_userid[f'{userid}'] = 1
+                    tweets_per_userid[f'{userid}'] = [f'{key}']
                 try:
-                    threads_per_userid[f'{userid}'].add(root_tweetid)
+                    threads_per_userid[f'{userid}'].add(f'{root_tweetid}')
                 except:
-                    threads_per_userid[f'{userid}'] = set([root_tweetid])
+                    threads_per_userid[f'{userid}'] = {f'{root_tweetid}'}
             elif tree.get(f'{parent_tweetid}', None) is None:  # If tweet parent does not exist in tree, skip it
                 continue
             else:
                 # Add tweet count to user id for regular tweet
                 try:
-                    tweets_per_userid[f'{userid}'] += 1
+                    tweets_per_userid[f'{userid}'].append(f'{key}')
                 except:
-                    tweets_per_userid[f'{userid}'] = 1
+                    tweets_per_userid[f'{userid}'] = [f'{key}']
                 parent_userid = tree[f'{parent_tweetid}']['userid']
                 # Add link destination to user id for regular tweet
+                if links_per_userid.get(f'{userid}', None) is None:
+                    links_per_userid[f'{userid}'] = {'src': {}, 'dst': {}}
                 try:
-                    links_per_userid[f'{userid}'] += 1
+                    links_per_userid[f'{userid}']['src'][f'{parent_userid}'] += 1
                 except:
-                    links_per_userid[f'{userid}'] = 1
+                    links_per_userid[f'{userid}']['src'][f'{parent_userid}'] = 1
                 # Add link source to user id for regular tweet
+                if links_per_userid.get(f'{parent_userid}', None) is None:
+                    links_per_userid[f'{parent_userid}'] = {'src': {}, 'dst': {}}
                 try:
-                    links_per_userid[f'{parent_userid}'] += 1
+                    links_per_userid[f'{parent_userid}']['dst'][f'{userid}'] += 1
                 except:
-                    links_per_userid[f'{parent_userid}'] = 1
+                    links_per_userid[f'{parent_userid}']['dst'][f'{userid}'] = 1
                 try:
-                    threads_per_userid[f'{userid}'].add(root_tweetid)
+                    threads_per_userid[f'{userid}'].add(f'{root_tweetid}')
                 except:
-                    threads_per_userid[f'{userid}'] = set([root_tweetid])
+                    threads_per_userid[f'{userid}'] = {f'{root_tweetid}'}
     user_tweet_dist, user_link_dist = [], []
     user_thread_dist = []
-    for key, value in tqdm(tweets_per_userid.items()):
-        user_tweet_dist.append((key, value))
+    for key, tweet_list in tqdm(tweets_per_userid.items()):
+        user_tweet_dist.append((key, len(tweet_list)))
     user_tweet_dist = sorted(user_tweet_dist, key=lambda x: x[1], reverse=True)
-    for key, value in tqdm(links_per_userid.items()):
-        user_link_dist.append((key, value))
+    for key, link_dict in tqdm(links_per_userid.items()):
+        try:
+            src_count = sum(link_count['src'].values())
+        except:
+            src_count = 0
+        try:
+            dst_count = sum(link_count['dst'].values())
+        except:
+            dst_count = 0
+        user_link_dist.append((key, src_count + dst_count))
+        pass
     user_link_dist = sorted(user_link_dist, key=lambda x: x[1], reverse=True)
     for key, value in tqdm(threads_per_userid.items()):
+        threads_per_userid[key] = list(value)
         user_thread_dist.append((key, len(value)))
     user_thread_dist = sorted(user_thread_dist, key=lambda x: x[1], reverse=True)
     return tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist
@@ -288,9 +303,26 @@ if __name__ == '__main__':
     #     for (tweetid, root_tweetid, link_count, in_edge, out_edge) in tweet_meta_info_dist:
     #         f.write(f'\n{tweetid},{root_tweetid},{link_count},{len(in_edge)},{len(out_edge)},{in_edge},{out_edge}')
 
+    with open('user_meta_info.json', 'w') as f:
+        json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
+        json.dump(json_to_save, f)
+
     with open('userid_tweet_stats.csv', 'w') as f:
         f.write('userid,tweet_count,link_count,thread_count')
         for userid, tweet_count in user_tweet_dist:
             link_count = links_per_userid.get(userid, 0)
+            if type(link_count) is dict:
+                if userid == '1120627788':
+                    print(link_count['src'].values(), link_count['dst'].values())
+                    print(sum(link_count['src'].values()), sum(link_count['dst'].values()))
+                try:
+                    src_count = sum(link_count['src'].values())
+                except:
+                    src_count = 0
+                try:
+                    dst_count = sum(link_count['dst'].values())
+                except:
+                    dst_count = 0
+                link_count = src_count + dst_count
             thread_count = len(threads_per_userid.get(userid, []))
             f.write(f'\n{userid},{tweet_count},{link_count},{thread_count}')

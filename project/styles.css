@@ -2,15 +2,24 @@
     margin: auto;
     max-width: 1010px;
 }
-.reference-container {
+.network-graph-container {
     margin: auto;
     width: 100%;
     text-align: center;
 }
-.reference-content {
+.network-graph-content {
     margin: auto;
     width: 100%;
     aspect-ratio: 3/2;
+}
+.histogram-container {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.histogram-content {
+    margin: auto;
+    width: 100%;
 }
 #next-button {
     width: 10%;
