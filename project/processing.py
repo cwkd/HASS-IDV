@@ -182,7 +182,17 @@ def compile_user_info(name='charliehebdo'):
     threads_per_userid = {}
     for root_tweetid in tqdm(tree_ids):
         tree = data[root_tweetid]
+        label = 'unverified'
         for key, tweet in tree.items():
+            if key == 'label':
+                if tweet == 0:
+                    label = 'non-rumour'
+                elif tweet == 1:
+                    label = 'false-rumour'
+                elif tweet == 2:
+                    label = 'true-rumour'
+                else:
+                    label = 'unverified'
             # Skip non-numeric keys; keys which are not tweet ids
             if not key.isnumeric():
                 continue
@@ -232,11 +242,11 @@ def compile_user_info(name='charliehebdo'):
     user_tweet_dist = sorted(user_tweet_dist, key=lambda x: x[1], reverse=True)
     for key, link_dict in tqdm(links_per_userid.items()):
         try:
-            src_count = sum(link_count['src'].values())
+            src_count = sum(link_dict['src'].values())
         except:
             src_count = 0
         try:
-            dst_count = sum(link_count['dst'].values())
+            dst_count = sum(link_dict['dst'].values())
         except:
             dst_count = 0
         user_link_dist.append((key, src_count + dst_count))
@@ -265,6 +275,15 @@ def compile_tree_info(tweet_meta_info, name='charliehebdo'):
         max_links = 0
         num_tweets = 0
         for key in tree.keys():
+            if key == 'label':
+                if tree[key] == 0:
+                    label = 'non-rumour'
+                elif tree[key] == 1:
+                    label = 'false-rumour'
+                elif tree[key] == 2:
+                    label = 'true-rumour'
+                else:
+                    label = 'unverified'
             tweet_info = tweet_meta_info.get(f'{key}', None)
             if tweet_info is None:
                 continue
@@ -274,55 +293,56 @@ def compile_tree_info(tweet_meta_info, name='charliehebdo'):
                 links = len(tweet_info.get('in', [])) + out_degree
                 if out_degree > max_out_degree:
                     max_out_degree = out_degree
-                if links  > max_links:
+                if links > max_links:
                     max_links = links
         else:
             tree_info[f'{root_tweetid}'] = {'num_tweets': num_tweets,
                                             'max_links': max_links,
-                                            'max_out_degree': max_out_degree}
+                                            'max_out_degree': max_out_degree,
+                                            'label': label}
     tree_dist = []
     for tree_id, info in tqdm(tree_info.items()):
-        tree_dist.append((tree_id, info['num_tweets'], info['max_links'], info['max_out_degree']))
+        tree_dist.append((tree_id, info['num_tweets'], info['max_links'], info['max_out_degree'], info['label']))
     tree_dist = sorted(tree_dist, key=lambda x: x[1], reverse=True)
     return tree_info, tree_dist
 
 
 if __name__ == '__main__':
-    # tweet_meta_info, tweet_meta_info_dist = compile_tweet_meta_info()
-    # tree_info, tree_dist = compile_tree_info(tweet_meta_info)
-    tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist = compile_user_info()
+    tweet_meta_info, tweet_meta_info_dist = compile_tweet_meta_info()
+    tree_info, tree_dist = compile_tree_info(tweet_meta_info)
+    # tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist = compile_user_info()
     # plot_tweet_graphs()
 
-    # with open('tree_info.csv', 'w') as f:
-    #     f.write('tree_id,num_tweets,max_links,max_out_degree')
-    #     for (tree_id, num_tweets, max_links, max_out_degree) in tree_dist:
-    #         f.write(f'\n{tree_id},{num_tweets},{max_links},{max_out_degree}')
+    with open('tree_info.csv', 'w') as f:
+        f.write('tree_id,num_tweets,max_links,max_out_degree,label')
+        for (tree_id, num_tweets, max_links, max_out_degree, label) in tree_dist:
+            f.write(f'\n{tree_id},{num_tweets},{max_links},{max_out_degree},{label}')
 
     # with open('tweet_meta_info.csv', 'w') as f:
     #     f.write('tweetid,root_tweetid,link_count,in_degree,out_degree,in_edge,out_edge')
     #     for (tweetid, root_tweetid, link_count, in_edge, out_edge) in tweet_meta_info_dist:
     #         f.write(f'\n{tweetid},{root_tweetid},{link_count},{len(in_edge)},{len(out_edge)},{in_edge},{out_edge}')
 
-    with open('user_meta_info.json', 'w') as f:
-        json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
-        json.dump(json_to_save, f)
+    # with open('user_meta_info.json', 'w') as f:
+    #     json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
+    #     json.dump(json_to_save, f)
 
-    with open('userid_tweet_stats.csv', 'w') as f:
-        f.write('userid,tweet_count,link_count,thread_count')
-        for userid, tweet_count in user_tweet_dist:
-            link_count = links_per_userid.get(userid, 0)
-            if type(link_count) is dict:
-                if userid == '1120627788':
-                    print(link_count['src'].values(), link_count['dst'].values())
-                    print(sum(link_count['src'].values()), sum(link_count['dst'].values()))
-                try:
-                    src_count = sum(link_count['src'].values())
-                except:
-                    src_count = 0
-                try:
-                    dst_count = sum(link_count['dst'].values())
-                except:
-                    dst_count = 0
-                link_count = src_count + dst_count
-            thread_count = len(threads_per_userid.get(userid, []))
-            f.write(f'\n{userid},{tweet_count},{link_count},{thread_count}')
+    # with open('userid_tweet_stats.csv', 'w') as f:
+    #     f.write('userid,tweet_count,link_count,thread_count')
+    #     for userid, tweet_count in user_tweet_dist:
+    #         link_count = links_per_userid.get(userid, 0)
+    #         if type(link_count) is dict:
+    #             # if userid == '1120627788':
+    #             #     print(link_count['src'].values(), link_count['dst'].values())
+    #             #     print(sum(link_count['src'].values()), sum(link_count['dst'].values()))
+    #             try:
+    #                 src_count = sum(link_count['src'].values())
+    #             except:
+    #                 src_count = 0
+    #             try:
+    #                 dst_count = sum(link_count['dst'].values())
+    #             except:
+    #                 dst_count = 0
+    #             link_count = src_count + dst_count
+    #         thread_count = len(threads_per_userid.get(userid, []))
+    #         f.write(f'\n{userid},{tweet_count},{link_count},{thread_count}')

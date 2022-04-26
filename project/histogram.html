@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Activity</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div id="histogram-container">
+
+    </div>
+    <script>
+        // set the dimensions and margins of the graph
+        const margin = {top: 30, right: 30, bottom: 30, left: 40},
+            width = 1000 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
+
+        var num_bins = 500;
+
+        // append the svg object to the body of the page
+        const svg = d3.select("#histogram-container")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        d3.csv('userid_tweet_stats.csv').then(function(data) {
+<!--            console.log(d3.max(data, function(d) { return +d.link_count }))-->
+            // X axis: scale and draw:
+            const x = d3.scaleLinear()
+                .domain([0, d3.max(data, function(d) { return +d.link_count })])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
+                .range([0, width]);
+            svg.append("g")
+                .attr("transform", `translate(0, ${height})`)
+                .call(d3.axisBottom(x));
+            console.log(typeof(x.domain()), x.domain())
+            // set the parameters for the histogram
+            const histogram1 = d3.histogram()
+                .value(function(d) {return +d.tweet_count; })   // I need to give the vector of value
+                .domain(x.domain())  // then the domain of the graphic
+                .thresholds(x.ticks(num_bins)); // then the numbers of bins
+            const histogram2 = d3.histogram()
+                .value(function(d) {return +d.link_count; })   // I need to give the vector of value
+                .domain(x.domain())  // then the domain of the graphic
+                .thresholds(x.ticks(num_bins)); // then the numbers of bins
+            const histogram3 = d3.histogram()
+                .value(function(d) {return +d.thread_count; })   // I need to give the vector of value
+                .domain(x.domain())  // then the domain of the graphic
+                .thresholds(x.ticks(num_bins)); // then the numbers of bins
+
+            // And apply twice this function to data to get the bins.
+            const bins1 = Object.values(histogram1(data.filter( function(d){return d.tweet_count} )));
+            const bins2 = Object.values(histogram2(data.filter( function(d){return d.link_count} )));
+            const bins3 = Object.values(histogram3(data.filter( function(d){return d.thread_count} )));
+<!--            console.log(data.filter( d => d.link_count));-->
+            console.log(bins1);
+            console.log(bins2);
+            console.log(bins3);
+            // Y axis: scale and draw:
+            const y = d3.scaleLinear()
+                .range([height, 0]);
+            y.domain([0, d3.max(bins3, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+            svg.append("g")
+                .call(d3.axisLeft(y));
+
+            // append the bars for series 1
+            svg.selectAll("rect")
+                .data(bins1)
+                .join("rect")
+                    .attr("x", 1)
+                    .attr("transform", function(d) {
+                        return `translate(${x(d.x0)} , ${y(d.length)})`})
+                    .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+                    .attr("height", function(d) { return height - y(d.length); })
+                    .style("fill", "#69b3a2")
+                    .style("opacity", 0.6)
+
+            // append the bars for series 2
+            svg.selectAll("rect2")
+                .data(bins2)
+                .enter()
+                .append("rect")
+                    .attr("x", 1)
+                    .attr("transform", function(d) { return `translate(${x(d.x0)}, ${y(d.length)})`})
+                    .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+                    .attr("height", function(d) { return height - y(d.length); })
+                    .style("fill", "#404080")
+                    .style("opacity", 0.6)
+
+            svg.selectAll("rect3")
+                .data(bins3)
+                .enter()
+                .append("rect")
+                    .attr("x", 1)
+                    .attr("transform", function(d) { return `translate(${x(d.x0)}, ${y(d.length)})`})
+                    .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+                    .attr("height", function(d) { return height - y(d.length); })
+                    .style("fill", "#FFD700")
+                    .style("opacity", 0.6)
+            console.log('test');
+            // Handmade legend
+            svg.append("circle").attr("cx",300).attr("cy",30).attr("r", 6).style("fill", "#69b3a2")
+            svg.append("circle").attr("cx",300).attr("cy",60).attr("r", 6).style("fill", "#404080")
+            svg.append("circle").attr("cx",300).attr("cy",90).attr("r", 6).style("fill", "#FFD700")
+            svg.append("text").attr("x", 320).attr("y", 30).text("Tweet Count").style("font-size", "15px").attr("alignment-baseline","middle")
+            svg.append("text").attr("x", 320).attr("y", 60).text("Link Count").style("font-size", "15px").attr("alignment-baseline","middle")
+            svg.append("text").attr("x", 320).attr("y", 90).text("Thread Count").style("font-size", "15px").attr("alignment-baseline","middle")
+
+        })
+    </script>
+</body>
+</html>
