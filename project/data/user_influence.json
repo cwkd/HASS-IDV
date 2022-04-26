@@ -1,0 +1,495 @@
+{
+ "name": "user-influence",
+ "children": [
+  {
+   "name": "User_id: 5402612 Influence: 1166",
+   "children": [
+    {
+     "name": "User_id: 2273282888 Interactions: 31",
+     "size": 31
+    },
+    {
+     "name": "User_id: 702591266 Interactions: 27",
+     "size": 27
+    },
+    {
+     "name": "User_id: 302774717 Interactions: 21",
+     "size": 21
+    },
+    {
+     "name": "User_id: 2419629020 Interactions: 21",
+     "size": 21
+    },
+    {
+     "name": "User_id: 2780754387 Interactions: 20",
+     "size": 20
+    },
+    {
+     "name": "User_id: 2866333263 Interactions: 19",
+     "size": 19
+    },
+    {
+     "name": "User_id: 380542968 Interactions: 18",
+     "size": 18
+    },
+    {
+     "name": "User_id: 27067245 Interactions: 15",
+     "size": 15
+    },
+    {
+     "name": "User_id: 21752699 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 366248873 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "Other users in total, Interactions:966",
+     "size": 966
+    }
+   ]
+  },
+  {
+   "name": "User_id: 7587032 Influence: 793",
+   "children": [
+    {
+     "name": "User_id: 514466260 Interactions: 29",
+     "size": 29
+    },
+    {
+     "name": "User_id: 150219628 Interactions: 19",
+     "size": 19
+    },
+    {
+     "name": "User_id: 42498454 Interactions: 17",
+     "size": 17
+    },
+    {
+     "name": "User_id: 1447779020 Interactions: 15",
+     "size": 15
+    },
+    {
+     "name": "User_id: 2647755663 Interactions: 12",
+     "size": 12
+    },
+    {
+     "name": "User_id: 2370908751 Interactions: 11",
+     "size": 11
+    },
+    {
+     "name": "User_id: 213655226 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "User_id: 1137320347 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 291561694 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 2741866624 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "Other users in total, Interactions:656",
+     "size": 656
+    }
+   ]
+  },
+  {
+   "name": "User_id: 16973333 Influence: 764",
+   "children": [
+    {
+     "name": "User_id: 602235769 Interactions: 15",
+     "size": 15
+    },
+    {
+     "name": "User_id: 1585970245 Interactions: 12",
+     "size": 12
+    },
+    {
+     "name": "User_id: 567039350 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "User_id: 2636328522 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "User_id: 415620907 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "User_id: 259619085 Interactions: 9",
+     "size": 9
+    },
+    {
+     "name": "User_id: 2429521228 Interactions: 9",
+     "size": 9
+    },
+    {
+     "name": "User_id: 86459786 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 44464005 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 53013955 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "Other users in total, Interactions:665",
+     "size": 665
+    }
+   ]
+  },
+  {
+   "name": "User_id: 428333 Influence: 597",
+   "children": [
+    {
+     "name": "User_id: 2707815410 Interactions: 32",
+     "size": 32
+    },
+    {
+     "name": "User_id: 567039350 Interactions: 22",
+     "size": 22
+    },
+    {
+     "name": "User_id: 2957564108 Interactions: 21",
+     "size": 21
+    },
+    {
+     "name": "User_id: 2153036188 Interactions: 17",
+     "size": 17
+    },
+    {
+     "name": "User_id: 29625450 Interactions: 16",
+     "size": 16
+    },
+    {
+     "name": "User_id: 58341062 Interactions: 16",
+     "size": 16
+    },
+    {
+     "name": "User_id: 128750531 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 2905376702 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 705041041 Interactions: 13",
+     "size": 13
+    },
+    {
+     "name": "User_id: 2882386301 Interactions: 9",
+     "size": 9
+    },
+    {
+     "name": "Other users in total, Interactions:423",
+     "size": 423
+    }
+   ]
+  },
+  {
+   "name": "User_id: 87818409 Influence: 592",
+   "children": [
+    {
+     "name": "User_id: 363723508 Interactions: 20",
+     "size": 20
+    },
+    {
+     "name": "User_id: 1020660620 Interactions: 20",
+     "size": 20
+    },
+    {
+     "name": "User_id: 1632334700 Interactions: 19",
+     "size": 19
+    },
+    {
+     "name": "User_id: 561427595 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 610972228 Interactions: 12",
+     "size": 12
+    },
+    {
+     "name": "User_id: 546353513 Interactions: 11",
+     "size": 11
+    },
+    {
+     "name": "User_id: 1666280082 Interactions: 11",
+     "size": 11
+    },
+    {
+     "name": "User_id: 478402262 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 516898722 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "User_id: 389491359 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "Other users in total, Interactions:463",
+     "size": 463
+    }
+   ]
+  },
+  {
+   "name": "User_id: 18725815 Influence: 570",
+   "children": [
+    {
+     "name": "User_id: 130586534 Interactions: 38",
+     "size": 38
+    },
+    {
+     "name": "User_id: 2514607890 Interactions: 27",
+     "size": 27
+    },
+    {
+     "name": "User_id: 1897925491 Interactions: 21",
+     "size": 21
+    },
+    {
+     "name": "User_id: 159612424 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 328668326 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 2559436158 Interactions: 13",
+     "size": 13
+    },
+    {
+     "name": "User_id: 272840279 Interactions: 12",
+     "size": 12
+    },
+    {
+     "name": "User_id: 31795193 Interactions: 11",
+     "size": 11
+    },
+    {
+     "name": "User_id: 2799355045 Interactions: 11",
+     "size": 11
+    },
+    {
+     "name": "User_id: 1848242569 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "Other users in total, Interactions:399",
+     "size": 399
+    }
+   ]
+  },
+  {
+   "name": "User_id: 3108351 Influence: 519",
+   "children": [
+    {
+     "name": "User_id: 909894727 Interactions: 13",
+     "size": 13
+    },
+    {
+     "name": "User_id: 2961649574 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "User_id: 2370908751 Interactions: 9",
+     "size": 9
+    },
+    {
+     "name": "User_id: 1637725969 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "User_id: 17512048 Interactions: 6",
+     "size": 6
+    },
+    {
+     "name": "User_id: 2584501496 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 518921096 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 18340804 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "User_id: 2252890903 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "User_id: 2741557706 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "Other users in total, Interactions:452",
+     "size": 452
+    }
+   ]
+  },
+  {
+   "name": "User_id: 64643056 Influence: 513",
+   "children": [
+    {
+     "name": "User_id: 2941652236 Interactions: 14",
+     "size": 14
+    },
+    {
+     "name": "User_id: 888078932 Interactions: 13",
+     "size": 13
+    },
+    {
+     "name": "User_id: 1038235795 Interactions: 11",
+     "size": 11
+    },
+    {
+     "name": "User_id: 2489876530 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 414177066 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "User_id: 1382894354 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "User_id: 392958028 Interactions: 6",
+     "size": 6
+    },
+    {
+     "name": "User_id: 27734496 Interactions: 6",
+     "size": 6
+    },
+    {
+     "name": "User_id: 1526906239 Interactions: 6",
+     "size": 6
+    },
+    {
+     "name": "User_id: 742533474 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "Other users in total, Interactions:430",
+     "size": 430
+    }
+   ]
+  },
+  {
+   "name": "User_id: 16343974 Influence: 438",
+   "children": [
+    {
+     "name": "User_id: 41930798 Interactions: 15",
+     "size": 15
+    },
+    {
+     "name": "User_id: 1495284030 Interactions: 12",
+     "size": 12
+    },
+    {
+     "name": "User_id: 2427186176 Interactions: 10",
+     "size": 10
+    },
+    {
+     "name": "User_id: 1309728793 Interactions: 9",
+     "size": 9
+    },
+    {
+     "name": "User_id: 88851341 Interactions: 8",
+     "size": 8
+    },
+    {
+     "name": "User_id: 361725993 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 1851815635 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 2888198099 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 104114005 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "User_id: 2484304264 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "Other users in total, Interactions:361",
+     "size": 361
+    }
+   ]
+  },
+  {
+   "name": "User_id: 807095 Influence: 418",
+   "children": [
+    {
+     "name": "User_id: 2167506691 Interactions: 13",
+     "size": 13
+    },
+    {
+     "name": "User_id: 243847340 Interactions: 13",
+     "size": 13
+    },
+    {
+     "name": "User_id: 1605751488 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "User_id: 949075567 Interactions: 7",
+     "size": 7
+    },
+    {
+     "name": "User_id: 2912429401 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 2775130295 Interactions: 5",
+     "size": 5
+    },
+    {
+     "name": "User_id: 2791620555 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "User_id: 2287612675 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "User_id: 2945865278 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "User_id: 2292797061 Interactions: 4",
+     "size": 4
+    },
+    {
+     "name": "Other users in total, Interactions:352",
+     "size": 352
+    }
+   ]
+  }
+ ]
+}
