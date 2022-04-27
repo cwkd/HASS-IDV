@@ -59,7 +59,7 @@ def plot_tweet_graphs(tweet_meta_info, tree_info, name='charliehebdo'):
     # node_num = 0
     # tweetid_to_node_num = {}
     tree_num = 0
-    cmap = plt.cm.turbo
+    cmap = plt.cm.cool
     for root_tweetid in tqdm(tree_ids):
         g = nx.DiGraph()
         node_num = 0
