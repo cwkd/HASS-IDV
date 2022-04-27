@@ -1,5 +1,5 @@
-const meta_info_path = 'tweet_meta_info.csv'
-const tree_info_path = 'tree_info.csv'
+const meta_info_path = 'data/tweet_meta_info.csv'
+const tree_info_path = 'data/tree_info.csv'
 
 var curr_tree_id
 var curr_tree_counter = 0

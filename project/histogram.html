@@ -13,7 +13,7 @@
 <body>
     <p>
         <label># bins</label>
-        <input type="number" min="1" max="1000" step="5" value="20" id="nBin">
+        <input type="number" min="1" max="1000" step="5" value="50" id="nBin">
     </p>
     <div id="histogram-container">
     </div>
@@ -23,7 +23,7 @@
             width = 1000 - margin.left - margin.right,
             height = 600 - margin.top - margin.bottom;
 
-        var num_bins = 10;
+        var num_bins = 50;
 
         // append the svg object to the body of the page
         const svg = d3.select("#histogram-container")
@@ -35,7 +35,7 @@
 
         var data = {};
 
-        d3.csv('userid_tweet_stats.csv')
+        d3.csv('data/userid_tweet_stats.csv')
             .then(d => {
                 data = d;
                 update(num_bins);

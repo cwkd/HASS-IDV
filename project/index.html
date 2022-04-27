@@ -16,7 +16,39 @@
                 with them, the spread of rumours related to the event. The visualisations below aim to allow users to
                 explore the various tweet trees along with other meta-information pertaining to the event.
             </p>
-
+        </div>
+        <div class="summary-graphic-container"></div>
+        <div class="text-container">
+            <h3>User Influence</h3>
+            <p>
+                In any event, a small minority tends to dominate the discussion, the influence of each user is shown
+                below, indicating the number of reactions spawned by the user's tweets along with who they interacted
+                with most and the number of interactions.
+            </p>
+        </div>
+        <div class="user-influence-container">
+            <iframe class="user-influence-content" src="user_influence.html"></iframe>
+        </div>
+        <div class="text-container">
+            <h3>Users Activity Trends</h3>
+            <p>
+                Besides looking at the user influence, we are also interested in user activity in aggregate, thus we
+                have a stacked histogram with user tweet, link and thread counts. In general, we observe that most users
+                are not very active only having 1 or 2 tweets, in addition from the users are generally only active in
+                1 or 2 threads and have few links from their tweets to other tweets. However, there are still some users
+                who are more active and garner more attention this is represented by the relatively greater share of
+                links versus tweets and threads in the bins with higher counts.
+            </p>
+        </div>
+        <div class="histogram-container">
+            <iframe class="histogram-content" src="histogram.html"></iframe>
+        </div>
+        <div class="text-container">
+            <h3>Tweet Trees</h3>
+            <p>
+                Finally, we want to look at the structures of the various tweet trees to see if there are differences
+                in the types of conversations happening. Mouseover individual nodes to see tweet details.
+            </p>
         </div>
         <div class='network-graph-container'>
             <iframe id='network-graph-iframe' class='network-graph-content' src="assets/charliehebdo_552837132491186179.html"></iframe>
@@ -28,12 +60,6 @@
                 <label>Tree ID</label>
                 <input type="number" min="0" value="552837132491186179" id="tree-id-searchbar" oninput="treeIdSearch()">
             <button id="next-button" onclick="nextCallback()">Next</button>
-        </div>
-        <div class="histogram-container">
-            <iframe class="histogram-content" src="histogram.html"></iframe>
-        </div>
-        <div class="user-influence-container">
-            <iframe class="user-influence-content" src="user_influence.html"></iframe>
         </div>
     </div>
 </body>

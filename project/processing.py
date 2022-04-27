@@ -4,6 +4,7 @@ import networkx as nx
 from datetime import datetime
 from tqdm import tqdm
 from functools import reduce
+import matplotlib.pyplot as plt
 import json
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -50,7 +51,7 @@ def format_tweet_text(text):
     return output_text
 
 
-def plot_tweet_graphs(name='charliehebdo'):
+def plot_tweet_graphs(tweet_meta_info, tree_info, name='charliehebdo'):
     with open(os.path.join(DATA_DIR, f'{name}.json'), 'r') as jsonfile:
         data = json.load(jsonfile)
     tree_ids = data.keys()
@@ -58,6 +59,7 @@ def plot_tweet_graphs(name='charliehebdo'):
     # node_num = 0
     # tweetid_to_node_num = {}
     tree_num = 0
+    cmap = plt.cm.turbo
     for root_tweetid in tqdm(tree_ids):
         g = nx.DiGraph()
         node_num = 0
@@ -88,10 +90,15 @@ def plot_tweet_graphs(name='charliehebdo'):
             else:
                 # parent_tweet_time = tree[f'{parent_tweetid}']['tweet_time']
                 # edge_weight = parse_tweet_time(tweet_time) - parse_tweet_time(parent_tweet_time)
+                colour_num = tweet_meta_info[key]['links']
+                node_colour = cmap(colour_num/21)
                 node = (curr_node_num,
                         {'title': f'Tweet ID: {key}<br>User ID: {userid}<br>{formatted_text}<br>{tweet_time}',
                          'label': f'{key}',
-                         'group': tree_num}
+                         'group': tree_num,
+                         'color': f'#{int(node_colour[0]*255):02x}'
+                                       f'{int(node_colour[1]*255):02x}'
+                                       f'{int(node_colour[2]*255):02x}'}
                         )
             nodes.append(node)
             node_num += 1
@@ -169,6 +176,7 @@ def compile_tweet_meta_info(name='charliehebdo'):
         out_edge = value.get('out', [])
         links = len(in_edge) + len(out_edge)
         tree_id = value.get('tree', None)
+        tweet_meta_info[key]['links'] = links
         tweet_meta_info_dist.append((key, tree_id, links, in_edge, out_edge))
     tweet_meta_info_dist = sorted(tweet_meta_info_dist, key=lambda x: x[2], reverse=True)
     return tweet_meta_info, tweet_meta_info_dist
@@ -313,35 +321,40 @@ if __name__ == '__main__':
     tweet_meta_info, tweet_meta_info_dist = compile_tweet_meta_info()
     tree_info, tree_dist = compile_tree_info(tweet_meta_info)
     tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist = compile_user_info()
-    # plot_tweet_graphs()
+    plot_tweet_graphs(tweet_meta_info, tree_info)
 
-    with open('tree_info.csv', 'w') as f:
-        f.write('tree_id,num_tweets,max_links,max_out_degree,label')
-        for (tree_id, num_tweets, max_links, max_out_degree, label) in tree_dist:
-            f.write(f'\n{tree_id},{num_tweets},{max_links},{max_out_degree},{label}')
+    save = False
+    if save:
+        with open('data/tree_info.csv', 'w') as f:
+            f.write('tree_id,num_tweets,max_links,max_out_degree,label')
+            for (tree_id, num_tweets, max_links, max_out_degree, label) in tree_dist:
+                f.write(f'\n{tree_id},{num_tweets},{max_links},{max_out_degree},{label}')
 
-    with open('tweet_meta_info.csv', 'w') as f:
-        f.write('tweetid,root_tweetid,link_count,in_degree,out_degree,in_edge,out_edge')
-        for (tweetid, root_tweetid, link_count, in_edge, out_edge) in tweet_meta_info_dist:
-            f.write(f'\n{tweetid},{root_tweetid},{link_count},{len(in_edge)},{len(out_edge)},{in_edge},{out_edge}')
+        with open('data/tree_info.json', 'w') as f:
+            json.dump(tree_info, f, indent=1)
 
-    with open('user_meta_info.json', 'w') as f:
-        json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
-        json.dump(json_to_save, f, indent=1)
+        with open('data/tweet_meta_info.csv', 'w') as f:
+            f.write('tweetid,root_tweetid,link_count,in_degree,out_degree,in_edge,out_edge')
+            for (tweetid, root_tweetid, link_count, in_edge, out_edge) in tweet_meta_info_dist:
+                f.write(f'\n{tweetid},{root_tweetid},{link_count},{len(in_edge)},{len(out_edge)},{in_edge},{out_edge}')
 
-    with open('userid_tweet_stats.csv', 'w') as f:
-        f.write('userid,tweet_count,link_count,src_count,dst_count,thread_count')
-        for userid, tweet_count in user_tweet_dist:
-            link_count = links_per_userid.get(userid, 0)
-            if type(link_count) is dict:
-                try:
-                    src_count = link_count['src']['total']
-                except:
-                    src_count = 0
-                try:
-                    dst_count = link_count['dst']['total']
-                except:
-                    dst_count = 0
-                link_count = src_count + dst_count
-            thread_count = len(threads_per_userid.get(userid, []))
-            f.write(f'\n{userid},{tweet_count},{link_count},{src_count},{dst_count},{thread_count}')
+        with open('data/user_meta_info.json', 'w') as f:
+            json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
+            json.dump(json_to_save, f, indent=1)
+
+        with open('data/userid_tweet_stats.csv', 'w') as f:
+            f.write('userid,tweet_count,link_count,src_count,dst_count,thread_count')
+            for userid, tweet_count in user_tweet_dist:
+                link_count = links_per_userid.get(userid, 0)
+                if type(link_count) is dict:
+                    try:
+                        src_count = link_count['src']['total']
+                    except:
+                        src_count = 0
+                    try:
+                        dst_count = link_count['dst']['total']
+                    except:
+                        dst_count = 0
+                    link_count = src_count + dst_count
+                thread_count = len(threads_per_userid.get(userid, []))
+                f.write(f'\n{userid},{tweet_count},{link_count},{src_count},{dst_count},{thread_count}')
