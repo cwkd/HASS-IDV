@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <title>User Activity</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        label, .legend {
+            font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+        }
+    </style>
 </head>
 <body>
+    <p>
+        <label># bins</label>
+        <input type="number" min="1" max="1000" step="5" value="20" id="nBin">
+    </p>
     <div id="histogram-container">
-
     </div>
     <script>
         // set the dimensions and margins of the graph
@@ -15,7 +23,7 @@
             width = 1000 - margin.left - margin.right,
             height = 600 - margin.top - margin.bottom;
 
-        var num_bins = 500;
+        var num_bins = 10;
 
         // append the svg object to the body of the page
         const svg = d3.select("#histogram-container")
@@ -25,16 +33,69 @@
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        d3.csv('userid_tweet_stats.csv').then(function(data) {
-<!--            console.log(d3.max(data, function(d) { return +d.link_count }))-->
+        var data = {};
+
+        d3.csv('userid_tweet_stats.csv')
+            .then(d => {
+                data = d;
+                update(num_bins);
+                }
+            );
+
+        d3.select("#nBin").on("input", function() {
+            update(+this.value);
+        });
+
+        function update(num_bins) {
+            d3.selectAll('.axis').remove();
+            d3.selectAll('rect').remove();
+            d3.selectAll('.legend').remove();
+            d3.select('#histogram-tooltip').remove();
+            // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
+            // Its opacity is set to 0: we don't see it by default.
+            const tooltip = d3.select("#histogram-container")
+                .append("div")
+                .attr('id', 'histogram-tooltip')
+                .style("opacity", 0)
+                .attr("class", "tooltip")
+                .style("background-color", "black")
+                .style("color", "white")
+                .style("border-radius", "5px")
+                .style("padding", "10px")
+
+            // A function that change this tooltip when the user hover a point.
+            // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+            const showTooltip = function(event,d) {
+<!--                console.log(event, d)-->
+                tooltip
+                    .transition()
+                    .duration(100)
+                    .style("opacity", 1)
+                tooltip
+                    .html("Bin Values: " + d[0].x0 + " - " + d[0].x1 + " | Counts: " + d[0].length + ", " + d[1].length + ", " + d[2].length)
+                    .style("left", (event.x)/2-100 + "px")
+                    .style("top", (event.y)/2 + "px")
+            }
+            const moveTooltip = function(event,d) {
+                tooltip
+                .style("left", (event.x)/2-100 + "px")
+                .style("top", (event.y)/2 + "px")
+            }
+            // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+            const hideTooltip = function(event,d) {
+                tooltip
+                    .transition()
+                    .duration(100)
+                    .style("opacity", 0)
+            }
             // X axis: scale and draw:
             const x = d3.scaleLinear()
                 .domain([0, d3.max(data, function(d) { return +d.link_count })])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
                 .range([0, width]);
             svg.append("g")
+                .attr('class', 'axis')
                 .attr("transform", `translate(0, ${height})`)
                 .call(d3.axisBottom(x));
-            console.log(typeof(x.domain()), x.domain())
             // set the parameters for the histogram
             const histogram1 = d3.histogram()
                 .value(function(d) {return +d.tweet_count; })   // I need to give the vector of value
@@ -53,61 +114,86 @@
             const bins1 = Object.values(histogram1(data.filter( function(d){return d.tweet_count} )));
             const bins2 = Object.values(histogram2(data.filter( function(d){return d.link_count} )));
             const bins3 = Object.values(histogram3(data.filter( function(d){return d.thread_count} )));
-<!--            console.log(data.filter( d => d.link_count));-->
-            console.log(bins1);
-            console.log(bins2);
-            console.log(bins3);
+<!--            console.log(bins1, bins2, bins3);-->
             // Y axis: scale and draw:
             const y = d3.scaleLinear()
                 .range([height, 0]);
-            y.domain([0, d3.max(bins3, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+            y.domain([0, 3*d3.max(bins3, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
             svg.append("g")
+                .attr('class', 'axis')
                 .call(d3.axisLeft(y));
+
+            const stackedBins = []
+
+            for (var key in bins1) {
+<!--                console.log(bins1[key], bins2[key], bins3[key])-->
+                stackedBins.push([bins1[key], bins2[key], bins3[key]])
+            }
+
+<!--            temp = stackedBins[0]-->
+<!--            console.log(y(temp[0].length), y(temp[1].length), y(temp[2].length), height)-->
+<!--            h0 = height - y(temp[0].length)-->
+<!--            h1 = height - y(temp[1].length)-->
+<!--            h2 = height - y(temp[2].length)-->
+<!--            console.log(h0, h0 + h1, h0 + h1 + h2)-->
 
             // append the bars for series 1
             svg.selectAll("rect")
-                .data(bins1)
+                .data(stackedBins)
                 .join("rect")
                     .attr("x", 1)
-                    .attr("transform", function(d) {
-                        return `translate(${x(d.x0)} , ${y(d.length)})`})
-                    .attr("width", function(d) { return x(d.x1) - x(d.x0); })
-                    .attr("height", function(d) { return height - y(d.length); })
+                    .attr("transform", function(d) { return `translate(${x(d[0].x0)} , ${y(d[0].length)})`})
+                    .attr("width", function(d) { return x(d[0].x1) - x(d[0].x0); })
+                    .attr("height", function(d) { return height - y(d[0].length); })
                     .style("fill", "#69b3a2")
                     .style("opacity", 0.6)
+                    // Show tooltip on hover
+                    .on("mouseover", showTooltip )
+                    .on("mousemove", moveTooltip )
+                    .on("mouseleave", hideTooltip )
 
             // append the bars for series 2
             svg.selectAll("rect2")
-                .data(bins2)
+                .data(stackedBins)
                 .enter()
                 .append("rect")
                     .attr("x", 1)
-                    .attr("transform", function(d) { return `translate(${x(d.x0)}, ${y(d.length)})`})
-                    .attr("width", function(d) { return x(d.x1) - x(d.x0); })
-                    .attr("height", function(d) { return height - y(d.length); })
+                    .attr("transform", function(d) { return `translate(${x(d[1].x0)}, ${y(d[0].length) - height + y(d[1].length)})`})
+                    .attr("width", function(d) { return x(d[1].x1) - x(d[1].x0); })
+                    .attr("height", function(d) { return height - y(d[1].length); })
                     .style("fill", "#404080")
                     .style("opacity", 0.6)
+                    // Show tooltip on hover
+                    .on("mouseover", showTooltip )
+                    .on("mousemove", moveTooltip )
+                    .on("mouseleave", hideTooltip )
 
             svg.selectAll("rect3")
-                .data(bins3)
+                .data(stackedBins)
                 .enter()
                 .append("rect")
                     .attr("x", 1)
-                    .attr("transform", function(d) { return `translate(${x(d.x0)}, ${y(d.length)})`})
-                    .attr("width", function(d) { return x(d.x1) - x(d.x0); })
-                    .attr("height", function(d) { return height - y(d.length); })
+                    .attr("transform", function(d) {return `translate(${x(d[2].x0)}, ${y(d[0].length) - height + y(d[1].length) - height + y(d[2].length)})`})
+                    .attr("width", function(d) { return x(d[2].x1) - x(d[2].x0); })
+                    .attr("height", function(d) { return height - y(d[2].length); })
                     .style("fill", "#FFD700")
+                    .style("fill", "#FF0000")
                     .style("opacity", 0.6)
-            console.log('test');
-            // Handmade legend
-            svg.append("circle").attr("cx",300).attr("cy",30).attr("r", 6).style("fill", "#69b3a2")
-            svg.append("circle").attr("cx",300).attr("cy",60).attr("r", 6).style("fill", "#404080")
-            svg.append("circle").attr("cx",300).attr("cy",90).attr("r", 6).style("fill", "#FFD700")
-            svg.append("text").attr("x", 320).attr("y", 30).text("Tweet Count").style("font-size", "15px").attr("alignment-baseline","middle")
-            svg.append("text").attr("x", 320).attr("y", 60).text("Link Count").style("font-size", "15px").attr("alignment-baseline","middle")
-            svg.append("text").attr("x", 320).attr("y", 90).text("Thread Count").style("font-size", "15px").attr("alignment-baseline","middle")
+                    // Show tooltip on hover
+                    .on("mouseover", showTooltip )
+                    .on("mousemove", moveTooltip )
+                    .on("mouseleave", hideTooltip )
 
-        })
+            // Handmade legend
+            svg.append("circle").attr("cx", width-margin.right-120).attr('class', 'legend').attr("cy",30).attr("r", 6).style("fill", "#69b3a2")
+            svg.append("circle").attr("cx", width-margin.right-120).attr('class', 'legend').attr("cy",60).attr("r", 6).style("fill", "#404080")
+<!--            svg.append("circle").attr("cx",300).attr('class', 'legend').attr("cy",90).attr("r", 6).style("fill", "#FFD700")-->
+            svg.append("circle").attr("cx", width-margin.right-120).attr('class', 'legend').attr("cy",90).attr("r", 6).style("fill", "#FF0000")
+            svg.append("text").attr("x", width-margin.right-100).attr('class', 'legend').attr("y", 30).text("Tweet Count").style("font-size", "15px").attr('text-anchor', 'start').attr("alignment-baseline","middle")
+            svg.append("text").attr("x", width-margin.right-100).attr('class', 'legend').attr("y", 60).text("Link Count").style("font-size", "15px").attr('text-anchor', 'start').attr("alignment-baseline","middle")
+            svg.append("text").attr("x", width-margin.right-100).attr('class', 'legend').attr("y", 90).text("Thread Count").style("font-size", "15px").attr('text-anchor', 'start').attr("alignment-baseline","middle")
+
+        }
     </script>
 </body>
 </html>

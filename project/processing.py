@@ -219,14 +219,14 @@ def compile_user_info(name='charliehebdo'):
                 parent_userid = tree[f'{parent_tweetid}']['userid']
                 # Add link destination to user id for regular tweet
                 if links_per_userid.get(f'{userid}', None) is None:
-                    links_per_userid[f'{userid}'] = {'src': {}, 'dst': {}}
+                    links_per_userid[f'{userid}'] = {'src': {}, 'dst': {}}  # Init empty dict for new userid
                 try:
                     links_per_userid[f'{userid}']['src'][f'{parent_userid}'] += 1
                 except:
                     links_per_userid[f'{userid}']['src'][f'{parent_userid}'] = 1
                 # Add link source to user id for regular tweet
                 if links_per_userid.get(f'{parent_userid}', None) is None:
-                    links_per_userid[f'{parent_userid}'] = {'src': {}, 'dst': {}}
+                    links_per_userid[f'{parent_userid}'] = {'src': {}, 'dst': {}}  # Init empty dict for new parent userid
                 try:
                     links_per_userid[f'{parent_userid}']['dst'][f'{userid}'] += 1
                 except:
@@ -250,6 +250,8 @@ def compile_user_info(name='charliehebdo'):
         except:
             dst_count = 0
         user_link_dist.append((key, src_count + dst_count))
+        links_per_userid[key]['src']['total'] = src_count
+        links_per_userid[key]['dst']['total'] = dst_count
         pass
     user_link_dist = sorted(user_link_dist, key=lambda x: x[1], reverse=True)
     for key, value in tqdm(threads_per_userid.items()):
@@ -310,7 +312,7 @@ def compile_tree_info(tweet_meta_info, name='charliehebdo'):
 if __name__ == '__main__':
     tweet_meta_info, tweet_meta_info_dist = compile_tweet_meta_info()
     tree_info, tree_dist = compile_tree_info(tweet_meta_info)
-    # tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist = compile_user_info()
+    tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist = compile_user_info()
     # plot_tweet_graphs()
 
     with open('tree_info.csv', 'w') as f:
@@ -318,31 +320,28 @@ if __name__ == '__main__':
         for (tree_id, num_tweets, max_links, max_out_degree, label) in tree_dist:
             f.write(f'\n{tree_id},{num_tweets},{max_links},{max_out_degree},{label}')
 
-    # with open('tweet_meta_info.csv', 'w') as f:
-    #     f.write('tweetid,root_tweetid,link_count,in_degree,out_degree,in_edge,out_edge')
-    #     for (tweetid, root_tweetid, link_count, in_edge, out_edge) in tweet_meta_info_dist:
-    #         f.write(f'\n{tweetid},{root_tweetid},{link_count},{len(in_edge)},{len(out_edge)},{in_edge},{out_edge}')
+    with open('tweet_meta_info.csv', 'w') as f:
+        f.write('tweetid,root_tweetid,link_count,in_degree,out_degree,in_edge,out_edge')
+        for (tweetid, root_tweetid, link_count, in_edge, out_edge) in tweet_meta_info_dist:
+            f.write(f'\n{tweetid},{root_tweetid},{link_count},{len(in_edge)},{len(out_edge)},{in_edge},{out_edge}')
 
-    # with open('user_meta_info.json', 'w') as f:
-    #     json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
-    #     json.dump(json_to_save, f)
+    with open('user_meta_info.json', 'w') as f:
+        json_to_save = {'tweets': tweets_per_userid, 'links': links_per_userid, 'threads': threads_per_userid}
+        json.dump(json_to_save, f, indent=1)
 
-    # with open('userid_tweet_stats.csv', 'w') as f:
-    #     f.write('userid,tweet_count,link_count,thread_count')
-    #     for userid, tweet_count in user_tweet_dist:
-    #         link_count = links_per_userid.get(userid, 0)
-    #         if type(link_count) is dict:
-    #             # if userid == '1120627788':
-    #             #     print(link_count['src'].values(), link_count['dst'].values())
-    #             #     print(sum(link_count['src'].values()), sum(link_count['dst'].values()))
-    #             try:
-    #                 src_count = sum(link_count['src'].values())
-    #             except:
-    #                 src_count = 0
-    #             try:
-    #                 dst_count = sum(link_count['dst'].values())
-    #             except:
-    #                 dst_count = 0
-    #             link_count = src_count + dst_count
-    #         thread_count = len(threads_per_userid.get(userid, []))
-    #         f.write(f'\n{userid},{tweet_count},{link_count},{thread_count}')
+    with open('userid_tweet_stats.csv', 'w') as f:
+        f.write('userid,tweet_count,link_count,src_count,dst_count,thread_count')
+        for userid, tweet_count in user_tweet_dist:
+            link_count = links_per_userid.get(userid, 0)
+            if type(link_count) is dict:
+                try:
+                    src_count = link_count['src']['total']
+                except:
+                    src_count = 0
+                try:
+                    dst_count = link_count['dst']['total']
+                except:
+                    dst_count = 0
+                link_count = src_count + dst_count
+            thread_count = len(threads_per_userid.get(userid, []))
+            f.write(f'\n{userid},{tweet_count},{link_count},{src_count},{dst_count},{thread_count}')

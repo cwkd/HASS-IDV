@@ -1,25 +1,46 @@
 .main-container {
     margin: auto;
     max-width: 1010px;
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+    text-align: center;
 }
 .network-graph-container {
     margin: auto;
     width: 100%;
-    text-align: center;
 }
 .network-graph-content {
     margin: auto;
     width: 100%;
     aspect-ratio: 3/2;
 }
+.button-container {
+
+}
 .histogram-container {
     margin: auto;
     width: 100%;
+    min-height: 750px;
     text-align: center;
 }
 .histogram-content {
     margin: auto;
     width: 100%;
+    min-height: 700px;
+}
+.user-influence-container {
+    margin: auto;
+    width: 100%;
+}
+.user-influence-content {
+    margin: auto;
+    width: 100%;
+    aspect-ratio: 1;
+}
+label {
+    font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+}
+p {
+    text-align: justify;
 }
 #next-button {
     width: 10%;

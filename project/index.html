@@ -9,16 +9,31 @@
 </head>
 <body>
     <div class="main-container">
+        <div class="text-container">
+            <h3>Charlie Hebdo Online Discussion</h3>
+            <p>
+                In the wake of the Charlie Hebdo killings, there emerged many threads of discussion on Twitter and along
+                with them, the spread of rumours related to the event. The visualisations below aim to allow users to
+                explore the various tweet trees along with other meta-information pertaining to the event.
+            </p>
+
+        </div>
         <div class='network-graph-container'>
-            <iframe class='network-graph-content' src="assets/charliehebdo_552837132491186179.html"></iframe>
+            <iframe id='network-graph-iframe' class='network-graph-content' src="assets/charliehebdo_552837132491186179.html"></iframe>
+<!--            552806610490646528-->
 <!--            552791831390732289-->
         </div>
         <div class="button-container">
-            <button id="next-button">Next</button>
-            <button id="back-button">Back</button>
+            <button id="back-button" onclick="backCallback()">Back</button>
+                <label>Tree ID</label>
+                <input type="number" min="0" value="552837132491186179" id="tree-id-searchbar" oninput="treeIdSearch()">
+            <button id="next-button" onclick="nextCallback()">Next</button>
         </div>
         <div class="histogram-container">
             <iframe class="histogram-content" src="histogram.html"></iframe>
+        </div>
+        <div class="user-influence-container">
+            <iframe class="user-influence-content" src="user_influence.html"></iframe>
         </div>
     </div>
 </body>
