@@ -321,7 +321,7 @@ if __name__ == '__main__':
     tweet_meta_info, tweet_meta_info_dist = compile_tweet_meta_info()
     tree_info, tree_dist = compile_tree_info(tweet_meta_info)
     tweets_per_userid, user_tweet_dist, links_per_userid, user_link_dist, threads_per_userid, user_thread_dist = compile_user_info()
-    plot_tweet_graphs(tweet_meta_info, tree_info)
+    # plot_tweet_graphs(tweet_meta_info, tree_info)
 
     save = False
     if save:
@@ -332,6 +332,12 @@ if __name__ == '__main__':
 
         with open('data/tree_info.json', 'w') as f:
             json.dump(tree_info, f, indent=1)
+
+        with open('data/user_threads.json', 'w') as f:
+            json.dump(threads_per_userid, f, indent=1)
+
+        with open('data/user_tweets.json', 'w') as f:
+            json.dump(tweets_per_userid, f, indent=1)
 
         with open('data/tweet_meta_info.csv', 'w') as f:
             f.write('tweetid,root_tweetid,link_count,in_degree,out_degree,in_edge,out_edge')

@@ -16,6 +16,15 @@
 .button-container {
 
 }
+.table-container {
+    margin: auto;
+    width: 100%;
+}
+.table-content {
+    margin: auto;
+    min-width: 500px;
+    text-align: center;
+}
 .histogram-container {
     margin: auto;
     width: 100%;

@@ -13,8 +13,9 @@
             <h3>Charlie Hebdo Online Discussion</h3>
             <p>
                 In the wake of the Charlie Hebdo killings, there emerged many threads of discussion on Twitter and along
-                with them, the spread of rumours related to the event. The visualisations below aim to allow users to
-                explore the various tweet trees along with other meta-information pertaining to the event.
+                with them, the spread of rumours and other information related to the event. The visualisations below
+                aim to allow users to explore the various tweet trees along with other meta-information pertaining to
+                the event.
             </p>
         </div>
         <div class="summary-graphic-container"></div>
@@ -22,8 +23,8 @@
             <h3>User Influence</h3>
             <p>
                 In any event, a small minority tends to dominate the discussion, the influence of each user is shown
-                below, indicating the number of reactions spawned by the user's tweets along with who they interacted
-                with most and the number of interactions.
+                below, indicating the number of reactions spawned by the user's tweets along with who they influenced
+                the most and the number of reactions.
             </p>
         </div>
         <div class="user-influence-container">
@@ -34,9 +35,9 @@
             <p>
                 Besides looking at the user influence, we are also interested in user activity in aggregate, thus we
                 have a stacked histogram with user tweet, link and thread counts. In general, we observe that most users
-                are not very active only having 1 or 2 tweets, in addition from the users are generally only active in
+                are not very active, having only 1 or 2 tweets, in addition from the users are generally only active in
                 1 or 2 threads and have few links from their tweets to other tweets. However, there are still some users
-                who are more active and garner more attention this is represented by the relatively greater share of
+                who are more active and garner more attention, this is represented by the relatively greater share of
                 links versus tweets and threads in the bins with higher counts.
             </p>
         </div>
@@ -60,6 +61,16 @@
                 <label>Tree ID</label>
                 <input type="number" min="0" value="552837132491186179" id="tree-id-searchbar" oninput="treeIdSearch()">
             <button id="next-button" onclick="nextCallback()">Next</button>
+        </div>
+        <div class="text-container">
+            <h3>User Threads and Tweets</h3>
+            <p>
+                The table below shows the various thread and tweet IDs which are associated with each User ID. Use this
+                to search for specific tweet trees to view them.
+            </p>
+        </div>
+        <div class="table-container">
+            <iframe class="table-content" src="table.html"></iframe>
         </div>
     </div>
 </body>
