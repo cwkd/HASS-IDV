@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User ID Info</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .table-container {
+            margin: auto;
+            font-family: 'Roboto Slab', 'Helvetica', sans-serif;
+            text-align: center;
+
+        }
+        table, td, th {
+            vertical-align: text-top;
+            border-radius: 3px;
+            border: 2px solid black;
+        }
+        tbody td {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <table id="user-info-table">
+            <tr>
+                <th>User ID</th>
+                <th>Threads</th>
+                <th>Tweets</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var user_threads
+        var user_tweets
+        d3.json('data/user_threads.json')
+            .then(d => user_threads = d);
+        d3.json('data/user_tweets.json')
+            .then(d => {
+                user_tweets = d;
+                addRows(user_tweets, user_threads);
+                }
+            );
+
+        function addRows(tweet_json, thread_json) {
+            var table = document.getElementById('user-info-table');
+            var tBody = document.createElement('tbody');
+            table.appendChild(tBody);
+            for (var key in tweet_json) {
+                var tweets = tweet_json[key];
+                var threads = thread_json[key];
+                var tr = document.createElement('tr');
+                var td = document.createElement('td');
+                td.appendChild(document.createTextNode(key));
+                tr.appendChild(td);
+                var td = document.createElement('td');
+                var line = ''
+                for (var i in threads) {
+                    if (line == '') {
+                        line += threads[i]
+                    } else {
+                        line += `\n${threads[i]}`
+                    }
+                }
+                td.appendChild(document.createTextNode(line));
+                tr.appendChild(td);
+                var td = document.createElement('td');
+                var line = ''
+                for (var i in threads) {
+                    if (line == '') {
+                        line += tweets[i]
+                    } else {
+                        line += `\n${tweets[i]}`
+                    }
+                }
+                td.appendChild(document.createTextNode(line));
+                tr.appendChild(td);
+                tBody.appendChild(tr);
+            }
+        }
+    </script>
+</body>
+</html>
