@@ -52,7 +52,7 @@ body {
 label {
     font-family: 'Roboto Slab', 'Helvetica', sans-serif;
 }
-p {
+p, ol {
     text-align: justify;
 }
 #next-button {
